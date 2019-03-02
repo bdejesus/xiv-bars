@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-plugin-react-css-modules": "^5.2.1",
+    "css-loader": "^2.1.0",
+    "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "sass-loader": "^7.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
