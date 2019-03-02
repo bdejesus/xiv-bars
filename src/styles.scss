@@ -1,9 +1,39 @@
 .slot {
-    border: 1px solid #333;
-    height: 48px;
-    width: 48px;
-    border-radius: 4px;
+  background-color: rgba(0,0,0,0.5);
+  border: 2px solid #111;
+  height: 48px;
+  width: 48px;
+  border-radius: 4px;
+  padding: 4px;
+  position: absolute;
+  &:nth-child(1) {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &:nth-child(2) {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &:nth-child(3) {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &:nth-child(4) {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+.xbarGroup {
+  margin: 10px;
+  position: relative;
+  height: 100px;
+  width: 150px;
 }
 .xbar {
-    background-color: #eee;
+  background-color: rgba(0,0,0,0.5);
+  padding: 32px;
 }
