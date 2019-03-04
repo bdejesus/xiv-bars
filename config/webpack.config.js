@@ -82,6 +82,7 @@ module.exports = function(webpackEnv) {
           ...cssOptions,
           importLoaders: 1,
           modules: true,
+          camelCase: 'dashes',
           localIdentName: "[folder]-[local]-[hash:base64:5]"  
         }
       },

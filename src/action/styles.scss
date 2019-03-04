@@ -1,0 +1,11 @@
+@import '../mixins';
+
+.action {
+  background-color: rgba(0,0,0,0.5);
+  border: 2px solid #111;
+  height: $slot-size;
+  width: $slot-size;
+  border-radius: 4px;
+  padding: $slot-spacing;
+  position: absolute;
+}
