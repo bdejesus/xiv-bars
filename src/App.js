@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import Slot from './slot';
-import Action from './action';
-import styles from './styles.scss';
+import Xbar from './Xbar';
+import Action from './Action';
 
 class App extends Component {
   constructor(props) {
@@ -10,84 +9,54 @@ class App extends Component {
     this.state = {
       bars: {
         primary: {
-          left: [
-            {name: 1},
-            {name: 2},
-            {name: 3},
-            {name: 4}
-          ],
-          right: [
-            {name: 1},
-            {name: 2},
-            {name: 3},
-            {name: 4}
-          ]
-        },
-        secondary: {
-          left: [
-            {name: 1},
-            {name: 2},
-            {name: 3},
-            {name: 4}
-          ],
-          right: [
-            {name: 1},
-            {name: 2},
-            {name: 3},
-            {name: 4}
-          ]
-        },
-        tertiary: {
-          left: [
-            {name: 1},
-            {name: 2},
-            {name: 3},
-            {name: 4}
-          ],
-          right: [
-            {name: 1},
-            {name: 2},
-            {name: 3},
-            {name: 4}
-          ]
+          left: {
+            bottom: {
+              name: 1
+            },
+            left: {
+              name: 2
+            },
+            top: {
+              name: 3
+            },
+            right: {
+              name: 4
+            }
+          },
+          right: {
+            bottom: {
+              name: 1
+            },
+            left: {
+              name: 2
+            },
+            top: {
+              name: 3
+            },
+            right: {
+              name: 4
+            }
+          }
         }
       }
     };
   }
 
+  updateSlot(e) {
+    console.log(this);
+    this.setState({ 
+      bars: {
+        primary: {
+          left: [
+            { name: 2 }
+          ]
+        } 
+      }
+    })
+  }
+
   render() {  
     const { bars } = this.state;
-
-    const Xbar = ({bar, id}) => {
-      return(
-        <div className={styles.xbar}>
-          {Object.keys(bar).map((group) => {
-            return (
-              <Group 
-                slots={bar[group]} 
-                key={`${id}-${group}`} 
-                id={`${id}-${group}`}  
-              />
-            )
-          })}
-        </div>
-      )
-    }
-
-    const Group = ({slots, id}) => {
-      return(
-        <div className={styles.xbarGroup} key={`${id}`}>
-          {slots.map((slot, index) => {
-            return (
-              <Slot 
-                key={`${id}-slot-${index + 1}`} 
-                value={slot}
-              />
-            )
-          })}
-        </div>
-      )
-    }
 
     return (
       <main className="app">

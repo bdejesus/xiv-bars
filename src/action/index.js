@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import styles from './styles.scss';
 
 class Action extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      ...props
+    }
+  }
 
   handleOnDrag(e) {
     console.log(e);

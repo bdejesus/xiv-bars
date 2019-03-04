@@ -1,13 +1,7 @@
-@import './mixins';
+@import 'src/mixins';
 
 $xbar-width: $xbar-group-width * 3;
 
-.xbar-group {
-  margin: 10px;
-  position: relative;
-  height: $xbar-group-height;
-  width: $xbar-group-width;
-}
 .xbar {
   background-color: rgba(0,0,0,0.5);
   display: flex;

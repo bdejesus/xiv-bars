@@ -9,8 +9,13 @@ class Slot extends Component {
     }
   }
 
-  handleClick(e) {
-    this.setState( state => ({value: {name: 'clicked'}}) )
+  handleClick() {
+    this.setState({
+      value: {
+        name: 'click'
+      }
+    })
+    this.props.onUpdate(this.state);
   }
 
   render() {
@@ -28,7 +33,7 @@ class Slot extends Component {
       <div 
         className={styles.slot}
         title={getTitle()}
-        onClick={(e) => this.handleClick(e)}
+        onClick={(e) => this.handleClick()}
       > 
         {value.name}
       </div>
