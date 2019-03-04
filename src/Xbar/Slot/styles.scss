@@ -8,6 +8,8 @@
   border-radius: 4px;
   padding: $slot-spacing;
   position: absolute;
+  transition: transform 0.3s ease;
+  user-select: none;
   &:nth-child(1) {
     bottom: 0;
     left: 50%;
@@ -27,5 +29,10 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+  }
+  &:hover {
+    background-color: rgba(0,0,0,0.8);
+    cursor: pointer;
+    cursor: -webkit-grab;
   }
 }

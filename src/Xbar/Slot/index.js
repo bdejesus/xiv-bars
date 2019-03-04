@@ -10,32 +10,28 @@ class Slot extends Component {
   }
 
   handleClick() {
-    this.setState({
-      value: {
-        name: 'click'
+    const event = {
+      ...this.state,
+      action: {
+        name: 'X'
       }
-    })
-    this.props.onUpdate(this.state);
+    }
+    this.setState((state) => ({
+      action: { name: 'x' }
+    }))
+    // this.props.onUpdate(event);
   }
 
   render() {
-    const { value } = this.state;
-
-    const getTitle = () => {
-      if (value) {
-        return value.name;
-      } else {
-        return '';
-      };
-    }
+    const { action } = this.state;
 
     return (
       <div 
         className={styles.slot}
-        title={getTitle()}
-        onClick={(e) => this.handleClick()}
+        title={action.name}
+        onClick={() => this.handleClick()}
       > 
-        {value.name}
+        { action.name }
       </div>
     )
   }
