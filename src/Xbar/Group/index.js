@@ -8,18 +8,23 @@ class Group extends Component {
     this.state = {
       ...props
     }
-
     this.updateSlot = this.updateSlot.bind(this)
   }
 
   updateSlot(slot) {
-    const slots = this.state.slots.slice();
-    slots[slot] = { name: 'X' };
-    this.setState({slots: slots});
+    const slots = this.state.slots.slice()
+    slots[slot] = this.props.selectedAction
+    this.setState({slots: slots})
+  }
+
+  componentDidMount() {
+    document.addEventListener("dragover", function( event ) {
+      event.preventDefault()
+    }, false)
   }
 
   render() {
-    const { slots, id } = this.state;
+    const { slots, id } = this.state
 
     const renderSlot = (slot, index) => {
       return (
@@ -28,6 +33,7 @@ class Group extends Component {
           index={index}
           action={slots[slot]}
           onClick={() => this.updateSlot(slot)} 
+          onDrop={(slot) => this.updateSlot(slot)}
         />
       )
     }

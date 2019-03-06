@@ -4,7 +4,7 @@ import styles from './styles.scss';
 
 class Xbar extends Component {
   render() {
-    const { bar, id } = this.props;
+    const { bar, id, selectedAction } = this.props;
     return(
       <div className={styles.xbar}>
         {Object.keys(bar).map((group) => {
@@ -12,7 +12,8 @@ class Xbar extends Component {
             <Group 
               slots={bar[group]} 
               key={`${id}-${group}`} 
-              id={`${id}-${group}`}  
+              id={`${id}-${group}`}
+              selectedAction={selectedAction}
             />
           )
         })}
