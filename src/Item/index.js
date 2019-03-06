@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import styles from './styles.scss';
 
 class Item extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      action: {
+        Name: null,
+        ID: null
+      }
+    }
+  }
+
   render() {
     return (
       <div 
@@ -9,7 +19,7 @@ class Item extends Component {
         draggable 
         onDragStart={() => {this.props.dragged(this.props.action)}}
       >
-        { this.props.action.name }
+        { this.props.action.Name }
       </div>
     );
   }

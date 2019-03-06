@@ -14,11 +14,11 @@ class Slot extends Component {
     return (
       <div 
         className={styles.slot}
-        title={this.props.action.name}
+        title={this.props.action.Name}
         onClick={() => handleOnClick()}
         onDrop={() => handleDrop()}
       > 
-        { this.props.action.name }
+        { this.props.action.Name }
       </div>
     )
   }
