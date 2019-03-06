@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Xbar from './Xbar';
-import Action from './Action';
+import Action from './Item';
 
 class App extends Component {
   constructor(props) {

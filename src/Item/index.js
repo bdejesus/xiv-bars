@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './styles.scss';
 
-class Action extends Component {
+class Item extends Component {
   render() {
     return (
       <div 
@@ -15,4 +15,4 @@ class Action extends Component {
   }
 }
 
-export default Action;
+export default Item;
