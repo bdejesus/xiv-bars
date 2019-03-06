@@ -63,6 +63,19 @@ class App extends Component {
         })
   }
 
+  componentWillMount() {
+    let script = document.createElement('script');
+    script.setAttribute('id', 'ffxiv');
+    script.onload = function() {
+      let newScript = document.createElement('script');
+      newScript.setAttribute('id', 'klipfolioDashboard');
+      document.getElementsByTagName('head')[0].appendChild(newScript); 
+    };
+
+    script.src = "https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2";
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
   componentDidMount() {
     this.getClassJobs()
     this.getJobActions()
