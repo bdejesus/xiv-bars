@@ -8,6 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       key: '85fb06d1e4e94cf0bee73acf',
+
       selectedAction: null,
       bars: {
         primary: {
@@ -34,10 +35,22 @@ class App extends Component {
     })
   }
 
-  getAction() {
-    fetch (`https://xivapi.com/ClassJobCategory?key=${this.state.key}`, { mode: 'cors' })
-      .then(response => response.json())
-      .then(data => console.info(data.Results))
+  getClassJobs() {
+    var ids = [30, 31];
+
+    ids.map((id) => {
+      var requestUri = `https://xivapi.com/ClassJobCategory/${id}`;
+      fetch (`${requestUri}?key=${this.state.key}`, { mode: 'cors' })
+        .then(response => response.json())
+        .then((data) => {
+          var jobs = data.GameContentLinks.ClassJob.ClassJobCategory
+          this.setState({ [id]: jobs});
+        })
+    })
+  }
+
+  componentDidMount() {
+    this.getClassJobs()
   }
 
   render() {  
@@ -66,8 +79,6 @@ class App extends Component {
               action={ {name: 'C'} } 
               dragged={(action) => { this.handleDrag(action) }}
             />
-
-            {this.getAction()}
           </div>
         </div>
       </main>
