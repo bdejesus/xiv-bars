@@ -9,34 +9,18 @@ class App extends Component {
     this.state = {
       bars: {
         primary: {
-          left: {
-            bottom: {
-              name: 1
-            },
-            left: {
-              name: 2
-            },
-            top: {
-              name: 3
-            },
-            right: {
-              name: 4
-            }
-          },
-          right: {
-            bottom: {
-              name: 1
-            },
-            left: {
-              name: 2
-            },
-            top: {
-              name: 3
-            },
-            right: {
-              name: 4
-            }
-          }
+          left: [
+            { name: 1 },
+            { name: 2 },
+            { name: 3 },
+            { name: 4 }
+          ],
+          right: [
+            { name: 1 },
+            { name: 2 },
+            { name: 3 },
+            { name: 4 }
+          ]
         }
       }
     };

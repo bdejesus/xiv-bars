@@ -12,28 +12,30 @@ class Group extends Component {
     this.updateSlot = this.updateSlot.bind(this)
   }
 
-  updateSlot(event) {
-    this.setState((state) => ({
-      slots: {
-        ...state.slots,
-        [event.slot]: event.action
-      }
-    }))
+  updateSlot(slot) {
+    const slots = this.state.slots.slice();
+    slots[slot] = { name: 'X' };
+    this.setState({slots: slots});
   }
 
   render() {
     const { slots, id } = this.state;
+
+    const renderSlot = (slot, index) => {
+      return (
+        <Slot 
+          key={`${id}-slot-${slot}`} 
+          index={index}
+          action={slots[slot]}
+          onClick={() => this.updateSlot(slot)} 
+        />
+      )
+    }
+
     return(
       <div className={styles.xbarGroup} key={`${id}`}>
         {Object.keys(slots).map((slot, index) => {
-          return (
-            <Slot 
-              key={`${id}-slot-${index + 1}`} 
-              action={slots[slot]}
-              onUpdate={this.updateSlot} 
-              slot={slot}
-            />
-          )
+          return renderSlot(slot, index)
         })}
       </div>
     )

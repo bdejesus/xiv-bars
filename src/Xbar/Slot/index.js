@@ -2,36 +2,14 @@ import React, { Component } from 'react';
 import styles from './styles.scss';
 
 class Slot extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...props
-    }
-  }
-
-  handleClick() {
-    const event = {
-      ...this.state,
-      action: {
-        name: 'X'
-      }
-    }
-    this.setState((state) => ({
-      action: { name: 'x' }
-    }))
-    // this.props.onUpdate(event);
-  }
-
   render() {
-    const { action } = this.state;
-
     return (
       <div 
         className={styles.slot}
-        title={action.name}
-        onClick={() => this.handleClick()}
+        title={this.props.action.name}
+        onClick={() => this.props.onClick(this.state)}
       > 
-        { action.name }
+        { this.props.action.name }
       </div>
     )
   }
