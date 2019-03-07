@@ -17,7 +17,7 @@ class Item extends Component {
       <div
         className={styles.action}
         draggable
-        onDragEnd={() => {this.props.dragged(this.props.action)}}
+        onDragStart={() => {this.props.dragged(this.props.action)}}
       >
         { this.props.action.Name }
       </div>

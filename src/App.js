@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-
+import XIV from './utilities/xiv-api';
 import styles from './styles.scss';
 import Xbar from './Xbar';
 import Item from './Item';
-import Select from './utilities/Select';
 
 class App extends Component {
   constructor(props) {
