@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import XIV from './utilities/xiv-api';
+import XIV from './utils/xiv-api';
 import styles from './styles.scss';
 import Xbar from './Xbar';
 import Item from './Item';
@@ -40,6 +40,8 @@ class App extends Component {
   }
 
   getClassJobs() {
+    XIV.search()
+
     var ids = [30];
 
     // eslint-disable-next-line array-callback-return
