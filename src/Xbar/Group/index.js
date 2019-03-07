@@ -13,15 +13,12 @@ class Group extends Component {
 
   updateSlot(slot) {
     const slots = this.state.slots.slice()
-
     if (this.props.selectedAction) {
       slots[slot] = this.props.selectedAction
     } else {
       slots[slot] = { Name: '' }
     }
-
     this.setState({slots: slots})
-    this.props.resetSelectedAction()
   }
 
   componentDidMount() {

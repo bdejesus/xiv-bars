@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import styles from './styles.scss';
 import Xbar from './Xbar';
 import Item from './Item';
+import Select from './utilities/Select';
 
 class App extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends Component {
       selectedAction: null,
       selectedJob: 2,
       actions: [],
+      jobs: [],
       bars: {
         primary: {
           left: [
@@ -39,7 +41,7 @@ class App extends Component {
   }
 
   getClassJobs() {
-    var ids = [30, 31];
+    var ids = [30];
 
     // eslint-disable-next-line array-callback-return
     ids.map((id) => {
@@ -48,7 +50,7 @@ class App extends Component {
         .then(response => response.json())
         .then((data) => {
           var jobs = data.GameContentLinks.ClassJob.ClassJobCategory
-          this.setState({ [id]: jobs});
+          this.setState({ jobs: jobs })
         })
     })
   }
@@ -64,7 +66,7 @@ class App extends Component {
         })
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getClassJobs()
     this.getJobActions()
   }
@@ -81,6 +83,13 @@ class App extends Component {
               dragged={(action) => { this.handleDrag(action) }}
             />
           </li>
+        )
+      })
+
+    const jobsList =
+      this.state.jobs.map((job) => {
+        return (
+          <option value={job}>{job}</option>
         )
       })
 
@@ -103,6 +112,12 @@ class App extends Component {
           <div className='actions'>
             <h2>Job</h2>
             <p>GLA</p>
+
+            <form>
+              <select name='jobSelect' id='jobSelect'>
+                { this.state.jobs && jobsList }
+              </select>
+            </form>
 
             <h3>Actions</h3>
             <ul className={styles.listActions}>
