@@ -7,7 +7,7 @@
   }
   body {
     background-color: #333;
-    background-image: url('./images/background.jpg');
+    // background-image: url('./images/background.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -22,7 +22,10 @@
     line-height: 1.455em;
     font-size: 16px;
   }
-
+  a {
+    color: #9CF;
+    text-decoration: none;
+  }
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
@@ -33,5 +36,9 @@
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
+  }
+
+  #eorzeadb_tooltip {
+    overflow: visible !important;
   }
 }

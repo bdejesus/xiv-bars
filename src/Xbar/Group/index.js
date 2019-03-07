@@ -13,8 +13,15 @@ class Group extends Component {
 
   updateSlot(slot) {
     const slots = this.state.slots.slice()
-    slots[slot] = this.props.selectedAction
+
+    if (this.props.selectedAction) {
+      slots[slot] = this.props.selectedAction
+    } else {
+      slots[slot] = { Name: '' }
+    }
+
     this.setState({slots: slots})
+    this.props.resetSelectedAction()
   }
 
   componentDidMount() {
@@ -28,11 +35,11 @@ class Group extends Component {
 
     const renderSlot = (slot, index) => {
       return (
-        <Slot 
-          key={`${id}-slot-${slot}`} 
+        <Slot
+          key={`${id}-slot-${slot}`}
           index={index}
           action={slots[slot]}
-          onClick={() => this.updateSlot(slot)} 
+          onClick={() => this.updateSlot(slot)}
           onDrop={(slot) => this.updateSlot(slot)}
         />
       )

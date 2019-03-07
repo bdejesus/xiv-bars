@@ -10379,6 +10379,14 @@ x-is-string@^0.1.0:
   resolved "https://registry.yarnpkg.com/x-is-string/-/x-is-string-0.1.0.tgz#474b50865af3a49a9c4657f05acd145458f77d82"
   integrity sha1-R0tQhlrzpJqcRlfwWs0UVFj3fYI=
 
+xivapi-js@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/xivapi-js/-/xivapi-js-0.1.2.tgz#2b688de199f32a507a5df7f58be87ddf4598cff6"
+  integrity sha512-ByhCGsyo3e5uPENwqc4zlWPC57FvCvtlXtSJuRwLYwHAggFNJ3WEJ8ET72/JDg8+va7NTKBimnf85q6T7SIWkg==
+  dependencies:
+    request "^2.88.0"
+    request-promise-native "^1.0.5"
+
 xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"

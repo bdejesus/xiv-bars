@@ -4,7 +4,7 @@ import styles from './styles.scss';
 class Slot extends Component {
   render() {
     const handleOnClick = () => {
-      this.props.onClick(this.state)
+      this.props.onClick(this.props.index)
     }
 
     const handleDrop = () => {
@@ -12,12 +12,12 @@ class Slot extends Component {
     }
 
     return (
-      <div 
+      <div
         className={styles.slot}
         title={this.props.action.Name}
         onClick={() => handleOnClick()}
         onDrop={() => handleDrop()}
-      > 
+      >
         { this.props.action.Name }
       </div>
     )

@@ -14,17 +14,12 @@ class Item extends Component {
 
   render() {
     return (
-      <div 
-        className={styles.action} 
-        draggable 
-        onDragStart={() => {this.props.dragged(this.props.action)}}
+      <div
+        className={styles.action}
+        draggable
+        onDragEnd={() => {this.props.dragged(this.props.action)}}
       >
-        <a 
-          href={`https://na.finalfantasyxiv.com/lodestone/playguide/db/item/b2cab67854f/`} 
-          className="eorzeadb_link"
-        >
-          { this.props.action.Name }
-        </a>
+        { this.props.action.Name }
       </div>
     );
   }

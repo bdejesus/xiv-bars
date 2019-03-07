@@ -41,6 +41,7 @@ class App extends Component {
   getClassJobs() {
     var ids = [30, 31];
 
+    // eslint-disable-next-line array-callback-return
     ids.map((id) => {
       var requestUri = `https://xivapi.com/ClassJobCategory/${id}?`;
       fetch (`${requestUri}key=${this.state.key}`, { mode: 'cors' })
@@ -63,41 +64,25 @@ class App extends Component {
         })
   }
 
-  componentWillMount() {
-    let script = document.createElement('script');
-    script.setAttribute('id', 'ffxiv');
-    script.onload = function() {
-      let newScript = document.createElement('script');
-      newScript.setAttribute('id', 'klipfolioDashboard');
-      document.getElementsByTagName('head')[0].appendChild(newScript); 
-    };
-
-    script.src = "https://img.finalfantasyxiv.com/lds/pc/global/js/eorzeadb/loader.js?v2";
-    document.getElementsByTagName('head')[0].appendChild(script);
-  }
-
   componentDidMount() {
     this.getClassJobs()
     this.getJobActions()
   }
 
-  render() {  
+  render() {
     const { bars, selectedAction } = this.state;
-    
+
     const actionsList =
       this.state.actions.map((action) => {
         return (
-          <li>
-            {console.log(action)}
-            <Item 
-              action={action} 
+          <li key={`action-${action.ID}`}>
+            <Item
+              action={action}
               dragged={(action) => { this.handleDrag(action) }}
             />
           </li>
         )
       })
-    
-    
 
     return (
       <main className="app">
@@ -105,16 +90,16 @@ class App extends Component {
           <div className='panel'>
             {Object.keys(bars).map((bar) => {
               return (
-                <Xbar 
-                  bar={bars[bar]} 
-                  key={bar} 
-                  id={bar} 
+                <Xbar
+                  bar={bars[bar]}
+                  key={bar}
+                  id={bar}
                   selectedAction={selectedAction}
                 />
               )
             })}
           </div>
-          
+
           <div className='actions'>
             <h2>Job</h2>
             <p>GLA</p>
@@ -124,7 +109,6 @@ class App extends Component {
               { this.state.actions && actionsList }
             </ul>
 
-            <Item action={{Name: 'name'}} dragged={(action) => { this.handleDrag(action) }} />
           </div>
         </div>
       </main>
