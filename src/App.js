@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       key: '85fb06d1e4e94cf0bee73acf',
       selectedAction: null,
-      selectedJob: 2,
+      selectedJob: 22,
       actions: [],
       jobs: [],
       bars: {
@@ -56,10 +56,10 @@ class App extends Component {
     jobs = await jobs.Results;
     
     // Get Selectd Job Actions
-    let selectedJob = await jobs[22] // TODO: Make this dynamic
+    let selectedJob = await jobs[this.state.selectedJob] // TODO: Make this dynamic
     let actions = await this.api.search('',  { filters: `ClassJob.ID=${selectedJob.ID}` });
     actions = await actions.Results;
-    
+
     this.setState({ jobs, actions });
   }
 
