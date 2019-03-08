@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import XIV from './utils/xiv-api';
+import XIVAPI from 'xivapi-js';
 import styles from './styles.scss';
 import Xbar from './Xbar';
 import Item from './Item';
+import Text from './utils/text';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       key: '85fb06d1e4e94cf0bee73acf',
-
       selectedAction: null,
       selectedJob: 2,
       actions: [],
@@ -31,6 +31,7 @@ class App extends Component {
         }
       }
     };
+    this.api = new XIVAPI(this.state.key)
   }
 
   handleDrag(action) {
@@ -39,37 +40,27 @@ class App extends Component {
     })
   }
 
-  getClassJobs() {
-    XIV.search()
-
-    var ids = [30];
-
-    // eslint-disable-next-line array-callback-return
-    ids.map((id) => {
-      var requestUri = `https://xivapi.com/ClassJobCategory/${id}?`;
-      fetch (`${requestUri}key=${this.state.key}`, { mode: 'cors' })
-        .then(response => response.json())
-        .then((data) => {
-          var jobs = data.GameContentLinks.ClassJob.ClassJobCategory
-          this.setState({ jobs: jobs })
-        })
-    })
-  }
-
-  getJobActions() {
-    var id = this.state.selectedJob
-    var requestUri = `https://xivapi.com/search?filters=ClassJob.ID=${id}&columns=ID,Name,UrlType&`;
-      fetch (`${requestUri}key=${this.state.key}`, { mode: 'cors' })
-        .then(response => response.json())
-        .then((data) => {
-          var actions = data.Results;
-          this.setState({ actions: actions })
-        })
-  }
-
   componentWillMount() {
-    this.getClassJobs()
-    this.getJobActions()
+    this.setState({ api: new XIVAPI(this.state.key) })
+    this.getContent()
+  }
+
+  componentDidMount() { 
+  }
+
+  async getContent() {
+    const api = this.api.data;
+
+    // Get Jobs List
+    let jobs = await api.list('ClassJob');
+    jobs = await jobs.Results;
+    
+    // Get Selectd Job Actions
+    let selectedJob = await jobs[22] // TODO: Make this dynamic
+    let actions = await this.api.search('',  { filters: `ClassJob.ID=${selectedJob.ID}` });
+    actions = await actions.Results;
+    
+    this.setState({ jobs, actions });
   }
 
   render() {
@@ -87,12 +78,14 @@ class App extends Component {
         )
       })
 
-    const jobsList =
-      this.state.jobs.map((job) => {
+    let jobsList = []
+    if (this.state.jobs) {
+      jobsList = this.state.jobs.map((job,index) => {
         return (
-          <option value={job}>{job}</option>
+          <option key={index} value={job.ID}>{Text.titleize(job.Name)}</option>
         )
       })
+    }
 
     return (
       <main className="app">
@@ -116,7 +109,7 @@ class App extends Component {
 
             <form>
               <select name='jobSelect' id='jobSelect'>
-                { this.state.jobs && jobsList }
+                { jobsList }
               </select>
             </form>
 
