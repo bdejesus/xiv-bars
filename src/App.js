@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       key: '85fb06d1e4e94cf0bee73acf',
       selectedAction: null,
-      selectedJob: 22,
+      selectedJob: { Name: '', ID: 1 },
       actions: [],
       jobs: [],
       bars: {
@@ -40,24 +40,31 @@ class App extends Component {
     })
   }
 
+  updateJob(event) {
+    let selectedJob = this.state.jobs[event.currentTarget.value - 1]
+
+    this.setState({selectedJob: selectedJob});
+    this.fetchData();
+  }
+
   componentWillMount() {
     this.setState({ api: new XIVAPI(this.state.key) })
-    this.getContent()
   }
 
   componentDidMount() { 
+    this.fetchData()
   }
 
-  async getContent() {
-    const api = this.api.data;
+  async fetchData() {
+    const api = this.api;
 
     // Get Jobs List
-    let jobs = await api.list('ClassJob');
+    let jobs = await api.data.list('ClassJob');
     jobs = await jobs.Results;
-    
+    let selectedJobID = this.state.selectedJob.ID // TODO: Make this dynamic
+
     // Get Selectd Job Actions
-    let selectedJob = await jobs[this.state.selectedJob] // TODO: Make this dynamic
-    let actions = await this.api.search('',  { filters: `ClassJob.ID=${selectedJob.ID}` });
+    let actions = await api.search('',  { filters: `ClassJob.ID=${selectedJobID}` });
     actions = await actions.Results;
 
     this.setState({ jobs, actions });
@@ -66,6 +73,22 @@ class App extends Component {
   render() {
     const { bars, selectedAction } = this.state;
 
+    let jobsList = []
+    if (this.state.jobs) {
+      jobsList = this.state.jobs.map((job) => {
+        return (
+          <option key={`job-${job.ID}`} value={job.ID}>{Text.titleize(job.Name)}</option>
+        )
+      })
+    }
+
+    const jobListSelect =
+      <div className={styles.jobSelectWrapper}>
+        <select name='jobSelect' id='jobSelect' className={styles.jobSelect} onChange={(event) => this.updateJob(event)}>
+          { jobsList }
+        </select>
+      </div>
+    
     const actionsList =
       this.state.actions.map((action) => {
         return (
@@ -77,16 +100,7 @@ class App extends Component {
           </li>
         )
       })
-
-    let jobsList = []
-    if (this.state.jobs) {
-      jobsList = this.state.jobs.map((job,index) => {
-        return (
-          <option key={index} value={job.ID}>{Text.titleize(job.Name)}</option>
-        )
-      })
-    }
-
+    
     return (
       <main className="app">
         <div className='container'>
@@ -105,14 +119,8 @@ class App extends Component {
 
           <div className='actions'>
             <h2>Job</h2>
-            <p>GLA</p>
-
-            <form>
-              <select name='jobSelect' id='jobSelect'>
-                { jobsList }
-              </select>
-            </form>
-
+            { jobListSelect }
+            
             <h3>Actions</h3>
             <ul className={styles.listActions}>
               { this.state.actions && actionsList }
