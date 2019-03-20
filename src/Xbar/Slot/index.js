@@ -1,26 +1,25 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './styles.scss';
 
-class Slot extends Component {
+class Slot extends PureComponent {
   render() {
-    const handleOnClick = () => {
-      this.props.onClick(this.props.index)
-    }
-
-    const handleDrop = () => {
-      this.props.onDrop(this.props.index)
-    }
+    const {
+      action, index, onClick, onDrop,
+    } = this.props;
+    const handleOnClick = () => onClick(index);
+    const handleDrop = () => onDrop(index);
 
     return (
       <div
         className={styles.slot}
-        title={this.props.action.Name}
+        title={action.Name}
         onClick={() => handleOnClick()}
         onDrop={() => handleDrop()}
+        role="button"
       >
-        { this.props.action.Name }
+        { action.Name }
       </div>
-    )
+    );
   }
 }
 

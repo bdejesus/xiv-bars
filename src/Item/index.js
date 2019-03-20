@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './styles.scss';
 
-class Item extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      action: {
-        Name: null,
-        ID: null
-      }
-    }
-  }
-
+class Item extends PureComponent {
   render() {
+    const { dragged, action } = this.props;
+
     return (
       <div
         className={styles.action}
         draggable
-        onDragStart={() => {this.props.dragged(this.props.action)}}
+        onDragStart={() => { dragged(action); }}
       >
-        { this.props.action.Name }
+        { action.Name }
       </div>
     );
   }

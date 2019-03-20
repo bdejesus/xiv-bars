@@ -4,51 +4,48 @@ import styles from './styles.scss';
 
 class Group extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      ...props
-    }
-    this.updateSlot = this.updateSlot.bind(this)
-  }
-
-  updateSlot(slot) {
-    const slots = this.state.slots.slice()
-    if (this.props.selectedAction) {
-      slots[slot] = this.props.selectedAction
-    } else {
-      slots[slot] = { Name: '' }
-    }
-    this.setState({slots: slots})
+      ...this.props,
+    };
+    this.updateSlot = this.updateSlot.bind(this);
   }
 
   componentDidMount() {
-    document.addEventListener("dragover", function( event ) {
-      event.preventDefault()
-    }, false)
+    document.addEventListener('dragover', (event) => {
+      event.preventDefault();
+    }, false);
+  }
+
+  updateSlot(slot) {
+    const { slots, selectedAction } = this.props;
+    const currentSlots = slots.slice();
+    if (selectedAction) {
+      currentSlots[slot] = selectedAction;
+    } else {
+      currentSlots[slot] = { Name: '' };
+    }
+    this.setState({ slots: currentSlots });
   }
 
   render() {
-    const { slots, id } = this.state
+    const { slots, id } = this.props;
 
-    const renderSlot = (slot, index) => {
-      return (
-        <Slot
-          key={`${id}-slot-${slot}`}
-          index={index}
-          action={slots[slot]}
-          onClick={() => this.updateSlot(slot)}
-          onDrop={(slot) => this.updateSlot(slot)}
-        />
-      )
-    }
+    const renderSlot = (slot, index) => (
+      <Slot
+        key={`${id}-slot-${slot}`}
+        index={index}
+        action={slots[slot]}
+        onClick={thisSlot => this.updateSlot(thisSlot)}
+        onDrop={thisSlot => this.updateSlot(thisSlot)}
+      />
+    );
 
-    return(
+    return (
       <div className={styles.xbarGroup} key={`${id}`}>
-        {Object.keys(slots).map((slot, index) => {
-          return renderSlot(slot, index)
-        })}
+        {Object.keys(slots).map((slot, index) => renderSlot(slot, index))}
       </div>
-    )
+    );
   }
 }
 

@@ -479,6 +479,12 @@ module.exports = function(webpackEnv) {
             // Make sure to add the new loader(s) before the "file" loader.
           ],
         },
+        // ESLint Loader
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: ['eslint-loader']
+        }
       ],
     },
     plugins: [
