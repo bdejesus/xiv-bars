@@ -38,7 +38,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchJobsList();
+    this.fetchActions();
   }
 
   handleDrag(action) {
@@ -50,23 +51,21 @@ class App extends Component {
   updateJob(event) {
     const { jobs } = this.state;
     const selectedJob = jobs[event.currentTarget.value - 1];
-    this.setState({ selectedJob });
-    this.fetchData();
+    this.setState({ selectedJob }, (() => { this.fetchActions(); }));
   }
 
-  async fetchData() {
-    const { api, selectedJob } = this.state;
-
-    // Get Jobs List
+  async fetchJobsList() {
+    const { api } = this.state;
     let jobs = await api.data.list('ClassJob');
     jobs = await jobs.Results;
-    const selectedJobID = selectedJob.ID; // TODO: Make this dynamic
+    this.setState({ jobs });
+  }
 
-    // Get Selectd Job Actions
-    let actions = await api.search('', { filters: `ClassJob.ID=${selectedJobID}` });
+  async fetchActions() {
+    const { api, selectedJob } = this.state;
+    let actions = await api.search('', { filters: `ClassJob.ID=${selectedJob.ID}` });
     actions = await actions.Results;
-
-    this.setState({ jobs, actions });
+    this.setState({ actions });
   }
 
   render() {

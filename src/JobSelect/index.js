@@ -15,7 +15,12 @@ class JobSelect extends PureComponent {
 
     const jobListSelect = (
       <div className={styles.jobSelectWrapper}>
-        <select name="jobSelect" id="jobSelect" className={styles.jobSelect} onChange={event => updateJob(event)}>
+        <select
+          name="jobSelect"
+          id="jobSelect"
+          className={styles.jobSelect}
+          onChange={event => updateJob(event)}
+        >
           { jobsList }
         </select>
       </div>

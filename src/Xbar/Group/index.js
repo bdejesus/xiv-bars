@@ -6,7 +6,7 @@ class Group extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...this.props,
+      ...this.props
     };
     this.updateSlot = this.updateSlot.bind(this);
   }
@@ -20,6 +20,7 @@ class Group extends Component {
   updateSlot(slot) {
     const { slots, selectedAction } = this.props;
     const currentSlots = slots.slice();
+
     if (selectedAction) {
       currentSlots[slot] = selectedAction;
     } else {

@@ -17,9 +17,10 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    'react'
   ],
   rules: {
+    'comma-dangle': 'off',
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'warn',
     'react/no-unused-state': 'warn',
