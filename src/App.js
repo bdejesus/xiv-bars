@@ -42,10 +42,13 @@ class App extends Component {
     this.fetchActions();
   }
 
-  handleDrag(action) {
-    this.setState({
-      selectedAction: action,
-    });
+  handleDrag(selectedAction) {
+    this.setState({ selectedAction });
+  }
+
+  updateBars(event) {
+    console.log(event);
+    console.log(this.state);
   }
 
   updateJob(event) {
@@ -94,6 +97,7 @@ class App extends Component {
                 key={bar}
                 id={bar}
                 selectedAction={selectedAction}
+                onUpdateXBar={event => this.updateBars(event)}
               />
             ))}
           </div>

@@ -13,6 +13,7 @@ class Xbar extends PureComponent {
             key={`${id}-${group}`}
             id={`${id}-${group}`}
             selectedAction={selectedAction}
+            onUpdateGroup={event => this.props.onUpdateXBar(event)}
           />
         ))}
       </div>

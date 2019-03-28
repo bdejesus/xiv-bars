@@ -18,9 +18,10 @@ class Group extends Component {
   }
 
   updateSlot(slot) {
-    const { slots, selectedAction } = this.props;
-    const currentSlots = slots.slice();
-
+    const { onUpdateGroup } = this.props;
+    onUpdateGroup(slot);
+    const { slots, selectedAction } = this.state;
+    const currentSlots = slots;
     if (selectedAction) {
       currentSlots[slot] = selectedAction;
     } else {
@@ -30,7 +31,7 @@ class Group extends Component {
   }
 
   render() {
-    const { slots, id } = this.props;
+    const { slots, id } = this.state;
 
     const renderSlot = (slot, index) => (
       <Slot

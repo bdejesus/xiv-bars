@@ -21,10 +21,12 @@ module.exports = {
   ],
   rules: {
     'comma-dangle': 'off',
+    'react/destructuring-assignment': 'warn',
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'warn',
     'react/no-unused-state': 'warn',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/interactive-supports-focus': 'off'
+
   },
 };
