@@ -55,11 +55,5 @@ class Group extends Component {
 export default Group;
 
 Group.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selectedAction: PropTypes.shape(),
-  id: PropTypes.string.isRequired
-};
-
-Group.defaultProps = {
-  selectedAction: null
+  onUpdateGroup: PropTypes.func.isRequired
 };

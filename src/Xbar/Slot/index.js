@@ -28,7 +28,7 @@ export default Slot;
 
 Slot.propTypes = {
   index: PropTypes.number.isRequired,
-  action: PropTypes.shape,
+  action: PropTypes.shape(),
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired
 };

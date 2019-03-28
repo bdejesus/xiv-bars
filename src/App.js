@@ -47,6 +47,7 @@ class App extends Component {
   }
 
   updateBars(event) {
+    /* eslint-disable no-console */
     console.log(event);
     console.log(this.state);
   }

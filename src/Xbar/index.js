@@ -5,7 +5,12 @@ import styles from './styles.scss';
 
 class Xbar extends PureComponent {
   render() {
-    const { bar, id, selectedAction } = this.props;
+    const {
+      bar,
+      id,
+      selectedAction,
+      onUpdateXBar
+    } = this.props;
     return (
       <div className={styles.xbar}>
         {Object.keys(bar).map(group => (
@@ -14,7 +19,7 @@ class Xbar extends PureComponent {
             key={`${id}-${group}`}
             id={`${id}-${group}`}
             selectedAction={selectedAction}
-            onUpdateGroup={event => this.props.onUpdateXBar(event)}
+            onUpdateGroup={event => onUpdateXBar(event)}
           />
         ))}
       </div>
@@ -25,9 +30,10 @@ class Xbar extends PureComponent {
 export default Xbar;
 
 Xbar.propTypes = {
-  bar: PropTypes.shape.isRequired,
+  bar: PropTypes.shape().isRequired,
   id: PropTypes.string.isRequired,
-  selectedAction: PropTypes.shape
+  selectedAction: PropTypes.shape(),
+  onUpdateXBar: PropTypes.func.isRequired
 };
 
 Xbar.defaultProps = {
