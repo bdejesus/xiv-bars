@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { titleize } from '../utils/text';
 import styles from './styles.scss';
 
@@ -36,3 +37,8 @@ class JobSelect extends PureComponent {
 }
 
 export default JobSelect;
+
+JobSelect.propTypes = {
+  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  updateJob: PropTypes.func.isRequired
+};

@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 class Item extends PureComponent {
@@ -18,3 +19,8 @@ class Item extends PureComponent {
 }
 
 export default Item;
+
+Item.propTypes = {
+  dragged: PropTypes.func.isRequired,
+  action: PropTypes.shape().isRequired
+};

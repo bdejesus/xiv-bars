@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import Group from './Group';
 import styles from './styles.scss';
 
@@ -22,3 +23,13 @@ class Xbar extends PureComponent {
 }
 
 export default Xbar;
+
+Xbar.propTypes = {
+  bar: PropTypes.shape.isRequired,
+  id: PropTypes.string.isRequired,
+  selectedAction: PropTypes.shape
+};
+
+Xbar.defaultProps = {
+  selectedAction: null
+};

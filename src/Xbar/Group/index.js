@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Slot from '../Slot';
 import styles from './styles.scss';
 
@@ -27,7 +28,7 @@ class Group extends Component {
     } else {
       currentSlots[slot] = { Name: '' };
     }
-    this.setState({ slots: currentSlots });
+    // this.setState({ slots: currentSlots });
   }
 
   render() {
@@ -52,3 +53,13 @@ class Group extends Component {
 }
 
 export default Group;
+
+Group.propTypes = {
+  slots: PropTypes.arrayOf(PropTypes.object).isRequired,
+  selectedAction: PropTypes.shape(),
+  id: PropTypes.string.isRequired
+};
+
+Group.defaultProps = {
+  selectedAction: null
+};

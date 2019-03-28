@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 class Slot extends PureComponent {
@@ -24,3 +25,14 @@ class Slot extends PureComponent {
 }
 
 export default Slot;
+
+Slot.propTypes = {
+  index: PropTypes.number.isRequired,
+  action: PropTypes.shape,
+  onClick: PropTypes.func.isRequired,
+  onDrop: PropTypes.func.isRequired
+};
+
+Slot.defaultProps = {
+  action: null
+};
