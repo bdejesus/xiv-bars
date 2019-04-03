@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { createStore } from 'redux';
 import XIVAPI from 'xivapi-js';
+import initXBars from './initXBars';
+import reducer from './reducers';
 import styles from './styles.scss';
 import Xbar from './Xbar';
 import Item from './Item';
@@ -12,23 +16,7 @@ class App extends Component {
       selectedAction: null,
       selectedJob: { Name: '', ID: 1 },
       actions: [],
-      jobs: [],
-      bars: {
-        primary: {
-          left: [
-            { Name: 1 },
-            { Name: 2 },
-            { Name: 3 },
-            { Name: 4 },
-          ],
-          right: [
-            { Name: 1 },
-            { Name: 2 },
-            { Name: 3 },
-            { Name: 4 },
-          ],
-        },
-      },
+      jobs: []
     };
   }
 
@@ -40,16 +28,19 @@ class App extends Component {
   componentDidMount() {
     this.fetchJobsList();
     this.fetchActions();
+
+    const xbars = initXBars();
+    const store = createStore(reducer, xbars);
+  }
+
+  updateView(event) {
+    /* eslint-disable no-console */
+    console.log(event);
+    console.log(this.state);
   }
 
   handleDrag(selectedAction) {
     this.setState({ selectedAction });
-  }
-
-  updateBars(event) {
-    /* eslint-disable no-console */
-    console.log(event);
-    console.log(this.state);
   }
 
   updateJob(event) {
@@ -73,11 +64,11 @@ class App extends Component {
   }
 
   render() {
+    const { bars } = this.props;
     const {
-      bars,
       jobs,
       actions,
-      selectedAction,
+      selectedAction
     } = this.state;
     const ActionsList = actions.map(action => (
       <li key={`action-${action.ID}`}>
@@ -98,7 +89,7 @@ class App extends Component {
                 key={bar}
                 id={bar}
                 selectedAction={selectedAction}
-                onUpdateXBar={event => this.updateBars(event)}
+                onUpdateXBar={event => this.updateView(event)}
               />
             ))}
           </div>
@@ -120,5 +111,11 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  bars: PropTypes.shape()
+};
+
+App.defaultProps = initXBars();
 
 export default App;

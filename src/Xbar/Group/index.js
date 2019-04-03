@@ -21,24 +21,26 @@ class Group extends Component {
   updateSlot(slot) {
     const { onUpdateGroup } = this.props;
     onUpdateGroup(slot);
-    const { slots, selectedAction } = this.state;
-    const currentSlots = slots;
-    if (selectedAction) {
-      currentSlots[slot] = selectedAction;
-    } else {
-      currentSlots[slot] = { Name: '' };
-    }
+    // const { slots, selectedAction } = this.state;
+    // const currentSlots = slots;
+    // if (selectedAction) {
+    //   currentSlots[slot] = selectedAction;
+    // } else {
+    //   currentSlots[slot] = { Name: '' };
+    // }
     // this.setState({ slots: currentSlots });
+    console.log('update');
   }
 
   render() {
     const { slots, id } = this.state;
 
-    const renderSlot = (slot, index) => (
+    const renderSlot = (slotIndex, index) => (
       <Slot
-        key={`${id}-slot-${slot}`}
+        key={`${id}-${slots[slotIndex].id}`}
         index={index}
-        action={slots[slot]}
+        id={slots[slotIndex].id}
+        action={slots[slotIndex].action}
         onClick={thisSlot => this.updateSlot(thisSlot)}
         onDrop={thisSlot => this.updateSlot(thisSlot)}
       />

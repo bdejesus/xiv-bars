@@ -21,6 +21,7 @@ module.exports = {
   ],
   rules: {
     'comma-dangle': 'off',
+    'no-unused-vars': 'warn',
     'react/destructuring-assignment': 'warn',
     'react/jsx-filename-extension': 'off',
     'react/prop-types': 'warn',

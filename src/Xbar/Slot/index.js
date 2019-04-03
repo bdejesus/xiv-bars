@@ -5,20 +5,24 @@ import styles from './styles.scss';
 class Slot extends PureComponent {
   render() {
     const {
-      action, index, onClick, onDrop,
+      id, action, onClick, onDrop,
     } = this.props;
-    const handleOnClick = () => onClick(index);
-    const handleDrop = () => onDrop(index);
+
+    const attributes = { id };
+    const handleOnClick = () => onClick(attributes);
+    const handleDrop = () => {
+      onDrop(attributes);
+    };
 
     return (
       <div
-        className={styles.slot}
-        title={action.Name}
+        id={id}
+        className={`${styles.slot} ${styles[id]}`}
         onClick={() => handleOnClick()}
         onDrop={() => handleDrop()}
         role="button"
       >
-        { action.Name }
+        { action && action.Name }
       </div>
     );
   }
@@ -27,7 +31,7 @@ class Slot extends PureComponent {
 export default Slot;
 
 Slot.propTypes = {
-  index: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   action: PropTypes.shape(),
   onClick: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired

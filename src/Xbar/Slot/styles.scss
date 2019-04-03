@@ -11,24 +11,38 @@
   padding: $slot-spacing;
   position: absolute;
   user-select: none;
-  &:nth-child(1) {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  &:nth-child(2) {
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  &:nth-child(3) {
+  &.lTop, &.rTop {
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
   }
-  &:nth-child(4) {
+  &.lBottom, &.rBottom {
+    bottom: 0;
+  }
+  &.lRight, &.lLeft,
+  &.rRight, &.rLeft {
+    top: ($slot-size + $slot-spacing) / 2;
+  }
+  &.lTop {
+    left: $slot-size + $slot-spacing;
+  }
+  &.lRight {
+    left: ($slot-size + $slot-spacing) * 2;
+  }
+  &.lBottom {
+    left: $slot-size + $slot-spacing;
+  }
+  &.lLeft {
+    left: 0;
+  }
+  &.rTop {
+    right: $slot-size + $slot-spacing;
+  }
+  &.rRight {
     right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  }
+  &.rBottom {
+    right: $slot-size + $slot-spacing;
+  }
+  &.rLeft {
+    right: ($slot-size + $slot-spacing) * 2;
   }
 }
