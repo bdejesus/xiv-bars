@@ -2,28 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import XIVAPI from 'xivapi-js';
-import initXBars from './initXBars';
 import styles from './styles.scss';
-import Xbar from './Xbar';
-import Action from './Action';
-import JobSelect from './JobSelect';
+import Xbar from './components/Xbar';
+import Action from './components/Action';
+import JobSelect from './components/JobSelect';
 
 const mapStateToProps = state => ({ bars: state.bars });
 
-class ConnectedApp extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
+    const apiKey = '85fb06d1e4e94cf0bee73acf';
     this.state = {
+      api: new XIVAPI(apiKey),
       selectedAction: null,
       selectedJob: { Name: '', ID: 1 },
       actions: [],
       jobs: []
     };
-  }
-
-  componentWillMount() {
-    const key = '85fb06d1e4e94cf0bee73acf';
-    this.setState({ api: new XIVAPI(key) });
   }
 
   componentDidMount() {
@@ -110,12 +106,8 @@ class ConnectedApp extends Component {
   }
 }
 
-ConnectedApp.propTypes = {
-  bars: PropTypes.shape()
+App.propTypes = {
+  bars: PropTypes.shape().isRequired
 };
 
-ConnectedApp.defaultProps = initXBars();
-
-const App = connect(mapStateToProps)(ConnectedApp);
-
-export default App;
+export default connect(mapStateToProps)(App);
