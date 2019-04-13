@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createStore } from 'redux';
+import { connect } from 'react-redux';
 import XIVAPI from 'xivapi-js';
 import initXBars from './initXBars';
-import reducer from './reducers';
 import styles from './styles.scss';
 import Xbar from './Xbar';
-import Item from './Item';
+import Action from './Action';
 import JobSelect from './JobSelect';
 
-class App extends Component {
+const mapStateToProps = state => ({ bars: state.bars });
+
+class ConnectedApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,9 +29,6 @@ class App extends Component {
   componentDidMount() {
     this.fetchJobsList();
     this.fetchActions();
-
-    const xbars = initXBars();
-    const store = createStore(reducer, xbars);
   }
 
   updateView(event) {
@@ -72,7 +70,7 @@ class App extends Component {
     } = this.state;
     const ActionsList = actions.map(action => (
       <li key={`action-${action.ID}`}>
-        <Item
+        <Action
           action={action}
           dragged={(draggedAction) => { this.handleDrag(draggedAction); }}
         />
@@ -112,10 +110,12 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+ConnectedApp.propTypes = {
   bars: PropTypes.shape()
 };
 
-App.defaultProps = initXBars();
+ConnectedApp.defaultProps = initXBars();
+
+const App = connect(mapStateToProps)(ConnectedApp);
 
 export default App;

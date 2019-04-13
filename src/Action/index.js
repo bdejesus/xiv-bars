@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-class Item extends PureComponent {
+class Action extends PureComponent {
   render() {
     const { dragged, action } = this.props;
 
@@ -18,9 +18,9 @@ class Item extends PureComponent {
   }
 }
 
-export default Item;
+export default Action;
 
-Item.propTypes = {
+Action.propTypes = {
   dragged: PropTypes.func.isRequired,
   action: PropTypes.shape().isRequired
 };

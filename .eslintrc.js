@@ -27,7 +27,7 @@ module.exports = {
     'react/prop-types': 'warn',
     'react/no-unused-state': 'warn',
     'jsx-a11y/click-events-have-key-events': 'off',
-    'jsx-a11y/interactive-supports-focus': 'off'
-
+    'jsx-a11y/interactive-supports-focus': 'off',
+    'quotes': 'warn'
   },
 };
