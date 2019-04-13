@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -15,10 +16,9 @@ class App extends Component {
     const apiKey = '85fb06d1e4e94cf0bee73acf';
     this.state = {
       api: new XIVAPI(apiKey),
-      selectedAction: null,
-      selectedJob: { Name: '', ID: 1 },
+      jobs: [],
       actions: [],
-      jobs: []
+      selectedJob: { Name: '', ID: 1 }
     };
   }
 
@@ -28,7 +28,6 @@ class App extends Component {
   }
 
   updateView(event) {
-    /* eslint-disable no-console */
     console.log(event);
     console.log(this.state);
   }

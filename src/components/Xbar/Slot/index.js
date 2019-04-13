@@ -1,25 +1,33 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addActionToSlot } from '../../../actions';
 import styles from './styles.scss';
 
+function mapDispatchToProps(dispatch) {
+  return {
+    addActionToSlot: action => dispatch(addActionToSlot(action))
+  };
+}
+
 class Slot extends PureComponent {
+  handleDrop(event, attr) {
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.addActionToSlot({ event, attr });
+  }
+
   render() {
     const {
-      id, action, onClick, onDrop,
+      id, action
     } = this.props;
 
     const attributes = { id };
-    const handleOnClick = () => onClick(attributes);
-    const handleDrop = () => {
-      onDrop(attributes);
-    };
 
     return (
       <div
         id={id}
         className={`${styles.slot} ${styles[id]}`}
-        onClick={() => handleOnClick()}
-        onDrop={() => handleDrop()}
+        onDrop={event => this.handleDrop(event, attributes)}
         role="button"
       >
         { action && action.Name }
@@ -28,13 +36,12 @@ class Slot extends PureComponent {
   }
 }
 
-export default Slot;
+export default connect(null, mapDispatchToProps)(Slot);
 
 Slot.propTypes = {
   id: PropTypes.string.isRequired,
   action: PropTypes.shape(),
-  onClick: PropTypes.func.isRequired,
-  onDrop: PropTypes.func.isRequired
+  addActionToSlot: PropTypes.func.isRequired
 };
 
 Slot.defaultProps = {

@@ -13,6 +13,7 @@ const slots = () => (
 
 export default () => (
   {
+    selectedAction: null,
     bars: {
       primary: {
         left: slots(),
