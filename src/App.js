@@ -33,6 +33,7 @@ class App extends Component {
     this.setState({ selectedJob }, (() => { this.fetchActions(); }));
   }
 
+  // TODO Filter out starter Classes and show combined starter + advanced class
   async fetchJobsList() {
     const { api } = this.state;
     let jobs = await api.data.list('ClassJob');
@@ -40,6 +41,7 @@ class App extends Component {
     this.setState({ jobs });
   }
 
+  // TODO Filter out passive actions
   async fetchActions() {
     const { api, selectedJob } = this.state;
     let actions = await api.search('', { filters: `ClassJob.ID=${selectedJob.ID}` });

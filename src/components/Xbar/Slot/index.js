@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addActionToSlot } from '../../../actions';
+import Action from '../../Action';
 import styles from './styles.scss';
 
 function mapStateToProps(state) {
@@ -37,14 +38,6 @@ class Slot extends PureComponent {
       event.currentTarget.setAttribute('data-state', 'active');
     };
 
-    const Action = () => (
-      <React.Fragment>
-        <div className={styles.action}>
-          <img src={action.Icon} alt="" title={action.Name} />
-        </div>
-      </React.Fragment>
-    );
-
     return (
       <div
         id={id}
@@ -54,7 +47,7 @@ class Slot extends PureComponent {
         onDragLeave={event => resetSlot(event)}
         role="button"
       >
-        { action && <Action /> }
+        { action && <Action action={action} /> }
       </div>
     );
   }
