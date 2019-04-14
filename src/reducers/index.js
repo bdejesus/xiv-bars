@@ -7,14 +7,23 @@ import {
 
 export default (state = initXBars(), action) => {
   const { type, payload } = action;
-
   switch (type) {
-    case ADD_ACTION_TO_SLOT:
-      // add_action_to_slot()
+    case ADD_ACTION_TO_SLOT: {
+      const bars = state.bars.primary;
+      const slotId = Number.parseInt(
+        payload.event.currentTarget.getAttribute('id'),
+        10
+      );
+      const slot = bars.find(s => s.id === slotId);
+      slot.action = payload.action;
+
       return Object.assign({}, state, {
         ...state,
-        payload
+        bars: {
+          primary: bars
+        }
       });
+    }
     case REMOVE_ACTION_FROM_SLOT:
       // remove_action_from_slot()
       return Object.assign({}, state, {
@@ -25,7 +34,7 @@ export default (state = initXBars(), action) => {
       // store_action()
       return Object.assign({}, state, {
         ...state,
-        selectedAction: payload.action
+        selectedAction: payload.selectedAction
       });
     default:
       return state;

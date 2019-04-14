@@ -22,6 +22,7 @@ module.exports = {
   rules: {
     'class-methods-use-this': 'warn',
     'comma-dangle': 'off',
+    'comma-spacing': 'warn',
     'no-unused-vars': 'warn',
     'react/destructuring-assignment': 'warn',
     'react/jsx-filename-extension': 'off',

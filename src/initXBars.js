@@ -4,7 +4,7 @@ const slots = () => {
 
   let i = num;
   for (i; i >= 1; i -= 1) {
-    slotsArr.push({ id: i, action: null });
+    slotsArr.push({ id: i, action: {} });
   }
   return slotsArr;
 };
