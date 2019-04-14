@@ -20,6 +20,7 @@ module.exports = {
     'react'
   ],
   rules: {
+    'class-methods-use-this': 'warn',
     'comma-dangle': 'off',
     'no-unused-vars': 'warn',
     'react/destructuring-assignment': 'warn',

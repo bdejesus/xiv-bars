@@ -11,20 +11,20 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Action extends PureComponent {
-  handleDragStart(action) {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.storeAction({ action });
-  }
-
   render() {
     const { action } = this.props;
+
+    const handleDragStart = (selectedAction) => {
+      // eslint-disable-next-line react/destructuring-assignment
+      this.props.storeAction({ selectedAction });
+    };
 
     return (
       <React.Fragment>
         <div
           className={styles.action}
           draggable
-          onDragStart={() => { this.handleDragStart(action); }}
+          onDragStart={() => { handleDragStart(action); }}
         >
           <img src={action.Icon} alt="" />
         </div>
