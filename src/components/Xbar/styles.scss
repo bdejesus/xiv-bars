@@ -3,7 +3,6 @@
 $xbar-width: $xbar-group-width * 3;
 
 .xbar {
-  background-color: rgba(0,0,0,0.5);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -16,8 +15,19 @@ $xbar-width: $xbar-group-width * 3;
 }
 
 .group {
-  margin: 10px;
+  margin: 0 10px;
   position: relative;
   height: $xbar-group-height;
   width: $xbar-group-width * 2;
+  &:nth-child(2) {
+    margin-right: 25px;
+    &:after {
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      right: -20px;
+      border-right: 1px solid rgba(255,255,255,0.33);
+    }
+  }
 }

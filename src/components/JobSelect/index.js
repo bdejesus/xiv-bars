@@ -29,7 +29,6 @@ class JobSelect extends PureComponent {
 
     return (
       <React.Fragment>
-        <h2>Job</h2>
         {jobListSelect}
       </React.Fragment>
     );

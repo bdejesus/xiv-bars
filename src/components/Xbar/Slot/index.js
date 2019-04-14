@@ -41,13 +41,13 @@ class Slot extends PureComponent {
     return (
       <div
         id={id}
-        className={`${styles.slot} ${styles[id]}`}
+        className={`${styles.slot}`}
         onDrop={event => onDrop(event)}
         onDragOver={event => handleDragOver(event)}
         onDragLeave={event => resetSlot(event)}
         role="button"
       >
-        { action && <Action action={action} /> }
+        { action.Name && <Action action={action} /> }
       </div>
     );
   }

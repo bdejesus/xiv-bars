@@ -13,9 +13,9 @@ const mapStateToProps = state => ({ bars: state.bars });
 class App extends Component {
   constructor(props) {
     super(props);
-    const apiKey = '85fb06d1e4e94cf0bee73acf';
+    const apiKey = 'deae6fc1037745eaa1c6d891f9d46a14d7e4d96fff484987a9a739d92837e3ff';
     this.state = {
-      api: new XIVAPI(apiKey),
+      api: new XIVAPI({ private_key: apiKey }),
       jobs: [],
       actions: [],
       selectedJob: { Name: '', ID: 1 }
@@ -69,24 +69,30 @@ class App extends Component {
       <main className="app">
         <div className="container">
           <div className="panel">
+            <h1>XIV Bars</h1>
+            <p>A Crossbar simulator for Final Fantasy XIV</p>
+
             {Object.keys(bars).map(xBar => (
               <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
             ))}
           </div>
 
           <div className="actions">
-            <JobSelect
-              jobs={jobs}
-              updateJob={event => this.updateJob(event)}
-            />
+            <h2>Job</h2>
+            <div className="content-layout">
+              <div className="content-left">
+                <JobSelect
+                  jobs={jobs}
+                  updateJob={event => this.updateJob(event)}
+                />
+              </div>
 
-            <div className={styles.panel}>
-              <h3>Actions</h3>
-              <ul className={styles.listActions}>
-                { actions && ActionsList }
-              </ul>
+              <div className={`${styles.panel} content-main`}>
+                <ul className={styles.listActions}>
+                  { actions && ActionsList }
+                </ul>
+              </div>
             </div>
-
           </div>
         </div>
       </main>
