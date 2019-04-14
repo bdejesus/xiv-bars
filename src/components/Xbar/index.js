@@ -14,11 +14,11 @@ class Xbar extends PureComponent {
     const groups = group(bar, 4);
 
     return (
-      <div className={styles.xbar}>
+      <div className={styles.xbar} key={id}>
         {groups.map((slots, index) => (
-          <div className={styles.group}>
+          <div className={styles.group} key={`group-${index}`}>
             {slots.map(slot => (
-              <Slot id={slot.id} />
+              <Slot id={slot.id} key={`slot-${slot.id}`} />
             ))}
             {/* <Slot
               key={`${id}-${slots[index].id}`}
@@ -36,6 +36,6 @@ class Xbar extends PureComponent {
 export default Xbar;
 
 Xbar.propTypes = {
-  bar: PropTypes.shape().isRequired,
+  bar: PropTypes.arrayOf(PropTypes.object).isRequired,
   id: PropTypes.string.isRequired
 };

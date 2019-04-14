@@ -10,7 +10,7 @@ export default (state = initXBars(), action) => {
 
   switch (type) {
     case ADD_ACTION_TO_SLOT:
-      // add_from_slot()
+      // add_action_to_slot()
       console.log(payload.event.currentTarget);
       return Object.assign({}, state, {
         ...state,
@@ -18,12 +18,13 @@ export default (state = initXBars(), action) => {
         payload
       });
     case REMOVE_ACTION_FROM_SLOT:
-      // remove_from_slot()
+      // remove_action_from_slot()
       return Object.assign({}, state, {
         ...state,
         payload
       });
     case STORE_ACTION:
+      // store_action()
       return Object.assign({}, state, {
         ...state,
         payload

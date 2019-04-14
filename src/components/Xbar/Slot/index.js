@@ -21,6 +21,7 @@ class Slot extends PureComponent {
     const resetSlot = event => event.currentTarget.setAttribute('data-state', null);
 
     const handleDrop = (event, attr) => {
+      // eslint-disable-next-line react/destructuring-assignment
       this.props.addActionToSlot({ event, attr });
       resetSlot(event);
     };
@@ -45,7 +46,7 @@ class Slot extends PureComponent {
 export default connect(null, mapDispatchToProps)(Slot);
 
 Slot.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   action: PropTypes.shape(),
   addActionToSlot: PropTypes.func.isRequired
 };
