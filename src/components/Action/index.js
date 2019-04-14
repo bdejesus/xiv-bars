@@ -25,7 +25,10 @@ class Action extends PureComponent {
         draggable
         onDragStart={() => { this.handleDragStart(action); }}
       >
-        <img src={action.Icon} title={action.Name} alt="" />
+        <img src={action.Icon} alt="" />
+        <div className={styles.tooltip}>
+          <b>{action.Name}</b>
+        </div>
       </div>
     );
   }

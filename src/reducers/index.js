@@ -10,9 +10,10 @@ export default (state = initXBars(), action) => {
   switch (type) {
     case ADD_ACTION_TO_SLOT:
       // add_from_slot()
-      console.log(payload.event);
+      console.log(payload.event.currentTarget);
       return Object.assign({}, state, {
         ...state,
+        selectedJob: null,
         payload
       });
     case REMOVE_ACTION_FROM_SLOT:
@@ -22,7 +23,6 @@ export default (state = initXBars(), action) => {
         payload
       });
     case STORE_ACTION:
-      console.log(payload);
       return Object.assign({}, state, {
         ...state,
         payload

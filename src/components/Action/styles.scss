@@ -3,16 +3,41 @@
 .action {
   background-color: rgba(0,0,0,0.5);
   border: 2px solid #111;
-  font-size: 12px;
   line-height: 1.2em;
   height: $slot-size;
   width: $slot-size;
   border-radius: 4px;
-  padding: $slot-spacing;
   text-align: center;
+  position: relative;
+  .tooltip {
+    opacity: 0;
+    pointer-events: none;
+    border: 2px solid #111;
+    border-radius: 4px;
+    background-color: rgba(0,0,0,0.8);
+    font-weight: 300;
+    padding: 10px;
+    position: absolute;
+    -webkit-font-smoothing: antialiased;
+    top: -2px;
+    left: 100%;
+    margin-left: 4px;
+    z-index: 2;
+    white-space: nowrap;
+    text-align: left;
+    transition: opacity 0.33s ease;
+    will-change: opacity;
+  }
   &:hover {
     background-color: rgba(0,0,0,0.8);
     cursor: pointer;
     cursor: -webkit-grab;
+    .tooltip {
+      opacity: 1;
+    }
+  }
+  img {
+    display: block;
+    object-fit: cover;
   }
 }

@@ -11,6 +11,14 @@
   padding: $slot-spacing;
   position: absolute;
   user-select: none;
+  transition:
+    background-color 0.33s ease,
+    transform 0.33s ease;
+  will-change: background-color transform;
+  &[data-state=active] {
+    background-color: rgba(0,0,0,1);
+    transform: scale(1.1);
+  }
   &.lTop, &.rTop {
     top: 0;
   }

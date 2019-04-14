@@ -11,11 +11,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Slot extends PureComponent {
-  handleDrop(event, attr) {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.addActionToSlot({ event, attr });
-  }
-
   render() {
     const {
       id, action
@@ -23,11 +18,22 @@ class Slot extends PureComponent {
 
     const attributes = { id };
 
+    const handleDrop = (event, attr) => {
+      this.props.addActionToSlot({ event, attr });
+      event.currentTarget.setAttribute('data-state', null);
+    };
+
+    const handleDragOver = event => event.currentTarget.setAttribute('data-state', 'active');
+
+    const handleDragLeave = event => event.currentTarget.setAttribute('data-state', null);
+
     return (
       <div
         id={id}
         className={`${styles.slot} ${styles[id]}`}
-        onDrop={event => this.handleDrop(event, attributes)}
+        onDrop={event => handleDrop(event, attributes)}
+        onDragOver={event => handleDragOver(event)}
+        onDragLeave={event => handleDragLeave(event)}
         role="button"
       >
         { action && action.Name }
