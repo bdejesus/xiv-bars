@@ -27,15 +27,6 @@ class App extends Component {
     this.fetchActions();
   }
 
-  updateView(event) {
-    console.log(event);
-    console.log(this.state);
-  }
-
-  handleDrag(selectedAction) {
-    this.setState({ selectedAction });
-  }
-
   updateJob(event) {
     const { jobs } = this.state;
     const selectedJob = jobs[event.currentTarget.value - 1];
