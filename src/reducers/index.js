@@ -21,7 +21,8 @@ export default (state = initXBars(), action) => {
         ...state,
         bars: {
           primary: bars
-        }
+        },
+        selectedAction: {}
       });
     }
     case REMOVE_ACTION_FROM_SLOT:
