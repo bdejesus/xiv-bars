@@ -7,6 +7,7 @@ import {
 
 export default (state = initXBars(), action) => {
   const { type, payload } = action;
+
   switch (type) {
     case ADD_ACTION_TO_SLOT:
       // add_from_slot()

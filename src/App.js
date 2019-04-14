@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import XIVAPI from 'xivapi-js';
-import styles from './styles.scss';
 import Xbar from './components/Xbar';
 import Action from './components/Action';
 import JobSelect from './components/JobSelect';
+import styles from './styles.scss';
 
 const mapStateToProps = state => ({ bars: state.bars });
 
@@ -60,9 +60,9 @@ class App extends Component {
     const { bars } = this.props;
     const {
       jobs,
-      actions,
-      selectedAction
+      actions
     } = this.state;
+
     const ActionsList = actions.map(action => (
       <li key={`action-${action.ID}`}>
         <Action
@@ -76,14 +76,8 @@ class App extends Component {
       <main className="app">
         <div className="container">
           <div className="panel">
-            {Object.keys(bars).map(bar => (
-              <Xbar
-                bar={bars[bar]}
-                key={bar}
-                id={bar}
-                selectedAction={selectedAction}
-                onUpdateXBar={event => this.updateView(event)}
-              />
+            {Object.keys(bars).map(xBar => (
+              <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
             ))}
           </div>
 
@@ -93,10 +87,12 @@ class App extends Component {
               updateJob={event => this.updateJob(event)}
             />
 
-            <h3>Actions</h3>
-            <ul className={styles.listActions}>
-              { actions && ActionsList }
-            </ul>
+            <div className={styles.panel}>
+              <h3>Actions</h3>
+              <ul className={styles.listActions}>
+                { actions && ActionsList }
+              </ul>
+            </div>
 
           </div>
         </div>

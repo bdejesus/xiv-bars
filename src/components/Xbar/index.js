@@ -1,26 +1,32 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Group from './Group';
+import { group } from '../../utils/array';
+import Slot from './Slot';
 import styles from './styles.scss';
 
 class Xbar extends PureComponent {
   render() {
     const {
       bar,
-      id,
-      selectedAction,
-      onUpdateXBar
+      id
     } = this.props;
+
+    const groups = group(bar, 4);
+
     return (
       <div className={styles.xbar}>
-        {Object.keys(bar).map(group => (
-          <Group
-            slots={bar[group]}
-            key={`${id}-${group}`}
-            id={`${id}-${group}`}
-            selectedAction={selectedAction}
-            onUpdateGroup={event => onUpdateXBar(event)}
-          />
+        {groups.map((slots, index) => (
+          <div className={styles.group}>
+            {slots.map(slot => (
+              <Slot id={slot.id} />
+            ))}
+            {/* <Slot
+              key={`${id}-${slots[index].id}`}
+              index={index}
+              id={slots[index].id}
+              action={slots[index].action}
+            /> */}
+          </div>
         ))}
       </div>
     );
@@ -31,11 +37,5 @@ export default Xbar;
 
 Xbar.propTypes = {
   bar: PropTypes.shape().isRequired,
-  id: PropTypes.string.isRequired,
-  selectedAction: PropTypes.shape(),
-  onUpdateXBar: PropTypes.func.isRequired
-};
-
-Xbar.defaultProps = {
-  selectedAction: null
+  id: PropTypes.string.isRequired
 };

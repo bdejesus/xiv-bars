@@ -1,4 +1,6 @@
+$slot-border-size: 2px;
 $slot-size: 44px;
 $slot-spacing: 4px;
-$xbar-group-height: ($slot-size + $slot-spacing) * 2;
-$xbar-group-width: ($slot-size + $slot-spacing) * 3;
+$outer-slot-size: $slot-size + $slot-border-size;
+$xbar-group-height: ($outer-slot-size + $slot-spacing) * 2;
+$xbar-group-width: ($outer-slot-size + $slot-spacing) * 3;

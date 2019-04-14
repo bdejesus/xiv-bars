@@ -18,14 +18,14 @@ class Slot extends PureComponent {
 
     const attributes = { id };
 
+    const resetSlot = event => event.currentTarget.setAttribute('data-state', null);
+
     const handleDrop = (event, attr) => {
       this.props.addActionToSlot({ event, attr });
-      event.currentTarget.setAttribute('data-state', null);
+      resetSlot(event);
     };
 
     const handleDragOver = event => event.currentTarget.setAttribute('data-state', 'active');
-
-    const handleDragLeave = event => event.currentTarget.setAttribute('data-state', null);
 
     return (
       <div
@@ -33,7 +33,7 @@ class Slot extends PureComponent {
         className={`${styles.slot} ${styles[id]}`}
         onDrop={event => handleDrop(event, attributes)}
         onDragOver={event => handleDragOver(event)}
-        onDragLeave={event => handleDragLeave(event)}
+        onDragLeave={event => resetSlot(event)}
         role="button"
       >
         { action && action.Name }

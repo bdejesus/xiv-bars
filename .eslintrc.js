@@ -24,8 +24,10 @@ module.exports = {
     'no-unused-vars': 'warn',
     'react/destructuring-assignment': 'warn',
     'react/jsx-filename-extension': 'off',
-    'react/prop-types': 'warn',
+    'react/no-array-index-key': 'off',
+    'react/no-unused-prop-types': 'warn',
     'react/no-unused-state': 'warn',
+    'react/prop-types': 'warn',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/interactive-supports-focus': 'off',
     'quotes': 'warn'

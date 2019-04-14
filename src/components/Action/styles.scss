@@ -8,8 +8,10 @@
   width: $slot-size;
   border-radius: 4px;
   text-align: center;
-  position: relative;
-  .tooltip {
+  transform: scale(1);
+  transition: transform 0.33s ease;
+  will-change: scale;
+  + .tooltip {
     opacity: 0;
     pointer-events: none;
     border: 2px solid #111;
@@ -19,21 +21,28 @@
     padding: 10px;
     position: absolute;
     -webkit-font-smoothing: antialiased;
-    top: -2px;
+    top: 4px;
     left: 100%;
     margin-left: 4px;
-    z-index: 2;
-    white-space: nowrap;
+    z-index: 10;
     text-align: left;
-    transition: opacity 0.33s ease;
-    will-change: opacity;
+    transform: translate(-8px,0);
+    transition:
+      opacity 0.33s ease,
+      transform 0.33s ease;
+    transition-delay: 0s;
+    white-space: nowrap;
+    will-change: opacity transform;
   }
   &:hover {
     background-color: rgba(0,0,0,0.8);
     cursor: pointer;
     cursor: -webkit-grab;
-    .tooltip {
+    transform: scale(1.1);
+    + .tooltip {
       opacity: 1;
+      transform: translate(0,0);
+      transition-delay: 0.16s;
     }
   }
   img {

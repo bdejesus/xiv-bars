@@ -20,16 +20,18 @@ class Action extends PureComponent {
     const { action } = this.props;
 
     return (
-      <div
-        className={styles.action}
-        draggable
-        onDragStart={() => { this.handleDragStart(action); }}
-      >
-        <img src={action.Icon} alt="" />
+      <React.Fragment>
+        <div
+          className={styles.action}
+          draggable
+          onDragStart={() => { this.handleDragStart(action); }}
+        >
+          <img src={action.Icon} alt="" />
+        </div>
         <div className={styles.tooltip}>
           <b>{action.Name}</b>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

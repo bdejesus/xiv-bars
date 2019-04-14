@@ -2,7 +2,7 @@
 
 .slot {
   background-color: rgba(0,0,0,0.5);
-  border: 2px solid #111;
+  border: $slot-border-size solid #111;
   font-size: 11px;
   line-height: 1.2em;
   height: $slot-size;
@@ -19,38 +19,26 @@
     background-color: rgba(0,0,0,1);
     transform: scale(1.1);
   }
-  &.lTop, &.rTop {
-    top: 0;
-  }
-  &.lBottom, &.rBottom {
+  &:nth-child(1) {
     bottom: 0;
   }
-  &.lRight, &.lLeft,
-  &.rRight, &.rLeft {
-    top: ($slot-size + $slot-spacing) / 2;
+  &:nth-child(3) {
+    top: 0;
   }
-  &.lTop {
-    left: $slot-size + $slot-spacing;
+  &:nth-child(1),
+  &:nth-child(3) {
+    left: 50%;
+    margin-left: -$slot-size / 2;
   }
-  &.lRight {
-    left: ($slot-size + $slot-spacing) * 2;
-  }
-  &.lBottom {
-    left: $slot-size + $slot-spacing;
-  }
-  &.lLeft {
+  &:nth-child(2) {
     left: 0;
   }
-  &.rTop {
-    right: $slot-size + $slot-spacing;
-  }
-  &.rRight {
+  &:nth-child(4) {
     right: 0;
   }
-  &.rBottom {
-    right: $slot-size + $slot-spacing;
-  }
-  &.rLeft {
-    right: ($slot-size + $slot-spacing) * 2;
+  &:nth-child(2),
+  &:nth-child(4) {
+    top: 50%;
+    margin-top: -$slot-size / 2;
   }
 }

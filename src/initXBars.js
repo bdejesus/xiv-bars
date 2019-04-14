@@ -1,24 +1,19 @@
-const slots = () => (
-  [
-    { id: 'lTop', action: null },
-    { id: 'lRight', action: null },
-    { id: 'lBottom', action: null },
-    { id: 'lLeft', action: null },
-    { id: 'rTop', action: null },
-    { id: 'rRight', action: null },
-    { id: 'rBottom', action: null },
-    { id: 'rLeft', action: null }
-  ]
-);
+const slots = () => {
+  const num = 16;
+  const slotsArr = [];
+
+  let i = num;
+  for (i; i >= 1; i -= 1) {
+    slotsArr.push({ id: i, action: null });
+  }
+  return slotsArr;
+};
 
 export default () => (
   {
     selectedAction: null,
     bars: {
-      primary: {
-        left: slots(),
-        right: slots()
-      }
+      primary: slots()
     }
   }
 );

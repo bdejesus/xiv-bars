@@ -1,8 +1,0 @@
-@import 'src/utils/mixins';
-
-.xbar-group {
-  margin: 10px;
-  position: relative;
-  height: $xbar-group-height;
-  width: ($xbar-group-width + $slot-spacing) * 2 ;
-}

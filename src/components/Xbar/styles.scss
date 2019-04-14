@@ -14,3 +14,10 @@ $xbar-width: $xbar-group-width * 3;
   margin-right: auto;
   padding: 32px;
 }
+
+.group {
+  margin: 10px;
+  position: relative;
+  height: $xbar-group-height;
+  width: $xbar-group-width * 2;
+}
