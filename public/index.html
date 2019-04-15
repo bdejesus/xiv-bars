@@ -2,14 +2,101 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <title>XIV Bars • A Final Fantasy XIV Crossbar Simulation Tool</title>
+    <meta
+      name="description"
+      content="XIV Bars is a simple tool for previewing the Final Fantasy XIV Crossbar. Simulate what your crossbar actions could look like for playing Final Fantasy XIV with a gamepad or controller."
+    />
+    <link rel="canonical" href="xivbars.halfpixels.com" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        min-height: 100vh;
+      }
+      body {
+        background-color: #333;
+        background-image: url('%PUBLIC_URL%/background.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+          "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: antialiased;
+        font-size: 16px;
+        line-height: 1.455em;
+      }
+      a {
+        color: #9CF;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      main {
+        overflow: hidden;
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+      .container {
+        background-color: rgba(0, 0, 0, 0.8);
+        max-width: 980px;
+        margin: 32px auto 0;
+        padding: 32px;
+      }
+      .content-layout {
+        display: flex;
+        flex-direction: row;
+      }
+      .content-middle {
+        align-items: center;
+      }
+      .content-main {
+        flex: 1 1 auto;
+      }
+      .content-left {
+        margin-right: 16px;
+      }
+      h1, h2 {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    </style>
   </head>
+
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>

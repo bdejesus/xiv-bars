@@ -8,7 +8,6 @@ $xbar-width: $xbar-group-width * 3;
   justify-content: space-between;
   align-items: center;
   width: $xbar-width * 1.6;
-  margin-top: 32px;
   margin-left: auto;
   margin-right: auto;
   padding: 32px;
@@ -20,13 +19,13 @@ $xbar-width: $xbar-group-width * 3;
   height: $xbar-group-height;
   width: $xbar-group-width * 2;
   &:nth-child(2) {
-    margin-right: 25px;
+    margin-right: $slot-spacing * 4;
     &:after {
       content: '';
       display: block;
       height: 100%;
       position: absolute;
-      right: -20px;
+      right: -$slot-spacing * 3;
       border-right: 1px solid rgba(255,255,255,0.33);
     }
   }

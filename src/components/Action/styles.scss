@@ -2,7 +2,8 @@
 
 .action {
   background-color: rgba(0,0,0,0.5);
-  border: 2px solid #111;
+  border: 1px solid #111;
+  border-color: #444 #222 #000 #333;
   line-height: 1.2em;
   height: $slot-size;
   width: $slot-size;

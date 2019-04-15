@@ -1,23 +1,29 @@
 # XIV Bars
 
+This is the source code for XIV Bars, a simple webapp for previewing the Final Fantasy XIV Crossbar. Simulate what your crossbar actions could look like for playing Final Fantasy XIV with a gamepad or controller.
+
+This app is deployed to [https://xivbars.josebenedicto.com](https://xivbars.josebenedicto.com).
+
+## Requirements
+
+You'll need to install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/)
+
 ## Running the app
 
-In the project directory, you can run:
+Install dependencies
+```
+yarn install
+```
 
-  `yarn start`
+Run the app
+```
+yarn start
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Once the app is running in development mode, open [http://localhost:3000](http://localhost:5000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+The page will reload if you make edits. You will also see any lint errors in the console.
 
-## TODO
+## Contributing
 
-* [x] Set up Linting and PropTypes
-* [ ] Job Icons
-* [x] Action Icons
-* [ ] Tooltips
-* [ ] Job Class/Advanced Class Grouping
-* [ ] Set up XIV Bars domain
-* [ ] Create favicon
+Create a pull request and maybe I'll review and accept when I get the chance. I'm not really sure how much time I'll be able to commit to maintaining this.

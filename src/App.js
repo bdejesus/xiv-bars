@@ -13,9 +13,8 @@ const mapStateToProps = state => ({ bars: state.bars });
 class App extends Component {
   constructor(props) {
     super(props);
-    const apiKey = 'deae6fc1037745eaa1c6d891f9d46a14d7e4d96fff484987a9a739d92837e3ff';
+    this.api = new XIVAPI();
     this.state = {
-      api: new XIVAPI({ private_key: apiKey }),
       jobs: [],
       actions: [],
       selectedJob: { Name: '', ID: 1 }
@@ -33,19 +32,19 @@ class App extends Component {
     this.setState({ selectedJob }, (() => { this.fetchActions(); }));
   }
 
+  // TODO Refactor promises to handle error cases
   // TODO Filter out starter Classes and show combined starter + advanced class
   async fetchJobsList() {
-    const { api } = this.state;
-    let jobs = await api.data.list('ClassJob');
+    let jobs = await this.api.data.list('ClassJob');
     jobs = await jobs.Results;
     this.setState({ jobs });
   }
 
-  // TODO Filter out passive actions
   async fetchActions() {
-    const { api, selectedJob } = this.state;
-    let actions = await api.search('', { filters: `ClassJob.ID=${selectedJob.ID}` });
+    const { selectedJob } = this.state;
+    let actions = await this.api.search('', { filters: `ClassJob.ID=${selectedJob.ID}` });
     actions = await actions.Results;
+    actions = actions.filter(action => action.UrlType === 'Action');
     this.setState({ actions });
   }
 
@@ -70,30 +69,38 @@ class App extends Component {
         <div className="container">
           <div className="panel">
             <h1>XIV Bars</h1>
-            <p>A Crossbar simulator for Final Fantasy XIV</p>
+            <p>A Final Fantasy XIV Crossbar Simulation Tool.</p>
+            <p>Simulate what your crossbar actions could look like when playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class.</p>
 
             {Object.keys(bars).map(xBar => (
               <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
             ))}
           </div>
 
-          <div className="actions">
-            <h2>Job</h2>
-            <div className="content-layout">
+          <div className={styles.panel}>
+            <div className="content-layout content-middle">
               <div className="content-left">
+                <h2>Class</h2>
+              </div>
+
+              <div className="content-main">
                 <JobSelect
                   jobs={jobs}
                   updateJob={event => this.updateJob(event)}
                 />
               </div>
-
-              <div className={`${styles.panel} content-main`}>
-                <ul className={styles.listActions}>
-                  { actions && ActionsList }
-                </ul>
-              </div>
             </div>
+
+            <ul className={styles.listActions}>
+              { actions && ActionsList }
+            </ul>
           </div>
+
+        </div>
+        <div className={`${styles.info} container`}>
+          <p><a href="https://github.com/bdejesus/xiv-bars">XIV Bars on Github</a></p>
+          <p>This app uses <a href="https://xivapi.com/">XIVAPI</a></p>
+          <p>All Final Fantasy XIV content is property of Square Enix Co., LTD</p>
         </div>
       </main>
     );
