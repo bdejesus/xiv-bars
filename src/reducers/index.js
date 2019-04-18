@@ -25,18 +25,21 @@ export default (state = initXBars(), action) => {
         selectedAction: {}
       });
     }
+
     case REMOVE_ACTION_FROM_SLOT:
       // remove_action_from_slot()
       return Object.assign({}, state, {
         ...state,
         payload
       });
+
     case STORE_ACTION:
       // store_action()
       return Object.assign({}, state, {
         ...state,
         selectedAction: payload.selectedAction
       });
+
     default:
       return state;
   }

@@ -32,7 +32,6 @@
       opacity 0.33s ease,
       transform 0.33s ease;
     transition-delay: 0s;
-    white-space: nowrap;
     will-change: opacity transform;
   }
   &:hover {
@@ -50,4 +49,17 @@
     display: block;
     object-fit: cover;
   }
+}
+
+.tooltip {
+  width: 240px;
+  white-space: pre-wrap;
+}
+.title {
+  margin: 0;
+}
+.description {
+  font-size: 14px;
+  line-height: 1.45em;
+  margin: 0;
 }

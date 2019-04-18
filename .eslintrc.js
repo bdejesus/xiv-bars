@@ -24,6 +24,7 @@ module.exports = {
     'comma-dangle': 'off',
     'comma-spacing': 'warn',
     'max-len': 'warn',
+    'jsx-a11y/mouse-events-have-key-events': 'warn',
     'no-debugger': 'warn',
     'no-unused-vars': 'warn',
     'react/destructuring-assignment': 'warn',
