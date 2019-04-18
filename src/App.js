@@ -103,7 +103,6 @@ class App extends Component {
 
         </div>
         <div className={`${styles.info} container`}>
-          <p><a href="https://github.com/bdejesus/xiv-bars">XIV Bars on Github</a></p>
           <p>This app uses <a href="https://xivapi.com/">XIVAPI</a></p>
           <p>All Final Fantasy XIV content is property of Square Enix Co., LTD</p>
         </div>
