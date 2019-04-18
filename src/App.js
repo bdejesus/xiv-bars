@@ -14,6 +14,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.api = new XIVAPI();
+    window.api = this.api;
     this.state = {
       jobs: [],
       actions: [],
@@ -70,7 +71,11 @@ class App extends Component {
           <div className="panel">
             <h1>XIV Bars</h1>
             <p>A Final Fantasy XIV Crossbar Simulation Tool.</p>
-            <p>Simulate what your crossbar actions could look like when playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class.</p>
+            <p>
+              Simulate what your crossbar actions could look like when playing
+              Final Fantasy XIV with a gamepad or controller. Use the Class
+              selector to load actions for that class.
+            </p>
 
             {Object.keys(bars).map(xBar => (
               <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
