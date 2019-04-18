@@ -25,7 +25,6 @@ class Action extends Component {
     const { action } = this.props;
     let details = await this.api.data.get('Action', action.ID);
     details = await details;
-    console.log(details.Description);
     this.setState({ details });
   }
 
@@ -60,6 +59,7 @@ class Action extends Component {
           <h4 className={styles.title}>{action.Name}</h4>
           <p
             className={styles.description}
+            // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={setDescription()}
           />
         </div>
