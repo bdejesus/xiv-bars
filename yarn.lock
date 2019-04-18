@@ -10620,10 +10620,10 @@ x-is-string@^0.1.0:
   resolved "https://registry.yarnpkg.com/x-is-string/-/x-is-string-0.1.0.tgz#474b50865af3a49a9c4657f05acd145458f77d82"
   integrity sha1-R0tQhlrzpJqcRlfwWs0UVFj3fYI=
 
-xivapi-js@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/xivapi-js/-/xivapi-js-0.1.3.tgz#3fa518cc6b473450054c0615e45a235724241c12"
-  integrity sha512-hRlRdVAdy1PFES+iuX2jwHDb7jFCBQYoEPGov6LUJx0wwbW5hFWgUYDeusjkBQrebFn6uaFWNVZQCcuLIiyIOA==
+xivapi-js@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/xivapi-js/-/xivapi-js-0.2.2.tgz#fdb5a10a0fbb687493cf862b901b0665b8d4037b"
+  integrity sha512-ntxXuDzfkRrhIHEi6cYqdToIHqyhHNWuq9pemvqZuhyfYjjpwE5GLe/EsIYG504j5lv+sMW1YoF0Sav89vhPYw==
   dependencies:
     request "^2.88.0"
     request-promise-native "^1.0.5"
