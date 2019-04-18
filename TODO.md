@@ -3,7 +3,6 @@
 ## Features
 
 * Job Icons
-* Tooltips
 * Job Class/Advanced Class Grouping
 * Remove Action on DragOut
 * Reset slots
@@ -12,7 +11,9 @@
 
 ## Tasks
 
-* Create favicon
-* Optimize styles to render inline
+* Write about this project
+* Write about me
 
 ## Bugs
+
+* Toolbar positioning when hitting edge of view area
