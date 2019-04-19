@@ -1,19 +1,17 @@
 # TODO
 
-## Features
+## Features & Bugs
 
+* Secondary and Tertiary xbars
+* Toolbar positioning when hitting edge of view area
 * Job Icons
-* Job Class/Advanced Class Grouping
 * Remove Action on DragOut
 * Reset slots
-* Secondary and Tertiary xbars
 * Loading Spinners
+* Job Class/Advanced Class Grouping
+
 
 ## Tasks
 
 * Write about this project
 * Write about me
-
-## Bugs
-
-* Toolbar positioning when hitting edge of view area

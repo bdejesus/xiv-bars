@@ -13,7 +13,9 @@ export default () => (
   {
     selectedAction: null,
     bars: {
-      primary: slots()
+      primary: slots(),
+      secondary: slots(),
+      tertiary: slots()
     }
   }
 );
