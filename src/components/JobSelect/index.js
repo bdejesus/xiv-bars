@@ -20,7 +20,7 @@ class JobSelect extends PureComponent {
           name="jobSelect"
           id="jobSelect"
           className={styles.jobSelect}
-          onChange={event => updateJob(event)}
+          onChange={event => updateJob(event.currentTarget.value)}
         >
           { jobsList }
         </select>

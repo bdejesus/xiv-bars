@@ -6,6 +6,7 @@ import XIVAPI from 'xivapi-js';
 import Xbar from './components/Xbar';
 import Action from './components/Action';
 import JobSelect from './components/JobSelect';
+import { ascByKey } from './utils/array';
 import styles from './styles.scss';
 
 const mapStateToProps = state => ({ bars: state.bars });
@@ -18,18 +19,17 @@ class App extends Component {
     this.state = {
       jobs: [],
       actions: [],
-      selectedJob: { Name: '', ID: 1 }
+      selectedJob: { }
     };
   }
 
   componentDidMount() {
     this.fetchJobsList();
-    this.fetchActions();
   }
 
-  updateJob(event) {
+  updateJob(id) {
     const { jobs } = this.state;
-    const selectedJob = jobs[event.currentTarget.value - 1];
+    const selectedJob = jobs.find(job => parseInt(job.ID, 10) === parseInt(id, 10));
     this.setState({ selectedJob }, (() => { this.fetchActions(); }));
   }
 
@@ -38,7 +38,9 @@ class App extends Component {
   async fetchJobsList() {
     let jobs = await this.api.data.list('ClassJob');
     jobs = await jobs.Results;
-    this.setState({ jobs });
+    jobs = jobs.sort(ascByKey('Name'));
+    const selectedJob = jobs[0];
+    this.setState({ jobs, selectedJob }, () => this.fetchActions());
   }
 
   async fetchActions() {
