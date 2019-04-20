@@ -79,9 +79,11 @@ class App extends Component {
               selector to load actions for that class.
             </p>
 
-            {Object.keys(bars).map(xBar => (
-              <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
-            ))}
+            <div className={styles.xbarGroup}>
+              {Object.keys(bars).map(xBar => (
+                <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
+              ))}
+            </div>
           </div>
 
           <div className={styles.panel}>

@@ -9,18 +9,20 @@ export default (state = initXBars(), action) => {
   const { type, payload } = action;
   switch (type) {
     case ADD_ACTION_TO_SLOT: {
-      const bars = state.bars.primary;
+      const bars = state.bars[payload.xbar];
       const slotId = Number.parseInt(
         payload.event.currentTarget.getAttribute('id'),
         10
       );
+
       const slot = bars.find(s => s.id === slotId);
       slot.action = payload.action;
 
       return Object.assign({}, state, {
         ...state,
         bars: {
-          primary: bars
+          ...state.bars,
+          [payload.xbar]: bars
         },
         selectedAction: {}
       });

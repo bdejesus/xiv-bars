@@ -19,16 +19,20 @@ function mapDispatchToProps(dispatch) {
 
 class Slot extends PureComponent {
   render() {
-    const { id, action, selectedAction } = this.props;
+    const {
+      xbar, id, action, selectedAction
+    } = this.props;
 
     const resetSlot = event => event.currentTarget.setAttribute('data-state', 'inactive');
 
     const onDrop = (event) => {
       event.preventDefault();
+
       // eslint-disable-next-line react/destructuring-assignment
       this.props.addActionToSlot({
         event,
-        action: selectedAction
+        action: selectedAction,
+        xbar
       });
       resetSlot(event);
     };
@@ -59,7 +63,8 @@ Slot.propTypes = {
   id: PropTypes.number.isRequired,
   action: PropTypes.shape(),
   addActionToSlot: PropTypes.func.isRequired,
-  selectedAction: PropTypes.shape()
+  selectedAction: PropTypes.shape(),
+  xbar: PropTypes.string.isRequired
 };
 
 Slot.defaultProps = {

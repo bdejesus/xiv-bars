@@ -10,7 +10,6 @@ $xbar-width: $xbar-group-width * 3;
   width: $xbar-width * 1.6;
   margin-left: auto;
   margin-right: auto;
-  padding: 32px;
 }
 
 .group {
@@ -18,7 +17,11 @@ $xbar-width: $xbar-group-width * 3;
   position: relative;
   height: $xbar-group-height;
   width: $xbar-group-width * 2;
-  &:nth-child(2) {
+}
+
+.primary {
+  order: 2;
+  .group:nth-child(2) {
     margin-right: $slot-spacing * 4;
     &:after {
       content: '';
@@ -28,5 +31,22 @@ $xbar-width: $xbar-group-width * 3;
       right: -$slot-spacing * 3;
       border-right: 1px solid rgba(255,255,255,0.33);
     }
+  }
+}
+.secondary {
+  order: 1;
+}
+.tertiary {
+  order: 3;
+}
+.secondary,
+.tertiary {
+  .group:nth-child(1),
+  .group:nth-child(2) {
+    transform: translateX(-$xbar-group-width/1.5);
+  }
+  .group:nth-child(3),
+  .group:nth-child(4) {
+    transform: translateX($xbar-group-width/1.5);
   }
 }

@@ -11,18 +11,17 @@ class Xbar extends Component {
 
     const groups = group(bar, 4);
     return (
-      <div className={styles.xbar} key={id}>
+      <div className={`${styles.xbar} ${styles[id]}`} key={id}>
         {groups.map((slots, index) => (
           <div className={styles.group} key={`group-${index}`}>
             {slots.map(slot => (
-              <Slot id={slot.id} key={`slot-${slot.id}`} action={slot.action} />
+              <Slot
+                id={slot.id}
+                key={`slot-${slot.id}`}
+                action={slot.action}
+                xbar={id}
+              />
             ))}
-            {/* <Slot
-              key={`${id}-${slots[index].id}`}
-              index={index}
-              id={slots[index].id}
-              action={slots[index].action}
-            /> */}
           </div>
         ))}
       </div>
