@@ -2,14 +2,18 @@
 
 ## Features & Bugs
 
-* Secondary and Tertiary xbars
 * Toolbar positioning when hitting edge of view area
 * Job Icons
 * Remove Action on DragOut
 * Reset slots
 * Loading Spinners
-* Job Class/Advanced Class Grouping
+* Control for number of XBar groups
+* Keyboard Shortcuts
 
+## Icebox
+
+* Job Class/Advanced Class Grouping
+* Save state to URL and sharing
 
 ## Tasks
 
