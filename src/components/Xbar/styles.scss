@@ -19,7 +19,7 @@ $xbar-width: $xbar-group-width * 3;
   width: $xbar-group-width * 2;
 }
 
-.primary {
+:global(#primary) {
   order: 2;
   .group:nth-child(2) {
     margin-right: $slot-spacing * 4;
@@ -33,15 +33,18 @@ $xbar-width: $xbar-group-width * 3;
     }
   }
 }
-.secondary {
+
+:global(#secondary) {
   order: 1;
 }
-.tertiary {
+
+:global(#tertiary) {
   order: 3;
 }
-.secondary,
-.tertiary {
-  .group:nth-child(1),
+
+:global(#secondary),
+:global(#tertiary) {
+  :local(.group):nth-child(1),
   .group:nth-child(2) {
     transform: translateX(-$xbar-group-width/1.5);
   }
