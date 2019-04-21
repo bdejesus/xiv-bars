@@ -94,11 +94,49 @@
         margin-top: 0;
         margin-bottom: 0;
       }
+      .info {
+        color: #999;
+        font-size: 12px;
+        text-align: right;
+        margin-top: 1px;
+        line-height: 1.45em;
+      }
+      .info p {
+        margin: 0;
+      }
+      p.text-warn {
+        display: block;
+        background-color: rgba(255,100,0,0.66);
+        border-radius: 4px;
+        color: #FFF;
+        padding: 8px 16px;
+        margin: 32px 0 0;
+        text-align: center;
+      }
     </style>
   </head>
 
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <main class="app">
+      <div class='container'>
+        <h1>XIV Bars</h1>
+        <p>A Final Fantasy XIV Crossbar Simulation Tool.</p>
+        <p>
+          Simulate what your crossbar actions could look like when playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class.
+        </p>
+
+        <noscript>
+          <p class="text-warn">You need to enable JavaScript to run this app.</p>
+        </noscript>
+
+        <div id="root"></div>
+      </div>
+
+      <div class="container info">
+        <p>This app uses <a href="https://xivapi.com/">XIVAPI</a></p>
+        <p>All Final Fantasy XIV content is property of Square Enix Co., LTD</p>
+      </div>
+
+    </main>
   </body>
 </html>

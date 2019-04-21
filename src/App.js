@@ -68,49 +68,34 @@ class App extends Component {
     ));
 
     return (
-      <main className="app">
-        <div className="container">
-          <div className="panel">
-            <h1>XIV Bars</h1>
-            <p>A Final Fantasy XIV Crossbar Simulation Tool.</p>
-            <p>
-              Simulate what your crossbar actions could look like when playing
-              Final Fantasy XIV with a gamepad or controller. Use the Class
-              selector to load actions for that class.
-            </p>
+      <React.Fragment>
+        <div className="panel">
+          <div className={styles.xbarGroup}>
+            {Object.keys(bars).map(xBar => (
+              <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
+            ))}
+          </div>
+        </div>
 
-            <div className={styles.xbarGroup}>
-              {Object.keys(bars).map(xBar => (
-                <Xbar key={xBar} id={xBar} bar={bars[xBar]} />
-              ))}
+        <div className={styles.panel}>
+          <div className="content-layout content-middle">
+            <div className="content-left">
+              <h2>Class</h2>
+            </div>
+
+            <div className="content-main">
+              <JobSelect
+                jobs={jobs}
+                updateJob={event => this.updateJob(event)}
+              />
             </div>
           </div>
 
-          <div className={styles.panel}>
-            <div className="content-layout content-middle">
-              <div className="content-left">
-                <h2>Class</h2>
-              </div>
-
-              <div className="content-main">
-                <JobSelect
-                  jobs={jobs}
-                  updateJob={event => this.updateJob(event)}
-                />
-              </div>
-            </div>
-
-            <ul className={styles.listActions}>
-              { actions && ActionsList }
-            </ul>
-          </div>
-
+          <ul className={styles.listActions}>
+            { actions && ActionsList }
+          </ul>
         </div>
-        <div className={`${styles.info} container`}>
-          <p>This app uses <a href="https://xivapi.com/">XIVAPI</a></p>
-          <p>All Final Fantasy XIV content is property of Square Enix Co., LTD</p>
-        </div>
-      </main>
+      </React.Fragment>
     );
   }
 }
