@@ -1,48 +1,56 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import XIVAPI from 'xivapi-js';
 import { connect } from 'react-redux';
-import { storeAction } from '../../actions';
+import XIVAPI from 'xivapi-js';
+import { storeAction, updateTooltip } from '../../actions';
 import styles from './styles.scss';
 
 function mapDispatchToProps(dispatch) {
   return {
-    storeAction: action => dispatch(storeAction(action))
+    storeAction: action => dispatch(storeAction(action)),
+    updateTooltip: action => dispatch(updateTooltip(action))
   };
 }
+
+const api = new XIVAPI();
 
 class Action extends Component {
   constructor(props) {
     super(props);
-    this.api = new XIVAPI();
-    this.state = {
-      details: ''
-    };
+
+    this.el = React.createRef();
   }
 
-  async getActionDetails() {
-    const { action } = this.props;
-    let details = await this.api.data.get('Action', action.ID);
-    details = await details;
-    this.setState({ details });
+  async showTooltip(action, event) {
+    const content = await api.data.get('Action', action.ID);
+    const elRect = this.el.current.getBoundingClientRect();
+    const position = {
+      left: elRect.left,
+      right: elRect.left + elRect.width,
+      top: elRect.top,
+      bottom: elRect.top + elRect.height
+    };
+
+    const details = {
+      content,
+      position
+    };
+
+    // eslint-disable-next-line react/destructuring-assignment
+    this.props.updateTooltip({ event, details });
+  }
+
+  hideTooltip() {
+    this.props.updateTooltip({ event: null, details: null });
   }
 
   render() {
     const { action } = this.props;
-    const { details } = this.state;
 
     const handleDragStart = (selectedAction) => {
       // eslint-disable-next-line react/destructuring-assignment
       this.props.storeAction({ selectedAction });
-    };
-
-    const setDescription = () => {
-      if (details) {
-        const description = details.Description;
-        return { __html: description.trim() };
-      }
-      return { __html: '' };
     };
 
     return (
@@ -51,17 +59,11 @@ class Action extends Component {
           className={styles.action}
           draggable
           onDragStart={() => { handleDragStart(action); }}
-          onMouseOver={() => { this.getActionDetails(); }}
+          onMouseEnter={(event) => { this.showTooltip(action, event); }}
+          onMouseLeave={() => { this.hideTooltip(); }}
+          ref={this.el}
         >
           <img src={action.Icon} alt="" />
-        </div>
-        <div className={styles.tooltip}>
-          <h4 className={styles.title}>{action.Name}</h4>
-          <p
-            className={styles.description}
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={setDescription()}
-          />
         </div>
       </React.Fragment>
     );
@@ -72,5 +74,12 @@ export default connect(null, mapDispatchToProps)(Action);
 
 Action.propTypes = {
   action: PropTypes.shape().isRequired,
-  storeAction: PropTypes.func.isRequired
+  storeAction: PropTypes.func.isRequired,
+  updateTooltip: PropTypes.func.isRequired
 };
+
+// onMouseOver
+// > Get and store ActionData
+// > Show tooltip
+// mouseout
+// > Hide tooltip

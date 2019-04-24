@@ -12,6 +12,7 @@ const slots = () => {
 export default () => (
   {
     selectedAction: null,
+    tooltip: null,
     bars: {
       primary: slots(),
       secondary: slots(),

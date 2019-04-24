@@ -45,7 +45,7 @@ class Slot extends PureComponent {
     return (
       <div
         id={id}
-        className={`${styles.slot}`}
+        className={styles.slot}
         onDrop={event => onDrop(event)}
         onDragOver={event => handleDragOver(event)}
         onDragLeave={event => resetSlot(event)}

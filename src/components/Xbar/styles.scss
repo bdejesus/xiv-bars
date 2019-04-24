@@ -1,7 +1,5 @@
 @import 'src/utils/mixins';
 
-
-
 .xbar {
   display: flex;
   flex-direction: row;
@@ -19,13 +17,21 @@
   width: $xbar-group-width * 2;
 }
 
-:global(#primary) {
-  order: 2;
-  width: $primary-xbar-width * 1.6;
-  .group {
-    height: $primary-xbar-group-height;
-    width: $primary-xbar-group-width * 2;
+$scale: 1.66;
+
+:global(#primary),
+:global(#tertiary) {
+  :local(.group):nth-child(1),
+  .group:nth-child(2) {
+    transform: translateX(-$xbar-group-width/$scale);
   }
+  .group:nth-child(3),
+  .group:nth-child(4) {
+    transform: translateX($xbar-group-width/$scale);
+  }
+}
+
+:global(#secondary) {
   .group:nth-child(2) {
     margin-right: $slot-spacing * 6;
     &:after {
@@ -36,25 +42,5 @@
       right: -$slot-spacing * 4;
       border-right: 1px solid rgba(255,255,255,0.33);
     }
-  }
-}
-
-:global(#secondary) {
-  order: 1;
-}
-
-:global(#tertiary) {
-  order: 3;
-}
-
-:global(#secondary),
-:global(#tertiary) {
-  :local(.group):nth-child(1),
-  .group:nth-child(2) {
-    transform: translateX(-$xbar-group-width/1.25);
-  }
-  .group:nth-child(3),
-  .group:nth-child(4) {
-    transform: translateX($xbar-group-width/1.25);
   }
 }

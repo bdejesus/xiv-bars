@@ -41,18 +41,3 @@
     margin-top: -$slot-size / 2;
   }
 }
-
-:global(#primary) .slot {
-  height: $primary-slot-size;
-  width: $primary-slot-size;
-
-  &:nth-child(1),
-  &:nth-child(3) {
-    margin-left: -$primary-slot-size / 2;
-  }
-
-  &:nth-child(2),
-  &:nth-child(4) {
-    margin-top: -$primary-slot-size / 2;
-  }
-}

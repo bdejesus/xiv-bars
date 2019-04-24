@@ -9,41 +9,14 @@
   width: $slot-size;
   border-radius: 4px;
   text-align: center;
-  transform: scale(1);
-  transition: transform 0.33s ease;
-  will-change: scale;
-  + .tooltip {
-    opacity: 0;
-    pointer-events: none;
-    border: 1px solid #666;
-    border-radius: 4px;
-    background-color: rgba(0,0,0,0.8);
-    font-weight: 300;
-    padding: 10px 16px;
-    position: absolute;
-    -webkit-font-smoothing: antialiased;
-    top: 0;
-    left: 100%;
-    margin-left: 8px;
-    z-index: 10;
-    text-align: left;
-    transform: translate(-8px,0);
-    transition:
-      opacity 0.33s ease,
-      transform 0.33s ease;
-    transition-delay: 0s;
-    will-change: opacity transform;
-  }
+  transition: border 0.33s ease, box-shadow 0.33s ease;
+  box-shadow: 0 0 0 0 rgba(255,255,255,0);
   &:hover {
     background-color: rgba(0,0,0,0.8);
+    border-color: #999;
+    box-shadow: 0 0 10px 1px rgba(255,255,255,0.75);
     cursor: pointer;
     cursor: -webkit-grab;
-    transform: scale(1.1);
-    + .tooltip {
-      opacity: 1;
-      transform: translate(0,0);
-      transition-delay: 0.16s;
-    }
   }
   img {
     display: block;
@@ -51,19 +24,4 @@
     height: 100%;
     width: 100%;
   }
-}
-
-.tooltip {
-  width: 320px;
-  white-space: pre-wrap;
-}
-
-.title {
-  margin: 0;
-}
-
-.description {
-  font-size: 14px;
-  line-height: 1.45em;
-  margin: 0;
 }

@@ -6,10 +6,11 @@ import XIVAPI from 'xivapi-js';
 import Xbar from './components/Xbar';
 import Action from './components/Action';
 import JobSelect from './components/JobSelect';
+import Tooltip from './components/Tooltip';
 import { ascByKey } from './utils/array';
 import styles from './styles.scss';
 
-const mapStateToProps = state => ({ bars: state.bars });
+const mapStateToProps = state => ({ bars: state.bars, tooltip: state.tooltip });
 
 class App extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class App extends Component {
   }
 
   render() {
-    const { bars } = this.props;
+    const { bars, tooltip } = this.props;
     const {
       jobs,
       actions
@@ -95,13 +96,20 @@ class App extends Component {
             { actions && ActionsList }
           </ul>
         </div>
+
+        { tooltip && <Tooltip content={tooltip.content} position={tooltip.position} /> }
       </React.Fragment>
     );
   }
 }
 
 App.propTypes = {
-  bars: PropTypes.shape().isRequired
+  bars: PropTypes.shape().isRequired,
+  tooltip: PropTypes.shape()
+};
+
+App.defaultProps = {
+  tooltip: null
 };
 
 export default connect(mapStateToProps)(App);
