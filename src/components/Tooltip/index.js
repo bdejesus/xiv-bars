@@ -6,22 +6,27 @@ class Tooltip extends React.PureComponent {
   constructor(props) {
     super(props);
     this.tooltip = React.createRef();
+    this.state = {
+      tooltipAlign: 'left'
+    };
   }
 
-  componentDidUpdate() {
+  componentDidMount() {
     this.positionTooltip();
   }
 
   positionTooltip() {
     const tooltipRect = this.tooltip.current.getBoundingClientRect();
     const windowWidth = document.body.clientWidth;
-    const hBounds = tooltipRect.width;
-    const hPos = (hBounds > windowWidth) ? 'left' : 'right';
-    return `${styles[hPos]}`;
+    const hBounds = tooltipRect.width + tooltipRect.left;
+    const hPos = hBounds >= windowWidth ? 'left' : 'right';
+    this.setState({ tooltipAlign: styles[hPos] });
   }
 
   render() {
     const { content, position } = this.props;
+    const { tooltipAlign } = this.state;
+
     const Description = () => {
       const cleanDesc = content.Description.trim();
       const descHtml = { __html: cleanDesc };
@@ -37,7 +42,7 @@ class Tooltip extends React.PureComponent {
 
     return (
       <div
-        className={styles.tooltip}
+        className={`${styles.tooltip} ${tooltipAlign}`}
         style={{ left: position.right, top: position.top }}
         ref={this.tooltip}
       >

@@ -42,6 +42,7 @@ class Action extends Component {
   }
 
   hideTooltip() {
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.updateTooltip({ event: null, details: null });
   }
 
