@@ -24,6 +24,18 @@ Once the app is running in development mode, open [http://localhost:3000](http:/
 
 The page will reload if you make edits. You will also see any lint errors in the console.
 
+## Troubleshooting
+
+### Incompatible "node" engine
+```
+The engine "node" is incompatible with this module.
+```
+
+#### Solution
+```
+yarn --ignore-engines
+```
+
 ## Contributing
 
 Create a pull request and maybe I'll review and accept when I get the chance. I'm not really sure how much time I'll be able to commit to maintaining this.
