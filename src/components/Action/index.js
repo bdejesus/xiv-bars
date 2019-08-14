@@ -42,7 +42,6 @@ class Action extends Component {
   }
 
   handleMouseEnter(action, event) {
-    console.log("mouseEnter");
     this.showTooltip(action, event);
   }
 
