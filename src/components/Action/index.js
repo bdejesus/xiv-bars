@@ -41,6 +41,15 @@ class Action extends Component {
     this.props.updateTooltip({ event, details });
   }
 
+  handleMouseEnter(action, event) {
+    console.log("mouseEnter");
+    this.showTooltip(action, event);
+  }
+
+  handleMouseLeave() {
+    this.hideTooltip();
+  }
+
   hideTooltip() {
     // eslint-disable-next-line react/destructuring-assignment
     this.props.updateTooltip({ event: null, details: null });
@@ -60,8 +69,8 @@ class Action extends Component {
           className={styles.action}
           draggable
           onDragStart={() => { handleDragStart(action); }}
-          onMouseEnter={(event) => { this.showTooltip(action, event); }}
-          onMouseLeave={() => { this.hideTooltip(); }}
+          onMouseEnter={(event) => { this.handleMouseEnter(action, event); }}
+          onMouseLeave={() => { this.handleMouseLeave(); }}
           ref={this.el}
         >
           <img src={action.Icon} alt="" />
