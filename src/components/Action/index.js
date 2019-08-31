@@ -22,7 +22,7 @@ class Action extends Component {
     this.el = React.createRef();
   }
 
-  async showTooltip(action, event) {
+  async getTooltip(action, event) {
     const content = await api.data.get('Action', action.ID);
     const elRect = this.el.current.getBoundingClientRect();
     const position = {
@@ -37,28 +37,25 @@ class Action extends Component {
       position
     };
 
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.updateTooltip({ event, details });
+    this.props.updateTooltip({ event, details, visible: true });
+  }
+
+  hideTooltip() {
+    this.props.updateTooltip({ event: null, details: null, visible: false });
   }
 
   handleMouseEnter(action, event) {
-    this.showTooltip(action, event);
+    this.getTooltip(action, event);
   }
 
   handleMouseLeave() {
     this.hideTooltip();
   }
 
-  hideTooltip() {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.props.updateTooltip({ event: null, details: null });
-  }
-
   render() {
     const { action } = this.props;
 
     const handleDragStart = (selectedAction) => {
-      // eslint-disable-next-line react/destructuring-assignment
       this.props.storeAction({ selectedAction });
     };
 
