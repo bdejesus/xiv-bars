@@ -20,7 +20,8 @@ class Action extends Component {
     super(props);
     this.el = React.createRef();
     this.state = {
-      hovering: false
+      hovering: false,
+      dragging: false
     };
   }
 
@@ -47,8 +48,8 @@ class Action extends Component {
   }
 
   handleMouseLeave() {
-    this.hideTooltip();
     this.setState({ hovering: false });
+    this.hideTooltip();
   }
 
   handleMouseMove(action, event) {
@@ -61,23 +62,32 @@ class Action extends Component {
     }
   }
 
-  render() {
-    const { action } = this.props;
+  handleDragStart(selectedAction) {
+    this.setState({ dragging: true });
+    this.hideTooltip();
+    this.props.storeAction({ selectedAction });
+  }
 
-    const handleDragStart = (selectedAction) => {
-      this.props.storeAction({ selectedAction });
-    };
+  handleDragEnd() {
+    this.setState({ dragging: false });
+  }
+
+  render() {
+    const { action, slotted } = this.props;
+    const { dragging } = this.state;
 
     return (
       <React.Fragment>
         <div
-          className={styles.action}
+          className={`${styles.action} ${dragging ? styles.dragging : ''}`}
           draggable
-          onDragStart={() => { handleDragStart(action); }}
+          onDragStart={() => { this.handleDragStart(action); }}
+          onDragEnd={() => { this.handleDragEnd(); }}
           onMouseMove={(event) => { this.handleMouseMove(action, event); }}
           onMouseLeave={() => { this.handleMouseLeave(); }}
           ref={this.el}
           data-action-id={action.ID}
+          data-slotted={slotted}
         >
           <img src={action.Icon} alt={action.Name} />
         </div>
@@ -91,5 +101,10 @@ export default connect(null, mapDispatchToProps)(Action);
 Action.propTypes = {
   action: PropTypes.shape().isRequired,
   storeAction: PropTypes.func.isRequired,
-  updateTooltip: PropTypes.func.isRequired
+  updateTooltip: PropTypes.func.isRequired,
+  slotted: PropTypes.bool
+};
+
+Action.defaultProps = {
+  slotted: false
 };
