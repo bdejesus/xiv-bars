@@ -6,7 +6,9 @@
     "server": "node server.js",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "dev": "yarn start",
+    "test": "node scripts/test.js",
+    "deploy": "git push heroku master"
   },
   "dependencies": {
     "@babel/core": "7.2.2",

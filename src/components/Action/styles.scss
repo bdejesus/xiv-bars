@@ -9,7 +9,10 @@
   width: $slot-size;
   border-radius: 4px;
   text-align: center;
-  transition: border 0.33s ease, box-shadow 0.33s ease;
+  transition:
+    opacity 0.15s ease,
+    border 0.33s ease,
+    box-shadow 0.33s ease;
   box-shadow: 0 0 0 0 rgba(255,255,255,0);
   &:hover {
     background-color: rgba(0,0,0,0.8);
@@ -23,5 +26,8 @@
     object-fit: cover;
     height: 100%;
     width: 100%;
+  }
+  &[data-slotted='true'].dragging {
+    opacity: 0;
   }
 }
