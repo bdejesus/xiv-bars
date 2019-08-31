@@ -61,7 +61,7 @@ class Slot extends PureComponent {
         onDragLeave={event => handleDragLeave(event)}
         role="button"
       >
-        {action.Name && <Action action={action} slotted />}
+        {action.Name && <Action action={action} />}
       </div>
     );
   }
