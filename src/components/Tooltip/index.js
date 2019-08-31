@@ -47,7 +47,7 @@ class Tooltip extends React.PureComponent {
         ref={this.tooltip}
       >
         <h4 className={styles.title}>{content.Name}</h4>
-        { content.Description.length > 0 && <Description /> }
+        {content.Description.length > 0 && <Description />}
       </div>
     );
   }
