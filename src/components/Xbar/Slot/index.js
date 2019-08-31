@@ -18,20 +18,39 @@ function mapDispatchToProps(dispatch) {
 }
 
 class Slot extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dragging: false
+    };
+  }
+
   render() {
     const {
       xbar, id, action, selectedAction
     } = this.props;
 
-    const resetSlot = event => event.currentTarget.setAttribute('data-state', 'inactive');
+    const resetSlot = (event) => {
+      const { currentTarget } = event;
+      if (currentTarget.getAttribute('data-state') === 'active') {
+        currentTarget.setAttribute('data-state', 'inactive');
+      }
+    };
+
+    const handleDragStart = () => {
+      this.setState({ dragging: true });
+    };
 
     const handleDragLeave = (event) => {
       event.preventDefault();
-      this.props.addActionToSlot({
-        event,
-        action: {},
-        xbar
-      });
+      const { dragging } = this.state;
+      if (dragging) {
+        this.props.addActionToSlot({
+          event,
+          action: {},
+          xbar
+        });
+      }
       resetSlot(event);
     };
 
@@ -44,12 +63,17 @@ class Slot extends PureComponent {
         action: selectedAction,
         xbar
       });
+      this.setState({ dragging: false });
       resetSlot(event);
     };
 
     const handleDragOver = (event) => {
       event.preventDefault();
-      event.currentTarget.setAttribute('data-state', 'active');
+      const { currentTarget } = event;
+
+      if (currentTarget.getAttribute('data-state') !== 'active') {
+        currentTarget.setAttribute('data-state', 'active');
+      }
     };
 
     return (
@@ -57,6 +81,7 @@ class Slot extends PureComponent {
         id={id}
         className={styles.slot}
         onDrop={event => handleDrop(event)}
+        onDragStart={event => handleDragStart(event)}
         onDragOver={event => handleDragOver(event)}
         onDragLeave={event => handleDragLeave(event)}
         role="button"
