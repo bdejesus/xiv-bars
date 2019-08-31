@@ -24,8 +24,7 @@ export default (state = initXBars(), action) => {
 
       return Object.assign({}, state, {
         ...state,
-        bars: { ...state.bars, [payload.xbar]: bars },
-        selectedAction: {}
+        bars: { ...state.bars, [payload.xbar]: bars }
       });
     }
 

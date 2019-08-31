@@ -25,7 +25,17 @@ class Slot extends PureComponent {
 
     const resetSlot = event => event.currentTarget.setAttribute('data-state', 'inactive');
 
-    const onDrop = (event) => {
+    const handleDragLeave = (event) => {
+      event.preventDefault();
+      this.props.addActionToSlot({
+        event,
+        action: {},
+        xbar
+      });
+      resetSlot(event);
+    };
+
+    const handleDrop = (event) => {
       event.preventDefault();
 
       // eslint-disable-next-line react/destructuring-assignment
@@ -46,12 +56,12 @@ class Slot extends PureComponent {
       <div
         id={id}
         className={styles.slot}
-        onDrop={event => onDrop(event)}
+        onDrop={event => handleDrop(event)}
         onDragOver={event => handleDragOver(event)}
-        onDragLeave={event => resetSlot(event)}
+        onDragLeave={event => handleDragLeave(event)}
         role="button"
       >
-        { action.Name && <Action action={action} /> }
+        {action.Name && <Action action={action} slotted />}
       </div>
     );
   }
