@@ -18,8 +18,10 @@ const api = new XIVAPI();
 class Action extends Component {
   constructor(props) {
     super(props);
-
     this.el = React.createRef();
+    this.state = {
+      hovering: false
+    };
   }
 
   async getTooltip(action, event) {
@@ -44,12 +46,19 @@ class Action extends Component {
     this.props.updateTooltip({ event: null, details: null, visible: false });
   }
 
-  handleMouseEnter(action, event) {
-    this.getTooltip(action, event);
-  }
-
   handleMouseLeave() {
     this.hideTooltip();
+    this.setState({ hovering: false });
+  }
+
+  handleMouseMove(action, event) {
+    const { hovering } = this.state;
+    const targetId = event.currentTarget.getAttribute('data-action-id');
+
+    if (action.ID.toString() === targetId.toString() && !hovering) {
+      this.setState({ hovering: true });
+      this.getTooltip(action, event);
+    }
   }
 
   render() {
@@ -65,11 +74,12 @@ class Action extends Component {
           className={styles.action}
           draggable
           onDragStart={() => { handleDragStart(action); }}
-          onMouseEnter={(event) => { this.handleMouseEnter(action, event); }}
+          onMouseMove={(event) => { this.handleMouseMove(action, event); }}
           onMouseLeave={() => { this.handleMouseLeave(); }}
           ref={this.el}
+          data-action-id={action.ID}
         >
-          <img src={action.Icon} alt="" />
+          <img src={action.Icon} alt={action.Name} />
         </div>
       </React.Fragment>
     );
@@ -83,9 +93,3 @@ Action.propTypes = {
   storeAction: PropTypes.func.isRequired,
   updateTooltip: PropTypes.func.isRequired
 };
-
-// onMouseOver
-// > Get and store ActionData
-// > Show tooltip
-// mouseout
-// > Hide tooltip
