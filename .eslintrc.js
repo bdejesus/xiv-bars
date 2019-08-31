@@ -27,7 +27,7 @@ module.exports = {
     'jsx-a11y/mouse-events-have-key-events': 'warn',
     'no-debugger': 'warn',
     'no-unused-vars': 'warn',
-    'react/destructuring-assignment': 'warn',
+    'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'react/no-array-index-key': 'off',
