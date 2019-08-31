@@ -73,7 +73,7 @@ class Action extends Component {
   }
 
   render() {
-    const { action, slotted } = this.props;
+    const { action } = this.props;
     const { dragging } = this.state;
 
     return (
@@ -87,7 +87,6 @@ class Action extends Component {
           onMouseLeave={() => { this.handleMouseLeave(); }}
           ref={this.el}
           data-action-id={action.ID}
-          data-slotted={slotted}
         >
           <img src={action.Icon} alt={action.Name} />
         </div>
@@ -101,10 +100,5 @@ export default connect(null, mapDispatchToProps)(Action);
 Action.propTypes = {
   action: PropTypes.shape().isRequired,
   storeAction: PropTypes.func.isRequired,
-  updateTooltip: PropTypes.func.isRequired,
-  slotted: PropTypes.bool
-};
-
-Action.defaultProps = {
-  slotted: false
+  updateTooltip: PropTypes.func.isRequired
 };
