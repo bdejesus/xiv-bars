@@ -22,24 +22,15 @@
     "path": "^0.12.7",
     "pnp-webpack-plugin": "1.2.1",
     "postcss-flexbugs-fixes": "4.1.0",
-    "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.5.0",
     "postcss-safe-parser": "4.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-app-polyfill": "^0.2.1",
-    "react-dev-utils": "^7.0.3",
     "react-dom": "^16.8.3",
     "react-redux": "^7.0.1",
     "redux": "^4.0.1",
     "resolve": "1.10.0",
-    "sass-loader": "7.1.0",
-    "style-loader": "0.23.1",
-    "terser-webpack-plugin": "1.2.2",
-    "url-loader": "1.1.2",
-    "webpack": "^4.39",
-    "webpack-dev-server": "3.1.14",
-    "workbox-webpack-plugin": "3.6.3",
     "xivapi-js": "^0.2.2"
   },
   "devDependencies": {
@@ -72,7 +63,16 @@
     "jest-watch-typeahead": "^0.2.1",
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
-    "webpack-manifest-plugin": "^2.0.4"
+    "postcss-loader": "3.0.0",
+    "react-dev-utils": "^7.0.3",
+    "sass-loader": "7.1.0",
+    "style-loader": "0.23.1",
+    "terser-webpack-plugin": "1.2.2",
+    "url-loader": "1.1.2",
+    "webpack": "^4.39",
+    "webpack-dev-server": "3.1.14",
+    "webpack-manifest-plugin": "^2.0.4",
+    "workbox-webpack-plugin": "3.6.3"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -80,7 +80,7 @@
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie <= 11",
+    "not ie < 11",
     "not op_mini all"
   ],
   "jest": {
