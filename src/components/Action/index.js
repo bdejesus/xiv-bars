@@ -14,6 +14,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const api = new XIVAPI();
+let tooltipTimeout = null;
 
 class Action extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Action extends Component {
   }
 
   handleMouseLeave() {
+    clearTimeout(tooltipTimeout);
     this.setState({ hovering: false });
     this.hideTooltip();
   }
@@ -56,10 +58,13 @@ class Action extends Component {
     const { hovering } = this.state;
     const targetId = event.currentTarget.getAttribute('data-action-id');
 
-    if (action.ID.toString() === targetId.toString() && !hovering) {
-      this.setState({ hovering: true });
-      this.getTooltip(action, event);
-    }
+    clearTimeout(tooltipTimeout);
+    tooltipTimeout = setTimeout(() => {
+      if (action.ID.toString() === targetId.toString() && !hovering) {
+        this.setState({ hovering: true });
+        this.getTooltip(action, event);
+      }
+    }, 300);
   }
 
   handleDragStart(selectedAction) {
