@@ -20,7 +20,7 @@ class App extends Component {
     this.state = {
       jobs: [],
       actions: [],
-      selectedJob: { }
+      selectedJob: {}
     };
   }
 
@@ -81,7 +81,7 @@ class App extends Component {
         <div className={styles.panel}>
           <div className="content-layout content-middle">
             <div className="content-left">
-              <h2>Class</h2>
+              <h2>Job/Class</h2>
             </div>
 
             <div className="content-main">
@@ -93,11 +93,11 @@ class App extends Component {
           </div>
 
           <ul className={styles.listActions}>
-            { actions && ActionsList }
+            {actions && ActionsList}
           </ul>
         </div>
 
-        { tooltip && <Tooltip content={tooltip.content} position={tooltip.position} /> }
+        {tooltip && <Tooltip content={tooltip.content} position={tooltip.position} />}
       </React.Fragment>
     );
   }

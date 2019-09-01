@@ -78,7 +78,7 @@ class Slot extends PureComponent {
 
     return (
       <div
-        id={`slot-${id}`}
+        id={id}
         className={styles.slot}
         onDrop={event => handleDrop(event)}
         onDragStart={event => handleDragStart(event)}
@@ -95,7 +95,7 @@ class Slot extends PureComponent {
 export default connect(mapStateToProps, mapDispatchToProps)(Slot);
 
 Slot.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
   action: PropTypes.shape(),
   addActionToSlot: PropTypes.func.isRequired,
   selectedAction: PropTypes.shape(),
