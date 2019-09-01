@@ -16,7 +16,7 @@ class Xbar extends Component {
           <div className={styles.group} key={`group-${index}`}>
             {slots.map(slot => (
               <Slot
-                id={slot.id}
+                id={`${id}-${slot.id}`}
                 key={`slot-${slot.id}`}
                 action={slot.action}
                 xbar={id}
