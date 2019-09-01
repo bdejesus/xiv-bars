@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import XIVAPI from 'xivapi-js';
+import { XIVAPI_TOKEN } from './constants/key-manager';
 import Xbar from './components/Xbar';
 import Action from './components/Action';
 import JobSelect from './components/JobSelect';
@@ -15,7 +16,7 @@ const mapStateToProps = state => ({ bars: state.bars, tooltip: state.tooltip });
 class App extends Component {
   constructor(props) {
     super(props);
-    this.api = new XIVAPI();
+    this.api = new XIVAPI({ private_key: XIVAPI_TOKEN });
     window.api = this.api;
     this.state = {
       jobs: [],
