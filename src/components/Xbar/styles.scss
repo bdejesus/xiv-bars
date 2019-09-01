@@ -1,4 +1,4 @@
-@import 'src/utils/mixins';
+@import "src/utils/mixins";
 
 .xbar {
   display: flex;
@@ -8,6 +8,7 @@
   width: $xbar-width * 1.6;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 
 .group {
@@ -19,20 +20,8 @@
 
 $scale: 1.66;
 
-:global(#primary),
-:global(#tertiary) {
-  :local(.group):nth-child(1),
-  .group:nth-child(2) {
-    transform: translateX(-$xbar-group-width/$scale - $slot-spacing);
-  }
-  .group:nth-child(3),
-  .group:nth-child(4) {
-    transform: translateX($xbar-group-width/$scale + $slot-spacing);
-  }
-}
-
-:global(#secondary) {
-  background-color: rgba(255,255,255,0.066);
+.primary {
+  background-color: rgba(255, 255, 255, 0.066);
   border-radius: 8px;
   height: $xbar-group-height + 32px;
   width: $xbar-group-width * 5 + 32px;
@@ -41,12 +30,66 @@ $scale: 1.66;
   .group:nth-child(2) {
     margin-right: $slot-spacing * 6;
     &:after {
-      content: '';
+      content: "";
       display: block;
       height: 100%;
       position: absolute;
       right: -$slot-spacing * 4;
-      border-right: 1px solid rgba(255,255,255,0.33);
+      border-right: 1px solid rgba(255, 255, 255, 0.33);
     }
+  }
+}
+
+.secondary,
+.tertiary {
+  :local(.group):nth-child(1),
+  .group:nth-child(2) {
+    transform: translateX(-$xbar-group-width/$scale - $slot-spacing);
+  }
+  .group:nth-child(3),
+  .group:nth-child(4) {
+    transform: translateX($xbar-group-width/$scale + $slot-spacing);
+  }
+  &:before,
+  &:after {
+    display: block;
+    position: absolute;
+    font-size: 10px;
+    font-weight: 900;
+    text-align: center;
+    width: ($xbar-group-width + $slot-size * 2 + $slot-spacing * 2) / $scale;
+    opacity: 0.5;
+  }
+  &:before {
+    left: 0;
+  }
+  &:after {
+    right: 0;
+  }
+}
+
+.secondary {
+  &:before,
+  &:after {
+    top: -0.75em;
+  }
+  &:before {
+    content: "L2, L2";
+  }
+  &:after {
+    content: "R2, R2";
+  }
+}
+
+.tertiary {
+  &:before,
+  &:after {
+    bottom: -0.75em;
+  }
+  &:before {
+    content: "L2 + R2";
+  }
+  &:after {
+    content: "R2 + L2";
   }
 }
