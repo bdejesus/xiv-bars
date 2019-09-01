@@ -50,8 +50,6 @@ class App extends Component {
     actions = await actions.Results;
     actions = actions.filter(action => action.UrlType === 'Action');
     actions = actions.sort(ascByKey('Icon'));
-    console.log(actions);
-
     actions = actions.filter(
       (action, index, self) => index === self.findIndex(
         t => (t.Name === action.Name)
