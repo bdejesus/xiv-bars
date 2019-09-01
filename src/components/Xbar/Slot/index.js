@@ -57,7 +57,6 @@ class Slot extends PureComponent {
     const handleDrop = (event) => {
       event.preventDefault();
 
-      // eslint-disable-next-line react/destructuring-assignment
       this.props.addActionToSlot({
         event,
         action: selectedAction,
@@ -97,9 +96,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(Slot);
 Slot.propTypes = {
   id: PropTypes.string.isRequired,
   action: PropTypes.shape(),
-  addActionToSlot: PropTypes.func.isRequired,
   selectedAction: PropTypes.shape(),
-  xbar: PropTypes.string.isRequired
+  xbar: PropTypes.string.isRequired,
+  addActionToSlot: PropTypes.func.isRequired
 };
 
 Slot.defaultProps = {
