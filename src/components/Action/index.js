@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import XIVAPI from 'xivapi-js';
+import { XIVAPI_TOKEN } from '../../constants/key-manager';
 import { storeAction, updateTooltip } from '../../actions';
 import styles from './styles.scss';
 
@@ -13,7 +14,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const api = new XIVAPI();
+const api = new XIVAPI({ private_key: XIVAPI_TOKEN });
 let tooltipTimeout = null;
 
 class Action extends Component {
@@ -44,10 +45,6 @@ class Action extends Component {
     this.props.updateTooltip({ event, details, visible: true });
   }
 
-  hideTooltip() {
-    this.props.updateTooltip({ event: null, details: null, visible: false });
-  }
-
   handleMouseLeave() {
     clearTimeout(tooltipTimeout);
     this.setState({ hovering: false });
@@ -75,6 +72,10 @@ class Action extends Component {
 
   handleDragEnd() {
     this.setState({ dragging: false });
+  }
+
+  hideTooltip() {
+    this.props.updateTooltip({ event: null, details: null, visible: false });
   }
 
   componentWillUnmout() {
