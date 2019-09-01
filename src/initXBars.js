@@ -14,8 +14,8 @@ export default () => (
     selectedAction: null,
     tooltip: null,
     bars: {
-      primary: slots('primary'),
       secondary: slots('secondary'),
+      primary: slots('primary'),
       tertiary: slots('tertiary')
     }
   }

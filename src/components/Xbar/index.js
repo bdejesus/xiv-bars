@@ -11,7 +11,7 @@ class Xbar extends Component {
 
     const groups = group(bar, 4);
     return (
-      <div className={`${styles.xbar}`} key={id} id={id}>
+      <div className={`${styles.xbar} ${styles[id]}`} key={id}>
         {groups.map((slots, index) => (
           <div className={styles.group} key={`group-${index}`}>
             {slots.map(slot => (
