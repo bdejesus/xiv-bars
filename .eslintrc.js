@@ -23,6 +23,7 @@ module.exports = {
     'class-methods-use-this': 'warn',
     'comma-dangle': 'off',
     'comma-spacing': 'warn',
+    'linebreak-style': 'warn',
     'max-len': 'warn',
     'jsx-a11y/mouse-events-have-key-events': 'warn',
     'no-debugger': 'warn',

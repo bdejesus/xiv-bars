@@ -77,6 +77,11 @@ class Action extends Component {
     this.setState({ dragging: false });
   }
 
+  componentWillUnmout() {
+    clearTimeout(tooltipTimeout);
+    this.remove();
+  }
+
   render() {
     const { action } = this.props;
     const { dragging } = this.state;
