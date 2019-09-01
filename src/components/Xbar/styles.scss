@@ -23,15 +23,21 @@ $scale: 1.66;
 :global(#tertiary) {
   :local(.group):nth-child(1),
   .group:nth-child(2) {
-    transform: translateX(-$xbar-group-width/$scale);
+    transform: translateX(-$xbar-group-width/$scale - $slot-spacing);
   }
   .group:nth-child(3),
   .group:nth-child(4) {
-    transform: translateX($xbar-group-width/$scale);
+    transform: translateX($xbar-group-width/$scale + $slot-spacing);
   }
 }
 
 :global(#secondary) {
+  background-color: rgba(255,255,255,0.066);
+  border-radius: 8px;
+  height: $xbar-group-height + 32px;
+  width: $xbar-group-width * 5 + 32px;
+  padding: 16px;
+  margin: 16px auto;
   .group:nth-child(2) {
     margin-right: $slot-spacing * 6;
     &:after {
