@@ -1,42 +1,50 @@
 @import "src/utils/mixins";
 
+// Xbar Set
 .xbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: $xbar-width * 1.6;
+  width: $xbar-width;
   margin-left: auto;
   margin-right: auto;
   position: relative;
 }
 
+// Button Group
 .group {
-  margin: 0 10px;
+  margin: 0 $xbar-group-spacing;
   position: relative;
   height: $xbar-group-height;
-  width: $xbar-group-width * 2;
+  width: $xbar-group-width;
 }
 
 $scale: 1.66;
 
+$primary-padding: 10px;
+$center-spacing: $primary-padding * 2;
+
 .primary {
   background-color: rgba(255, 255, 255, 0.066);
   border-radius: 8px;
-  height: $xbar-group-height + 32px;
-  width: $xbar-group-width * 5 + 32px;
-  padding: 16px;
-  margin: 16px auto;
+  padding: $primary-padding;
+  margin: $primary-padding * 2 auto;
+  width: $xbar-width + $primary-padding * 2 + $center-spacing;
   .group:nth-child(2) {
-    margin-right: $slot-spacing * 6;
-    &:after {
-      content: "";
-      display: block;
-      height: 100%;
-      position: absolute;
-      right: -$slot-spacing * 4;
-      border-right: 1px solid rgba(255, 255, 255, 0.33);
-    }
+    margin-right: $primary-padding;
+  }
+  .group:nth-child(3) {
+    margin-left: $primary-padding;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: $slot-border-size;
+    bottom: $slot-border-size;
+    border-right: 2px solid rgba(0,0,0, 0.75);
   }
 }
 
@@ -44,11 +52,11 @@ $scale: 1.66;
 .tertiary {
   :local(.group):nth-child(1),
   .group:nth-child(2) {
-    transform: translateX(-$xbar-group-width/$scale - $slot-spacing);
+    transform: translateX(-$xbar-group-width / 1.5);
   }
   .group:nth-child(3),
   .group:nth-child(4) {
-    transform: translateX($xbar-group-width/$scale + $slot-spacing);
+    transform: translateX($xbar-group-width / 1.5);
   }
   &:before,
   &:after {
@@ -57,7 +65,7 @@ $scale: 1.66;
     font-size: 10px;
     font-weight: 900;
     text-align: center;
-    width: ($xbar-group-width + $slot-size * 2 + $slot-spacing * 2) / $scale;
+    width: $xbar-group-width - $slot-size + $slot-border-size * 4;
     opacity: 0.5;
   }
   &:before {
@@ -74,10 +82,10 @@ $scale: 1.66;
     top: -0.75em;
   }
   &:before {
-    content: "L2, L2";
+    content: "L2 × 2";
   }
   &:after {
-    content: "R2, R2";
+    content: "R2 × 2";
   }
 }
 
@@ -87,9 +95,9 @@ $scale: 1.66;
     bottom: -0.75em;
   }
   &:before {
-    content: "L2 + R2";
+    content: "L2 → R2";
   }
   &:after {
-    content: "R2 + L2";
+    content: "R2 → L2";
   }
 }
