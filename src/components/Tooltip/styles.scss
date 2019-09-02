@@ -7,7 +7,7 @@ $tooltip-width: 320px;
   pointer-events: none;
   border: 1px solid #666;
   border-radius: 4px;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.9);
   font-weight: 400;
   padding: 10px 16px;
   position: absolute;
@@ -27,7 +27,7 @@ $tooltip-width: 320px;
   animation: tooltipEnter 0.33s ease;
   animation-fill-mode: forwards;
   &.right {
-    margin-left: $slot-spacing;
+    margin-left: $slot-border-size * 4;
   }
   &.left {
     margin-left: -$tooltip-width - $slot-size - $slot-spacing;
