@@ -1,17 +1,22 @@
+
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import XIVAPI from 'xivapi-js';
-import { XIVAPI_TOKEN } from './constants/key-manager';
-import Xbar from './components/Xbar';
-import Action from './components/Action';
-import JobSelect from './components/JobSelect';
-import Tooltip from './components/Tooltip';
-import { ascByKey } from './utils/array';
+import { XIVAPI_TOKEN } from 'constants/key-manager';
+import Xbar from 'components/Xbar';
+import Action from 'components/Action';
+import JobSelect from 'components/JobSelect';
+import Tooltip from 'components/Tooltip';
+import { ascByKey } from 'utils/array';
 import styles from './styles.scss';
 
-const mapStateToProps = state => ({ bars: state.bars, tooltip: state.tooltip });
+const mapStateToProps = state => ({
+  bars: state.bars,
+  tooltip: state.tooltip,
+  jobs: state.jobs
+});
 
 class App extends Component {
   constructor(props) {
@@ -19,9 +24,7 @@ class App extends Component {
     this.api = new XIVAPI({ private_key: XIVAPI_TOKEN });
     window.api = this.api;
     this.state = {
-      jobs: [],
-      actions: [],
-      selectedJob: {}
+      actions: []
     };
   }
 
@@ -93,10 +96,12 @@ class App extends Component {
             </div>
 
             <div className="content-main">
-              <JobSelect
-                jobs={jobs}
-                updateJob={event => this.updateJob(event)}
-              />
+              {jobs && (
+                <JobSelect
+                  jobs={jobs}
+                  updateJob={event => this.updateJob(event)}
+                />
+              )}
             </div>
           </div>
 

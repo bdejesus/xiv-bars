@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import XIVAPI from 'xivapi-js';
-import { XIVAPI_TOKEN } from '../../constants/key-manager';
-import { storeAction, updateTooltip } from '../../actions';
+import { XIVAPI_TOKEN } from 'constants/key-manager';
+import { storeAction, updateTooltip } from 'actions';
 import styles from './styles.scss';
 
 function mapDispatchToProps(dispatch) {
@@ -56,6 +56,7 @@ class Action extends Component {
     const targetId = event.currentTarget.getAttribute('data-action-id');
 
     clearTimeout(tooltipTimeout);
+
     tooltipTimeout = setTimeout(() => {
       if (action.ID.toString() === targetId.toString() && !hovering) {
         this.setState({ hovering: true });
