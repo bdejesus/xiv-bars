@@ -2,7 +2,7 @@ import {
   ADD_ACTION_TO_SLOT,
   STORE_ACTION,
   UPDATE_TOOLTIP
-} from '../constants/action-types';
+} from 'constants/action-types';
 
 export function addActionToSlot(payload) {
   return { type: ADD_ACTION_TO_SLOT, payload };

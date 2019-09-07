@@ -1,7 +1,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { group } from '../../utils/array';
+import { group } from 'utils/array';
 import Slot from './Slot';
 import styles from './styles.scss';
 

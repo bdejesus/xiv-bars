@@ -5,8 +5,8 @@
   "scripts": {
     "server": "node server.js",
     "start": "node scripts/start.js",
+    "dev": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "dev": "yarn start",
     "test": "node scripts/test.js",
     "deploy": "git push heroku master"
   },
