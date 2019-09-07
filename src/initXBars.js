@@ -11,6 +11,8 @@ const slots = (group) => {
 
 export default () => (
   {
+    jobs: [],
+    selectedJob: null,
     selectedAction: null,
     tooltip: null,
     bars: {

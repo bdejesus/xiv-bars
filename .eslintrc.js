@@ -28,6 +28,7 @@ module.exports = {
     'jsx-a11y/mouse-events-have-key-events': 'warn',
     'no-debugger': 'warn',
     'no-unused-vars': 'warn',
+    'prefer-destructuring': 'off',
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
@@ -38,5 +39,12 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/interactive-supports-focus': 'off',
     'quotes': 'warn'
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src/"]
+      }
+    }
   },
 };

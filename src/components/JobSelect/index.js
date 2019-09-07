@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { titleize } from '../../utils/text';
+import { titleize } from 'utils/text';
 import styles from './styles.scss';
 
 class JobSelect extends PureComponent {
@@ -16,14 +16,16 @@ class JobSelect extends PureComponent {
 
     const jobListSelect = (
       <div className={styles.jobSelectWrapper}>
-        <select
-          name="jobSelect"
-          id="jobSelect"
-          className={styles.jobSelect}
-          onChange={event => updateJob(event.currentTarget.value)}
-        >
-          { jobsList }
-        </select>
+        {jobsList && (
+          <select
+            name="jobSelect"
+            id="jobSelect"
+            className={styles.jobSelect}
+            onChange={event => updateJob(event.currentTarget.value)}
+          >
+            {jobsList}
+          </select>
+        )}
       </div>
     );
 

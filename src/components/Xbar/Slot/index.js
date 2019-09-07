@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addActionToSlot } from '../../../actions';
-import Action from '../../Action';
+import { addActionToSlot } from 'actions';
+import Action from 'components/Action';
 import styles from './styles.scss';
 
 function mapStateToProps(state) {
