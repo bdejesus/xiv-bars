@@ -1,8 +1,21 @@
-.job-select-wrapper {
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.select-wrapper {
   background-color: transparent;
   display: inline-block;
+  &[aria-hidden="true"] {
+    display: none;
+  }
+  h3 {
+    margin: 0 0 6px;
+  }
 }
-.job-select {
+
+.select {
   color: #fff;
   background: #333;
   border: none;
@@ -10,4 +23,5 @@
   font-size: 18px;
   height: 32px;
   padding: 0 8px;
+  width: 100%;
 }
