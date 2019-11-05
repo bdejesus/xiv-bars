@@ -1,59 +1,47 @@
-import React from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-class Tooltip extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.tooltip = React.createRef();
-    this.state = {
-      tooltipAlign: 'left'
-    };
-  }
+export default function Tooltip({ content, position }) {
+  const tooltip = createRef();
+  const [anchor, setAnchor] = useState('left');
 
-  componentDidMount() {
-    this.positionTooltip();
-  }
-
-  positionTooltip() {
-    const tooltipRect = this.tooltip.current.getBoundingClientRect();
+  function positionTooltip() {
+    const tooltipRect = tooltip.current.getBoundingClientRect();
     const windowWidth = document.body.clientWidth;
     const hBounds = tooltipRect.width + tooltipRect.left;
     const hPos = hBounds >= windowWidth ? 'left' : 'right';
-    this.setState({ tooltipAlign: styles[hPos] });
+    setAnchor(styles[hPos]);
   }
 
-  render() {
-    const { content, position } = this.props;
-    const { tooltipAlign } = this.state;
+  useEffect(() => {
+    positionTooltip();
+  }, []);
 
-    const Description = () => {
-      const cleanDesc = content.Description.trim();
-      const descHtml = { __html: cleanDesc };
-
-      return (
-        <p
-          className={styles.description}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={descHtml}
-        />
-      );
-    };
+  const Description = () => {
+    const cleanDesc = content.Description.trim();
+    const descHtml = { __html: cleanDesc };
 
     return (
-      <div
-        className={`${styles.tooltip} ${tooltipAlign}`}
-        style={{ left: position.right, top: position.top }}
-        ref={this.tooltip}
-      >
-        <h4 className={styles.title}>{content.Name}</h4>
-        {content.Description.length > 0 && <Description />}
-      </div>
+      <p
+        className={styles.description}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={descHtml}
+      />
     );
-  }
-}
+  };
 
-export default Tooltip;
+  return (
+    <div
+      className={`${styles.tooltip} ${anchor}`}
+      style={{ left: position.right, top: position.top }}
+      ref={tooltip}
+    >
+      <h4 className={styles.title}>{content.Name}</h4>
+      {content.Description.length > 0 && <Description />}
+    </div>
+  );
+}
 
 Tooltip.propTypes = {
   content: PropTypes.shape().isRequired,
