@@ -1,40 +1,43 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { titleize } from 'utils/text';
 import styles from './styles.scss';
 
-class JobSelect extends PureComponent {
-  render() {
-    const { jobs, updateJob } = this.props;
+function JobSelect({ jobs, updateJob }) {
+  function jobsList() {
+    if (!jobs) return [];
+    return jobs.map(job => (
+      <option key={`job-${job.ID}`} value={job.ID}>
+        {titleize(job.Name)}
+      </option>
+    ));
+  }
 
-    let jobsList = [];
-    if (jobs) {
-      jobsList = jobs.map(job => (
-        <option key={`job-${job.ID}`} value={job.ID}>
-          {titleize(job.Name)}
-        </option>
-      ));
-    }
-
-    const JobListSelect = () => (
+  function JobListSelect() {
+    return (
       <div className={styles.selectWrapper}>
         <label>
           <h3>Class</h3>
-          {jobsList && (
+          {jobsList() && (
             <select
               name="jobSelect"
               id="jobSelect"
               className={styles.select}
-              onBlur={event => updateJob(event.currentTarget.value)}
+              onBlur={() => {
+                console.log('blur');
+              }}
+              onChange={event => updateJob(event.currentTarget.value)}
             >
-              {jobsList}
+              {jobsList()}
             </select>
           )}
         </label>
       </div>
     );
+  }
 
-    const DisciplineSelect = () => (
+  function DisciplineSelect() {
+    return (
       <div className={styles.selectWrapper} aria-hidden>
         <label>
           <h3>Discipline</h3>
@@ -50,19 +53,19 @@ class JobSelect extends PureComponent {
         </label>
       </div>
     );
-
-    return (
-      <div className={styles.wrapper}>
-        <DisciplineSelect />
-        <JobListSelect />
-      </div>
-    );
   }
-}
 
-export default JobSelect;
+  return (
+    <div className={styles.wrapper}>
+      <DisciplineSelect />
+      <JobListSelect />
+    </div>
+  );
+}
 
 JobSelect.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   updateJob: PropTypes.func.isRequired
 };
+
+export default JobSelect;

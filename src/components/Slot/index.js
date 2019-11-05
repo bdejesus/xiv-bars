@@ -84,6 +84,7 @@ class Slot extends PureComponent {
         onDragOver={event => handleDragOver(event)}
         onDragLeave={event => handleDragLeave(event)}
         role="button"
+        tabIndex={0}
       >
         {action.Name && <Action action={action} />}
       </div>
@@ -91,7 +92,10 @@ class Slot extends PureComponent {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Slot);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Slot);
 
 Slot.propTypes = {
   id: PropTypes.string.isRequired,
