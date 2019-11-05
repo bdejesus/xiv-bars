@@ -1,4 +1,3 @@
-
 /* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -34,8 +33,12 @@ class App extends Component {
 
   updateJob(id) {
     const { jobs } = this.state;
-    const selectedJob = jobs.find(job => parseInt(job.ID, 10) === parseInt(id, 10));
-    this.setState({ selectedJob }, (() => { this.fetchActions(); }));
+    const selectedJob = jobs.find(
+      job => parseInt(job.ID, 10) === parseInt(id, 10)
+    );
+    this.setState({ selectedJob }, () => {
+      this.fetchActions();
+    });
   }
 
   // TODO Refactor promises to handle error cases
@@ -50,14 +53,14 @@ class App extends Component {
 
   async fetchActions() {
     const { selectedJob } = this.state;
-    let actions = await this.api.search('', { filters: `ClassJob.ID=${selectedJob.ID}` });
+    let actions = await this.api.search('', {
+      filters: `ClassJob.ID=${selectedJob.ID}`
+    });
     actions = await actions.Results;
     actions = actions.filter(action => action.UrlType === 'Action');
     actions = actions.sort(ascByKey('Icon'));
     actions = actions.filter(
-      (action, index, self) => index === self.findIndex(
-        t => (t.Name === action.Name)
-      )
+      (action, index, self) => index === self.findIndex(t => t.Name === action.Name)
     );
 
     this.setState({ actions });
@@ -65,16 +68,15 @@ class App extends Component {
 
   render() {
     const { bars, tooltip } = this.props;
-    const {
-      jobs,
-      actions
-    } = this.state;
+    const { jobs, actions } = this.state;
 
     const ActionsList = actions.map(action => (
       <li key={`action-${action.ID}`}>
         <Action
           action={action}
-          dragged={(draggedAction) => { this.handleDrag(draggedAction); }}
+          dragged={(draggedAction) => {
+            this.handleDrag(draggedAction);
+          }}
         />
       </li>
     ));
@@ -91,10 +93,6 @@ class App extends Component {
 
         <div className={styles.panel}>
           <div className="content-layout content-middle">
-            <div className="content-left">
-              <h2>Job/Class</h2>
-            </div>
-
             <div className="content-main">
               {jobs && (
                 <JobSelect
@@ -105,12 +103,12 @@ class App extends Component {
             </div>
           </div>
 
-          <ul className={styles.listActions}>
-            {actions && ActionsList}
-          </ul>
+          <ul className={styles.listActions}>{actions && ActionsList}</ul>
         </div>
 
-        {tooltip && <Tooltip content={tooltip.content} position={tooltip.position} />}
+        {tooltip && (
+          <Tooltip content={tooltip.content} position={tooltip.position} />
+        )}
       </React.Fragment>
     );
   }

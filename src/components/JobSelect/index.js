@@ -10,29 +10,52 @@ class JobSelect extends PureComponent {
     let jobsList = [];
     if (jobs) {
       jobsList = jobs.map(job => (
-        <option key={`job-${job.ID}`} value={job.ID}>{titleize(job.Name)}</option>
+        <option key={`job-${job.ID}`} value={job.ID}>
+          {titleize(job.Name)}
+        </option>
       ));
     }
 
-    const jobListSelect = (
-      <div className={styles.jobSelectWrapper}>
-        {jobsList && (
+    const JobListSelect = () => (
+      <div className={styles.selectWrapper}>
+        <label>
+          <h3>Class</h3>
+          {jobsList && (
+            <select
+              name="jobSelect"
+              id="jobSelect"
+              className={styles.select}
+              onBlur={event => updateJob(event.currentTarget.value)}
+            >
+              {jobsList}
+            </select>
+          )}
+        </label>
+      </div>
+    );
+
+    const DisciplineSelect = () => (
+      <div className={styles.selectWrapper} aria-hidden>
+        <label>
+          <h3>Discipline</h3>
           <select
-            name="jobSelect"
-            id="jobSelect"
-            className={styles.jobSelect}
-            onChange={event => updateJob(event.currentTarget.value)}
+            name="disciplineSelect"
+            id="disciplineSelect"
+            className={styles.select}
           >
-            {jobsList}
+            <option value="dow">DoW</option>
+            <option value="dom">DoM</option>
+            <option value="doh">DoH</option>
           </select>
-        )}
+        </label>
       </div>
     );
 
     return (
-      <React.Fragment>
-        {jobListSelect}
-      </React.Fragment>
+      <div className={styles.wrapper}>
+        <DisciplineSelect />
+        <JobListSelect />
+      </div>
     );
   }
 }
