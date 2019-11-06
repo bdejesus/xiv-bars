@@ -83,8 +83,6 @@ class Slot extends PureComponent {
         onDragStart={event => handleDragStart(event)}
         onDragOver={event => handleDragOver(event)}
         onDragLeave={event => handleDragLeave(event)}
-        role="button"
-        tabIndex={0}
       >
         {action.Name && <Action action={action} />}
       </div>
