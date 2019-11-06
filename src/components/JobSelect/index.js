@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { titleize } from 'utils/text';
 import styles from './styles.scss';
 
-function JobSelect({ jobs, updateJob }) {
+function JobSelect({ jobs, updateJob, selectedJob }) {
   function jobsList() {
     if (!jobs) return [];
     return jobs.map(job => (
@@ -23,7 +25,9 @@ function JobSelect({ jobs, updateJob }) {
               name="jobSelect"
               id="jobSelect"
               className={styles.select}
+              value={selectedJob.ID}
               onBlur={() => {
+                // eslint-disable-next-line no-console
                 console.log('blur');
               }}
               onChange={event => updateJob(event.currentTarget.value)}
@@ -65,7 +69,10 @@ function JobSelect({ jobs, updateJob }) {
 
 JobSelect.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  updateJob: PropTypes.func.isRequired
+  updateJob: PropTypes.func.isRequired,
+  selectedJob: PropTypes.shape({
+    ID: PropTypes.number
+  }).isRequired
 };
 
 export default JobSelect;
