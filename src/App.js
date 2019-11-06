@@ -68,7 +68,7 @@ class App extends Component {
 
   render() {
     const { bars, tooltip } = this.props;
-    const { jobs, actions } = this.state;
+    const { jobs, actions, selectedJob } = this.state;
 
     const ActionsList = actions.map(action => (
       <li key={`action-${action.ID}`}>
@@ -98,6 +98,7 @@ class App extends Component {
                 <JobSelect
                   jobs={jobs}
                   updateJob={event => this.updateJob(event)}
+                  selectedJob={selectedJob}
                 />
               )}
             </div>
