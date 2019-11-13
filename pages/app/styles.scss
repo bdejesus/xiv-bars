@@ -1,0 +1,68 @@
+[aria-hidden=true] {
+  display: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100vh;
+}
+
+body {
+  background-color: #333;
+  background-image: url("/black_paper.png");
+  background-attachment: fixed;
+  color: #fff;
+  margin: 0;
+  font-family: "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.455em;
+}
+
+a {
+  color: #9cf;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.container {
+  max-width: 980px;
+  margin: 1px auto;
+  padding: 32px 0;
+}
+
+.primary {
+  margin: 16px auto 0;
+}
+
+h1,
+h2 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.links {
+  border-top: 2px solid rgba(255, 255, 255, 0.33);
+}
+
+.info {
+  color: #999;
+  font-size: 12px;
+  text-align: right;
+  line-height: 1.45em;
+  margin-bottom: 16px;
+}
+
+.info p {
+  margin: 0;
+}

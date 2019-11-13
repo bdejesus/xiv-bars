@@ -23,7 +23,7 @@ module.exports = {
     'class-methods-use-this': 'warn',
     'comma-dangle': 'off',
     'comma-spacing': 'warn',
-    'linebreak-style': 'warn',
+    'linebreak-style': ['warn', 'unix'],
     'max-len': 'warn',
     'jsx-a11y/mouse-events-have-key-events': 'warn',
     'no-debugger': 'warn',
@@ -73,8 +73,9 @@ module.exports = {
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "paths": ["src/"]
+      "webpack": {
+        "paths": ["pages"],
+        "config": "./webpack.config.js"
       }
     }
   },
