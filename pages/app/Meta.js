@@ -1,0 +1,57 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+export function Meta({ title, description, canonical }) {
+  return (
+    <>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={canonical} />
+      <link rel="manifest" href="/manifest.json" />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `{
+                "@context": "http://schema.org",
+                "@type": "CreativeWork",
+                "name": "${title}",
+                "description": "${description}",
+                "image": "https://xivbars.josebenedicto.com/xivbars-thumb.png",
+                "thumbnailUrl": "https://xivbars.josebenedicto.com/xivbars-thumb.png",
+                "author": {
+                  "@type": "Person",
+                  "name": "Ben de Jesus",
+                  "disambiguatingDescription": "Graphic Designer, UI Developer, Photographer",
+                  "knowsAbout": "Graphic Design, Web Design, HTML, CSS, Javascript, React, Photography",
+                  "sameAs": [
+                    "https://josebenedicto.com",
+                    "https://instagram.com/bejezus",
+                    "https://www.flickr.com/photos/bendjsf/"
+                  ]
+                }
+              }`
+        }}
+      />
+
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <meta name="theme-color" content="#000000" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta
+        name="msapplication-TileImage"
+        content="icons/ms-icon-144x144.png"
+      />
+      <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
+    </>
+  );
+}
+
+Meta.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  canonical: PropTypes.string.isRequired
+};
+
+export default Meta;

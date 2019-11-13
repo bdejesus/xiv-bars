@@ -4,11 +4,11 @@
 
 * Toolbar positioning when hitting edge of view area
 * Job Icons
-* Remove Action on DragOut
 * Reset slots
 * Loading Spinners
 * Control for number of XBar groups
 * Keyboard Shortcuts
+* Keyboard vs XBar layouts
 
 ## Icebox
 
