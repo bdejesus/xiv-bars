@@ -1,0 +1,24 @@
+.panel {
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.listActions {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  li {
+    margin: 4px;
+    position: relative;
+  }
+}
+
+.xbarGroup {
+  display: flex;
+  flex-direction: column;
+  margin: 32px 0 24px;
+}

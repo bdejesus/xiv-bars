@@ -1,3 +1,0 @@
-export const ADD_ACTION_TO_SLOT = 'ADD_ACTION_TO_SLOT';
-export const STORE_ACTION = 'STORE_ACTION';
-export const UPDATE_TOOLTIP = 'UPDATE_TOOLTIP';

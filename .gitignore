@@ -10,6 +10,7 @@
 
 # production
 /build
+/.next
 # src/*
 # public/*
 # build/static/css/*.map

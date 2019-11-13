@@ -1,0 +1,103 @@
+@import "utils/mixins";
+
+// Xbar Set
+.xbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: $xbar-width;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+// Button Group
+.group {
+  margin: 0 $xbar-group-spacing;
+  position: relative;
+  height: $xbar-group-height;
+  width: $xbar-group-width;
+}
+
+$scale: 1.66;
+
+$primary-padding: 10px;
+$center-spacing: $primary-padding * 2;
+
+.primary {
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: $primary-padding;
+  margin: $primary-padding auto;
+  width: $xbar-width + $primary-padding * 2 + $center-spacing;
+  .group:nth-child(2) {
+    margin-right: $primary-padding;
+  }
+  .group:nth-child(3) {
+    margin-left: $primary-padding;
+  }
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: $slot-border-size;
+    bottom: $slot-border-size;
+    border-right: 2px solid rgba(0, 0, 0, 0.75);
+  }
+}
+
+.secondary,
+.tertiary {
+  :local(.group):nth-child(1),
+  .group:nth-child(2) {
+    right: $xbar-group-width / 1.5;
+  }
+  .group:nth-child(3),
+  .group:nth-child(4) {
+    left: $xbar-group-width / 1.5;
+  }
+  &:before,
+  &:after {
+    display: block;
+    position: absolute;
+    font-size: 10px;
+    font-weight: 900;
+    text-align: center;
+    width: $xbar-group-width - $slot-size + $slot-border-size * 4;
+    opacity: 0.25;
+  }
+  &:before {
+    left: 0;
+  }
+  &:after {
+    right: 0;
+  }
+}
+
+.secondary {
+  &:before,
+  &:after {
+    top: -0.75em;
+  }
+  &:before {
+    content: "L2 × 2";
+  }
+  &:after {
+    content: "R2 × 2";
+  }
+}
+
+.tertiary {
+  &:before,
+  &:after {
+    bottom: -0.75em;
+  }
+  &:before {
+    content: "L2 → R2";
+  }
+  &:after {
+    content: "R2 → L2";
+  }
+}
