@@ -5,7 +5,8 @@
     "start": "NODE_ENV=production node server.js",
     "dev": "node server.js",
     "build": "next build",
-    "deploy": "git push heroku master"
+    "deploy": "git push heroku master",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.7.2",
