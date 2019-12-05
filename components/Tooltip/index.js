@@ -9,11 +9,12 @@ export default function Tooltip() {
   const { content, position } = useTooltipState();
 
   function positionTooltip() {
-    const tooltipRect = tooltipEl.current.getBoundingClientRect();
-    const windowWidth = document.body.clientWidth;
-    const hBounds = tooltipRect.width + tooltipRect.left;
-    const hPos = hBounds >= windowWidth ? 'left' : 'right';
-    setAnchor(styles[hPos]);
+    // Not working since `document` doesn't exist on the server-side
+    // const tooltipRect = tooltipEl.current.getBoundingClientRect();
+    // const windowWidth = document.body.clientWidth;
+    // const hBounds = tooltipRect.width + tooltipRect.left;
+    // const hPos = hBounds >= windowWidth ? 'left' : 'right';
+    setAnchor(styles.right);
   }
 
   useEffect(() => {
