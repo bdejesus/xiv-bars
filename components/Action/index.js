@@ -16,12 +16,13 @@ export default function Action({ action }) {
 
   useEffect(() => {
     if (actionRef.current) {
-      const elRect = actionRef.current.getBoundingClientRect();
+      const elRect = actionRef.current;
+
       setPosition({
-        left: elRect.left,
-        right: elRect.left + elRect.width,
-        top: elRect.top,
-        bottom: elRect.top + elRect.height
+        left: elRect.offsetLeft,
+        right: elRect.offsetLeft + elRect.width,
+        top: elRect.offsetTop,
+        bottom: elRect.offsetTop + elRect.height
       });
     }
     return function cleanup() {
