@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Xbar from 'components/Xbar';
 import Action from 'components/Action';
@@ -7,7 +7,19 @@ import Tooltip from 'components/Tooltip';
 
 import styles from './styles.scss';
 
-function XIVBars({ jobs, actions, selectedJob }) {
+function XIVBars({
+  jobs,
+  actions,
+  selectedJob
+}) {
+  const containerEl = createRef();
+  const [containerRect, setContainerRect] = useState({});
+
+  useEffect(() => {
+    const rect = containerEl.current.getBoundingClientRect();
+    setContainerRect(rect);
+  }, []);
+
   const ActionsList = actions.map((action) => (
     <li key={`action-${action.ID}`}>
       <Action action={action} />
@@ -15,7 +27,7 @@ function XIVBars({ jobs, actions, selectedJob }) {
   ));
 
   return (
-    <>
+    <div className={styles.xivBarsContainer} ref={containerEl}>
       <div className="panel">
         <div className={styles.xbarGroup}>
           <Xbar />
@@ -34,8 +46,8 @@ function XIVBars({ jobs, actions, selectedJob }) {
         </div>
       </div>
 
-      <Tooltip />
-    </>
+      <Tooltip container={containerRect} />
+    </div>
   );
 }
 
