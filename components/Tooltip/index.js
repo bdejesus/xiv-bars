@@ -1,20 +1,24 @@
 import React, { createRef, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useTooltipState } from '~/app-context';
 
 import styles from './styles.scss';
 
-export default function Tooltip() {
+function Tooltip({ container }) {
   const tooltipEl = createRef();
-  const [anchor, setAnchor] = useState('left');
+  const [anchor, setAnchor] = useState('right');
   const { content, position } = useTooltipState();
 
   function positionTooltip() {
-    // Not working since `document` doesn't exist on the server-side
-    // const tooltipRect = tooltipEl.current.getBoundingClientRect();
-    // const windowWidth = document.body.clientWidth;
-    // const hBounds = tooltipRect.width + tooltipRect.left;
-    // const hPos = hBounds >= windowWidth ? 'left' : 'right';
-    setAnchor(styles.right);
+    if (container.width) {
+      const tooltipRect = tooltipEl.current.getBoundingClientRect();
+      const containerWidth = container.width;
+      const hBounds = tooltipRect.width + tooltipRect.left;
+      const hPos = hBounds >= containerWidth ? 'left' : 'right';
+      setAnchor(styles[hPos]);
+    } else {
+      setAnchor(styles.right);
+    }
   }
 
   useEffect(() => {
@@ -37,11 +41,14 @@ export default function Tooltip() {
   return (
     <div
       className={`${styles.tooltip} ${anchor}`}
-      style={{ left: position.left, top: position.top }}
+      style={{
+        left: position.left - container.left,
+        top: position.top - container.top
+      }}
       ref={tooltipEl}
-      aria-hidden={(!content.Name && !content.Description)}
+      aria-hidden={!content.Name && !content.Description}
     >
-      {(content.Name && content.Description) && (
+      {content.Name && content.Description && (
         <>
           <h4 className={styles.title}>{content.Name}</h4>
           <Description />
@@ -50,3 +57,13 @@ export default function Tooltip() {
     </div>
   );
 }
+
+Tooltip.propTypes = {
+  container: PropTypes.shape({
+    top: PropTypes.number,
+    left: PropTypes.number,
+    width: PropTypes.number
+  }).isRequired
+};
+
+export default Tooltip;

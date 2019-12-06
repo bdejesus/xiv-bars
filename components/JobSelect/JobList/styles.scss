@@ -1,0 +1,29 @@
+.title {
+  margin: 0;
+  padding: 10px 20px 4px;
+  display: block;
+  color: rgba(255,255,255,0.5);
+}
+
+.options {
+  padding: 10px;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-column-gap: 10px;
+  
+  a {
+    color: #fff;
+    display: block;
+    padding: 4px 10px 4px 4px;
+    background-color: rgba(255,255,255,0);
+    transition: background-color 0.15s ease, outline 0.15s ease;
+    will-change: background-color, outline;
+    &:hover {
+      background-color: rgba(255,255,255,0.2);
+      border-radius: 2px;
+      text-decoration: none;
+    }
+  }
+}

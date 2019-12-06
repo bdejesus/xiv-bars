@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import XIVAPI from 'xivapi-js';
 
 const api = new XIVAPI();
-const AppContext = createContext();
 const TooltipContext = createContext();
 const TooltipDispatchContext = createContext();
 
@@ -40,7 +39,7 @@ function tooltipReducer(state, payload) {
 function useTooltipState() {
   const context = React.useContext(TooltipContext);
   if (context === undefined) {
-    throw new Error('useCountState must be used within a AppContextProvider');
+    throw new Error('useTooltipState must be used within a AppContextProvider');
   }
   return context;
 }
@@ -48,7 +47,7 @@ function useTooltipState() {
 function useTooltipDispatch() {
   const context = React.useContext(TooltipDispatchContext);
   if (context === undefined) {
-    throw new Error('useCountDispatch must be used within an AppContextProvider');
+    throw new Error('useTooltipDispatch must be used within an AppContextProvider');
   }
   return context;
 }
@@ -71,13 +70,11 @@ function AppContextProvider({ children }) {
   );
 
   return (
-    <AppContext.Provider>
-      <TooltipContext.Provider value={state}>
-        <TooltipDispatchContext.Provider value={dispatch}>
-          {children}
-        </TooltipDispatchContext.Provider>
-      </TooltipContext.Provider>
-    </AppContext.Provider>
+    <TooltipContext.Provider value={state}>
+      <TooltipDispatchContext.Provider value={dispatch}>
+        {children}
+      </TooltipDispatchContext.Provider>
+    </TooltipContext.Provider>
   );
 }
 
@@ -90,5 +87,5 @@ AppContextProvider.propTypes = {
 
 export default AppContextProvider;
 export {
-  AppContext, useTooltipState, useTooltipDispatch, updateTooltip
+  useTooltipState, useTooltipDispatch, updateTooltip
 };

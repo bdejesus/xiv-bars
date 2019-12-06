@@ -32,6 +32,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    "react/jsx-props-no-spreading": 'off',
     'react/no-array-index-key': 'off',
     'react/no-unused-prop-types': 'warn',
     'react/no-unused-state': 'warn',

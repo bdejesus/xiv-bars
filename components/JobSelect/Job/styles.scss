@@ -1,0 +1,19 @@
+@import 'utils/mixins';
+
+img {
+  height: 32px;
+  width: 32px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.abbr {
+  font-size: 1.15em;
+  font-family: "Lucida Console", Consolas, monospace;
+  font-weight: 300;
+  margin-right: 6px;
+}
+
+.name {
+  color: rgba(255,255,255,0.75);
+}

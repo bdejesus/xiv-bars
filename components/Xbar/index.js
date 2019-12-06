@@ -1,9 +1,9 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { group } from 'utils/array';
+import { group } from 'utils';
 import Slot from 'components/Slot';
-import xBars from 'data/xbars';
+import xBars from 'models/xbars';
 import styles from './styles.scss';
 
 const Bar = ({ bar, id }) => {

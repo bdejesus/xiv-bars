@@ -9,9 +9,9 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.get('/', (req, res) => app.render(req, res, '/index'));
+  server.get('/', (req, res) => app.render(req, res, '/index', { id: req.params.id }));
 
-  server.get('/jobs/:id', (req, res) => app.render(req, res, '/index', { id: req.params.id }));
+  server.get('/job/:id', (req, res) => app.render(req, res, '/index', { id: req.params.id }));
 
   server.get('*', (req, res) => handle(req, res));
 

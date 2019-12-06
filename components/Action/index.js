@@ -16,19 +16,19 @@ export default function Action({ action }) {
 
   useEffect(() => {
     if (actionRef.current) {
-      const elRect = actionRef.current;
+      const elRect = actionRef.current.getBoundingClientRect();
 
       setPosition({
-        left: elRect.offsetLeft,
-        right: elRect.offsetLeft + elRect.width,
-        top: elRect.offsetTop,
-        bottom: elRect.offsetTop + elRect.height
+        left: elRect.left,
+        right: elRect.left + elRect.width,
+        top: elRect.top,
+        bottom: elRect.top + elRect.height
       });
     }
     return function cleanup() {
       clearTimeout(tooltipTimeout);
     };
-  }, [hovering]);
+  }, []);
 
   function hideTooltip() {
     tooltipDispatch({ type: 'hide' });
