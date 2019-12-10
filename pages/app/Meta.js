@@ -5,6 +5,9 @@ export function Meta({ title, description, canonical }) {
   return (
     <>
       <meta name="description" content={description} />
+      <link rel="preconnect" href="https://xivapi.com" />
+      <link rel="preconnect" href="https://www.google-analytics.com" />
+
       <link rel="canonical" href={canonical} />
       <link rel="manifest" href="/manifest.json" />
       <script

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Job from '../Job';
-import JobsList from '../JobList';
+import JobsList from '../JobsList';
 import { useJobSelectState, useJobSelectDispatch } from '../context';
 import styles from './styles.scss';
 
