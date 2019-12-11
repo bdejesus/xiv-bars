@@ -25,3 +25,22 @@
   flex-direction: column;
   margin: 32px 0 24px;
 }
+
+.buttonGroup {
+  text-align: center;
+  margin-bottom: 20px;
+  .button {
+    padding: 8px 12px;
+    display: inline-flex;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+  }
+  .button[data-active=true] {
+    background-color: #fff;
+    color: #333;
+    font-weight: 700;
+  }
+}
