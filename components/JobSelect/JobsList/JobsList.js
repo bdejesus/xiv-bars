@@ -12,8 +12,7 @@ function JobsList({ title, jobs }) {
   function selectJob(event, jobAbbr) {
     event.preventDefault();
     Router.push({
-      pathname: '/',
-      query: { job: jobAbbr },
+      pathname: `/job/${jobAbbr}`,
       shallow: true
     });
     jobSelectDispatch({ type: 'close' });
