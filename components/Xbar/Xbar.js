@@ -19,6 +19,7 @@ const Bar = ({ bar, id }) => {
               key={`slot-${slot.id}`}
               action={slot.action}
               xbar={id}
+              className={styles.slot}
             />
           ))}
         </div>
@@ -33,7 +34,7 @@ Bar.propTypes = {
 };
 
 export default function Xbar() {
-  const { bars } = xBars;
+  const { bars } = xBars.xBars;
 
   return (
     <>

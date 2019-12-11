@@ -1,6 +1,7 @@
 import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Xbar from 'components/Xbar';
+import Hotbar from 'components/Hotbar';
 import Action from 'components/Action';
 import JobSelect from 'components/JobSelect';
 import Tooltip from 'components/Tooltip';
@@ -14,6 +15,7 @@ function XIVBars({
 }) {
   const containerEl = createRef();
   const [containerRect, setContainerRect] = useState({});
+  const [layout, setLayout] = useState('xbars');
 
   useEffect(() => {
     const rect = containerEl.current.getBoundingClientRect();
@@ -26,11 +28,36 @@ function XIVBars({
     </li>
   ));
 
+  function HotbarLayout() {
+    if (layout === 'xbars') {
+      return <Xbar />;
+    }
+    return <Hotbar />;
+  }
+
   return (
     <div className={styles.xivBarsContainer} ref={containerEl}>
       <div className="panel">
         <div className={styles.xbarGroup}>
-          <Xbar />
+          <div className={styles.buttonGroup}>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={() => setLayout('xbars')}
+              data-active={(layout === 'xbars')}
+            >
+              WXHB
+            </button>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={() => setLayout('hotbars')}
+              data-active={(layout === 'hotbars')}
+            >
+              Hotbars
+            </button>
+          </div>
+          <HotbarLayout />
         </div>
 
         <div className={styles.panel}>
