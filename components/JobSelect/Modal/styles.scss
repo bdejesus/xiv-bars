@@ -81,15 +81,21 @@
   position: relative;
 }
 .closeButton {
-  background: none;
+  background-color: rgba(255,255,255,0);
   border: none;
   outline: none;
   color: #fff;
   font-weight: 700;
   position: absolute;
   right: 0;
-  top: -1.5em;
+  top: -2.5em;
   font-size: 14px;
   line-height: 1;
+  padding: 8px 10px;
   cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+  &:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
 }

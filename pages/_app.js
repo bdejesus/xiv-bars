@@ -133,7 +133,7 @@ AppContainer.getInitialProps = async ({ ctx }) => {
   // Get Selected Job
   const { query } = ctx;
 
-  let queryId = 'AST';
+  let queryId = 'BRD';
 
   const getSelectedJob = () => {
     if (query.id) {
