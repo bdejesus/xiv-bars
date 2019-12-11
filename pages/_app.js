@@ -136,8 +136,8 @@ AppContainer.getInitialProps = async ({ ctx }) => {
   let queryId = 'BRD';
 
   const getSelectedJob = () => {
-    if (query.id) {
-      queryId = query.id;
+    if (query.job) {
+      queryId = query.job;
     }
     return decoratedJobs.find((job) => job.Abbr === queryId);
   };
