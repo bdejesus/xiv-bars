@@ -6,7 +6,10 @@ import { useJobSelectState, useJobSelectDispatch } from '../context';
 import styles from './styles.scss';
 
 function Modal({ jobs, selectedJob }) {
-  const combatJobs = jobs.filter((job) => ['DOW', 'DOM'].includes(job.Discipline));
+  const DoW = jobs.filter((job) => job.Discipline === 'DOW');
+  const DoM = jobs.filter((job) => job.Discipline === 'DOM');
+  const DoH = jobs.filter((job) => job.Discipline === 'DOH');
+  const DoL = jobs.filter((job) => job.Discipline === 'DOL');
   const craftingJobs = jobs.filter((job) => ['DOH', 'DOL'].includes(job.Discipline));
   const jobSelectDispatch = useJobSelectDispatch();
   const { isSelectingJob } = useJobSelectState();
@@ -22,11 +25,7 @@ function Modal({ jobs, selectedJob }) {
         <Job job={selectedJob} />
       </button>
 
-      <div
-        className={styles.modal}
-        aria-hidden={!isSelectingJob}
-        tabIndex={-1}
-      >
+      <div className={styles.modal} aria-hidden={!isSelectingJob} tabIndex={-1}>
         <div className={styles.container}>
           <button
             type="button"
@@ -35,15 +34,18 @@ function Modal({ jobs, selectedJob }) {
           >
             &times; Close
           </button>
-          <ul
-            className={styles.options}
-            labeledby="jobSelectButton"
-          >
+          <ul className={styles.options} labeledby="jobSelectButton">
             <li>
-              <JobsList title="DoW/DoM" jobs={combatJobs} />
+              <JobsList title="DoW" jobs={DoW} />
             </li>
             <li>
-              <JobsList title="DoH/DoL" jobs={craftingJobs} />
+              <JobsList title="DoM" jobs={DoM} />
+            </li>
+            <li>
+              <JobsList title="DoH" jobs={DoH} />
+            </li>
+            <li>
+              <JobsList title="DoL" jobs={DoL} />
             </li>
           </ul>
         </div>
