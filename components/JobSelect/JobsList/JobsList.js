@@ -13,7 +13,7 @@ function JobsList({ title, jobs }) {
     event.preventDefault();
     Router.push({
       pathname: '/',
-      query: { id: jobAbbr },
+      query: { job: jobAbbr },
       shallow: true
     });
     jobSelectDispatch({ type: 'close' });
