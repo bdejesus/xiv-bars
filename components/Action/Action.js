@@ -36,7 +36,9 @@ export default function Action({ action }) {
 
   function getTooltip() {
     const data = { action, position };
-    updateTooltip(tooltipDispatch, data);
+    if (action.ID) {
+      updateTooltip(tooltipDispatch, data);
+    }
   }
 
   function handleMouseLeave() {
