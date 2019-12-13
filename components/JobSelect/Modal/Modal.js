@@ -10,7 +10,6 @@ function Modal({ jobs, selectedJob }) {
   const DoM = jobs.filter((job) => job.Discipline === 'DOM');
   const DoH = jobs.filter((job) => job.Discipline === 'DOH');
   const DoL = jobs.filter((job) => job.Discipline === 'DOL');
-  const craftingJobs = jobs.filter((job) => ['DOH', 'DOL'].includes(job.Discipline));
   const jobSelectDispatch = useJobSelectDispatch();
   const { isSelectingJob } = useJobSelectState();
 
