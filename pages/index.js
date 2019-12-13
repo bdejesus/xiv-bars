@@ -5,6 +5,7 @@ import Hotbar from 'components/Hotbar';
 import Action from 'components/Action';
 import JobSelect from 'components/JobSelect';
 import Tooltip from 'components/Tooltip';
+import { generalActions } from 'models/actions';
 
 import styles from './styles.scss';
 
@@ -22,11 +23,13 @@ function XIVBars({
     setContainerRect(rect);
   }, []);
 
-  const ActionsList = actions.map((action) => (
-    <li key={`action-${action.ID}`}>
-      <Action action={action} />
-    </li>
-  ));
+  function ActionsList() {
+    return actions.map((action) => (
+      <li key={`action-${action.ID}`}>
+        <Action action={action} />
+      </li>
+    ));
+  }
 
   function toggleHotbarLayout() {
     if (layout === 'xbars') {
@@ -41,6 +44,14 @@ function XIVBars({
       return <Xbar />;
     }
     return <Hotbar />;
+  }
+
+  function GeneralActions() {
+    return generalActions.map((action) => (
+      <li key={`action-${action.ID}`}>
+        <Action action={action} />
+      </li>
+    ));
   }
 
   return (
@@ -79,8 +90,15 @@ function XIVBars({
             </div>
           </div>
 
-          <div className={styles.listActions}>
-            <ul className={styles.listActions}>{actions && ActionsList}</ul>
+          <div>
+            <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
+          </div>
+
+          <div>
+            <h4>General Actions</h4>
+            <ul className={styles.listActions}>
+              <GeneralActions />
+            </ul>
           </div>
         </div>
       </div>
