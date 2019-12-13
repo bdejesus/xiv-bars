@@ -117,8 +117,8 @@ AppContainer.getInitialProps = async ({ ctx }) => {
   const api = new XIVAPI();
 
   // Get Jobs List
-  const jobsReq = await api.data.list('ClassJob');
-  const jobs = jobsReq.Results.sort(ascByKey('Name'));
+  const jobsData = await api.data.list('ClassJob');
+  const jobs = jobsData.Results.sort(ascByKey('Name'));
 
   function decorateJobs() {
     const decoratedData = advancedJobs.map((advancedJob) => {
@@ -145,10 +145,10 @@ AppContainer.getInitialProps = async ({ ctx }) => {
   const selectedJob = getSelectedJob();
 
   // Get Job Actions
-  const jobActionsReq = await api.search('', {
+  const jobActionsData = await api.search('', {
     filters: `ClassJob.ID=${selectedJob.ID}`
   });
-  let jobActions = jobActionsReq.Results;
+  let jobActions = jobActionsData.Results;
 
   if (selectedJob.ClassID !== null) {
     const classActionsReq = await api.search('', {

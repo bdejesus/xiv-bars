@@ -93,7 +93,7 @@ const jobs = [
     ID: 26,
     Discipline: 'DOM',
     ClassID: null,
-    Role: 'HLR'
+    Role: 'HEAL'
   },
   {
     Name: 'Astrologian',
@@ -101,7 +101,7 @@ const jobs = [
     ID: 33,
     Discipline: 'DOM',
     ClassID: null,
-    Role: 'HLR'
+    Role: 'HEAL'
   },
   {
     Name: 'Black Mage',
@@ -125,7 +125,7 @@ const jobs = [
     ID: 6,
     Discipline: 'DOM',
     ClassID: null,
-    Role: 'HLR'
+    Role: 'HEAL'
   },
   {
     Name: 'Scholar',
@@ -133,7 +133,7 @@ const jobs = [
     ID: 28,
     Discipline: 'DOM',
     ClassID: 26,
-    Role: 'HLR'
+    Role: 'HEAL'
   },
   {
     Name: 'Summoner',
@@ -157,7 +157,7 @@ const jobs = [
     ID: 24,
     Discipline: 'DOM',
     ClassID: 6,
-    Role: 'HLR'
+    Role: 'HEAL'
   },
   {
     Name: 'Archer',
@@ -189,7 +189,7 @@ const jobs = [
     ID: 32,
     Discipline: 'DOW',
     ClassID: null,
-    Role: 'TNK'
+    Role: 'TANK'
   },
   {
     Name: 'Dragoon',
@@ -205,7 +205,7 @@ const jobs = [
     ID: 1,
     Discipline: 'DOW',
     ClassID: null,
-    Role: 'TNK'
+    Role: 'TANK'
   },
   {
     Name: 'Gunbreaker',
@@ -213,7 +213,7 @@ const jobs = [
     ID: 37,
     Discipline: 'DOW',
     ClassID: null,
-    Role: 'TNK'
+    Role: 'TANK'
   },
   {
     Name: 'Lancer',
@@ -237,7 +237,7 @@ const jobs = [
     ID: 3,
     Discipline: 'DOW',
     ClassID: null,
-    Role: 'TNK'
+    Role: 'TANK'
   },
   {
     Name: 'Monk',
@@ -261,7 +261,7 @@ const jobs = [
     ID: 19,
     Discipline: 'DOW',
     ClassID: 1,
-    Role: 'TNK'
+    Role: 'TANK'
   },
   {
     Name: 'Pugilist',
@@ -301,7 +301,7 @@ const jobs = [
     ID: 21,
     Discipline: 'DOW',
     ClassID: 3,
-    Role: 'TNK'
+    Role: 'TANK'
   }
 ];
 
