@@ -57,7 +57,11 @@ async function updateTooltip(dispatch, data) {
   dispatch({ type: 'startUpdate', data });
   try {
     const content = await api.data.get('Action', action.ID);
-    dispatch({ type: 'finishUpdate', content, position });
+    if (content.Description) {
+      dispatch({ type: 'finishUpdate', content, position });
+    } else {
+      dispatch({ type: 'finishUpdate', content: action, position });
+    }
   } catch (error) {
     dispatch({ type: 'updateFailed', error });
   }
