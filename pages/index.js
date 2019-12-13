@@ -28,6 +28,14 @@ function XIVBars({
     </li>
   ));
 
+  function toggleHotbarLayout() {
+    if (layout === 'xbars') {
+      setLayout('hotbars');
+    } else {
+      setLayout('xbars');
+    }
+  }
+
   function HotbarLayout() {
     if (layout === 'xbars') {
       return <Xbar />;
@@ -39,24 +47,28 @@ function XIVBars({
     <div className={styles.xivBarsContainer} ref={containerEl}>
       <div className="panel">
         <div className={styles.xbarGroup}>
-          <div className={styles.buttonGroup}>
+
+          <div className={styles.buttonContainer}>
             <button
-              className={styles.button}
+              className={`${styles.button} ${styles.buttonToggle}`}
               type="button"
-              onClick={() => setLayout('xbars')}
-              data-active={(layout === 'xbars')}
+              onClick={toggleHotbarLayout}
             >
-              WXHB
-            </button>
-            <button
-              className={styles.button}
-              type="button"
-              onClick={() => setLayout('hotbars')}
-              data-active={(layout === 'hotbars')}
-            >
-              Hotbars
+              <span
+                className={styles.label}
+                data-selected={(layout === 'xbars')}
+              >
+                WXHB
+              </span>
+              <span
+                className={styles.label}
+                data-selected={(layout === 'hotbars')}
+              >
+                Hotbars
+              </span>
             </button>
           </div>
+
           <HotbarLayout />
         </div>
 

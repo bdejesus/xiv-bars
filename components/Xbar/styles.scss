@@ -82,10 +82,10 @@ $center-spacing: $primary-padding * 2;
     top: -0.75em;
   }
   &:before {
-    content: "L2 × 2";
+    content: "LT × 2";
   }
   &:after {
-    content: "R2 × 2";
+    content: "RT × 2";
   }
 }
 
@@ -95,10 +95,10 @@ $center-spacing: $primary-padding * 2;
     bottom: -0.75em;
   }
   &:before {
-    content: "L2 → R2";
+    content: "LT → RT";
   }
   &:after {
-    content: "R2 → L2";
+    content: "RT → LT";
   }
 }
 
