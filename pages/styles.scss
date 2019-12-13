@@ -26,21 +26,55 @@
   margin: 32px 0 24px;
 }
 
-.buttonGroup {
+.buttonContainer {
   text-align: center;
   margin-bottom: 20px;
-  .button {
-    padding: 8px 12px;
-    display: inline-flex;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    background-color: #333;
-    color: #fff;
+}
+
+.button {
+  background: rgba(0,0,0,0.8);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-bottom-color: rgba(255,255,255,0.1);
+  border-right-color: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  outline: none;
+  padding: 3px;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+  transition: 
+    background 0.2s ease, 
+    border 0.2s ease;
+  &:hover, 
+  &:focus {
+    border: 1px solid rgba(255,255,255,0.2);
+    border-bottom-color: rgba(0,0,0,1);
+    border-right-color: rgba(0,0,0,1);
+    background: linear-gradient(rgba(0,0,0,1) 0%, rgba(255,255,255,0.05) 100%);
   }
-  .button[data-active=true] {
-    background-color: #fff;
-    color: #333;
-    font-weight: 700;
+  &:active {
+    border: 1px solid rgba(255,255,255,0.1);
+    border-bottom-color: rgba(255,255,255,0.2);
+    border-right-color: rgba(255,255,255,0.2);
+  }
+}
+
+.buttonToggle {
+  display: inline-flex;
+  .label {
+    font-size: 12px;
+    padding: 10px 14px;
+    color: rgba(255,255,255,0.66);
+    transition: background 0.33s ease, color 0.33s ease, box-shadow 0.33s ease;
+    &[data-selected=true] {
+      background-color: #fff;
+      background-image: linear-gradient(rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 100%);
+      box-shadow: inset 1px 1px 0 rgba(0,0,0,0.33), inset -1px -1px 0 #eee;
+      color: #111;
+      font-weight: 700;
+    }
+  }
+  &:hover .label[data-selected=false] {
+    color: #fff;
   }
 }
