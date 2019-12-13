@@ -104,14 +104,14 @@ function XIVBars({
           </div>
 
           <div>
-            <h4>Role Actions</h4>
+            <h4 className={styles.sectionTitle}>Role Actions</h4>
             <ul className={styles.listActions}>
               <RoleActions />
             </ul>
           </div>
 
           <div>
-            <h4>General Actions</h4>
+            <h4 className={styles.sectionTitle}>General Actions</h4>
             <ul className={styles.listActions}>
               <GeneralActions />
             </ul>

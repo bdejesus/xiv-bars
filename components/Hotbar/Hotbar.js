@@ -9,7 +9,7 @@ function Row({ slots }) {
     <ol className={styles.row}>
       {Object.keys(slots).map((slot) => (
         <li key={`slot-${slots[slot].id}`}>
-          <Slot />
+          <Slot id={slots[slot].id} />
         </li>
       ))}
     </ol>
@@ -17,7 +17,7 @@ function Row({ slots }) {
 }
 
 Row.propTypes = {
-  slots: PropTypes.shape().isRequired
+  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 function Hotbar() {
