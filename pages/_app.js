@@ -165,8 +165,11 @@ AppContainer.getInitialProps = async ({ ctx }) => {
     (action, index, self) => index === self.findIndex((t) => t.Name === action.Name)
   );
 
-  const roleActionsData = await api.data.list('Action', { ids: roleActionIDs[selectedJob.Role].toString() });
-  const roleActions = roleActionsData.Results;
+  let roleActions = [];
+  if (selectedJob.Role) {
+    const roleActionsData = await api.data.list('Action', { ids: roleActionIDs[selectedJob.Role].toString() });
+    roleActions = roleActionsData.Results;
+  }
 
   return {
     jobs: decoratedJobs, actions: jobActions, selectedJob, roleActions

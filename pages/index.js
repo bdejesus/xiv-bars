@@ -103,12 +103,14 @@ function XIVBars({
             <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
           </div>
 
-          <div>
-            <h4 className={styles.sectionTitle}>Role Actions</h4>
-            <ul className={styles.listActions}>
-              <RoleActions />
-            </ul>
-          </div>
+          { roleActions.length > 0 && (
+            <div>
+              <h4 className={styles.sectionTitle}>Role Actions</h4>
+              <ul className={styles.listActions}>
+                <RoleActions />
+              </ul>
+            </div>
+          )}
 
           <div>
             <h4 className={styles.sectionTitle}>General Actions</h4>
