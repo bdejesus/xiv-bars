@@ -5,14 +5,15 @@ import Hotbar from 'components/Hotbar';
 import Action from 'components/Action';
 import JobSelect from 'components/JobSelect';
 import Tooltip from 'components/Tooltip';
-import { generalActions, roleActions } from 'models/actions';
+import { generalActions } from 'models/actions';
 
 import styles from './styles.scss';
 
 function XIVBars({
   jobs,
   actions,
-  selectedJob
+  selectedJob,
+  roleActions
 }) {
   const containerEl = createRef();
   const [containerRect, setContainerRect] = useState({});
@@ -55,8 +56,7 @@ function XIVBars({
   }
 
   function RoleActions() {
-    const role = selectedJob.Role;
-    return roleActions[role].map((action) => (
+    return roleActions.map((action) => (
       <li key={`action-${action.ID}`}>
         <Action action={action} />
       </li>
