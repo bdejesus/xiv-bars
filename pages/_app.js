@@ -3,7 +3,7 @@ import App from 'next/app';
 import Head from 'next/head';
 import XIVAPI from 'xivapi-js';
 import { ascByKey } from 'utils';
-import { advancedJobs } from 'models/jobs';
+import { advancedJobs, roleActionIDs } from 'models/jobs';
 import { Meta, Icons } from './app';
 import XIVBars from '.';
 import AppContextProvider from './app-context';
@@ -15,7 +15,8 @@ class AppContainer extends App {
     const {
       jobs,
       actions,
-      selectedJob
+      selectedJob,
+      roleActions
     } = this.props;
 
     const title = 'FFXIV W Cross HotBar (WXHB) Simulator | XIV Bars';
@@ -66,6 +67,7 @@ class AppContainer extends App {
                 jobs={jobs}
                 actions={actions}
                 selectedJob={selectedJob}
+                roleActions={roleActions}
               />
             </div>
 
@@ -163,8 +165,11 @@ AppContainer.getInitialProps = async ({ ctx }) => {
     (action, index, self) => index === self.findIndex((t) => t.Name === action.Name)
   );
 
+  const roleActionsData = await api.data.list('Action', { ids: roleActionIDs[selectedJob.Role].toString() });
+  const roleActions = roleActionsData.Results;
+
   return {
-    jobs: decoratedJobs, actions: jobActions, selectedJob
+    jobs: decoratedJobs, actions: jobActions, selectedJob, roleActions
   };
 };
 

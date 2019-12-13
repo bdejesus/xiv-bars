@@ -307,6 +307,14 @@ const jobs = [
 
 const baseClassIDs = [1, 2, 3, 4, 5, 6, 7, 26, 29];
 
+const roleActionIDs = {
+  TANK: [7531, 7540, 7533, 7538, 7535, 7548, 7537],
+  PDPS: [7541, 7863, 7542, 7549, 7548, 7546],
+  RDPS: [7554, 7541, 7553, 7557, 7551, 7548],
+  MDPS: [7560, 7561, 7562, 7559],
+  HEAL: [16560, 7568, 7561, 7562, 7559, 7571]
+};
+
 function getAdvancedJobs() {
   return jobs.filter((job) => !baseClassIDs.includes(job.ID));
 }
@@ -317,4 +325,6 @@ function getJobsByDiscipline(discipline) {
   return advancedJobs.filter((job) => job.Discipline === discipline);
 }
 
-module.exports = { jobs, getJobsByDiscipline, advancedJobs };
+module.exports = {
+  jobs, getJobsByDiscipline, advancedJobs, roleActionIDs
+};
