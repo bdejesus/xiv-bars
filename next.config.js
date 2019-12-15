@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 const withCss = require('@zeit/next-css');
 const withSass = require('@zeit/next-sass');
-const aliases = require('./alias-config');
+const aliases = require('./.alias');
 
 module.exports = withCss(
   withSass({
