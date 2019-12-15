@@ -1,31 +1,36 @@
-.container, 
+.container,
 .row {
   display: flex;
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
+
 .container {
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   counter-reset: slots;
+
   > li {
     position: relative;
   }
-  > li:before {
-    counter-increment: slots;
-    content: counter(slots);
+
+  > li::before {
     font-weight: 700;
-    position: absolute;
+    content: counter(slots);
+    counter-increment: slots;
     left: -14px;
-    top: 50%;
-    transform: translateY(-50%);
     opacity: 0.33;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
   }
 }
+
 .rowWrapper {
   margin: 2px 0;
 }
+
 .row {
   flex-direction: row;
 }
