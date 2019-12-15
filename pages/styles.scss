@@ -11,6 +11,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+
   li {
     margin: 4px;
   }
@@ -32,48 +33,64 @@
 }
 
 .button {
-  background: rgba(0,0,0,0.8);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-bottom-color: rgba(255,255,255,0.1);
-  border-right-color: rgba(255,255,255,0.1);
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  border-right-color: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   outline: none;
   padding: 3px;
   line-height: 1;
   color: #fff;
   cursor: pointer;
-  transition: 
-    background 0.2s ease, 
-    border 0.2s ease;
-  &:hover, 
+  transition: background 0.2s ease, border 0.2s ease;
+
+  &:hover,
   &:focus {
-    border: 1px solid rgba(255,255,255,0.2);
-    border-bottom-color: rgba(0,0,0,1);
-    border-right-color: rgba(0,0,0,1);
-    background: linear-gradient(rgba(0,0,0,1) 0%, rgba(255,255,255,0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom-color: rgba(0, 0, 0, 1);
+    border-right-color: rgba(0, 0, 0, 1);
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+      );
   }
+
   &:active {
-    border: 1px solid rgba(255,255,255,0.1);
-    border-bottom-color: rgba(255,255,255,0.2);
-    border-right-color: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+    border-right-color: rgba(255, 255, 255, 0.2);
   }
 }
 
 .buttonToggle {
   display: inline-flex;
+
   .label {
     font-size: 12px;
     padding: 10px 14px;
-    color: rgba(255,255,255,0.66);
-    transition: background 0.33s ease, color 0.33s ease, box-shadow 0.33s ease;
+    color: rgba(255, 255, 255, 0.66);
+    transition:
+      background 0.33s ease,
+      color 0.33s ease,
+      box-shadow 0.33s ease;
+
     &[data-selected=true] {
       background-color: #fff;
-      background-image: linear-gradient(rgba(0,0,0,0.5) 0%, rgba(255,255,255,0) 100%);
-      box-shadow: inset 1px 1px 0 rgba(0,0,0,0.33), inset -1px -1px 0 rgba(255,255,255,0.66);
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.5) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      box-shadow:
+        inset 1px 1px 0 rgba(0, 0, 0, 0.33),
+        inset -1px -1px 0 rgba(255, 255, 255, 0.66);
       color: #111;
       font-weight: 700;
     }
   }
+
   &:hover .label[data-selected=false] {
     color: #fff;
   }

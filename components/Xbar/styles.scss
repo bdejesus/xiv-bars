@@ -2,21 +2,21 @@
 
 // Xbar Set
 .xbar {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  width: $xbar-width;
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  width: $xbar-width;
 }
 
 // Button Group
 .group {
+  height: $xbar-group-height;
   margin: 0 $xbar-group-spacing;
   position: relative;
-  height: $xbar-group-height;
   width: $xbar-group-width;
 }
 
@@ -28,23 +28,26 @@ $center-spacing: $primary-padding * 2;
 .primary {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-  padding: $primary-padding;
   margin: $primary-padding auto;
+  padding: $primary-padding;
   width: $xbar-width + $primary-padding * 2 + $center-spacing;
+
   .group:nth-child(2) {
     margin-right: $primary-padding;
   }
+
   .group:nth-child(3) {
     margin-left: $primary-padding;
   }
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: $slot-border-size;
+
+  &::after {
     bottom: $slot-border-size;
     border-right: 2px solid rgba(0, 0, 0, 0.75);
+    content: "";
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: $slot-border-size;
   }
 }
 
@@ -54,50 +57,58 @@ $center-spacing: $primary-padding * 2;
   .group:nth-child(2) {
     right: $xbar-group-width / 1.5;
   }
+
   .group:nth-child(3),
   .group:nth-child(4) {
     left: $xbar-group-width / 1.5;
   }
-  &:before,
-  &:after {
+
+  &::before,
+  &::after {
     display: block;
-    position: absolute;
     font-size: 10px;
     font-weight: 900;
+    opacity: 0.25;
+    position: absolute;
     text-align: center;
     width: $xbar-group-width - $slot-size + $slot-border-size * 4;
-    opacity: 0.25;
   }
-  &:before {
+
+  &::before {
     left: 0;
   }
-  &:after {
+
+  &::after {
     right: 0;
   }
 }
 
 .secondary {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     top: -0.75em;
   }
-  &:before {
+
+  &::before {
     content: "LT × 2";
   }
-  &:after {
+
+  &::after {
     content: "RT × 2";
   }
 }
 
 .tertiary {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     bottom: -0.75em;
   }
-  &:before {
+
+  &::before {
     content: "LT → RT";
   }
-  &:after {
+
+  &::after {
     content: "RT → LT";
   }
 }
@@ -105,26 +116,32 @@ $center-spacing: $primary-padding * 2;
 .slot {
   margin: 0;
   position: absolute;
+
   &:nth-child(1) {
     bottom: 0;
   }
+
   &:nth-child(3) {
     top: 0;
   }
+
   &:nth-child(1),
   &:nth-child(3) {
     left: 50%;
     margin-left: -$slot-size / 2;
   }
+
   &:nth-child(2) {
     left: 0;
   }
+
   &:nth-child(4) {
     right: 0;
   }
+
   &:nth-child(2),
   &:nth-child(4) {
-    top: 50%;
     margin-top: -$slot-size / 2;
+    top: 50%;
   }
 }
