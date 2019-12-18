@@ -129,7 +129,8 @@ function XIVBars({
 XIVBars.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  selectedJob: PropTypes.shape().isRequired
+  selectedJob: PropTypes.shape().isRequired,
+  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 export default XIVBars;
