@@ -14,7 +14,7 @@
     opacity 0.15s ease,
     border 0.33s ease,
     box-shadow 0.33s ease;
-
+  will-change: opacity, border, box-shadow;
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-color: #999;
@@ -23,11 +23,9 @@
     cursor: grab;
     cursor: -webkit-grab;
   }
-
   &:active {
     cursor: grabbing;
   }
-
   img {
     display: block;
     height: 100%;
