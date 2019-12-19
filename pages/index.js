@@ -6,8 +6,7 @@ import Action from 'components/Action';
 import JobSelect from 'components/JobSelect';
 import Tooltip from 'components/Tooltip';
 import { generalActions } from 'models/actions';
-import LoadingSpinner from 'components/LoadingSpinner';
-import Router from 'next/router';
+import LoadScreen from 'components/LoadScreen';
 
 import styles from './styles.scss';
 
@@ -18,13 +17,9 @@ function XIVBars({
   roleActions
 }) {
   const containerEl = createRef();
-  const [isLoading, setIsLoading] = useState(false);
+
   const [containerRect, setContainerRect] = useState({});
   const [layout, setLayout] = useState('xbars');
-
-  Router.events.on('routeChangeStart', () => setIsLoading(true));
-  Router.events.on('routeChangeComplete', () => setIsLoading(false));
-  Router.events.on('routeChangeError', () => console.log('error'));
 
   useEffect(() => {
     const rect = containerEl.current.getBoundingClientRect();
@@ -72,7 +67,7 @@ function XIVBars({
 
   return (
     <div className={styles.xivBarsContainer} ref={containerEl}>
-      {isLoading && <LoadingSpinner />}
+      <LoadScreen />
 
       <div className="panel">
         <div className={styles.xbarGroup}>

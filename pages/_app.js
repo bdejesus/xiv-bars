@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import XIVAPI from 'xivapi-js';
