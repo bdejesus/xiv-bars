@@ -4,10 +4,8 @@
 
 * Toolbar positioning when hitting edge of view area
 * Reset slots
-* Loading Spinners
 * Control for number of XBar groups
 * Keyboard Shortcuts
-* Hotbar layouts
 
 ## Icebox
 
