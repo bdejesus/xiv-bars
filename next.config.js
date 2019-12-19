@@ -27,6 +27,7 @@ module.exports = withCss(
           tls: 'empty'
         };
       }
+
       // Further custom configuration here
       return config;
     },
