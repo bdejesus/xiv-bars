@@ -19,8 +19,8 @@ export function Meta({ title, description, canonical }) {
                 "@type": "CreativeWork",
                 "name": "${title}",
                 "description": "${description}",
-                "image": "https://xivbars.josebenedicto.com/xivbars-thumb.png",
-                "thumbnailUrl": "https://xivbars.josebenedicto.com/xivbars-thumb.png",
+                "image": "https://xivbars.josebenedicto.com/images/xivbars-thumb.png",
+                "thumbnailUrl": "https://xivbars.josebenedicto.com/images/xivbars-thumb.png",
                 "author": {
                   "@type": "Person",
                   "name": "Ben de Jesus",
