@@ -6,6 +6,8 @@ import Action from 'components/Action';
 import JobSelect from 'components/JobSelect';
 import Tooltip from 'components/Tooltip';
 import { generalActions } from 'models/actions';
+import LoadingSpinner from 'components/LoadingSpinner';
+import Router from 'next/router';
 
 import styles from './styles.scss';
 
@@ -16,8 +18,13 @@ function XIVBars({
   roleActions
 }) {
   const containerEl = createRef();
+  const [isLoading, setIsLoading] = useState(false);
   const [containerRect, setContainerRect] = useState({});
   const [layout, setLayout] = useState('xbars');
+
+  Router.events.on('routeChangeStart', () => setIsLoading(true));
+  Router.events.on('routeChangeComplete', () => setIsLoading(false));
+  Router.events.on('routeChangeError', () => console.log('error'));
 
   useEffect(() => {
     const rect = containerEl.current.getBoundingClientRect();
@@ -65,24 +72,22 @@ function XIVBars({
 
   return (
     <div className={styles.xivBarsContainer} ref={containerEl}>
+      {isLoading && <LoadingSpinner />}
+
       <div className="panel">
         <div className={styles.xbarGroup}>
-
           <div className={styles.buttonContainer}>
             <button
               className={`${styles.button} ${styles.buttonToggle}`}
               type="button"
               onClick={toggleHotbarLayout}
             >
-              <span
-                className={styles.label}
-                data-selected={(layout === 'xbars')}
-              >
+              <span className={styles.label} data-selected={layout === 'xbars'}>
                 WXHB
               </span>
               <span
                 className={styles.label}
-                data-selected={(layout === 'hotbars')}
+                data-selected={layout === 'hotbars'}
               >
                 Hotbars
               </span>
@@ -103,7 +108,7 @@ function XIVBars({
             <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
           </div>
 
-          { roleActions.length > 0 && (
+          {roleActions.length > 0 && (
             <div>
               <h4 className={styles.sectionTitle}>Role Actions</h4>
               <ul className={styles.listActions}>
