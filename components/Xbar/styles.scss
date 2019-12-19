@@ -1,6 +1,7 @@
 @import "utils/mixins";
 
 // Xbar Set
+
 .xbar {
   align-items: center;
   display: flex;
@@ -13,6 +14,7 @@
 }
 
 // Button Group
+
 .group {
   height: $xbar-group-height;
   margin: 0 $xbar-group-spacing;
@@ -31,15 +33,12 @@ $center-spacing: $primary-padding * 2;
   margin: $primary-padding auto;
   padding: $primary-padding;
   width: $xbar-width + $primary-padding * 2 + $center-spacing;
-
   .group:nth-child(2) {
     margin-right: $primary-padding;
   }
-
   .group:nth-child(3) {
     margin-left: $primary-padding;
   }
-
   &::after {
     bottom: $slot-border-size;
     border-right: 2px solid rgba(0, 0, 0, 0.75);
@@ -57,12 +56,10 @@ $center-spacing: $primary-padding * 2;
   .group:nth-child(2) {
     right: $xbar-group-width / 1.5;
   }
-
   .group:nth-child(3),
   .group:nth-child(4) {
     left: $xbar-group-width / 1.5;
   }
-
   &::before,
   &::after {
     display: block;
@@ -73,11 +70,9 @@ $center-spacing: $primary-padding * 2;
     text-align: center;
     width: $xbar-group-width - $slot-size + $slot-border-size * 4;
   }
-
   &::before {
     left: 0;
   }
-
   &::after {
     right: 0;
   }
@@ -88,11 +83,9 @@ $center-spacing: $primary-padding * 2;
   &::after {
     top: -0.75em;
   }
-
   &::before {
     content: "LT × 2";
   }
-
   &::after {
     content: "RT × 2";
   }
@@ -103,11 +96,9 @@ $center-spacing: $primary-padding * 2;
   &::after {
     bottom: -0.75em;
   }
-
   &::before {
     content: "LT → RT";
   }
-
   &::after {
     content: "RT → LT";
   }
@@ -116,29 +107,23 @@ $center-spacing: $primary-padding * 2;
 .slot {
   margin: 0;
   position: absolute;
-
   &:nth-child(1) {
     bottom: 0;
   }
-
   &:nth-child(3) {
     top: 0;
   }
-
   &:nth-child(1),
   &:nth-child(3) {
     left: 50%;
     margin-left: -$slot-size / 2;
   }
-
   &:nth-child(2) {
     left: 0;
   }
-
   &:nth-child(4) {
     right: 0;
   }
-
   &:nth-child(2),
   &:nth-child(4) {
     margin-top: -$slot-size / 2;

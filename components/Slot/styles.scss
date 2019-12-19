@@ -15,7 +15,6 @@
   user-select: none;
   width: $slot-size;
   will-change: background-color transform;
-
   &[data-state="active"] {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow:

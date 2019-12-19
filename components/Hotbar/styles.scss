@@ -10,11 +10,9 @@
   align-items: center;
   flex-direction: column;
   counter-reset: slots;
-
   > li {
     position: relative;
   }
-
   > li::before {
     font-weight: 700;
     content: counter(slots);
@@ -24,6 +22,7 @@
     position: absolute;
     transform: translateY(-50%);
     top: 50%;
+    will-change: transform;
   }
 }
 
