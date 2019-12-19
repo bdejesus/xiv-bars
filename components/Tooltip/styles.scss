@@ -26,19 +26,15 @@ $tooltip-width: 320px;
   will-change: opacity transform;
   white-space: pre-wrap;
   z-index: 10;
-
   &[aria-hidden=true] {
     display: none;
   }
-
   &.right {
     margin-left: $outer-slot-size + 4px;
   }
-
   &.left {
     margin-left: -$tooltip-width - $outer-slot-size - 4px;
   }
-
   &.bottom {
     bottom: 0;
     top: unset;
@@ -60,7 +56,6 @@ $tooltip-width: 320px;
     opacity: 0;
     transform: translateX(-10px) scale(0.975);
   }
-
   to {
     opacity: 1;
     transform: translateX(0) scale(1);

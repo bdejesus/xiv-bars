@@ -1,5 +1,9 @@
 $timing: 0.8s;
 
+.title {
+  transform: translateY(3em);
+}
+
 .container {
   align-items: center;
   animation-fill-mode: forwards;
@@ -13,45 +17,15 @@ $timing: 0.8s;
   right: 0;
   top: 0;
   z-index: 10;
-
+  will-change: opacity, transform;
   &[aria-hidden=false] {
     animation: enterLoading 0.33s ease;
     opacity: 1;
   }
-
   &[aria-hidden=true] {
     animation: exitLoading 1s ease;
     display: flex;
     pointer-events: none;
-  }
-}
-
-.title {
-  transform: translateY(3em);
-}
-
-.wrapper {
-  height: 64px;
-  width: 64px;
-
-  img {
-    animation: image $timing ease-in-out 1s infinite;
-    display: block;
-    height: 100%;
-    object-fit: contain;
-    width: 100%;
-  }
-
-  &::after {
-    animation: shadow $timing ease-in-out 1s infinite;
-    background-color: #ddd;
-    border-radius: 50%;
-    content: '';
-    display: block;
-    height: 8px;
-    margin: 0 auto;
-    opacity: 0.33;
-    width: 60%;
   }
 }
 
@@ -60,7 +34,6 @@ $timing: 0.8s;
     opacity: 0;
     transform: scale(1.2);
   }
-
   to {
     opacity: 1;
     transform: scale(1);
@@ -72,15 +45,38 @@ $timing: 0.8s;
     opacity: 1;
     transform: scale(1);
   }
-
   66% {
     opacity: 1;
     transform: scale(1);
   }
-
   100% {
     opacity: 0;
     transform: scale(1.2);
+  }
+}
+
+.wrapper {
+  height: 64px;
+  width: 64px;
+  img {
+    animation: image $timing ease-in-out 1s infinite;
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+    will-change: transform;
+  }
+  &::after {
+    animation: shadow $timing ease-in-out 1s infinite;
+    background-color: #ddd;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 8px;
+    margin: 0 auto;
+    opacity: 0.33;
+    width: 60%;
+    will-change: filter, transform;
   }
 }
 
@@ -88,11 +84,9 @@ $timing: 0.8s;
   0% {
     transform: translateY(0);
   }
-
   33% {
     transform: translateY(10px);
   }
-
   100% {
     transform: translateY(0);
   }
@@ -103,12 +97,10 @@ $timing: 0.8s;
     filter: blur(3px);
     transform: scale(1);
   }
-
   33% {
     filter: blur(2px);
     transform: scale(0.8);
   }
-
   100% {
     filter: blur(3px);
     transform: scale(1);
