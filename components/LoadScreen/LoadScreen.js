@@ -13,7 +13,7 @@ function LoadScreen() {
   return (
     <div className={styles.container} aria-hidden={!isLoading}>
       <div className={styles.wrapper}>
-        <img src="/mog_trumpet.png" alt="" />
+        <img src="/images/mog_trumpet.png" alt="" />
         <div className={styles.title}>Loading...</div>
       </div>
     </div>
