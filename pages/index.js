@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import XIVAPI from 'xivapi-js';
 import { ascByKey } from 'utils';
 import { advancedJobs, roleActionIDs } from 'models/jobs';
-import AppContextProvider from './app-context';
+import { TooltipContextProvider } from 'components/Tooltip';
 import XIVBars from './XIVBars';
 
 import styles from './app/styles.scss';
@@ -12,7 +12,7 @@ function Index({
   jobs, actions, selectedJob, roleActions
 }) {
   return (
-    <AppContextProvider>
+    <TooltipContextProvider>
       <div className={`${styles.container} ${styles.primary}`}>
         <h1>XIV Bars</h1>
         <p>A Final Fantasy XIV W Cross HotBar (WXHB) Preview Tool.</p>
@@ -66,7 +66,7 @@ function Index({
           LTD
         </p>
       </div>
-    </AppContextProvider>
+    </TooltipContextProvider>
   );
 }
 
