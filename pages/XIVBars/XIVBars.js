@@ -103,7 +103,7 @@ function XIVBars({
             <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
           </div>
 
-          {roleActions.length > 0 && (
+          {(roleActions && roleActions.length) > 0 && (
             <div>
               <h4 className={styles.sectionTitle}>Role Actions</h4>
               <ul className={styles.listActions}>
