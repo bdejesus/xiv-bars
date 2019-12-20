@@ -17,7 +17,6 @@ $timing: 0.8s;
   right: 0;
   top: 0;
   z-index: 10;
-  will-change: opacity, transform;
   &[aria-hidden=false] {
     animation: enterLoading 0.33s ease;
     opacity: 1;
@@ -64,7 +63,6 @@ $timing: 0.8s;
     height: 100%;
     object-fit: contain;
     width: 100%;
-    will-change: transform;
   }
   &::after {
     animation: shadow $timing ease-in-out 1s infinite;
@@ -76,7 +74,6 @@ $timing: 0.8s;
     margin: 0 auto;
     opacity: 0.33;
     width: 60%;
-    will-change: filter, transform;
   }
 }
 

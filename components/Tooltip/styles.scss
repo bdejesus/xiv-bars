@@ -23,7 +23,6 @@ $tooltip-width: 320px;
     transform 0.33s ease;
   transition-delay: 0s;
   width: $tooltip-width;
-  will-change: opacity transform;
   white-space: pre-wrap;
   z-index: 10;
   &[aria-hidden=true] {
