@@ -30,36 +30,29 @@ export default function Action({ action }) {
     };
   }, []);
 
-  function hideTooltip() {
-    tooltipDispatch({ type: 'hide' });
-  }
-
-  function getTooltip() {
-    const data = { action, position };
-    if (action.ID) {
-      updateTooltip(tooltipDispatch, data);
-    }
-  }
-
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);
     setHovering(false);
-    hideTooltip();
+    tooltipDispatch({ type: 'hide' });
   }
 
-  function handleMouseMove(event) {
+  function handleMouseMove() {
     clearTimeout(tooltipTimeout);
 
     tooltipTimeout = setTimeout(() => {
       if (!hovering) {
+        const data = { action, position };
+
         setHovering(true);
-        getTooltip(action, event);
+        if (action.ID) {
+          updateTooltip(tooltipDispatch, data);
+        }
       }
     }, 300);
   }
 
   function handleDragStart(event) {
-    hideTooltip();
+    tooltipDispatch({ type: 'hide' });
     setDragging(true);
     event.dataTransfer.setData('action', JSON.stringify(action));
   }
@@ -76,9 +69,7 @@ export default function Action({ action }) {
         draggable
         onDragStart={(event) => handleDragStart(event)}
         onDragEnd={handleDragEnd}
-        onMouseMove={(event) => {
-          handleMouseMove(event);
-        }}
+        onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
       >
         <img src={`//xivapi.com/${action.Icon}`} alt={action.Name} />
