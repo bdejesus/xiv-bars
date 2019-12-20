@@ -3,18 +3,70 @@ import PropTypes from 'prop-types';
 import XIVAPI from 'xivapi-js';
 import { ascByKey } from 'utils';
 import { advancedJobs, roleActionIDs } from 'models/jobs';
+import AppContextProvider from './app-context';
 import XIVBars from './XIVBars';
+
+import styles from './app/styles.scss';
 
 function Index({
   jobs, actions, selectedJob, roleActions
 }) {
   return (
-    <XIVBars
-      jobs={jobs}
-      actions={actions}
-      selectedJob={selectedJob}
-      roleActions={roleActions}
-    />
+    <AppContextProvider>
+      <div className={`${styles.container} ${styles.primary}`}>
+        <h1>XIV Bars</h1>
+        <p>A Final Fantasy XIV W Cross HotBar (WXHB) Preview Tool.</p>
+        <p>
+          Simulate what your WXHB actions could look like when playing
+          Final Fantasy XIV with a gamepad or controller. Use the Job
+          selector to load actions for that class and Drag them into
+          the hotbar slots below like you would in the game.
+        </p>
+        <XIVBars
+          jobs={jobs}
+          actions={actions}
+          selectedJob={selectedJob}
+          roleActions={roleActions}
+        />
+      </div>
+
+      <div className={`${styles.container} ${styles.links}`}>
+        <h3>
+          <a href="https://josebenedicto.com/ffxiv/cross-hotbar-settings--auto-switching-for-battle">
+            Cross Hotbar Settings: Auto-switching for Battle
+          </a>
+        </h3>
+
+        <p>
+          How to set your Cross Hotbars in Controller Mode to auto-switch
+          to a combat hotbar when entering battle stance.
+        </p>
+
+        <p>
+          If you play in <b>Controller Mode</b>, you can set your Cross
+          Hotbars to automatically switch to a different Hotbar whenever
+          you go into battle stance. This frees you up from having to
+          manually switch to the correct hotbar every time you&apos;re
+          coming in and out of combat.
+        </p>
+
+        <p>
+          <a href="https://josebenedicto.com/ffxiv/cross-hotbar-settings--auto-switching-for-battle">
+            Read more...
+          </a>
+        </p>
+      </div>
+
+      <div className={`${styles.container} ${styles.info}`}>
+        <p>
+          <a href="https://xivapi.com/">Powered by XIVAPI</a>
+        </p>
+        <p>
+          All Final Fantasy XIV content is property of Square Enix Co.,
+          LTD
+        </p>
+      </div>
+    </AppContextProvider>
   );
 }
 
