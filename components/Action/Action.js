@@ -51,7 +51,7 @@ export default function Action({ action }) {
     }, 300);
   }
 
-  function handleDragStart(event) {
+  function selectAction(event) {
     tooltipDispatch({ type: 'hide' });
     setDragging(true);
     event.dataTransfer.setData('action', JSON.stringify(action));
@@ -67,7 +67,7 @@ export default function Action({ action }) {
         ref={actionRef}
         className={`${styles.action} ${dragging ? styles.dragging : ''}`}
         draggable
-        onDragStart={(event) => handleDragStart(event)}
+        onDragStart={(event) => selectAction(event)}
         onDragEnd={handleDragEnd}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
