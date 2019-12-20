@@ -4,7 +4,7 @@ import Xbar from 'components/Xbar';
 import Hotbar from 'components/Hotbar';
 import Action from 'components/Action';
 import JobSelect from 'components/JobSelect';
-import Tooltip from 'components/Tooltip';
+import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { generalActions } from 'models/actions';
 import LoadScreen from 'components/LoadScreen';
 
@@ -66,63 +66,65 @@ function XIVBars({
   }
 
   return (
-    <div className={styles.xivBarsContainer} ref={containerEl}>
-      <LoadScreen />
+    <TooltipContextProvider>
+      <div className={styles.xivBarsContainer} ref={containerEl}>
+        <LoadScreen />
 
-      <div className="panel">
-        <div className={styles.xbarGroup}>
-          <div className={styles.buttonContainer}>
-            <button
-              className={`${styles.button} ${styles.buttonToggle}`}
-              type="button"
-              onClick={toggleHotbarLayout}
-            >
-              <span className={styles.label} data-selected={layout === 'xbars'}>
-                WXHB
-              </span>
-              <span
-                className={styles.label}
-                data-selected={layout === 'hotbars'}
+        <div className="panel">
+          <div className={styles.xbarGroup}>
+            <div className={styles.buttonContainer}>
+              <button
+                className={`${styles.button} ${styles.buttonToggle}`}
+                type="button"
+                onClick={toggleHotbarLayout}
               >
+                <span className={styles.label} data-selected={layout === 'xbars'}>
+                WXHB
+                </span>
+                <span
+                  className={styles.label}
+                  data-selected={layout === 'hotbars'}
+                >
                 Hotbars
-              </span>
-            </button>
-          </div>
-
-          <HotbarLayout />
-        </div>
-
-        <div className={styles.panel}>
-          <div className="content-layout content-middle">
-            <div className="content-main">
-              {jobs && <JobSelect jobs={jobs} selectedJob={selectedJob} />}
+                </span>
+              </button>
             </div>
+
+            <HotbarLayout />
           </div>
 
-          <div>
-            <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
-          </div>
+          <div className={styles.panel}>
+            <div className="content-layout content-middle">
+              <div className="content-main">
+                {jobs && <JobSelect jobs={jobs} selectedJob={selectedJob} />}
+              </div>
+            </div>
 
-          {(roleActions && roleActions.length) > 0 && (
+            <div>
+              <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
+            </div>
+
+            {(roleActions && roleActions.length) > 0 && (
             <div>
               <h4 className={styles.sectionTitle}>Role Actions</h4>
               <ul className={styles.listActions}>
                 <RoleActions />
               </ul>
             </div>
-          )}
+            )}
 
-          <div>
-            <h4 className={styles.sectionTitle}>General Actions</h4>
-            <ul className={styles.listActions}>
-              <GeneralActions />
-            </ul>
+            <div>
+              <h4 className={styles.sectionTitle}>General Actions</h4>
+              <ul className={styles.listActions}>
+                <GeneralActions />
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-      <Tooltip container={containerRect} />
-    </div>
+        <Tooltip container={containerRect} />
+      </div>
+    </TooltipContextProvider>
   );
 }
 

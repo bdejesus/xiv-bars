@@ -43,7 +43,7 @@ function Tooltip({ container }) {
       className={`${styles.tooltip} ${anchor}`}
       style={{
         left: position.left - container.left,
-        top: position.top - container.top
+        top: position.top - container.top,
       }}
       ref={tooltipEl}
       aria-hidden={!content.Name && !content.Description}
