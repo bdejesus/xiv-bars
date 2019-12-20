@@ -39,7 +39,7 @@ function tooltipReducer(state, payload) {
 function useTooltipState() {
   const context = React.useContext(TooltipContext);
   if (context === undefined) {
-    throw new Error('useTooltipState must be used within a AppContextProvider');
+    throw new Error('useTooltipState must be used within a TooltipContextProvider');
   }
   return context;
 }
@@ -47,7 +47,7 @@ function useTooltipState() {
 function useTooltipDispatch() {
   const context = React.useContext(TooltipDispatchContext);
   if (context === undefined) {
-    throw new Error('useTooltipDispatch must be used within an AppContextProvider');
+    throw new Error('useTooltipDispatch must be used within an TooltipContextProvider');
   }
   return context;
 }
@@ -67,7 +67,7 @@ async function updateTooltip(dispatch, data) {
   }
 }
 
-function AppContextProvider({ children }) {
+function TooltipContextProvider({ children }) {
   const [state, dispatch] = useReducer(
     tooltipReducer,
     { content: {}, position: { left: 0, top: 0 } }
@@ -82,14 +82,14 @@ function AppContextProvider({ children }) {
   );
 }
 
-AppContextProvider.propTypes = {
+TooltipContextProvider.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.shape()),
     PropTypes.shape()
   ]).isRequired
 };
 
-export default AppContextProvider;
+export default TooltipContextProvider;
 export {
   useTooltipState, useTooltipDispatch, updateTooltip
 };

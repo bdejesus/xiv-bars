@@ -1,6 +1,6 @@
 import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useTooltipState } from '~/app-context';
+import { useTooltipState } from './context';
 
 import styles from './styles.scss';
 

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { createRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useTooltipDispatch, updateTooltip } from '~/app-context';
+import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
 
 import styles from './styles.scss';
 
