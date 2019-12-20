@@ -1,11 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
-import XIVAPI from 'xivapi-js';
-import { ascByKey } from 'utils';
-import { advancedJobs, roleActionIDs } from 'models/jobs';
 import { Meta, Icons } from './app';
-import XIVBars from '.';
 import AppContextProvider from './app-context';
 
 import styles from './app/styles.scss';
@@ -13,10 +9,8 @@ import styles from './app/styles.scss';
 class AppContainer extends App {
   render() {
     const {
-      jobs,
-      actions,
-      selectedJob,
-      roleActions
+      Component,
+      pageProps
     } = this.props;
 
     const title = 'FFXIV W Cross HotBar (WXHB) Simulator | XIV Bars';
@@ -63,12 +57,7 @@ class AppContainer extends App {
                 selector to load actions for that class and Drag them into
                 the hotbar slots below like you would in the game.
               </p>
-              <XIVBars
-                jobs={jobs}
-                actions={actions}
-                selectedJob={selectedJob}
-                roleActions={roleActions}
-              />
+              <Component {...pageProps} />
             </div>
 
             <div className={`${styles.container} ${styles.links}`}>
@@ -113,67 +102,5 @@ class AppContainer extends App {
     );
   }
 }
-
-AppContainer.getInitialProps = async ({ ctx }) => {
-  // eslint-disable-next-line global-require
-  const api = new XIVAPI();
-
-  // Get Jobs List
-  const jobsData = await api.data.list('ClassJob');
-  const jobs = jobsData.Results.sort(ascByKey('Name'));
-
-  function decorateJobs() {
-    const decoratedData = advancedJobs.map((advancedJob) => {
-      const jobData = jobs.find((job) => job.ID === advancedJob.ID);
-      return { ...jobData, ...advancedJob };
-    });
-    return decoratedData;
-  }
-
-  const decoratedJobs = decorateJobs();
-
-  // Get Selected Job
-  const { query } = ctx;
-
-  let queryId = 'BRD';
-
-  const getSelectedJob = () => {
-    if (query.job) {
-      queryId = query.job;
-    }
-    return decoratedJobs.find((job) => job.Abbr === queryId);
-  };
-
-  const selectedJob = getSelectedJob();
-
-  // Get Job Actions
-  const jobActionsData = await api.search('', {
-    filters: `ClassJob.ID=${selectedJob.ID}`
-  });
-  let jobActions = jobActionsData.Results;
-
-  if (selectedJob.ClassID !== null) {
-    const classActionsReq = await api.search('', {
-      filters: `ClassJob.ID=${selectedJob.ClassID}`
-    });
-    jobActions = jobActions.concat(classActionsReq.Results);
-  }
-
-  jobActions = jobActions.filter((action) => action.UrlType === 'Action');
-  jobActions = jobActions.sort(ascByKey('Icon'));
-  jobActions = jobActions.filter(
-    (action, index, self) => index === self.findIndex((t) => t.Name === action.Name)
-  );
-
-  let roleActions = [];
-  if (selectedJob.Role) {
-    const roleActionsData = await api.data.list('Action', { ids: roleActionIDs[selectedJob.Role].toString() });
-    roleActions = roleActionsData.Results;
-  }
-
-  return {
-    jobs: decoratedJobs, actions: jobActions, selectedJob, roleActions
-  };
-};
 
 export default AppContainer;
