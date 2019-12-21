@@ -74,6 +74,7 @@ export default function Action({ action }) {
         onDragEnd={handleDragEnd}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        onBlur={handleMouseLeave}
         role="button"
         onClick={selectAction}
         tabIndex={-1}
