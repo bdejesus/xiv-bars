@@ -1,11 +1,12 @@
 import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { generalActions } from 'models/actions';
 import Xbar from 'components/Xbar';
 import Hotbar from 'components/Hotbar';
 import Action from 'components/Action';
 import JobSelect from 'components/JobSelect';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
-import { generalActions } from 'models/actions';
+import { SelectedActionContextProvider } from 'components/SelectedAction';
 import LoadScreen from 'components/LoadScreen';
 
 import styles from './styles.scss';
@@ -67,63 +68,68 @@ function XIVBars({
 
   return (
     <TooltipContextProvider>
-      <div className={styles.xivBarsContainer} ref={containerEl}>
-        <LoadScreen />
+      <SelectedActionContextProvider>
+        <div className={styles.xivBarsContainer} ref={containerEl}>
+          <LoadScreen />
 
-        <div className="panel">
-          <div className={styles.xbarGroup}>
-            <div className={styles.buttonContainer}>
-              <button
-                className={`${styles.button} ${styles.buttonToggle}`}
-                type="button"
-                onClick={toggleHotbarLayout}
-              >
-                <span className={styles.label} data-selected={layout === 'xbars'}>
-                WXHB
-                </span>
-                <span
-                  className={styles.label}
-                  data-selected={layout === 'hotbars'}
+          <div className="panel">
+            <div className={styles.xbarGroup}>
+              <div className={styles.buttonContainer}>
+                <button
+                  className={`${styles.button} ${styles.buttonToggle}`}
+                  type="button"
+                  onClick={toggleHotbarLayout}
                 >
+                  <span
+                    className={styles.label}
+                    data-selected={layout === 'xbars'}
+                  >
+                    <abbr title="W Cross Hotbar">WXHB</abbr>
+                  </span>
+                  <span
+                    className={styles.label}
+                    data-selected={layout === 'hotbars'}
+                  >
                 Hotbars
-                </span>
-              </button>
+                  </span>
+                </button>
+              </div>
+
+              <HotbarLayout />
             </div>
 
-            <HotbarLayout />
-          </div>
+            <div className={styles.panel}>
+              <div className="content-layout content-middle">
+                <div className="content-main">
+                  {jobs && <JobSelect jobs={jobs} selectedJob={selectedJob} />}
+                </div>
+              </div>
 
-          <div className={styles.panel}>
-            <div className="content-layout content-middle">
-              <div className="content-main">
-                {jobs && <JobSelect jobs={jobs} selectedJob={selectedJob} />}
+              <div>
+                <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
+              </div>
+
+              {(roleActions && roleActions.length) > 0 && (
+              <div>
+                <h4 className={styles.sectionTitle}>Role Actions</h4>
+                <ul className={styles.listActions}>
+                  <RoleActions />
+                </ul>
+              </div>
+              )}
+
+              <div>
+                <h4 className={styles.sectionTitle}>General Actions</h4>
+                <ul className={styles.listActions}>
+                  <GeneralActions />
+                </ul>
               </div>
             </div>
-
-            <div>
-              <ul className={styles.listActions}>{actions && <ActionsList />}</ul>
-            </div>
-
-            {(roleActions && roleActions.length) > 0 && (
-            <div>
-              <h4 className={styles.sectionTitle}>Role Actions</h4>
-              <ul className={styles.listActions}>
-                <RoleActions />
-              </ul>
-            </div>
-            )}
-
-            <div>
-              <h4 className={styles.sectionTitle}>General Actions</h4>
-              <ul className={styles.listActions}>
-                <GeneralActions />
-              </ul>
-            </div>
           </div>
-        </div>
 
-        <Tooltip container={containerRect} />
-      </div>
+          <Tooltip container={containerRect} />
+        </div>
+      </SelectedActionContextProvider>
     </TooltipContextProvider>
   );
 }

@@ -2,6 +2,7 @@
 import React, { createRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
+import { useSelectedActionDispatch } from 'components/SelectedAction';
 
 import styles from './styles.scss';
 
@@ -13,6 +14,7 @@ export default function Action({ action }) {
   const [dragging, setDragging] = useState(false);
   const [position, setPosition] = useState({});
   const tooltipDispatch = useTooltipDispatch();
+  const selectedActionDispatch = useSelectedActionDispatch();
 
   useEffect(() => {
     if (actionRef.current) {
@@ -51,10 +53,10 @@ export default function Action({ action }) {
     }, 300);
   }
 
-  function selectAction(event) {
+  function selectAction() {
     tooltipDispatch({ type: 'hide' });
+    selectedActionDispatch({ type: 'selectAction', selectedAction: action });
     setDragging(true);
-    event.dataTransfer.setData('action', JSON.stringify(action));
   }
 
   function handleDragEnd() {
@@ -63,14 +65,18 @@ export default function Action({ action }) {
 
   return (
     <>
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
       <div
         ref={actionRef}
         className={`${styles.action} ${dragging ? styles.dragging : ''}`}
         draggable
-        onDragStart={(event) => selectAction(event)}
+        onDragStart={selectAction}
         onDragEnd={handleDragEnd}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
+        role="button"
+        onClick={selectAction}
+        tabIndex={-1}
       >
         <img src={`//xivapi.com/${action.Icon}`} alt={action.Name} />
       </div>
