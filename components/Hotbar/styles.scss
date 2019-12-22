@@ -48,8 +48,6 @@
 
 @media (max-width: 540px) {
   .slot {
-    height: 30px;
-    width: 30px;
     > div {
       height: 100%;
       width: 100%;
@@ -58,9 +56,10 @@
 }
 
 @media (max-width: $screen-xs) {
-  .slot {
-    margin: 1px;
-    height: 24px;
-    width: 24px;
+  .row {
+    flex-wrap: wrap;
+  }
+  .rowWrapper {
+    max-width: 260px;
   }
 }
