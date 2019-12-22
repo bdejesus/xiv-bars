@@ -16,7 +16,7 @@
   margin-right: auto;
   padding: 10px;
   position: relative;
-  width: 550px;
+  width: 510px;
 }
 
 .leftGroup {
@@ -130,7 +130,7 @@ $group-padding: 10px;
   }
 }
 
-@media (max-width: $screen-xs) {
+@media (max-width: 580px) {
   .xbar {
     flex-direction: column;
     padding: 0;
