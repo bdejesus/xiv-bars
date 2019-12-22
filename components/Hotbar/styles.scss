@@ -46,20 +46,11 @@
   }
 }
 
-@media (max-width: 540px) {
-  .slot {
-    > div {
-      height: 100%;
-      width: 100%;
-    }
-  }
-}
-
-@media (max-width: $screen-xs) {
+@media (max-width: 560px) {
   .row {
     flex-wrap: wrap;
   }
   .rowWrapper {
-    max-width: 260px;
+    max-width: 280px;
   }
 }
