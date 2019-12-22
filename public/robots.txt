@@ -2,5 +2,3 @@ Sitemap: https://xivbars.josebenedicto.com/api/sitemap.xml
 
 User-agent: *
 Allow: /*
-
-Disallow: /api/*
