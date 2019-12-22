@@ -2,11 +2,13 @@ const xBarSlots = (group) => {
   const num = 16;
   const slotsArr = [];
 
-  let i = num;
-  for (i; i >= 1; i -= 1) {
+  for (let i = num; i >= 1; i -= 1) {
     slotsArr.push({ id: `${group}-${i}`, action: {} });
   }
-  return slotsArr;
+
+  const leftGroup = slotsArr.slice(0, 8);
+  const rightGroup = slotsArr.slice(8, slotsArr.length + 1);
+  return { leftGroup, rightGroup };
 };
 
 const xBars = () => (

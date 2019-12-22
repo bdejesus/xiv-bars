@@ -9,7 +9,7 @@ function Row({ slots }) {
     <ol className={styles.row}>
       {Object.keys(slots).map((slot) => (
         <li key={`slot-${slots[slot].id}`}>
-          <Slot id={slots[slot].id} />
+          <Slot id={slots[slot].id} className={styles.slot} />
         </li>
       ))}
     </ol>

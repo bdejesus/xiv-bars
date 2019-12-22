@@ -1,6 +1,6 @@
 $slot-border-size: 1px;
 $slot-size: 36px;
-$slot-spacing: 0px;
+$slot-spacing: 0;
 $outer-slot-size: $slot-size + $slot-border-size * 2; // slot size + border
 
 $xbar-group-height: $outer-slot-size * 2 + $slot-spacing;
@@ -13,3 +13,12 @@ $outer-primary-slot-size: $primary-slot-size + $slot-border-size;
 $primary-xbar-group-height: $outer-primary-slot-size * 2 + $slot-spacing / 2;
 $primary-xbar-group-width: $outer-primary-slot-size * 3;
 $primary-xbar-width: $primary-xbar-group-width * 3;
+
+$screen-xxs: 320px;
+$screen-xs: 480px;
+$screen-xs-max: 719px;
+$screen-sm: 720px;
+$screen-sm-max: 979px;
+$screen-md: 980px;
+$screen-md-max: 1079px;
+$screen-lg: 1080px;
