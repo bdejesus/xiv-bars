@@ -77,7 +77,7 @@ export default function Action({ action }) {
         onBlur={handleMouseLeave}
         role="button"
         onClick={selectAction}
-        tabIndex={-1}
+        tabIndex={0}
       >
         <img src={`//xivapi.com/${action.Icon}`} alt={action.Name} />
       </div>

@@ -1,5 +1,10 @@
 @import "utils/mixins";
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 // Xbar Set
 
 .xbar {
@@ -9,39 +14,61 @@
   justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
+  padding: 10px;
   position: relative;
-  width: $xbar-width;
+  width: 550px;
+}
+
+.leftGroup {
+  padding-right: 10px;
+}
+
+.rightGroup {
+  padding-left: 10px;
+}
+
+.leftGroup,
+.rightGroup {
+  display: flex;
+  flex-direction: row;
 }
 
 // Button Group
+$group-padding: 10px;
 
 .group {
-  height: $xbar-group-height;
-  margin: 0 $xbar-group-spacing;
-  position: relative;
-  width: $xbar-group-width;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  margin: 1px;
+  .slot {
+    grid-row-end: span 2;
+    &:nth-child(1) {
+      grid-column-start: 2;
+      grid-row-start: 3;
+    }
+    &:nth-child(2) {
+      grid-column-start: 1;
+      grid-row-start: 2;
+    }
+    &:nth-child(3) {
+      grid-column-start: 2;
+      grid-row-start: 1;
+    }
+    &:nth-child(4) {
+      grid-column-start: 3;
+      grid-row-start: 2;
+    }
+  }
 }
-
-$scale: 1.66;
-
-$primary-padding: 10px;
-$center-spacing: $primary-padding * 2;
 
 .primary {
   background-color: rgba(0, 0, 0, 0.25);
   border-radius: 8px;
-  margin: $primary-padding auto;
-  padding: $primary-padding;
-  width: $xbar-width + $primary-padding * 2 + $center-spacing;
-  .group:nth-child(2) {
-    margin-right: $primary-padding;
-  }
-  .group:nth-child(3) {
-    margin-left: $primary-padding;
-  }
+  margin: $group-padding auto;
   &::after {
     bottom: $slot-border-size;
-    border-right: 2px solid rgba(0, 0, 0, 0.75);
+    border-right: 1px dashed rgba(255, 255, 255, 0.25);
     content: "";
     display: block;
     left: 50%;
@@ -52,14 +79,6 @@ $center-spacing: $primary-padding * 2;
 
 .secondary,
 .tertiary {
-  :local(.group):nth-child(1),
-  .group:nth-child(2) {
-    right: $xbar-group-width / 1.5;
-  }
-  .group:nth-child(3),
-  .group:nth-child(4) {
-    left: $xbar-group-width / 1.5;
-  }
   &::before,
   &::after {
     display: block;
@@ -71,10 +90,10 @@ $center-spacing: $primary-padding * 2;
     width: $xbar-group-width - $slot-size + $slot-border-size * 4;
   }
   &::before {
-    left: 0;
+    left: 15%;
   }
   &::after {
-    right: 0;
+    right: 15%;
   }
 }
 
@@ -104,29 +123,42 @@ $center-spacing: $primary-padding * 2;
   }
 }
 
-.slot {
-  margin: 0;
-  position: absolute;
-  &:nth-child(1) {
-    bottom: 0;
+@media (max-width: $screen-xs-max) {
+  .xbar {
+    padding-top: 0;
+    padding-bottom: 0;
   }
-  &:nth-child(3) {
-    top: 0;
+}
+
+@media (max-width: $screen-xs) {
+  .xbar {
+    flex-direction: column;
+    padding: 0;
+    width: 100%;
   }
-  &:nth-child(1),
-  &:nth-child(3) {
-    left: 50%;
-    margin-left: -$slot-size / 2;
+  .leftGroup,
+  .rightGroup {
+    padding: 6px 0;
   }
-  &:nth-child(2) {
-    left: 0;
+  .primary {
+    order: 1;
+    margin-bottom: inherit;
+    margin-top: inherit;
+    &::after {
+      content: none;
+    }
   }
-  &:nth-child(4) {
-    right: 0;
+  .secondary,
+  .tertiary {
+    &::before,
+    &::after {
+      display: none;
+    }
   }
-  &:nth-child(2),
-  &:nth-child(4) {
-    margin-top: -$slot-size / 2;
-    top: 50%;
+  .secondary {
+    order: 2;
+  }
+  .tertiary {
+    order: 3;
   }
 }

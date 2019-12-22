@@ -68,7 +68,7 @@ function Slot({ id, className }) {
         onDragLeave={(event) => handleDragLeave(event)}
         onClick={setSelectedAction}
         role="button"
-        tabIndex={-1}
+        tabIndex={0}
       >
         {action.Name && <Action action={action} />}
       </div>

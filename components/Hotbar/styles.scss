@@ -1,3 +1,5 @@
+@import 'utils/mixins';
+
 .container,
 .row {
   display: flex;
@@ -31,4 +33,34 @@
 
 .row {
   flex-direction: row;
+}
+
+@media (max-width: $screen-sm) {
+  .container {
+    > li::before {
+      left: 2px;
+    }
+  }
+  .rowWrapper {
+    padding-left: 14px;
+  }
+}
+
+@media (max-width: 540px) {
+  .slot {
+    height: 30px;
+    width: 30px;
+    > div {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .slot {
+    margin: 1px;
+    height: 24px;
+    width: 24px;
+  }
 }

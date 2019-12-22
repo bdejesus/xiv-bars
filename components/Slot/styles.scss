@@ -25,3 +25,24 @@
     transform: scale(1.1);
   }
 }
+
+@media (max-width: $screen-sm-max) {
+  .slot {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .slot {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .slot {
+    height: 32px;
+    width: 32px;
+  }
+}
