@@ -10,7 +10,7 @@ module.exports = withCss(
     cssLoaderOptions: {
       importLoaders: 2,
       localsConvention: 'dashes',
-      localIdentName: '[local]--[hash:base64:5]',
+      localIdentName: '[folder]-[local]--[hash:base64:5]',
       sourceMap: true
     },
     webpack(config, { isServer }) {
