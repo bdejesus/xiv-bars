@@ -5,13 +5,33 @@ import { Meta, Icons } from './app';
 
 class AppContainer extends App {
   render() {
-    const {
-      Component,
-      pageProps
-    } = this.props;
+    const { Component, pageProps } = this.props;
+    const { selectedJob, query } = pageProps;
 
-    const title = 'FFXIV W Cross HotBar (WXHB) Simulator | XIV Bars';
-    const description = 'XIV Bars is a simple app for previewing the Final Fantasy XIV W Cross HotBar (WXHB). Simulate what your hotbar actions could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.';
+    function generateTitle() {
+      if (query.job) {
+        return `${selectedJob.Name} [${selectedJob.Abbr}] | FFXIV W Cross HotBar (WXHB) Simulator | XIV Bars`;
+      }
+      return 'FFXIV W Cross HotBar (WXHB) Simulator | XIV Bars';
+    }
+
+    function generateCanonicalUrl() {
+      if (query.job) {
+        return `https://xivbars.josebenedicto.com/job/${selectedJob.Abbr}`;
+      }
+      return 'https://xivbars.josebenedicto.com';
+    }
+
+    function generateDescription() {
+      if (query.job) {
+        return `W Cross Hotbar (WXHB) simulator for ${selectedJob.Name} (${selectedJob.Abbr}) Final Fantasy XIV Job Class. Simulate what your hotbar actions could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.`;
+      }
+      return 'XIV Bars is a simple app for previewing the Final Fantasy XIV W Cross HotBar (WXHB). Simulate what your hotbar actions could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.';
+    }
+
+    const title = generateTitle();
+    const canonicalUrl = generateCanonicalUrl();
+    const description = generateDescription();
 
     return (
       <>
@@ -39,7 +59,7 @@ class AppContainer extends App {
           <Meta
             title={title}
             description={description}
-            canonical="https://xivbars.josebenedicto.com"
+            canonical={canonicalUrl}
           />
           <Icons />
         </Head>

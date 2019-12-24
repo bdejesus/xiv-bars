@@ -48,10 +48,23 @@ main {
   position: relative;
 }
 
-h1,
-h2 {
+h1 {
   margin-top: 0;
   margin-bottom: 0;
+  b {
+    opacity: 0.75;
+  }
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+.abbr {
+  font-size: 1.2em;
+  font-family: "Lucida Console", Consolas, monospace;
+  font-weight: 300;
+  margin-right: 0.33em;
 }
 
 .links {

@@ -5,15 +5,25 @@ import { ascByKey } from 'utils';
 import { advancedJobs, roleActionIDs } from 'models/jobs';
 import XIVBars from './XIVBars';
 
-import styles from './app/styles.scss';
+import styles from './styles.scss';
 
 function Index({
-  jobs, actions, selectedJob, roleActions
+  jobs, actions, selectedJob, roleActions, query
 }) {
   return (
     <>
       <div className={`${styles.container} ${styles.primary}`}>
-        <h1>XIV Bars</h1>
+        {(query.job) ? (
+          <>
+            <h1>
+              <span className={styles.abbr}>{selectedJob.Abbr}</span>
+              <b>{selectedJob.Name}</b>
+            </h1>
+            <h2>XIV Bars</h2>
+          </>
+        ) : (
+          <h1>XIV Bars</h1>
+        )}
         <p>A Final Fantasy XIV W Cross HotBar (WXHB) Preview Tool.</p>
         <p>
           Simulate what your WXHB actions could look like when playing
@@ -129,7 +139,11 @@ Index.getInitialProps = async (req) => {
   }
 
   return {
-    jobs: decoratedJobs, actions: jobActions, selectedJob, roleActions
+    jobs: decoratedJobs,
+    actions: jobActions,
+    selectedJob,
+    roleActions,
+    query
   };
 };
 
@@ -137,7 +151,8 @@ Index.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape().isRequired,
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  query: PropTypes.shape().isRequired
 };
 
 export default Index;
