@@ -13,7 +13,7 @@ function Index({
   return (
     <>
       <div className={`${styles.container} ${styles.primary}`}>
-        {(query.job) ? (
+        {(query && query.job) ? (
           <>
             <h1>
               <span className={styles.abbr}>{selectedJob.Abbr}</span>
