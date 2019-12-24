@@ -46,6 +46,7 @@ const hotbars = () => (
       six: hotbarSlots('six'),
       seven: hotbarSlots('seven'),
       eight: hotbarSlots('eight'),
+      nine: hotbarSlots('nine')
     }
   }
 );
