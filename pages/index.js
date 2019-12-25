@@ -8,7 +8,11 @@ import XIVBars from './XIVBars';
 import styles from './styles.scss';
 
 function Index({
-  jobs, actions, selectedJob, roleActions, query
+  jobs,
+  actions,
+  selectedJob,
+  roleActions,
+  query
 }) {
   return (
     <>

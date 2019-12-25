@@ -18,7 +18,7 @@ function Modal({ jobs, selectedJob }) {
       <button
         type="button"
         id="jobSelectButton"
-        className={styles.button}
+        className={`button ${styles.button}`}
         onClick={() => jobSelectDispatch({ type: 'open' })}
       >
         <Job job={selectedJob} />

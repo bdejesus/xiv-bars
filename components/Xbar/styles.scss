@@ -19,16 +19,16 @@
   width: 580px;
 }
 
-.leftGroup {
+.left {
   padding-right: 10px;
 }
 
-.rightGroup {
+.right {
   padding-left: 10px;
 }
 
-.leftGroup,
-.rightGroup {
+.left,
+.right {
   display: flex;
   flex-direction: row;
 }
@@ -36,7 +36,7 @@
 // Button Group
 $group-padding: 10px;
 
-.group {
+.set {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -136,8 +136,8 @@ $group-padding: 10px;
     padding: 0;
     width: 100%;
   }
-  .leftGroup,
-  .rightGroup {
+  .left,
+  .right {
     padding: 6px 0;
   }
   .primary {

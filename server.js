@@ -10,7 +10,7 @@ app.prepare().then(() => {
   const server = express();
 
   server.get('/', (req, res) => {
-    app.render(req, res, '/index', { job: req.query.job });
+    app.render(req, res, '/index', req.query);
   });
 
   server.get('/job/:job', (req, res) => app.render(req, res, '/index', { job: req.params.job }));
