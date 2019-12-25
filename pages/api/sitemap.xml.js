@@ -8,6 +8,11 @@ export default async (req, res) => {
       cacheTime: 600000
     });
 
+    sitemap.write({
+      url: '/',
+      priority: 0.9
+    });
+
     // Create each URL row
     advancedJobs.forEach((job) => {
       sitemap.write({

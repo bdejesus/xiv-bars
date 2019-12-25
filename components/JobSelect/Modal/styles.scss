@@ -1,36 +1,11 @@
 @import "utils/mixins";
 
-.button {
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-  border-right-color: rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
+button.button {
   color: #fff;
-  cursor: pointer;
   font-size: 24px;
-  line-height: 1;
-  outline: none;
-  padding: 6px 16px 6px 10px;
-  transition:
-    background 0.2s ease,
-    border 0.2s ease;
-  &:hover,
-  &:focus {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom-color: rgba(0, 0, 0, 1);
-    border-right-color: rgba(0, 0, 0, 1);
-    background:
-      linear-gradient(
-        rgba(0, 0, 0, 1) 0%,
-        rgba(255, 255, 255, 0.05) 100%
-      );
-  }
-  &:active {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom-color: rgba(255, 255, 255, 0.2);
-    border-right-color: rgba(255, 255, 255, 0.2);
-  }
+  padding: 6px 20px 6px 10px;
+  height: auto;
+  margin-bottom: 6px;
   img {
     height: 36px;
     width: 36px;
