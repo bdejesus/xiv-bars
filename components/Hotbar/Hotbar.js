@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slot from 'components/Slot';
-import xBars from 'models/xbars';
+import { useXIVBarsState } from '~/XIVBars/context';
 import styles from './styles.scss';
 
 function Row({ slots }) {
@@ -9,7 +9,11 @@ function Row({ slots }) {
     <ol className={styles.row}>
       {Object.keys(slots).map((slot) => (
         <li key={`slot-${slots[slot].id}`}>
-          <Slot id={slots[slot].id} className={styles.slot} />
+          <Slot
+            id={slots[slot].id}
+            action={slots[slot].action}
+            className={styles.slot}
+          />
         </li>
       ))}
     </ol>
@@ -21,12 +25,13 @@ Row.propTypes = {
 };
 
 function Hotbar() {
-  const { bars } = xBars.hotbars;
+  const { hotbars } = useXIVBarsState();
+
   return (
     <ol className={styles.container}>
-      {Object.keys(bars).map((barKey) => (
+      {Object.keys(hotbars).map((barKey) => (
         <li key={barKey} className={styles.rowWrapper}>
-          <Row slots={bars[barKey]} />
+          <Row slots={hotbars[barKey]} />
         </li>
       ))}
     </ol>

@@ -83,6 +83,48 @@ h2 {
   margin: 0;
 }
 
+:global(.button) {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  border-right-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.66);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  outline: none;
+  padding: 0 16px;
+  height: 40px;
+  transition:
+    background 0.2s ease,
+    border 0.2s ease;
+  &:hover,
+  &:focus {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom-color: rgba(0, 0, 0, 1);
+    border-right-color: rgba(0, 0, 0, 1);
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(255, 255, 255, 0.15) 100%
+      );
+    color: rgba(255, 255, 255, 1);
+  }
+  &:active {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+    border-right-color: rgba(255, 255, 255, 0.2);
+  }
+  img {
+    height: 36px;
+    width: 36px;
+  }
+  & + :global(.button) {
+    margin-left: 1em;
+  }
+}
+
 @media (max-width: $screen-sm) {
   .primary {
     margin-top: 0;

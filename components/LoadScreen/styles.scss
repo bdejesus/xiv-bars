@@ -18,11 +18,11 @@ $timing: 0.8s;
   top: 0;
   z-index: 10;
   &[aria-hidden=false] {
-    animation: enterLoading 0.33s ease;
+    animation: enterLoading 0.25s ease;
     opacity: 1;
   }
   &[aria-hidden=true] {
-    animation: exitLoading 1s ease;
+    animation: exitLoading 0.5s ease;
     display: flex;
     pointer-events: none;
   }
@@ -58,14 +58,14 @@ $timing: 0.8s;
   height: 64px;
   width: 64px;
   img {
-    animation: image $timing ease-in-out 1s infinite;
+    animation: image $timing ease-in-out 0.66s infinite;
     display: block;
     height: 100%;
     object-fit: contain;
     width: 100%;
   }
   &::after {
-    animation: shadow $timing ease-in-out 1s infinite;
+    animation: shadow $timing ease-in-out 0.66s infinite;
     background-color: #ddd;
     border-radius: 50%;
     content: '';

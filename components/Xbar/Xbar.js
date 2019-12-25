@@ -3,50 +3,74 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { group } from 'utils';
 import Slot from 'components/Slot';
-import xBars from 'models/xbars';
+import { useXIVBarsState } from '~/XIVBars/context';
 import styles from './styles.scss';
 
-const Bar = ({ bar, id }) => (
-  <>
-    {Object.keys(bar).map((groupName) => {
-      const groupSlots = bar[groupName];
-      const groups = group(groupSlots, 4);
-      return (
-        <div className={styles[groupName]} key={groupName}>
-          {groups.map((slotGroup, index) => (
-            <div className={styles.group} key={`group-${index}`}>
-              { slotGroup.map((slot) => (
-                <Slot
-                  id={slot.id}
-                  key={`slot-${slot.id}`}
-                  action={slot.action}
-                  xbar={id}
-                  className={styles.slot}
-                />
-              ))}
-            </div>
-          ))}
-        </div>
-      );
-    })}
-  </>
-);
-
-Bar.propTypes = {
-  id: PropTypes.string.isRequired,
-  bar: PropTypes.shape().isRequired
-};
-
 export default function Xbar() {
-  const { bars } = xBars.xBars;
+  const { xBars } = useXIVBarsState();
 
   return (
     <div className={styles.container}>
-      {Object.keys(bars).map((barGroup) => (
-        <div className={`${styles.xbar} ${styles[barGroup]}`} key={barGroup}>
-          <Bar bar={bars[barGroup]} id={barGroup} />
+      {Object.keys(xBars).map((xBar) => (
+        <div className={`${styles.xbar} ${styles[xBar]}`} key={xBar}>
+          <Bar bar={xBars[xBar]} id={xBar} />
         </div>
       ))}
     </div>
   );
 }
+
+function Set({ slots }) {
+  return (
+    <div className={styles.set}>
+      { slots.map((slot) => (
+        <Slot
+          id={slot.id}
+          key={`slot-${slot.id}`}
+          action={slot.action}
+          className={styles.slot}
+        />
+      ))}
+    </div>
+  );
+}
+
+Set.propTypes = {
+  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
+};
+
+function Group({ slots }) {
+  const slotSets = group(slots, 4);
+  return (
+    <>
+      {slotSets.map((groupSlots, index) => (
+        <Set slots={groupSlots} key={`set-${index}`} />
+      ))}
+    </>
+  );
+}
+
+Group.propTypes = {
+  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+};
+
+function Bar({ bar }) {
+  const barGroups = {
+    left: bar.slice(0, 8),
+    right: bar.slice(8, bar.length + 1)
+  };
+
+  return (
+    <>
+      {Object.keys(barGroups).map((slots, index) => (
+        <div className={styles[slots]} key={`group-${index}`}>
+          <Group slots={barGroups[slots]} />
+        </div>
+      ))}
+    </>
+  );
+}
+
+Bar.propTypes = {
+  bar: PropTypes.arrayOf(PropTypes.shape()).isRequired
+};

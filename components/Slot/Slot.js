@@ -5,14 +5,15 @@ import {
   useSelectedActionState,
   useSelectedActionDispatch
 } from 'components/SelectedAction';
+import { useXIVBarsDispatch } from '~/XIVBars/context';
 
 import styles from './styles.scss';
 
-function Slot({ id, className }) {
+function Slot({ id, className, action }) {
+  const XIVBarsDispatch = useXIVBarsDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
-  const [action, setAction] = useState({});
 
   function resetSlot(event) {
     const { currentTarget } = event;
@@ -27,15 +28,13 @@ function Slot({ id, className }) {
 
   function handleDragLeave(event) {
     event.preventDefault();
-    if (dragging) { setAction({}); }
-    resetSlot(event);
-  }
-
-  function handleDrop(event) {
-    event.preventDefault();
-    setDragging(false);
-    setAction(selectedAction);
-    selectedActionDispatch({ type: 'deselectAction' });
+    if (dragging) {
+      XIVBarsDispatch({
+        type: 'updateSlots',
+        slotID: id,
+        action: {}
+      });
+    }
     resetSlot(event);
   }
 
@@ -49,11 +48,22 @@ function Slot({ id, className }) {
   }
 
   function setSelectedAction() {
+    setDragging(false);
     if (selectedAction) {
-      setAction(selectedAction);
-      selectedActionDispatch({ type: 'deselectAction' });
+      XIVBarsDispatch({
+        type: 'setActionToSlot',
+        slotID: id,
+        action: selectedAction
+      });
     }
+    selectedActionDispatch({ type: 'deselectAction' });
     return null;
+  }
+
+  function handleDrop(event) {
+    event.preventDefault();
+    setSelectedAction();
+    resetSlot(event);
   }
 
   return (
@@ -80,9 +90,11 @@ export default Slot;
 
 Slot.propTypes = {
   id: PropTypes.string.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  action: PropTypes.shape()
 };
 
 Slot.defaultProps = {
-  className: ''
+  className: '',
+  action: {}
 };

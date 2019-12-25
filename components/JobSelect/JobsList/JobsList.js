@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import Job from '../Job';
 import { useJobSelectDispatch } from '../context';
 
 import styles from './styles.scss';
 
 function JobsList({ title, jobs }) {
+  const router = useRouter();
   const jobSelectDispatch = useJobSelectDispatch();
 
   function selectJob(event, jobAbbr) {
     event.preventDefault();
-    Router.push({
-      pathname: '/',
-      query: { job: jobAbbr }
+    router.push({
+      pathname: router.pathname,
+      query: { ...router.query, job: jobAbbr }
     });
     jobSelectDispatch({ type: 'close' });
   }
