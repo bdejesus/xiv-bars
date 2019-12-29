@@ -23,11 +23,15 @@ function Tooltip({ container }) {
 
   useEffect(() => {
     positionTooltip();
-  }, []);
+  }, [content]);
 
   const Description = () => {
-    const cleanDesc = content.Description.trim();
-    const descHtml = { __html: cleanDesc };
+    const cleanDesc = () => {
+      const trim = content.Description;
+      const str = trim.replace(/(?:\r\n|\r|\n)/g, '<div>');
+      return str;
+    };
+    const descHtml = { __html: cleanDesc() };
 
     return (
       <p
