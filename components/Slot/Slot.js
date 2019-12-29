@@ -30,7 +30,7 @@ function Slot({ id, className, action }) {
     event.preventDefault();
     if (dragging) {
       XIVBarsDispatch({
-        type: 'updateSlots',
+        type: 'setActionToSlot',
         slotID: id,
         action: {}
       });
