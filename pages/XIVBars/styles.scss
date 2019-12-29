@@ -1,31 +1,140 @@
-.panel {
-  padding-top: 16px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.2);
-}
+@import 'utils/mixins';
 
-.listActions {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  list-style: none;
-  margin: 4px 0 0 0;
-  padding: 0;
-  li {
-    margin: 4px;
-  }
-}
-
-.xivBarsContainer {
+.appContainer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1080px;
   position: relative;
 }
 
-.xbarGroup {
+.sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding-right: $spacing-base;
+  width: $sidebar-width;
+}
+
+.main {
   display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: $spacing-base;
+}
+
+.controlPanel {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: $spacing-base;
+}
+
+.listActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    margin: 0 8px 8px 0;
+  }
+}
+
+.container {
+  display: flex;
+  position: relative;
+}
+
+.uiLayout {
+  align-items: center;
+  display: flex;
+  flex: 1 1;
   flex-direction: column;
-  margin: 32px 0 24px;
 }
 
 .sectionTitle {
-  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 10px;
+  line-height: 1.2em;
+  margin: 0 0 0.5em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.abbr {
+  font-family: "Lucida Console", Consolas, monospace;
+  font-size: 1.2em;
+  font-weight: 300;
+  margin-right: 0.33em;
+}
+
+.roleName {
+  font-style: italic;
+  margin-top: 0.33em;
+  opacity: 0.5;
+}
+
+@media (max-width: $screen-md) {
+  .main,
+  .sidebar {
+    border: none;
+    padding: 0;
+    width: unset;
+  }
+  .controlPanel {
+    display: block;
+    .main {
+      justify-content: flex-start;
+    }
+    .sidebar {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+  }
+  .appWrapper,
+  .appWrapper .main {
+    display: block;
+  }
+  .jobActions {
+    flex: 1 1 auto;
+    .listActions {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+  .roleActions,
+  .generalActions {
+    padding-left: $spacing-base;
+    .listActions {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  .actionsPanel {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: $spacing-base;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .controlPanel .main {
+    justify-content: space-between;
+  }
+  .actionsPanel {
+    display: block;
+    margin-bottom: $spacing-lg;
+  }
+  .roleActions,
+  .generalActions {
+    padding-left: 0;
+    .listActions {
+      display: flex;
+    }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .controlPanel .main {
+    display: block;
+  }
 }

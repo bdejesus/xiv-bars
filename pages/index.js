@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import XIVAPI from 'xivapi-js';
 import { ascByKey } from 'utils';
-import { advancedJobs, roleActionIDs, roleNames } from 'models/jobs';
+import { ADVANCED_JOBS, ROLE_ACTION_IDS } from 'data/jobs';
+import Header from 'components/Header';
+import Articles from 'components/Articles';
+import Footer from 'components/Footer';
 import XIVBars from './XIVBars';
 
 import styles from './styles.scss';
@@ -16,26 +19,11 @@ function Index({
 }) {
   return (
     <>
-      <div className={`${styles.container} ${styles.primary}`}>
-        {(query && query.job) ? (
-          <>
-            <h1>
-              <span className={styles.abbr}>{selectedJob.Abbr}</span>
-              <b>{selectedJob.Name}</b>
-            </h1>
-            <div className={styles.roleType}>{roleNames[selectedJob.Role]}</div>
-            <h2>XIV Bars</h2>
-          </>
-        ) : (
-          <h1>XIV Bars</h1>
-        )}
-        <p>A Final Fantasy XIV W Cross HotBar (WXHB) Preview Tool.</p>
-        <p>
-          Simulate what your WXHB actions could look like when playing
-          Final Fantasy XIV with a gamepad or controller. Use the Job
-          selector to load actions for that class and Drag them into
-          the hotbar slots below like you would in the game.
-        </p>
+      <div className={styles.header}>
+        <Header query={query} selectedJob={selectedJob} />
+      </div>
+
+      <div className={styles.primary}>
         <XIVBars
           jobs={jobs}
           actions={actions}
@@ -44,41 +32,12 @@ function Index({
         />
       </div>
 
-      <div className={`${styles.container} ${styles.links}`}>
-        <h3>
-          <a href="https://josebenedicto.com/ffxiv/cross-hotbar-settings--auto-switching-for-battle">
-            Cross Hotbar Settings: Auto-switching for Battle
-          </a>
-        </h3>
-
-        <p>
-          How to set your Cross Hotbars in Controller Mode to auto-switch
-          to a combat hotbar when entering battle stance.
-        </p>
-
-        <p>
-          If you play in <b>Controller Mode</b>, you can set your Cross
-          Hotbars to automatically switch to a different Hotbar whenever
-          you go into battle stance. This frees you up from having to
-          manually switch to the correct hotbar every time you&apos;re
-          coming in and out of combat.
-        </p>
-
-        <p>
-          <a href="https://josebenedicto.com/ffxiv/cross-hotbar-settings--auto-switching-for-battle">
-            Read more...
-          </a>
-        </p>
+      <div className={styles.articles}>
+        <Articles />
       </div>
 
-      <div className={`${styles.container} ${styles.info}`}>
-        <p>
-          <a href="https://xivapi.com/">Powered by XIVAPI</a>
-        </p>
-        <p>
-          All Final Fantasy XIV content is property of Square Enix Co.,
-          LTD
-        </p>
+      <div className={styles.footer}>
+        <Footer />
       </div>
     </>
   );
@@ -95,7 +54,7 @@ Index.getInitialProps = async (req) => {
   const jobs = jobsData.Results.sort(ascByKey('Name'));
 
   function decorateJobs() {
-    const decoratedData = advancedJobs.map((advancedJob) => {
+    const decoratedData = ADVANCED_JOBS.map((advancedJob) => {
       const jobData = jobs.find((job) => job.ID === advancedJob.ID);
       return { ...jobData, ...advancedJob };
     });
@@ -139,7 +98,7 @@ Index.getInitialProps = async (req) => {
 
   let roleActions = [];
   if (selectedJob.Role) {
-    const roleActionsData = await api.data.list('Action', { ids: roleActionIDs[selectedJob.Role].toString() });
+    const roleActionsData = await api.data.list('Action', { ids: ROLE_ACTION_IDS[selectedJob.Role].toString() });
     roleActions = roleActionsData.Results;
   }
 

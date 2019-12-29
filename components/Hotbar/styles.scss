@@ -10,20 +10,20 @@
 
 .container {
   align-items: center;
-  flex-direction: column;
   counter-reset: slots;
+  flex-direction: column;
   > li {
     position: relative;
   }
   > li::before {
-    font-weight: 700;
     content: counter(slots);
     counter-increment: slots;
+    font-weight: 700;
     left: -14px;
     opacity: 0.33;
     position: absolute;
-    transform: translateY(-50%);
     top: 50%;
+    transform: translateY(-50%);
   }
 }
 
@@ -36,10 +36,8 @@
 }
 
 @media (max-width: $screen-sm) {
-  .container {
-    > li::before {
-      left: 2px;
-    }
+  .container > li::before {
+    left: 2px;
   }
   .rowWrapper {
     padding-left: 14px;

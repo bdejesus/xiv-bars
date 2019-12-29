@@ -7,13 +7,13 @@ import { useXIVBarsState } from '~/XIVBars/context';
 import styles from './styles.scss';
 
 export default function Xbar() {
-  const { xBars } = useXIVBarsState();
+  const { xbars } = useXIVBarsState();
 
   return (
     <div className={styles.container}>
-      {Object.keys(xBars).map((xBar) => (
-        <div className={`${styles.xbar} ${styles[xBar]}`} key={xBar}>
-          <Bar bar={xBars[xBar]} id={xBar} />
+      {Object.keys(xbars).map((xbar) => (
+        <div className={`${styles.xbar} ${styles[xbar]}`} key={xbar}>
+          <Bar bar={xbars[xbar]} id={xbar} />
         </div>
       ))}
     </div>
