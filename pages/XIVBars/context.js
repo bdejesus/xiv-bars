@@ -1,15 +1,13 @@
 import React, { createContext, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { xBars, hotbars } from 'models/xbars';
-import { encodeSlots } from './utils';
+import { xbars, hotbars, layouts } from 'data/xbars';
 
 const XIVBarsContext = createContext();
 const XIVBarsDispatchContext = createContext();
 
 function XIVBarsReducer(state, payload) {
   const { layout } = state;
-  const slotsLayout = (layout === 0) ? 'xBars' : 'hotbars';
 
   switch (payload.type) {
     case 'updateLayout': {
@@ -17,11 +15,11 @@ function XIVBarsReducer(state, payload) {
     }
     case 'loadActionsToSlots': {
       const { slottedActions } = payload;
-      const slots = state[slotsLayout];
+      const slots = state[layouts[layout]];
 
       slottedActions.forEach((actionGroup, groupIndex) => {
         const groupName = Object.keys(slots)[groupIndex];
-        const slotGroup = state[slotsLayout][groupName];
+        const slotGroup = state[layouts[layout]][groupName];
 
         actionGroup.forEach((actionID, slotIndex) => {
           const slottedAction = state.actions.find((action) => action.ID === actionID);
@@ -37,13 +35,22 @@ function XIVBarsReducer(state, payload) {
       // update slotted actions
       const [parent, id] = payload.slotID.split('-');
       const slot = { parent, id: id - 1 };
-      const slotObject = state[slotsLayout][slot.parent][slot.id];
+      const slotObject = state[layouts[layout]][slot.parent][slot.id];
       slotObject.action = payload.action;
 
       // update slots string query
-      const stringifiedSlots = encodeSlots(state[slotsLayout]);
+      const stringifiedSlots = () => {
+        const string = Object.values(state[layouts[layout]])
+          .map(
+            (arr) => `[${Object.values(arr)
+              .map((obj) => (obj.action && obj.action.ID ? obj.action.ID : '0'))
+              .toString()}]`
+          )
+          .toString();
+        return `[${string}]`;
+      };
 
-      return { ...state, encodedSlots: stringifiedSlots };
+      return { ...state, encodedSlots: stringifiedSlots() };
     }
     default: {
       throw new Error(`Unhandled action type: ${payload.type}`);
@@ -71,7 +78,7 @@ function XIVBarsContextProvider({ children, actions }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(
     XIVBarsReducer, {
-      xBars,
+      xbars,
       hotbars,
       layout: parseInt(router.query.l, 10) || 0,
       encodedSlots: '',

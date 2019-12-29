@@ -22,7 +22,8 @@ function Tooltip({ container }) {
   }
 
   useEffect(() => {
-    positionTooltip();
+    // positionTooltip();
+    setAnchor(styles.right);
   }, [content]);
 
   const Description = () => {

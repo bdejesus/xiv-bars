@@ -1,5 +1,5 @@
 import { SitemapStream, streamToPromise } from 'sitemap';
-import { advancedJobs } from 'models/jobs';
+import { advancedJobs } from 'data/jobs';
 
 export default async (req, res) => {
   try {

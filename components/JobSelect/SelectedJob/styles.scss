@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.iconWrapper {
+  align-self: flex-start;
+  background: linear-gradient(#333, #000);
+  border: 1px solid #666;
+  border-color: #999 #555 #444 #888;
+  border-radius: 6px;
+  margin-right: 12px;
+  padding: 6px;
+  img {
+    display: block;
+  }
+}
+
+.textWrapper {
+  text-align: left;
+}
+
+.abbr {
+  font-family: "Lucida Console", Consolas, monospace;
+  font-size: 1.15em;
+  font-weight: 300;
+  margin-right: 6px;
+}
+
+.name {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.role {
+  opacity: 0.5;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+}

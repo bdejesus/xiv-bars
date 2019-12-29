@@ -1,4 +1,4 @@
-const generalActions = [
+const GENERAL_ACTIONS = [
   {
     ID: 7,
     Name: 'Auto-Attack',
@@ -32,4 +32,4 @@ const generalActions = [
   }
 ];
 
-module.exports = { generalActions };
+module.exports = { GENERAL_ACTIONS };

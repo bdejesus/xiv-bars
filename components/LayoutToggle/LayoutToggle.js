@@ -1,36 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
-import Xbar from 'components/Xbar';
-import Hotbar from 'components/Hotbar';
-import Sharing from './Sharing';
+import { layouts } from 'data/xbars';
 import { useXIVBarsState, useXIVBarsDispatch } from '~/XIVBars/context';
-
 import styles from './styles.scss';
 
-function HotbarUI() {
+function LayoutToggle() {
   const router = useRouter();
-  const XIVBarsState = useXIVBarsState();
+  const { layout } = useXIVBarsState();
   const XIVBarsDispatch = useXIVBarsDispatch();
-  const layoutValue = XIVBarsState.layout;
-
-  useEffect(() => {
-    if (router.query && router.query.s) {
-      const slottedActions = JSON.parse(router.query.s);
-      XIVBarsDispatch({ type: 'loadActionsToSlots', slottedActions });
-    }
-  }, []);
-
-  function getLayout() {
-    if (layoutValue === 1) {
-      return 'hotbars';
-    }
-    return 'xbars';
-  }
-
-  const layout = getLayout();
 
   function toggleHotbarLayout() {
-    if (layout === 'xbars') {
+    if (layouts[layout] === 'xbars') {
       router.push({
         pathname: router.pathname,
         query: { ...router.query, l: 1 }
@@ -45,41 +25,32 @@ function HotbarUI() {
     }
   }
 
-  function HotbarLayout() {
-    if (layout === 'xbars') {
-      return <Xbar />;
-    }
-    return <Hotbar />;
-  }
-
   return (
-    <>
-      <div className={styles.buttonContainer}>
+    <div className={styles.container}>
+      <div className="controlGroup">
+        <label htmlFor="layoutToggle">Layout</label>
         <button
+          id="layoutToggle"
           className={`button ${styles.button} ${styles.buttonToggle}`}
           type="button"
           onClick={toggleHotbarLayout}
         >
           <span
             className={styles.label}
-            data-selected={layout === 'xbars'}
+            data-selected={layouts[layout] === 'xbars'}
           >
             <abbr title="W Cross Hotbar">WXHB</abbr>
           </span>
           <span
             className={styles.label}
-            data-selected={layout === 'hotbars'}
+            data-selected={layouts[layout] === 'hotbars'}
           >
-          Hotbars
+            Hotbars
           </span>
         </button>
-        <Sharing />
       </div>
-
-
-      <HotbarLayout />
-    </>
+    </div>
   );
 }
 
-export default HotbarUI;
+export default LayoutToggle;
