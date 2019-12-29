@@ -10,14 +10,16 @@ export default async (req, res) => {
 
     sitemap.write({
       url: '/',
-      priority: 0.9
+      priority: 0.9,
+      lastmod: '2019-12-29'
     });
 
     // Create each URL row
     advancedJobs.forEach((job) => {
       sitemap.write({
         url: `/job/${job.Abbr}`,
-        priority: 0.9
+        priority: 0.9,
+        lastmod: '2019-12-29'
       });
     });
 
