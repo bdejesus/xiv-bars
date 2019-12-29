@@ -13,7 +13,7 @@ const xBarSlots = (group) => {
   return slotsArr;
 };
 
-const xBars = () => (
+const xbars = () => (
   {
     secondary: xBarSlots('secondary'),
     primary: xBarSlots('primary'),
@@ -45,4 +45,6 @@ const hotbars = () => (
   }
 );
 
-module.exports = { xBars: xBars(), hotbars: hotbars() };
+const layouts = ['xbars', 'hotbars'];
+
+module.exports = { xbars: xbars(), hotbars: hotbars(), layouts };

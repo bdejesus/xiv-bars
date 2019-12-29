@@ -1,17 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Modal from "./Modal";
-import JobSelectContextProvider from './context';
+import SelectedJob from './SelectedJob';
+import JobsList from './JobsList';
+import { useJobSelectState, useJobSelectDispatch } from './context';
+import styles from './styles.scss';
 
-function JobSelect({ jobs, selectedJob }) {
+function Modal({ jobs, selectedJob }) {
+  const DoW = jobs.filter((job) => job.Discipline === 'DOW');
+  const DoM = jobs.filter((job) => job.Discipline === 'DOM');
+  const DoH = jobs.filter((job) => job.Discipline === 'DOH');
+  const DoL = jobs.filter((job) => job.Discipline === 'DOL');
+  const jobSelectDispatch = useJobSelectDispatch();
+  const { isSelectingJob } = useJobSelectState();
+
   return (
-    <JobSelectContextProvider>
-      <Modal jobs={jobs} selectedJob={selectedJob} />
-    </JobSelectContextProvider>
+    <>
+      <button
+        type="button"
+        id="jobSelectButton"
+        className={styles.button}
+        onClick={() => jobSelectDispatch({ type: 'open' })}
+      >
+        <SelectedJob job={selectedJob} />
+      </button>
+
+      <div className={styles.modal} aria-hidden={!isSelectingJob} tabIndex={-1}>
+        <div className={styles.container}>
+          <button
+            type="button"
+            className={styles.closeButton}
+            onClick={() => jobSelectDispatch({ type: 'close' })}
+          >
+            &times; Close
+          </button>
+          <ul className={styles.options} labeledby="jobSelectButton">
+            <li>
+              <JobsList title="DoW" jobs={DoW} />
+            </li>
+            <li>
+              <JobsList title="DoM" jobs={DoM} />
+            </li>
+            <li>
+              <JobsList title="DoH" jobs={DoH} />
+            </li>
+            <li>
+              <JobsList title="DoL" jobs={DoL} />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </>
   );
 }
 
-JobSelect.propTypes = {
+Modal.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape({
     ID: PropTypes.number,
@@ -21,4 +63,4 @@ JobSelect.propTypes = {
   }).isRequired
 };
 
-export default JobSelect;
+export default Modal;

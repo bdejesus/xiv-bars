@@ -1,4 +1,4 @@
-const jobs = [
+const JOBS = [
   {
     Name: 'Alchemist',
     Abbr: 'ALC',
@@ -305,9 +305,9 @@ const jobs = [
   }
 ];
 
-const baseClassIDs = [1, 2, 3, 4, 5, 6, 7, 26, 29];
+const BASE_CLASS_IDS = [1, 2, 3, 4, 5, 6, 7, 26, 29];
 
-const roleActionIDs = {
+const ROLE_ACTION_IDS = {
   TANK: [7531, 7540, 7533, 7538, 7535, 7548, 7537],
   PDPS: [7541, 7863, 7542, 7549, 7548, 7546],
   RDPS: [7554, 7541, 7553, 7557, 7551, 7548],
@@ -315,7 +315,7 @@ const roleActionIDs = {
   HEAL: [16560, 7568, 7561, 7562, 7559, 7571]
 };
 
-const roleNames = {
+const ROLE_NAMES = {
   TANK: 'Tank',
   PDPS: 'Melee DPS',
   RDPS: 'Physical Ranged DPS',
@@ -324,15 +324,15 @@ const roleNames = {
 };
 
 function getAdvancedJobs() {
-  return jobs.filter((job) => !baseClassIDs.includes(job.ID));
+  return JOBS.filter((job) => !BASE_CLASS_IDS.includes(job.ID));
 }
 
-const advancedJobs = getAdvancedJobs();
+const ADVANCED_JOBS = getAdvancedJobs();
 
 function getJobsByDiscipline(discipline) {
-  return advancedJobs.filter((job) => job.Discipline === discipline);
+  return ADVANCED_JOBS.filter((job) => job.Discipline === discipline);
 }
 
 module.exports = {
-  jobs, getJobsByDiscipline, advancedJobs, roleActionIDs, roleNames
+  JOBS, getJobsByDiscipline, ADVANCED_JOBS, ROLE_ACTION_IDS, ROLE_NAMES
 };

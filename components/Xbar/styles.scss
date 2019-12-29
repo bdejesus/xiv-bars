@@ -87,7 +87,7 @@ $group-padding: 10px;
     opacity: 0.25;
     position: absolute;
     text-align: center;
-    width: $xbar-group-width - $slot-size + $slot-border-size * 4;
+    width: $xbar-group-width - $slot-size + $slot-border-size;
   }
   &::before {
     left: 15%;

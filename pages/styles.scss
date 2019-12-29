@@ -1,9 +1,5 @@
 @import 'utils/mixins';
 
-[aria-hidden=true] {
-  display: none;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -13,14 +9,18 @@ html {
 }
 
 body {
-  background-color: #333;
-  background-image: url("/images/black_paper.png");
   background-attachment: fixed;
+  background-color: #333;
+  background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   color: #fff;
-  margin: 0;
   font-family: "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
   line-height: 1.455em;
+  margin: 0;
+}
+
+[aria-hidden=true] {
+  display: none;
 }
 
 a {
@@ -33,24 +33,12 @@ a:hover {
 }
 
 main {
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.container {
-  max-width: 980px;
-  margin: 1px auto;
-  padding: 32px 0;
-}
-
-.primary {
-  margin: 16px auto 0;
-  position: relative;
+  padding-left: $spacing-base;
+  padding-right: $spacing-base;
 }
 
 h1 {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin: 0;
   b {
     opacity: 0.75;
   }
@@ -60,80 +48,142 @@ h2 {
   margin-bottom: 0;
 }
 
-.abbr {
-  font-size: 1.2em;
-  font-family: "Lucida Console", Consolas, monospace;
-  font-weight: 300;
-  margin-right: 0.33em;
+abbr {
+  outline: none;
+  text-decoration: none;
 }
 
-.roleType {
-  margin-top: 0.33em;
-  font-style: italic;
-  opacity: 0.5;
-}
-
-.links {
-  border-top: 2px solid rgba(255, 255, 255, 0.33);
-}
-
-.info {
+label {
   color: #999;
-  font-size: 12px;
-  text-align: right;
-  line-height: 1.45em;
-  margin-bottom: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.info p {
-  margin: 0;
-}
-
-:global(.button) {
-  background: rgba(0, 0, 0, 0.8);
+button {
+  background:
+    rgba(0, 0, 0, 0.8)
+    linear-gradient(
+      rgba(0, 0, 0, 0) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-bottom-color: rgba(255, 255, 255, 0.1);
-  border-right-color: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
+  border-right-color: rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.66);
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;
-  outline: none;
-  padding: 0 16px;
   height: 40px;
+  outline: none;
+  padding: 0 $spacing-base;
   transition:
     background 0.2s ease,
-    border 0.2s ease;
+    color 0.2s ease;
+  + button {
+    margin-left: 1em;
+  }
+  &:hover,
+  &:active,
+  &:focus {
+    color: rgba(255, 255, 255, 1);
+  }
   &:hover,
   &:focus {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom-color: rgba(0, 0, 0, 1);
     border-right-color: rgba(0, 0, 0, 1);
     background:
+      rgba(0, 0, 0, 0.8)
       linear-gradient(
         rgba(0, 0, 0, 1) 0%,
         rgba(255, 255, 255, 0.15) 100%
       );
-    color: rgba(255, 255, 255, 1);
   }
   &:active {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom-color: rgba(255, 255, 255, 0.2);
     border-right-color: rgba(255, 255, 255, 0.2);
   }
+  &:focus {
+    outline: 2px solid #fff;
+  }
   img {
     height: 36px;
     width: 36px;
   }
-  & + :global(.button) {
-    margin-left: 1em;
+}
+
+:global(.container) {
+  margin: 1px auto;
+  max-width: 100%;
+  padding: $spacing-lg;
+}
+
+.header {
+  padding-bottom: 0;
+}
+
+.primary {
+  background-color: rgba(0, 0, 0, 0.66);
+  margin-bottom: $spacing-lg;
+  margin-left: auto;
+  margin-right: auto;
+  padding: $spacing-lg;
+  position: relative;
+}
+
+.articles {
+  border-top: 2px solid rgba(255, 255, 255, 0.33);
+}
+
+.footer {
+  color: #999;
+  font-size: 12px;
+  line-height: 1.45em;
+  margin-bottom: $spacing-base;
+  text-align: right;
+  p {
+    margin: 0;
   }
 }
 
-@media (max-width: $screen-sm) {
+@media (min-width: $screen-xl) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    height: 100vh;
+    padding: 0;
+  }
+  .header {
+    grid-column-start: 2;
+  }
   .primary {
-    margin-top: 0;
-    padding-top: 20px;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: span 6;
+    margin-bottom: 0;
+  }
+  .articles {
+    border-top-color: #333;
+    grid-column-start: 2;
+  }
+  .footer {
+    align-self: flex-end;
+    grid-column-start: 2;
+    grid-row-start: 6;
+  }
+}
+
+@media (max-width: $screen-md) {
+  main {
+    padding: 0;
+  }
+  .header {
+    :global(.container) {
+      padding-bottom: 0;
+    }
   }
 }

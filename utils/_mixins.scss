@@ -14,11 +14,19 @@ $primary-xbar-group-height: $outer-primary-slot-size * 2 + $slot-spacing / 2;
 $primary-xbar-group-width: $outer-primary-slot-size * 3;
 $primary-xbar-width: $primary-xbar-group-width * 3;
 
+$sidebar-width: 326px;
+
+$spacing-base: 16px;
+$spacing-lg: 32px;
+
 $screen-xxs: 320px;
 $screen-xs: 480px;
-$screen-xs-max: 719px;
 $screen-sm: 720px;
-$screen-sm-max: 979px;
-$screen-md: 980px;
-$screen-md-max: 1079px;
 $screen-lg: 1080px;
+$screen-xl: 1500px;
+$screen-md: 980px;
+
+$screen-xs-max: $screen-sm - 1;
+$screen-sm-max: $screen-md - 1;
+$screen-md-max: $screen-lg - 1;
+$screen-lg-max: $screen-xl - 1;

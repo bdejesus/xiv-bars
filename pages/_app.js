@@ -1,7 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
-import { Meta, Icons } from './app';
+import { Meta, Icons } from './includes';
 
 class AppContainer extends App {
   render() {

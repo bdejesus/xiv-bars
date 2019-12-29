@@ -58,5 +58,7 @@ JobSelectContextProvider.propTypes = {
 
 export default JobSelectContextProvider;
 export {
-  useJobSelectState, useJobSelectDispatch
+  JobSelectContextProvider,
+  useJobSelectState,
+  useJobSelectDispatch
 };

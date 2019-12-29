@@ -7,6 +7,7 @@ function Job({ job }) {
   return (
     <div className={styles.wrapper}>
       <img
+        className={styles.icon}
         src={`//xivapi.com/${job.Icon}`}
         alt=""
         draggable={false}

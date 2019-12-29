@@ -28,21 +28,25 @@ function Sharing() {
   }
 
   return (
-    <div className={styles.container} data-copied={copied}>
-      <input
-        className={styles.shareUrlInput}
-        type="text"
-        value={`https://xivbars.josebenedicto.com?${queryString}`}
-        ref={urlInput}
-        onClick={selectInput}
-        readOnly
-      />
+    <div className={`${styles.container}`} data-copied={copied}>
+      <div className="controlGroup">
+        <label htmlFor="shareUrl">Share URL</label>
+        <input
+          id="shareUrl"
+          className={styles.shareUrlInput}
+          type="text"
+          value={`https://xivbars.josebenedicto.com?${queryString}`}
+          ref={urlInput}
+          onClick={selectInput}
+          readOnly
+        />
+      </div>
       <button
         type="button"
         className="button"
         onClick={copyUrl}
       >
-      Copy Share URL
+      Copy URL
       </button>
     </div>
   );
