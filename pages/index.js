@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import XIVAPI from 'xivapi-js';
 import { ascByKey } from 'utils';
-import { advancedJobs, roleActionIDs } from 'models/jobs';
+import { advancedJobs, roleActionIDs, roleNames } from 'models/jobs';
 import XIVBars from './XIVBars';
 
 import styles from './styles.scss';
@@ -23,6 +23,7 @@ function Index({
               <span className={styles.abbr}>{selectedJob.Abbr}</span>
               <b>{selectedJob.Name}</b>
             </h1>
+            <div className={styles.roleType}>{roleNames[selectedJob.Role]}</div>
             <h2>XIV Bars</h2>
           </>
         ) : (

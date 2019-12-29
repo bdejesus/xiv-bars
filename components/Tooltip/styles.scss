@@ -32,16 +32,21 @@ $tooltip-width: 320px;
     margin-left: $outer-slot-size + 4px;
   }
   &.left {
-    margin-left: -$tooltip-width - $outer-slot-size - 4px;
+    margin-left: -$tooltip-width - 6px;
   }
   &.bottom {
     bottom: 0;
     top: unset;
   }
+  div {
+    margin: 0.66em 0;
+  }
 }
 
 .title {
   margin: 0;
+  font-size: 16px;
+  margin-bottom: 0.66em;
 }
 
 .description {

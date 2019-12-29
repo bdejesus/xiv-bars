@@ -8,17 +8,20 @@ function Sharing() {
   const router = useRouter();
   const XIVBarsState = useXIVBarsState();
   const [copied, setCopied] = useState(false);
+  const urlInput = createRef();
   const slotsQuery = (/\d/).test(XIVBarsState.encodedSlots) ? XIVBarsState.encodedSlots : '';
   const query = { ...router.query, s: slotsQuery };
   const queryString = Object.keys(query)
     .filter((key) => query[key] !== '')
     .map((key) => `${key}=${query[key]}`)
     .join('&');
-  const urlInput = createRef();
 
-  function copyUrl() {
+  function selectInput() {
     urlInput.current.focus();
     urlInput.current.select();
+  }
+  function copyUrl() {
+    selectInput();
     document.execCommand('copy');
     setCopied(true);
     setTimeout(() => { setCopied(false); }, 3000);
@@ -31,6 +34,7 @@ function Sharing() {
         type="text"
         value={`https://xivbars.josebenedicto.com?${queryString}`}
         ref={urlInput}
+        onClick={selectInput}
         readOnly
       />
       <button
