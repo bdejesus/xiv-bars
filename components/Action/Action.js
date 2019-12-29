@@ -30,7 +30,7 @@ export default function Action({ action }) {
     return function cleanup() {
       clearTimeout(tooltipTimeout);
     };
-  }, []);
+  }, [hovering]);
 
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);

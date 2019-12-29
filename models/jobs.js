@@ -315,6 +315,14 @@ const roleActionIDs = {
   HEAL: [16560, 7568, 7561, 7562, 7559, 7571]
 };
 
+const roleNames = {
+  TANK: 'Tank',
+  PDPS: 'Melee DPS',
+  RDPS: 'Physical Ranged DPS',
+  MDPS: 'Magic Ranged DPS',
+  HEAL: 'Healer'
+};
+
 function getAdvancedJobs() {
   return jobs.filter((job) => !baseClassIDs.includes(job.ID));
 }
@@ -326,5 +334,5 @@ function getJobsByDiscipline(discipline) {
 }
 
 module.exports = {
-  jobs, getJobsByDiscipline, advancedJobs, roleActionIDs
+  jobs, getJobsByDiscipline, advancedJobs, roleActionIDs, roleNames
 };
