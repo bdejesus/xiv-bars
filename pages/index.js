@@ -6,7 +6,12 @@ import { ADVANCED_JOBS, ROLE_ACTION_IDS } from 'data/jobs';
 import Header from 'components/Header';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
+import JobSelect from 'components/JobSelect';
+import { JobSelectContextProvider } from 'components/JobSelect/context';
+import JobMenu from 'components/JobSelect/JobMenu';
+import Sharing from 'components/Sharing';
 import XIVBars from './XIVBars';
+import { XIVBarsContextProvider } from './XIVBars/context';
 
 import styles from './styles.scss';
 
@@ -18,19 +23,46 @@ function Index({
   query
 }) {
   return (
-    <>
-      <div className={styles.header}>
-        <Header query={query} selectedJob={selectedJob} />
-      </div>
+    <XIVBarsContextProvider actions={actions}>
+      {(selectedJob) ? (
+        <>
+          <div className={styles.header}>
+            <div className="container">
+              <div className="row">
+                <JobSelectContextProvider>
+                  <JobSelect jobs={jobs} selectedJob={selectedJob} />
+                </JobSelectContextProvider>
+                <Sharing />
+              </div>
 
-      <div className={styles.primary}>
-        <XIVBars
-          jobs={jobs}
-          actions={actions}
-          selectedJob={selectedJob}
-          roleActions={roleActions}
-        />
-      </div>
+              <div className={styles.description}>
+                {/* eslint-disable-next-line react/no-danger */}
+                <p dangerouslySetInnerHTML={{ __html: selectedJob.Description }} />
+              </div>
+
+            </div>
+          </div>
+          <div className={styles.primary}>
+            <XIVBars
+              jobs={jobs}
+              actions={actions}
+              selectedJob={selectedJob}
+              roleActions={roleActions}
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.header}>
+            <Header query={query} selectedJob={selectedJob} jobs={jobs} />
+          </div>
+          <div className={styles.primary}>
+            <JobSelectContextProvider>
+              <JobMenu jobs={jobs} />
+            </JobSelectContextProvider>
+          </div>
+        </>
+      )}
 
       <div className={styles.articles}>
         <Articles />
@@ -39,7 +71,7 @@ function Index({
       <div className={styles.footer}>
         <Footer />
       </div>
-    </>
+    </XIVBarsContextProvider>
   );
 }
 
@@ -65,41 +97,35 @@ Index.getInitialProps = async (req) => {
 
   // Get Selected Job
   const { query } = ctx;
+  const selectedJob = query.job ? decoratedJobs.find((job) => job.Abbr === query.job) : null;
 
-  let queryId = 'BRD';
-
-  const getSelectedJob = () => {
-    if (query.job) {
-      queryId = query.job;
-    }
-    return decoratedJobs.find((job) => job.Abbr === queryId);
-  };
-
-  const selectedJob = getSelectedJob();
-
-  // Get Job Actions
-  const jobActionsData = await api.search('', {
-    filters: `ClassJob.ID=${selectedJob.ID}`
-  });
-  let jobActions = jobActionsData.Results;
-
-  if (selectedJob.ClassID !== null) {
-    const classActionsReq = await api.search('', {
-      filters: `ClassJob.ID=${selectedJob.ClassID}`
-    });
-    jobActions = jobActions.concat(classActionsReq.Results);
-  }
-
-  jobActions = jobActions.filter((action) => action.UrlType === 'Action');
-  jobActions = jobActions.sort(ascByKey('Icon'));
-  jobActions = jobActions.filter(
-    (action, index, self) => index === self.findIndex((t) => t.Name === action.Name)
-  );
-
+  let jobActions = [];
   let roleActions = [];
-  if (selectedJob.Role) {
-    const roleActionsData = await api.data.list('Action', { ids: ROLE_ACTION_IDS[selectedJob.Role].toString() });
-    roleActions = roleActionsData.Results;
+
+  if (selectedJob) {
+    // Get Job Actions
+    const jobActionsData = await api.search('', {
+      filters: `ClassJob.ID=${selectedJob.ID}`
+    });
+    jobActions = jobActionsData.Results;
+
+    if (selectedJob.ClassID !== null) {
+      const classActionsReq = await api.search('', {
+        filters: `ClassJob.ID=${selectedJob.ClassID}`
+      });
+      jobActions = jobActions.concat(classActionsReq.Results);
+    }
+
+    jobActions = jobActions.filter((action) => action.UrlType === 'Action');
+    jobActions = jobActions.sort(ascByKey('Icon'));
+    jobActions = jobActions.filter(
+      (action, index, self) => index === self.findIndex((t) => t.Name === action.Name)
+    );
+
+    if (selectedJob.Role) {
+      const roleActionsData = await api.data.list('Action', { ids: ROLE_ACTION_IDS[selectedJob.Role].toString() });
+      roleActions = roleActionsData.Results;
+    }
   }
 
   return {
