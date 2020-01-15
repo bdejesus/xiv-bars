@@ -36,6 +36,16 @@ class AppContainer extends App {
     return (
       <>
         <Head>
+          <title>
+            {title}
+          </title>
+          <Meta
+            title={title}
+            description={description}
+            canonical={canonicalUrl}
+          />
+          <Icons />
+
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
           <script
             async
@@ -53,15 +63,6 @@ class AppContainer extends App {
             `
           }}
           />
-          <title>
-            {title}
-          </title>
-          <Meta
-            title={title}
-            description={description}
-            canonical={canonicalUrl}
-          />
-          <Icons />
         </Head>
 
         <main>

@@ -23,9 +23,9 @@ function Index({
   query
 }) {
   return (
-    <XIVBarsContextProvider actions={actions}>
+    <>
       {(selectedJob) ? (
-        <>
+        <XIVBarsContextProvider actions={actions}>
           <div className={styles.header}>
             <div className="container">
               <div className="row">
@@ -50,7 +50,7 @@ function Index({
               roleActions={roleActions}
             />
           </div>
-        </>
+        </XIVBarsContextProvider>
       ) : (
         <>
           <div className={styles.header}>
@@ -71,7 +71,7 @@ function Index({
       <div className={styles.footer}>
         <Footer />
       </div>
-    </XIVBarsContextProvider>
+    </>
   );
 }
 
