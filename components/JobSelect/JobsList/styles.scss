@@ -45,3 +45,9 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media (max-width: $screen-xs) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+}
