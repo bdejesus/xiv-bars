@@ -17,7 +17,7 @@ yarn install
 
 Run the app
 ```
-yarn start
+yarn dev
 ```
 
 Once the app is running in development mode, open [http://localhost:3000](http://localhost:5000) to view it in the browser.
