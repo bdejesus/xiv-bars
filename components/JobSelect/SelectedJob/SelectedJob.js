@@ -14,7 +14,9 @@ function SelectedJob({ job }) {
           <abbr className={styles.abbr}>{ job.Abbr }</abbr>
           <span className={styles.name}>{job.Name}</span>
         </div>
-        <div className={styles.role}>{ROLE_NAMES[job.Role]}</div>
+        <div className={styles.role}>
+          {job.Discipline} {job.Role && (`• ${ROLE_NAMES[job.Role]}`)}
+        </div>
       </div>
     </div>
   );

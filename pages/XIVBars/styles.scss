@@ -25,7 +25,8 @@
   align-items: flex-start;
   display: flex;
   flex-direction: row;
-  padding-bottom: $spacing-base;
+  justify-content: flex-start;
+  padding-bottom: $spacing-lg;
 }
 
 .listActions {
