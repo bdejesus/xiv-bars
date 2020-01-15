@@ -24,7 +24,7 @@ class AppContainer extends App {
 
     function generateDescription() {
       if (query && query.job) {
-        return `W Cross Hotbar (WXHB) simulator for ${selectedJob.Name} (${selectedJob.Abbr}) Final Fantasy XIV Job Class. Simulate what your hotbar actions could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.`;
+        return selectedJob.Description;
       }
       return 'XIV Bars is a simple app for previewing the Final Fantasy XIV W Cross HotBar (WXHB). Simulate what your hotbar actions could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.';
     }

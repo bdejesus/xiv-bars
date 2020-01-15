@@ -121,6 +121,13 @@ button {
   padding: $spacing-lg;
 }
 
+:global(.row) {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .header {
   padding-bottom: 0;
 }
@@ -149,31 +156,40 @@ button {
   }
 }
 
+// Sections
+
+.description p {
+  margin-bottom: 0;
+}
+
 @media (min-width: $screen-xl) {
   main {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(12, 1fr);
     height: 100vh;
     padding: 0;
   }
   .header {
-    grid-column-start: 2;
+    background-color: rgba(0, 0, 0, 0.9);
+    grid-column-start: 1;
+    grid-row-start: 1;
   }
   .primary {
     grid-column-start: 1;
-    grid-row-start: 1;
-    grid-row-end: span 6;
+    grid-row-start: 2;
+    grid-row-end: span 11;
     margin-bottom: 0;
   }
   .articles {
-    border-top-color: #333;
+    border-top: none;
     grid-column-start: 2;
+    grid-row-end: span 11;
   }
   .footer {
     align-self: flex-end;
     grid-column-start: 2;
-    grid-row-start: 6;
+    grid-row-start: 12;
   }
 }
 
@@ -181,9 +197,10 @@ button {
   main {
     padding: 0;
   }
-  .header {
-    :global(.container) {
-      padding-bottom: 0;
-    }
+}
+
+@media (max-width: $screen-sm) {
+  :global(.row) {
+    flex-direction: column;
   }
 }

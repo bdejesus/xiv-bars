@@ -1,15 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SelectedJob from './SelectedJob';
-import JobsList from './JobsList';
+import JobMenu from './JobMenu';
 import { useJobSelectState, useJobSelectDispatch } from './context';
 import styles from './styles.scss';
 
 function Modal({ jobs, selectedJob }) {
-  const DoW = jobs.filter((job) => job.Discipline === 'DOW');
-  const DoM = jobs.filter((job) => job.Discipline === 'DOM');
-  const DoH = jobs.filter((job) => job.Discipline === 'DOH');
-  const DoL = jobs.filter((job) => job.Discipline === 'DOL');
   const jobSelectDispatch = useJobSelectDispatch();
   const { isSelectingJob } = useJobSelectState();
 
@@ -33,20 +29,8 @@ function Modal({ jobs, selectedJob }) {
           >
             &times; Close
           </button>
-          <ul className={styles.options} labeledby="jobSelectButton">
-            <li>
-              <JobsList title="DoW" jobs={DoW} />
-            </li>
-            <li>
-              <JobsList title="DoM" jobs={DoM} />
-            </li>
-            <li>
-              <JobsList title="DoH" jobs={DoH} />
-            </li>
-            <li>
-              <JobsList title="DoL" jobs={DoL} />
-            </li>
-          </ul>
+
+          <JobMenu jobs={jobs} />
         </div>
       </div>
     </>
