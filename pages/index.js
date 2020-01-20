@@ -9,7 +9,6 @@ import Footer from 'components/Footer';
 import JobSelect from 'components/JobSelect';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
 import JobMenu from 'components/JobSelect/JobMenu';
-import Sharing from 'components/Sharing';
 import XIVBars from './XIVBars';
 import { XIVBarsContextProvider } from './XIVBars/context';
 
@@ -32,7 +31,6 @@ function Index({
                 <JobSelectContextProvider>
                   <JobSelect jobs={jobs} selectedJob={selectedJob} />
                 </JobSelectContextProvider>
-                <Sharing />
               </div>
 
               <div className={styles.description}>
