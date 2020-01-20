@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { GENERAL_ACTIONS } from 'data/actions';
 import UILayout from 'components/UILayout';
 import LayoutToggle from 'components/LayoutToggle';
+import Sharing from 'components/Sharing';
 import Action from 'components/Action';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
@@ -29,6 +30,7 @@ function XIVBars({
         <SelectedActionContextProvider>
           <div ref={containerEl} className={styles.appContainer}>
             <div className={`${styles.controlPanel} ${styles.container}`}>
+              <Sharing />
               <LayoutToggle />
             </div>
 
@@ -75,7 +77,6 @@ function XIVBars({
                 <UILayout />
               </div>
             </div>
-
             <LoadScreen />
             <Tooltip container={containerRect} />
           </div>

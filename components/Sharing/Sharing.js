@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useXIVBarsState } from '~/XIVBars/context';
 
@@ -16,10 +16,16 @@ function Sharing() {
     .map((key) => `${key}=${query[key]}`)
     .join('&');
 
+  useEffect(() => {
+    console.log(XIVBarsState);
+  });
+
   function selectInput() {
+    console.log(XIVBarsState);
     urlInput.current.focus();
     urlInput.current.select();
   }
+
   function copyUrl() {
     selectInput();
     document.execCommand('copy');

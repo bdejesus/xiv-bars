@@ -5,6 +5,7 @@
   align-items: flex-end;
   display: flex;
   position: relative;
+  margin-right: $spacing-lg;
   &::after {
     align-items: center;
     background-color: rgba(0, 0, 0, 1);
@@ -48,6 +49,9 @@
 }
 
 @media (max-width: $screen-xs) {
+  .container {
+    margin-right: 0;
+  }
   .shareUrlInput {
     width: 200px;
   }
