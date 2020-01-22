@@ -4,11 +4,13 @@ function Footer() {
   return (
     <div className="container">
       <p>
+        <a href="https://github.com/bdejesus/xiv-bars">GitHub</a>
+      </p>
+      <p>
         <a href="https://xivapi.com/">Powered by XIVAPI</a>
       </p>
       <p>
-        All Final Fantasy XIV content is property of Square Enix Co.,
-        LTD
+        All Final Fantasy XIV content is property of Square Enix Co., LTD
       </p>
     </div>
   );
