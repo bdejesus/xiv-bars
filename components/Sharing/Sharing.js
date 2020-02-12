@@ -1,4 +1,6 @@
-import React, { createRef, useState, useEffect } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
+import React, { createRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useXIVBarsState } from '~/XIVBars/context';
 
@@ -16,12 +18,7 @@ function Sharing() {
     .map((key) => `${key}=${query[key]}`)
     .join('&');
 
-  useEffect(() => {
-    console.log(XIVBarsState);
-  });
-
   function selectInput() {
-    console.log(XIVBarsState);
     urlInput.current.focus();
     urlInput.current.select();
   }
