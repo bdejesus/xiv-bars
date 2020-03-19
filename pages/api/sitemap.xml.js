@@ -1,5 +1,5 @@
-import { SitemapStream, streamToPromise } from 'sitemap';
-import { advancedJobs } from 'data/jobs';
+const { SitemapStream, streamToPromise } = require('sitemap');
+const { ADVANCED_JOBS } = require('data/jobs');
 
 export default async (req, res) => {
   try {
@@ -15,7 +15,8 @@ export default async (req, res) => {
     });
 
     // Create each URL row
-    advancedJobs.forEach((job) => {
+
+    ADVANCED_JOBS.forEach((job) => {
       sitemap.write({
         url: `/job/${job.Abbr}`,
         priority: 0.9,
