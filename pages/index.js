@@ -138,9 +138,13 @@ Index.getInitialProps = async (req) => {
 Index.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  selectedJob: PropTypes.shape().isRequired,
+  selectedJob: PropTypes.shape(),
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   query: PropTypes.shape().isRequired
+};
+
+Index.defaultProps = {
+  selectedJob: null
 };
 
 export default Index;
