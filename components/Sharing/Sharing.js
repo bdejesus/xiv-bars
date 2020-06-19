@@ -26,6 +26,7 @@ function Sharing() {
   function copyUrl() {
     selectInput();
     document.execCommand('copy');
+    urlInput.current.blur();
     setCopied(true);
     setTimeout(() => { setCopied(false); }, 3000);
   }
@@ -49,7 +50,7 @@ function Sharing() {
         className="button"
         onClick={copyUrl}
       >
-      Copy URL
+        Copy URL
       </button>
     </div>
   );
