@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import XIVAPI from 'xivapi-js';
 import { ascByKey } from 'utils';
 import { ADVANCED_JOBS, ROLE_ACTION_IDS } from 'data/jobs';
 import Header from 'components/Header';
@@ -9,6 +8,7 @@ import Footer from 'components/Footer';
 import JobSelect from 'components/JobSelect';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
 import JobMenu from 'components/JobSelect/JobMenu';
+import fetch from 'node-fetch';
 import XIVBars from './XIVBars';
 import { XIVBarsContextProvider } from './XIVBars/context';
 
@@ -76,12 +76,14 @@ function Index({
 Index.getInitialProps = async (req) => {
   const ctx = req;
 
-  // eslint-disable-next-line global-require
-  const api = new XIVAPI();
+  // TODO: Refactor API calls into a separate lib component
+  const apiUrl = 'https://xivapi.com';
 
   // Get Jobs List
-  const jobsData = await api.data.list('ClassJob');
-  const jobs = jobsData.Results.sort(ascByKey('Name'));
+  const jobsData = await fetch(`${apiUrl}/ClassJob`)
+    .then((res) => res.json())
+    .then((json) => json.Results);
+  const jobs = jobsData.sort(ascByKey('Name'));
 
   function decorateJobs() {
     const decoratedData = ADVANCED_JOBS.map((advancedJob) => {
@@ -100,29 +102,30 @@ Index.getInitialProps = async (req) => {
   let jobActions = [];
   let roleActions = [];
 
+  // Fetch Actions
   if (selectedJob) {
-    // Get Job Actions
-    const jobActionsData = await api.search('', {
-      filters: `ClassJob.ID=${selectedJob.ID}`
-    });
-    jobActions = jobActionsData.Results;
+    const jobActionRequest = `${apiUrl}/search?indexes=Action,CraftAction&filters=ClassJobTargetID=${selectedJob.ID}`;
 
-    if (selectedJob.ClassID !== null) {
-      const classActionsReq = await api.search('', {
-        filters: `ClassJob.ID=${selectedJob.ClassID}`
+    jobActions = await fetch(jobActionRequest)
+      .then((res) => res.json())
+      .then(async (actions) => {
+        let classJobActions = [];
+        if (selectedJob.ClassID !== null) {
+          const classJobActionsRequest = `${apiUrl}/search?indexes=Action,CraftAction&filters=ClassJobTargetID=${selectedJob.ClassID}`;
+          classJobActions = await fetch(classJobActionsRequest)
+            .then((res) => res.json())
+            .then((json) => json.Results);
+        }
+        return [...classJobActions, ...actions.Results];
       });
-      jobActions = jobActions.concat(classActionsReq.Results);
-    }
-
-    jobActions = jobActions.filter((action) => action.UrlType === 'Action');
-    jobActions = jobActions.sort(ascByKey('Icon'));
-    jobActions = jobActions.filter(
-      (action, index, self) => index === self.findIndex((t) => t.Name === action.Name)
-    );
 
     if (selectedJob.Role) {
-      const roleActionsData = await api.data.list('Action', { ids: ROLE_ACTION_IDS[selectedJob.Role].toString() });
-      roleActions = roleActionsData.Results;
+      // Refactor this is pull IDS from ClassJob object instead of ROLE_ACTION_IDS
+      roleActions = await fetch(
+        `${apiUrl}/Action?ids=${ROLE_ACTION_IDS[selectedJob.Role].toString()}`
+      )
+        .then((res) => res.json())
+        .then((json) => json.Results);
     }
   }
 
