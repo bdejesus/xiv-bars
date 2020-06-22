@@ -1,15 +1,12 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ascByKey } from 'utils';
-import { ADVANCED_JOBS, ROLE_ACTION_IDS } from 'data/jobs';
 import Header from 'components/Header';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import JobSelect from 'components/JobSelect';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
 import JobMenu from 'components/JobSelect/JobMenu';
-import fetch from 'node-fetch';
 import { listJobs, listJobActions, listRoleActions } from 'lib/api';
 import XIVBars from './XIVBars';
 import { XIVBarsContextProvider } from './XIVBars/context';
