@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
-import fetch from 'node-fetch';
+import { getContent } from 'lib/api';
 
 const TooltipContext = createContext();
 const TooltipDispatchContext = createContext();
@@ -55,8 +55,7 @@ async function updateTooltip(dispatch, data) {
   const { action, position } = data;
   dispatch({ type: 'startUpdate', data });
   try {
-    const request = `https://xivapi.com/${action.UrlType}/${action.ID}`;
-    const content = await fetch(request).then((res) => res.json());
+    const content = await getContent(action.UrlType, action.ID);
 
     if (content.Description) {
       dispatch({ type: 'finishUpdate', content, position });
