@@ -11,7 +11,7 @@ html {
 body {
   background-attachment: fixed;
   background-color: #333;
-  background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   color: #fff;
   font-family: "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 14px;
@@ -32,11 +32,6 @@ a:hover {
   text-decoration: underline;
 }
 
-main {
-  padding-left: $spacing-base;
-  padding-right: $spacing-base;
-}
-
 h1 {
   margin: 0;
   b {
@@ -46,6 +41,10 @@ h1 {
 
 h2 {
   margin-bottom: 0;
+}
+
+h3 {
+  margin-top: 0;
 }
 
 abbr {
@@ -134,18 +133,14 @@ button {
 
 .primary {
   background-color: rgba(0, 0, 0, 0.66);
-  margin-bottom: $spacing-lg;
   margin-left: auto;
   margin-right: auto;
   padding: $spacing-lg;
   position: relative;
 }
 
-.articles {
-  border-top: 2px solid rgba(255, 255, 255, 0.33);
-}
-
 .footer {
+  border-top: 2px solid rgba(0,0,0,0.66);
   color: #999;
   font-size: 12px;
   line-height: 1.45em;
