@@ -5,5 +5,6 @@ module.exports = {
   components: path.join(__dirname, './components'),
   constants: path.join(__dirname, './constants'),
   data: path.join(__dirname, './data'),
-  utils: path.join(__dirname, './utils')
+  utils: path.join(__dirname, './utils'),
+  lib: path.join(__dirname, './lib')
 };
