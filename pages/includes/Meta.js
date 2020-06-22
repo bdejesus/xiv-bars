@@ -53,8 +53,12 @@ export function Meta({ title, description, canonical }) {
 
 Meta.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   canonical: PropTypes.string.isRequired
+};
+
+Meta.defaultProps = {
+  description: ''
 };
 
 export default Meta;
