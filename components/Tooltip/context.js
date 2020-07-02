@@ -13,6 +13,12 @@ function tooltipReducer(state, payload) {
         position: { left: 0, top: 0 }
       };
     }
+    case 'updatePosition': {
+      return {
+        ...state,
+        position: payload.mouse
+      }
+    }
     case 'startUpdate': {
       return {
         content: {},
