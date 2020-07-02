@@ -6,20 +6,9 @@ import styles from './styles.scss';
 
 function Tooltip({ container }) {
   const tooltipEl = createRef();
+  const [positionStyle, setPositionStyle] = useState({transform: 'none'});
   const [anchor, setAnchor] = useState('right');
   const { content, position } = useTooltipState();
-
-  function positionTooltip() {
-    if (container.width) {
-      const tooltipRect = tooltipEl.current.getBoundingClientRect();
-      const containerWidth = container.width;
-      const hBounds = tooltipRect.width + tooltipRect.left;
-      const hPos = hBounds >= containerWidth ? 'left' : 'right';
-      setAnchor(styles[hPos]);
-    } else {
-      setAnchor(styles.right);
-    }
-  }
 
   useEffect(() => {
     // positionTooltip();
@@ -43,13 +32,17 @@ function Tooltip({ container }) {
     );
   };
 
+  useEffect(() => {
+    const posStyle = { 
+      transform: `translate(${position.x}px, ${position.y}px)` 
+    };
+    setPositionStyle(posStyle);
+  }, [position]);
+
   return (
     <div
       className={`${styles.tooltip} ${anchor}`}
-      style={{
-        left: position.left - container.left,
-        top: position.top - container.top,
-      }}
+      style={positionStyle}
       ref={tooltipEl}
       aria-hidden={!content.Name && !content.Description}
     >

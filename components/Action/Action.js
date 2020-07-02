@@ -38,7 +38,9 @@ export default function Action({ action }) {
     tooltipDispatch({ type: 'hide' });
   }
 
-  function handleMouseMove() {
+  function handleMouseMove(e) {
+    const mouse = { x: e.clientX, y: e.clientY };
+    tooltipDispatch({ type: 'updatePosition', mouse })
     clearTimeout(tooltipTimeout);
 
     tooltipTimeout = setTimeout(() => {
@@ -72,7 +74,7 @@ export default function Action({ action }) {
         draggable
         onDragStart={selectAction}
         onDragEnd={handleDragEnd}
-        onMouseMove={handleMouseMove}
+        onMouseMove={(e) => handleMouseMove(e)}
         onMouseLeave={handleMouseLeave}
         onBlur={handleMouseLeave}
         role="button"

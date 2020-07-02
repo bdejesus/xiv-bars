@@ -3,6 +3,8 @@
 $tooltip-width: 320px;
 
 .tooltip {
+  left: 0;
+  top: 0;
   animation: tooltipEnter 0.33s ease;
   animation-fill-mode: forwards;
   border: 1px solid #666;
@@ -11,33 +13,21 @@ $tooltip-width: 320px;
   background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
   font-weight: 400;
-  margin-left: 8px;
   opacity: 1;
   padding: 10px 16px;
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   text-align: left;
-  top: 0;
-  transform: scale(1.05);
   transition:
     opacity 0.33s ease,
     transform 0.33s ease;
   transition-delay: 0s;
+  transform-origin: left top;
   width: $tooltip-width;
   white-space: pre-wrap;
   z-index: 10;
   &[aria-hidden=true] {
     display: none;
-  }
-  &.right {
-    margin-left: $outer-slot-size + 4px;
-  }
-  &.left {
-    margin-left: -$tooltip-width - 6px;
-  }
-  &.bottom {
-    bottom: 0;
-    top: unset;
   }
   div {
     margin: 0.66em 0;
@@ -59,10 +49,8 @@ $tooltip-width: 320px;
 @keyframes tooltipEnter {
   from {
     opacity: 0;
-    transform: translateX(-10px) scale(0.975);
   }
   to {
     opacity: 1;
-    transform: translateX(0) scale(1);
   }
 }
