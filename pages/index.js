@@ -10,6 +10,7 @@ import JobMenu from 'components/JobSelect/JobMenu';
 import { listJobs, listJobActions, listRoleActions } from 'lib/api';
 import XIVBars from './XIVBars';
 import { XIVBarsContextProvider } from './XIVBars/context';
+import LoadScreen from 'components/LoadScreen';
 
 import styles from './styles.scss';
 
@@ -72,6 +73,8 @@ function Index({
       <div className={styles.footer}>
         <Footer />
       </div>
+
+      <LoadScreen />
     </>
   );
 }
