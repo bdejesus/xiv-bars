@@ -1,4 +1,4 @@
-Sitemap: https://xivbars.josebenedicto.com/api/sitemap.xml
+Sitemap: https://xivbars.bejezus.com/api/sitemap.xml
 
 User-agent: *
 Allow: /*
