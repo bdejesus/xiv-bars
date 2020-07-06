@@ -4636,7 +4636,7 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-express@^4.17.1:
+express@^4.16.2, express@^4.17.1:
   version "4.17.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.17.1.tgz#4491fc38605cf51f8629d39c2b5d026f98a4c134"
   integrity sha512-mHJ9O79RqluphRrcw2X/GTh3k9tVv8YcoyY4Kkh4WDMUYKRZUq0h1o0w2rrrxBqM7VoeUVqgb27xlEMXTnYt4g==
@@ -9601,6 +9601,13 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     safer-buffer "^2.0.2"
     tweetnacl "~0.14.0"
+
+ssl-express-www@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/ssl-express-www/-/ssl-express-www-3.0.7.tgz#98e3b16625f8e9cbc23e1e71c17d34e56825f635"
+  integrity sha512-wy//77++Nq06Aw6dNaBSFUfZfHDlvfylk/GSIieVZFDYYbb8+wNfTVWlRTBaUILYXR7OXDo7T5XcYteR5m9Xwg==
+  dependencies:
+    express "^4.16.2"
 
 ssri@^6.0.1:
   version "6.0.1"
