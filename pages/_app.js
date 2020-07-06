@@ -19,9 +19,9 @@ class AppContainer extends App {
 
     function generateCanonicalUrl() {
       if (query && query.job) {
-        return `https://xivbars.josebenedicto.com/job/${selectedJob.Abbr}`;
+        return `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
       }
-      return 'https://xivbars.josebenedicto.com';
+      return 'https://xivbars.bejezus.com';
     }
 
     function generateDescription() {

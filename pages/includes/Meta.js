@@ -19,15 +19,15 @@ export function Meta({ title, description, canonical }) {
                 "@type": "CreativeWork",
                 "name": "${title}",
                 "description": "${description}",
-                "image": "https://xivbars.josebenedicto.com/images/xivbars-thumb.png",
-                "thumbnailUrl": "https://xivbars.josebenedicto.com/images/xivbars-thumb.png",
+                "image": "https://xivbars.bejezus.com/images/xivbars-thumb.png",
+                "thumbnailUrl": "https://xivbars.bejezus.com/images/xivbars-thumb.png",
                 "author": {
                   "@type": "Person",
                   "name": "Ben de Jesus",
                   "disambiguatingDescription": "Graphic Designer, UI Developer, Photographer",
                   "knowsAbout": "Graphic Design, Web Design, HTML, CSS, Javascript, React, Photography",
                   "sameAs": [
-                    "https://josebenedicto.com",
+                    "https://bejezus.com",
                     "https://instagram.com/bejezus",
                     "https://www.flickr.com/photos/bendjsf/"
                   ]

@@ -39,7 +39,7 @@ function Sharing() {
           id="shareUrl"
           className={styles.shareUrlInput}
           type="text"
-          value={`https://xivbars.josebenedicto.com?${queryString}`}
+          value={`https://xivbars.bejezus.com?${queryString}`}
           ref={urlInput}
           onClick={selectInput}
           readOnly
