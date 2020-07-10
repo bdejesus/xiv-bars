@@ -56,7 +56,7 @@ function Index({
       ) : (
         <>
           <div className={styles.header}>
-            <Header query={query} selectedJob={selectedJob} jobs={jobs} />
+            <Header selectedJob={selectedJob} />
           </div>
           <div className={styles.primary}>
             <JobSelectContextProvider>
@@ -67,6 +67,9 @@ function Index({
       )}
 
       <div className={styles.articles}>
+        {(selectedJob) && (
+          <Header selectedJob={selectedJob} />
+        )}
         <Articles />
       </div>
 

@@ -16,6 +16,7 @@
   padding: 10px;
   a {
     background-color: rgba(255, 255, 255, 0);
+    border: 1px solid rgba(0,0,0,0);
     color: #fff;
     display: block;
     padding: 4px 10px 4px 4px;
@@ -31,6 +32,7 @@
           rgba(0, 0, 0, 0),
           rgba(255, 255, 255, 0.1)
         );
+      border-color: rgba(255,255,255,0.25);
       border-radius: 2px;
       text-decoration: none;
       img {
