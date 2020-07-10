@@ -90,10 +90,10 @@ $group-padding: 10px;
     width: $xbar-group-width - $slot-size + $slot-border-size;
   }
   &::before {
-    left: 15%;
+    left: 17%;
   }
   &::after {
-    right: 15%;
+    right: 17%;
   }
 }
 

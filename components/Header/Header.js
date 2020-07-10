@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './styles.scss';
 
-function Header() {
+function Header({ selectedJob }) {
   return (
     <div className="container">
-      <h1>XIV Bars</h1>
+      {(!selectedJob) ? (<h1>XIV Bars</h1>) : (<h2>XIV Bars</h2>)}
+      
       <div className={styles.description}>
         <p>A Final Fantasy XIV W Cross HotBar (WXHB) Preview Tool.</p>
         <p>
