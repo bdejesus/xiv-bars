@@ -138,6 +138,12 @@ button {
   }
 }
 
+@media (max-width: $screen-xl) {
+  :global(.container) {
+    max-width: 800px;
+  }
+}
+
 @media (max-width: $screen-md) {
   main {
     padding: 0;
