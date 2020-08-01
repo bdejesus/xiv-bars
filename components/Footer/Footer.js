@@ -1,8 +1,12 @@
 import React from 'react';
+import BuyMeABeer from 'components/BuyMeABeer';
 
 function Footer() {
   return (
     <div className="container">
+      <div>
+        <BuyMeABeer />
+      </div>
       <p>
         <a href="https://github.com/bdejesus/xiv-bars">GitHub</a>
       </p>
