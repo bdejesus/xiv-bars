@@ -132,9 +132,6 @@ button {
   main {
     padding: 0;
   }
-  :global(.container) {
-    padding: 0;
-  }
 }
 
 @media (max-width: $screen-sm) {

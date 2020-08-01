@@ -18,6 +18,12 @@
   :global(.container) {
     max-width: $screen-md;
   }
+
+  @media (max-width: $screen-md) {
+    :global(.container) {
+      padding: 0;
+    }
+  }
 }
 
 .articles {
@@ -35,8 +41,9 @@
   line-height: 1.45em;
   margin-bottom: $spacing-base;
   text-align: right;
-  p {
-    margin: 0;
+
+  @media (max-width: $screen-sm) {
+    text-align: left;
   }
 }
 
