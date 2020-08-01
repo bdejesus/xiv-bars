@@ -4,18 +4,18 @@ import styles from './styles.scss';
 function BuyMeABeer() {
   return (
     <div>
-      <a 
+      <a
         className={styles.button}
-        target="_blank" 
+        target="_blank"
         href="https://www.buymeacoffee.com/bejezus"
       >
-        <span className={styles.icon}>🍺</span>
+        <span className={styles.icon}>Cheers!</span>
         <span>
           If you find this tool useful, please consider buying me a beer
         </span>
       </a>
     </div>
-  )
-};
+  );
+}
 
 export default BuyMeABeer;

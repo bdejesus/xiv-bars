@@ -13,8 +13,24 @@
   max-width: 240px;
   line-height: 1.25em;
   .icon {
+    display: inline-block;
     margin-right: 0.33em;
-    font-size: 32px;
+    color: rgba(0,0,0,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+    &::before {
+      display: inline-block;
+      color: #fff;
+      content: '🍺';
+      font-size: 32px;
+      position: absolute;
+    }
+  }
+  &:hover .icon:before {
+    content: '🍻';
   }
 
   &:hover {
