@@ -8,9 +8,9 @@ import JobSelect from 'components/JobSelect';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { listJobs, listJobActions, listRoleActions } from 'lib/api';
+import LoadScreen from 'components/LoadScreen';
 import XIVBars from './XIVBars';
 import { XIVBarsContextProvider } from './XIVBars/context';
-import LoadScreen from 'components/LoadScreen';
 
 import styles from './styles.scss';
 
@@ -59,9 +59,11 @@ function Index({
             <Header selectedJob={selectedJob} />
           </div>
           <div className={styles.primary}>
-            <JobSelectContextProvider>
-              <JobMenu jobs={jobs} />
-            </JobSelectContextProvider>
+            <div className="container">
+              <JobSelectContextProvider>
+                <JobMenu jobs={jobs} />
+              </JobSelectContextProvider>
+            </div>
           </div>
         </>
       )}

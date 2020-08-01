@@ -15,6 +15,9 @@
   margin-right: auto;
   padding: $spacing-xl $spacing-lg;
   position: relative;
+  :global(.container) {
+    max-width: $screen-md;
+  }
 }
 
 .articles {
