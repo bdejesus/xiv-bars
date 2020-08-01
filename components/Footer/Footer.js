@@ -1,14 +1,15 @@
 import React from 'react';
 import BuyMeABeer from 'components/BuyMeABeer';
+import styles from './styles.scss';
 
 function Footer() {
   return (
-    <div className="container">
+    <div className={`container ${styles.container}`}>
       <div>
         <BuyMeABeer />
       </div>
       <p>
-        <a href="https://github.com/bdejesus/xiv-bars">GitHub</a>
+        <a href="https://github.com/bdejesus/xiv-bars/issues/new">Request a feature or submit a bug report</a> • <a href="https://github.com/bdejesus/xiv-bars">GitHub</a>
       </p>
       <p>
         <a href="https://xivapi.com/">Powered by XIVAPI</a>
