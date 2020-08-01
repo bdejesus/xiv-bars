@@ -5,7 +5,7 @@ function Articles() {
     <div className="container">
       <h3>
         <a href="https://josebenedicto.com/ffxiv/cross-hotbar-settings--auto-switching-for-battle">
-          Cross Hotbar Settings: Auto-switching for Battle
+          Cross Hotbar UI Settings to Auto-switch for Combat
         </a>
       </h3>
 

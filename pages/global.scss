@@ -117,7 +117,7 @@ button {
 :global {
   .container {
     margin: 1px auto;
-    max-width: 100%;
+    max-width: 800px;
     padding: $spacing-lg;
   }
   .row {
@@ -125,22 +125,6 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-}
-
-@media (min-width: $screen-xl) {
-  main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(12, 1fr);
-    height: 100vh;
-    padding: 0;
-  }
-}
-
-@media (max-width: $screen-xl) {
-  :global(.container) {
-    max-width: 800px;
   }
 }
 

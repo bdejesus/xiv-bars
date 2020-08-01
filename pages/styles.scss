@@ -2,7 +2,10 @@
 
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.9);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.66);
+  box-shadow: 
+    0 1px 4px rgba(0,0,0,0.66),
+    0 8px 0 rgba(255,255,255,0.5),
+    0 6px 8px rgba(0, 0, 0, 0.66);
   padding-bottom: 0;
 }
 
@@ -10,13 +13,16 @@
   background-color: rgba(0, 0, 0, 0.5);
   margin-left: auto;
   margin-right: auto;
-  padding: $spacing-lg;
+  padding: $spacing-xl $spacing-lg;
   position: relative;
 }
 
 .articles {
   border-top: 1px solid rgba(0, 0, 0, 0.9);
-  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.33);
+  box-shadow: 
+    0 -1px 4px rgba(0,0,0,0.66),
+    0 -8px 0 rgba(255,255,255,0.5),
+    0 -6px 8px rgba(0, 0, 0, 0.66);
 }
 
 .footer {
@@ -35,29 +41,4 @@
 
 .description p {
   margin-bottom: 0;
-}
-
-@media (min-width: $screen-xl) {
-  .header {
-    background-color: rgba(0, 0, 0, 0.9);
-    grid-column-start: 1;
-    grid-row-start: 1;
-  }
-  .primary {
-    background-color: rgba(0, 0, 0, 0.9);
-    grid-column-start: 1;
-    grid-row-start: 2;
-    grid-row-end: span 11;
-    margin: 0;
-  }
-  .articles {
-    border-top: none;
-    grid-column-start: 2;
-    grid-row-end: span 11;
-  }
-  .footer {
-    align-self: flex-end;
-    grid-column-start: 2;
-    grid-row-start: 12;
-  }
 }
