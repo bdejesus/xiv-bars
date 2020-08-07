@@ -10,10 +10,10 @@ function SelectedJob({ job }) {
         <img src={`//xivapi.com/${job.Icon}`} alt="" />
       </div>
       <div className={styles.textWrapper}>
-        <div className={styles.title}>
+        <h1 className={styles.title}>
           <abbr className={styles.abbr}>{ job.Abbr }</abbr>
           <span className={styles.name}>{job.Name}</span>
-        </div>
+        </h1>
         <div className={styles.role}>
           {job.Discipline} {job.Role && (`• ${ROLE_NAMES[job.Role]}`)}
         </div>

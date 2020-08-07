@@ -1,6 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
+import shortDesc from 'lib/shortDesc';
 import { Meta, Icons } from './includes';
 
 import './global.scss';
@@ -8,7 +9,7 @@ import './global.scss';
 class AppContainer extends App {
   render() {
     const { Component, pageProps } = this.props;
-    const { selectedJob, query } = pageProps;
+    const { selectedJob, actions, query } = pageProps;
 
     function generateTitle() {
       if (query && query.job) {
@@ -26,7 +27,7 @@ class AppContainer extends App {
 
     function generateDescription() {
       if (query && query.job) {
-        return selectedJob.Description;
+        return shortDesc(selectedJob, actions);
       }
       return 'XIV Bars is a simple app for previewing the Final Fantasy XIV W Cross HotBar (WXHB). Simulate what your hotbar actions could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.';
     }

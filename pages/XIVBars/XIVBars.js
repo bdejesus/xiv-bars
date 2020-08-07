@@ -14,7 +14,8 @@ import styles from './styles.scss';
 
 function XIVBars({
   actions,
-  roleActions
+  roleActions,
+  selectedJob
 }) {
   const containerEl = createRef();
   const [containerRect, setContainerRect] = useState({});
@@ -29,6 +30,11 @@ function XIVBars({
       <TooltipContextProvider>
         <SelectedActionContextProvider>
           <div ref={containerEl} className={styles.appContainer}>
+
+            <h2 className={styles.title}>
+              Simulate {selectedJob.Name} Hotbars
+            </h2>
+
             <div className={`${styles.controlPanel} ${styles.container}`}>
               <Sharing />
               <LayoutToggle />
@@ -88,7 +94,8 @@ function XIVBars({
 
 XIVBars.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  selectedJob: PropTypes.shape().isRequired
 };
 
 export default XIVBars;
