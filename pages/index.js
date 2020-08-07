@@ -68,6 +68,7 @@ function Index({
           <div className={styles.primary}>
             <div className="container">
               <JobSelectContextProvider>
+                <h2 className={styles.title}>Select a FFXIV Class</h2>
                 <JobMenu jobs={jobs} />
               </JobSelectContextProvider>
             </div>

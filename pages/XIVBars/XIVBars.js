@@ -32,7 +32,7 @@ function XIVBars({
           <div ref={containerEl} className={styles.appContainer}>
 
             <h2 className={styles.title}>
-              Simulate {selectedJob.Name} Hotbars
+              Simulate { selectedJob && selectedJob.Name } Hotbars
             </h2>
 
             <div className={`${styles.controlPanel} ${styles.container}`}>
