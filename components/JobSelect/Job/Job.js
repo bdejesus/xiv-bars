@@ -9,7 +9,7 @@ function Job({ job }) {
       <img
         className={styles.icon}
         src={`//xivapi.com/${job.Icon}`}
-        alt=""
+        alt={`${job.Name} Icon`}
         draggable={false}
       />
       <b className={styles.abbr}>{job.Abbr}</b>
