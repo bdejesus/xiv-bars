@@ -1,5 +1,15 @@
 @import 'utils/mixins';
 
+.title {
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.33;
+  margin-top: 0;
+  margin-bottom: $spacing-base;
+}
+
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.9);
   box-shadow: 
@@ -13,7 +23,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   margin-left: auto;
   margin-right: auto;
-  padding: $spacing-xl $spacing-lg;
+  padding: $spacing-base $spacing-lg $spacing-xl;
   position: relative;
   :global(.container) {
     max-width: $screen-md;
