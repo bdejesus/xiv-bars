@@ -7,6 +7,16 @@
   position: relative;
 }
 
+.title {
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.33;
+  margin-top: 0;
+  margin-bottom: $spacing-base;
+}
+
 .sidebar {
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   padding-right: $spacing-base;

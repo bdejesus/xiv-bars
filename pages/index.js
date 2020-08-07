@@ -9,6 +9,7 @@ import { JobSelectContextProvider } from 'components/JobSelect/context';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { listJobs, listJobActions, listRoleActions } from 'lib/api';
 import LoadScreen from 'components/LoadScreen';
+import shortDesc from 'lib/shortDesc';
 import XIVBars from './XIVBars';
 import { XIVBarsContextProvider } from './XIVBars/context';
 
@@ -18,8 +19,7 @@ function Index({
   jobs,
   actions,
   selectedJob,
-  roleActions,
-  query
+  roleActions
 }) {
   return (
     <>
@@ -34,11 +34,18 @@ function Index({
               </div>
 
               <div className={styles.description}>
+                <p className={styles.jobDesc}>
+                  {shortDesc(selectedJob, actions)}
+                </p>
                 { selectedJob.Description && (
-                  <p dangerouslySetInnerHTML={{
-                    __html: selectedJob.Description
-                  }}
-                  />
+                  <div className={styles.lore}>
+                    <h3>Lore</h3>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: selectedJob.Description
+                      }}
+                    />
+                  </div>
                 )}
               </div>
 
@@ -87,9 +94,6 @@ function Index({
 Index.getInitialProps = async (req) => {
   const ctx = req;
 
-  // TODO: Refactor API calls into a separate lib component
-  const baseUrl = 'https://xivapi.com';
-
   // Get Selected Job
   const { query } = ctx;
   const decoratedJobs = await listJobs();
@@ -118,8 +122,7 @@ Index.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape(),
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  query: PropTypes.shape().isRequired
+  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 Index.defaultProps = {
