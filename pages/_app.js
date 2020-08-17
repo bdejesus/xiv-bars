@@ -13,7 +13,7 @@ class AppContainer extends App {
 
     function generateTitle() {
       if (query && query.job) {
-        return `${selectedJob.Name} [${selectedJob.Abbr}] | FFXIV W Cross HotBar (WXHB) Simulator | XIV Bars`;
+        return `${selectedJob.Name} [${selectedJob.Abbr}] Hotbar Setup | FFXIV W Cross Hotbar (WXHB) Simulator | XIV Bars`;
       }
       return 'FFXIV W Cross HotBar (WXHB) Simulator | XIV Bars';
     }
@@ -29,7 +29,7 @@ class AppContainer extends App {
       if (query && query.job) {
         return shortDesc(selectedJob, actions);
       }
-      return 'XIV Bars is a simple app for previewing the Final Fantasy XIV W Cross HotBar (WXHB). Simulate what your hotbar actions could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.';
+      return 'XIV Bars is a simple app for previewing the Final Fantasy XIV W Cross HotBar (WXHB). Simulate what your hotbar setup could look like for playing Final Fantasy XIV with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.';
     }
 
     const title = generateTitle();
