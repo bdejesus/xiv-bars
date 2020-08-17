@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 function Header({ selectedJob }) {
@@ -24,4 +25,11 @@ function Header({ selectedJob }) {
   );
 }
 
+Header.propTypes = {
+  selectedJob: PropTypes.shape()
+};
+
+Header.defaultProps = {
+  selectedJob: null
+};
 export default Header;
