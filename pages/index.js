@@ -15,6 +15,83 @@ import { XIVBarsContextProvider } from './XIVBars/context';
 
 import styles from './styles.scss';
 
+function JobSelectView({ selectedJob, jobs }) {
+  return (
+    <>
+      <div className={styles.header}>
+        <Header selectedJob={selectedJob} />
+      </div>
+      <div className={styles.primary}>
+        <div className="container">
+          <JobSelectContextProvider>
+            <h2 className={styles.title} id="jobSelectTitle">
+              FFXIV Classes
+            </h2>
+            <JobMenu jobs={jobs} />
+          </JobSelectContextProvider>
+        </div>
+      </div>
+    </>
+  );
+}
+
+JobSelectView.propTypes = {
+  selectedJob: PropTypes.shape(),
+  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired
+};
+
+JobSelectView.defaultProps = {
+  selectedJob: null
+};
+
+function HotbarView({
+  actions, selectedJob, jobs, roleActions
+}) {
+  return (
+    <XIVBarsContextProvider actions={actions}>
+      <div className={styles.header}>
+        <div className="container">
+          <div className="row">
+            <JobSelectContextProvider>
+              <JobSelect jobs={jobs} selectedJob={selectedJob} />
+            </JobSelectContextProvider>
+          </div>
+
+          <div className={styles.description}>
+            <p className={styles.jobDesc}>
+              {shortDesc(selectedJob, actions)}
+            </p>
+            { selectedJob.Description && (
+            <div className={styles.lore}>
+              <h3>Lore</h3>
+              <p
+                dangerouslySetInnerHTML={{ __html: selectedJob.Description }}
+              />
+            </div>
+            )}
+          </div>
+
+        </div>
+      </div>
+      <div className={styles.primary}>
+        <XIVBars
+          jobs={jobs}
+          actions={actions}
+          selectedJob={selectedJob}
+          roleActions={roleActions}
+        />
+      </div>
+    </XIVBarsContextProvider>
+  );
+}
+
+HotbarView.propTypes = {
+  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  selectedJob: PropTypes.shape().isRequired,
+  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired
+};
+
 function Index({
   jobs,
   actions,
@@ -23,65 +100,21 @@ function Index({
 }) {
   return (
     <>
-      {(selectedJob) ? (
-        <XIVBarsContextProvider actions={actions}>
-          <div className={styles.header}>
-            <div className="container">
-              <div className="row">
-                <JobSelectContextProvider>
-                  <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                </JobSelectContextProvider>
-              </div>
-
-              <div className={styles.description}>
-                <p className={styles.jobDesc}>
-                  {shortDesc(selectedJob, actions)}
-                </p>
-                { selectedJob.Description && (
-                  <div className={styles.lore}>
-                    <h3>Lore</h3>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: selectedJob.Description
-                      }}
-                    />
-                  </div>
-                )}
-              </div>
-
-            </div>
-          </div>
-          <div className={styles.primary}>
-            <XIVBars
-              jobs={jobs}
-              actions={actions}
-              selectedJob={selectedJob}
-              roleActions={roleActions}
-            />
-          </div>
-        </XIVBarsContextProvider>
-      ) : (
-        <>
-          <div className={styles.header}>
-            <Header selectedJob={selectedJob} />
-          </div>
-          <div className={styles.primary}>
-            <div className="container">
-              <JobSelectContextProvider>
-                <h2 className={styles.title} id="jobSelectTitle">
-                  FFXIV Classes
-                </h2>
-                <JobMenu jobs={jobs} />
-              </JobSelectContextProvider>
-            </div>
-          </div>
-        </>
-      )}
+      {(!selectedJob)
+        ? (
+          <JobSelectView selectedJob={selectedJob} jobs={jobs} />
+        )
+        : (
+          <HotbarView
+            actions={actions}
+            selectedJob={selectedJob}
+            jobs={jobs}
+            roleActions={roleActions}
+          />
+        )}
 
       <div className={styles.articles}>
-        {(selectedJob) && (
-          <Header selectedJob={selectedJob} />
-        )}
+        {(selectedJob) && <Header selectedJob={selectedJob} />}
         <Articles />
       </div>
 
@@ -94,11 +127,8 @@ function Index({
   );
 }
 
-Index.getInitialProps = async (req) => {
-  const ctx = req;
-
+Index.getInitialProps = async ({ query }) => {
   // Get Selected Job
-  const { query } = ctx;
   const decoratedJobs = await listJobs();
   const selectedJob = query.job ? decoratedJobs.find((job) => job.Abbr === query.job) : null;
 

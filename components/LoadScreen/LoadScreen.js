@@ -5,6 +5,7 @@ import styles from './styles.scss';
 
 function LoadScreen() {
   const [isLoading, setIsLoading] = useState(false);
+  // TODO: Fix events memory leak here
   Router.events.on('routeChangeStart', () => setIsLoading(true));
   Router.events.on('routeChangeComplete', () => setIsLoading(false));
   // eslint-disable-next-line no-console

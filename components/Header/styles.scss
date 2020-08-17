@@ -1,5 +1,9 @@
 @import 'utils/mixins';
 
+.subTitle {
+  margin-top: $spacing-lg;
+}
+
 .description {
   font-size: 14px;
   p {

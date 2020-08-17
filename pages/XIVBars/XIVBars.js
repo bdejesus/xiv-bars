@@ -32,8 +32,9 @@ function XIVBars({
           <div ref={containerEl} className={styles.appContainer}>
 
             <h2 className={styles.title}>
-              Simulate { selectedJob && selectedJob.Name } Hotbars
+              Simulate your { selectedJob && selectedJob.Name } Hotbar Setup
             </h2>
+            <p />
 
             <div className={`${styles.controlPanel} ${styles.container}`}>
               <Sharing />

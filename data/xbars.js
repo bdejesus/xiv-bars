@@ -15,9 +15,9 @@ const xBarSlots = (group) => {
 
 const xbars = () => (
   {
-    secondary: xBarSlots('secondary'),
-    primary: xBarSlots('primary'),
-    tertiary: xBarSlots('tertiary')
+    one: xBarSlots('one'),
+    two: xBarSlots('two'),
+    three: xBarSlots('three')
   }
 );
 
