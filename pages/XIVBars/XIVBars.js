@@ -32,7 +32,7 @@ function XIVBars({
           <div ref={containerEl} className={styles.appContainer}>
 
             <h2 className={styles.title}>
-              Simulate your { selectedJob && selectedJob.Name } Hotbar Setup
+              Plan out your { selectedJob && selectedJob.Name } Hotbar Setup
             </h2>
             <p />
 
