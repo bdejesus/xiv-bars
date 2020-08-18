@@ -1,6 +1,6 @@
 # XIV Bars
 
-This is the source code for XIV Bars, a simple webapp for previewing the Final Fantasy XIV Crossbar. Simulate what your crossbar actions could look like for playing Final Fantasy XIV with a gamepad or controller.
+This is the source code for XIV Bars, a simple webapp for previewing the Final Fantasy XIV Crossbar. Plan out what your crossbar actions could look like for playing Final Fantasy XIV with a gamepad or controller.
 
 This app is deployed to [https://xivbars.bejezus.com](https://xivbars.bejezus.com).
 
