@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { xbars, hotbars, layouts } from 'data/xbars';
 
-const XIVBarsContext = createContext();
-const XIVBarsDispatchContext = createContext();
+const AppContext = createContext();
+const AppDispatchContext = createContext();
 
-function XIVBarsReducer(state, payload) {
+function AppReducer(state, payload) {
   const { layout } = state;
 
   switch (payload.type) {
@@ -58,26 +58,26 @@ function XIVBarsReducer(state, payload) {
   }
 }
 
-function useXIVBarsState() {
-  const context = React.useContext(XIVBarsContext);
+function useAppState() {
+  const context = React.useContext(AppContext);
   if (context === undefined) {
-    throw new Error('useXIVBarsState must be used within the XIVBarsContextProvider');
+    throw new Error('useAppState must be used within the AppContextProvider');
   }
   return context;
 }
 
-function useXIVBarsDispatch() {
-  const context = React.useContext(XIVBarsDispatchContext);
+function useAppDispatch() {
+  const context = React.useContext(AppDispatchContext);
   if (context === undefined) {
-    throw new Error('useXIVBarsDispatch must be used within the XIVBarsContextProvider');
+    throw new Error('useAppDispatch must be used within the AppContextProvider');
   }
   return context;
 }
 
-function XIVBarsContextProvider({ children, actions }) {
+function AppContextProvider({ children, actions }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(
-    XIVBarsReducer, {
+    AppReducer, {
       xbars,
       hotbars,
       layout: parseInt(router.query.l, 10) || 0,
@@ -87,15 +87,15 @@ function XIVBarsContextProvider({ children, actions }) {
   );
 
   return (
-    <XIVBarsContext.Provider value={state}>
-      <XIVBarsDispatchContext.Provider value={dispatch}>
+    <AppContext.Provider value={state}>
+      <AppDispatchContext.Provider value={dispatch}>
         {children}
-      </XIVBarsDispatchContext.Provider>
-    </XIVBarsContext.Provider>
+      </AppDispatchContext.Provider>
+    </AppContext.Provider>
   );
 }
 
-XIVBarsContextProvider.propTypes = {
+AppContextProvider.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.shape()),
@@ -103,9 +103,9 @@ XIVBarsContextProvider.propTypes = {
   ]).isRequired
 };
 
-export default XIVBarsContextProvider;
+export default AppContextProvider;
 export {
-  XIVBarsContextProvider,
-  useXIVBarsState,
-  useXIVBarsDispatch
+  AppContextProvider,
+  useAppState,
+  useAppDispatch
 };

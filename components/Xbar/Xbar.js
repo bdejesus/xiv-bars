@@ -1,13 +1,13 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { group } from 'utils';
+import { group } from 'lib/utils';
 import Slot from 'components/Slot';
-import { useXIVBarsState } from '~/XIVBars/context';
-import styles from './styles.scss';
+import { useAppState } from 'components/App/context';
+import styles from './styles.module.scss';
 
 export default function Xbar() {
-  const { xbars } = useXIVBarsState();
+  const { xbars } = useAppState();
 
   return (
     <div className={styles.container}>

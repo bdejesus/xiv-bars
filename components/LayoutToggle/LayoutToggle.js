@@ -1,13 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { layouts } from 'data/xbars';
-import { useXIVBarsState, useXIVBarsDispatch } from '~/XIVBars/context';
-import styles from './styles.scss';
+import { useAppState, useAppDispatch } from 'components/App/context';
+import styles from './styles.module.scss';
 
 function LayoutToggle() {
   const router = useRouter();
-  const { layout } = useXIVBarsState();
-  const XIVBarsDispatch = useXIVBarsDispatch();
+  const { layout } = useAppState();
+  const XIVBarsDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
     if (layouts[layout] === 'xbars') {

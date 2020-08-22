@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SelectedJob from './SelectedJob';
 import JobMenu from './JobMenu';
 import { useJobSelectState, useJobSelectDispatch } from './context';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function Modal({ jobs, selectedJob }) {
   const jobSelectDispatch = useJobSelectDispatch();
