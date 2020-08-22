@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import Xbar from 'components/Xbar';
 import Hotbar from 'components/Hotbar';
 import { layouts } from 'data/xbars';
-import { useXIVBarsState, useXIVBarsDispatch } from '~/XIVBars/context';
+import { useAppState, useAppDispatch } from 'components/App/context';
 
 function UILayout() {
   const router = useRouter();
-  const { layout } = useXIVBarsState();
-  const XIVBarsDispatch = useXIVBarsDispatch();
+  const { layout } = useAppState();
+  const XIVBarsDispatch = useAppDispatch();
 
   useEffect(() => {
     if (router.query && router.query.s) {

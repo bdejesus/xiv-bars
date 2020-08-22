@@ -2,13 +2,13 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { createRef, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useXIVBarsState } from '~/XIVBars/context';
+import { useAppState } from 'components/App/context';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function Sharing() {
   const router = useRouter();
-  const XIVBarsState = useXIVBarsState();
+  const XIVBarsState = useAppState();
   const [copied, setCopied] = useState(false);
   const urlInput = createRef();
   const slotsQuery = (/\d/).test(XIVBarsState.encodedSlots) ? XIVBarsState.encodedSlots : '';

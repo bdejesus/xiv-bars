@@ -1,4 +1,4 @@
-@import 'utils/mixins';
+@import 'styles/mixins';
 
 * {
   box-sizing: border-box;
@@ -118,19 +118,18 @@ button {
   }
 }
 
-:global {
-  .container {
-    margin: 1px auto;
-    max-width: 800px;
-    padding: $spacing-lg;
-  }
-  .row {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.container {
+  margin: 1px auto;
+  max-width: 800px;
+  padding: $spacing-lg;
 }
+.row {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 
 @media (max-width: $screen-md) {
   main {
@@ -139,7 +138,7 @@ button {
 }
 
 @media (max-width: $screen-sm) {
-  :global(.row) {
+  .row {
     flex-direction: column;
   }
 }

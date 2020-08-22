@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 let tooltipTimeout = null;
 
@@ -40,7 +40,7 @@ export default function Action({ action }) {
 
   function handleMouseMove(e) {
     const mouse = { x: e.clientX, y: e.clientY };
-    tooltipDispatch({ type: 'updatePosition', mouse })
+    tooltipDispatch({ type: 'updatePosition', mouse });
     clearTimeout(tooltipTimeout);
 
     tooltipTimeout = setTimeout(() => {

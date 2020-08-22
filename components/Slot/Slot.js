@@ -5,12 +5,12 @@ import {
   useSelectedActionState,
   useSelectedActionDispatch
 } from 'components/SelectedAction';
-import { useXIVBarsDispatch } from '~/XIVBars/context';
+import { useAppDispatch } from 'components/App/context';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function Slot({ id, className, action }) {
-  const XIVBarsDispatch = useXIVBarsDispatch();
+  const XIVBarsDispatch = useAppDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
