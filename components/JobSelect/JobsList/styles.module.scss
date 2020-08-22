@@ -7,7 +7,7 @@
   padding: 14px 20px 0;
 }
 
-.options {
+.jobList {
   display: grid;
   grid-column-gap: 10px;
   grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -43,13 +43,13 @@
 }
 
 @media (max-width: $screen-sm) {
-  .options {
+  .jobList {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (max-width: $screen-xs) {
-  .options {
+  .jobList {
     grid-template-columns: 1fr;
   }
 }

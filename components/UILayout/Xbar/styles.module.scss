@@ -105,5 +105,10 @@ $group-padding: 10px;
 @media (max-width: $screen-xs) {
   .xbar {
     padding-left: $spacing-sm;
+    &::before {
+      font-size: 14px;
+      top: 2px;
+      left: 4px;
+    }
   }
 }
