@@ -6,5 +6,6 @@ module.exports = {
   constants: path.join(__dirname, './constants'),
   data: path.join(__dirname, './data'),
   utils: path.join(__dirname, './utils'),
-  lib: path.join(__dirname, './lib')
+  lib: path.join(__dirname, './lib'),
+  config: path.join(__dirname, './config')
 };

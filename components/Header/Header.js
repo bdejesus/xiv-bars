@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import siteData from 'config/app.config';
 import styles from './styles.scss';
 
 function Header({ selectedJob }) {
   return (
     <div className="container">
-      {(!selectedJob) ? (<h1>XIV Bars</h1>) : (<h2>XIV Bars</h2>)}
+      {(!selectedJob)
+        ? <h1>{siteData.header.title}</h1>
+        : <h2>{siteData.header.title}</h2> }
 
       <div className={styles.description}>
-        <p>A Final Fantasy XIV W Cross HotBar (WXHB) Preview Tool.</p>
+        <p>{siteData.header.subtitle}</p>
         <p>
           Creating the perfect controller setup in-game is clunky and time-consuming. This app allows you to plan out where your actions will go so you can play around with different configurations before spending the time commiting it in-game.
         </p>
