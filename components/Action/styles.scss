@@ -46,4 +46,9 @@
     object-fit: cover;
     width: 100%;
   }
+
+  @media(max-width: $screen-xs) {
+    width: $slot-size-sm;
+    height: $slot-size-sm;
+  }
 }
