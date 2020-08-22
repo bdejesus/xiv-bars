@@ -1,8 +1,10 @@
 @import "utils/mixins";
+$group-padding: 10px;
 
 .container {
   display: flex;
   flex-direction: column;
+  counter-reset: xbarCount;
 }
 
 // Xbar Set
@@ -12,11 +14,20 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   padding: 10px;
   position: relative;
   width: 500px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  &::before {
+    position: absolute;
+    counter-increment: xbarCount;
+    content: counter(xbarCount);
+    opacity: 0.33;
+    font-size: 18px;
+    font-weight: 100;
+    left: -20px;
+  }
 }
 
 .left {
@@ -32,9 +43,6 @@
   display: flex;
   flex-direction: row;
 }
-
-// Button Group
-$group-padding: 10px;
 
 .set {
   display: grid;
@@ -62,77 +70,9 @@ $group-padding: 10px;
   }
 }
 
-.primary {
-  background-color: rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  margin: $group-padding auto;
-  &::after {
-    bottom: $slot-border-size;
-    border-right: 1px dashed rgba(255, 255, 255, 0.25);
-    content: "";
-    display: block;
-    left: 50%;
-    position: absolute;
-    top: $slot-border-size;
-  }
-}
-
-.secondary,
-.tertiary {
-  &::before,
-  &::after {
-    display: block;
-    font-size: 10px;
-    font-weight: 900;
-    opacity: 0.25;
-    position: absolute;
-    text-align: center;
-    width: $xbar-group-width - $slot-size + $slot-border-size;
-  }
-  &::before {
-    left: 17%;
-  }
-  &::after {
-    right: 17%;
-  }
-}
-
-.secondary {
-  &::before,
-  &::after {
-    top: -0.75em;
-  }
-  &::before {
-    content: "LT × 2";
-  }
-  &::after {
-    content: "RT × 2";
-  }
-}
-
-.tertiary {
-  &::before,
-  &::after {
-    bottom: -0.75em;
-  }
-  &::before {
-    content: "LT → RT";
-  }
-  &::after {
-    content: "RT → LT";
-  }
-}
-
-@media (max-width: $screen-xs-max) {
-  .xbar {
-    padding-top: 0;
-    padding-bottom: 0;
-  }
-}
-
 @media (max-width: 580px) {
   .xbar {
-    flex-direction: column;
+    // flex-direction: column;
     padding: 0;
     width: 100%;
   }
@@ -140,25 +80,20 @@ $group-padding: 10px;
   .right {
     padding: 6px 0;
   }
-  .primary {
-    order: 1;
+  .xbar {
     margin-bottom: inherit;
     margin-top: inherit;
     &::after {
       content: none;
     }
   }
-  .secondary,
-  .tertiary {
-    &::before,
-    &::after {
-      display: none;
+}
+
+@media (max-width: $screen-sm) {
+  .xbar {
+    padding-left: $spacing-base;
+    &::before {
+      left: -5px;
     }
-  }
-  .secondary {
-    order: 2;
-  }
-  .tertiary {
-    order: 3;
   }
 }

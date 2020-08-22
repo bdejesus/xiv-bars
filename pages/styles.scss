@@ -34,6 +34,10 @@
       padding: 0;
     }
   }
+  @media (max-width: $screen-sm) {
+    padding-left: $spacing-base;
+    padding-right: $spacing-base;
+  }
 }
 
 .articles {
