@@ -22,7 +22,7 @@ function JobsList({ title, jobs }) {
   return (
     <div className={styles.group}>
       <h4 className={styles.title}>{title}</h4>
-      <ul className={styles.options}>
+      <ul className={styles.jobList}>
         {jobs.map((job) => (
           <li
             key={job.Name}

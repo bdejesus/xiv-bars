@@ -10,7 +10,7 @@ function JobMenu({ jobs }) {
   const DoL = jobs.filter((job) => job.Discipline === 'DOL');
 
   return (
-    <ul className={styles.options} labeledby="jobSelectTitle">
+    <ul className={styles.jobGroupList} labeledby="jobSelectTitle">
       <li>
         <JobsList title="DoW" jobs={DoW} />
       </li>
