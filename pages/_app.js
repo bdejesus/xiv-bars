@@ -2,6 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import shortDesc from 'lib/shortDesc';
+import siteData from 'config/app.config';
 import { Meta, Icons } from './includes';
 
 import './global.scss';
@@ -13,9 +14,9 @@ class AppContainer extends App {
 
     function generateTitle() {
       if (query && query.job) {
-        return `${selectedJob.Name} [${selectedJob.Abbr}] Hotbar Setup | FFXIV W Cross Hotbar (WXHB) Setup Planner | XIV Bars`;
+        return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup | ${siteData.global.name}`;
       }
-      return 'FFXIV W Cross HotBar (WXHB) Setup Planner | XIV Bars';
+      return siteData.global.name;
     }
 
     function generateCanonicalUrl() {
@@ -29,7 +30,7 @@ class AppContainer extends App {
       if (query && query.job) {
         return shortDesc(selectedJob, actions);
       }
-      return 'XIV Bars is an app for previewing the Final Fantasy XIV W Cross Hotbar (WXHB) setup. Plan out what your hotbar setup could look like with a gamepad or controller. Use the Class selector to load actions for that class. Drag and drop them to the hotbar slots below.';
+      return siteData.global.description;
     }
 
     const title = generateTitle();
