@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Xbar from 'components/Xbar';
-import Hotbar from 'components/Hotbar';
+import Xbar from 'components/UILayout/Xbar';
+import Hotbar from 'components/UILayout/Hotbar';
 import { layouts } from 'data/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
+import styles from './styles.module.scss';
 
 function UILayout() {
   const router = useRouter();
@@ -31,7 +32,7 @@ function UILayout() {
     }
   }
 
-  return <SlotLayout />;
+  return <div className={styles.uiLayout}><SlotLayout /></div>;
 }
 
 export default UILayout;
