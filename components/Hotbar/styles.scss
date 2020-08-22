@@ -28,7 +28,7 @@
 }
 
 .rowWrapper {
-  margin: 2px 0;
+  margin: 4px 0;
 }
 
 .row {
@@ -41,14 +41,5 @@
   }
   .rowWrapper {
     padding-left: 14px;
-  }
-}
-
-@media (max-width: 560px) {
-  .row {
-    flex-wrap: wrap;
-  }
-  .rowWrapper {
-    max-width: 280px;
   }
 }

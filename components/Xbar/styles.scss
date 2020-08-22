@@ -73,7 +73,7 @@ $group-padding: 10px;
 @media (max-width: 580px) {
   .xbar {
     // flex-direction: column;
-    padding: 0;
+    padding: $spacing-sm 0;
     width: 100%;
   }
   .left,
@@ -94,6 +94,13 @@ $group-padding: 10px;
     padding-left: $spacing-base;
     &::before {
       left: -5px;
+
     }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .xbar {
+    padding-left: $spacing-sm;
   }
 }
