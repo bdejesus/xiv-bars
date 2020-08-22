@@ -17,7 +17,8 @@ const xbars = () => (
   {
     one: xBarSlots('one'),
     two: xBarSlots('two'),
-    three: xBarSlots('three')
+    three: xBarSlots('three'),
+    four: xBarSlots('four')
   }
 );
 
