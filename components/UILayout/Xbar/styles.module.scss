@@ -17,8 +17,8 @@ $group-padding: 10px;
   margin: 0 auto;
   padding: 10px;
   position: relative;
-  width: 500px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  width: 480px;
+  border-bottom: 1px solid rgba(0,0,0,0.66);
   &::before {
     position: absolute;
     counter-increment: xbarCount;
@@ -28,14 +28,17 @@ $group-padding: 10px;
     font-weight: 100;
     left: -20px;
   }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .left {
-  padding-right: 10px;
+  padding-right: 6px;
 }
 
 .right {
-  padding-left: 10px;
+  padding-left: 6px;
 }
 
 .left,

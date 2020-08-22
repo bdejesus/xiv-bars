@@ -19,7 +19,7 @@
     content: counter(slots);
     counter-increment: slots;
     font-weight: 700;
-    left: -14px;
+    left: -20px;
     opacity: 0.33;
     position: absolute;
     top: 50%;
@@ -28,7 +28,11 @@
 }
 
 .rowWrapper {
-  margin: 4px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.66);
+  padding: 4px;
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .row {
