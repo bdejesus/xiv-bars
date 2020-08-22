@@ -1,13 +1,26 @@
+@import 'styles/mixins';
+
 .options {
   background-color: rgba(0, 0, 0, 0.9);
   border: 4px double rgba(255, 255, 255, 0.4);
   border-radius: 6px;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
-  display: block;
+  display: flex;
+  flex-direction: row;
+  justify-content: spread;
   list-style: none;
   margin: 10px;
   padding: 0;
+  > li {
+    width: 25%;
+  }
   > li + li {
     border-top: 1px dashed rgba(255, 255, 255, 0.33);
+  }
+
+  @media (max-width: $screen-sm) {
+    > li {
+      width: 50%;
+    }
   }
 }

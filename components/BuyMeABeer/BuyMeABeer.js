@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function BuyMeABeer() {
   return (
     <div>
       <a
         className={styles.button}
-        target="_blank"
         href="https://www.buymeacoffee.com/bejezus"
       >
         <span className={styles.icon}>Cheers!</span>

@@ -8,11 +8,11 @@ import Action from 'components/Action';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import LoadScreen from 'components/LoadScreen';
-import { XIVBarsContextProvider } from './context';
+import { AppContextProvider } from './context';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
-function XIVBars({
+function App({
   actions,
   roleActions,
   selectedJob
@@ -26,7 +26,7 @@ function XIVBars({
   }, []);
 
   return (
-    <XIVBarsContextProvider actions={actions}>
+    <AppContextProvider actions={actions}>
       <TooltipContextProvider>
         <SelectedActionContextProvider>
           <div ref={containerEl} className={styles.appContainer}>
@@ -89,14 +89,14 @@ function XIVBars({
           </div>
         </SelectedActionContextProvider>
       </TooltipContextProvider>
-    </XIVBarsContextProvider>
+    </AppContextProvider>
   );
 }
 
-XIVBars.propTypes = {
+App.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape().isRequired
 };
 
-export default XIVBars;
+export default App;

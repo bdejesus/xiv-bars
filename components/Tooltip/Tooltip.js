@@ -2,11 +2,11 @@ import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTooltipState } from './context';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function Tooltip({ container }) {
   const tooltipEl = createRef();
-  const [positionStyle, setPositionStyle] = useState({transform: 'none'});
+  const [positionStyle, setPositionStyle] = useState({ transform: 'none' });
   const [anchor, setAnchor] = useState('right');
   const { content, position } = useTooltipState();
 
@@ -33,8 +33,8 @@ function Tooltip({ container }) {
   };
 
   useEffect(() => {
-    const posStyle = { 
-      transform: `translate(${position.x}px, ${position.y}px)` 
+    const posStyle = {
+      transform: `translate(${position.x}px, ${position.y}px)`
     };
     setPositionStyle(posStyle);
   }, [position]);

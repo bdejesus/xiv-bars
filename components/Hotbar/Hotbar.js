@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Slot from 'components/Slot';
-import { useXIVBarsState } from '~/XIVBars/context';
-import styles from './styles.scss';
+import { useAppState } from 'components/App/context';
+import styles from './styles.module.scss';
 
 function Row({ slots }) {
   return (
@@ -25,7 +25,7 @@ Row.propTypes = {
 };
 
 function Hotbar() {
-  const { hotbars } = useXIVBarsState();
+  const { hotbars } = useAppState();
 
   return (
     <ol className={styles.container}>

@@ -10,10 +10,10 @@ import JobMenu from 'components/JobSelect/JobMenu';
 import { listJobs, listJobActions, listRoleActions } from 'lib/api';
 import LoadScreen from 'components/LoadScreen';
 import shortDesc from 'lib/shortDesc';
-import XIVBars from './XIVBars';
-import { XIVBarsContextProvider } from './XIVBars/context';
+import App from '../components/App';
+import { AppContextProvider } from '../components/App/context';
 
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function JobSelectView({ selectedJob, jobs }) {
   return (
@@ -48,7 +48,7 @@ function HotbarView({
   actions, selectedJob, jobs, roleActions
 }) {
   return (
-    <XIVBarsContextProvider actions={actions}>
+    <AppContextProvider actions={actions}>
       <div className={styles.header}>
         <div className="container">
           <div className="row">
@@ -74,14 +74,14 @@ function HotbarView({
         </div>
       </div>
       <div className={styles.primary}>
-        <XIVBars
+        <App
           jobs={jobs}
           actions={actions}
           selectedJob={selectedJob}
           roleActions={roleActions}
         />
       </div>
-    </XIVBarsContextProvider>
+    </AppContextProvider>
   );
 }
 

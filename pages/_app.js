@@ -5,7 +5,7 @@ import shortDesc from 'lib/shortDesc';
 import siteData from 'config/app.config';
 import { Meta, Icons } from './includes';
 
-import './global.scss';
+import 'styles/global.scss';
 
 class AppContainer extends App {
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import BuyMeABeer from 'components/BuyMeABeer';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function Footer() {
   return (

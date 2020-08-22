@@ -1,4 +1,4 @@
-@import "utils/mixins";
+@import "styles/mixins";
 
 .title {
   color: rgba(255, 255, 255, 0.5);
@@ -10,8 +10,8 @@
 .options {
   display: grid;
   grid-column-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: auto;
   list-style: none;
   padding: 10px;
   a {

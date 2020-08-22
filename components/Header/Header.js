@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import siteData from 'config/app.config';
-import styles from './styles.scss';
+import styles from './styles.module.scss';
 
 function Header({ selectedJob }) {
   return (
