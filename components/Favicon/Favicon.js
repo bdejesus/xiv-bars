@@ -52,8 +52,8 @@ export function Favicon() {
       <link
         rel="icon"
         type="image/png"
-        sizes="192x192"
-        href="/icons/favicon-192x192.png"
+        sizes="196x196"
+        href="/icons/favicon-196x196.png"
       />
       <link
         rel="icon"

@@ -1,0 +1,41 @@
+@import 'styles/mixins';
+
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  box-shadow: 
+    0 1px 4px rgba(0,0,0,0.66),
+    0 8px 0 rgba(255,255,255,0.5),
+    0 6px 8px rgba(0, 0, 0, 0.66);
+  padding-bottom: 0;
+}
+
+.primary {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-left: auto;
+  margin-right: auto;
+  padding: $spacing-base $spacing-lg $spacing-xl;
+  position: relative;
+  :global(.container) {
+    max-width: $screen-md;
+  }
+
+  @media (max-width: $screen-md) {
+    :global(.container) {
+      padding: 0;
+    }
+  }
+  @media (max-width: $screen-sm) {
+    padding-left: $spacing-base;
+    padding-right: $spacing-base;
+  }
+}
+
+.title {
+  text-align: center;
+  font-weight: 200;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.33;
+  margin-top: 0;
+  margin-bottom: $spacing-base;
+}

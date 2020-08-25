@@ -8,7 +8,7 @@ import styles from './styles.module.scss';
 
 let tooltipTimeout = null;
 
-export default function Action({ action }) {
+export default function Action({ action, tooltip, remote }) {
   const actionRef = createRef();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -45,7 +45,9 @@ export default function Action({ action }) {
 
     tooltipTimeout = setTimeout(() => {
       if (!hovering) {
-        const data = { action, position };
+        const data = {
+          action, position, staticContent: tooltip, remote
+        };
 
         setHovering(true);
         if (action.ID) {
@@ -81,12 +83,19 @@ export default function Action({ action }) {
         onClick={selectAction}
         tabIndex={0}
       >
-        <img src={`//xivapi.com/${action.Icon}`} alt={action.Name} />
+        <img src={`//xivapi.com/${action.Icon}`} alt={`${action.Name} Action`} />
       </div>
     </>
   );
 }
 
 Action.propTypes = {
-  action: PropTypes.shape().isRequired
+  action: PropTypes.shape().isRequired,
+  tooltip: PropTypes.string,
+  remote: PropTypes.bool
+};
+
+Action.defaultProps = {
+  tooltip: undefined,
+  remote: true
 };

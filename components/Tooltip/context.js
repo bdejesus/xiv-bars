@@ -17,7 +17,7 @@ function tooltipReducer(state, payload) {
       return {
         ...state,
         position: payload.mouse
-      }
+      };
     }
     case 'startUpdate': {
       return {
@@ -58,18 +58,37 @@ function useTooltipDispatch() {
 }
 
 async function updateTooltip(dispatch, data) {
-  const { action, position } = data;
+  const {
+    action, position, staticContent, remote
+  } = data;
   dispatch({ type: 'startUpdate', data });
-  try {
-    const content = await getContent(action.UrlType, action.ID);
 
-    if (content.Description) {
-      dispatch({ type: 'finishUpdate', content, position });
-    } else {
-      dispatch({ type: 'finishUpdate', content: action, position });
+  if (!remote) {
+    dispatch({
+      type: 'finishUpdate',
+      content: action,
+      position
+    });
+  } else if (staticContent) {
+    if (staticContent !== false) {
+      dispatch({
+        type: 'finishUpdate',
+        content: { Name: staticContent },
+        position
+      });
     }
-  } catch (error) {
-    dispatch({ type: 'updateFailed', error });
+  } else {
+    try {
+      const content = await getContent(action.UrlType, action.ID);
+
+      if (content.Description) {
+        dispatch({ type: 'finishUpdate', content, position });
+      } else {
+        dispatch({ type: 'finishUpdate', content: action, position });
+      }
+    } catch (error) {
+      dispatch({ type: 'updateFailed', error });
+    }
   }
 }
 

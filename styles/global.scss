@@ -37,7 +37,14 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  margin: 0;
+  font-size: 22px;
+  font-weight: 200;
+  letter-spacing: 0.066em;
+  line-height: 1.25em;
+  margin-bottom: $spacing-base;
+  margin-top: 0;
+  opacity: 0.66;
+  text-transform: uppercase;
   b {
     opacity: 0.75;
   }
@@ -61,61 +68,6 @@ label {
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-}
-
-button {
-  background:
-    rgba(0, 0, 0, 0.8)
-    linear-gradient(
-      rgba(0, 0, 0, 0) 0%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  border-right-color: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.66);
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 700;
-  height: 40px;
-  outline: none;
-  padding: 0 $spacing-base;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-  + button {
-    margin-left: 1em;
-  }
-  &:hover,
-  &:active,
-  &:focus {
-    color: rgba(255, 255, 255, 1);
-  }
-  &:hover,
-  &:focus {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom-color: rgba(0, 0, 0, 1);
-    border-right-color: rgba(0, 0, 0, 1);
-    background:
-      rgba(0, 0, 0, 0.8)
-      linear-gradient(
-        rgba(0, 0, 0, 1) 0%,
-        rgba(255, 255, 255, 0.15) 100%
-      );
-  }
-  &:active {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom-color: rgba(255, 255, 255, 0.2);
-    border-right-color: rgba(255, 255, 255, 0.2);
-  }
-  &:focus {
-    outline: 2px solid #fff;
-  }
-  img {
-    height: 36px;
-    width: 36px;
-  }
 }
 
 .container {
@@ -142,3 +94,5 @@ button {
     flex-direction: column;
   }
 }
+
+@import 'buttons';

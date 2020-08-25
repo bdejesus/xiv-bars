@@ -78,12 +78,7 @@ module.exports = {
     'import/resolver': {
       node: {
         paths: ['.'],
-      },
-      alias: {
-        map: [
-          ['components', './components']
-        ],
-      },
-    },
+      }
+    }
   },
 };

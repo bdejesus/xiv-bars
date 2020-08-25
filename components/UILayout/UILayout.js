@@ -9,12 +9,12 @@ import styles from './styles.module.scss';
 function UILayout() {
   const router = useRouter();
   const { layout } = useAppState();
-  const XIVBarsDispatch = useAppDispatch();
+  const appDispatch = useAppDispatch();
 
   useEffect(() => {
     if (router.query && router.query.s) {
       const slottedActions = JSON.parse(router.query.s);
-      XIVBarsDispatch({ type: 'loadActionsToSlots', slottedActions });
+      appDispatch({ type: 'bulkLoadActionsToSlots', slottedActions });
     }
   }, []);
 

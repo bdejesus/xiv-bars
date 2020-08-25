@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 function LayoutToggle() {
   const router = useRouter();
   const { layout } = useAppState();
-  const XIVBarsDispatch = useAppDispatch();
+  const appDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
     if (layouts[layout] === 'xbars') {
@@ -15,13 +15,13 @@ function LayoutToggle() {
         pathname: router.pathname,
         query: { ...router.query, l: 1 }
       });
-      XIVBarsDispatch({ type: 'updateLayout', layout: 1 });
+      appDispatch({ type: 'updateLayout', layout: 1 });
     } else {
       router.push({
         pathname: router.pathname,
         query: { ...router.query, l: 0 }
       });
-      XIVBarsDispatch({ type: 'updateLayout', layout: 0 });
+      appDispatch({ type: 'updateLayout', layout: 0 });
     }
   }
 

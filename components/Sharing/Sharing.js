@@ -39,7 +39,7 @@ function Sharing() {
           id="shareUrl"
           className={styles.shareUrlInput}
           type="text"
-          value={`https://xivbars.bejezus.com?${queryString}`}
+          value={`localhost:3000?${queryString}`}
           ref={urlInput}
           onClick={selectInput}
           readOnly
