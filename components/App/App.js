@@ -1,6 +1,6 @@
 import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { GENERAL_ACTIONS } from 'data/actions';
+import GENERAL_ACTIONS from 'data/actions';
 import UILayout from 'components/UILayout';
 import LayoutToggle from 'components/LayoutToggle';
 import Sharing from 'components/Sharing';

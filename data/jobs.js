@@ -376,8 +376,8 @@ function getJobsByDiscipline(discipline) {
 }
 
 module.exports = {
-  JOBS,
   getJobsByDiscipline,
+  JOBS,
   ADVANCED_JOBS,
   ROLE_ACTION_IDS,
   ROLE_NAMES,

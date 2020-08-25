@@ -32,4 +32,4 @@ const GENERAL_ACTIONS = [
   }
 ];
 
-module.exports = { GENERAL_ACTIONS };
+module.exports = GENERAL_ACTIONS;

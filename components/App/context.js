@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { xbars, hotbars, layouts } from 'data/xbars';
+import { xbars, hotbars, layouts } from 'lib/xbars';
 
 const AppContext = createContext();
 const AppDispatchContext = createContext();
