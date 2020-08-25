@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
-import { layouts } from 'data/xbars';
+import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './styles.module.scss';
 
