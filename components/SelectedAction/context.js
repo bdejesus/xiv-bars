@@ -51,8 +51,8 @@ function SelectedActionContextProvider({ children }) {
 
 SelectedActionContextProvider.propTypes = {
   children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.shape()),
-    PropTypes.shape()
+    PropTypes.arrayOf(PropTypes.shape),
+    PropTypes.shape
   ]).isRequired
 };
 

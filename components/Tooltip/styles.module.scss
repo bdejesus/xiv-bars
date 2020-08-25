@@ -23,7 +23,7 @@ $tooltip-width: 320px;
     transform 0.33s ease;
   transition-delay: 0s;
   transform-origin: left top;
-  width: $tooltip-width;
+  max-width: $tooltip-width;
   white-space: pre-wrap;
   z-index: 10;
   &[aria-hidden=true] {
@@ -37,13 +37,12 @@ $tooltip-width: 320px;
 .title {
   margin: 0;
   font-size: 16px;
-  margin-bottom: 0.66em;
 }
 
 .description {
   font-size: 14px;
   line-height: 1.45em;
-  margin: 0;
+  margin: 0.66em 0 0 0;
 }
 
 @keyframes tooltipEnter {

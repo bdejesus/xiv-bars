@@ -1,8 +1,10 @@
+const ACTION_TYPE = require('./actionType');
+
 const GENERAL_ACTIONS = [
   {
     ID: 7,
     Name: 'Auto-Attack',
-    Description: 'Auto-Attack',
+    Description: undefined,
     Icon: '/i/000000/000101.png'
   },
   {
@@ -32,4 +34,7 @@ const GENERAL_ACTIONS = [
   }
 ];
 
-module.exports = GENERAL_ACTIONS;
+module.exports = GENERAL_ACTIONS.map((action) => ({
+  ...action,
+  Prefix: ACTION_TYPE.GENERAL
+}));

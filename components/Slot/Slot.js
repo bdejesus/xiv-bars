@@ -10,7 +10,7 @@ import { useAppDispatch } from 'components/App/context';
 import styles from './styles.module.scss';
 
 function Slot({ id, className, action }) {
-  const XIVBarsDispatch = useAppDispatch();
+  const appDispatch = useAppDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
@@ -29,7 +29,7 @@ function Slot({ id, className, action }) {
   function handleDragLeave(event) {
     event.preventDefault();
     if (dragging) {
-      XIVBarsDispatch({
+      appDispatch({
         type: 'setActionToSlot',
         slotID: id,
         action: {}
@@ -50,7 +50,7 @@ function Slot({ id, className, action }) {
   function setSelectedAction() {
     setDragging(false);
     if (selectedAction) {
-      XIVBarsDispatch({
+      appDispatch({
         type: 'setActionToSlot',
         slotID: id,
         action: selectedAction

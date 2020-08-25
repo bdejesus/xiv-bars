@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import siteData from 'config/app.config';
 import styles from './styles.module.scss';
 
-function Header({ selectedJob }) {
+function Header({ primary }) {
   return (
     <div className="container">
-      {(!selectedJob)
+      { primary
         ? <h1>{siteData.header.title}</h1>
-        : <h2>{siteData.header.title}</h2> }
+        : <h2>{siteData.header.title}</h2>}
 
       <div className={styles.description}>
         <p>{siteData.header.subtitle}</p>
@@ -29,10 +29,11 @@ function Header({ selectedJob }) {
 }
 
 Header.propTypes = {
-  selectedJob: PropTypes.shape()
+  primary: PropTypes.bool
 };
 
 Header.defaultProps = {
-  selectedJob: null
+  primary: true
 };
+
 export default Header;

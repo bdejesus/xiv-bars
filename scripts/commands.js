@@ -2,6 +2,7 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 const { outputDir } = require('./config');
+const ACTION_TYPE = require('../data/actionType');
 
 async function getMainCommands() {
   const baseUrl = 'https://xivapi.com';
@@ -13,9 +14,15 @@ async function getMainCommands() {
     })
     .then((json) => {
       console.log('Writing MainCommand actions...');
+      const results = json.Results.filter((m) => m.Icon !== '');
+
+      const decoratedResults = results.map((command) => (
+        { ...command, Prefix: ACTION_TYPE.MACRO }
+      ));
+
       fs.writeFile(
         `${outputDir}/mainCommands.json`,
-        JSON.stringify(json.Results),
+        JSON.stringify(decoratedResults),
         () => null
       );
     });

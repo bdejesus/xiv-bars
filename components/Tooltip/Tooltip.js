@@ -1,17 +1,14 @@
-import React, { createRef, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useTooltipState } from './context';
 
 import styles from './styles.module.scss';
 
-function Tooltip({ container }) {
-  const tooltipEl = createRef();
+function Tooltip() {
   const [positionStyle, setPositionStyle] = useState({ transform: 'none' });
   const [anchor, setAnchor] = useState('right');
   const { content, position } = useTooltipState();
 
   useEffect(() => {
-    // positionTooltip();
     setAnchor(styles.right);
   }, [content]);
 
@@ -43,25 +40,18 @@ function Tooltip({ container }) {
     <div
       className={`${styles.tooltip} ${anchor}`}
       style={positionStyle}
-      ref={tooltipEl}
       aria-hidden={!content.Name && !content.Description}
     >
-      {content.Name && content.Description && (
+      {content.Name && (
         <>
           <h4 className={styles.title}>{content.Name}</h4>
-          <Description />
+          { content.Description && (
+            <Description />
+          )}
         </>
       )}
     </div>
   );
 }
-
-Tooltip.propTypes = {
-  container: PropTypes.shape({
-    top: PropTypes.number,
-    left: PropTypes.number,
-    width: PropTypes.number
-  }).isRequired
-};
 
 export default Tooltip;

@@ -1,0 +1,37 @@
+@import 'styles/mixins';
+
+.lore {
+  background-color: rgba(255,255,255,0.1);
+  font-style: italic;
+  opacity: 0.66;
+  padding: $spacing-base $spacing-lg;
+  transition: padding 0.33s ease, background-color 0.33s ease;
+  &:hover, &:active, &:focus {
+    background-color: rgba(255,255,255,0.2);
+    cursor: pointer;
+  }
+}
+
+.loreTitle {
+  margin: 0;
+}
+
+.loreBody {
+  font-size: $font-size-sm;
+  padding-top: $spacing-base;
+  br {
+    display: block;
+    margin-bottom: 0.45em;
+  }
+}
+
+.lore[data-expanded=false] .loreBody {
+  display: none;
+}
+.lore[data-expanded=true] {
+  padding: $spacing-lg;
+
+  .loreBody {
+    display: block;
+  }
+}
