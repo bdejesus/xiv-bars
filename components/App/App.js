@@ -39,12 +39,12 @@ function App({
 
   return (
     <AppContextProvider actions={actions} roleActions={roleActions} host={host}>
-      <TooltipContextProvider>
-        <SelectedActionContextProvider>
-          { !selectedJob && <Intro jobs={jobs} /> }
 
-          { selectedJob && (
-            <>
+      { !selectedJob
+        ? <Intro jobs={jobs} />
+        : (
+          <TooltipContextProvider>
+            <SelectedActionContextProvider>
               <div className={styles.header}>
                 <div className={`container ${styles.headerBody}`}>
                   <h1>
@@ -102,11 +102,10 @@ function App({
                   <Tooltip />
                 </div>
               </div>
-            </>
-          )}
+            </SelectedActionContextProvider>
+          </TooltipContextProvider>
+        )}
 
-        </SelectedActionContextProvider>
-      </TooltipContextProvider>
     </AppContextProvider>
   );
 }
