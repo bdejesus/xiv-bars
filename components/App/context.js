@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { xbars, hotbars, layouts } from 'lib/xbars';
 import ACTION_TYPE from 'data/actionType';
-import MAIN_COMMANDS from 'bin/mainCommands';
-import MACROS from 'bin/macros';
-import GENERAL_ACTIONS from 'data/generalActions';
+import MAIN_COMMANDS from 'bin/MainCommand';
+import MACROS from 'bin/MacroIcon';
+import GENERAL_ACTIONS from 'bin/GeneralAction';
 
 const AppContext = createContext();
 const AppDispatchContext = createContext();
@@ -34,10 +34,10 @@ function AppReducer(state, payload) {
           const actionLib = () => {
             if (actionType) {
               switch (actionType.toString()) {
-                case ACTION_TYPE.COMMAND: return MAIN_COMMANDS;
-                case ACTION_TYPE.GENERAL: return GENERAL_ACTIONS;
-                case ACTION_TYPE.MACRO: return MACROS;
-                case ACTION_TYPE.ROLE: return state.roleActions;
+                case ACTION_TYPE.MainCommand: return MAIN_COMMANDS;
+                case ACTION_TYPE.GeneralAction: return GENERAL_ACTIONS;
+                case ACTION_TYPE.MacroIcon: return MACROS;
+                case ACTION_TYPE.RoleAction: return state.roleActions;
                 default: return state.actions;
               }
             }

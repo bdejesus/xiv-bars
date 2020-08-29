@@ -1,6 +1,8 @@
 module.exports = {
-  MACRO: 'm',
-  ROLE: 'r',
-  GENERAL: 'g',
-  COMMAND: 'c'
+  MacroIcon: 'm',
+  RoleAction: 'r',
+  GeneralAction: 'g',
+  MainCommand: 'c',
+  PvPAction: 'p',
+  PetAction: 'e'
 };

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Action from 'components/Action';
-import GENERAL_ACTIONS from 'data/generalActions';
-import MAIN_COMMANDS from 'bin/mainCommands';
-import MACROS from 'bin/macros';
+import GENERAL_ACTIONS from 'bin/GeneralAction';
+import MAIN_COMMANDS from 'bin/MainCommand';
+import MACROS from 'bin/MacroIcon';
 import styles from './styles.module.scss';
 
 function ActionPanel({ actions, roleActions }) {
@@ -121,7 +121,7 @@ function ActionPanel({ actions, roleActions }) {
           <ul className={styles.listActions}>
             {MACROS.map((macro) => (
               <li key={`macro-${macro.ID}`}>
-                <Action action={macro} tooltip={macro.Name} />
+                <Action action={macro} tooltip={`Macro ${macro.ID}`} />
               </li>
             ))}
           </ul>

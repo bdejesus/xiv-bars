@@ -17,7 +17,7 @@ async function getMainCommands() {
       const results = json.Results.filter((m) => m.Icon !== '');
 
       const decoratedResults = results.map((command) => (
-        { ...command, Prefix: ACTION_TYPE.MACRO }
+        { ...command, Prefix: ACTION_TYPE.MacroIcon }
       ));
 
       fs.writeFile(

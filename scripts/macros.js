@@ -18,7 +18,7 @@ async function getMacros() {
       const decoratedResults = results.map((macro, index) => ({
         ...macro,
         Name: `Macro ${index + 1}`,
-        Prefix: ACTION_TYPE.MACRO
+        Prefix: ACTION_TYPE.MacroIcon
       }));
 
       fs.writeFile(
