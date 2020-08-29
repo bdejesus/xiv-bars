@@ -20,7 +20,8 @@ function App({
   jobs,
   actions,
   selectedJob,
-  roleActions
+  roleActions,
+  host
 }) {
   const [expanded, setExpanded] = useState(true);
   const expandDescStore = 'xivbars_expandDesc';
@@ -37,7 +38,7 @@ function App({
   }
 
   return (
-    <AppContextProvider actions={actions} roleActions={roleActions}>
+    <AppContextProvider actions={actions} roleActions={roleActions} host={host}>
       <TooltipContextProvider>
         <SelectedActionContextProvider>
           { !selectedJob && <Intro jobs={jobs} /> }
@@ -114,11 +115,13 @@ App.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  selectedJob: PropTypes.shape()
+  selectedJob: PropTypes.shape(),
+  host: PropTypes.string
 };
 
 App.defaultProps = {
-  selectedJob: undefined
+  selectedJob: undefined,
+  host: undefined
 };
 
 export default App;

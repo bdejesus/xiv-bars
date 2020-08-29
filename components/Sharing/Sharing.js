@@ -8,10 +8,10 @@ import styles from './styles.module.scss';
 
 function Sharing() {
   const router = useRouter();
-  const XIVBarsState = useAppState();
+  const { encodedSlots, host } = useAppState();
   const [copied, setCopied] = useState(false);
   const urlInput = createRef();
-  const slotsQuery = (/\d/).test(XIVBarsState.encodedSlots) ? XIVBarsState.encodedSlots : '';
+  const slotsQuery = (/\d/).test(encodedSlots) ? encodedSlots : '';
   const query = { ...router.query, s: slotsQuery };
   const queryString = Object.keys(query)
     .filter((key) => query[key] !== '')
@@ -39,7 +39,7 @@ function Sharing() {
           id="shareUrl"
           className={styles.shareUrlInput}
           type="text"
-          value={`https://xivbars.bejezus.com/?${queryString}`}
+          value={`${host}?${queryString}`}
           ref={urlInput}
           onClick={selectInput}
           readOnly
