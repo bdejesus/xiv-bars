@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortDesc from 'lib/shortDesc';
 import siteData from 'config/app.config';
@@ -22,6 +22,20 @@ function App({
   selectedJob,
   roleActions
 }) {
+  const [expanded, setExpanded] = useState(true);
+  const expandDescStore = 'xivbars_expandDesc';
+
+  useEffect(() => {
+    const expandDescription = localStorage.getItem(expandDescStore) === 'true';
+    setExpanded(expandDescription);
+  }, []);
+
+  function toggleDescription() {
+    const expandedState = !expanded;
+    localStorage.setItem(expandDescStore, expandedState);
+    setExpanded(expandedState);
+  }
+
   return (
     <AppContextProvider actions={actions} roleActions={roleActions}>
       <TooltipContextProvider>
@@ -31,7 +45,7 @@ function App({
           { selectedJob && (
             <>
               <div className={styles.header}>
-                <div className="container">
+                <div className={`container ${styles.headerBody}`}>
                   <h1>
                     {selectedJob.Name} {siteData.header.title}
                   </h1>
@@ -42,14 +56,27 @@ function App({
                     </JobSelectContextProvider>
                   </div>
 
-                  <div className={styles.description}>
+                  <div
+                    className={styles.description}
+                    data-expanded={expanded}
+                  >
                     <p className={styles.jobDesc}>
                       {shortDesc(selectedJob, actions)}
                     </p>
 
-                    { selectedJob.Description && <Lore selectedJob={selectedJob} /> }
+                    { selectedJob.Description
+                      && <Lore selectedJob={selectedJob} /> }
                   </div>
                 </div>
+
+                <button
+                  type="button"
+                  className={styles.toggleButton}
+                  data-active={expanded}
+                  onClick={toggleDescription}
+                >
+                  <div className={styles.toggleIcon} />
+                </button>
               </div>
 
               <div className={styles.appSection}>

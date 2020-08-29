@@ -8,13 +8,17 @@
   padding: 0;
   margin-top: 0;
   border-bottom: 1px solid #555;
+  > li {
+    flex: 1 1 auto;
+  }
 }
 
 .tabButton {
   border-color: rgba(0,0,0,0);
   border-radius: 4px 4px 0 0;
-  height: 32px;
+  height: 26px;
   padding: 0 6px;
+  width: 100%;
   &:hover {
     border-bottom-color: rgba(0,0,0,0);
   }
