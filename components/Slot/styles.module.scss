@@ -25,8 +25,13 @@
     transform: scale(1.1);
   }
 
-  @media(max-width: $screen-xs) {
+  @media(max-width: $screen-sm) {
     width: $slot-size-sm;
     height: $slot-size-sm;
+  }
+
+  @media(max-width: $screen-xs) {
+    width: $slot-size-xs;
+    height: $slot-size-xs;
   }
 }

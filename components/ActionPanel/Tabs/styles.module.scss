@@ -1,0 +1,29 @@
+@import 'styles/mixins';
+
+.tabItems {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 2px;
+  padding: 0;
+  margin-top: 0;
+  border-bottom: 1px solid #555;
+}
+
+.tabButton {
+  border-color: rgba(0,0,0,0);
+  border-radius: 4px 4px 0 0;
+  height: 32px;
+  padding: 0 6px;
+  &:hover {
+    border-bottom-color: rgba(0,0,0,0);
+  }
+  &[data-active=true] {
+    border-bottom-color: #eee;
+    background-color: #fff;
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    color: #111;
+    pointer-events: none;
+  }
+}

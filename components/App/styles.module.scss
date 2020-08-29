@@ -90,25 +90,29 @@
     padding: 0;
     width: unset;
   }
-  .controlPanel {
-    display: block;
-    .main {
-      justify-content: flex-start;
-    }
+  
+  .appWrapper {
+    flex-direction:column;
     .sidebar {
-      margin-left: -10px;
-      margin-right: -10px;
+      order: 2;
+      margin-top: $spacing-lg;
     }
   }
-  .appWrapper,
   .appWrapper .main {
     display: block;
   }
 }
 
 @media (max-width: $screen-sm) {
-  .controlPanel .main {
-    justify-content: space-between;
+  .controlPanel {
+    display: block;
+    .main {
+      justify-content: space-between;
+    }
+    .sidebar {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
   }
 }
 

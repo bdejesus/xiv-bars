@@ -2,7 +2,7 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 const { outputDir } = require('./config');
-const ACTION_TYPE = require('../data/actionType');
+const ACTION_TYPE = require('../lib/actionType');
 
 async function getMacros() {
   const baseUrl = 'https://xivapi.com';

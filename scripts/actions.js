@@ -2,29 +2,23 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 const { outputDir } = require('./config');
-const ACTION_TYPE = require('../data/actionType');
+const ACTION_TYPE = require('../lib/actionType');
 
 async function getActions() {
   const baseUrl = 'https://xivapi.com';
-  const actionTypes = [
-    'MainCommand',
-    'MacroIcon',
-    'GeneralAction',
-    'PetAction',
-    'PvPAction'
-  ];
+  const actionTypes = Object.keys(ACTION_TYPE);
 
   actionTypes.forEach(async (actionSet) => {
     const actions = await fetch(`${baseUrl}/${actionSet}`)
-      .then((res) => {
-        console.log(`Fetching ${actionSet} actions...`);
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((json) => {
-        console.log(`Writing ${actionSet} actions...`);
+        console.log(`Building ${actionSet} actions...`);
         const results = json.Results.filter((c) => c.Icon !== '');
+
         const decoratedResults = results.map((action) => ({
           ...action,
+          Name: action.Name ? action.Name : `${actionSet} ${action.ID}`,
+          UrlType: actionSet,
           Prefix: ACTION_TYPE[actionSet]
         }));
 

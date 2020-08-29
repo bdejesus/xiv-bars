@@ -1,5 +1,5 @@
 const { SitemapStream, streamToPromise } = require('sitemap');
-const { ADVANCED_JOBS } = require('data/jobs');
+const { ADVANCED_JOBS } = require('lib/jobs');
 
 export default async (req, res) => {
   try {

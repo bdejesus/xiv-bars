@@ -2,10 +2,13 @@ import React, { createContext, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { xbars, hotbars, layouts } from 'lib/xbars';
-import ACTION_TYPE from 'data/actionType';
-import MAIN_COMMANDS from 'bin/MainCommand';
-import MACROS from 'bin/MacroIcon';
-import GENERAL_ACTIONS from 'bin/GeneralAction';
+import ACTION_TYPE from 'lib/actionType';
+import BUDDY_ACTION from 'bin/BuddyAction';
+import COMPANY_ACTION from 'bin/CompanyAction';
+import GENERAL_ACTION from 'bin/GeneralAction';
+import MAIN_COMMAND from 'bin/MainCommand';
+import MACRO_ICON from 'bin/MacroIcon';
+import PET_ACTION from 'bin/PetAction';
 
 const AppContext = createContext();
 const AppDispatchContext = createContext();
@@ -27,17 +30,21 @@ function AppReducer(state, payload) {
         const slotGroup = state[layouts[layout]][groupName];
 
         actionGroup.forEach((actionID, slotIndex) => {
-          const actionRegex = new RegExp(/[c|g|m|r]/);
+          const prefixes = [...Object.values(ACTION_TYPE), 'r'].join('|');
+          const actionRegex = new RegExp(prefixes);
           const actionType = actionID.match(actionRegex);
           const parsedID = parseInt(actionID.replace(actionType, ''), 10);
 
           const actionLib = () => {
             if (actionType) {
               switch (actionType.toString()) {
-                case ACTION_TYPE.MainCommand: return MAIN_COMMANDS;
-                case ACTION_TYPE.GeneralAction: return GENERAL_ACTIONS;
-                case ACTION_TYPE.MacroIcon: return MACROS;
-                case ACTION_TYPE.RoleAction: return state.roleActions;
+                case ACTION_TYPE.BuddyAction: return BUDDY_ACTION;
+                case ACTION_TYPE.CompanyAction: return COMPANY_ACTION;
+                case ACTION_TYPE.GeneralAction: return GENERAL_ACTION;
+                case ACTION_TYPE.MainCommand: return MAIN_COMMAND;
+                case ACTION_TYPE.MacroIcon: return MACRO_ICON;
+                case ACTION_TYPE.PetAction: return PET_ACTION;
+                case 'r': return state.roleActions;
                 default: return state.actions;
               }
             }

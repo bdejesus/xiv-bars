@@ -3,7 +3,8 @@ $slot-size: 32px;
 $slot-spacing: 0;
 $outer-slot-size: $slot-size + $slot-border-size * 2; // slot size + border
 
-$slot-size-sm: 22px;
+$slot-size-sm: 29px;
+$slot-size-xs: 23px;
 
 $xbar-group-height: $outer-slot-size * 2 + $slot-spacing;
 $xbar-group-width: $outer-slot-size * 3 + $slot-spacing;

@@ -26,7 +26,7 @@ $group-padding: 10px;
     opacity: 0.33;
     font-size: 18px;
     font-weight: 100;
-    left: -20px;
+    left: -32px;
   }
   &:last-child {
     border-bottom: none;
@@ -75,7 +75,6 @@ $group-padding: 10px;
 
 @media (max-width: 580px) {
   .xbar {
-    // flex-direction: column;
     padding: $spacing-sm 0;
     width: 100%;
   }
@@ -95,20 +94,18 @@ $group-padding: 10px;
 @media (max-width: $screen-sm) {
   .xbar {
     padding-left: $spacing-base;
+    padding-right: $spacing-base;
     &::before {
-      left: -5px;
-
+      font-size: 14px;
+      top: 2px;
+      left: 4px;
     }
   }
 }
 
 @media (max-width: $screen-xs) {
   .xbar {
-    padding-left: $spacing-sm;
-    &::before {
-      font-size: 14px;
-      top: 2px;
-      left: 4px;
-    }
+    padding-left: 0;
+    padding-right: 0;
   }
 }
