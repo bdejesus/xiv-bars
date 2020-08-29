@@ -17,7 +17,6 @@ $group-padding: 10px;
   margin: 0 auto;
   padding: 10px;
   position: relative;
-  // width: 480px;
   border-bottom: 1px solid rgba(0,0,0,0.66);
   &::before {
     position: absolute;
@@ -69,24 +68,6 @@ $group-padding: 10px;
     &:nth-child(4) {
       grid-column-start: 3;
       grid-row-start: 2;
-    }
-  }
-}
-
-@media (max-width: 580px) {
-  .xbar {
-    padding: $spacing-sm 0;
-    width: 100%;
-  }
-  .left,
-  .right {
-    padding: 6px 0;
-  }
-  .xbar {
-    margin-bottom: inherit;
-    margin-top: inherit;
-    &::after {
-      content: none;
     }
   }
 }

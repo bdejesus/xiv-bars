@@ -4,7 +4,7 @@ import React, { createRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 
-import styles from './styles.module.scss';
+import styles from './Sharing.styles.module.scss';
 
 function Sharing() {
   const router = useRouter();

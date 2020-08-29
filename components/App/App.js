@@ -14,7 +14,7 @@ import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { AppContextProvider } from './context';
 
-import styles from './styles.module.scss';
+import styles from './App.styles.module.scss';
 
 function App({
   jobs,
@@ -95,7 +95,7 @@ function App({
                     <div className={`panel ${styles.sidebar}`}>
                       <ActionPanel roleActions={roleActions} actions={actions} />
                     </div>
-                    <div className={`${styles.uiLayout} ${styles.main}`}>
+                    <div className={styles.main}>
                       <UILayout />
                     </div>
                   </div>

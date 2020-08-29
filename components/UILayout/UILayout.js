@@ -4,7 +4,7 @@ import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
 import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import styles from './styles.module.scss';
+import styles from './UILayout.styles.module.scss';
 
 function UILayout() {
   const router = useRouter();

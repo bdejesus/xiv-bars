@@ -4,21 +4,7 @@ import PropTypes from 'prop-types';
 import { group } from 'lib/utils';
 import Slot from 'components/Slot';
 import { useAppState } from 'components/App/context';
-import styles from './styles.module.scss';
-
-export default function Xbar() {
-  const { xbars } = useAppState();
-
-  return (
-    <div className={styles.container}>
-      {Object.keys(xbars).map((xbar) => (
-        <div className={`${styles.xbar} ${styles[xbar]}`} key={xbar}>
-          <Bar bar={xbars[xbar]} id={xbar} />
-        </div>
-      ))}
-    </div>
-  );
-}
+import styles from './Xbar.styles.module.scss';
 
 function Set({ slots }) {
   return (
@@ -74,3 +60,19 @@ function Bar({ bar }) {
 Bar.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
+
+function Xbar() {
+  const { xbars } = useAppState();
+
+  return (
+    <div className={styles.container}>
+      {Object.keys(xbars).map((xbar) => (
+        <div className={styles.xbar} key={xbar}>
+          <Bar bar={xbars[xbar]} id={xbar} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default Xbar;
