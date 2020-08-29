@@ -52,9 +52,12 @@ function App({
             <SelectedActionContextProvider>
               <div className={styles.header}>
                 <div className={`container ${styles.headerBody}`}>
-                  <h1>
+                  <h1 className={styles.title}>
                     {selectedJob.Name} {siteData.header.title}
                   </h1>
+                  <a href="/" className={styles.returnLink}>
+                    &larr; Return to Class Select
+                  </a>
 
                   <div className="row">
                     <JobSelectContextProvider>

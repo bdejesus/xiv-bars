@@ -9,6 +9,9 @@
   height: auto;
   display: block;
   margin-left: -10px;
+  transition: 
+    border 0.33s ease,
+    color 0.33s ease;
   img {
     height: 36px;
     width: 36px;
