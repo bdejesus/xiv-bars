@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import GENERAL_ACTIONS from 'bin/GeneralAction';
-import MAIN_COMMANDS from 'bin/MainCommand';
-import MACROS from 'bin/MacroIcon';
-import PET_ACTIONS from 'bin/PetAction';
-import BUDDY_ACTIONS from 'bin/BuddyAction';
-import COMPANY_ACTIONS from 'bin/CompanyAction';
+import GENERAL_ACTIONS from 'data/GeneralAction';
+import MAIN_COMMANDS from 'data/MainCommand';
+import MACROS from 'data/MacroIcon';
+import PET_ACTIONS from 'data/PetAction';
+import BUDDY_ACTIONS from 'data/BuddyAction';
+import COMPANY_ACTIONS from 'data/CompanyAction';
 
 import ActionGroup from './ActionGroup';
 import Tabs from './Tabs';

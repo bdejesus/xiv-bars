@@ -1,3 +1,3 @@
 module.exports = {
-  outputDir: './bin'
+  outputDir: './data'
 };

@@ -3,12 +3,12 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { xbars, hotbars, layouts } from 'lib/xbars';
 import ACTION_TYPE from 'lib/actionType';
-import BUDDY_ACTION from 'bin/BuddyAction';
-import COMPANY_ACTION from 'bin/CompanyAction';
-import GENERAL_ACTION from 'bin/GeneralAction';
-import MAIN_COMMAND from 'bin/MainCommand';
-import MACRO_ICON from 'bin/MacroIcon';
-import PET_ACTION from 'bin/PetAction';
+import BUDDY_ACTION from 'data/BuddyAction';
+import COMPANY_ACTION from 'data/CompanyAction';
+import GENERAL_ACTION from 'data/GeneralAction';
+import MAIN_COMMAND from 'data/MainCommand';
+import MACRO_ICON from 'data/MacroIcon';
+import PET_ACTION from 'data/PetAction';
 
 const AppContext = createContext();
 const AppDispatchContext = createContext();
