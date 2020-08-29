@@ -11,24 +11,24 @@ import 'styles/global.scss';
 class AppContainer extends App {
   render() {
     const { Component, pageProps } = this.props;
-    const { selectedJob, actions, query } = pageProps;
+    const { selectedJob, actions } = pageProps;
 
     function generateTitle() {
-      if (query && query.job) {
+      if (selectedJob) {
         return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup | ${siteData.global.name}`;
       }
       return siteData.global.name;
     }
 
     function generateCanonicalUrl() {
-      if (query && query.job) {
+      if (selectedJob) {
         return `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
       }
       return 'https://xivbars.bejezus.com';
     }
 
     function generateDescription() {
-      if (query && query.job) {
+      if (selectedJob) {
         return shortDesc(selectedJob, actions);
       }
       return siteData.global.description;
