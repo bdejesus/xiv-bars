@@ -21,6 +21,7 @@ function App({
   actions,
   selectedJob,
   roleActions,
+  encodedSlots,
   host
 }) {
   const [expanded, setExpanded] = useState(true);
@@ -38,8 +39,12 @@ function App({
   }
 
   return (
-    <AppContextProvider actions={actions} roleActions={roleActions} host={host}>
-
+    <AppContextProvider
+      actions={actions}
+      roleActions={roleActions}
+      host={host}
+      encodedSlots={encodedSlots}
+    >
       { !selectedJob
         ? <Intro jobs={jobs} />
         : (
@@ -87,7 +92,7 @@ function App({
                   </h2>
 
                   <div className={`${styles.controlPanel} ${styles.container}`}>
-                    <Sharing />
+                    <Sharing selectedJob={selectedJob} />
                     <LayoutToggle />
                   </div>
 
@@ -115,12 +120,14 @@ App.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape(),
-  host: PropTypes.string
+  host: PropTypes.string,
+  encodedSlots: PropTypes.arrayOf(PropTypes.array),
 };
 
 App.defaultProps = {
   selectedJob: undefined,
-  host: undefined
+  host: undefined,
+  encodedSlots: undefined
 };
 
 export default App;

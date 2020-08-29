@@ -15,6 +15,7 @@ function Index({
   actions,
   selectedJob,
   roleActions,
+  encodedSlots,
   host
 }) {
   return (
@@ -25,6 +26,7 @@ function Index({
         actions={actions}
         roleActions={roleActions}
         host={host}
+        encodedSlots={encodedSlots}
       />
 
       <div className={styles.articles}>
@@ -45,6 +47,10 @@ Index.getInitialProps = async ({ req, query }) => {
   const host = (typeof req !== 'undefined')
     ? req.headers.host
     : undefined;
+
+  const encodedSlots = (typeof query.s !== 'undefined')
+    ? JSON.parse(query.s)
+    : null;
 
   // Get Selected Job
   const decoratedJobs = await listJobs();
@@ -67,6 +73,7 @@ Index.getInitialProps = async ({ req, query }) => {
     actions: jobActions,
     selectedJob,
     roleActions,
+    encodedSlots,
     host
   };
 };
@@ -76,11 +83,13 @@ Index.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape(),
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  encodedSlots: PropTypes.arrayOf(PropTypes.array),
   host: PropTypes.string
 };
 
 Index.defaultProps = {
   selectedJob: undefined,
+  encodedSlots: null,
   host: undefined
 };
 

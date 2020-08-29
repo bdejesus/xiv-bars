@@ -16,7 +16,9 @@ app.prepare().then(() => {
     app.render(req, res, '/index', req.query);
   });
 
-  server.get('/job/:job', (req, res) => app.render(req, res, '/index', { job: req.params.job }));
+  server.get('/job/:job', (req, res) => {
+    app.render(req, res, '/index', { ...req.query, job: req.params.job });
+  });
 
   server.get('*', (req, res) => handle(req, res));
 

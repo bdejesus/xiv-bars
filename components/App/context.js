@@ -114,7 +114,7 @@ function useAppDispatch() {
 }
 
 function AppContextProvider({
-  children, actions, roleActions, host
+  children, actions, roleActions, host, encodedSlots
 }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(
@@ -122,7 +122,7 @@ function AppContextProvider({
       xbars,
       hotbars,
       layout: parseInt(router.query.l, 10) || 0,
-      encodedSlots: '',
+      encodedSlots,
       actions,
       roleActions,
       host
@@ -145,12 +145,14 @@ AppContextProvider.propTypes = {
     PropTypes.arrayOf(PropTypes.shape()),
     PropTypes.shape()
   ]).isRequired,
-  host: PropTypes.string
+  host: PropTypes.string,
+  encodedSlots: PropTypes.arrayOf(PropTypes.array)
 };
 
 AppContextProvider.defaultProps = {
   roleActions: undefined,
-  host: undefined
+  host: undefined,
+  encodedSlots: undefined
 };
 
 export default AppContextProvider;

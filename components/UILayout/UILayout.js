@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
 import { layouts } from 'lib/xbars';
@@ -7,14 +6,12 @@ import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './UILayout.styles.module.scss';
 
 function UILayout() {
-  const router = useRouter();
-  const { layout } = useAppState();
+  const { layout, encodedSlots } = useAppState();
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
-    if (router.query && router.query.s) {
-      const slottedActions = JSON.parse(router.query.s);
-      appDispatch({ type: 'bulkLoadActionsToSlots', slottedActions });
+    if (encodedSlots) {
+      appDispatch({ type: 'bulkLoadActionsToSlots', slottedActions: encodedSlots });
     }
   }, []);
 
