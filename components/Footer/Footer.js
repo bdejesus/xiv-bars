@@ -12,7 +12,7 @@ function Footer() {
         <a href="https://github.com/bdejesus/xiv-bars/issues/new">Request a feature or submit a bug report</a> • <a href="https://github.com/bdejesus/xiv-bars">GitHub</a>
       </p>
       <p>
-        <a href="https://xivapi.com/">Powered by XIVAPI</a>
+        <a href="https://xivapi.com/">Built with XIVAPI</a>
       </p>
       <p>
         All Final Fantasy XIV content is property of Square Enix Co., LTD
