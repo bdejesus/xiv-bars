@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Router from 'next/router';
 
-import styles from './styles.module.scss';
+import styles from './LoadScreen.styles.module.scss';
 
 function LoadScreen() {
   const [isLoading, setIsLoading] = useState(false);
