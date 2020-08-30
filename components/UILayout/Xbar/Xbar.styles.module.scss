@@ -24,9 +24,9 @@ $group-padding: 10px;
     counter-increment: xbarCount;
     content: counter(xbarCount);
     opacity: 0.33;
-    font-size: 18px;
+    font-size: $font-size-lg;
     font-weight: 100;
-    left: -24px;
+    left: -$spacing-sm;
   }
   &:last-child {
     border-bottom: none;
@@ -73,14 +73,12 @@ $group-padding: 10px;
   }
 }
 
-@media (max-width: $screen-sm) {
+@media (max-width: $screen-md) {
   .xbar {
     padding-left: $spacing-base;
     padding-right: $spacing-base;
     &::before {
       font-size: 14px;
-      top: 2px;
-      left: 4px;
     }
   }
 }

@@ -12,10 +12,6 @@ body {
   background-attachment: fixed;
   background-color: #333;
   background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-  color: #fff;
-  font-family: "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 14px;
-  line-height: 1.455em;
   margin: 0;
 }
 
@@ -23,58 +19,12 @@ body {
   display: none;
 }
 
-a {
-  color: #9cf;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-h1, h2, h3, h4 {
-  font-weight: 300;
-}
-
-h1 {
-  font-size: 22px;
-  font-weight: 200;
-  letter-spacing: 0.066em;
-  line-height: 1.25em;
-  margin-bottom: $spacing-base;
-  margin-top: 0;
-  opacity: 0.66;
-  text-transform: uppercase;
-  b {
-    opacity: 0.75;
-  }
-}
-
-h2 {
-  margin-bottom: 0;
-}
-
-h3 {
-  margin-top: 0;
-}
-
-abbr {
-  outline: none;
-  text-decoration: none;
-}
-
-label {
-  color: #999;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 .container {
   margin: 1px auto;
   max-width: 800px;
   padding: $spacing-lg;
 }
+
 .row {
   align-items: flex-start;
   display: flex;
@@ -82,11 +32,24 @@ label {
   justify-content: space-between;
 }
 
+.appView {
+  background-image: url('/images/black_paper.png');
+  background-color: $panel-bg-dark;
+  box-shadow: inset 0 0 60px rgba(0,0,0,1);
+  margin-left: auto;
+  margin-right: auto;
+  padding: $spacing-base $spacing-lg $spacing-xl;
+  position: relative;
+  .container {
+    max-width: $screen-md;
+  }
+}
 
 @media (max-width: $screen-md) {
   main {
     padding: 0;
   }
+
   .container {
     padding: $spacing-base;
   }
@@ -96,7 +59,16 @@ label {
   .row {
     flex-direction: column;
   }
+  
+  .appView {
+    padding: 0;
+    .container {
+      padding: $spacing-base 0;
+    }
+  }
 }
 
-@import 'utils';
+@import 'typography';
+@import 'links';
 @import 'buttons';
+@import 'utils';

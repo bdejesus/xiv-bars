@@ -1,0 +1,72 @@
+@import 'styles/mixins';
+
+body {
+  color: #ccc;
+  font-family: "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.455em;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 300;
+  color: #DDD;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  letter-spacing: 0.066em;
+  font-weight: 200;
+}
+
+h1 {
+  color: #ccc;
+  font-size: $font-size-xl-3;
+  letter-spacing: 0.066em;
+  line-height: 1.05em;
+  margin-bottom: $spacing-base;
+  margin-top: 0;
+  b {
+    opacity: 0.75;
+  }
+}
+
+h2, h3 {
+  color: #999;
+}
+
+h2 {
+  font-size: $font-size-xl-2;
+}
+
+h3 {
+  font-size: $font-size-xl;
+}
+
+h4 {
+  font-size: $font-size-lg;
+}
+
+abbr {
+  outline: none;
+  text-decoration: none;
+}
+
+label {
+  color: #999;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.033em;
+  text-transform: uppercase;
+}
+
+@media (max-width: $screen-sm) {
+  h1 {
+    font-size: $font-size-xl-2;
+  }
+  h2 {
+    font-size: $font-size-xl;
+  }
+  h3 {
+    font-size: $font-size-lg;
+  }
+}

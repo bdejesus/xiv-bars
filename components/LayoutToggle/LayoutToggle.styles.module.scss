@@ -4,6 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-self: flex-start;
+  padding: 0 $spacing-base;
 }
 
 .buttonToggle {
@@ -28,12 +29,12 @@
       box-shadow 0.33s ease,
       color 0.33s ease;
     &[data-selected=true] {
-      background-color: rgb(33,33,33);
+      background-color:$panel-bg;
       color: #fff;
     }
   }
   &:hover {
-    border: 2px solid $panel-bg;
+    border: 2px solid $panel-bg-dark;
     border-bottom: none;
     .label[data-selected=false] {
       color: #fff;

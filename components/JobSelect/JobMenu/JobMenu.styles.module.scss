@@ -1,0 +1,24 @@
+@import 'styles/mixins';
+
+.jobGroupList {
+  background-color: $panel-bg;
+  border-radius: 6px;
+  box-shadow: $box-shadow;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: $spacing-base;
+  list-style: none;
+  padding: $spacing-base;
+  margin: 0;
+  @media (max-width: $screen-md) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: $screen-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: $screen-xs) {
+    grid-template-columns: 1fr;
+  }
+}

@@ -5,9 +5,7 @@
 
 .iconWrapper {
   align-self: flex-start;
-  background: linear-gradient(#333, #000);
-  border: 1px solid #666;
-  border-color: #999 #555 #444 #888;
+  background-color: #030303;
   border-radius: 6px;
   margin-right: 12px;
   padding: 6px;
@@ -21,6 +19,9 @@
 }
 
 .title {
+  color: #fff;
+  text-transform: none;
+  letter-spacing: 0;
   font-size: 24px;
   margin: 0;
 }
@@ -33,7 +34,7 @@
 }
 
 .name {
-  color: rgba(255, 255, 255, 0.75);
+  color: #ccc;
 }
 
 .role {

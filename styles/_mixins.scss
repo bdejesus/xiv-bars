@@ -19,7 +19,10 @@ $primary-xbar-width: $primary-xbar-group-width * 3;
 
 $sidebar-width: 330px;
 
-$panel-bg: #222;
+$panel-bg: #303030;
+$panel-bg-dark: #222;
+
+$box-shadow: 0 6px 10px rgba(0,0,0,0.66);
 
 $spacing-xs: 4px;
 $spacing-sm: 8px;
@@ -40,7 +43,10 @@ $screen-sm-max: $screen-md - 1;
 $screen-md-max: $screen-lg - 1;
 $screen-lg-max: $screen-xl - 1;
 
+$font-size-xs: 10px;
 $font-size-sm: 12px;
 $font-size-base: 14px;
 $font-size-lg: 16px;
-$font-size-xl: 20px;
+$font-size-xl: 16px;
+$font-size-xl-2: 24px;
+$font-size-xl-3: 28px;

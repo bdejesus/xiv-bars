@@ -4,7 +4,7 @@ import Header from 'components/Header';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
 
-import styles from './styles.module.scss';
+import styles from './Intro.styles.module.scss';
 
 function Intro({ jobs }) {
   return (
@@ -12,7 +12,7 @@ function Intro({ jobs }) {
       <div className={styles.header}>
         <Header />
       </div>
-      <div className={styles.primary}>
+      <div className="appView">
         <div className="container">
           <JobSelectContextProvider>
             <h2 className={styles.title} id="jobSelectTitle">

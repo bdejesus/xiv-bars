@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import JobsList from '../JobsList';
-import styles from './styles.module.scss';
+import styles from './JobMenu.styles.module.scss';
 
 function JobMenu({ jobs }) {
   const DoW = jobs.filter((job) => job.Discipline === 'DOW');

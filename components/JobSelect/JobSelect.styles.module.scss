@@ -2,16 +2,13 @@
 
 .button {
   background: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
   color: #fff;
   font-size: 24px;
   padding: 10px 20px 10px 10px;
   height: auto;
   display: block;
   margin-left: -10px;
-  transition: 
-    border 0.33s ease,
-    color 0.33s ease;
+  transition: background-color 0.33s ease;
   img {
     height: 36px;
     width: 36px;
@@ -60,22 +57,21 @@
 }
 
 .closeButton {
-  background-color: rgba(255, 255, 255, 0);
-  border-radius: 4px;
+  background-color: $panel-bg;
+  border: none;
+  border-radius: 4px 4px 0 0;
   color: #fff;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: $font-size-xs;
+  font-weight: 300;
+  text-transform: uppercase;
   height: 32px;
   line-height: 1;
+  margin-top: -1px;
   outline: none;
-  padding: 4px 10px;
   position: absolute;
   right: 10px;
-  top: -2em;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+  transform: translateY(-100%);
 }
 
 @media (max-width: $screen-sm) {
@@ -86,5 +82,11 @@
   .closeButton {
     top: 1em;
     right: 1em;
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .container {
+    width: 100%;
   }
 }

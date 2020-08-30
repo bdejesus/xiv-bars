@@ -2,10 +2,6 @@
 
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.9);
-  box-shadow: 
-    0 1px 4px rgba(0,0,0,0.66),
-    0 8px 0 rgba(255,255,255,0.5),
-    0 6px 8px rgba(0, 0, 0, 0.66);
   padding-bottom: 0;
 }
 
@@ -17,6 +13,7 @@
   font-weight: 300;
   letter-spacing: 0.045em;
   display: inline-block;
+  margin-top: $spacing-sm;
   margin-bottom: $spacing-base;
 }
 
@@ -41,43 +38,10 @@
   }
 }
 
-.appSection {
-  background-color: rgba(0, 0, 0, 0.5);
-  margin-left: auto;
-  margin-right: auto;
-  padding: $spacing-base $spacing-lg $spacing-xl;
-  position: relative;
-  :global(.container) {
-    max-width: $screen-md;
-  }
-
-  @media (max-width: $screen-md) {
-    :global(.container) {
-      padding: 0;
-    }
-  }
-  @media (max-width: $screen-sm) {
-    padding-left: $spacing-base;
-    padding-right: $spacing-base;
-  }
-}
-
-.appContainer {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 920px;
-  position: relative;
-}
-
 .sectionTitle {
-  font-size: $font-size-lg;
-  font-weight: 200;
-  letter-spacing: 0.1em;
-  opacity: 0.33;
   text-align: center;
-  text-transform: uppercase;
   margin-bottom: $spacing-base;
-  margin-top: $spacing-base;
+  margin-top: 0;
 }
 
 .sidebar {
@@ -99,24 +63,25 @@
 }
 
 .toggleButton {
-  background: unset;
+  background-color: unset;
+  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0));
   border: none;
   width: 100%;
   height: 32px;
+  opacity: 0.33;
+  transition: background-image 0.33s ease, opacity 0.33s ease; 
   &:hover, &:active {
-    background-color: transparent;
+    background-color: unset;
     background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
     border: none;
-    .toggleIcon {
-      opacity: 0.66;
-    }
+    opacity: 0.66;
   }
   &[data-active=true] .toggleIcon {
     transform: rotate(180deg);
   }
 }
 
-$icon-size: 8px;
+$icon-size: 6px;
 
 .toggleIcon {
   display: inline-block;
@@ -124,8 +89,8 @@ $icon-size: 8px;
   height: 0; 
   border-left: $icon-size solid transparent;
   border-right: $icon-size solid transparent;
-  border-top: $icon-size solid #fff;
-  opacity: 0.33;
+  border-top: 8px solid #fff;
+  transition: opacity 0.33s ease;
 }
 
 @media (max-width: $screen-md) {

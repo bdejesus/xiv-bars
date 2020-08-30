@@ -84,8 +84,8 @@ function App(props) {
                 </button>
               </div>
 
-              <div className={styles.appSection}>
-                <div className={styles.appContainer}>
+              <div className="appView">
+                <div className="container">
                   <h2 className={styles.sectionTitle}>
                     Plan your { selectedJob && selectedJob.Name } Hotbar Setup
                   </h2>

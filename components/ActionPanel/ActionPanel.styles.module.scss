@@ -6,7 +6,7 @@
 
 .panel {
   background-color: $panel-bg;
-  box-shadow: 0 6px 20px 4px rgba(0,0,0,0.5);
+  box-shadow: $box-shadow;
   border-radius: 0 4px 4px 4px;
   padding: $spacing-sm $spacing-base $spacing-base $spacing-base;
 }
