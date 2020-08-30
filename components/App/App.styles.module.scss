@@ -31,6 +31,16 @@
   display: block;
 }
 
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @media (max-width: $screen-sm) {
+    flex-direction: column;
+  }
+}
+
 .appSection {
   background-color: rgba(0, 0, 0, 0.5);
   margin-left: auto;
@@ -70,26 +80,16 @@
   margin-top: $spacing-base;
 }
 
-.controlPanel {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: $spacing-base;
-}
-
 .sidebar {
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  padding-right: $spacing-base;
   width: $sidebar-width;
 }
 
 .main {
   display: flex;
   flex: 1 1 auto;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding-left: $spacing-base;
 }
 
@@ -144,25 +144,6 @@ $icon-size: 8px;
     }
   }
   .appWrapper .main {
-    display: block;
-  }
-}
-
-@media (max-width: $screen-sm) {
-  .controlPanel {
-    display: block;
-    .main {
-      justify-content: space-between;
-    }
-    .sidebar {
-      margin-left: -10px;
-      margin-right: -10px;
-    }
-  }
-}
-
-@media (max-width: $screen-xs) {
-  .controlPanel .main {
     display: block;
   }
 }

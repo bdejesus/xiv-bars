@@ -1,0 +1,38 @@
+@import 'styles/mixins';
+
+.tabItems {
+  display: inline-flex;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border: 2px solid $panel-bg;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  > li {
+    &:first-child .tabButton {
+      border-radius: 4px 0 0 0;
+    }
+    &:last-child .tabButton {
+      border-radius: 0 4px 0 0;
+    }
+  }
+}
+
+.tabButton {
+  border: none;
+  border-radius: 0;
+  height: 32px;
+  padding: 0 10px;
+  width: 100%;
+  &:hover {
+    border: none;
+  }
+  &[data-active=true] {
+    background-color: $panel-bg;
+    border-bottom-color: $panel-bg;
+    color: #fff;
+    pointer-events: none;
+  }
+}

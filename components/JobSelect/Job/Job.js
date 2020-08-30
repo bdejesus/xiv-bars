@@ -11,6 +11,8 @@ function Job({ job }) {
         src={`//xivapi.com/${job.Icon}`}
         alt={`${job.Name} Icon`}
         draggable={false}
+        height={28}
+        width={28}
       />
       <b className={styles.abbr}>{job.Abbr}</b>
       &nbsp;

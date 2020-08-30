@@ -3,37 +3,40 @@
 .container {
   display: flex;
   justify-content: space-between;
+  align-self: flex-start;
 }
 
 .buttonToggle {
+  border: 2px solid $panel-bg;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+
   display: flex;
   flex-direction: row;
-  padding: 3px;
+  height: 32px;
+  padding: 0;
+  z-index: 2;
+  position: relative;
   .label {
     align-items: center;
     color: rgba(255, 255, 255, 0.66);
     display: flex;
     justify-content: center;
     padding: 0 16px;
-    height: 33px;
     transition:
       background 0.33s ease,
       box-shadow 0.33s ease,
       color 0.33s ease;
     &[data-selected=true] {
-      background-color: #fff;
-      background-image:
-        linear-gradient(
-          rgba(0, 0, 0, 0.5) 0%,
-          rgba(255, 255, 255, 0) 100%
-        );
-      box-shadow:
-        inset 1px 1px 0 rgba(0, 0, 0, 0.33),
-        inset -1px -1px 0 rgba(255, 255, 255, 0.66);
-      color: #111;
+      background-color: rgb(33,33,33);
+      color: #fff;
     }
   }
-  &:hover .label[data-selected=false] {
-    color: #fff;
+  &:hover {
+    border: 2px solid $panel-bg;
+    border-bottom: none;
+    .label[data-selected=false] {
+      color: #fff;
+    }
   }
 }

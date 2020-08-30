@@ -1,18 +1,23 @@
 @import 'styles/mixins';
 
 .uiLayout {
-  background-color: rgba(255,255,255,0.1);
-  box-shadow: 
-    0 0 0 4px #333,
-    0 6px 20px 4px rgba(0,0,0,0.5);
-  border-radius: 6px;
+  background-color: $panel-bg;
+  box-shadow: 0 6px 20px 4px rgba(0,0,0,0.5);
+  border-radius: 0 4px 4px 4px;
   width: 100%;
+  padding: $spacing-base;
+}
+
+@media (max-width: $screen-md) {
+  .uiLayout {
+    padding: $spacing-xs;
+  }
 }
 
 @media (max-width: $screen-xs) {
   .uiLayout {
+    width: auto;
     border-radius: 0;
-    width: 100vw;
     margin-left: -$spacing-base;
     margin-right: -$spacing-base;
   }

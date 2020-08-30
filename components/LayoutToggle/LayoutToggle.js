@@ -28,7 +28,6 @@ function LayoutToggle() {
   return (
     <div className={styles.container}>
       <div className="controlGroup">
-        <label htmlFor="layoutToggle">Layout</label>
         <button
           id="layoutToggle"
           className={`button ${styles.button} ${styles.buttonToggle}`}

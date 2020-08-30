@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Action from 'components/Action';
-import styles from './styles.module.scss';
+import styles from './ActionGroup.styles.module.scss';
 
 function ActionGroup({
   title, actions, limit, remote
 }) {
   const actionsList = limit ? actions.slice(0, limit) : actions;
   return (
-    <div className={styles.actionsGroupContainer}>
+    <div className={styles.container}>
       <h4 className={styles.groupTitle}>{title}</h4>
       <ul className={styles.listActions}>
         {actionsList.map((action) => (

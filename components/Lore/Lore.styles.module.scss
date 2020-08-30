@@ -10,11 +10,12 @@
 }
 
 .loreTitle {
+  font-size: $font-size-xl;
   margin: 0;
 }
 
 .loreBody {
-  font-size: $font-size-sm;
+  font-size: $font-size-base;
   padding-top: $spacing-base;
   br {
     display: block;

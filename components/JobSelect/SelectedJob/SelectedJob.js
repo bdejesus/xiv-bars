@@ -7,7 +7,7 @@ function SelectedJob({ job }) {
   return (
     <div className={styles.container}>
       <div className={styles.iconWrapper}>
-        <img src={`//xivapi.com/${job.Icon}`} alt="" />
+        <img src={`//xivapi.com/${job.Icon}`} alt="" height={36} width={36} />
       </div>
       <div className={styles.textWrapper}>
         <h2 className={styles.title}>

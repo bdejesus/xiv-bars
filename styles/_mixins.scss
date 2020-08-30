@@ -17,8 +17,11 @@ $primary-xbar-group-height: $outer-primary-slot-size * 2 + $slot-spacing / 2;
 $primary-xbar-group-width: $outer-primary-slot-size * 3;
 $primary-xbar-width: $primary-xbar-group-width * 3;
 
-$sidebar-width: 326px;
+$sidebar-width: 330px;
 
+$panel-bg: #222;
+
+$spacing-xs: 4px;
 $spacing-sm: 8px;
 $spacing-base: 16px;
 $spacing-lg: 32px;
@@ -40,3 +43,4 @@ $screen-lg-max: $screen-xl - 1;
 $font-size-sm: 12px;
 $font-size-base: 14px;
 $font-size-lg: 16px;
+$font-size-xl: 20px;

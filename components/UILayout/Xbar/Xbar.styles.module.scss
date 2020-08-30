@@ -2,6 +2,7 @@
 $group-padding: 10px;
 
 .container {
+  align-items: center;
   display: flex;
   flex-direction: column;
   counter-reset: xbarCount;
@@ -25,7 +26,7 @@ $group-padding: 10px;
     opacity: 0.33;
     font-size: 18px;
     font-weight: 100;
-    left: -32px;
+    left: -24px;
   }
   &:last-child {
     border-bottom: none;
@@ -88,5 +89,6 @@ $group-padding: 10px;
   .xbar {
     padding-left: 0;
     padding-right: 0;
+    margin: 0;
   }
 }

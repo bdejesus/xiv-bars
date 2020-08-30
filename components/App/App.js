@@ -50,10 +50,15 @@ function App(props) {
                     &larr; Return to Class Select
                   </a>
 
-                  <div className="row">
-                    <JobSelectContextProvider>
-                      <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                    </JobSelectContextProvider>
+                  <div className={styles.controls}>
+                    <div className={styles.columnLeft}>
+                      <JobSelectContextProvider>
+                        <JobSelect jobs={jobs} selectedJob={selectedJob} />
+                      </JobSelectContextProvider>
+                    </div>
+                    <div className={styles.columnRight}>
+                      <Sharing selectedJob={selectedJob} />
+                    </div>
                   </div>
 
                   <div
@@ -85,16 +90,12 @@ function App(props) {
                     Plan your { selectedJob && selectedJob.Name } Hotbar Setup
                   </h2>
 
-                  <div className={`${styles.controlPanel} ${styles.container}`}>
-                    <Sharing selectedJob={selectedJob} />
-                    <LayoutToggle />
-                  </div>
-
                   <div className={`${styles.container} ${styles.appWrapper}`}>
                     <div className={`panel ${styles.sidebar}`}>
                       <ActionPanel roleActions={roleActions} actions={actions} />
                     </div>
                     <div className={styles.main}>
+                      <LayoutToggle />
                       <UILayout />
                     </div>
                   </div>

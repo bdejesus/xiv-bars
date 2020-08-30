@@ -1,0 +1,19 @@
+@import 'styles/mixins';
+
+.actionsPanel {
+  display: block;
+}
+
+.panel {
+  background-color: $panel-bg;
+  box-shadow: 0 6px 20px 4px rgba(0,0,0,0.5);
+  border-radius: 0 4px 4px 4px;
+  padding: $spacing-sm $spacing-base $spacing-base $spacing-base;
+}
+
+@media (max-width: $screen-sm) {
+  .actionsPanel {
+    display: block;
+    margin-bottom: $spacing-lg;
+  }
+}
