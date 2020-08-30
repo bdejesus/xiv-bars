@@ -16,14 +16,10 @@ import { AppContextProvider } from './context';
 
 import styles from './App.styles.module.scss';
 
-function App({
-  jobs,
-  actions,
-  selectedJob,
-  roleActions,
-  encodedSlots,
-  host
-}) {
+function App(props) {
+  const {
+    jobs, selectedJob, actions, roleActions
+  } = props;
   const [expanded, setExpanded] = useState(true);
   const expandDescStore = 'xivbars_expandDesc';
 
@@ -39,12 +35,7 @@ function App({
   }
 
   return (
-    <AppContextProvider
-      actions={actions}
-      roleActions={roleActions}
-      host={host}
-      encodedSlots={encodedSlots}
-    >
+    <AppContextProvider {...props}>
       { !selectedJob
         ? <Intro jobs={jobs} />
         : (
@@ -122,15 +113,11 @@ App.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  selectedJob: PropTypes.shape(),
-  host: PropTypes.string,
-  encodedSlots: PropTypes.arrayOf(PropTypes.array),
+  selectedJob: PropTypes.shape()
 };
 
 App.defaultProps = {
-  selectedJob: undefined,
-  host: undefined,
-  encodedSlots: undefined
+  selectedJob: undefined
 };
 
 export default App;

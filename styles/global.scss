@@ -87,6 +87,9 @@ label {
   main {
     padding: 0;
   }
+  .container {
+    padding: $spacing-base;
+  }
 }
 
 @media (max-width: $screen-sm) {

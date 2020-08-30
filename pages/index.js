@@ -5,39 +5,23 @@ import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
 
-import { listJobs, listJobActions, listRoleActions } from 'lib/api';
+import {
+  listJobs, listJobActions, listRoleActions, getCurrentPatch
+} from 'lib/api';
 import LoadScreen from 'components/LoadScreen';
 
-import styles from './styles.module.scss';
+import styles from './Index.styles.module.scss';
 
-function Index({
-  jobs,
-  actions,
-  selectedJob,
-  roleActions,
-  encodedSlots,
-  host
-}) {
+function Index(pageProps) {
+  const { selectedJob, currentPatch } = pageProps;
   return (
     <>
-      <App
-        jobs={jobs}
-        selectedJob={selectedJob}
-        actions={actions}
-        roleActions={roleActions}
-        host={host}
-        encodedSlots={encodedSlots}
-      />
-
+      <App {...pageProps} />
       <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <Articles />
       </div>
-
-      <div className={styles.footer}>
-        <Footer />
-      </div>
-
+      <Footer currentPatch={currentPatch} />
       <LoadScreen />
     </>
   );
@@ -68,29 +52,27 @@ Index.getInitialProps = async ({ req, query }) => {
     }
   }
 
+  // Fetch Version
+  const currentPatch = await getCurrentPatch();
+
   return {
     jobs: decoratedJobs,
     actions: jobActions,
     selectedJob,
     roleActions,
     encodedSlots,
-    host
+    host,
+    currentPatch
   };
 };
 
 Index.propTypes = {
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape(),
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  encodedSlots: PropTypes.arrayOf(PropTypes.array),
-  host: PropTypes.string
+  currentPatch: PropTypes.shape().isRequired
 };
 
 Index.defaultProps = {
-  selectedJob: undefined,
-  encodedSlots: null,
-  host: undefined
+  selectedJob: undefined
 };
 
 export default Index;
