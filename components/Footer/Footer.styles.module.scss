@@ -1,12 +1,20 @@
 @import 'styles/mixins';
 
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  color: #999;
+  font-size: 12px;
+  line-height: 1.45em;
+  margin-bottom: $spacing-base;
+}
+
 .container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-.container p {
-  margin: 0.33em 0;
+  p {
+    margin: 0.33em 0;
+  }
 }
 
 .version {
@@ -30,13 +38,16 @@
   text-align: right;
 }
 
-.footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  color: #999;
-  font-size: 12px;
-  line-height: 1.45em;
-  margin-bottom: $spacing-base;
-  @media (max-width: $screen-sm) {
+
+
+
+@media (max-width: $screen-sm) {
+  .container {
+    flex-direction: column;
+  }
+
+  .right {
+    margin-top: $spacing-base;
     text-align: left;
   }
 }
