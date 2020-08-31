@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 function Articles() {
   return (
     <div className="container">
-      <h2>Guides</h2>
+      <h2>FFXIV Guides</h2>
 
       <div className="mt-md">
         <h3>

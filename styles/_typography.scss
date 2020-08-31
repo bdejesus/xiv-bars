@@ -7,12 +7,12 @@ body {
   line-height: 1.455em;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   font-weight: 300;
   color: #DDD;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   letter-spacing: 0.066em;
   font-weight: 200;
@@ -43,7 +43,28 @@ h3 {
 }
 
 h4 {
+  color: #888;
   font-size: $font-size-lg;
+}
+
+h5 {
+  color: #888;
+  font-size: $font-size-base;
+  margin-bottom: 0;
+}
+
+ol {
+  list-style: none;
+  margin: $spacing-lg 0;
+  h5 {
+    margin-top: $spacing-base;
+  }
+  p {
+    margin: 0;
+  }
+  > li {
+    margin: 0;
+  }
 }
 
 abbr {

@@ -86,7 +86,7 @@ function App(props) {
               <div className="appView">
                 <div className="container">
                   <h2 className={styles.sectionTitle}>
-                    Plan your { selectedJob && selectedJob.Name } Hotbar Setup
+                    FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
                   </h2>
 
                   <div className={styles.container}>

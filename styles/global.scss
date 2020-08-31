@@ -27,6 +27,11 @@ body {
   padding: $spacing-lg;
 }
 
+.section {
+  padding-top: $spacing-base;
+  padding-bottom: $spacing-base;
+}
+
 .row {
   align-items: flex-start;
   display: flex;

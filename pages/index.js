@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Header from 'components/Header';
@@ -19,6 +20,38 @@ function Index(pageProps) {
       <App {...pageProps} />
       <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
+        <div className="container section">
+          <h3 className={styles.subTitle}>
+            How To Use This Planner
+          </h3>
+
+          <p>
+            Creating the perfect hotbar interface setup in Final Fantasy XIV using a controller is clunky and time-consuming. This simulator allows you to plan out your hotbar layouts using a web-based drag-and-drop interface to simulate different configurations before commiting it to your controller HUD in-game.
+          </p>
+
+          <ol>
+            <li>
+              <h5>Select a FFXIV Class/Job</h5>
+              <p>Choose from and plan your hotbars for any of the FFXIV Class/Jobs</p>
+            </li>
+            <li>
+              <h5>Toggle between FFXIV Hotbar layouts</h5>
+              <p>Simulate either a W Cross Hotbar (WXHB) or standard Hotbars layout.</p>
+            </li>
+
+            <li>
+              <h5>Drag &amp; Drop Actions to Slots</h5>
+              <p>Slot any of the Combat and Role actions for your selected Class/Job, as well as any Menu Command, Macros, and other Actions.</p>
+            </li>
+            <li>
+              <h5>Share With Others</h5>
+              <p>
+                Once you’re done configuring your Final Fantasy XIV hotbar layout, save or share your layout with the generated URL. Use this tool as a reference to configure your hotbars in-game.
+              </p>
+            </li>
+          </ol>
+
+        </div>
         <Articles />
       </div>
       <Footer currentPatch={currentPatch} />

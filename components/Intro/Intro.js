@@ -16,7 +16,7 @@ function Intro({ jobs }) {
         <div className="container">
           <JobSelectContextProvider>
             <h2 className={styles.title} id="jobSelectTitle">
-              FFXIV Classes
+              Select A Job/Class
             </h2>
             <JobMenu jobs={jobs} />
           </JobSelectContextProvider>
