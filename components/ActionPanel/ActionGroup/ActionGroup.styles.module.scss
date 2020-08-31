@@ -18,22 +18,13 @@
 
 .listActions {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
-  grid-gap: 10px;
   list-style: none;
   margin: 0;
   padding: 0;
   > li {
-    padding-top: 100%;
-    position: relative;
-    > div {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      top: 0;
-      left: 0;
-    }
+    margin: 8px;
   }
 }
 
@@ -41,14 +32,9 @@
   .listActions {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
     > li {
-      padding-top: 0;
       width: 36px;
       height: 36px;
-      > div {
-        position: relative;
-      }
     }
   }
 }

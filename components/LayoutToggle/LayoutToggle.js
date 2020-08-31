@@ -30,7 +30,7 @@ function LayoutToggle() {
       <div className="controlGroup">
         <button
           id="layoutToggle"
-          className={`button ${styles.button} ${styles.buttonToggle}`}
+          className={styles.buttonToggle}
           type="button"
           onClick={toggleHotbarLayout}
         >

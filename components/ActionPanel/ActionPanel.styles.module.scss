@@ -13,6 +13,7 @@
 
 @media (max-width: $screen-sm) {
   .actionsPanel {
+    border-radius: 0;
     display: block;
     margin-bottom: $spacing-lg;
   }

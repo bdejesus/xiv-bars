@@ -13,6 +13,7 @@
   border-radius: $border-radius $border-radius 0 0;
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   height: 34px;
   padding: 0;
   z-index: 2;
@@ -21,7 +22,7 @@
     align-items: center;
     color: rgba(255, 255, 255, 0.66);
     display: flex;
-    justify-content: center;
+    height: 32px;
     padding: 0 16px;
     transition:
       background 0.33s ease,

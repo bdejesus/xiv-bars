@@ -2,7 +2,7 @@
 
 .uiLayout {
   background-color: $panel-bg;
-  box-shadow: 0 6px 20px 4px rgba(0,0,0,0.5);
+  box-shadow: 0 6px 20px 4px #00000080;
   border-radius: $border-radius;
   width: 100%;
   padding: $spacing-base;
@@ -11,6 +11,12 @@
 @media (max-width: $screen-md) {
   .uiLayout {
     padding: $spacing-xs;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .uiLayout {
+    border-radius: 0;
   }
 }
 

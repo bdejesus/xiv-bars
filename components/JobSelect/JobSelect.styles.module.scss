@@ -80,13 +80,13 @@
     margin-left: 0;
   }
   .closeButton {
-    top: 1em;
-    right: 1em;
+    transform: translateY(0);
   }
 }
 
 @media (max-width: $screen-xs) {
   .container {
-    width: 100%;
+    max-width: unset;
+    width: 100vw;
   }
 }

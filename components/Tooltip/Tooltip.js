@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTooltipState } from './context';
 
-import styles from './styles.module.scss';
+import styles from './Tooltip.styles.module.scss';
 
 function Tooltip() {
   const [positionStyle, setPositionStyle] = useState({ transform: 'none' });
