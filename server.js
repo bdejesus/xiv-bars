@@ -17,7 +17,8 @@ app.prepare().then(() => {
   });
 
   server.get('/job/:job', (req, res) => {
-    app.render(req, res, '/index', { ...req.query, job: req.params.job });
+    const job = req.params.job.toUpperCase();
+    app.render(req, res, '/index', { ...req.query, job });
   });
 
   server.get('*', (req, res) => handle(req, res));
