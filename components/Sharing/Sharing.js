@@ -60,7 +60,7 @@ function Sharing({ selectedJob }) {
       </div>
       <button
         type="button"
-        className="button"
+        className={styles.copyButton}
         onClick={copyUrl}
       >
         Copy URL

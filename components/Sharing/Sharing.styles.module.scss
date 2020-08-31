@@ -8,7 +8,7 @@
   &::after {
     align-items: center;
     background-color: #111;
-    border-radius: 4px;
+    border-radius: $border-radius;
     bottom: 0;
     content: 'Copied!';
     display: flex;
@@ -31,14 +31,13 @@
   // background-image: url('/images/black_paper.png');
   background-color: #333;
   border: 0;
-  border-radius: 4px;
+  border-radius: $border-radius 0 0 $border-radius;
   color: #999;
   font-family: Verdana, sans-serif;
   font-size: 12px;
   font-weight: 300;
   display: block;
   height: 32px;
-  margin-right: 6px;
   padding: 10px;
   transition: background-color 0.33s ease;
   width: 260px;
@@ -46,6 +45,10 @@
     background-color: rgba(255, 255, 255, 0.2);
     color: #ccc;
   }
+}
+
+.copyButton {
+  border-radius: 0 $border-radius $border-radius 0;
 }
 
 @media (max-width: $screen-xs) {

@@ -3,7 +3,7 @@
 .uiLayout {
   background-color: $panel-bg;
   box-shadow: 0 6px 20px 4px rgba(0,0,0,0.5);
-  border-radius: 0 4px 4px 4px;
+  border-radius: $border-radius;
   width: 100%;
   padding: $spacing-base;
 }

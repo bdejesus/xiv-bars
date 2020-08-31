@@ -2,7 +2,7 @@
 
 .jobGroupList {
   background-color: $panel-bg;
-  border-radius: 6px;
+  border-radius: $border-radius;
   box-shadow: $box-shadow;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

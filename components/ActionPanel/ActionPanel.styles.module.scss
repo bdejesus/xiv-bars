@@ -7,7 +7,7 @@
 .panel {
   background-color: $panel-bg;
   box-shadow: $box-shadow;
-  border-radius: 0 4px 4px 4px;
+  border-radius: $border-radius;
   padding: $spacing-sm $spacing-base $spacing-base $spacing-base;
 }
 
