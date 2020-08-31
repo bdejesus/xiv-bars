@@ -2,6 +2,8 @@
 
 .container {
   margin-bottom: $spacing-base;
+  overflow-x: hidden;
+  overflow-y: auto;
   &:last-child {
     margin-bottom: 0;
   }
