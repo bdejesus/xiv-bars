@@ -3,9 +3,7 @@
 .slot {
   background-color: rgba(255, 255, 255, 0.33);
   border-radius: 4px;
-  box-shadow:
-    inset -1px -1px 2px rgba(255, 255, 255, 0.3),
-    inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.33);
   height: $slot-size;
   margin: 2px;
   transition:
@@ -18,9 +16,8 @@
   &[data-state="active"] {
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow:
-      inset -1px -1px 2px rgba(255, 255, 255, 0.66),
-      inset 1px 1px 2px rgba(255, 255, 255, 0.1),
-      0 0 6px rgba(255, 255, 255, 0.25);
+      inset 0 0 4px rgba(255, 255, 255, 0.1),
+      0 0 6px rgba(0, 0, 0, 0.66);
     outline: none;
     transform: scale(1.1);
   }

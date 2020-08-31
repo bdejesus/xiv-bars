@@ -7,7 +7,7 @@ import {
 } from 'components/SelectedAction';
 import { useAppDispatch } from 'components/App/context';
 
-import styles from './styles.module.scss';
+import styles from './Slot.styles.module.scss';
 
 function Slot({ id, className, action }) {
   const appDispatch = useAppDispatch();

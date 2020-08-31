@@ -16,6 +16,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup Modules Cache
+      id: cache-modules
       uses: actions/cache@v2
       with:
         path: ${{ github.workspace }}/node_modules
@@ -26,6 +27,7 @@ jobs:
     #  run: yarn test
 
     - name: Setup Build Cache
+      id: cache-build
       uses: actions/cache@v1
       with:
         path: ${{ github.workspace }}/.next/cache
