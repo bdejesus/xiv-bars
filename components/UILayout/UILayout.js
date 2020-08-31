@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import LayoutToggle from 'components/LayoutToggle';
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
 import { layouts } from 'lib/xbars';
@@ -29,7 +30,14 @@ function UILayout() {
     }
   }
 
-  return <div className={styles.uiLayout}><SlotLayout /></div>;
+  return (
+    <>
+      <LayoutToggle />
+      <div className={styles.uiLayout}>
+        <SlotLayout />
+      </div>
+    </>
+  );
 }
 
 export default UILayout;

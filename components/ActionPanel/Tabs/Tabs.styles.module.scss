@@ -1,11 +1,15 @@
 @import 'styles/mixins';
 
+.tabs {
+  margin: 0 $spacing-sm;
+}
+
 .tabItems {
   display: inline-flex;
   flex-direction: row;
   list-style: none;
   padding: 0;
-  margin: 0 $spacing-sm;
+  margin: 0;
   border: 2px solid $panel-bg;
   border-bottom: 0;
   border-radius: $border-radius $border-radius 0 0;

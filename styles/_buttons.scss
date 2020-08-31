@@ -23,15 +23,8 @@ button,
   &:active,
   &:focus {
     color: #fff;
-  }
-  &:hover,
-  &:active,
-  &:focus {
     background-color: $panel-bg-dark;
   }  
-  &:focus {
-    outline: 2px solid #fff;
-  }
   img {
     height: 36px;
     width: 36px;

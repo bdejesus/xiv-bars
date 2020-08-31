@@ -6,7 +6,6 @@ import siteData from 'config/app.config';
 import ActionPanel from 'components/ActionPanel';
 import Intro from 'components/Intro';
 import UILayout from 'components/UILayout';
-import LayoutToggle from 'components/LayoutToggle';
 import Sharing from 'components/Sharing';
 import Lore from 'components/Lore';
 import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
@@ -90,12 +89,11 @@ function App(props) {
                     Plan your { selectedJob && selectedJob.Name } Hotbar Setup
                   </h2>
 
-                  <div className={`${styles.container} ${styles.appWrapper}`}>
+                  <div className={styles.container}>
                     <div className={`panel ${styles.sidebar}`}>
                       <ActionPanel roleActions={roleActions} actions={actions} />
                     </div>
                     <div className={styles.main}>
-                      <LayoutToggle />
                       <UILayout />
                     </div>
                   </div>

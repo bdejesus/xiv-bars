@@ -1,14 +1,21 @@
 @import 'styles/mixins';
+@import 'styles/scrollbars';
 
 .actionsPanel {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .panel {
   background-color: $panel-bg;
   box-shadow: $box-shadow;
   border-radius: $border-radius;
-  padding: $spacing-sm $spacing-base $spacing-base $spacing-base;
+  flex: 1 1 auto;
+  padding: $spacing-sm $spacing-sm $spacing-base $spacing-base;
+  overflow-x: hidden;
+  overflow-y: auto;
+  @include customScrollbar;
 }
 
 @media (max-width: $screen-sm) {

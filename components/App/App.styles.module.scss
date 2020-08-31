@@ -44,24 +44,6 @@
   margin-top: 0;
 }
 
-.sidebar {
-  width: $sidebar-width;
-}
-
-.main {
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: $spacing-base;
-}
-
-.container {
-  display: flex;
-  position: relative;
-}
-
 .toggleButton {
   background-color: unset;
   background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0));
@@ -93,6 +75,31 @@ $icon-size: 6px;
   transition: opacity 0.33s ease;
 }
 
+.container {
+  display: flex;
+  position: relative;
+  height: 480px
+}
+
+.main,
+.sidebar {
+  height: 100%;
+}
+
+.main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: $spacing-base;
+}
+
+.sidebar {
+  width: $sidebar-width;
+}
+
+
 @media (max-width: $screen-md) {
   .main,
   .sidebar {
@@ -101,15 +108,16 @@ $icon-size: 6px;
     width: unset;
   }
   
-  .appWrapper {
+  .container {
     flex-direction:column;
+    height: unset;
     .sidebar {
       order: 2;
       margin-top: $spacing-lg;
       height: 100%;
     }
-  }
-  .appWrapper .main {
-    display: block;
+    .main {
+      display: block;
+    }
   }
 }
