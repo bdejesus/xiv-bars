@@ -4,22 +4,16 @@ import BuyMeABeer from 'components/BuyMeABeer';
 import styles from './Footer.styles.module.scss';
 
 function Footer({ currentPatch }) {
-  const {
-    Name, Url, ExName, Banner
-  } = currentPatch;
-
-  const baseFFXIVUrl = 'https://na.finalfantasyxiv.com';
-  const versionSlug = Url.replace(/[+|.]/gi, '_');
-  const patchUrl = `${baseFFXIVUrl}/${ExName.toLowerCase()}${versionSlug}`;
+  const { Name, ExName, Banner } = currentPatch;
 
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>
         <div className={styles.version}>
-          <a href={patchUrl}>
+          <a href="https://na.finalfantasyxiv.com/lodestone/topics/detail/c2f8c5ba14d9cfaa09d5aab63c5c2da260eae21a/?utm_source=lodestone&utm_medium=pc_header&utm_campaign=na_5_3patch">
             <img
               className={styles.versionBanner}
-              src={Banner}
+              src="https://img.finalfantasyxiv.com/t/de58e70494f03af0b5e341a9a794afa20fdc1642.png?1596700674?1596525244"
               alt={Name}
             />
             <div className={styles.versionBody}>
