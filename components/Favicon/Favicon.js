@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Favicon() {
+export function renderFavicon() {
   return (
     <>
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -77,4 +77,4 @@ export function Favicon() {
   );
 }
 
-export default Favicon;
+export default renderFavicon;

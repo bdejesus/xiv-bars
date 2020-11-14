@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-export function Meta({ title, description, canonical }) {
+export function renderMeta(title, description, canonical) {
   return (
     <>
       <meta name="description" content={description} />
@@ -52,14 +51,4 @@ export function Meta({ title, description, canonical }) {
   );
 }
 
-Meta.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  canonical: PropTypes.string.isRequired
-};
-
-Meta.defaultProps = {
-  description: ''
-};
-
-export default Meta;
+export default renderMeta;

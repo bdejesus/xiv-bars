@@ -3,8 +3,8 @@ import App from 'next/app';
 import Head from 'next/head';
 import shortDesc from 'lib/shortDesc';
 import siteData from 'config/app.config';
-import Meta from 'components/Meta';
-import Favicon from 'components/Favicon';
+import renderMeta from 'components/Meta';
+import renderFavicon from 'components/Favicon';
 
 import 'styles/global.scss';
 
@@ -44,12 +44,8 @@ class AppContainer extends App {
           <title>
             {title}
           </title>
-          <Meta
-            title={title}
-            description={description}
-            canonical={canonicalUrl}
-          />
-          <Favicon />
+          {renderMeta(title, description, canonicalUrl)}
+          { renderFavicon() }
         </Head>
 
         <main>
