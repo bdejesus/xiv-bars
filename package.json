@@ -7,11 +7,13 @@
     "build": "next build",
     "deploy": "git push heroku master",
     "heroku-postbuild": "npm run build",
-    "precompile": "node ./scripts/precompile.js"
+    "precompile": "node ./scripts/precompile.js",
+    "test": "jest tests"
   },
   "dependencies": {
     "@svgr/webpack": "5.4.0",
     "express": "^4.17.1",
+    "jest": "^26.6.3",
     "next": "^10.0.1",
     "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
