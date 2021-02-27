@@ -1,21 +1,38 @@
 # XIV Bars
 
-This is the source code for XIV Bars, a simple webapp for previewing the Final Fantasy XIV Crossbar. Plan out what your crossbar actions could look like for playing Final Fantasy XIV with a gamepad or controller.
+[https://xivbars.bejezus.com](https://xivbars.bejezus.com)
 
-This app is deployed to [https://xivbars.bejezus.com](https://xivbars.bejezus.com).
+XIV Bars is a webapp for previewing Final Fantasy XIV W Crossbar layouts. Plan out what your crossbar actions could look like for playing Final Fantasy XIV with a gamepad or controller.
 
-## Requirements
+## Table of Contents
+
+- [Development](#development)
+  - [Requirements](#requirements)
+  - [Running the app](#running-the-app)
+- [Troubleshooting](#troubleshooting)
+- [Contrubuting](#contributing)
+  - [Reporting Bugs](#reporting-bugs)
+  - [Feature Requests](#feature-requests)
+  - [Code Contributions](#code-contributions)
+
+---
+
+## Developtment
+
+### Requirements
 
 You'll need to install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/)
 
-## Running the app
+### Running the app
 
 Install dependencies
+
 ```
 yarn install
 ```
 
 Run the app
+
 ```
 yarn dev
 ```
@@ -27,15 +44,27 @@ The page will reload if you make edits. You will also see any lint errors in the
 ## Troubleshooting
 
 ### Incompatible "node" engine
+
 ```
 The engine "node" is incompatible with this module.
 ```
 
 #### Solution
+
 ```
 yarn --ignore-engines
 ```
 
-## Contributing
+## How to Contribute
 
-Create a pull request and maybe I'll review and accept when I get the chance. I'm not really sure how much time I'll be able to commit to maintaining this.
+### Reporting Bugs
+
+Report bugs in the [Issues](./issues) section. Please include step-by-step instructions on how to reproduce, as well as OS and browser.
+
+### Feature Requests
+
+Submit feature requests in the [Issues](./issues) setion. Include a detailed description of the feature being requested and how it should work.
+
+### Code Contrubutions
+
+Create a pull request and I'll review when I find the time. I'm not really sure how much time I'll be able to commit to maintaining this.
