@@ -10,7 +10,7 @@ function LayoutToggle() {
   const appDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
-    if (layouts[layout] === 'xbars') {
+    if (layouts[layout] === 'chotbar') {
       router.push({
         pathname: router.pathname,
         query: { ...router.query, l: 1 }
@@ -36,13 +36,13 @@ function LayoutToggle() {
         >
           <span
             className={styles.label}
-            data-selected={layouts[layout] === 'xbars'}
+            data-selected={layouts[layout] === 'chotbar'}
           >
             <abbr title="W Cross Hotbar">WXHB</abbr>
           </span>
           <span
             className={styles.label}
-            data-selected={layouts[layout] === 'hotbars'}
+            data-selected={layouts[layout] === 'hotbar'}
           >
             Hotbars
           </span>

@@ -1,5 +1,12 @@
 @import 'styles/mixins';
 
+.controls {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .uiLayout {
   background-color: $panel-bg;
   box-shadow: 0 6px 20px 4px #00000080;

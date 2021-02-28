@@ -62,13 +62,13 @@ Bar.propTypes = {
 };
 
 function Xbar() {
-  const { xbars } = useAppState();
+  const { chotbar } = useAppState();
 
   return (
     <div className={styles.container}>
-      {Object.keys(xbars).map((xbar) => (
+      {Object.keys(chotbar).map((xbar) => (
         <div className={styles.xbar} key={xbar}>
-          <Bar bar={xbars[xbar]} id={xbar} />
+          <Bar bar={chotbar[xbar]} id={xbar} />
         </div>
       ))}
     </div>

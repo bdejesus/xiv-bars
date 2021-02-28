@@ -25,13 +25,13 @@ Row.propTypes = {
 };
 
 function Hotbar() {
-  const { hotbars } = useAppState();
+  const { hotbar } = useAppState();
 
   return (
     <ol className={styles.container}>
-      {Object.keys(hotbars).map((barKey) => (
+      {Object.keys(hotbar).map((barKey) => (
         <li key={barKey} className={styles.rowWrapper}>
-          <Row slots={hotbars[barKey]} />
+          <Row slots={hotbar[barKey]} />
         </li>
       ))}
     </ol>
