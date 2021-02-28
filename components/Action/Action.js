@@ -8,7 +8,9 @@ import styles from './Action.styles.module.scss';
 
 let tooltipTimeout = null;
 
-export default function Action({ action, tooltip, remote }) {
+export default function Action({
+  action, tooltip, remote
+}) {
   const actionRef = createRef();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -67,12 +69,14 @@ export default function Action({ action, tooltip, remote }) {
     setDragging(false);
   }
 
+  const actionType = `${action.UrlType.toLowerCase()}Type`;
+
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
       <div
         ref={actionRef}
-        className={`${styles.action} ${dragging ? styles.dragging : ''}`}
+        className={`${styles.action} ${styles[actionType]} ${dragging ? styles.dragging : ''}`}
         draggable
         onDragStart={selectAction}
         onDragEnd={handleDragEnd}

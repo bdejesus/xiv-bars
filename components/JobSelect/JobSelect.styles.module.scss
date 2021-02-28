@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@import 'styles/mixins';
 
 .button {
   background: rgba(0, 0, 0, 0);
@@ -36,7 +36,7 @@
   .container {
     transition: opacity 0.33s ease, transform 0.33s ease;
   }
-  &[aria-hidden=true] {
+  &[aria-hidden='true'] {
     background: rgba(0, 0, 0, 0);
     display: flex;
     pointer-events: none;
@@ -46,7 +46,7 @@
       transform: scale(1.05);
     }
   }
-  &[aria-hidden=false] {
+  &[aria-hidden='false'] {
     background: rgba(0, 0, 0, 0.9);
     pointer-events: auto;
     .container {
@@ -56,31 +56,10 @@
   }
 }
 
-.closeButton {
-  background-color: $panel-bg;
-  border: none;
-  border-radius: $border-radius $border-radius 0 0;
-  color: #fff;
-  cursor: pointer;
-  font-size: $font-size-xs;
-  font-weight: 300;
-  text-transform: uppercase;
-  height: 32px;
-  line-height: 1;
-  margin-top: -1px;
-  outline: none;
-  position: absolute;
-  right: 10px;
-  transform: translateY(-100%);
-}
-
 @media (max-width: $screen-sm) {
   .button {
     width: 100%;
     margin-left: 0;
-  }
-  .closeButton {
-    transform: translateY(0);
   }
 }
 
