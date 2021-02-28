@@ -19,7 +19,8 @@ async function getActions() {
           ...action,
           Name: action.Name ? action.Name : `${actionSet} ${action.ID}`,
           UrlType: actionSet,
-          Prefix: ACTION_TYPE[actionSet]
+          Prefix: ACTION_TYPE[actionSet].prefix,
+          Command: ACTION_TYPE[actionSet].command
         }));
 
         fs.writeFile(

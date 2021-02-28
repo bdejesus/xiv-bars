@@ -1,0 +1,11 @@
+@import 'styles/mixins';
+.button {
+  background-color: $panel-bg;
+  border-radius: $border-radius $border-radius 0 0;
+  font-size: $font-size-xs;
+  position: absolute;
+  right: $spacing-sm;
+  text-transform: uppercase;
+  top: -1px;
+  transform: translateY(-100%);
+}

@@ -21,17 +21,21 @@
   padding-bottom: 0;
 }
 
-.description[data-expanded='false'] {
-  display: none;
-}
-.description[data-expanded='true'] {
-  display: block;
+.description {
+  &[data-expanded='false'] {
+    display: none;
+  }
+
+  &[data-expanded='true'] {
+    display: block;
+  }
 }
 
 .controls {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 
   @media (max-width: $screen-sm) {
     flex-direction: column;
@@ -52,6 +56,7 @@
   height: 32px;
   opacity: 0.33;
   transition: background-image 0.33s ease, opacity 0.33s ease;
+
   &:hover,
   &:active {
     background-color: unset;
@@ -59,27 +64,28 @@
     border: none;
     opacity: 0.66;
   }
+
   &[data-active='true'] .toggleIcon {
     transform: rotate(180deg);
   }
 }
 
 .pageActions {
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
 }
 
 $icon-size: 6px;
 
 .toggleIcon {
-  display: inline-block;
-  width: 0;
-  height: 0;
   border-left: $icon-size solid transparent;
   border-right: $icon-size solid transparent;
   border-top: 8px solid #fff;
+  display: inline-block;
+  height: 0;
   transition: opacity 0.33s ease;
+  width: 0;
 }
 
 .container {
@@ -117,11 +123,13 @@ $icon-size: 6px;
   .container {
     flex-direction: column;
     height: unset;
+
     .sidebar {
       order: 2;
       margin-top: $spacing-lg;
       height: 100%;
     }
+
     .main {
       display: block;
     }

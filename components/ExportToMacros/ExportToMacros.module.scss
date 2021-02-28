@@ -1,32 +1,59 @@
 @import 'styles/mixins';
 
 .macroBtn {
-  // border: 2px solid $panel-bg;
   margin-left: $spacing-xs;
+
+  &[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 .modal {
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.9);
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
   bottom: 0;
-  z-index: 10;
   display: flex;
   justify-content: center;
-  align-items: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 11;
+
+  .modalContent {
+    background-color: $panel-bg;
+    border-radius: $border-radius;
+    padding: $spacing-base;
+    position: relative;
+    max-width: 460px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  .modalHeader {
+    margin: $spacing-sm 0 $spacing-base;
+    position: relative;
+    max-width: 100%;
+  }
+
+  .modalFooter {
+    margin-top: $spacing-sm;
+    text-align: right;
+  }
 
   textarea {
+    background-color: $panel-bg-dark;
+    border: none;
+    color: #ccc;
     display: block;
     font-family: 'Fira Code', Consolas, Courier, monospace;
-    font-size: 14px;
-    background-color: $panel-bg-dark;
-    border: 2px solid $panel-bg;
-    color: #ccc;
+    font-size: 12px;
     height: 320px;
-    width: 480px;
     padding: $spacing-base;
+    width: 100%;
   }
 }
 

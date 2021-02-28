@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CloseButton from 'components/CloseButton';
 import SelectedJob from './SelectedJob';
 import JobMenu from './JobMenu';
 import { useJobSelectState, useJobSelectDispatch } from './context';
@@ -22,14 +23,7 @@ function Modal({ jobs, selectedJob }) {
 
       <div className={styles.modal} aria-hidden={!isSelectingJob} tabIndex={-1}>
         <div className={styles.container}>
-          <button
-            type="button"
-            className={styles.closeButton}
-            onClick={() => jobSelectDispatch({ type: 'close' })}
-          >
-            &times; Close
-          </button>
-
+          <CloseButton onClick={() => jobSelectDispatch({ type: 'close' })} />
           <JobMenu jobs={jobs} />
         </div>
       </div>
