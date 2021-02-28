@@ -4,7 +4,7 @@ import CloseButton from 'components/CloseButton';
 import SelectedJob from './SelectedJob';
 import JobMenu from './JobMenu';
 import { useJobSelectState, useJobSelectDispatch } from './context';
-import styles from './JobSelect.styles.module.scss';
+import styles from './JobSelect.module.scss';
 
 function Modal({ jobs, selectedJob }) {
   const jobSelectDispatch = useJobSelectDispatch();

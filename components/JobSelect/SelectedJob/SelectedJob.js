@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ROLE_NAMES } from 'lib/jobs';
-import styles from './SelectedJob.styles.module.scss';
+import styles from './SelectedJob.module.scss';
 
 function SelectedJob({ job }) {
   return (

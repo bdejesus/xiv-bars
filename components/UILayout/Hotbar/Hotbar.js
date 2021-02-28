@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Slot from 'components/Slot';
 import { useAppState } from 'components/App/context';
-import styles from './styles.module.scss';
+import styles from './Hotbar.module.scss';
 
 function Row({ slots }) {
   return (

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction';
 
-import styles from './Action.styles.module.scss';
+import styles from './Action.module.scss';
 
 let tooltipTimeout = null;
 

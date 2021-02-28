@@ -11,7 +11,7 @@ import COMPANY_ACTIONS from 'data/CompanyAction';
 import ActionGroup from './ActionGroup';
 import Tabs from './Tabs';
 
-import styles from './ActionPanel.styles.module.scss';
+import styles from './ActionPanel.module.scss';
 
 function ActionPanel({ actions, roleActions }) {
   const [activeTab, setActiveTab] = useState('panel-actions');

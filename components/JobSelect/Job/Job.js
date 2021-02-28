@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './styles.module.scss';
+import styles from './Job.module.scss';
 
 function Job({ job }) {
   return (

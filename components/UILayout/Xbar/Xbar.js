@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { group } from 'lib/utils';
 import Slot from 'components/Slot';
 import { useAppState } from 'components/App/context';
-import styles from './Xbar.styles.module.scss';
+import styles from './Xbar.module.scss';
 
 function Set({ slots }) {
   return (
