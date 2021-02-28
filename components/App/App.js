@@ -7,6 +7,7 @@ import ActionPanel from 'components/ActionPanel';
 import Intro from 'components/Intro';
 import UILayout from 'components/UILayout';
 import Sharing from 'components/Sharing';
+import ExportToMacros from 'components/ExportToMacros';
 import Lore from 'components/Lore';
 import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
@@ -57,8 +58,9 @@ function App(props) {
                       </JobSelectContextProvider>
                     </div>
 
-                    <div className={styles.columnRight}>
+                    <div className={styles.pageActions}>
                       <Sharing selectedJob={selectedJob} />
+                      <ExportToMacros />
                     </div>
                   </div>
 

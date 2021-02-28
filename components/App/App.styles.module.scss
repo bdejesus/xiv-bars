@@ -21,10 +21,10 @@
   padding-bottom: 0;
 }
 
-.description[data-expanded=false] {
+.description[data-expanded='false'] {
   display: none;
 }
-.description[data-expanded=true] {
+.description[data-expanded='true'] {
   display: block;
 }
 
@@ -46,29 +46,36 @@
 
 .toggleButton {
   background-color: unset;
-  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0));
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
   border: none;
   width: 100%;
   height: 32px;
   opacity: 0.33;
-  transition: background-image 0.33s ease, opacity 0.33s ease; 
-  &:hover, &:active {
+  transition: background-image 0.33s ease, opacity 0.33s ease;
+  &:hover,
+  &:active {
     background-color: unset;
-    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
     border: none;
     opacity: 0.66;
   }
-  &[data-active=true] .toggleIcon {
+  &[data-active='true'] .toggleIcon {
     transform: rotate(180deg);
   }
+}
+
+.pageActions {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
 
 $icon-size: 6px;
 
 .toggleIcon {
   display: inline-block;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: $icon-size solid transparent;
   border-right: $icon-size solid transparent;
   border-top: 8px solid #fff;
@@ -78,7 +85,7 @@ $icon-size: 6px;
 .container {
   display: flex;
   position: relative;
-  height: 480px
+  height: 480px;
 }
 
 .main,
@@ -106,9 +113,9 @@ $icon-size: 6px;
     padding: 0;
     width: unset;
   }
-  
+
   .container {
-    flex-direction:column;
+    flex-direction: column;
     height: unset;
     .sidebar {
       order: 2;
