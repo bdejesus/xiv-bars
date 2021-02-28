@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './Lore.styles.module.scss';
+import styles from './Lore.module.scss';
 
 function Lore({ selectedJob }) {
   return (

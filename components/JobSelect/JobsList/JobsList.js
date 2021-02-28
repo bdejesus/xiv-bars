@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Job from '../Job';
 import { useJobSelectDispatch } from '../context';
 
-import styles from './JobsList.styles.module.scss';
+import styles from './JobsList.module.scss';
 
 function JobsList({ title, jobs }) {
   const router = useRouter();

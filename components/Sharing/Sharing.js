@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 
-import styles from './Sharing.styles.module.scss';
+import styles from './Sharing.module.scss';
 
 function Sharing({ selectedJob }) {
   const router = useRouter();
@@ -28,8 +28,7 @@ function Sharing({ selectedJob }) {
   }
 
   useEffect(() => {
-    const shareUrl = buildShareUrl();
-    urlInput.current.value = shareUrl;
+    urlInput.current.value = buildShareUrl();
   }, [encodedSlots]);
 
   function selectInput() {

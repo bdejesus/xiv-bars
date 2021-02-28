@@ -4,7 +4,7 @@ import Header from 'components/Header';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
 
-import styles from './Intro.styles.module.scss';
+import styles from './Intro.module.scss';
 
 function Intro({ jobs }) {
   return (

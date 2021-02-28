@@ -14,7 +14,7 @@ import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { AppContextProvider } from './context';
 
-import styles from './App.styles.module.scss';
+import styles from './App.module.scss';
 
 function App(props) {
   const {

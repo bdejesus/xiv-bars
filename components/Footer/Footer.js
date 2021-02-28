@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BuyMeABeer from 'components/BuyMeABeer';
-import styles from './Footer.styles.module.scss';
+import styles from './Footer.module.scss';
 
 function Footer({ currentPatch }) {
-  const { Name, ExName, Banner } = currentPatch;
+  const { Name, ExName } = currentPatch;
 
   return (
     <footer className={styles.footer}>

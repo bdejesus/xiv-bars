@@ -10,6 +10,7 @@
   list-style: none;
   padding: $spacing-base;
   margin: 0;
+
   @media (max-width: $screen-md) {
     grid-template-columns: 1fr 1fr 1fr;
   }
