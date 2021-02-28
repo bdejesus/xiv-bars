@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import LayoutToggle from 'components/LayoutToggle';
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
+import Export from 'components/Export';
 import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import styles from './UILayout.styles.module.scss';
+import styles from './UILayout.module.scss';
 
 function UILayout() {
   const { layout, encodedSlots } = useAppState();
@@ -18,10 +19,10 @@ function UILayout() {
 
   function SlotLayout() {
     switch (layouts[layout]) {
-      case 'xbars': {
+      case 'chotbar': {
         return <Xbar />;
       }
-      case 'hotbars': {
+      case 'hotbar': {
         return <Hotbar />;
       }
       default: {
@@ -32,7 +33,10 @@ function UILayout() {
 
   return (
     <>
-      <LayoutToggle />
+      <div className={styles.controls}>
+        <LayoutToggle />
+        <Export />
+      </div>
       <div className={styles.uiLayout}>
         <SlotLayout />
       </div>

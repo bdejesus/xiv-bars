@@ -45,6 +45,7 @@ function App(props) {
                   <h1 className={styles.title}>
                     {selectedJob.Name} {siteData.header.title}
                   </h1>
+
                   <a href="/" className={styles.returnLink}>
                     &larr; Return to Class Select
                   </a>
@@ -55,6 +56,7 @@ function App(props) {
                         <JobSelect jobs={jobs} selectedJob={selectedJob} />
                       </JobSelectContextProvider>
                     </div>
+
                     <div className={styles.columnRight}>
                       <Sharing selectedJob={selectedJob} />
                     </div>
@@ -93,10 +95,12 @@ function App(props) {
                     <div className={`panel ${styles.sidebar}`}>
                       <ActionPanel roleActions={roleActions} actions={actions} />
                     </div>
+
                     <div className={styles.main}>
                       <UILayout />
                     </div>
                   </div>
+
                   <Tooltip />
                 </div>
               </div>
