@@ -1,0 +1,41 @@
+@import 'styles/mixins';
+
+.macroBtn {
+  // border: 2px solid $panel-bg;
+  margin-left: $spacing-xs;
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  textarea {
+    display: block;
+    font-family: 'Fira Code', Consolas, Courier, monospace;
+    font-size: 14px;
+    background-color: $panel-bg-dark;
+    border: 2px solid $panel-bg;
+    color: #ccc;
+    height: 320px;
+    width: 480px;
+    padding: $spacing-base;
+  }
+}
+
+.modal[data-active='false'] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal[data-active='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
