@@ -56,7 +56,11 @@ AppContextProvider.propTypes = {
     PropTypes.shape()
   ]).isRequired,
   host: PropTypes.string,
-  encodedSlots: PropTypes.arrayOf(PropTypes.array)
+  encodedSlots: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.string
+    )
+  )
 };
 
 AppContextProvider.defaultProps = {

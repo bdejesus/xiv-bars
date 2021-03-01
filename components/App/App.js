@@ -18,7 +18,10 @@ import styles from './App.module.scss';
 
 function App(props) {
   const {
-    jobs, selectedJob, actions, roleActions
+    jobs,
+    selectedJob,
+    actions,
+    roleActions
   } = props;
   const [expanded, setExpanded] = useState(true);
   const expandDescStore = 'xivbars_expandDesc';

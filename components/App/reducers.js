@@ -10,6 +10,18 @@ import PET_ACTION from 'data/PetAction';
 export default function AppReducer(state, payload) {
   const { layout } = state;
 
+  function assignActionIds(slots) {
+    return Object.values(slots)
+      .map(({ action }) => {
+        if (action && action.ID) {
+          return (typeof action.Prefix !== 'undefined')
+            ? `${action.Prefix}${action.ID}`
+            : `${action.ID}`;
+        }
+        return '0';
+      });
+  }
+
   switch (payload.type) {
     case 'updateLayout': {
       return { ...state, layout: payload.layout };
@@ -65,26 +77,16 @@ export default function AppReducer(state, payload) {
       slotObject.action = payload.action;
 
       // update slots string query
-      const stringifiedSlots = () => {
+      const encodeSlots = () => {
         const slotIDs = Object.values(state[layouts[layout]]);
-        const queryString = slotIDs.map((arr) => {
-          const group = Object.values(arr).map((obj) => {
-            if (obj.action && obj.action.ID) {
-              if (typeof obj.action.Prefix !== 'undefined') {
-                return `${obj.action.Prefix}${obj.action.ID}`;
-              }
-              return `${obj.action.ID}`;
-            }
-            return '0';
-          });
-
-          return group;
-        });
-
-        return JSON.stringify(queryString);
+        const slotsQuery = slotIDs.map((arr) => assignActionIds(arr));
+        const queryString = slotsQuery
+          .reduce((flat, next) => flat.concat(next), [])
+          .join(',');
+        return queryString;
       };
 
-      return { ...state, encodedSlots: stringifiedSlots() };
+      return { ...state, encodedSlots: encodeSlots() };
     }
 
     default: {
