@@ -12,7 +12,10 @@ function UILayout() {
 
   useEffect(() => {
     if (encodedSlots) {
-      appDispatch({ type: 'bulkLoadActionsToSlots', slottedActions: encodedSlots });
+      appDispatch({
+        type: 'bulkLoadActionsToSlots',
+        slottedActions: encodedSlots
+      });
     }
   }, []);
 

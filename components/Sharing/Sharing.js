@@ -16,7 +16,7 @@ function Sharing({ selectedJob }) {
 
   function buildShareUrl() {
     const slots = (/\d/).test(encodedSlots) ? encodedSlots : '';
-    const query = { s: slots };
+    const query = { s1: slots };
     if (typeof router.query.l !== 'undefined') query.l = router.query.l;
 
     const queryString = Object.keys(query)
