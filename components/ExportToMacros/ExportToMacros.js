@@ -1,17 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import CloseButton from 'components/CloseButton';
 import styles from './ExportToMacros.module.scss';
 
 function ExportToMacros() {
-  const [disabled, setDisabled] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
   const textarea = useRef();
   const modal = useRef();
   const appState = useAppState();
-  const { layout, encodedSlots } = appState;
+  const { layout } = appState;
   const currLayout = layouts[layout];
 
   const excludeTypes = [
@@ -44,7 +43,7 @@ function ExportToMacros() {
       .join('\n');
   }
 
-  useEffect(() => {
+  function buildMacros() {
     const hotbarMacros = Object
       .values(appState[currLayout])
       .map((row, index) => generateHotbarMacros(row, index + 1))
@@ -52,8 +51,7 @@ function ExportToMacros() {
       .trim();
 
     textarea.current.value = hotbarMacros;
-    setDisabled(!(hotbarMacros.length > 0));
-  }, [layout, encodedSlots]);
+  }
 
   function selectTextarea() {
     textarea.current.focus();
@@ -61,6 +59,7 @@ function ExportToMacros() {
   }
 
   function toggleModal() {
+    buildMacros();
     setShowModal(!showModal);
   }
 
@@ -79,7 +78,6 @@ function ExportToMacros() {
         className={styles.macroBtn}
         title="Export to Macro"
         onClick={toggleModal}
-        disabled={disabled}
       >
         Export Macro
       </button>
