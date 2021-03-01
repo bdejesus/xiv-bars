@@ -7,7 +7,7 @@ import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
 function UILayout() {
-  const { layout, encodedSlots } = useAppState();
+  const { layout, encodedSlots, expandedHotbars } = useAppState();
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
@@ -33,13 +33,33 @@ function UILayout() {
     }
   }
 
+  function expandHotbars() {
+    appDispatch({
+      type: 'expandHotbars',
+      expandedHotbars: true
+    });
+  }
+
   return (
     <>
       <div className={styles.controls}>
         <LayoutToggle />
       </div>
+
       <div className={styles.uiLayout}>
         <SlotLayout />
+
+        { !expandedHotbars
+          && (
+          <button
+            title="More Hotbars"
+            type="button"
+            className={styles.expandButton}
+            onClick={expandHotbars}
+          >
+            <span className={styles.expandLabel}>+</span>
+          </button>
+          )}
       </div>
     </>
   );

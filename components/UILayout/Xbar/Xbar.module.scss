@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@import 'styles/mixins';
 $group-padding: 10px;
 
 .container {
@@ -18,7 +18,8 @@ $group-padding: 10px;
   margin: 0 auto;
   padding: 10px;
   position: relative;
-  border-bottom: 1px solid rgba(0,0,0,0.66);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.66);
+
   &::before {
     position: absolute;
     counter-increment: xbarCount;
@@ -28,9 +29,18 @@ $group-padding: 10px;
     font-weight: 100;
     left: -$spacing-sm;
   }
+
   &:last-child {
     border-bottom: none;
   }
+
+  &:nth-child(n + 4) {
+    display: none;
+  }
+}
+
+.container[data-expanded='true'] .xbar:nth-child(n + 4) {
+  display: flex;
 }
 
 .left {
@@ -52,20 +62,25 @@ $group-padding: 10px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   margin: 1px;
+
   .slot {
     grid-row-end: span 2;
+
     &:nth-child(1) {
       grid-column-start: 2;
       grid-row-start: 3;
     }
+
     &:nth-child(2) {
       grid-column-start: 1;
       grid-row-start: 2;
     }
+
     &:nth-child(3) {
       grid-column-start: 2;
       grid-row-start: 1;
     }
+
     &:nth-child(4) {
       grid-column-start: 3;
       grid-row-start: 2;

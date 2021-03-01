@@ -56,7 +56,7 @@ export default function Action({
           updateTooltip(tooltipDispatch, data);
         }
       }
-    }, 300);
+    }, 150);
   }
 
   function selectAction() {

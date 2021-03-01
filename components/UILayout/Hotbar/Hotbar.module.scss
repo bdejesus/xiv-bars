@@ -12,9 +12,15 @@
   align-items: center;
   counter-reset: slots;
   flex-direction: column;
+
   > li {
     position: relative;
+
+    &:nth-child(n + 5) {
+      display: none;
+    }
   }
+
   > li::before {
     content: counter(slots);
     counter-increment: slots;
@@ -25,11 +31,19 @@
     top: 50%;
     transform: translateY(-50%);
   }
+
+  &[data-expanded='true'] > li:nth-child(n + 5) {
+    display: block;
+  }
 }
 
 .rowWrapper {
-  border-bottom: 1px solid rgba(0,0,0,0.66);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.33);
   padding: 4px;
+  &:first-child {
+    border-top: none;
+  }
   &:last-child {
     border-bottom: none;
   }
