@@ -4,16 +4,12 @@
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "node server.js",
-    "build": "next build",
-    "deploy": "git push heroku master",
-    "heroku-postbuild": "npm run build",
-    "precompile": "node ./scripts/precompile.js",
+    "build": "node ./scripts/precompile.js; next build",
     "test": "jest tests"
   },
   "dependencies": {
     "@svgr/webpack": "5.4.0",
     "express": "^4.17.1",
-    "jest": "^26.6.3",
     "next": "^10.0.1",
     "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
@@ -25,6 +21,9 @@
     "ssl-express-www": "^3.0.7"
   },
   "devDependencies": {
+    "babel-jest": "^26.6.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
     "eslint": "^7.6.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-import-resolver-webpack": "^0.12.2",
@@ -32,8 +31,13 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^4.0.4",
+    "identity-obj-proxy": "^3.0.0",
     "file-loader": "6.0.0",
+    "jest": "^26.6.3",
     "stylelint": "^13.6.1",
     "stylelint-config-standard": "^20.0.0"
-  }
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
 }
