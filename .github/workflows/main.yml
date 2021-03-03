@@ -4,34 +4,36 @@ name: CI
 # events but only for the master branch
 on: push
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:      
+jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
-    - name: Setup Modules Cache
-      id: cache-modules
-      uses: actions/cache@v2
-      with:
-        path: ${{ github.workspace }}/node_modules
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-    - name: Install modules
-      run: yarn
-    #- name: Run tests
-    #  run: yarn test
+      - name: Setup Modules Cache
+        id: cache-modules
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Setup Build Cache
-      id: cache-build
-      uses: actions/cache@v1
-      with:
-        path: ${{ github.workspace }}/.next/cache
-        key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
+      - name: Install modules
+        run: yarn
 
-    - name: Build
-      run: yarn build
+      - name: Run tests
+        run: yarn test
+
+      - name: Setup Build Cache
+        id: cache-build
+        uses: actions/cache@v1
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Build
+        run: yarn build
