@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
+import I18n from 'lib/I18n/locale/en-US';
 import CloseButton from 'components/CloseButton';
 import styles from './ExportToMacros.module.scss';
 
@@ -79,7 +80,7 @@ function ExportToMacros() {
         title="Export to Macro"
         onClick={toggleModal}
       >
-        Export Macro
+        {I18n.ExportToMacro.export_to_macro}
       </button>
 
       <div
@@ -96,10 +97,8 @@ function ExportToMacros() {
           <CloseButton onClick={toggleModal} />
 
           <div className={styles.modalHeader}>
-            <h3>Export to Macro</h3>
-            <p>
-              Due to limitations to the FFXIV macro subcommands, only certain actions can assigned via this method. Incompatible actions are grayed out and ommited from the generated macro.
-            </p>
+            <h3>{I18n.ExportToMacro.export_to_macro}</h3>
+            <p>{I18n.ExportToMacro.limitations}</p>
           </div>
 
           <textarea ref={textarea} readOnly onClick={selectTextarea} />

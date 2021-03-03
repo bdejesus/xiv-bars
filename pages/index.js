@@ -1,11 +1,8 @@
-/* eslint-disable max-len */
-import React from 'react';
 import PropTypes from 'prop-types';
 import {
   listJobs,
   listJobActions,
   listRoleActions,
-  getCurrentPatch
 } from 'lib/api';
 import { group } from 'lib/utils/array';
 import Header from 'components/Header';
@@ -18,7 +15,7 @@ import LoadScreen from 'components/LoadScreen';
 import styles from './Index.module.scss';
 
 function Index(pageProps) {
-  const { selectedJob, currentPatch } = pageProps;
+  const { selectedJob } = pageProps;
   return (
     <>
       <App {...pageProps} />
@@ -27,7 +24,7 @@ function Index(pageProps) {
         <HowTo />
         <Articles />
       </div>
-      <Footer currentPatch={currentPatch} />
+      <Footer />
       <LoadScreen />
     </>
   );
@@ -64,23 +61,18 @@ Index.getInitialProps = async ({ req, query }) => {
     }
   }
 
-  // Fetch Version
-  const currentPatch = await getCurrentPatch();
-
   return {
     jobs: decoratedJobs,
     actions: jobActions,
     selectedJob,
     roleActions,
     encodedSlots: encodedSlots(),
-    host,
-    currentPatch
+    host
   };
 };
 
 Index.propTypes = {
-  selectedJob: PropTypes.shape(),
-  currentPatch: PropTypes.shape().isRequired
+  selectedJob: PropTypes.shape()
 };
 
 Index.defaultProps = {

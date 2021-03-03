@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .footer {
   background-color: #222;
@@ -9,39 +9,15 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   p {
     margin: 0.33em 0;
-  }
-}
-
-.version {
-  line-height: 1.2em;
-  b {
-    font-size: 10px;
-    font-weight: 400;
-    text-transform: uppercase;
-    opacity: 0.5;
-  }
-  h3 {
-    font-size: $font-size-base;
-    text-transform: none;
-    margin-top: 0;
-  }
-  img {
-    width: auto;
-    height: 72px;
+    text-align: center;
   }
 }
 
 .right {
   text-align: right;
 }
-
-
-
 
 @media (max-width: $screen-sm) {
   .container {
