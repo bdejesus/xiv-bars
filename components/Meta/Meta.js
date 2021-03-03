@@ -14,25 +14,27 @@ export function renderMeta(title, description, canonical) {
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html: `{
-                "@context": "http://schema.org",
-                "@type": "CreativeWork",
-                "name": "${title}",
-                "description": "${description}",
-                "image": "https://xivbars.bejezus.com/images/xivbars-thumb.png",
-                "thumbnailUrl": "https://xivbars.bejezus.com/images/xivbars-thumb.png",
-                "author": {
-                  "@type": "Person",
-                  "name": "Ben de Jesus",
-                  "disambiguatingDescription": "Graphic Designer, UI Developer, Photographer",
-                  "knowsAbout": "Graphic Design, Web Design, HTML, CSS, Javascript, React, Photography",
-                  "sameAs": [
-                    "https://bejezus.com",
-                    "https://instagram.com/bejezus",
-                    "https://www.flickr.com/photos/bendjsf/"
-                  ]
-                }
-              }`
+          __html: JSON.stringify({
+            '@context': 'http://schema.org',
+            '@type': 'CreativeWork',
+            name: title,
+            description,
+            image: 'https://xivbars.bejezus.com/images/xivbars-thumb.png',
+            thumbnailUrl: 'https://xivbars.bejezus.com/images/xivbars-thumb.png',
+            author: {
+              '@type': 'Person',
+              name: 'Ben de Jesus',
+              disambiguatingDescription: 'Graphic Designer, UI Developer, Photographer',
+              knowsAbout: 'Graphic Design, Web Design, HTML, CSS, Javascript, React, Photography',
+              sameAs: [
+                'https://github.com/bdejesus',
+                'https://linkedin.com/in/bendjsf/',
+                'https://josebenedicto.com',
+                'https://instagram.com/bejezus',
+                'https://flickr.com/photos/bendjsf/'
+              ]
+            }
+          })
         }}
       />
 

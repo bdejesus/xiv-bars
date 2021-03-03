@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import I18n from 'lib/I18n/locale/en-US';
 import styles from './CloseButton.module.scss';
 
 function CloseButton({ onClick, className }) {
@@ -8,7 +9,7 @@ function CloseButton({ onClick, className }) {
       className={`${styles.button} ${className}`}
       onClick={onClick}
     >
-      &times; Close
+      {I18n.Global.close}
     </button>
   );
 }

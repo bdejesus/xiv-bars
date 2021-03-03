@@ -2,7 +2,7 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import shortDesc from 'lib/shortDesc';
-import siteData from 'config/app.config';
+import I18n from 'lib/I18n/locale/en-US';
 import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
 
@@ -15,9 +15,9 @@ class AppContainer extends App {
 
     function generateTitle() {
       if (selectedJob) {
-        return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup | ${siteData.global.name}`;
+        return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup | ${I18n.Global.title}`;
       }
-      return siteData.global.name;
+      return I18n.Global.title;
     }
 
     function generateCanonicalUrl() {
@@ -31,7 +31,7 @@ class AppContainer extends App {
       if (selectedJob) {
         return shortDesc(selectedJob, actions);
       }
-      return siteData.global.description;
+      return I18n.Global.description;
     }
 
     const title = generateTitle();
@@ -41,10 +41,8 @@ class AppContainer extends App {
     return (
       <>
         <Head>
-          <title>
-            {title}
-          </title>
-          {renderMeta(title, description, canonicalUrl)}
+          <title>{title}</title>
+          { renderMeta(title, description, canonicalUrl) }
           { renderFavicon() }
         </Head>
 

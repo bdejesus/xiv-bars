@@ -1,13 +1,13 @@
 /* eslint-disable react/no-danger */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortDesc from 'lib/shortDesc';
-import siteData from 'config/app.config';
+import I18n from 'lib/I18n/locale/en-US';
 import ActionPanel from 'components/ActionPanel';
 import Intro from 'components/Intro';
 import UILayout from 'components/UILayout';
 import Sharing from 'components/Sharing';
-import ExportToMacros from 'components/ExportToMacros';
+import ExportToMacros from 'components/ExportToMacro';
 import Lore from 'components/Lore';
 import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
@@ -47,11 +47,11 @@ function App(props) {
               <div className={styles.header}>
                 <div className={`container ${styles.headerBody}`}>
                   <h1 className={styles.title}>
-                    {selectedJob.Name} {siteData.header.title}
+                    {selectedJob.Name} {I18n.Global.title}
                   </h1>
 
                   <a href="/" className={styles.returnLink}>
-                    &larr; Return to Class Select
+                    {I18n.App.return}
                   </a>
 
                   <div className={styles.controls}>
