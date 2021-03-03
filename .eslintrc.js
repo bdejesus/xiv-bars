@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2020: true,
     node: true,
+    jest: true
   },
   extends: [
     'plugin:react/recommended',
@@ -27,7 +28,7 @@ module.exports = {
     'comma-dangle': 'off',
     'comma-spacing': 'warn',
     'linebreak-style': ['warn', 'unix'],
-    'max-len': 'warn',
+    'max-len': 'off',
     'no-debugger': 'warn',
     'no-unused-vars': 'warn',
     'prefer-destructuring': 'off',
