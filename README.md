@@ -59,11 +59,11 @@ yarn --ignore-engines
 
 ### Reporting Bugs
 
-Report bugs in the [Issues](./issues) section. Please include step-by-step instructions on how to reproduce, as well as OS and browser.
+Report bugs in the [Issues](https://github.com/bdejesus/xiv-bars/issues) section. Please include step-by-step instructions on how to reproduce, as well as OS and browser.
 
 ### Feature Requests
 
-Submit feature requests in the [Issues](./issues) setion. Include a detailed description of the feature being requested and how it should work.
+Submit feature requests in the [Issues](https://github.com/bdejesus/xiv-bars/issues) setion. Include a detailed description of the feature being requested and how it should work.
 
 ### Code Contrubutions
 
