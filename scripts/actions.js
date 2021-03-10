@@ -24,7 +24,7 @@ async function getActions() {
           Command: ACTION_TYPE[actionSet].command
         }));
 
-        await clean();
+        // await clean();
 
         fs.writeFile(
           `${outputDir}/${actionSet}.json`,
