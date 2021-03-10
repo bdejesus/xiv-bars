@@ -15,10 +15,40 @@ function Intro({ jobs }) {
       <div className="appView">
         <div className="container">
           <JobSelectContextProvider>
-            <h2 className={styles.title} id="jobSelectTitle">
-              Select A Job/Class
-            </h2>
-            <JobMenu jobs={jobs} />
+            { jobs.length > 0
+              ? (
+                <>
+                  <h2 className={styles.title} id="jobSelectTitle">
+                    Select A Job/Class
+                  </h2>
+                  <JobMenu jobs={jobs} />
+                </>
+              )
+              : (
+                <div className={styles.outage}>
+                  <h2 className={styles.title}>Sorry, but something went wrong...</h2>
+
+                  <p>It looks like we can’t retrieve Class and Actions data at this moment due to a server outage affecting the XIVAPI servers.</p>
+
+                  <blockquote>
+                    <p>
+                      An incident has occured in the OVH strasbourg datacenter, affecting the XIVAPI server.
+                    </p>
+
+                    <p>
+                      Based on the informations we have, the connection won’t be restored before at least tomorrow and there’s nothing we can do about it.
+                    </p>
+
+                    <p>
+                      Sorry for the inconvenience, OVH said that the fire has been extinguished and people are safe, just need to wait now.
+                    </p>
+
+                  </blockquote>
+                  <p>
+                    For more info, visit the <a href="https://discord.gg/MFFVHWC">XIVAPI Discord Server</a>.
+                  </p>
+                </div>
+              )}
           </JobSelectContextProvider>
         </div>
       </div>
