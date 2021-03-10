@@ -7,6 +7,9 @@
     "build": "node ./scripts/precompile.js; next build",
     "test": "jest tests"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@svgr/webpack": "5.4.0",
     "express": "^4.17.1",
