@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const fetch = require('node-fetch');
+const clean = require('./clean');
 const { outputDir } = require('./config');
 const ACTION_TYPE = require('../lib/actionType');
 
@@ -11,7 +12,7 @@ async function getActions() {
   actionTypes.forEach(async (actionSet) => {
     const actions = await fetch(`${baseUrl}/${actionSet}`)
       .then((res) => res.json())
-      .then((json) => {
+      .then(async (json) => {
         console.log(`Building ${actionSet} actions...`);
         const results = json.Results.filter((c) => c.Icon !== '');
 
@@ -23,12 +24,15 @@ async function getActions() {
           Command: ACTION_TYPE[actionSet].command
         }));
 
+        await clean();
+
         fs.writeFile(
           `${outputDir}/${actionSet}.json`,
           JSON.stringify(decoratedResults),
           () => null
         );
-      });
+      })
+      .catch((error) => { console.error(error); });
     return actions;
   });
 }

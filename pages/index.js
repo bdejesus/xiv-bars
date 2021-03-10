@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {
   listJobs,
   listJobActions,
@@ -16,6 +15,7 @@ import styles from './Index.module.scss';
 
 function Index(pageProps) {
   const { selectedJob } = pageProps;
+
   return (
     <>
       <App {...pageProps} />
@@ -69,14 +69,6 @@ Index.getInitialProps = async ({ req, query }) => {
     encodedSlots: encodedSlots(),
     host
   };
-};
-
-Index.propTypes = {
-  selectedJob: PropTypes.shape()
-};
-
-Index.defaultProps = {
-  selectedJob: undefined
 };
 
 export default Index;

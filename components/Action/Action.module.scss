@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .action {
   background-color: rgba(0, 0, 0, 0.5);
@@ -10,7 +10,9 @@
   width: 100%;
   position: relative;
   text-align: center;
-  transition: border 0.33s ease, box-shadow 0.33s ease, opacity 0.15s ease;
+  transition-property: border, box-shadow, opacity, filter;
+  transition-duration: 0.33s;
+  transition-timing-function: ease;
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-color: #999;
@@ -30,7 +32,7 @@
     bottom: 0;
     box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15),
       inset -1px -1px 1px rgba(0, 0, 0, 0.33);
-    content: '';
+    content: "";
     display: block;
     left: 0;
     position: absolute;
@@ -56,11 +58,15 @@
   filter: grayscale(0.9);
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
+  }
+
+  &:hover {
+    filter: grayscale(0);
   }
 }
