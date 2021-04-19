@@ -46,7 +46,7 @@ export function renderMeta(title, description, canonical) {
       <meta name="msapplication-TileColor" content="#ffffff" />
       <meta
         name="msapplication-TileImage"
-        content="icons/ms-icon-144x144.png"
+        content="icons/favicon-144x144.png"
       />
       <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
     </>
