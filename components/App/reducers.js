@@ -40,21 +40,24 @@ export default function AppReducer(state, payload) {
         const slotGroup = state[layouts[layout]][groupName];
 
         actionGroup.forEach((actionID, slotIndex) => {
-          const prefixes = [...Object.values(ACTION_TYPE), 'r'].join('|');
+          const actionPrefixes = Object.values(ACTION_TYPE)
+            .map((type) => type.prefix);
+          const prefixes = [...actionPrefixes, 'r'].join('|');
           const actionRegex = new RegExp(prefixes);
           const IDString = actionID.toString();
-          const actionType = IDString.match(actionRegex);
+          const typeMatch = IDString.match(actionRegex);
+          const actionType = typeMatch ? typeMatch[0] : null;
           const parsedID = parseInt(IDString.replace(actionType, ''), 10);
 
           const actionLib = () => {
             if (actionType) {
-              switch (actionType.toString()) {
-                case ACTION_TYPE.BuddyAction: return BUDDY_ACTION;
-                case ACTION_TYPE.CompanyAction: return COMPANY_ACTION;
-                case ACTION_TYPE.GeneralAction: return GENERAL_ACTION;
-                case ACTION_TYPE.MainCommand: return MAIN_COMMAND;
-                case ACTION_TYPE.MacroIcon: return MACRO_ICON;
-                case ACTION_TYPE.PetAction: return PET_ACTION;
+              switch (actionType) {
+                case ACTION_TYPE.BuddyAction.prefix: return BUDDY_ACTION;
+                case ACTION_TYPE.CompanyAction.prefix: return COMPANY_ACTION;
+                case ACTION_TYPE.GeneralAction.prefix: return GENERAL_ACTION;
+                case ACTION_TYPE.MainCommand.prefix: return MAIN_COMMAND;
+                case ACTION_TYPE.MacroIcon.prefix: return MACRO_ICON;
+                case ACTION_TYPE.PetAction.prefix: return PET_ACTION;
                 case 'r': return state.roleActions;
                 default: return state.actions;
               }
