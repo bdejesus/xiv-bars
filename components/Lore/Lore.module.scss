@@ -1,7 +1,7 @@
 @import 'styles/mixins';
 
 .lore {
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   font-style: italic;
   margin-top: $spacing-lg;
   opacity: 0.66;
@@ -17,17 +17,18 @@
 .loreBody {
   font-size: $font-size-base;
   padding-top: $spacing-base;
+
   br {
     display: block;
     margin-bottom: 0.45em;
   }
 }
 
-.lore[data-expanded=false] .loreBody {
+.lore[data-expanded='false'] .loreBody {
   display: none;
 }
 
-.lore[data-expanded=true] {
+.lore[data-expanded='true'] {
   padding: $spacing-lg;
 
   .loreBody {

@@ -3,35 +3,36 @@
 $tooltip-width: 320px;
 
 .tooltip {
-  left: 0;
-  top: 0;
   animation: tooltipEnter 0.33s ease;
   animation-fill-mode: forwards;
+  background-color: rgba(0, 0, 0, 0.9);
   border: 1px solid #666;
   border-color: #999 #555 #444 #888;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
   font-weight: 400;
+  left: 0;
+  max-width: $tooltip-width;
   opacity: 1;
   padding: 10px 16px;
   pointer-events: none;
   position: fixed;
   text-align: left;
-  transition:
-    opacity 0.33s ease,
-    transform 0.33s ease;
-  transition-delay: 0s;
+  top: 0;
   transform-origin: left top;
-  max-width: $tooltip-width;
+  transition: opacity 0.33s ease, transform 0.33s ease;
+  transition-delay: 0s;
   white-space: pre-wrap;
   z-index: 10;
-  &[aria-hidden=true] {
+
+  &[aria-hidden='true'] {
     display: none;
   }
+
   div {
     margin: 0.66em 0;
   }
+
   br {
     display: block;
     height: 1px;
@@ -39,8 +40,8 @@ $tooltip-width: 320px;
 }
 
 .title {
-  margin: 0;
   font-size: 16px;
+  margin: 0;
 }
 
 .description {
@@ -53,6 +54,7 @@ $tooltip-width: 320px;
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }

@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@import 'styles/mixins';
 
 .footer {
   background-color: #222;
@@ -8,11 +8,9 @@
   padding-top: $spacing-base;
 }
 
-.container {
-  p {
-    margin: 0.33em 0;
-    text-align: center;
-  }
+.container p {
+  margin: 0.33em 0;
+  text-align: center;
 }
 
 .right {

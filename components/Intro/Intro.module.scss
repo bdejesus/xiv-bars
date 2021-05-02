@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@import 'styles/mixins';
 
 .header {
   border-bottom: 1px solid rgba(0, 0, 0, 0.9);
@@ -6,26 +6,26 @@
 }
 
 .title {
-  text-align: center;
-  margin-top: 0;
   margin-bottom: $spacing-base;
+  margin-top: 0;
+  text-align: center;
 }
 
 .outage {
   background-color: rgba(255, 0, 0, 0.4);
-  padding: 30px 50px;
   font-size: 16px;
+  padding: 30px 50px;
 
   h2 {
     margin-bottom: $spacing-lg;
   }
 
   blockquote {
-    font-size: 18px;
-    line-height: 24px;
-    font-style: italic;
     border-left: 4px solid rgba(255, 255, 255, 0.33);
-    padding-left: 32px;
+    font-size: 18px;
+    font-style: italic;
+    line-height: 24px;
     margin: $spacing-xl 0;
+    padding-left: 32px;
   }
 }

@@ -1,41 +1,42 @@
 @import 'styles/mixins';
 
 .container {
+  align-self: flex-start;
   display: flex;
   justify-content: space-between;
-  align-self: flex-start;
   padding: 0 $spacing-sm;
 }
 
 .buttonToggle {
+  align-items: stretch;
   border: 2px solid $panel-bg;
   border-bottom: none;
   border-radius: $border-radius $border-radius 0 0;
   display: flex;
   flex-direction: row;
-  align-items: stretch;
   height: 34px;
   padding: 0;
-  z-index: 2;
   position: relative;
+  z-index: 2;
+
   .label {
     align-items: center;
     color: rgba(255, 255, 255, 0.66);
     display: flex;
     height: 32px;
     padding: 0 16px;
-    transition:
-      background 0.33s ease,
-      box-shadow 0.33s ease,
-      color 0.33s ease;
-    &[data-selected=true] {
-      background-color:$panel-bg;
+    transition: background 0.33s ease, box-shadow 0.33s ease, color 0.33s ease;
+
+    &[data-selected='true'] {
+      background-color: $panel-bg;
       color: #fff;
     }
   }
+
   &:hover {
     border-bottom: none;
-    .label[data-selected=false] {
+
+    .label[data-selected='false'] {
       color: #fff;
     }
   }

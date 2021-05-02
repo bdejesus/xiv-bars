@@ -1,43 +1,47 @@
-@import "styles/mixins";
+@import 'styles/mixins';
 
 $button-inset: 10px;
 
 .title {
   color: rgba(255, 255, 255, 0.5);
   display: block;
-  margin-top: 0;
   margin-bottom: $spacing-sm;
+  margin-top: 0;
   padding-left: 10px;
 }
 
 .jobList {
   display: grid;
   grid-column-gap: 10px;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   list-style: none;
-  padding: 0;
   margin-bottom: $spacing-base;
+  padding: 0;
+
   a {
     background-color: transparent;
     border-radius: 4px;
     color: #fff;
     display: block;
+    margin: 1px;
     padding: 4px $button-inset 4px 4px;
     position: relative;
-    transition: background-color 0.33s ease; 
-    margin: 1px;
+    transition: background-color 0.33s ease;
+
     img {
       transform: scale(0.85);
       transition: transform 0.15s ease;
     }
+
     &:hover {
       background-color: #444;
       text-decoration: none;
       z-index: 2;
-      img {
-        transform: scale(1);
-      }
+    }
+
+    &:hover img {
+      transform: scale(1);
     }
   }
 }

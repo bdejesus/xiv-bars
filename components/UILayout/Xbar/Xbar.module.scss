@@ -3,31 +3,31 @@ $group-padding: 10px;
 
 .container {
   align-items: center;
+  counter-reset: xbarCount;
   display: flex;
   flex-direction: column;
-  counter-reset: xbarCount;
 }
 
 // Xbar Set
 
 .xbar {
   align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.66);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto;
   padding: 10px;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.66);
 
   &::before {
-    position: absolute;
-    counter-increment: xbarCount;
     content: counter(xbarCount);
-    opacity: 0.33;
+    counter-increment: xbarCount;
     font-size: $font-size-lg;
     font-weight: 100;
     left: -$spacing-sm;
+    opacity: 0.33;
+    position: absolute;
   }
 
   &:last-child {
@@ -92,6 +92,7 @@ $group-padding: 10px;
   .xbar {
     padding-left: $spacing-base;
     padding-right: $spacing-base;
+
     &::before {
       font-size: 14px;
     }
@@ -100,8 +101,8 @@ $group-padding: 10px;
 
 @media (max-width: $screen-xs) {
   .xbar {
+    margin: 0;
     padding-left: 0;
     padding-right: 0;
-    margin: 0;
   }
 }

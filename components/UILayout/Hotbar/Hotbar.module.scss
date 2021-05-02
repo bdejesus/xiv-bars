@@ -38,12 +38,14 @@
 }
 
 .rowWrapper {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.33);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding: 4px;
+
   &:first-child {
     border-top: none;
   }
+
   &:last-child {
     border-bottom: none;
   }
@@ -57,6 +59,7 @@
   .container > li::before {
     left: 2px;
   }
+
   .rowWrapper {
     padding-left: 14px;
   }

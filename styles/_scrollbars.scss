@@ -1,15 +1,15 @@
-$scrollbarBG: rgba(255,255,255,0);
-$thumbBG: rgba(255,255,255,0.33);
+$scrollbarBG: rgba(255, 255, 255, 0);
+$thumbBG: rgba(255, 255, 255, 0.33);
 $scrollbarSize: 6px;
 
 @mixin customScrollbar {
+  scrollbar-color: $thumbBG $scrollbarBG;
+  scrollbar-width: thin;
+
   &::-webkit-scrollbar {
     width: $scrollbarSize;
   }
 
-  scrollbar-width: thin;
-  scrollbar-color: $thumbBG $scrollbarBG;
-  
   &::-webkit-scrollbar-track {
     background: $scrollbarBG;
   }

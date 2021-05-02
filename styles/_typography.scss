@@ -2,20 +2,22 @@
 
 body {
   color: #ccc;
-  font-family: "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Segoe UI', 'Roboto', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', -apple-system, BlinkMacSystemFont,
+    sans-serif;
   font-size: 14px;
   line-height: 1.455em;
 }
 
-h1, h2, h3, h4, h5 {
-  font-weight: 300;
-  color: #DDD;
-}
-
-h1, h2, h3, h4, h5 {
-  text-transform: uppercase;
-  letter-spacing: 0.066em;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #ddd;
   font-weight: 200;
+  letter-spacing: 0.066em;
+  text-transform: uppercase;
 }
 
 h1 {
@@ -25,12 +27,14 @@ h1 {
   line-height: 1.05em;
   margin-bottom: $spacing-base;
   margin-top: 0;
+
   b {
     opacity: 0.75;
   }
 }
 
-h2, h3 {
+h2,
+h3 {
   color: #999;
 }
 
@@ -56,12 +60,15 @@ h5 {
 ol {
   list-style: none;
   margin: $spacing-lg 0;
+
   h5 {
     margin-top: $spacing-base;
   }
+
   p {
     margin: 0;
   }
+
   > li {
     margin: 0;
   }
@@ -84,9 +91,11 @@ label {
   h1 {
     font-size: $font-size-xl-2;
   }
+
   h2 {
     font-size: $font-size-xl;
   }
+
   h3 {
     font-size: $font-size-lg;
   }

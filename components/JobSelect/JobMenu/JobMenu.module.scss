@@ -5,11 +5,11 @@
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: $spacing-base;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   list-style: none;
-  padding: $spacing-base;
   margin: 0;
+  padding: $spacing-base;
 
   @media (max-width: $screen-md) {
     grid-template-columns: 1fr 1fr 1fr;
