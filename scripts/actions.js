@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const fetch = require('node-fetch');
-const clean = require('./clean');
 const { outputDir } = require('./config');
 const ACTION_TYPE = require('../lib/actionType');
 
