@@ -1,0 +1,24 @@
+name: Formatting
+
+on: push
+
+jobs:
+  run-linters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Module Cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install Dependencies
+        run: yarn install --prefer-offline
+
+      - name: Lint Javascript
+        run: yarn lint:js
+
+      - name: Lint Stylesheets
+        run: yarn lint:styles

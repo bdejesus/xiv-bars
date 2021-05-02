@@ -10,7 +10,6 @@
 
 # production
 /build
-/data
 /.next
 # src/*
 # public/*

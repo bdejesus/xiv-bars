@@ -1,9 +1,10 @@
 @import 'styles/mixins';
 
 .container {
-  padding-bottom: $spacing-base;
   overflow-x: hidden;
   overflow-y: auto;
+  padding-bottom: $spacing-base;
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -25,6 +26,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+
   > li {
     margin: 8px;
   }
@@ -34,10 +36,11 @@
   .listActions {
     display: flex;
     flex-wrap: wrap;
+
     > li {
+      height: 36px;
       margin: 6px;
       width: 36px;
-      height: 36px;
     }
   }
 }

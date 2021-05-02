@@ -9,12 +9,13 @@
 
 .panel {
   background-color: $panel-bg;
-  box-shadow: $box-shadow;
   border-radius: $border-radius;
+  box-shadow: $box-shadow;
   flex: 1 1 auto;
-  padding: $spacing-sm $spacing-sm $spacing-base $spacing-base;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: $spacing-sm $spacing-sm $spacing-base $spacing-base;
+
   @include customScrollbar;
 }
 

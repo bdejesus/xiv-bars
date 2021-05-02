@@ -9,6 +9,7 @@
   border-radius: 6px;
   margin-right: 12px;
   padding: 6px;
+
   img {
     display: block;
   }
@@ -20,14 +21,14 @@
 
 .title {
   color: #fff;
-  text-transform: none;
-  letter-spacing: 0;
   font-size: 24px;
+  letter-spacing: 0;
   margin: 0;
+  text-transform: none;
 }
 
 .abbr {
-  font-family: "Lucida Console", Consolas, monospace;
+  font-family: 'Lucida Console', Consolas, monospace;
   font-size: 1.15em;
   font-weight: 300;
   margin-right: 6px;
@@ -38,8 +39,8 @@
 }
 
 .role {
-  opacity: 0.5;
   font-size: 14px;
   font-style: italic;
   font-weight: 400;
+  opacity: 0.5;
 }

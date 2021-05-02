@@ -1,18 +1,19 @@
-@import "styles/mixins";
+@import 'styles/mixins';
 
 .action {
   background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.66);
   border-radius: $border-radius;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.66);
   font-size: 10px;
-  line-height: 1.2em;
   height: 100%;
-  width: 100%;
+  line-height: 1.2em;
   position: relative;
   text-align: center;
-  transition-property: border, box-shadow, opacity, filter;
   transition-duration: 0.33s;
+  transition-property: border, box-shadow, opacity, filter;
   transition-timing-function: ease;
+  width: 100%;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.8);
     border-color: #999;
@@ -21,34 +22,35 @@
     cursor: grab;
     cursor: -webkit-grab;
   }
+
   &:focus {
     box-shadow: 0 0 1px 2px rgba(255, 255, 255, 0.8);
     outline: none;
   }
+
   &:active {
     cursor: grabbing;
   }
+
   &::after {
     bottom: 0;
-    box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.15),
+    box-shadow:
+      inset 1px 1px 1px rgba(255, 255, 255, 0.15),
       inset -1px -1px 1px rgba(0, 0, 0, 0.33);
-    content: "";
+    content: '';
     display: block;
     left: 0;
     position: absolute;
     right: 0;
     top: 0;
   }
+
   img {
     display: block;
     height: 100%;
     object-fit: cover;
     width: 100%;
   }
-}
-
-.action {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.66);
 }
 
 .maincommandType,
@@ -58,12 +60,12 @@
   filter: grayscale(0.9);
 
   &::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
     bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   &:hover {

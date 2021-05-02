@@ -1,36 +1,39 @@
-@import "styles/mixins";
+@import 'styles/mixins';
+
+.collapseBtn {
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 100;
+  height: 24px;
+  left: -12px;
+  line-height: 18px;
+  padding: 0 0 3px;
+  position: absolute;
+  top: -12px;
+  width: 24px;
+  z-index: 1;
+}
 
 .container {
   animation: enterButton 0.66s ease;
   animation-fill-mode: forwards;
   position: fixed;
-  top: $spacing-base;
   right: $spacing-sm;
+  top: $spacing-base;
   transition: transform 0.66s ease;
-  &[data-collapsed="true"] {
+
+  &[data-collapsed='true'] {
     animation: exitButton 0.66s ease;
     transform: translateX(82%);
+
     .collapseBtn {
       display: none;
     }
   }
+
   &:hover {
     transform: translate(0);
   }
-}
-
-.collapseBtn {
-  font-weight: 100;
-  height: 24px;
-  width: 24px;
-  font-size: 18px;
-  line-height: 18px;
-  padding: 0 0 3px;
-  border-radius: 16px;
-  position: absolute;
-  left: -12px;
-  top: -12px;
-  z-index: 1;
 }
 
 .button {
@@ -39,33 +42,33 @@
   border-radius: 6px;
   color: #fff;
   display: inline-flex;
-  padding: 10px;
-  margin-bottom: $spacing-sm;
-  transition: background-color 0.33s ease;
-  max-width: 240px;
   line-height: 1.25em;
+  margin-bottom: $spacing-sm;
+  max-width: 240px;
+  padding: 10px;
+  transition: background-color 0.33s ease;
 
   .icon {
-    display: inline-block;
-    margin-right: 1em;
-    color: rgba(0, 0, 0, 0);
-    display: flex;
-    justify-content: center;
     align-items: center;
+    color: rgba(0, 0, 0, 0);
+    display: inline-block;
+    display: flex;
     height: 32px;
+    justify-content: center;
+    margin-right: 1em;
     width: 32px;
 
     &::before {
-      display: inline-block;
       color: #fff;
-      content: "🍺";
+      content: '🍺';
+      display: inline-block;
       font-size: 32px;
       position: absolute;
     }
   }
 
-  &:hover .icon:before {
-    content: "🍻";
+  &:hover .icon::before {
+    content: '🍻';
   }
 
   &:hover {
@@ -79,6 +82,7 @@
     opacity: 0;
     transform: translateX(100%);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -89,6 +93,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(82%);
   }

@@ -12,19 +12,20 @@ button,
   height: 32px;
   outline: none;
   padding: 0 $spacing-base;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-  + button, 
+  transition: background 0.2s ease, color 0.2s ease;
+
+  + button,
   + .button {
     margin-left: 1em;
   }
+
   &:hover,
   &:active,
   &:focus {
-    color: #fff;
     background-color: $panel-bg-dark;
-  }  
+    color: #fff;
+  }
+
   img {
     height: 36px;
     width: 36px;
