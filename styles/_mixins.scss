@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $slot-border-size: 1px;
 $slot-size: 32px;
 $slot-spacing: 0;
@@ -9,11 +11,11 @@ $slot-size-xs: 23px;
 $xbar-group-height: $outer-slot-size * 2 + $slot-spacing;
 $xbar-group-width: $outer-slot-size * 3 + $slot-spacing;
 $xbar-width: $xbar-group-width * 4 + $slot-size;
-$xbar-group-spacing: $slot-spacing / 2;
+$xbar-group-spacing: math.div($slot-spacing, 2);
 
 $primary-slot-size: 40px;
 $outer-primary-slot-size: $primary-slot-size + $slot-border-size;
-$primary-xbar-group-height: $outer-primary-slot-size * 2 + $slot-spacing / 2;
+$primary-xbar-group-height: $outer-primary-slot-size * 2 + math.div($slot-spacing, 2);
 $primary-xbar-group-width: $outer-primary-slot-size * 3;
 $primary-xbar-width: $primary-xbar-group-width * 3;
 
