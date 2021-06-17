@@ -1,11 +1,11 @@
 import { layouts } from 'lib/xbars';
 import ACTION_TYPE from 'lib/actionType';
-import BUDDY_ACTION from 'data/BuddyAction';
-import COMPANY_ACTION from 'data/CompanyAction';
-import GENERAL_ACTION from 'data/GeneralAction';
-import MAIN_COMMAND from 'data/MainCommand';
-import MACRO_ICON from 'data/MacroIcon';
-import PET_ACTION from 'data/PetAction';
+import BUDDY_ACTION from 'data/BuddyAction.json';
+import COMPANY_ACTION from 'data/CompanyAction.json';
+import GENERAL_ACTION from 'data/GeneralAction.json';
+import MAIN_COMMAND from 'data/MainCommand.json';
+import MACRO_ICON from 'data/MacroIcon.json';
+import PET_ACTION from 'data/PetAction.json';
 
 export default function AppReducer(state, payload) {
   const { layout } = state;
