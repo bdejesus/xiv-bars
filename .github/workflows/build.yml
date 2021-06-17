@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v16
+
       - name: Setup Modules Cache
         id: cache-modules
         uses: actions/cache@v2
