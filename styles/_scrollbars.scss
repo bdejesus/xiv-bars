@@ -1,3 +1,5 @@
+@use "sass:math";
+
 $scrollbarBG: rgba(255, 255, 255, 0);
 $thumbBG: rgba(255, 255, 255, 0.33);
 $scrollbarSize: 6px;
@@ -16,6 +18,6 @@ $scrollbarSize: 6px;
 
   &::-webkit-scrollbar-thumb {
     background-color: $thumbBG;
-    border-radius: $scrollbarSize / 2;
+    border-radius: math.div($scrollbarSize, 2);
   }
 }
