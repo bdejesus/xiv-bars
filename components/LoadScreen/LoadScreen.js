@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
-import Router from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 import styles from './LoadScreen.module.scss';
 
 function LoadScreen() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  // TODO: Fix events memory leak here
-  Router.events.on('routeChangeStart', () => setIsLoading(true));
-  Router.events.on('routeChangeComplete', () => setIsLoading(false));
-  // eslint-disable-next-line no-console
-  Router.events.on('routeChangeError', () => console.error('error'));
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => setIsLoading(true));
+    router.events.on('routeChangeComplete', () => setIsLoading(false));
+
+    return () => {
+      router.events.off('routeChangeStart', setIsLoading);
+      router.events.off('routeChangeComplete', setIsLoading);
+    };
+  }, []);
 
   return (
     <div className={styles.container} aria-hidden={!isLoading}>
