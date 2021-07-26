@@ -4,7 +4,7 @@
   "rules": {
     "at-rule-no-unknown": [
       true,
-      { "ignoreAtRules": ["include", "mixin", "use"] }
+      { "ignoreAtRules": ["import", "include", "mixin", "use"] }
     ],
     "declaration-colon-newline-after": null,
     "comment-empty-line-before": "always",

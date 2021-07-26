@@ -7,9 +7,9 @@
     "build": "next build",
     "build:data": "node ./scripts/precompile.js",
     "test": "jest tests",
-    "lint": "eslint .; stylelint ./**/**/*.{css,scss,sass}",
+    "lint": "eslint .; stylelint './**/**/*.{css,scss,sass}'",
     "lint:js": "eslint .",
-    "lint:styles": "stylelint ./**/**/*.{css,scss,sass}"
+    "lint:styles": "stylelint './**/**/*.{css,scss,sass}'"
   },
   "engines": {
     "node": "14.x"
