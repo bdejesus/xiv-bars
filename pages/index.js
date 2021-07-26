@@ -19,11 +19,13 @@ function Index(pageProps) {
   return (
     <>
       <App {...pageProps} />
+
       <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <HowTo />
         <Articles />
       </div>
+
       <Footer />
       <LoadScreen />
     </>

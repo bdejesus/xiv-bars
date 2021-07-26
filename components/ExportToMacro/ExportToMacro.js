@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
@@ -15,7 +17,6 @@ function ExportToMacros() {
   const currLayout = layouts[layout];
 
   const excludeTypes = [
-    'MainCommand',
     'MacroIcon',
     'CompanyAction'
   ];
@@ -27,10 +28,10 @@ function ExportToMacros() {
           const slotName = (currLayout === 'chotbar')
             ? chotbarSlotNames[index]
             : index + 1;
-          const actionCommand = action.Command || 'action';
+          const subcommand = action.Command || 'action';
           const strArray = [
             `/${currLayout}`,
-            actionCommand,
+            subcommand,
             `"${action.Name}"`,
             hotbarNum,
             slotName
