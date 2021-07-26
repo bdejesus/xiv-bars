@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseButton from 'components/CloseButton';
+
+import Modal from 'components/Modal';
 import SelectedJob from './SelectedJob';
 import JobMenu from './JobMenu';
 import { useJobSelectState, useJobSelectDispatch } from './context';
 import styles from './JobSelect.module.scss';
 
-function Modal({ jobs, selectedJob }) {
+function JobSelect({ jobs, selectedJob }) {
   const jobSelectDispatch = useJobSelectDispatch();
   const { isSelectingJob } = useJobSelectState();
 
@@ -21,17 +22,17 @@ function Modal({ jobs, selectedJob }) {
         <SelectedJob job={selectedJob} />
       </button>
 
-      <div className={styles.modal} aria-hidden={!isSelectingJob} tabIndex={-1}>
-        <div className={styles.container}>
-          <CloseButton onClick={() => jobSelectDispatch({ type: 'close' })} />
-          <JobMenu jobs={jobs} />
-        </div>
-      </div>
+      <Modal
+        hidden={!isSelectingJob}
+        toClose={() => jobSelectDispatch({ type: 'close' })}
+      >
+        <JobMenu jobs={jobs} />
+      </Modal>
     </>
   );
 }
 
-Modal.propTypes = {
+JobSelect.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape({
     ID: PropTypes.number,
@@ -41,4 +42,4 @@ Modal.propTypes = {
   }).isRequired
 };
 
-export default Modal;
+export default JobSelect;

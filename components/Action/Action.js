@@ -20,13 +20,13 @@ export default function Action({
 
   useEffect(() => {
     if (actionRef.current) {
-      const elRect = actionRef.current.getBoundingClientRect();
+      const rect = actionRef.current.getBoundingClientRect();
 
       setPosition({
-        left: elRect.left,
-        right: elRect.left + elRect.width,
-        top: elRect.top,
-        bottom: elRect.top + elRect.height
+        left: rect.left,
+        right: rect.left + rect.width,
+        top: rect.top,
+        bottom: rect.top + rect.height
       });
     }
     return function cleanup() {

@@ -1,0 +1,41 @@
+@import 'styles/mixins';
+
+.modal {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: background 0.33s ease;
+  z-index: 100;
+
+  .container {
+    transition: opacity 0.33s ease, transform 0.33s ease;
+  }
+
+  &[aria-hidden='true'] {
+    background: rgba(0, 0, 0, 0);
+    display: flex;
+    overflow: hidden;
+    pointer-events: none;
+
+    .container {
+      opacity: 0;
+      transform: scale(1.05);
+    }
+  }
+
+  &[aria-hidden='false'] {
+    background: rgba(0, 0, 0, 0.9);
+    pointer-events: auto;
+
+    .container {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

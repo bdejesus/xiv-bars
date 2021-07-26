@@ -1,21 +1,22 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import I18n from 'lib/I18n/locale/en-US';
 import CloseButton from 'components/CloseButton';
+import Modal from 'components/Modal';
 import styles from './ExportToMacros.module.scss';
 
 function ExportToMacros() {
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
   const textarea = useRef();
-  const modal = useRef();
   const appState = useAppState();
   const { layout } = appState;
   const currLayout = layouts[layout];
 
   const excludeTypes = [
-    'MainCommand',
     'MacroIcon',
     'CompanyAction'
   ];
@@ -27,10 +28,10 @@ function ExportToMacros() {
           const slotName = (currLayout === 'chotbar')
             ? chotbarSlotNames[index]
             : index + 1;
-          const actionCommand = action.Command || 'action';
+          const subcommand = action.Command || 'action';
           const strArray = [
             `/${currLayout}`,
-            actionCommand,
+            subcommand,
             `"${action.Name}"`,
             hotbarNum,
             slotName
@@ -83,33 +84,32 @@ function ExportToMacros() {
         {I18n.ExportToMacro.export_to_macro}
       </button>
 
-      <div
-        className={styles.modal}
-        data-active={showModal}
-        data-copied={copied}
-        ref={modal}
-        onClick={toggleModal}
-      >
+      <Modal toClose={toggleModal} hidden={!showModal}>
         <div
-          className={styles.modalContent}
-          onClick={(e) => e.stopPropagation()}
+          className={styles.exportPrompt}
+          data-copied={copied}
         >
-          <CloseButton onClick={toggleModal} />
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <CloseButton onClick={toggleModal} />
 
-          <div className={styles.modalHeader}>
-            <h3>{I18n.ExportToMacro.export_to_macro}</h3>
-            <p>{I18n.ExportToMacro.limitations}</p>
-          </div>
+            <div className={styles.modalHeader}>
+              <h3>{I18n.ExportToMacro.export_to_macro}</h3>
+              <p>{I18n.ExportToMacro.limitations}</p>
+            </div>
 
-          <textarea ref={textarea} readOnly onClick={selectTextarea} />
+            <textarea ref={textarea} readOnly onClick={selectTextarea} />
 
-          <div className={styles.modalFooter}>
-            <button type="button" onClick={copyText}>
-              {copied ? 'Copied!' : 'Copy'}
-            </button>
+            <div className={styles.modalFooter}>
+              <button type="button" onClick={copyText}>
+                {copied ? 'Copied!' : 'Copy'}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </Modal>
     </div>
   );
 }
