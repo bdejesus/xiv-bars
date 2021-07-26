@@ -10,6 +10,7 @@ import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import LoadScreen from 'components/LoadScreen';
+import EorzeaProfile from 'components/EorzeaProfile';
 
 import styles from './Index.module.scss';
 
@@ -23,6 +24,7 @@ function Index(pageProps) {
       <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <HowTo />
+        <EorzeaProfile />
         <Articles />
       </div>
 
