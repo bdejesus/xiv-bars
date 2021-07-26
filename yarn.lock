@@ -1291,7 +1291,7 @@
     "@sentry/utils" "6.10.0"
     tslib "^1.9.3"
 
-"@sentry/cli@^1.64.1", "@sentry/cli@^1.66.0":
+"@sentry/cli@^1.64.1":
   version "1.67.2"
   resolved "https://registry.npmjs.org/@sentry/cli/-/cli-1.67.2.tgz#dbb5631cb3637e10298f67915013592cb22f04ff"
   integrity sha512-lPn0Sffbjg2UmCkHl2iw8pKlqpPhy85mW0za5kz3LEqC9JGUXHo9eSyyCkiRktlemMXKk+DeS/nyFy/LTRUG2Q==
@@ -1342,7 +1342,7 @@
     "@sentry/types" "6.10.0"
     tslib "^1.9.3"
 
-"@sentry/nextjs@^6.7.1":
+"@sentry/nextjs@^6.10.0":
   version "6.10.0"
   resolved "https://registry.npmjs.org/@sentry/nextjs/-/nextjs-6.10.0.tgz#136aa25157ad4c056b5a7e97a6a47b332e703b10"
   integrity sha512-MNCMHNMbWD7cI508EB5tEj65J/t+nwHrdZA4DIZwx8s1AJepvVboi0NQzwtqdzRp6hb1jLz8IqcemNJpgoqG4g==
