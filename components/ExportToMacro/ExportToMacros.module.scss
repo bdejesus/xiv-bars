@@ -9,18 +9,7 @@
   }
 }
 
-.modal {
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.9);
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 11;
-
+.exportPrompt {
   .modalContent {
     background-color: $panel-bg;
     border-radius: $border-radius;
