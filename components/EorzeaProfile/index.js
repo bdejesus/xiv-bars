@@ -1,1 +1,1 @@
-export { default } from './EorzeaProfile.js';
+export { default } from './EorzeaProfile';

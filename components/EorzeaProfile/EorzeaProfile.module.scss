@@ -3,15 +3,15 @@
 .cta {
   align-items: center;
   border: 2px solid #c4c1b2;
-  font-weight: 700;
+  border-radius: 20px;
   color: #c4c1b2;
   display: inline-flex;
+  font-weight: 700;
   height: 40px;
   justify-content: center;
   padding: 0 32px;
   text-transform: uppercase;
   transition: background-color 0.33s ease;
-  border-radius: 20px;
 }
 
 .container {
@@ -57,10 +57,10 @@
     .cta {
       background-color: #c4c1b2;
       color: #333;
+    }
 
-      &:hover {
-        background-color: #fff;
-      }
+    .cta:hover {
+      background-color: #fff;
     }
   }
 }
