@@ -9,5 +9,7 @@ const ENV = process.env.NEXT_PUBLIC_ENV;
 
 Sentry.init({
   dsn: SENTRY_DSN,
-  environment: ENV
+  environment: ENV,
+  enabled: process.env.NODE_ENV === 'production',
+  tracesSampleRate: 1.0
 });
