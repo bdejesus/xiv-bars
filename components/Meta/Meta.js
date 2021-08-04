@@ -49,6 +49,7 @@ export function renderMeta(title, description, canonical) {
         content="icons/favicon-144x144.png"
       />
       <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
+      <script data-ad-client="ca-pub-3274093949320222" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
     </>
   );
 }
