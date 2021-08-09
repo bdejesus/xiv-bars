@@ -24,7 +24,7 @@ function Index(pageProps) {
       <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <HowTo />
-        <EorzeaProfile />
+        {/* <EorzeaProfile /> */}
         <Articles />
       </div>
 
