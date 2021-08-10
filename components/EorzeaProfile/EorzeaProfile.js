@@ -3,7 +3,7 @@ import styles from './EorzeaProfile.module.scss';
 function EorzeaProfile() {
   return (
     <a
-      href="https://dashboard.twitch.tv/extensions/bsdr8tkgubqusuao9ixx6wjyhxy8je-1.1.0"
+      href="https://dashboard.twitch.tv/extensions/bsdr8tkgubqusuao9ixx6wjyhxy8je-1.1.1"
       target="_blank"
       rel="noreferrer"
       className={`${styles.container} container`}
