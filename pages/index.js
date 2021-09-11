@@ -1,7 +1,7 @@
 import {
   listJobs,
   listJobActions,
-  listRoleActions,
+  listRoleActions
 } from 'lib/api';
 import { group } from 'lib/utils/array';
 import Header from 'components/Header';
