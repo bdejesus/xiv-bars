@@ -23,7 +23,7 @@ function ActionPanel({ actions, roleActions }) {
 
   return (
     <div className={styles.actionsPanel}>
-      <Tabs onTabClick={handleTabClick} activeTab={activeTab} />
+      <Tabs onTabClick={(e) => handleTabClick(e)} activeTab={activeTab} />
 
       { activeTab === 'panel-actions' && (
         <div

@@ -84,7 +84,7 @@ function ExportToMacros() {
         {I18n.ExportToMacro.export_to_macro}
       </button>
 
-      <Modal toClose={toggleModal} hidden={!showModal}>
+      <Modal toClose={(e) => toggleModal(e)} hidden={!showModal}>
         <div
           className={styles.exportPrompt}
           data-copied={copied}
@@ -93,7 +93,7 @@ function ExportToMacros() {
             className={styles.modalContent}
             onClick={(e) => e.stopPropagation()}
           >
-            <CloseButton onClick={toggleModal} />
+            <CloseButton onClick={(e) => toggleModal(e)} />
 
             <div className={styles.modalHeader}>
               <h3>{I18n.ExportToMacro.export_to_macro}</h3>
