@@ -6,8 +6,8 @@ module.exports = {
     jest: true
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
+    'plugin:@next/next/recommended',
   ],
   globals: {
     Atomics: 'readonly',
