@@ -38,6 +38,7 @@ export default async (req, res) => {
     // Display output to user
     res.end(sitemapOutput);
   } catch (e) {
-    res.send(JSON.stringify(e));
+    res.status = 500;
+    res.end('Failed to generate the sitemap');
   }
 };
