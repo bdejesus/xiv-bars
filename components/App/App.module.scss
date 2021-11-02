@@ -1,7 +1,7 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid rgb(0 0 0 / 90%);
   padding-bottom: 0;
 }
 
@@ -22,11 +22,11 @@
 }
 
 .description {
-  &[data-expanded='false'] {
+  &[data-expanded="false"] {
     display: none;
   }
 
-  &[data-expanded='true'] {
+  &[data-expanded="true"] {
     display: block;
   }
 }
@@ -50,19 +50,19 @@
 
 .toggleButton {
   background-color: unset;
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 0%));
   border: none;
   height: 32px;
-  opacity: 0.33;
+  opacity: 33%;
   transition: background-image 0.33s ease, opacity 0.33s ease;
   width: 100%;
 
   &:hover,
   &:active {
     background-color: unset;
-    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+    background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 50%));
     border: none;
-    opacity: 0.66;
+    opacity: 66%;
   }
 }
 
@@ -84,7 +84,7 @@ $icon-size: 6px;
   width: 0;
 }
 
-.toggleButton [data-active='true'] .toggleIcon {
+.toggleButton [data-active="true"] .toggleIcon {
   transform: rotate(180deg);
 }
 

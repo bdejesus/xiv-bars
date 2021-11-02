@@ -1,7 +1,7 @@
 @use "sass:math";
 
-$scrollbarBG: rgba(255, 255, 255, 0);
-$thumbBG: rgba(255, 255, 255, 0.33);
+$scrollbarBG: rgb(255 255 255 / 0%);
+$thumbBG: rgb(255 255 255 / 33%);
 $scrollbarSize: 6px;
 
 @mixin customScrollbar {

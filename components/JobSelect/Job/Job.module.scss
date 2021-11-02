@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .wrapper {
   white-space: nowrap;
@@ -12,12 +12,12 @@
 }
 
 .abbr {
-  font-family: 'Lucida Console', Consolas, monospace;
+  font-family: "Lucida Console", Consolas, monospace;
   font-size: 1.15em;
   font-weight: 300;
   margin-right: 6px;
 }
 
 .name {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgb(255 255 255 / 75%);
 }

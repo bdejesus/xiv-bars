@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .controls {
   display: flex;
@@ -31,16 +31,16 @@
   width: 42px;
 
   &:hover {
-    border: 1px solid rgba(0, 0, 0, 0.75);
-    border-bottom-color: rgba(255, 255, 255, 0.2);
-    border-right-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgb(0 0 0 / 75%);
+    border-bottom-color: rgb(255 255 255 / 20%);
+    border-right-color: rgb(255 255 255 / 20%);
   }
 }
 
 .expandLabel {
   display: block;
   position: relative;
-  text-shadow: -1px -1px 0 rgba(0, 0, 0, 1), 1px 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: -1px -1px 0 rgb(0 0 0 / 100%), 1px 1px 0 rgb(255 255 255 / 20%);
   top: -3px;
 }
 

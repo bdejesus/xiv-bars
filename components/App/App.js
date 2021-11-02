@@ -90,7 +90,7 @@ function App(props) {
                 </button>
               </div>
 
-              <div className="appView">
+              <div className="app-view">
                 <div className="container">
                   <h2 className={styles.sectionTitle}>
                     FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup

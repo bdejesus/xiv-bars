@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .container {
   align-items: flex-end;
@@ -10,11 +10,11 @@
     background-color: #111;
     border-radius: $border-radius;
     bottom: 0;
-    content: 'Copied!';
+    content: "Copied!";
     display: flex;
     justify-content: center;
     left: 0;
-    opacity: 0;
+    opacity: 0%;
     pointer-events: none;
     position: absolute;
     right: 0;
@@ -22,14 +22,13 @@
     transition: opacity 0.33s ease;
   }
 
-  &[data-copied='true']::after {
-    opacity: 1;
+  &[data-copied="true"]::after {
+    opacity: 100%;
     pointer-events: auto;
   }
 }
 
 .shareUrlInput {
-  // background-image: url('/images/black_paper.png');
   background-color: #333;
   border: 0;
   border-radius: $border-radius 0 0 $border-radius;
@@ -44,7 +43,7 @@
   width: 200px;
 
   &:focus {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 20%);
     color: #ccc;
   }
 }

@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .container {
   padding-bottom: $spacing-base;
@@ -9,7 +9,7 @@
 }
 
 .groupTitle {
-  color: rgba(255, 255, 255, 0.66);
+  color: rgb(255 255 255 / 66%);
   font-size: 10px;
   line-height: 1.2em;
   margin: 0 0 0.5em;
