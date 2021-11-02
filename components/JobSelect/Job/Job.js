@@ -8,7 +8,7 @@ function Job({ job }) {
     <div className={styles.wrapper}>
       <img
         className={styles.icon}
-        src={`//xivapi.com/${job.Icon}`}
+        src={job.PreIcon || `//xivapi.com/${job.Icon}`}
         alt={`${job.Name} Icon`}
         draggable={false}
         height={28}

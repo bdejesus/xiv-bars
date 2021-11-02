@@ -26,8 +26,6 @@ class MyDocument extends Document {
             `
           }}
           />
-          {/* Google AdSense */}
-          <script data-ad-client="ca-pub-3274093949320222" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
         </Head>
         <body>
           <Main />

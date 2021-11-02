@@ -1,12 +1,13 @@
 @import 'styles/mixins';
 
 .action {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: $border-radius;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.66);
+  background-color: rgba(0, 0, 0, 0.66);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.66);
   font-size: 10px;
   height: 100%;
   line-height: 1.2em;
+  overflow: hidden;
   position: relative;
   text-align: center;
   transition-duration: 0.33s;
@@ -47,9 +48,9 @@
 
   img {
     display: block;
-    height: 100%;
+    height: 101%;
     object-fit: cover;
-    width: 100%;
+    width: 101%;
   }
 }
 
