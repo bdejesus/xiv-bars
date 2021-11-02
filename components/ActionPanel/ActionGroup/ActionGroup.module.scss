@@ -1,8 +1,6 @@
 @import 'styles/mixins';
 
 .container {
-  overflow-x: hidden;
-  overflow-y: auto;
   padding-bottom: $spacing-base;
 
   &:last-child {
@@ -23,12 +21,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
+  grid-gap: 8px;
   list-style: none;
   margin: 0;
   padding: 0;
 
   > li {
-    margin: 8px;
+    height: $slot-size;
+    width: $slot-size;
   }
 }
 

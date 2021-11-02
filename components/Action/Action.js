@@ -87,7 +87,10 @@ export default function Action({
         onClick={selectAction}
         tabIndex={0}
       >
-        <img src={`//xivapi.com/${action.Icon}`} alt={`${action.Name} Action`} />
+        <img
+          src={action.customIcon ? action.Icon : `//xivapi.com/${action.Icon}`}
+          alt={`${action.Name} Action`}
+        />
       </div>
     </>
   );
