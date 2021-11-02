@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .modal {
   align-items: center;
@@ -17,24 +17,24 @@
     transition: opacity 0.33s ease, transform 0.33s ease;
   }
 
-  &[aria-hidden='true'] {
-    background: rgba(0, 0, 0, 0);
+  &[aria-hidden="true"] {
+    background: rgb(0 0 0 / 0%);
     display: flex;
     overflow: hidden;
     pointer-events: none;
 
     .container {
-      opacity: 0;
+      opacity: 0%;
       transform: scale(1.05);
     }
   }
 
-  &[aria-hidden='false'] {
-    background: rgba(0, 0, 0, 0.9);
+  &[aria-hidden="false"] {
+    background: rgb(0 0 0 / 90%);
     pointer-events: auto;
 
     .container {
-      opacity: 1;
+      opacity: 100%;
       transform: scale(1);
     }
   }

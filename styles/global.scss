@@ -1,5 +1,5 @@
-@import 'styles/scrollbars';
-@import 'styles/mixins';
+@import "styles/scrollbars";
+@import "styles/mixins";
 
 * {
   box-sizing: border-box;
@@ -12,13 +12,13 @@ html {
 body {
   background-attachment: fixed;
   background-color: #333;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(rgb(0 0 0 / 75%), rgb(0 0 0 / 0%));
   margin: 0;
 
   @include customScrollbar;
 }
 
-[aria-hidden='true'] {
+[aria-hidden="true"] {
   display: none;
 }
 
@@ -40,10 +40,10 @@ body {
   justify-content: space-between;
 }
 
-.appView {
+.app-view {
   background-color: $panel-bg-dark;
-  background-image: url('/images/black_paper.png');
-  box-shadow: inset 0 0 60px rgba(0, 0, 0, 1);
+  background-image: url("/images/black_paper.png");
+  box-shadow: inset 0 0 60px rgb(0 0 0 / 100%);
   margin-left: auto;
   margin-right: auto;
   overflow: hidden;
@@ -70,7 +70,7 @@ body {
     flex-direction: column;
   }
 
-  .appView {
+  .app-view {
     padding: 0;
 
     .container {
@@ -79,7 +79,7 @@ body {
   }
 }
 
-@import 'typography';
-@import 'links';
-@import 'buttons';
-@import 'utils';
+@import "typography";
+@import "links";
+@import "buttons";
+@import "utils";

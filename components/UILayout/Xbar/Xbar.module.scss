@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 $group-padding: 10px;
 
 .container {
@@ -8,11 +8,9 @@ $group-padding: 10px;
   flex-direction: column;
 }
 
-// Xbar Set
-
 .xbar {
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.66);
+  border-bottom: 1px solid rgb(0 0 0 / 66%);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -26,7 +24,7 @@ $group-padding: 10px;
     font-size: $font-size-lg;
     font-weight: 100;
     left: -$spacing-sm;
-    opacity: 0.33;
+    opacity: 33%;
     position: absolute;
   }
 
@@ -39,7 +37,7 @@ $group-padding: 10px;
   }
 }
 
-.container[data-expanded='true'] .xbar:nth-child(n + 4) {
+.container[data-expanded="true"] .xbar:nth-child(n + 4) {
   display: flex;
 }
 

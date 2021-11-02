@@ -1,7 +1,7 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.9);
+  border-bottom: 1px solid rgb(0 0 0 / 90%);
   padding-bottom: 0;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .outage {
-  background-color: rgba(255, 0, 0, 0.4);
+  background-color: rgb(255 0 0 / 40%);
   font-size: 16px;
   padding: 30px 50px;
 
@@ -21,7 +21,7 @@
   }
 
   blockquote {
-    border-left: 4px solid rgba(255, 255, 255, 0.33);
+    border-left: 4px solid rgb(255 255 255 / 33%);
     font-size: 18px;
     font-style: italic;
     line-height: 24px;

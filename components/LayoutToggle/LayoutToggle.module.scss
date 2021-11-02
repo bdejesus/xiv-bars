@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .container {
   align-self: flex-start;
@@ -21,13 +21,13 @@
 
   .label {
     align-items: center;
-    color: rgba(255, 255, 255, 0.66);
+    color: rgb(255 255 255 / 66%);
     display: flex;
     height: 32px;
     padding: 0 16px;
     transition: background 0.33s ease, box-shadow 0.33s ease, color 0.33s ease;
 
-    &[data-selected='true'] {
+    &[data-selected="true"] {
       background-color: $panel-bg;
       color: #fff;
     }
@@ -36,7 +36,7 @@
   &:hover {
     border-bottom: none;
 
-    .label[data-selected='false'] {
+    .label[data-selected="false"] {
       color: #fff;
     }
   }

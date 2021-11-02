@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .container,
 .row {
@@ -26,20 +26,20 @@
     counter-increment: slots;
     font-weight: 700;
     left: -20px;
-    opacity: 0.33;
+    opacity: 33%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
   }
 
-  &[data-expanded='true'] > li:nth-child(n + 5) {
+  &[data-expanded="true"] > li:nth-child(n + 5) {
     display: block;
   }
 }
 
 .rowWrapper {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.33);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgb(0 0 0 / 33%);
+  border-top: 1px solid rgb(255 255 255 / 10%);
   padding: 4px;
 
   &:first-child {

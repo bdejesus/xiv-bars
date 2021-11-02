@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .tabs {
   margin: 0 $spacing-sm;
@@ -15,7 +15,7 @@
     border: none;
   }
 
-  &[data-active='true'] {
+  &[data-active="true"] {
     background-color: $panel-bg;
     border-bottom-color: $panel-bg;
     color: #fff;
@@ -35,7 +35,7 @@
 
   > li {
     &:first-child .tabButton {
-      border-radius: 4px 0 0 0;
+      border-radius: 4px 0 0;
     }
 
     &:last-child .tabButton {

@@ -1,11 +1,11 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 $tooltip-width: 320px;
 
 .tooltip {
   animation: tooltipEnter 0.33s ease;
   animation-fill-mode: forwards;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgb(0 0 0 / 90%);
   border: 1px solid #666;
   border-color: #999 #555 #444 #888;
   border-radius: 4px;
@@ -13,7 +13,7 @@ $tooltip-width: 320px;
   font-weight: 400;
   left: 0;
   max-width: $tooltip-width;
-  opacity: 1;
+  opacity: 100%;
   padding: 10px 16px;
   pointer-events: none;
   position: fixed;
@@ -25,7 +25,7 @@ $tooltip-width: 320px;
   white-space: pre-wrap;
   z-index: 10;
 
-  &[aria-hidden='true'] {
+  &[aria-hidden="true"] {
     display: none;
   }
 
@@ -47,15 +47,15 @@ $tooltip-width: 320px;
 .description {
   font-size: 14px;
   line-height: 1.45em;
-  margin: 0.66em 0 0 0;
+  margin: 0.66em 0 0;
 }
 
 @keyframes tooltipEnter {
   from {
-    opacity: 0;
+    opacity: 0%;
   }
 
   to {
-    opacity: 1;
+    opacity: 100%;
   }
 }

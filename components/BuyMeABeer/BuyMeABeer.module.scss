@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .collapseBtn {
   border-radius: 16px;
@@ -22,7 +22,7 @@
   top: $spacing-base;
   transition: transform 0.66s ease;
 
-  &[data-collapsed='true'] {
+  &[data-collapsed="true"] {
     animation: exitButton 0.66s ease;
     transform: translateX(82%);
 
@@ -38,7 +38,7 @@
 
 .button {
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0 0 0 / 50%);
   border-radius: 6px;
   color: #fff;
   display: inline-flex;
@@ -50,7 +50,7 @@
 
   .icon {
     align-items: center;
-    color: rgba(0, 0, 0, 0);
+    color: rgb(0 0 0 / 0%);
     display: inline-block;
     display: flex;
     height: 32px;
@@ -60,7 +60,7 @@
 
     &::before {
       color: #fff;
-      content: '🍺';
+      content: "🍺";
       display: inline-block;
       font-size: 32px;
       position: absolute;
@@ -68,23 +68,23 @@
   }
 
   &:hover .icon::before {
-    content: '🍻';
+    content: "🍻";
   }
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgb(255 255 255 / 10%);
     text-decoration: none;
   }
 }
 
 @keyframes enterButton {
   from {
-    opacity: 0;
+    opacity: 0%;
     transform: translateX(100%);
   }
 
   to {
-    opacity: 1;
+    opacity: 100%;
     transform: translateX(0);
   }
 }

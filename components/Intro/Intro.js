@@ -12,7 +12,7 @@ function Intro({ jobs }) {
       <div className={styles.header}>
         <Header />
       </div>
-      <div className="appView">
+      <div className="app-view">
         <div className="container">
           <JobSelectContextProvider>
             <h2 className={styles.title} id="jobSelectTitle">
