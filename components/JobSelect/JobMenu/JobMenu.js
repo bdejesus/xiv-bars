@@ -28,7 +28,7 @@ function JobMenu({ jobs }) {
 
       <div className={styles.warning}>
         <p>
-          The Sage [SGE] and Reaper [RPR] jobs are currently in beta as they haven’t been officially released yet. This means that you can use them to create layouts and export macros, but things can change or break until the official release of Endwalker.
+          The Sage [SGE] and Reaper [RPR] jobs haven’t been officially released yet. This means that you can use them to create layouts and export macros, but things can change or break until the official release of Endwalker.
         </p>
       </div>
     </>

@@ -12,7 +12,7 @@
   border-radius: $border-radius;
   box-shadow: 0 6px 20px 4px #00000080;
   flex: 1 1 auto;
-  padding: $spacing-base $spacing-base $spacing-base $spacing-lg;
+  padding: $spacing-lg;
   text-align: center;
   width: 100%;
 }
@@ -26,7 +26,7 @@
   line-height: 32px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: $spacing-base;
+  margin-top: $spacing-lg;
   padding: 0;
   width: 42px;
 
@@ -47,6 +47,11 @@
 @media (max-width: $screen-md) {
   .uiLayout {
     padding: $spacing-xs;
+  }
+
+  .expandButton {
+    margin-top: $spacing-base;
+    margin-bottom: $spacing-base;
   }
 }
 
