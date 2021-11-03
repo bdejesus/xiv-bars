@@ -9,11 +9,11 @@ XIV Bars is a webapp for previewing Final Fantasy XIV W Crossbar layouts. Plan o
 - [Development](#development)
   - [Requirements](#requirements)
   - [Running the app](#running-the-app)
-- [Troubleshooting](#troubleshooting)
 - [Contrubuting](#contributing)
-  - [Reporting Bugs](#reporting-bugs)
-  - [Feature Requests](#feature-requests)
-  - [Code Contributions](#code-contributions)
+  - [Report Bugs](#report-bugs)
+  - [Request Features](#request-features)
+  - [Contribute Code](#contribute-code)
+  - [Donate](#donate)
 
 ---
 
@@ -21,7 +21,7 @@ XIV Bars is a webapp for previewing Final Fantasy XIV W Crossbar layouts. Plan o
 
 ### Requirements
 
-You'll need to install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/)
+You'll need to install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) (or NPM)
 
 ### Running the app
 
@@ -39,32 +39,24 @@ yarn dev
 
 Once the app is running in development mode, open [http://localhost:3000](http://localhost:5000) to view it in the browser.
 
-The page will reload if you make edits. You will also see any lint errors in the console.
-
-## Troubleshooting
-
-### Incompatible "node" engine
-
-```
-The engine "node" is incompatible with this module.
-```
-
-#### Solution
-
-```
-yarn --ignore-engines
-```
-
 ## How to Contribute
 
-### Reporting Bugs
+### Report Bugs
 
-Report bugs in the [Issues](https://github.com/bdejesus/xiv-bars/issues) section. Please include step-by-step instructions on how to reproduce, as well as OS and browser.
+Submit bug reports in the [Issues](https://github.com/bdejesus/xiv-bars/issues) section. Please make sure that the issue you're submitting doesn't already exist. Include step-by-step instructions on how to reproduce, as well as the operating system (OSX, Windows, etc.) and browser (Chrome, Firefox, etc.) you're using when encountering the issue.
 
-### Feature Requests
+### Request Features
 
-Submit feature requests in the [Issues](https://github.com/bdejesus/xiv-bars/issues) setion. Include a detailed description of the feature being requested and how it should work.
+Submit feature requests in the [Issues](https://github.com/bdejesus/xiv-bars/issues) section. Please make sure that the issue you're submitting doesn't already exist. Include a detailed description of the feature being requested and how it should work.
 
-### Code Contrubutions
+### Contribute Code
 
-Create a pull request and I'll review when I find the time. I'm not really sure how much time I'll be able to commit to maintaining this.
+Take a look at [open issues](https://github.com/bdejesus/xiv-bars/issues) and create a pull request that addresses it. I'll review when I get the chance, but please be patient.
+
+[View Open Issues](https://github.com/bdejesus/xiv-bars/issues)
+
+### Donate
+
+If you find this tool helpful, [please consider donating](https://www.buymeacoffee.com/bejezus). Donations go towards paying for app servers and other resources to make this tool available to everyone for free.
+
+[Donate](https://www.buymeacoffee.com/bejezus)

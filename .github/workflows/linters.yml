@@ -21,4 +21,4 @@ jobs:
         run: yarn lint:js
 
       - name: Lint Stylesheets
-        run: yarn lint:styles
+        run: yarn lint:css
