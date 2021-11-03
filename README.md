@@ -3,9 +3,9 @@
 
 [https://xivbars.bejezus.com](https://xivbars.bejezus.com)
 
-A Final Fantasy XIV W Cross Hotbar (WXHB) Planning and Simulation Tool.
+The source code for the Final Fantasy XIV W Cross Hotbar (WXHB) Planning and Simulation Tool built in NextJS.
 
-Plan out and export your Final Fantasy XIV WXHB Cross Hotbars for any of the FFXIV Job/Classes with a drag and drop interface to slot actions, menu commands, macros, and other action types into a hotbar or cross hotbar slot layout. Export to a macro and share with others!
+---
 
 ## Table of Contents
 
@@ -18,20 +18,23 @@ Plan out and export your Final Fantasy XIV WXHB Cross Hotbars for any of the FFX
   - [Contribute Code](#contribute-code)
   - [Donate](#donate)
 
----
-
 ## Developtment
 
 ### Setting up
 
 You'll need to install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) (or [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm))
 
-### Running the app
+### Running the app (Yarn)
 
 Install dependencies
 
 ```bash
 yarn install
+```
+
+Fetch and compile data from XIVAPI
+```bash
+yarn build:data
 ```
 
 Run the app
@@ -46,19 +49,19 @@ Once the app is running in development mode, open [http://localhost:3000](http:/
 
 ### Report Bugs
 
-Submit bug reports in the [Issues](https://github.com/bdejesus/xiv-bars/issues) section. Please make sure that the issue you're submitting doesn't already exist. Include step-by-step instructions on how to reproduce, as well as the operating system (OSX, Windows, etc.) and browser (Chrome, Firefox, etc.) you're using when encountering the issue.
+Submit bug reports in the [Issues section](https://github.com/bdejesus/xiv-bars/issues). Please make sure that the issue you're submitting doesn't already exist. Include step-by-step instructions on how to reproduce, as well as the operating system (OSX, Windows, etc.) and browser (Chrome, Firefox, etc.) you're using when encountering the issue.
 
 [View Open Bug Reports](https://github.com/bdejesus/xiv-bars/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
 ### Request Features
 
-Submit feature requests in the [Issues](https://github.com/bdejesus/xiv-bars/issues) section. Please make sure that the issue you're submitting doesn't already exist. Include a detailed description of the feature being requested and how it should work.
+Submit feature requests from the [Issues section](https://github.com/bdejesus/xiv-bars/issues). Please make sure that the issue you're submitting doesn't already exist. Include a detailed description of the feature being requested and how it should work.
 
 [View Open Feature Requests](https://github.com/bdejesus/xiv-bars/issues?q=is%3Aopen+is%3Aissue+label%3A%22feature+request%22)
 
 ### Contribute Code
 
-Take a look at [open issues](https://github.com/bdejesus/xiv-bars/issues) and create a pull request that addresses it. I'll review when I get the chance, but please be patient.
+If you're interested in contributing some code, take a look at [open issues](https://github.com/bdejesus/xiv-bars/issues) and create a pull request that addresses it. I'll review when I get the chance, but please be patient.
 
 [View Open Issues](https://github.com/bdejesus/xiv-bars/issues)
 
