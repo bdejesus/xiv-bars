@@ -12,7 +12,7 @@ function ActionGroup({
       <h4 className={styles.groupTitle}>{title}</h4>
       <ul className={styles.listActions}>
         {actionsList.map((action, index) => (
-          <li key={`action-${action.ID}-${index}`}>
+          <li key={`action-${action.ID}-${index}`} data-title={action.Name}>
             <Action action={action} remote={remote} />
           </li>
         ))}

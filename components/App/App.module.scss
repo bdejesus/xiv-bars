@@ -42,10 +42,30 @@
   }
 }
 
+.viewHeader {
+  align-items: center;
+  border-bottom: 1px solid #222;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: $spacing-sm;
+  padding-bottom: $spacing-sm;
+}
+
+.viewControls {
+  button {
+    opacity: 50%;
+  }
+
+  button[data-active="true"] {
+    opacity: 100%;
+  }
+}
+
 .sectionTitle {
-  margin-bottom: $spacing-base;
-  margin-top: 0;
-  text-align: center;
+  display: inline-block;
+  line-height: 1;
+  margin: 0;
 }
 
 .toggleButton {
