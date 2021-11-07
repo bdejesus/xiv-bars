@@ -24,6 +24,7 @@ function App(props) {
     roleActions
   } = props;
   const [expanded, setExpanded] = useState(true);
+  const [displayHelp, setDisplayHelp] = useState(false);
   const expandDescStore = 'xivbars_expandDesc';
 
   useEffect(() => {
@@ -90,11 +91,22 @@ function App(props) {
                 </button>
               </div>
 
-              <div className="app-view">
+              <div className="app-view" data-help={displayHelp}>
                 <div className="container">
-                  <h2 className={styles.sectionTitle}>
-                    FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
-                  </h2>
+                  <div className={styles.viewHeader}>
+                    <h2 className={styles.sectionTitle}>
+                      FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
+                    </h2>
+                    <div className={styles.viewControls}>
+                      <button
+                        type="button"
+                        onClick={() => setDisplayHelp(!displayHelp)}
+                        data-active={displayHelp}
+                      >
+                        Action Names
+                      </button>
+                    </div>
+                  </div>
 
                   <div className={styles.container}>
                     <div className={`panel ${styles.sidebar}`}>

@@ -70,13 +70,14 @@ export default function Action({
   }
 
   const actionType = `${action.UrlType.toLowerCase()}Type`;
+  const selectors = `action ${styles.action} ${styles[actionType]} ${dragging ? styles.dragging : undefined}`;
 
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
       <div
         ref={actionRef}
-        className={`${styles.action} ${styles[actionType]} ${dragging ? styles.dragging : ''}`}
+        className={selectors}
         draggable
         onDragStart={selectAction}
         onDragEnd={handleDragEnd}
@@ -86,11 +87,14 @@ export default function Action({
         role="button"
         onClick={selectAction}
         tabIndex={0}
+        data-title={action.Name}
       >
-        <img
-          src={action.customIcon ? action.Icon : `//xivapi.com/${action.Icon}`}
-          alt={`${action.Name} Action`}
-        />
+        <div className={styles.iconWrapper}>
+          <img
+            src={action.customIcon ? action.Icon : `//xivapi.com/${action.Icon}`}
+            alt={`${action.Name} Action`}
+          />
+        </div>
       </div>
     </>
   );

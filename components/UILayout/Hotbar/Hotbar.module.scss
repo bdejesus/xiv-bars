@@ -8,10 +8,19 @@
   padding: 0;
 }
 
+.row {
+  flex-direction: row;
+
+  > li {
+    margin: 0 3px;
+  }
+}
+
 .container {
   align-items: center;
   counter-reset: slots;
   flex-direction: column;
+  margin-bottom: $spacing-sm;
 
   > li {
     position: relative;
@@ -40,19 +49,16 @@
 .rowWrapper {
   border-bottom: 1px solid rgb(0 0 0 / 33%);
   border-top: 1px solid rgb(255 255 255 / 10%);
-  padding: 4px;
+  padding: $spacing-base 0;
 
   &:first-child {
     border-top: none;
+    padding-top: 0;
   }
 
   &:last-child {
     border-bottom: none;
   }
-}
-
-.row {
-  flex-direction: row;
 }
 
 @media (max-width: $screen-sm) {
