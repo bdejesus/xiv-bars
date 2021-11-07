@@ -1,5 +1,35 @@
 @import "styles/mixins";
 
+.view {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.header {
+  padding: $spacing-sm $spacing-base;
+  background-color: #fefefe;
+  color: #333;
+}
+
+.branding {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  img {
+    height: 24px;
+    width: 24px;
+    margin-right: $spacing-xs;
+  }
+
+  .title {
+    margin-right: $spacing-base;
+  }
+}
+
 .articles {
   border-top: 1px solid rgb(0 0 0 / 90%);
 }

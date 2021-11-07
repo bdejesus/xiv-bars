@@ -17,36 +17,32 @@
 }
 
 .container {
-  align-items: center;
+  align-items: flex-start;
   counter-reset: slots;
   flex-direction: column;
   margin-bottom: $spacing-sm;
 
   > li {
     position: relative;
-
-    &:nth-child(n + 5) {
-      display: none;
-    }
   }
 
   > li::before {
     content: counter(slots);
     counter-increment: slots;
     font-weight: 700;
-    left: -20px;
     opacity: 33%;
-    position: absolute;
-    top: 50%;
+    position: relative;
     transform: translateY(-50%);
-  }
-
-  &[data-expanded="true"] > li:nth-child(n + 5) {
-    display: block;
+    width: 1.33em;
+    text-align: right;
+    margin-right: $spacing-sm;
   }
 }
 
 .rowWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border-bottom: 1px solid rgb(0 0 0 / 33%);
   border-top: 1px solid rgb(255 255 255 / 10%);
   padding: $spacing-base 0;

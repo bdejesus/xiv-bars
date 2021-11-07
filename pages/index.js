@@ -8,6 +8,7 @@ import Header from 'components/Header';
 import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
+import Intro from 'components/Intro';
 import App from 'components/App';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
@@ -15,22 +16,32 @@ import EorzeaProfile from 'components/EorzeaProfile';
 import styles from './Index.module.scss';
 
 function Index(pageProps) {
-  const { selectedJob } = pageProps;
+  const { jobs, selectedJob } = pageProps;
 
   return (
-    <>
-      <App {...pageProps} />
+    <div className={styles.view}>
+      <div className={styles.header}>
+        <div className={styles.branding}>
+          <img src="/icons/favicon-96x96.png" />
+          <b className={styles.title}>XIVBARS</b>
+          A FFXIV WXHB Cross Hotbar Planner &amp; Simulator
+        </div>
+      </div>
 
-      <div className={styles.articles}>
+      { !selectedJob
+        ? <Intro jobs={jobs} />
+        : <App {...pageProps} /> }
+
+      {/* <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />
         <Articles />
       </div>
 
-      <Footer />
+      <Footer /> */}
       <LoadScreen />
-    </>
+    </div>
   );
 }
 

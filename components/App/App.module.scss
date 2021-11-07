@@ -1,5 +1,9 @@
 @import "styles/mixins";
 
+.wrapper {
+  flex: 1 1 auto;
+}
+
 .header {
   border-bottom: 1px solid rgb(0 0 0 / 90%);
   padding-bottom: 0;
@@ -32,6 +36,8 @@
 }
 
 .controls {
+  background-color: #212121;
+  padding: $spacing-sm $spacing-base;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -111,20 +117,18 @@ $icon-size: 6px;
 .container {
   display: flex;
   position: relative;
-}
-
-.main,
-.sidebar {
+  justify-content: stretch;
+  padding-top: $spacing-xs;
   height: 100%;
 }
 
 .main {
   align-items: center;
+  margin-left: $spacing-xs;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   justify-content: flex-start;
-  padding-left: $spacing-sm;
 }
 
 .sidebar {

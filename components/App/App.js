@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
 import ActionPanel from 'components/ActionPanel';
-import Intro from 'components/Intro';
 import UILayout from 'components/UILayout';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
@@ -40,91 +39,72 @@ function App(props) {
 
   return (
     <AppContextProvider {...props}>
-      { !selectedJob
-        ? <Intro jobs={jobs} />
-        : (
-          <TooltipContextProvider>
-            <SelectedActionContextProvider>
-              <div className={styles.header}>
-                <div className={`container ${styles.headerBody}`}>
-                  <h1 className={styles.title}>
-                    {selectedJob.Name} {I18n.Global.title}
-                  </h1>
+      <TooltipContextProvider>
+        <SelectedActionContextProvider>
+          <div className={styles.wrapper}>
+            <div className={styles.controls}>
+              <JobSelectContextProvider>
+                <JobSelect jobs={jobs} selectedJob={selectedJob} />
+              </JobSelectContextProvider>
 
-                  <a href="/" className={styles.returnLink}>
-                    {I18n.App.return}
-                  </a>
-
-                  <div className={styles.controls}>
-                    <div className={styles.columnLeft}>
-                      <JobSelectContextProvider>
-                        <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                      </JobSelectContextProvider>
-                    </div>
-
-                    <div className={styles.pageActions}>
-                      <Sharing selectedJob={selectedJob} />
-                      <ExportToMacros />
-                    </div>
-                  </div>
-
-                  <div
-                    className={styles.description}
-                    data-expanded={expanded}
-                  >
-                    <p className={styles.jobDesc}>
-                      {shortDesc(selectedJob, actions)}
-                    </p>
-
-                    { selectedJob.Description
-                      && <Lore selectedJob={selectedJob} /> }
-                  </div>
-                </div>
-
+              <div className={styles.pageActions}>
                 <button
                   type="button"
-                  className={styles.toggleButton}
-                  data-active={expanded}
-                  onClick={toggleDescription}
+                  onClick={() => setDisplayHelp(!displayHelp)}
+                  data-active={displayHelp}
                 >
-                  <div className={styles.toggleIcon} />
+                  Action Names
                 </button>
+                <ExportToMacros />
+                <Sharing selectedJob={selectedJob} />
               </div>
+            </div>
 
-              <div className="app-view" data-help={displayHelp}>
-                <div className="container">
-                  <div className={styles.viewHeader}>
-                    <h2 className={styles.sectionTitle}>
-                      FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
-                    </h2>
-                    <div className={styles.viewControls}>
-                      <button
-                        type="button"
-                        onClick={() => setDisplayHelp(!displayHelp)}
-                        data-active={displayHelp}
-                      >
-                        Action Names
-                      </button>
-                    </div>
-                  </div>
+            {/* <div className={styles.header}>
+              <div className={`container ${styles.headerBody}`}>
+                <h1 className={styles.title}>
+                  {selectedJob.Name} {I18n.Global.title}
+                </h1>
 
-                  <div className={styles.container}>
-                    <div className={`panel ${styles.sidebar}`}>
-                      <ActionPanel roleActions={roleActions} actions={actions} />
-                    </div>
+                <div
+                  className={styles.description}
+                  data-expanded={expanded}
+                >
+                  <p className={styles.jobDesc}>
+                    {shortDesc(selectedJob, actions)}
+                  </p>
 
-                    <div className={styles.main}>
-                      <UILayout />
-                    </div>
-                  </div>
-
-                  <Tooltip />
+                  { selectedJob.Description
+                      && <Lore selectedJob={selectedJob} /> }
                 </div>
               </div>
-            </SelectedActionContextProvider>
-          </TooltipContextProvider>
-        )}
 
+              <button
+                type="button"
+                className={styles.toggleButton}
+                data-active={expanded}
+                onClick={toggleDescription}
+              >
+                <div className={styles.toggleIcon} />
+              </button>
+            </div> */}
+
+            <div className="app-view" data-help={displayHelp}>
+              <div className={styles.container}>
+                <div className={styles.sidebar}>
+                  <ActionPanel roleActions={roleActions} actions={actions} />
+                </div>
+
+                <div className={styles.main}>
+                  <UILayout />
+                </div>
+              </div>
+
+              <Tooltip />
+            </div>
+          </div>
+        </SelectedActionContextProvider>
+      </TooltipContextProvider>
     </AppContextProvider>
   );
 }

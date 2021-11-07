@@ -2,7 +2,7 @@
 $group-padding: 10px;
 
 .container {
-  align-items: center;
+  align-items: flex-start;
   counter-reset: xbarCount;
   display: flex;
   flex-direction: column;
@@ -10,12 +10,12 @@ $group-padding: 10px;
 
 .xbar {
   align-items: center;
-  border-bottom: 1px solid rgb(0 0 0 / 66%);
+  border-bottom: 1px solid #222;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 auto $spacing-base;
-  padding: 10px 10px $spacing-base;
+  margin: 0;
+  padding: 20px $spacing-base;
   position: relative;
 
   &::before {
@@ -31,14 +31,6 @@ $group-padding: 10px;
   &:last-child {
     border-bottom: none;
   }
-
-  &:nth-child(n + 4) {
-    display: none;
-  }
-}
-
-.container[data-expanded="true"] .xbar:nth-child(n + 4) {
-  display: flex;
 }
 
 .left {
@@ -89,7 +81,7 @@ $group-padding: 10px;
 
 [data-help="true"] {
   .set .slot:nth-child(3) :global(.action)::after {
-    bottom: 92%;
+    bottom: 85%;
     position: absolute;
   }
 }
