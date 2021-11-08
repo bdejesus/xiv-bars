@@ -1,65 +1,48 @@
 @import "styles/mixins";
 
+.controls,
+.view {
+  width: 100%;
+}
+
 .controls {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
 }
 
-.uiLayout {
+.view {
   background-color: $panel-bg;
   flex: 1 1 auto;
-  padding: $spacing-lg;
-  text-align: center;
-  width: 100%;
-}
-
-.expandButton {
-  background-color: transparent;
-  display: block;
-  font-size: 32px;
-  font-weight: 100;
-  height: 42px;
-  line-height: 32px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0;
-  width: 42px;
-
-  &:hover {
-    border: 1px solid rgb(0 0 0 / 75%);
-    border-bottom-color: rgb(255 255 255 / 20%);
-    border-right-color: rgb(255 255 255 / 20%);
-  }
-}
-
-.expandLabel {
-  display: block;
   position: relative;
-  text-shadow: -1px -1px 0 rgb(0 0 0 / 100%), 1px 1px 0 rgb(255 255 255 / 20%);
-  top: -3px;
 }
+
+.content {
+  padding: $spacing-lg;
+  overflow-x: hidden;
+  overflow-y: auto;
+  top: $spacing-xs;
+  left: 0;
+  right: 0;
+  bottom: $spacing-xs;
+  position: absolute;
+}
+
 
 @media (max-width: $screen-md) {
-  .uiLayout {
+  .view {
     padding: $spacing-xs;
-  }
-
-  .expandButton {
-    margin-bottom: $spacing-base;
-    margin-top: $spacing-base;
   }
 }
 
 @media (max-width: $screen-sm) {
-  .uiLayout {
+  .view {
     border-radius: 0;
   }
 }
 
 @media (max-width: $screen-xs) {
-  .uiLayout {
+  .view {
     border-radius: 0;
     margin-left: -$spacing-base;
     margin-right: -$spacing-base;

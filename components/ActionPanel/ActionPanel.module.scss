@@ -10,10 +10,18 @@
 .panel {
   background-color: $panel-bg;
   flex: 1 1 auto;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: $spacing-sm $spacing-sm $spacing-base $spacing-base;
+  position: relative;
+}
 
+.content {
+  padding: $spacing-base $spacing-sm $spacing-sm $spacing-sm;
+  position: absolute;
+  top: $spacing-xs;
+  left: 0;
+  right: 0;
+  bottom: $spacing-xs;
+  overflow-x: hidden;
+  overflow-y: scroll;
   @include customScrollbar;
 }
 

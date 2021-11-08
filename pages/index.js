@@ -20,24 +20,25 @@ function Index(pageProps) {
   const { jobs, selectedJob } = pageProps;
 
   return (
-    <div className={styles.view}>
-      <div className={styles.header}>
-        <Link href="/">
-          <a className={styles.branding}>
-            <img src="/icons/favicon-96x96.png" />
-            <b className={styles.title}>XIVBARS</b>
-            <span className={styles.subTitle}>
-              A FFXIV WXHB Cross Hotbar Planner &amp; Simulator
-            </span>
-          </a>
-        </Link>
-      </div>
+    <>
+      <div className={styles.view}>
+        <div className={styles.header}>
+          <Link href="/">
+            <a className={styles.branding}>
+              <img src="/icons/favicon-96x96.png" />
+              <b className={styles.title}>XIVBARS</b>
+              <span className={styles.subTitle}>
+                A FFXIV WXHB Cross Hotbar Planner &amp; Simulator
+              </span>
+            </a>
+          </Link>
+        </div>
 
-      { !selectedJob
-        ? <Intro jobs={jobs} />
-        : <App {...pageProps} /> }
+        { !selectedJob
+          ? <Intro jobs={jobs} />
+          : <App {...pageProps} /> }
 
-      {/* <div className={styles.articles}>
+        {/* <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />
@@ -45,8 +46,9 @@ function Index(pageProps) {
       </div>
 
       <Footer /> */}
+      </div>
       <LoadScreen />
-    </div>
+    </>
   );
 }
 

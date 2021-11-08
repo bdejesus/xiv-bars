@@ -39,8 +39,10 @@ function UILayout() {
         <LayoutToggle />
       </div>
 
-      <div className={styles.uiLayout}>
-        <SlotLayout />
+      <div className={styles.view}>
+        <div className={styles.content}>
+          <SlotLayout />
+        </div>
       </div>
     </>
   );

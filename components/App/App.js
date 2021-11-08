@@ -89,7 +89,7 @@ function App(props) {
               </button>
             </div> */}
 
-            <div className="app-view" data-help={displayHelp}>
+            <div className={`app-view ${styles.app}`} data-help={displayHelp}>
               <div className={styles.container}>
                 <div className={styles.sidebar}>
                   <ActionPanel roleActions={roleActions} actions={actions} />
