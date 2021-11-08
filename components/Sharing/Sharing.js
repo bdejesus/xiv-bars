@@ -47,7 +47,9 @@ function Sharing({ selectedJob }) {
   return (
     <div className={`${styles.container}`} data-copied={copied}>
       <div className="controlGroup">
-        <label htmlFor="shareUrl">Share URL</label>
+        <label htmlFor="shareUrl">
+          { copied ? 'Copied!' : 'Share URL' }
+        </label>
         <input
           id="shareUrl"
           className={styles.shareUrlInput}
@@ -62,7 +64,8 @@ function Sharing({ selectedJob }) {
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        Copy URL
+        <img src="/images/icon-copy.svg" className="icon" />
+        Copy
       </button>
     </div>
   );

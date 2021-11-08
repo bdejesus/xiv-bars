@@ -5,33 +5,26 @@
   display: flex;
   position: relative;
 
-  &::after {
-    align-items: center;
-    background-color: #111;
-    border-radius: $border-radius;
-    bottom: 0;
-    content: "Copied!";
-    display: flex;
-    justify-content: center;
-    left: 0;
-    opacity: 0%;
-    pointer-events: none;
+  label {
+    background-color: $gray2;
+    border-radius: 4px;
+    display: block;
+    font-size: 8px;
+    height: 8px;
+    left: $spacing-xs;
+    line-height: 1;
+    padding: 0 5px;
     position: absolute;
-    right: 0;
     top: 0;
-    transition: opacity 0.33s ease;
-  }
-
-  &[data-copied="true"]::after {
-    opacity: 100%;
-    pointer-events: auto;
+    top: -0.5em;
   }
 }
 
 .shareUrlInput {
-  background-color: #333;
+  background-color: transparent;
   border: 0;
   border-radius: $border-radius 0 0 $border-radius;
+  box-shadow: inset 0 0 0 2px $gray0;
   color: #999;
   display: block;
   font-family: Verdana, sans-serif;
@@ -43,9 +36,15 @@
   width: 200px;
 
   &:focus {
-    background-color: rgba(255, 255, 255, 20%);
-    color: #ccc;
+    background-color: rgba(255, 255, 255, 90%);
+    color: $gray0;
   }
+}
+
+[data-copied="true"] .shareUrlInput,
+.sahreUrlInput:focus {
+  background-color: rgba(255, 255, 255, 90%);
+  color: $gray0;
 }
 
 .copyButton {

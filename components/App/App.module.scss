@@ -1,8 +1,8 @@
 @import "styles/mixins";
 
 .wrapper {
-  flex: 1 1 auto;
   display: flex;
+  flex: 1 1 auto;
   flex-direction: column;
   justify-content: stretch;
 }
@@ -31,22 +31,28 @@
 }
 
 .app {
+  flex: 1 1 auto;
   margin-left: 0;
   margin-right: 0;
-  flex: 1 1 auto;
 }
 
-.controls {
+.controlGroup {
   align-items: center;
-  background-color: #212121;
+  background-color: $gray1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: $spacing-sm $spacing-base;
 
+
+
   @media (max-width: $screen-sm) {
     flex-direction: column;
   }
+}
+
+.control {
+  margin-right: $spacing-sm;
 }
 
 .toggleButton {
@@ -69,8 +75,12 @@
 
 .pageActions {
   align-items: flex-end;
+  background-color: $gray2;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  padding-bottom: $spacing-base;
+  padding-top: $spacing-base;
 }
 
 $icon-size: 6px;
@@ -91,10 +101,10 @@ $icon-size: 6px;
 
 .container {
   display: flex;
-  justify-content: stretch;
-  padding-top: $spacing-xs;
-  position: relative;
   height: 100%;
+  justify-content: stretch;
+  padding-top: $spacing-sm;
+  position: relative;
 }
 
 .main {

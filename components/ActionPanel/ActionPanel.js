@@ -41,7 +41,7 @@ function ActionPanel({ actions, roleActions }) {
 
         { activeTab === 'panel-general' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-general'}
         >
           <ActionGroup actions={GENERAL_ACTIONS} title="General Actions" />
@@ -52,7 +52,7 @@ function ActionPanel({ actions, roleActions }) {
 
         { activeTab === 'panel-menu' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-menu'}
         >
           <ActionGroup actions={MAIN_COMMANDS} title="Menu Commands" />
@@ -61,7 +61,7 @@ function ActionPanel({ actions, roleActions }) {
 
         { activeTab === 'panel-company' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-company'}
         >
           <ActionGroup actions={COMPANY_ACTIONS} title="Company Actions" />
@@ -70,7 +70,7 @@ function ActionPanel({ actions, roleActions }) {
 
         { activeTab === 'panel-macros' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-macros'}
         >
           <ActionGroup actions={MACROS} title="Macros" />

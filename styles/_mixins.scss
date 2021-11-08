@@ -21,7 +21,16 @@ $primary-xbar-width: $primary-xbar-group-width * 3;
 
 $sidebar-width: 400px;
 
-$panel-bg: #303030;
+$gray0: #000;
+$gray1: #202020;
+$gray2: #404040;
+$gray3: #606060;
+$gray4: #808080;
+$gray5: #CCC;
+
+$color-active: rgb(255,220,200);
+
+$panel-bg: $gray1;
 $panel-bg-dark: #222;
 $border-radius: 4px;
 $box-shadow: 0 6px 10px rgba(0, 0, 0, 66%);

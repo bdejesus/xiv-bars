@@ -8,20 +8,21 @@
 }
 
 .panel {
-  background-color: $panel-bg;
+  background-color: $gray1;
   flex: 1 1 auto;
   position: relative;
 }
 
 .content {
-  padding: $spacing-base $spacing-sm $spacing-sm $spacing-sm;
-  position: absolute;
-  top: $spacing-xs;
-  left: 0;
-  right: 0;
   bottom: $spacing-xs;
+  left: 0;
   overflow-x: hidden;
   overflow-y: scroll;
+  padding: $spacing-base $spacing-sm $spacing-sm $spacing-sm;
+  position: absolute;
+  right: 0;
+  top: $spacing-xs;
+
   @include customScrollbar;
 }
 

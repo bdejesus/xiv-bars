@@ -42,22 +42,34 @@ function App(props) {
       <TooltipContextProvider>
         <SelectedActionContextProvider>
           <div className={styles.wrapper}>
-            <div className={styles.controls}>
+            <div className={styles.controlGroup}>
               <JobSelectContextProvider>
                 <JobSelect jobs={jobs} selectedJob={selectedJob} />
               </JobSelectContextProvider>
+            </div>
 
-              <div className={styles.pageActions}>
+            <div
+              className={[styles.controlGroup, styles.pageActions].join(' ')}
+            >
+              <div className={styles.control}>
                 <button
                   type="button"
                   onClick={() => setDisplayHelp(!displayHelp)}
                   data-active={displayHelp}
                 >
-                  Action Names
+                  <img src="/images/icon-titles.svg" className="icon" />
+                  Titles
                 </button>
+              </div>
+
+              <div className={styles.control}>
                 <ExportToMacros />
+              </div>
+
+              <div className={styles.control}>
                 <Sharing selectedJob={selectedJob} />
               </div>
+
             </div>
 
             {/* <div className={styles.header}>
