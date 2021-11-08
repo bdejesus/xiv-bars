@@ -36,12 +36,12 @@
 }
 
 .controls {
-  background-color: #212121;
-  padding: $spacing-sm $spacing-base;
   align-items: center;
+  background-color: #212121;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: $spacing-sm $spacing-base;
 
   @media (max-width: $screen-sm) {
     flex-direction: column;
@@ -116,19 +116,19 @@ $icon-size: 6px;
 
 .container {
   display: flex;
-  position: relative;
+  height: 100%;
   justify-content: stretch;
   padding-top: $spacing-xs;
-  height: 100%;
+  position: relative;
 }
 
 .main {
   align-items: center;
-  margin-left: $spacing-xs;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   justify-content: flex-start;
+  margin-left: $spacing-xs;
 }
 
 .sidebar {

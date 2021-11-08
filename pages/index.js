@@ -4,6 +4,7 @@ import {
   listRoleActions
 } from 'lib/api';
 import { group } from 'lib/utils/array';
+import Link from 'next/link';
 import Header from 'components/Header';
 import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
@@ -21,11 +22,15 @@ function Index(pageProps) {
   return (
     <div className={styles.view}>
       <div className={styles.header}>
-        <div className={styles.branding}>
-          <img src="/icons/favicon-96x96.png" />
-          <b className={styles.title}>XIVBARS</b>
-          A FFXIV WXHB Cross Hotbar Planner &amp; Simulator
-        </div>
+        <Link href="/">
+          <a className={styles.branding}>
+            <img src="/icons/favicon-96x96.png" />
+            <b className={styles.title}>XIVBARS</b>
+            <span className={styles.subTitle}>
+              A FFXIV WXHB Cross Hotbar Planner &amp; Simulator
+            </span>
+          </a>
+        </Link>
       </div>
 
       { !selectedJob

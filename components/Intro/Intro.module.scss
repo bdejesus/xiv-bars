@@ -1,9 +1,9 @@
 @import "styles/mixins";
 
 .wrapper {
-  position: relative;
   flex: 1 1 auto;
   overflow: auto;
+  position: relative;
 }
 
 .header {
