@@ -66,10 +66,11 @@
   color: #eee;
   content: attr(data-title);
   display: block;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 300;
   line-height: 1.2;
   text-align: center;
+  min-width: 60px;
 }
 
 .maincommandType,

@@ -12,6 +12,8 @@
   top: -12px;
   width: 24px;
   z-index: 1;
+align-items: center;
+justify-content: center;
 }
 
 .container {
@@ -19,7 +21,7 @@
   animation-fill-mode: forwards;
   position: fixed;
   right: $spacing-sm;
-  top: $spacing-base;
+  top: 42px;
   transition: transform 0.66s ease;
 
   &[data-collapsed="true"] {

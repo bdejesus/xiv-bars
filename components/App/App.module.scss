@@ -7,17 +7,9 @@
   justify-content: stretch;
 }
 
-.header {
-  border-bottom: 1px solid rgb(0 0 0 / 90%);
-  padding-bottom: 0;
-}
-
 .title {
-  margin-bottom: 0;
-}
-
-.headerBody {
-  padding-bottom: 0;
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-sm;
 }
 
 .description {
@@ -44,33 +36,13 @@
   justify-content: space-between;
   padding: $spacing-sm $spacing-base;
 
-
-
-  @media (max-width: $screen-sm) {
-    flex-direction: column;
+  &:first-child {
+    align-items: flex-start;
   }
 }
 
 .control {
   margin-right: $spacing-sm;
-}
-
-.toggleButton {
-  background-color: unset;
-  background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 0%));
-  border: none;
-  height: 32px;
-  opacity: 33%;
-  transition: background-image 0.33s ease, opacity 0.33s ease;
-  width: 100%;
-
-  &:hover,
-  &:active {
-    background-color: unset;
-    background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 50%));
-    border: none;
-    opacity: 66%;
-  }
 }
 
 .pageActions {
@@ -108,16 +80,20 @@ $icon-size: 6px;
 }
 
 .main {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   justify-content: flex-start;
   margin-left: $spacing-xs;
+
+  p {
+    margin: 0;
+  }
 }
 
 .sidebar {
-  width: $sidebar-width;
+  min-width: $sidebar-width;
 }
 
 @media (max-width: $screen-md) {

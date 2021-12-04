@@ -43,9 +43,38 @@ function App(props) {
         <SelectedActionContextProvider>
           <div className={styles.wrapper}>
             <div className={styles.controlGroup}>
-              <JobSelectContextProvider>
-                <JobSelect jobs={jobs} selectedJob={selectedJob} />
-              </JobSelectContextProvider>
+              <div className={styles.sidebar}>
+                <JobSelectContextProvider>
+                  <JobSelect jobs={jobs} selectedJob={selectedJob} />
+
+                  <button
+                    type="button"
+                    onClick={toggleDescription}
+                  >
+                    <img src="/images/icon-lore.svg" className="icon" />
+                    Lore
+                  </button>
+
+                  <button type="button">
+                    <img src="/images/icon-help.svg" className="icon" />
+                    Help
+                  </button>
+                </JobSelectContextProvider>
+              </div>
+
+              <div className={styles.main} data-expanded={expanded}>
+                <h1 className={styles.title}>
+                  {selectedJob.Name} {I18n.Global.title}
+                </h1>
+
+                <p className={styles.jobDesc}>
+                  {shortDesc(selectedJob, actions)}
+                </p>
+                { selectedJob.Description && (
+                <Lore selectedJob={selectedJob} />
+                )}
+
+              </div>
             </div>
 
             <div
@@ -71,35 +100,6 @@ function App(props) {
               </div>
 
             </div>
-
-            {/* <div className={styles.header}>
-              <div className={`container ${styles.headerBody}`}>
-                <h1 className={styles.title}>
-                  {selectedJob.Name} {I18n.Global.title}
-                </h1>
-
-                <div
-                  className={styles.description}
-                  data-expanded={expanded}
-                >
-                  <p className={styles.jobDesc}>
-                    {shortDesc(selectedJob, actions)}
-                  </p>
-
-                  { selectedJob.Description
-                      && <Lore selectedJob={selectedJob} /> }
-                </div>
-              </div>
-
-              <button
-                type="button"
-                className={styles.toggleButton}
-                data-active={expanded}
-                onClick={toggleDescription}
-              >
-                <div className={styles.toggleIcon} />
-              </button>
-            </div> */}
 
             <div className={`app-view ${styles.app}`} data-help={displayHelp}>
               <div className={styles.container}>

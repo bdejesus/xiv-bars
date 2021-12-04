@@ -3,7 +3,7 @@
 .view {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 99vh;
   overflow: hidden;
   position: relative;
 }
@@ -12,6 +12,9 @@
   background-color: #fefefe;
   color: #333;
   padding: $spacing-sm $spacing-base;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .branding {

@@ -28,6 +28,10 @@ $group-padding: 10px;
     position: absolute;
   }
 
+  &:first-child {
+    padding-top: 0;
+  }
+
   &:last-child {
     border-bottom: none;
   }
@@ -56,6 +60,7 @@ $group-padding: 10px;
 
   .slot {
     grid-row-end: span 2;
+    position: relative;
 
     &:nth-child(1) {
       grid-column-start: 2;
@@ -81,8 +86,10 @@ $group-padding: 10px;
 
 [data-help="true"] {
   .set .slot:nth-child(3) :global(.action)::after {
-    bottom: 85%;
+    bottom: 100%;
     position: absolute;
+    white-space: nowrap;
+    transform: translateY(-2px);
   }
 }
 

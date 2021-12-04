@@ -38,15 +38,15 @@ function Index(pageProps) {
           ? <Intro jobs={jobs} />
           : <App {...pageProps} /> }
 
-        {/* <div className={styles.articles}>
+      </div>
+      <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />
         <Articles />
       </div>
 
-      <Footer /> */}
-      </div>
+      <Footer />
       <LoadScreen />
     </>
   );
