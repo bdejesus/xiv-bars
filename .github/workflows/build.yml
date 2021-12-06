@@ -1,5 +1,7 @@
 name: Build
+
 on: push
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,8 +15,17 @@ jobs:
           path: ${{ github.workspace }}/node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Install modules
+      - name: Install Dependencies
         run: yarn install
+
+      - name: Lint Javascript
+        run: yarn lint:js
+
+      - name: Lint Stylesheets
+        run: yarn lint:css
+
+      - name: Run Jest Tests
+        run: yarn test
 
       - name: Setup Build Cache
         id: cache-build
