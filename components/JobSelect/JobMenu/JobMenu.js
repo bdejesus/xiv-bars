@@ -25,12 +25,6 @@ function JobMenu({ jobs }) {
           <JobsList title="DoL" jobs={DoL} />
         </li>
       </ul>
-
-      <div className={styles.warning}>
-        <p>
-          The Sage [SGE] and Reaper [RPR] jobs haven’t been officially released yet. This means that you can use them to create layouts and export macros, but things can change or break until the official release of Endwalker.
-        </p>
-      </div>
     </>
   );
 }

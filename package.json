@@ -11,9 +11,7 @@
     "lint:js": "eslint ./",
     "lint:css": "stylelint './**/**/*.{css,scss,sass}'"
   },
-  "engines": {
-    "node": "14.x"
-  },
+
   "dependencies": {
     "@sentry/nextjs": "^6.10.0",
     "@svgr/webpack": "5.5.0",
