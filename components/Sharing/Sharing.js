@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 
@@ -64,7 +65,7 @@ function Sharing({ selectedJob }) {
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        <img src="/images/icon-copy.svg" className="icon" />
+        <Image src="/images/icon-copy.svg" className="icon" alt="Share Icon" />
         Copy
       </button>
     </div>
