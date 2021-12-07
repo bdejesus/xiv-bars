@@ -82,7 +82,6 @@ function App(props) {
 
         </SelectedActionContextProvider>
       </TooltipContextProvider>
-
     </AppContextProvider>
   );
 }
