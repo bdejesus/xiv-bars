@@ -21,7 +21,7 @@
   animation-fill-mode: forwards;
   position: fixed;
   right: $spacing-sm;
-  bottom: 42px;
+  top: 150px;
   transition: transform 0.66s ease;
 
   &[data-collapsed="true"] {
@@ -40,14 +40,13 @@
 
 .button {
   align-items: center;
-  background-color: rgb(0 0 0 / 50%);
+  background-color: rgb(255 255 255 / 15%);
   border-radius: 6px;
   color: #fff;
   display: inline-flex;
-  line-height: 1.25em;
   margin-bottom: $spacing-sm;
-  max-width: 240px;
-  padding: 10px;
+  max-width: 250px;
+  padding: 12px 14px 12px 10px;
   transition: background-color 0.33s ease;
 
   .icon {

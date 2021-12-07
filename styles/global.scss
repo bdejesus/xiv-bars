@@ -11,7 +11,7 @@ html {
 
 body {
   background-attachment: fixed;
-  background-color: $gray0;
+  background-color: $gray2;
   background-image: linear-gradient(rgb(0 0 0 / 75%), rgb(0 0 0 / 0%));
   margin: 0;
 
@@ -22,10 +22,18 @@ body {
   display: none;
 }
 
-.container {
+.container,
+.container-lg {
   margin: 1px auto;
-  max-width: 800px;
+}
+
+.container {
+  width: $screen-md;
   padding: $spacing-lg;
+}
+
+.container-lg {
+  width: $screen-xl;
 }
 
 .section {
@@ -42,13 +50,18 @@ body {
 
 .app-view {
   background-color: $gray0;
-  background-image: url("/images/black_paper.png");
   box-shadow: inset 0 0 60px rgb(0 0 0 / 100%);
   margin-left: auto;
   margin-right: auto;
   position: relative;
 }
 
+@media (max-width: $screen-lg-max) {
+  .container,
+  .container-lg {
+    width: 100%;
+  }
+}
 @media (max-width: $screen-md) {
   main {
     padding: 0;

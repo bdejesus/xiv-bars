@@ -23,6 +23,44 @@ import styles from './Index.module.scss';
 function Index(pageProps) {
   const { actions, jobs, selectedJob } = pageProps;
 
+  const Body = () => (
+    <>
+      <HowTo />
+      <EorzeaProfile />
+      <Articles />
+    </>
+  );
+
+  const Home = () => (
+    <>
+      <Intro jobs={jobs} />
+      <Body />
+    </>
+  );
+
+  const JobClass = () => (
+    <>
+      <App {...pageProps} />
+
+      <div className={styles.articles}>
+        <div className={`${styles.main} container`}>
+          <h1 className={styles.title}>
+            {selectedJob.Name} {I18n.Global.title}
+          </h1>
+
+          <p className={styles.jobDesc}>
+            {shortDesc(selectedJob, actions)}
+          </p>
+
+          <Lore selectedJob={selectedJob} />
+        </div>
+
+        <Header primary={(!selectedJob)} />
+        <Body />
+      </div>
+    </>
+  );
+
   return (
     <>
       <div className={styles.view}>
@@ -43,33 +81,8 @@ function Index(pageProps) {
           </Link>
         </div>
 
-        { !selectedJob
-          ? <Intro jobs={jobs} />
-          : <App {...pageProps} /> }
+        { !selectedJob ? <Home /> : <JobClass /> }
 
-      </div>
-
-      <div className={styles.articles}>
-        { selectedJob && (
-          <>
-            <div className={styles.main}>
-              <h1 className={styles.title}>
-                {selectedJob.Name} {I18n.Global.title}
-              </h1>
-
-              <p className={styles.jobDesc}>
-                {shortDesc(selectedJob, actions)}
-              </p>
-            </div>
-
-            <Lore selectedJob={selectedJob} />
-          </>
-        )}
-
-        {(selectedJob) && <Header primary={(!selectedJob)} />}
-        <HowTo />
-        <EorzeaProfile />
-        <Articles />
       </div>
 
       <Footer />

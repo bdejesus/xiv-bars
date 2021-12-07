@@ -34,6 +34,13 @@
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
+@media (max-width: $screen-lg-max) {
+  .listActions {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 6px;
+  }
+}
+
 @media (max-width: $screen-md) {
   .listActions {
     display: flex;

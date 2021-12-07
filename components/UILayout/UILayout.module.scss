@@ -18,14 +18,7 @@
 }
 
 .content {
-  bottom: $spacing-xs;
-  left: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
   padding: $spacing-lg;
-  position: absolute;
-  right: 0;
-  top: $spacing-xs;
 }
 
 @media (max-width: $screen-md) {

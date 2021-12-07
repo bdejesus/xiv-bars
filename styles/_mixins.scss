@@ -46,13 +46,15 @@ $screen-xxs: 320px;
 $screen-xs: 480px;
 $screen-sm: 720px;
 $screen-lg: 1080px;
-$screen-xl: 1500px;
+$screen-xl: 1160px;
+$screen-xl-2: 1500px;
 $screen-md: 980px;
 
 $screen-xs-max: $screen-sm - 1;
 $screen-sm-max: $screen-md - 1;
 $screen-md-max: $screen-lg - 1;
 $screen-lg-max: $screen-xl - 1;
+$screen-xl-max: $screen-xl-2 - 1;
 
 $font-size-xs: 10px;
 $font-size-sm: 12px;

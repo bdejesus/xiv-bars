@@ -3,8 +3,6 @@
 .view {
   display: flex;
   flex-direction: column;
-  height: 99vh;
-  overflow: hidden;
   position: relative;
 }
 
@@ -39,5 +37,6 @@
 }
 
 .articles {
-  border-top: 1px solid rgb(0 0 0 / 90%);
+  background-color: $gray1;
+  padding-top: $spacing-lg;
 }

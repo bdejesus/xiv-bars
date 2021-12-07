@@ -28,43 +28,44 @@ function App(props) {
       <TooltipContextProvider>
         <SelectedActionContextProvider>
           <div className={styles.wrapper}>
-            <div className={styles.controlGroup}>
-              <div className={styles.sidebar}>
-                <JobSelectContextProvider>
-                  <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                </JobSelectContextProvider>
-              </div>
-
-              <div className={[styles.controlGroup, styles.pageActions].join(' ')}>
-                <div className={styles.control}>
-                  <button
-                    type="button"
-                    onClick={() => setDisplayHelp(!displayHelp)}
-                    data-active={displayHelp}
-                  >
-                    <Image
-                      src="/images/icon-titles.svg"
-                      className="icon"
-                      alt="Titles Icon"
-                      height={26}
-                      width={26}
-                    />
-                    Titles
-                  </button>
+            <div className={styles.controlBar}>
+              <div className={`${styles.controlsContainer} container-lg`}>
+                <div className={styles.sidebar}>
+                  <JobSelectContextProvider>
+                    <JobSelect jobs={jobs} selectedJob={selectedJob} />
+                  </JobSelectContextProvider>
                 </div>
 
-                <div className={styles.control}>
-                  <ExportToMacros />
-                </div>
+                <div className={[styles.controlGroup, styles.pageActions].join(' ')}>
+                  <div className={styles.control}>
+                    <button
+                      type="button"
+                      onClick={() => setDisplayHelp(!displayHelp)}
+                      data-active={displayHelp}
+                    >
+                      <Image
+                        src="/images/icon-titles.svg"
+                        className="icon"
+                        alt="Titles Icon"
+                        height={26}
+                        width={26}
+                      />
+                      Titles
+                    </button>
+                  </div>
 
-                <div className={styles.control}>
-                  <Sharing selectedJob={selectedJob} />
-                </div>
+                  <div className={styles.control}>
+                    <ExportToMacros />
+                  </div>
 
+                  <div className={styles.control}>
+                    <Sharing selectedJob={selectedJob} />
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className={`app-view ${styles.app}`} data-help={displayHelp}>
+            <div className={`app-view container-lg ${styles.app}`} data-help={displayHelp}>
               <div className={styles.container}>
                 <div className={styles.sidebar}>
                   <ActionPanel roleActions={roleActions} actions={actions} />
@@ -78,6 +79,7 @@ function App(props) {
               <Tooltip />
             </div>
           </div>
+
         </SelectedActionContextProvider>
       </TooltipContextProvider>
 
