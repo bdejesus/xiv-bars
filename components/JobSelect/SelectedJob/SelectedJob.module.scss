@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .iconWrapper {
@@ -21,7 +22,7 @@
 
 .title {
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
   letter-spacing: 0;
   margin: 0;
   text-transform: none;
@@ -29,7 +30,7 @@
 
 .abbr {
   font-family: "Lucida Console", Consolas, monospace;
-  font-size: 0.95em;
+  font-size: 0.925em;
   font-weight: 300;
   margin-right: 6px;
 }
@@ -40,7 +41,6 @@
 
 .role {
   font-size: 14px;
-  font-style: italic;
-  font-weight: 400;
-  opacity: 50%;
+  font-weight: 300;
+  opacity: 40%;
 }

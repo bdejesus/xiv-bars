@@ -6,8 +6,7 @@
   display: block;
   font-size: 24px;
   height: auto;
-  margin-left: -10px;
-  padding: $spacing-xs 20px $spacing-xs 10px;
+  padding: $spacing-xs 20px $spacing-xs $spacing-xs;
   transition: background-color 0.33s ease;
 
   img {

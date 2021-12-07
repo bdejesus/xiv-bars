@@ -34,25 +34,23 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: $spacing-sm $spacing-base;
-
-  &:first-child {
-    align-items: flex-start;
-  }
+  padding: $spacing-sm;
 }
 
 .control {
   margin-right: $spacing-sm;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .pageActions {
   align-items: flex-end;
-  background-color: $gray2;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding-bottom: $spacing-base;
-  padding-top: $spacing-base;
+  padding-right: 0;
 }
 
 $icon-size: 6px;

@@ -4,17 +4,17 @@ import styles from './Lore.module.scss';
 
 function Lore({ selectedJob }) {
   return (
-    <div
-      className={styles.lore}
-    >
-      <h3 className={styles.loreTitle}>
-        {selectedJob.Name} Lore
-      </h3>
-      <div
-        className={styles.loreBody}
+    <div className="container">
+      <div className={styles.lore}>
+        <h3 className={styles.loreTitle}>
+          {selectedJob.Name} Lore
+        </h3>
+        <div
+          className={styles.loreBody}
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: selectedJob.Description }}
-      />
+          dangerouslySetInnerHTML={{ __html: selectedJob.Description }}
+        />
+      </div>
     </div>
   );
 }

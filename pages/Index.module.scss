@@ -23,13 +23,8 @@
   display: flex;
   flex-direction: row;
 
-  img {
-    height: 24px;
-    margin-right: $spacing-xs;
-    width: 24px;
-  }
-
   .title {
+    margin-left: $spacing-xs;
     margin-right: $spacing-base;
   }
 

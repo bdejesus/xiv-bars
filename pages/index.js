@@ -5,6 +5,7 @@ import {
 } from 'lib/api';
 import { group } from 'lib/utils/array';
 import Link from 'next/link';
+import Image from 'next/image';
 import Header from 'components/Header';
 import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
@@ -13,11 +14,14 @@ import Intro from 'components/Intro';
 import App from 'components/App';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
+import Lore from 'components/Lore';
+import shortDesc from 'lib/shortDesc';
+import I18n from 'lib/I18n/locale/en-US';
 
 import styles from './Index.module.scss';
 
 function Index(pageProps) {
-  const { jobs, selectedJob } = pageProps;
+  const { actions, jobs, selectedJob } = pageProps;
 
   return (
     <>
@@ -25,10 +29,15 @@ function Index(pageProps) {
         <div className={styles.header}>
           <Link href="/">
             <a className={styles.branding}>
-              <img src="/icons/favicon-96x96.png" />
+              <Image
+                src="/icons/favicon-96x96.png"
+                alt="XIVBARS Logo"
+                height={24}
+                width={24}
+              />
               <b className={styles.title}>XIVBARS</b>
               <span className={styles.subTitle}>
-                A FFXIV WXHB Cross Hotbar Planner &amp; Simulator
+                A Final Fantasy XIV Hotbar Planner
               </span>
             </a>
           </Link>
@@ -39,7 +48,24 @@ function Index(pageProps) {
           : <App {...pageProps} /> }
 
       </div>
+
       <div className={styles.articles}>
+        { selectedJob && (
+          <>
+            <div className={styles.main}>
+              <h1 className={styles.title}>
+                {selectedJob.Name} {I18n.Global.title}
+              </h1>
+
+              <p className={styles.jobDesc}>
+                {shortDesc(selectedJob, actions)}
+              </p>
+            </div>
+
+            <Lore selectedJob={selectedJob} />
+          </>
+        )}
+
         {(selectedJob) && <Header primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />

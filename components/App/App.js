@@ -1,13 +1,12 @@
 /* eslint-disable react/no-danger */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 import PropTypes from 'prop-types';
-import shortDesc from 'lib/shortDesc';
-import I18n from 'lib/I18n/locale/en-US';
 import ActionPanel from 'components/ActionPanel';
 import UILayout from 'components/UILayout';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
-import Lore from 'components/Lore';
+
 import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
@@ -22,20 +21,7 @@ function App(props) {
     actions,
     roleActions
   } = props;
-  const [expanded, setExpanded] = useState(true);
   const [displayHelp, setDisplayHelp] = useState(false);
-  const expandDescStore = 'xivbars_expandDesc';
-
-  useEffect(() => {
-    const expandDescription = localStorage.getItem(expandDescStore) === 'true';
-    setExpanded(expandDescription);
-  }, []);
-
-  function toggleDescription() {
-    const expandedState = !expanded;
-    localStorage.setItem(expandDescStore, expandedState);
-    setExpanded(expandedState);
-  }
 
   return (
     <AppContextProvider {...props}>
@@ -46,59 +32,36 @@ function App(props) {
               <div className={styles.sidebar}>
                 <JobSelectContextProvider>
                   <JobSelect jobs={jobs} selectedJob={selectedJob} />
-
-                  <button
-                    type="button"
-                    onClick={toggleDescription}
-                  >
-                    <img src="/images/icon-lore.svg" className="icon" />
-                    Lore
-                  </button>
-
-                  <button type="button">
-                    <img src="/images/icon-help.svg" className="icon" />
-                    Help
-                  </button>
                 </JobSelectContextProvider>
               </div>
 
-              <div className={styles.main} data-expanded={expanded}>
-                <h1 className={styles.title}>
-                  {selectedJob.Name} {I18n.Global.title}
-                </h1>
+              <div className={[styles.controlGroup, styles.pageActions].join(' ')}>
+                <div className={styles.control}>
+                  <button
+                    type="button"
+                    onClick={() => setDisplayHelp(!displayHelp)}
+                    data-active={displayHelp}
+                  >
+                    <Image
+                      src="/images/icon-titles.svg"
+                      className="icon"
+                      alt="Titles Icon"
+                      height={26}
+                      width={26}
+                    />
+                    Titles
+                  </button>
+                </div>
 
-                <p className={styles.jobDesc}>
-                  {shortDesc(selectedJob, actions)}
-                </p>
-                { selectedJob.Description && (
-                <Lore selectedJob={selectedJob} />
-                )}
+                <div className={styles.control}>
+                  <ExportToMacros />
+                </div>
+
+                <div className={styles.control}>
+                  <Sharing selectedJob={selectedJob} />
+                </div>
 
               </div>
-            </div>
-
-            <div
-              className={[styles.controlGroup, styles.pageActions].join(' ')}
-            >
-              <div className={styles.control}>
-                <button
-                  type="button"
-                  onClick={() => setDisplayHelp(!displayHelp)}
-                  data-active={displayHelp}
-                >
-                  <img src="/images/icon-titles.svg" className="icon" />
-                  Titles
-                </button>
-              </div>
-
-              <div className={styles.control}>
-                <ExportToMacros />
-              </div>
-
-              <div className={styles.control}>
-                <Sharing selectedJob={selectedJob} />
-              </div>
-
             </div>
 
             <div className={`app-view ${styles.app}`} data-help={displayHelp}>
@@ -117,6 +80,7 @@ function App(props) {
           </div>
         </SelectedActionContextProvider>
       </TooltipContextProvider>
+
     </AppContextProvider>
   );
 }
