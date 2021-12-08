@@ -19,9 +19,9 @@
 .container {
   animation: enterButton 0.66s ease;
   animation-fill-mode: forwards;
+  bottom: $spacing-base;
   position: fixed;
   right: $spacing-sm;
-  bottom: $spacing-base;
   transition: transform 0.66s ease;
 
   &[data-collapsed="true"] {
