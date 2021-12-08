@@ -1,14 +1,12 @@
 /* eslint-disable react/no-danger */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Image from 'next/image';
 import PropTypes from 'prop-types';
-import shortDesc from 'lib/shortDesc';
-import I18n from 'lib/I18n/locale/en-US';
 import ActionPanel from 'components/ActionPanel';
-import Intro from 'components/Intro';
 import UILayout from 'components/UILayout';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
-import Lore from 'components/Lore';
+
 import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
@@ -23,108 +21,67 @@ function App(props) {
     actions,
     roleActions
   } = props;
-  const [expanded, setExpanded] = useState(true);
   const [displayHelp, setDisplayHelp] = useState(false);
-  const expandDescStore = 'xivbars_expandDesc';
-
-  useEffect(() => {
-    const expandDescription = localStorage.getItem(expandDescStore) === 'true';
-    setExpanded(expandDescription);
-  }, []);
-
-  function toggleDescription() {
-    const expandedState = !expanded;
-    localStorage.setItem(expandDescStore, expandedState);
-    setExpanded(expandedState);
-  }
 
   return (
     <AppContextProvider {...props}>
-      { !selectedJob
-        ? <Intro jobs={jobs} />
-        : (
-          <TooltipContextProvider>
-            <SelectedActionContextProvider>
-              <div className={styles.header}>
-                <div className={`container ${styles.headerBody}`}>
-                  <h1 className={styles.title}>
-                    {selectedJob.Name} {I18n.Global.title}
-                  </h1>
-
-                  <a href="/" className={styles.returnLink}>
-                    {I18n.App.return}
-                  </a>
-
-                  <div className={styles.controls}>
-                    <div className={styles.columnLeft}>
-                      <JobSelectContextProvider>
-                        <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                      </JobSelectContextProvider>
-                    </div>
-
-                    <div className={styles.pageActions}>
-                      <Sharing selectedJob={selectedJob} />
-                      <ExportToMacros />
-                    </div>
-                  </div>
-
-                  <div
-                    className={styles.description}
-                    data-expanded={expanded}
-                  >
-                    <p className={styles.jobDesc}>
-                      {shortDesc(selectedJob, actions)}
-                    </p>
-
-                    { selectedJob.Description
-                      && <Lore selectedJob={selectedJob} /> }
-                  </div>
+      <TooltipContextProvider>
+        <SelectedActionContextProvider>
+          <div className={styles.wrapper}>
+            <div className={styles.controlBar}>
+              <div className={`${styles.controlsContainer} container-lg`}>
+                <div className={styles.sidebar}>
+                  <JobSelectContextProvider>
+                    <JobSelect jobs={jobs} selectedJob={selectedJob} />
+                  </JobSelectContextProvider>
                 </div>
 
-                <button
-                  type="button"
-                  className={styles.toggleButton}
-                  data-active={expanded}
-                  onClick={toggleDescription}
-                >
-                  <div className={styles.toggleIcon} />
-                </button>
-              </div>
-
-              <div className="app-view" data-help={displayHelp}>
-                <div className="container">
-                  <div className={styles.viewHeader}>
-                    <h2 className={styles.sectionTitle}>
-                      FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
-                    </h2>
-                    <div className={styles.viewControls}>
-                      <button
-                        type="button"
-                        onClick={() => setDisplayHelp(!displayHelp)}
-                        data-active={displayHelp}
-                      >
-                        Action Names
-                      </button>
-                    </div>
+                <div className={[styles.controlGroup, styles.pageActions].join(' ')}>
+                  <div className={styles.control}>
+                    <button
+                      type="button"
+                      onClick={() => setDisplayHelp(!displayHelp)}
+                      data-active={displayHelp}
+                    >
+                      <Image
+                        src="/images/icon-titles.svg"
+                        className="icon"
+                        alt="Titles Icon"
+                        height={26}
+                        width={26}
+                      />
+                      Titles
+                    </button>
                   </div>
 
-                  <div className={styles.container}>
-                    <div className={`panel ${styles.sidebar}`}>
-                      <ActionPanel roleActions={roleActions} actions={actions} />
-                    </div>
-
-                    <div className={styles.main}>
-                      <UILayout />
-                    </div>
+                  <div className={styles.control}>
+                    <ExportToMacros />
                   </div>
 
-                  <Tooltip />
+                  <div className={styles.control}>
+                    <Sharing selectedJob={selectedJob} />
+                  </div>
                 </div>
               </div>
-            </SelectedActionContextProvider>
-          </TooltipContextProvider>
-        )}
+            </div>
 
+            <div className={`app-view container-lg ${styles.app}`} data-help={displayHelp}>
+              <div className={styles.container}>
+                <div className={styles.sidebar}>
+                  <ActionPanel roleActions={roleActions} actions={actions} />
+                </div>
+
+                <div className={styles.main}>
+                  <UILayout />
+                </div>
+              </div>
+
+              <Tooltip />
+            </div>
+          </div>
+
+        </SelectedActionContextProvider>
+      </TooltipContextProvider>
     </AppContextProvider>
   );
 }

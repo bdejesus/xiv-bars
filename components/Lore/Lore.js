@@ -4,9 +4,7 @@ import styles from './Lore.module.scss';
 
 function Lore({ selectedJob }) {
   return (
-    <div
-      className={styles.lore}
-    >
+    <div className={styles.lore}>
       <h3 className={styles.loreTitle}>
         {selectedJob.Name} Lore
       </h3>

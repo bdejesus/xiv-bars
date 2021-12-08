@@ -1,24 +1,18 @@
 @import "styles/mixins";
 
-.header {
-  border-bottom: 1px solid rgb(0 0 0 / 90%);
-  padding-bottom: 0;
+.wrapper {
+  align-items: center;
+  background-color: $gray0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: stretch;
+  padding-bottom: $spacing-base;
 }
 
 .title {
-  margin-bottom: 0;
-}
-
-.returnLink {
-  display: inline-block;
-  font-weight: 300;
-  letter-spacing: 0.045em;
-  margin-bottom: $spacing-base;
-  margin-top: $spacing-sm;
-}
-
-.headerBody {
-  padding-bottom: 0;
+  font-size: $font-size-xl;
+  margin-bottom: $spacing-sm;
 }
 
 .description {
@@ -31,58 +25,34 @@
   }
 }
 
-.controls {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  @media (max-width: $screen-sm) {
-    flex-direction: column;
-  }
+.app {
+  flex: 1 1 auto;
+  margin: $spacing-base 0;
 }
 
-.viewHeader {
-  align-items: center;
-  border-bottom: 1px solid #222;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: $spacing-sm;
-  padding-bottom: $spacing-sm;
-}
-
-.viewControls {
-  button {
-    opacity: 50%;
-  }
-
-  button[data-active="true"] {
-    opacity: 100%;
-  }
-}
-
-.sectionTitle {
-  display: inline-block;
-  line-height: 1;
-  margin: 0;
-}
-
-.toggleButton {
-  background-color: unset;
-  background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 0%));
-  border: none;
-  height: 32px;
-  opacity: 33%;
-  transition: background-image 0.33s ease, opacity 0.33s ease;
+.controlBar {
+  background-color: $gray1;
+  padding: $spacing-base;
   width: 100%;
+}
 
-  &:hover,
-  &:active {
-    background-color: unset;
-    background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 50%));
-    border: none;
-    opacity: 66%;
+.controlsContainer,
+.controlGroup {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.control {
+  margin-right: $spacing-sm;
+
+  button {
+    padding-right: 10px;
+  }
+
+  &:last-child {
+    margin-right: 0;
   }
 }
 
@@ -90,6 +60,8 @@
   align-items: flex-end;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
+  padding-right: 0;
 }
 
 $icon-size: 6px;
@@ -110,25 +82,33 @@ $icon-size: 6px;
 
 .container {
   display: flex;
+  justify-content: stretch;
+  padding-top: $spacing-sm;
   position: relative;
 }
 
-.main,
-.sidebar {
-  height: 100%;
-}
-
 .main {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   justify-content: flex-start;
-  padding-left: $spacing-sm;
+  margin-left: $spacing-xs;
+  position: sticky;
+
+  p {
+    margin: 0;
+  }
 }
 
 .sidebar {
-  width: $sidebar-width;
+  min-width: $sidebar-width;
+}
+
+@media (max-width: $screen-lg-max) {
+  .sidebar {
+    min-width: 30vw;
+  }
 }
 
 @media (max-width: $screen-md) {
@@ -152,5 +132,14 @@ $icon-size: 6px;
     .main {
       display: block;
     }
+  }
+
+  .controlsContainer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .controlGroup {
+    margin-top: $spacing-sm;
   }
 }
