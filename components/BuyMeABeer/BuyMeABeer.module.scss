@@ -1,12 +1,10 @@
 @import "styles/mixins";
 
 .collapseBtn {
-  align-items: center;
   border-radius: 16px;
   font-size: 18px;
   font-weight: 100;
   height: 24px;
-  justify-content: center;
   left: -12px;
   line-height: 18px;
   padding: 0 0 3px;
@@ -19,9 +17,9 @@
 .container {
   animation: enterButton 0.66s ease;
   animation-fill-mode: forwards;
-  bottom: $spacing-base;
   position: fixed;
   right: $spacing-sm;
+  top: $spacing-base;
   transition: transform 0.66s ease;
 
   &[data-collapsed="true"] {
@@ -40,13 +38,14 @@
 
 .button {
   align-items: center;
-  background-color: rgb(255 255 255 / 10%);
+  background-color: rgb(0 0 0 / 50%);
   border-radius: 6px;
   color: #fff;
   display: inline-flex;
+  line-height: 1.25em;
   margin-bottom: $spacing-sm;
-  max-width: 250px;
-  padding: 12px 14px 12px 10px;
+  max-width: 240px;
+  padding: 10px;
   transition: background-color 0.33s ease;
 
   .icon {

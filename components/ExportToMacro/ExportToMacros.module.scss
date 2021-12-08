@@ -1,6 +1,8 @@
 @import "styles/mixins";
 
 .macroBtn {
+  margin-left: $spacing-xs;
+
   &[disabled] {
     opacity: 50%;
     pointer-events: none;

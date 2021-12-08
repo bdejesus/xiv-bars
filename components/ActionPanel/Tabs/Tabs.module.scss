@@ -16,9 +16,8 @@
   }
 
   &[data-active="true"] {
-    background-color: $gray1;
-    border-bottom-color: $gray1;
-    box-shadow: none;
+    background-color: $panel-bg;
+    border-bottom-color: $panel-bg;
     color: #fff;
     pointer-events: none;
   }

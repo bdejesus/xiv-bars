@@ -3,7 +3,6 @@
 import { useRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
-import Image from 'next/image';
 import I18n from 'lib/I18n/locale/en-US';
 import CloseButton from 'components/CloseButton';
 import Modal from 'components/Modal';
@@ -82,7 +81,6 @@ function ExportToMacros() {
         title="Export to Macro"
         onClick={toggleModal}
       >
-        <Image src="/images/icon-macro.svg" className="icon" alt="Export Icon" height={26} width={26} />
         {I18n.ExportToMacro.export_to_macro}
       </button>
 

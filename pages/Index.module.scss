@@ -1,42 +1,5 @@
 @import "styles/mixins";
 
-.view {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.header {
-  background-color: #fefefe;
-  color: #333;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: $spacing-sm $spacing-base;
-}
-
-.branding {
-  align-items: center;
-  color: #333;
-  display: flex;
-  flex-direction: row;
-
-  .title {
-    margin-left: $spacing-xs;
-    margin-right: $spacing-base;
-  }
-
-  .subTitle {
-    color: #666;
-    font-weight: 300;
-  }
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
 .articles {
-  background-color: $gray1;
-  padding-top: $spacing-lg;
+  border-top: 1px solid rgb(0 0 0 / 90%);
 }

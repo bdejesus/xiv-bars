@@ -2,7 +2,6 @@
 /* eslint-disable jsx-a11y/label-has-for */
 import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 
@@ -24,8 +23,6 @@ function Sharing({ selectedJob }) {
       .filter((key) => query[key] !== '')
       .map((key) => `${key}=${query[key]}`)
       .join('&');
-
-    console.log(host);
 
     return `${host}/job/${selectedJob.Abbr}?${queryString}`;
   }
@@ -50,9 +47,7 @@ function Sharing({ selectedJob }) {
   return (
     <div className={`${styles.container}`} data-copied={copied}>
       <div className="controlGroup">
-        <label htmlFor="shareUrl">
-          { copied ? 'Copied!' : 'Share URL' }
-        </label>
+        <label htmlFor="shareUrl">Share URL</label>
         <input
           id="shareUrl"
           className={styles.shareUrlInput}
@@ -67,14 +62,7 @@ function Sharing({ selectedJob }) {
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        <Image
-          src="/images/icon-copy.svg"
-          className="icon"
-          alt="Copy Icon"
-          height={24}
-          width={24}
-        />
-        Copy
+        Copy URL
       </button>
     </div>
   );

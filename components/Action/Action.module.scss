@@ -1,5 +1,21 @@
 @import "styles/mixins";
 
+.action {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-help="true"] .action::after {
+  color: #eee;
+  content: attr(data-title);
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: center;
+}
+
 .iconWrapper {
   background-color: rgb(0 0 0 / 66%);
   border-radius: 6px;
@@ -8,12 +24,31 @@
   height: 100%;
   height: $slot-size;
   line-height: 1.2em;
+  // overflow: hidden;
   position: relative;
   text-align: center;
   transition-duration: 0.33s;
-  transition-property: border, box-shadow, opacity, filter, transform;
+  transition-property: border, box-shadow, opacity, filter;
   transition-timing-function: ease;
   width: $slot-size;
+
+  &:hover {
+    background-color: rgb(0 0 0 / 80%);
+    border-color: #999;
+    box-shadow: 0 0 10px 1px rgb(255 255 255 / 75%);
+    cursor: pointer;
+    cursor: grab;
+    cursor: grab;
+  }
+
+  &:focus {
+    box-shadow: 0 0 1px 2px rgb(255 255 255 / 80%);
+    outline: none;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
 
   &::after {
     bottom: 0;
@@ -34,43 +69,6 @@
     object-fit: cover;
     width: 101%;
   }
-}
-
-.action {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
-  &:hover .iconWrapper {
-    background-color: rgb(0 0 0 / 80%);
-    border-color: #999;
-    box-shadow: 0 6px 10px rgb(0 0 0 / 75%);
-    cursor: pointer;
-    cursor: grab;
-    cursor: grab;
-    transform: translateY(-3px) scale(1.05);
-  }
-
-  &:focus .iconWrapper {
-    box-shadow: 0 0 6px 2px rgb(155 115 0 / 100%);
-    outline: none;
-    transform: translateY(-3px) scale(1.05);
-  }
-
-  &:active .iconWrapper {
-    cursor: grabbing;
-  }
-}
-
-[data-help="true"] .action::after {
-  color: #eee;
-  content: attr(data-title);
-  display: block;
-  font-size: 9px;
-  font-weight: 300;
-  line-height: 1.2;
-  min-width: 60px;
-  text-align: center;
 }
 
 .maincommandType,
