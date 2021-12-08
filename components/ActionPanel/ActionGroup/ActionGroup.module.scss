@@ -12,7 +12,7 @@
   color: rgb(255 255 255 / 66%);
   font-size: 10px;
   line-height: 1.2em;
-  margin: 0 0 0.5em;
+  margin: 0 0 $spacing-base;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -21,14 +21,28 @@
   display: grid;
   grid-gap: 8px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: auto;
   list-style: none;
   margin: 0;
   padding: 0;
+
+  > li {
+    min-height: $slot-size * 1.33;
+  }
 }
 
 [data-help="true"] .listActions {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: $screen-lg-max) {
+  .listActions {
+    grid-gap: 6px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  [data-help="true"] .listActions {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 @media (max-width: $screen-md) {

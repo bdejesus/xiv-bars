@@ -15,7 +15,7 @@ class AppContainer extends App {
 
     function generateTitle() {
       if (selectedJob) {
-        return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup | ${I18n.Global.title}`;
+        return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar | ${I18n.Global.title}`;
       }
       return I18n.Global.title;
     }

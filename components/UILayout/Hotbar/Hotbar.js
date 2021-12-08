@@ -25,10 +25,10 @@ Row.propTypes = {
 };
 
 function Hotbar() {
-  const { hotbar, expandedHotbars } = useAppState();
+  const { hotbar } = useAppState();
 
   return (
-    <ol className={styles.container} data-expanded={expandedHotbars}>
+    <ol className={styles.container}>
       {Object.keys(hotbar).map((barKey) => (
         <li key={barKey} className={styles.rowWrapper}>
           <Row slots={hotbar[barKey]} />
