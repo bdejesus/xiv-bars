@@ -28,8 +28,8 @@ body {
 }
 
 .container {
-  width: $screen-md;
   padding: $spacing-lg;
+  width: $screen-md;
 }
 
 .container-lg {
@@ -62,6 +62,7 @@ body {
     width: 100%;
   }
 }
+
 @media (max-width: $screen-md) {
   main {
     padding: 0;

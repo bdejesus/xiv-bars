@@ -9,10 +9,10 @@
 .header {
   background-color: #fefefe;
   color: #333;
-  padding: $spacing-sm $spacing-base;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding: $spacing-sm $spacing-base;
 }
 
 .branding {

@@ -88,8 +88,8 @@ $group-padding: 10px;
   .set .slot:nth-child(3) :global(.action)::after {
     bottom: 100%;
     position: absolute;
-    white-space: nowrap;
     transform: translateY(-2px);
+    white-space: nowrap;
   }
 }
 

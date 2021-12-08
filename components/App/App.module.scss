@@ -32,8 +32,8 @@
 
 .controlBar {
   background-color: $gray1;
-  width: 100%;
   padding: $spacing-base;
+  width: 100%;
 }
 
 .controlsContainer,
@@ -134,8 +134,8 @@ $icon-size: 6px;
   }
 
   .controlsContainer {
-    flex-direction: column;
     align-items: flex-start;
+    flex-direction: column;
   }
 
   .controlGroup {

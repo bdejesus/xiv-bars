@@ -35,26 +35,27 @@ button,
     width: 26px;
   }
 
+  &:focus,
+  &:active {
+    color: #fff;
+  }
+
   &:hover {
     color: #fff;
-
-    .icon {
-      opacity: 100%;
-    }
   }
 
+  &:focus,
   &:active,
-  &:focus {
-    color: #fff;
-
+  &:hover {
     .icon {
       opacity: 100%;
     }
   }
 
-  &[data-active='true'] {
+  &[data-active="true"] {
     box-shadow: 0 0 8px 1px $color-active;
     color: #fff;
+
     .icon {
       opacity: 100%;
     }

@@ -36,8 +36,8 @@
 
 @media (max-width: $screen-lg-max) {
   .listActions {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 6px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 

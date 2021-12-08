@@ -25,6 +25,8 @@ function Sharing({ selectedJob }) {
       .map((key) => `${key}=${query[key]}`)
       .join('&');
 
+    console.log(host);
+
     return `${host}/job/${selectedJob.Abbr}?${queryString}`;
   }
 
@@ -65,7 +67,13 @@ function Sharing({ selectedJob }) {
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        <Image src="/images/icon-copy.svg" className="icon" alt="Share Icon" />
+        <Image
+          src="/images/icon-copy.svg"
+          className="icon"
+          alt="Copy Icon"
+          height={24}
+          width={24}
+        />
         Copy
       </button>
     </div>
