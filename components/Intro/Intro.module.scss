@@ -1,5 +1,11 @@
 @import "styles/mixins";
 
+.wrapper {
+  flex: 1 1 auto;
+  overflow: auto;
+  position: relative;
+}
+
 .header {
   border-bottom: 1px solid rgb(0 0 0 / 90%);
   padding-bottom: 0;

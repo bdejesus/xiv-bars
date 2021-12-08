@@ -25,9 +25,10 @@ function ActionPanel({ actions, roleActions }) {
     <div className={styles.actionsPanel}>
       <Tabs onTabClick={(e) => handleTabClick(e)} activeTab={activeTab} />
 
-      { activeTab === 'panel-actions' && (
+      <div className={styles.panel}>
+        { activeTab === 'panel-actions' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-actions'}
         >
           <ActionGroup actions={actions} title="Job Actions" />
@@ -36,45 +37,46 @@ function ActionPanel({ actions, roleActions }) {
             <ActionGroup actions={roleActions} title="Role Actions" />
           )}
         </div>
-      )}
+        )}
 
-      { activeTab === 'panel-general' && (
+        { activeTab === 'panel-general' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-general'}
         >
           <ActionGroup actions={GENERAL_ACTIONS} title="General Actions" />
           <ActionGroup actions={BUDDY_ACTIONS} title="Companion Actions" />
           <ActionGroup actions={PET_ACTIONS} title="Pet Actions" limit={7} />
         </div>
-      )}
+        )}
 
-      { activeTab === 'panel-menu' && (
+        { activeTab === 'panel-menu' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-menu'}
         >
           <ActionGroup actions={MAIN_COMMANDS} title="Menu Commands" />
         </div>
-      )}
+        )}
 
-      { activeTab === 'panel-company' && (
+        { activeTab === 'panel-company' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-company'}
         >
           <ActionGroup actions={COMPANY_ACTIONS} title="Company Actions" />
         </div>
-      )}
+        )}
 
-      { activeTab === 'panel-macros' && (
+        { activeTab === 'panel-macros' && (
         <div
-          className={styles.panel}
+          className={styles.content}
           aria-hidden={activeTab !== 'panel-macros'}
         >
           <ActionGroup actions={MACROS} title="Macros" />
         </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

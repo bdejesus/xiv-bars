@@ -12,6 +12,7 @@
     "declaration-colon-newline-after": null,
     "keyframes-name-pattern": null,
     "max-nesting-depth": 2,
+    "no-descending-specificity": null,
     "no-invalid-position-at-import-rule": null,
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": null,
