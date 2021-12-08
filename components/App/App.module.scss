@@ -94,6 +94,7 @@ $icon-size: 6px;
   flex-direction: column;
   justify-content: flex-start;
   margin-left: $spacing-xs;
+  position: sticky;
 
   p {
     margin: 0;

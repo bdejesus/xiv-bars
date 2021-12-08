@@ -39,6 +39,10 @@
     grid-gap: 6px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+
+  [data-help="true"] .listActions {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }
 
 @media (max-width: $screen-md) {

@@ -75,7 +75,7 @@ function Index(pageProps) {
               />
               <b className={styles.title}>XIVBARS</b>
               <span className={styles.subTitle}>
-                A Final Fantasy XIV Hotbar Planner
+                A Final Fantasy XIV Endwalker Hotbar Planner
               </span>
             </a>
           </Link>
@@ -95,7 +95,7 @@ Index.getInitialProps = async ({ req, query }) => {
   const { s1, s } = query;
   const host = (typeof req !== 'undefined')
     ? req.headers.host
-    : undefined;
+    : 'https://xivbars.bejezus.com';
 
   // Decode Slots query param
   const encodedSlots = () => {

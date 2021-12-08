@@ -4,6 +4,8 @@
 .actionsPanel {
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: $spacing-base;
 }
 
 .panel {
