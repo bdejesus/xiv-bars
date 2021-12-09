@@ -76,7 +76,6 @@
 .maincommandType,
 .macroiconType,
 .companyactionType {
-  box-shadow: 0 0 0 1px rgb(0 0 0 / 66%);
   filter: grayscale(0.9);
 
   &::before {
