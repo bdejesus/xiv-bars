@@ -18,26 +18,23 @@ body {
   @include customScrollbar;
 }
 
+main {
+  min-width: $screen-lg;
+}
+
 [aria-hidden="true"] {
   display: none;
 }
 
 .container {
   margin: 0 auto;
-  max-width: 980px;
+  width: $screen-lg;
   padding: 0 $spacing-lg;
 }
 
 .section {
   padding-bottom: $spacing-base;
   padding-top: $spacing-base;
-}
-
-.row {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
 .app-view {
@@ -54,30 +51,6 @@ body {
     max-width: $screen-lg;
     padding-left: 0;
     padding-right: 0;
-  }
-}
-
-@media (max-width: $screen-md) {
-  main {
-    padding: 0;
-  }
-
-  .container {
-    padding: $spacing-base;
-  }
-}
-
-@media (max-width: $screen-sm) {
-  .row {
-    flex-direction: column;
-  }
-
-  .app-view {
-    padding: 0;
-
-    .container {
-      padding: $spacing-base 0;
-    }
   }
 }
 

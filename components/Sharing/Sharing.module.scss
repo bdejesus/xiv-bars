@@ -69,13 +69,3 @@
 .copyButton {
   border-radius: 0 $border-radius $border-radius 0;
 }
-
-@media (max-width: $screen-xs) {
-  .container {
-    margin-right: 0;
-  }
-
-  .shareUrlInput {
-    width: 200px;
-  }
-}

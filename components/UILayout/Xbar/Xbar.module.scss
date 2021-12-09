@@ -83,22 +83,3 @@ $group-padding: 10px;
   position: absolute;
   transform: translateY(-180%);
 }
-
-@media (max-width: $screen-md) {
-  .xbar {
-    padding-left: $spacing-base;
-    padding-right: $spacing-base;
-
-    &::before {
-      font-size: 14px;
-    }
-  }
-}
-
-@media (max-width: $screen-xs) {
-  .xbar {
-    margin: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}

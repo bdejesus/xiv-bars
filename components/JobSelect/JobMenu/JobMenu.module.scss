@@ -10,19 +10,6 @@
   list-style: none;
   margin: 0;
   padding: $spacing-base;
-
-  @media (max-width: $screen-md) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @media (max-width: $screen-sm) {
-    border-radius: 0;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (max-width: $screen-xs) {
-    grid-template-columns: 1fr;
-  }
 }
 
 .warning {

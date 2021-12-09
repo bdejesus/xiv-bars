@@ -30,16 +30,3 @@
 .container[data-show-titles="true"] .listActions {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-
-@media (max-width: $screen-md) {
-  .listActions {
-    display: flex;
-    flex-wrap: wrap;
-
-    > li {
-      height: 36px;
-      margin: 6px;
-      width: 36px;
-    }
-  }
-}

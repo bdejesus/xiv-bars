@@ -16,14 +16,3 @@
 .right {
   text-align: right;
 }
-
-@media (max-width: $screen-sm) {
-  .container {
-    flex-direction: column;
-  }
-
-  .right {
-    margin-top: $spacing-base;
-    text-align: left;
-  }
-}

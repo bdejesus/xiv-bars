@@ -24,10 +24,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  @media (max-width: $screen-sm) {
-    flex-direction: column;
-  }
 }
 
 .viewControls {
@@ -107,28 +103,4 @@ $icon-size: 6px;
 
 .sidebar {
   width: $sidebar-width;
-}
-
-@media (max-width: $screen-md) {
-  .main,
-  .sidebar {
-    border: none;
-    padding: 0;
-    width: unset;
-  }
-
-  .container {
-    flex-direction: column;
-    height: unset;
-
-    .sidebar {
-      height: 100%;
-      margin-top: $spacing-lg;
-      order: 2;
-    }
-
-    .main {
-      display: block;
-    }
-  }
 }

@@ -51,13 +51,3 @@
     border-bottom: none;
   }
 }
-
-@media (max-width: $screen-sm) {
-  .container > li::before {
-    left: 2px;
-  }
-
-  .rowWrapper {
-    padding-left: 14px;
-  }
-}
