@@ -2,30 +2,11 @@
 
 .header {
   border-bottom: 1px solid rgb(0 0 0 / 90%);
-  padding-bottom: 0;
+  padding: $spacing-xl;
 }
 
 .title {
   margin-bottom: $spacing-base;
   margin-top: 0;
   text-align: center;
-}
-
-.outage {
-  background-color: rgb(255 0 0 / 40%);
-  font-size: 16px;
-  padding: 30px 50px;
-
-  h2 {
-    margin-bottom: $spacing-lg;
-  }
-
-  blockquote {
-    border-left: 4px solid rgb(255 255 255 / 33%);
-    font-size: 18px;
-    font-style: italic;
-    line-height: 24px;
-    margin: $spacing-xl 0;
-    padding-left: 32px;
-  }
 }

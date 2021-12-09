@@ -4,8 +4,10 @@ import {
   listRoleActions
 } from 'lib/api';
 import { group } from 'lib/utils/array';
+import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';
-import Header from 'components/Header';
+import Hero from 'components/Hero';
+import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
 import Articles from 'components/Articles';
@@ -13,20 +15,36 @@ import Footer from 'components/Footer';
 import App from 'components/App';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
+import shortDesc from 'lib/shortDesc';
 
 import styles from './Index.module.scss';
 
 function Index(pageProps) {
-  const { jobs, selectedJob } = pageProps;
+  const { jobs, selectedJob, actions } = pageProps;
 
   return (
     <>
       <GlobalHeader />
 
-      { selectedJob ? <App {...pageProps} /> : <Intro jobs={jobs} /> }
+      { selectedJob ? (
+        <>
+          <App {...pageProps} />
+
+          <div className="container section">
+            <div className={styles.description}>
+              <h2>{selectedJob.Name} {I18n.Global.title}</h2>
+              <p className={styles.jobDesc}>
+                {shortDesc(selectedJob, actions)}
+              </p>
+
+              { selectedJob.Description && <Lore selectedJob={selectedJob} /> }
+            </div>
+          </div>
+        </>
+      ) : <Intro jobs={jobs} /> }
 
       <div className={styles.articles}>
-        {(selectedJob) && <Header primary={(!selectedJob)} />}
+        {(selectedJob) && <Hero primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />
         <Articles />

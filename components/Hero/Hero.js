@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import I18n from 'lib/I18n/locale/en-US';
-import styles from './Header.module.scss';
+import styles from './Hero.module.scss';
 
-function Header({ primary }) {
+function Hero({ primary }) {
   return (
     <div className="container">
       { primary
@@ -15,7 +15,7 @@ function Header({ primary }) {
         <p>{I18n.Global.subtitle}</p>
         <p>{I18n.Global.description}</p>
 
-        <h4>{I18n.Header.title}</h4>
+        <h2 className="text-xl">{I18n.Header.title}</h2>
         <p>{I18n.Header.body}</p>
       </div>
     </div>
@@ -23,12 +23,12 @@ function Header({ primary }) {
   );
 }
 
-Header.propTypes = {
+Hero.propTypes = {
   primary: PropTypes.bool
 };
 
-Header.defaultProps = {
+Hero.defaultProps = {
   primary: true
 };
 
-export default Header;
+export default Hero;

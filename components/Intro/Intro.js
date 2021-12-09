@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from 'components/Header';
+import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
 
@@ -10,8 +10,9 @@ function Intro({ jobs }) {
   return (
     <>
       <div className={styles.header}>
-        <Header />
+        <Hero />
       </div>
+
       <div className="app-view">
         <div className="container">
           <JobSelectContextProvider>

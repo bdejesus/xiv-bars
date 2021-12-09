@@ -24,7 +24,7 @@ function useAppDispatch() {
 }
 
 function AppContextProvider({
-  children, actions, roleActions, host, encodedSlots
+  children, actions, roleActions, encodedSlots
 }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(
