@@ -56,7 +56,7 @@ function Index(pageProps) {
   );
 }
 
-Index.getInitialProps = async ({ req, query }) => {
+Index.getInitialProps = async ({ query }) => {
   const { s1, s } = query;
 
   // Decode Slots query param
