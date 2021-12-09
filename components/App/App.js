@@ -40,56 +40,60 @@ function App(props) {
         <SelectedActionContextProvider>
           <ControlBar jobs={jobs} selectedJob={selectedJob} />
 
-          <div className={styles.header}>
-            <div className={`container ${styles.headerBody}`}>
-              <h1 className={styles.title}>
-                {selectedJob.Name} {I18n.Global.title}
-              </h1>
+          { selectedJob && (
+            <>
+              <div className={styles.header}>
+                <div className={`container ${styles.headerBody}`}>
+                  <h1 className={styles.title}>
+                    {selectedJob.Name} {I18n.Global.title}
+                  </h1>
 
-              <div
-                className={styles.description}
-                data-expanded={expanded}
-              >
-                <p className={styles.jobDesc}>
-                  {shortDesc(selectedJob, actions)}
-                </p>
+                  <div
+                    className={styles.description}
+                    data-expanded={expanded}
+                  >
+                    <p className={styles.jobDesc}>
+                      {shortDesc(selectedJob, actions)}
+                    </p>
 
-                { selectedJob.Description
+                    { selectedJob.Description
                       && <Lore selectedJob={selectedJob} /> }
-              </div>
-            </div>
-
-            <button
-              type="button"
-              className={styles.toggleButton}
-              data-active={expanded}
-              onClick={toggleDescription}
-            >
-              <div className={styles.toggleIcon} />
-            </button>
-          </div>
-
-          <div className="app-view">
-            <div className="container">
-              <div className={styles.viewHeader}>
-                <h2 className={styles.sectionTitle}>
-                  FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
-                </h2>
-              </div>
-
-              <div className={styles.container}>
-                <div className={`panel ${styles.sidebar}`}>
-                  <ActionPanel roleActions={roleActions} actions={actions} />
+                  </div>
                 </div>
 
-                <div className={styles.main}>
-                  <UILayout />
-                </div>
+                <button
+                  type="button"
+                  className={styles.toggleButton}
+                  data-active={expanded}
+                  onClick={toggleDescription}
+                >
+                  <div className={styles.toggleIcon} />
+                </button>
               </div>
 
-              <Tooltip />
-            </div>
-          </div>
+              <div className="app-view">
+                <div className="container">
+                  <div className={styles.viewHeader}>
+                    <h2 className={styles.sectionTitle}>
+                      FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
+                    </h2>
+                  </div>
+
+                  <div className={styles.container}>
+                    <div className={`panel ${styles.sidebar}`}>
+                      <ActionPanel roleActions={roleActions} actions={actions} />
+                    </div>
+
+                    <div className={styles.main}>
+                      <UILayout />
+                    </div>
+                  </div>
+
+                  <Tooltip />
+                </div>
+              </div>
+            </>
+          )}
         </SelectedActionContextProvider>
       </TooltipContextProvider>
     </AppContextProvider>
