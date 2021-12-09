@@ -24,10 +24,6 @@
 
   > li {
     position: relative;
-
-    &:nth-child(n + 5) {
-      display: none;
-    }
   }
 
   > li::before {
@@ -39,10 +35,6 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-  }
-
-  &[data-expanded="true"] > li:nth-child(n + 5) {
-    display: block;
   }
 }
 

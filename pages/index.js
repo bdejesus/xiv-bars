@@ -7,6 +7,7 @@ import { group } from 'lib/utils/array';
 import GlobalHeader from 'components/GlobalHeader';
 import Header from 'components/Header';
 import HowTo from 'components/HowTo';
+import Intro from 'components/Intro';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
@@ -16,12 +17,13 @@ import EorzeaProfile from 'components/EorzeaProfile';
 import styles from './Index.module.scss';
 
 function Index(pageProps) {
-  const { selectedJob } = pageProps;
+  const { jobs, selectedJob } = pageProps;
 
   return (
     <>
       <GlobalHeader />
-      <App {...pageProps} />
+
+      { selectedJob ? <App {...pageProps} /> : <Intro jobs={jobs} /> }
 
       <div className={styles.articles}>
         {(selectedJob) && <Header primary={(!selectedJob)} />}

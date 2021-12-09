@@ -31,14 +31,6 @@ $group-padding: 10px;
   &:last-child {
     border-bottom: none;
   }
-
-  &:nth-child(n + 4) {
-    display: none;
-  }
-}
-
-.container[data-expanded="true"] .xbar:nth-child(n + 4) {
-  display: flex;
 }
 
 .left {

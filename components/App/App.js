@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
 import ActionPanel from 'components/ActionPanel';
-import Intro from 'components/Intro';
+
 import UILayout from 'components/UILayout';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
@@ -40,91 +40,86 @@ function App(props) {
 
   return (
     <AppContextProvider {...props}>
-      { !selectedJob
-        ? <Intro jobs={jobs} />
-        : (
-          <TooltipContextProvider>
-            <SelectedActionContextProvider>
-              <div className={styles.header}>
-                <div className={`container ${styles.headerBody}`}>
-                  <h1 className={styles.title}>
-                    {selectedJob.Name} {I18n.Global.title}
-                  </h1>
+      <TooltipContextProvider>
+        <SelectedActionContextProvider>
+          <div className={styles.header}>
+            <div className={`container ${styles.headerBody}`}>
+              <h1 className={styles.title}>
+                {selectedJob.Name} {I18n.Global.title}
+              </h1>
 
-                  <a href="/" className={styles.returnLink}>
-                    {I18n.App.return}
-                  </a>
+              <a href="/" className={styles.returnLink}>
+                {I18n.App.return}
+              </a>
 
-                  <div className={styles.controls}>
-                    <div className={styles.columnLeft}>
-                      <JobSelectContextProvider>
-                        <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                      </JobSelectContextProvider>
-                    </div>
+              <div className={styles.controls}>
+                <div className={styles.columnLeft}>
+                  <JobSelectContextProvider>
+                    <JobSelect jobs={jobs} selectedJob={selectedJob} />
+                  </JobSelectContextProvider>
+                </div>
 
-                    <div className={styles.pageActions}>
-                      <Sharing selectedJob={selectedJob} />
-                      <ExportToMacros />
-                    </div>
-                  </div>
+                <div className={styles.pageActions}>
+                  <Sharing selectedJob={selectedJob} />
+                  <ExportToMacros />
+                </div>
+              </div>
 
-                  <div
-                    className={styles.description}
-                    data-expanded={expanded}
-                  >
-                    <p className={styles.jobDesc}>
-                      {shortDesc(selectedJob, actions)}
-                    </p>
+              <div
+                className={styles.description}
+                data-expanded={expanded}
+              >
+                <p className={styles.jobDesc}>
+                  {shortDesc(selectedJob, actions)}
+                </p>
 
-                    { selectedJob.Description
+                { selectedJob.Description
                       && <Lore selectedJob={selectedJob} /> }
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  className={styles.toggleButton}
-                  data-active={expanded}
-                  onClick={toggleDescription}
-                >
-                  <div className={styles.toggleIcon} />
-                </button>
               </div>
+            </div>
 
-              <div className="app-view" data-help={displayHelp}>
-                <div className="container">
-                  <div className={styles.viewHeader}>
-                    <h2 className={styles.sectionTitle}>
-                      FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
-                    </h2>
-                    <div className={styles.viewControls}>
-                      <button
-                        type="button"
-                        onClick={() => setDisplayHelp(!displayHelp)}
-                        data-active={displayHelp}
-                      >
-                        Action Names
-                      </button>
-                    </div>
-                  </div>
+            <button
+              type="button"
+              className={styles.toggleButton}
+              data-active={expanded}
+              onClick={toggleDescription}
+            >
+              <div className={styles.toggleIcon} />
+            </button>
+          </div>
 
-                  <div className={styles.container}>
-                    <div className={`panel ${styles.sidebar}`}>
-                      <ActionPanel roleActions={roleActions} actions={actions} />
-                    </div>
-
-                    <div className={styles.main}>
-                      <UILayout />
-                    </div>
-                  </div>
-
-                  <Tooltip />
+          <div className="app-view" data-help={displayHelp}>
+            <div className="container">
+              <div className={styles.viewHeader}>
+                <h2 className={styles.sectionTitle}>
+                  FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
+                </h2>
+                <div className={styles.viewControls}>
+                  <button
+                    type="button"
+                    onClick={() => setDisplayHelp(!displayHelp)}
+                    data-active={displayHelp}
+                  >
+                    Action Names
+                  </button>
                 </div>
               </div>
-            </SelectedActionContextProvider>
-          </TooltipContextProvider>
-        )}
 
+              <div className={styles.container}>
+                <div className={`panel ${styles.sidebar}`}>
+                  <ActionPanel roleActions={roleActions} actions={actions} />
+                </div>
+
+                <div className={styles.main}>
+                  <UILayout />
+                </div>
+              </div>
+
+              <Tooltip />
+            </div>
+          </div>
+        </SelectedActionContextProvider>
+      </TooltipContextProvider>
     </AppContextProvider>
   );
 }

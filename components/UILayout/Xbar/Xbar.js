@@ -62,10 +62,10 @@ Bar.propTypes = {
 };
 
 function Xbar() {
-  const { chotbar, expandedHotbars } = useAppState();
+  const { chotbar } = useAppState();
 
   return (
-    <div className={styles.container} data-expanded={expandedHotbars}>
+    <div className={styles.container}>
       {Object.keys(chotbar).map((xbar) => (
         <div className={styles.xbar} key={xbar}>
           <Bar bar={chotbar[xbar]} id={xbar} />

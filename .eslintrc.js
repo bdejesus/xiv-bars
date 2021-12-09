@@ -24,6 +24,8 @@ module.exports = {
     'react'
   ],
   rules: {
+    '@next/next/no-html-link-for-pages': 'off',
+    '@next/next/no-img-element': 'off',
     'class-methods-use-this': 'warn',
     'comma-dangle': 'off',
     'comma-spacing': 'warn',
