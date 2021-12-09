@@ -9,6 +9,10 @@
   padding: $spacing-xs $spacing-base;
 }
 
+.groupLeft {
+  margin-left: -$spacing-sm;
+}
+
 .groupRight {
   align-items: flex-end;
   display: flex;

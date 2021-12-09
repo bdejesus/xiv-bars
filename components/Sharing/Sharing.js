@@ -62,7 +62,8 @@ function Sharing({ selectedJob }) {
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        Copy URL
+        <img src="/images/icon-copy.svg" className="btn-icon" alt="Copy Icon" />
+        Copy
       </button>
     </div>
   );

@@ -37,6 +37,7 @@ function ControlBar({ jobs, selectedJob }) {
             onClick={() => handleTitlesToggle()}
             data-active={showTitles}
           >
+            <img src="/images/icon-titles.svg" className="btn-icon" alt="Titles Icon" />
             Titles
           </button>
         </div>
