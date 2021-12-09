@@ -5,6 +5,17 @@
   display: flex;
   position: relative;
 
+  label {
+    font-size: 9px;
+    line-height: 1;
+    position: absolute;
+    background-color: $panel-bg;
+    left: $spacing-sm;
+    top: 0;
+    margin-top: -5px;
+    padding: 0 4px;
+  }
+
   &::after {
     align-items: center;
     background-color: #111;
@@ -29,8 +40,8 @@
 }
 
 .shareUrlInput {
-  background-color: #333;
-  border: 0;
+  background-color: $panel-bg;
+  border: 2px solid $panel-bg-dark-2;
   border-radius: $border-radius 0 0 $border-radius;
   color: #999;
   display: block;
