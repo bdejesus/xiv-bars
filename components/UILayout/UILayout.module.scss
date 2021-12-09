@@ -42,29 +42,3 @@
   text-shadow: -1px -1px 0 rgb(0 0 0 / 100%), 1px 1px 0 rgb(255 255 255 / 20%);
   top: -3px;
 }
-
-@media (max-width: $screen-md) {
-  .uiLayout {
-    padding: $spacing-xs;
-  }
-
-  .expandButton {
-    margin-bottom: $spacing-base;
-    margin-top: $spacing-base;
-  }
-}
-
-@media (max-width: $screen-sm) {
-  .uiLayout {
-    border-radius: 0;
-  }
-}
-
-@media (max-width: $screen-xs) {
-  .uiLayout {
-    border-radius: 0;
-    margin-left: -$spacing-base;
-    margin-right: -$spacing-base;
-    width: auto;
-  }
-}

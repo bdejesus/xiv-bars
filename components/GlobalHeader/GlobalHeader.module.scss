@@ -1,0 +1,46 @@
+@import "styles/mixins";
+
+.container {
+  align-items: center;
+  background-color: #fff;
+  display: flex;
+  padding: $spacing-sm $spacing-base;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.branding {
+  align-items: center;
+  color: #666;
+  display: flex;
+  font-size: 14px;
+
+  .logo {
+    display: block;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.logo,
+.title,
+.subtitle {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  height: 24px;
+}
+
+.title {
+  color: #333;
+  font-weight: 700;
+  margin: 0 $spacing-base 0 $spacing-xs;
+}
+
+.subtitle {
+  position: relative;
+  top: -1px;
+}

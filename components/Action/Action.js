@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { createRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction';
 
@@ -11,6 +12,7 @@ let tooltipTimeout = null;
 export default function Action({
   action, tooltip, remote
 }) {
+  const { showTitles } = useAppState();
   const actionRef = createRef();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -88,6 +90,7 @@ export default function Action({
         onClick={selectAction}
         tabIndex={0}
         data-title={action.Name}
+        data-show-title={showTitles}
       >
         <div className={styles.iconWrapper}>
           <img

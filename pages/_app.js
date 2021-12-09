@@ -1,6 +1,7 @@
 import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
+import Script from 'next/script';
 import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
 import renderMeta from 'components/Meta';
@@ -40,6 +41,22 @@ class AppContainer extends App {
 
     return (
       <>
+        {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=UA-144541753-2"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "UA-144541753-2");
+          `}
+        </Script>
+
         <Head>
           <title>{title}</title>
           { renderMeta(title, description, canonicalUrl) }

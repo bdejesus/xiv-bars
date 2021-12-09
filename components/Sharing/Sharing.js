@@ -4,12 +4,12 @@ import React, { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
-
+import { host } from 'lib/host';
 import styles from './Sharing.module.scss';
 
 function Sharing({ selectedJob }) {
   const router = useRouter();
-  const { encodedSlots, host } = useAppState();
+  const { encodedSlots } = useAppState();
   const [copied, setCopied] = useState(false);
 
   const urlInput = createRef();
@@ -62,7 +62,8 @@ function Sharing({ selectedJob }) {
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        Copy URL
+        <img src="/images/icon-copy.svg" className="btn-icon" alt="Copy Icon" />
+        Copy
       </button>
     </div>
   );

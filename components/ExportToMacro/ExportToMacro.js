@@ -81,6 +81,7 @@ function ExportToMacros() {
         title="Export to Macro"
         onClick={toggleModal}
       >
+        <img src="/images/icon-macro.svg" className="btn-icon" alt="Macro Icon" />
         {I18n.ExportToMacro.export_to_macro}
       </button>
 

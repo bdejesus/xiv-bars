@@ -27,10 +27,6 @@ export default function AppReducer(state, payload) {
       return { ...state, layout: payload.layout };
     }
 
-    case 'expandHotbars': {
-      return { ...state, expandedHotbars: payload.expandedHotbars };
-    }
-
     case 'bulkLoadActionsToSlots': {
       const { slottedActions } = payload;
       const slots = state[layouts[layout]];
@@ -94,6 +90,10 @@ export default function AppReducer(state, payload) {
       };
 
       return { ...state, encodedSlots: encodeSlots() };
+    }
+
+    case 'toggleTitles': {
+      return { ...state, showTitles: !state.showTitles };
     }
 
     default: {

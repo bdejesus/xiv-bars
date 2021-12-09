@@ -12,34 +12,21 @@
   color: rgb(255 255 255 / 66%);
   font-size: 10px;
   line-height: 1.2em;
-  margin: 0 0 0.5em;
+  margin: $spacing-base 0;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .listActions {
   display: grid;
-  grid-gap: 8px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: $spacing-base $spacing-sm;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-[data-help="true"] .listActions {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-@media (max-width: $screen-md) {
-  .listActions {
-    display: flex;
-    flex-wrap: wrap;
-
-    > li {
-      height: 36px;
-      margin: 6px;
-      width: 36px;
-    }
-  }
+.container[data-show-titles="true"] .listActions {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }

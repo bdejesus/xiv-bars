@@ -9,12 +9,12 @@
 
 .buttonToggle {
   align-items: stretch;
-  border: 2px solid $panel-bg;
   border-bottom: none;
   border-radius: $border-radius $border-radius 0 0;
   display: flex;
   flex-direction: row;
-  height: 34px;
+  height: 32px;
+  overflow: hidden;
   padding: 0;
   position: relative;
   z-index: 2;
@@ -29,7 +29,7 @@
 
     &[data-selected="true"] {
       background-color: $panel-bg;
-      color: #fff;
+      color: $color-alt;
     }
   }
 

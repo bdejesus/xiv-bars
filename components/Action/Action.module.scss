@@ -6,28 +6,30 @@
   flex-direction: column;
 }
 
-[data-help="true"] .action::after {
+.action[data-show-title="true"]::after {
   color: #eee;
   content: attr(data-title);
   display: block;
-  font-size: 10px;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 9px;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.1;
+  margin-top: $spacing-xs;
   text-align: center;
 }
 
 .iconWrapper {
   background-color: rgb(0 0 0 / 66%);
-  border-radius: 6px;
+  border-radius: 4px;
   box-shadow: 0 2px 4px rgb(0 0 0 / 66%);
   font-size: 10px;
   height: 100%;
   height: $slot-size;
   line-height: 1.2em;
-  // overflow: hidden;
+  overflow: hidden;
   position: relative;
   text-align: center;
-  transition-duration: 0.33s;
+  transition-duration: 0.15s;
   transition-property: border, box-shadow, opacity, filter;
   transition-timing-function: ease;
   width: $slot-size;
@@ -35,14 +37,14 @@
   &:hover {
     background-color: rgb(0 0 0 / 80%);
     border-color: #999;
-    box-shadow: 0 0 10px 1px rgb(255 255 255 / 75%);
+    box-shadow: 0 0 0 2px $color-alt;
     cursor: pointer;
     cursor: grab;
     cursor: grab;
   }
 
   &:focus {
-    box-shadow: 0 0 1px 2px rgb(255 255 255 / 80%);
+    box-shadow: 0 0 0 2px $color-alt;
     outline: none;
   }
 
@@ -74,7 +76,6 @@
 .maincommandType,
 .macroiconType,
 .companyactionType {
-  box-shadow: 0 0 0 1px rgb(0 0 0 / 66%);
   filter: grayscale(0.9);
 
   &::before {

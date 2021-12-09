@@ -4,7 +4,6 @@
 .actionsPanel {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .panel {
@@ -12,17 +11,8 @@
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   flex: 1 1 auto;
+  max-height: calc(100vh - 200px);
   overflow-x: hidden;
   overflow-y: auto;
-  padding: $spacing-sm $spacing-sm $spacing-base $spacing-base;
-
-  @include customScrollbar;
-}
-
-@media (max-width: $screen-sm) {
-  .actionsPanel {
-    border-radius: 0;
-    display: block;
-    margin-bottom: $spacing-lg;
-  }
+  padding: $spacing-sm;
 }

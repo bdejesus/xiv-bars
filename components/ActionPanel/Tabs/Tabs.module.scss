@@ -18,16 +18,15 @@
   &[data-active="true"] {
     background-color: $panel-bg;
     border-bottom-color: $panel-bg;
-    color: #fff;
+    color: $color-alt;
     pointer-events: none;
   }
 }
 
 .tabItems {
-  border: 2px solid $panel-bg;
   border-bottom: 0;
   border-radius: $border-radius $border-radius 0 0;
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   list-style: none;
   margin: 0;

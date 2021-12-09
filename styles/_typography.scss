@@ -5,8 +5,9 @@ body {
   font-family: "Segoe UI", Roboto, Ubuntu, Cantarell, "Fira Sans",
     "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont,
     sans-serif;
-  font-size: 14px;
-  line-height: 1.455em;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.45em;
 }
 
 h1,
@@ -75,6 +76,15 @@ ol {
   }
 }
 
+p {
+  margin-bottom: 1.55em;
+  margin-top: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 abbr {
   outline: none;
   text-decoration: none;
@@ -88,16 +98,6 @@ label {
   text-transform: uppercase;
 }
 
-@media (max-width: $screen-sm) {
-  h1 {
-    font-size: $font-size-xl-2;
-  }
-
-  h2 {
-    font-size: $font-size-xl;
-  }
-
-  h3 {
-    font-size: $font-size-lg;
-  }
+.text-xl {
+  font-size: $font-size-xl;
 }

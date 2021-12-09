@@ -2,19 +2,7 @@
 
 .header {
   border-bottom: 1px solid rgb(0 0 0 / 90%);
-  padding-bottom: 0;
-}
-
-.title {
-  margin-bottom: 0;
-}
-
-.returnLink {
-  display: inline-block;
-  font-weight: 300;
-  letter-spacing: 0.045em;
-  margin-bottom: $spacing-base;
-  margin-top: $spacing-sm;
+  padding: $spacing-lg 0 0;
 }
 
 .headerBody {
@@ -36,20 +24,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
-  @media (max-width: $screen-sm) {
-    flex-direction: column;
-  }
-}
-
-.viewHeader {
-  align-items: center;
-  border-bottom: 1px solid #222;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: $spacing-sm;
-  padding-bottom: $spacing-sm;
 }
 
 .viewControls {
@@ -104,22 +78,17 @@ $icon-size: 6px;
   width: 0;
 }
 
-.toggleButton [data-active="true"] .toggleIcon {
+.toggleButton[data-active="true"] .toggleIcon {
   transform: rotate(180deg);
 }
 
 .container {
+  align-items: flex-start;
   display: flex;
-  position: relative;
-}
-
-.main,
-.sidebar {
-  height: 100%;
 }
 
 .main {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -128,29 +97,8 @@ $icon-size: 6px;
 }
 
 .sidebar {
+  flex: 0 0;
+  position: sticky;
+  top: 104px + $spacing-lg;
   width: $sidebar-width;
-}
-
-@media (max-width: $screen-md) {
-  .main,
-  .sidebar {
-    border: none;
-    padding: 0;
-    width: unset;
-  }
-
-  .container {
-    flex-direction: column;
-    height: unset;
-
-    .sidebar {
-      height: 100%;
-      margin-top: $spacing-lg;
-      order: 2;
-    }
-
-    .main {
-      display: block;
-    }
-  }
 }

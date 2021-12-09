@@ -5,7 +5,7 @@
   color: #999;
   font-size: 12px;
   line-height: 1.45em;
-  padding-top: $spacing-base;
+  padding: $spacing-lg 0;
 }
 
 .container p {
@@ -15,15 +15,4 @@
 
 .right {
   text-align: right;
-}
-
-@media (max-width: $screen-sm) {
-  .container {
-    flex-direction: column;
-  }
-
-  .right {
-    margin-top: $spacing-base;
-    text-align: left;
-  }
 }

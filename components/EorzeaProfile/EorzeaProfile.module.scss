@@ -1,5 +1,11 @@
 @import "styles/mixins";
 
+.container {
+  margin-bottom: $spacing-xl;
+  margin-top: $spacing-base;
+  padding: 0 120px;
+}
+
 .cta {
   align-items: center;
   border: 2px solid #c4c1b2;
@@ -14,7 +20,7 @@
   transition: background-color 0.33s ease;
 }
 
-.container {
+.panel {
   align-items: center;
   background-color: #3b3a3d;
   background-image: linear-gradient(#716d6d 0%, #3b3a3d 20px);
@@ -24,6 +30,7 @@
   color: #c4c1b2;
   display: flex;
   flex-direction: row;
+  padding: $spacing-base;
   transition: background-color 0.3s ease;
 
   h2 {
@@ -61,33 +68,6 @@
 
     .cta:hover {
       background-color: #fff;
-    }
-  }
-}
-
-@media (max-width: $screen-sm-max) {
-  .container {
-    padding: $spacing-lg;
-  }
-}
-
-@media (max-width: $screen-sm) {
-  .container {
-    align-items: flex-start;
-    margin-left: $spacing-base;
-    margin-right: $spacing-base;
-  }
-}
-
-@media (max-width: $screen-xs-max) {
-  .container {
-    flex-direction: column;
-    text-align: center;
-
-    .image {
-      height: 240px;
-      margin-bottom: $spacing-base;
-      width: 100%;
     }
   }
 }

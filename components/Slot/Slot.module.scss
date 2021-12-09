@@ -22,14 +22,4 @@
     outline: none;
     transform: scale(1.1);
   }
-
-  @media (max-width: $screen-sm) {
-    height: $slot-size-sm;
-    width: $slot-size-sm;
-  }
-
-  @media (max-width: $screen-xs) {
-    height: $slot-size-xs;
-    width: $slot-size-xs;
-  }
 }
