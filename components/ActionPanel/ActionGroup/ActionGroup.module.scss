@@ -19,8 +19,7 @@
 
 .listActions {
   display: grid;
-  grid-column-gap: $spacing-sm;
-  grid-row-gap: $spacing-base;
+  grid-gap: $spacing-base $spacing-sm;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   list-style: none;

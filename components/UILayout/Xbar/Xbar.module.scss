@@ -79,12 +79,10 @@ $group-padding: 10px;
   }
 }
 
-
 .set .slot:nth-child(3) :global(.action)[data-show-title="true"]::after {
-  transform: translateY(-180%);
   position: absolute;
+  transform: translateY(-180%);
 }
-
 
 @media (max-width: $screen-md) {
   .xbar {
