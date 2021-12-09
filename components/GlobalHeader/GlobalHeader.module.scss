@@ -1,0 +1,22 @@
+@import 'styles/mixins';
+
+.container {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: $spacing-sm $spacing-base;
+}
+
+.branding {
+  display: flex;
+  align-items: center;
+  color: #333;
+
+  b {
+    margin: 0 $spacing-base 0 $spacing-xs;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}

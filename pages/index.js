@@ -4,6 +4,7 @@ import {
   listRoleActions
 } from 'lib/api';
 import { group } from 'lib/utils/array';
+import GlobalHeader from 'components/GlobalHeader';
 import Header from 'components/Header';
 import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
@@ -19,6 +20,7 @@ function Index(pageProps) {
 
   return (
     <>
+      <GlobalHeader />
       <App {...pageProps} />
 
       <div className={styles.articles}>
