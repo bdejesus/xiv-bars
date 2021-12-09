@@ -3,6 +3,7 @@ import React from 'react';
 import Document, {
   Html, Head, Main, NextScript
 } from 'next/document';
+import Script from 'next/script';
 
 class MyDocument extends Document {
   render() {
@@ -10,22 +11,20 @@ class MyDocument extends Document {
       <Html lang="en-US">
         <Head>
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
-          <script
-            async
+          <Script
             src="https://www.googletagmanager.com/gtag/js?id=UA-144541753-2"
+            strategy="afterInteractive"
           />
-          {/* eslint-disable-next-line react/no-danger */}
-          <script dangerouslySetInnerHTML={{
-            __html: `
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
               window.dataLayer = window.dataLayer || [];
               function gtag() {
                 dataLayer.push(arguments);
               }
               gtag("js", new Date());
               gtag("config", "UA-144541753-2");
-            `
-          }}
-          />
+            `}
+          </Script>
         </Head>
         <body>
           <Main />

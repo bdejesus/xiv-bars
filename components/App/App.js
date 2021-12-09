@@ -1,5 +1,4 @@
 /* eslint-disable react/no-danger */
-import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ControlBar from 'components/ControlBar';
 import ActionPanel from 'components/ActionPanel';
@@ -17,13 +16,6 @@ function App(props) {
     actions,
     roleActions
   } = props;
-  const [expanded, setExpanded] = useState(true);
-  const expandDescStore = 'xivbars_expandDesc';
-
-  useEffect(() => {
-    const expandDescription = localStorage.getItem(expandDescStore) === 'true';
-    setExpanded(expandDescription);
-  }, []);
 
   return (
     <AppContextProvider {...props}>
