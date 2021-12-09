@@ -1,16 +1,16 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .container {
+  align-items: center;
   background-color: #fff;
   display: flex;
-  align-items: center;
   padding: $spacing-sm $spacing-base;
 }
 
 .branding {
-  display: flex;
   align-items: center;
   color: #333;
+  display: flex;
 
   b {
     margin: 0 $spacing-base 0 $spacing-xs;

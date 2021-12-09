@@ -1,20 +1,20 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .container {
-  padding: $spacing-xs $spacing-base;
+  align-items: flex-end;
   background-color: $panel-bg;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  padding: $spacing-xs $spacing-base;
 }
 
 .groupRight {
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
-  padding-top: $spacing-base;
   padding-bottom: $spacing-sm;
+  padding-top: $spacing-base;
 }
 
 .control {
