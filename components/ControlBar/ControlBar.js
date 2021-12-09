@@ -13,9 +13,20 @@ function ControlBar({ jobs, selectedJob }) {
     appDispatch({ type: 'toggleTitles' });
   }
 
+  const ToggleTitles = () => (
+    <button
+      type="button"
+      onClick={() => handleTitlesToggle()}
+      data-active={showTitles}
+      className={styles.toggleTitlesBtn}
+    >
+      <img src="/images/icon-titles.svg" className="btn-icon" alt="Titles Icon" />
+      Titles
+    </button>
+  );
+
   return (
     <div className={styles.container}>
-
       <div className={styles.groupLeft}>
         <JobSelectContextProvider>
           <JobSelect jobs={jobs} selectedJob={selectedJob} />
@@ -24,7 +35,7 @@ function ControlBar({ jobs, selectedJob }) {
 
       <div className={styles.groupRight}>
         <div className={styles.control}>
-          <Sharing selectedJob={selectedJob} />
+          <ToggleTitles />
         </div>
 
         <div className={styles.control}>
@@ -32,17 +43,9 @@ function ControlBar({ jobs, selectedJob }) {
         </div>
 
         <div className={styles.control}>
-          <button
-            type="button"
-            onClick={() => handleTitlesToggle()}
-            data-active={showTitles}
-          >
-            <img src="/images/icon-titles.svg" className="btn-icon" alt="Titles Icon" />
-            Titles
-          </button>
+          <Sharing selectedJob={selectedJob} />
         </div>
       </div>
-
     </div>
   );
 }

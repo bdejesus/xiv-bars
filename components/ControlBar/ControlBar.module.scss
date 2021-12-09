@@ -23,4 +23,13 @@
 
 .control {
   margin-left: $spacing-xs;
+
+  button,
+  :global(.button) {
+    padding: 0 $spacing-sm;
+
+    img {
+      margin-left: -4px;
+    }
+  }
 }

@@ -9,15 +9,15 @@
 
 .buttonToggle {
   align-items: stretch;
-  border: 2px solid $panel-bg;
   border-bottom: none;
   border-radius: $border-radius $border-radius 0 0;
   display: flex;
   flex-direction: row;
-  height: 34px;
+  height: 32px;
   padding: 0;
   position: relative;
   z-index: 2;
+  overflow: hidden;
 
   .label {
     align-items: center;
