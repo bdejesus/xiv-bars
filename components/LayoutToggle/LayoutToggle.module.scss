@@ -14,10 +14,10 @@
   display: flex;
   flex-direction: row;
   height: 32px;
+  overflow: hidden;
   padding: 0;
   position: relative;
   z-index: 2;
-  overflow: hidden;
 
   .label {
     align-items: center;
@@ -29,7 +29,7 @@
 
     &[data-selected="true"] {
       background-color: $panel-bg;
-      color: #fff;
+      color: $color-alt;
     }
   }
 

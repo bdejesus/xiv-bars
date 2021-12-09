@@ -79,6 +79,7 @@ function Slot({ id, className, action }) {
         onClick={setSelectedAction}
         role="button"
         tabIndex={0}
+        data-slotted={!!action.Name}
       >
         {action.Name && <Action action={action} />}
       </div>
@@ -96,5 +97,5 @@ Slot.propTypes = {
 
 Slot.defaultProps = {
   className: '',
-  action: {}
+  action: undefined
 };

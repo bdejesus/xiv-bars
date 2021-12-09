@@ -1,5 +1,10 @@
 @use "sass:math";
 
+$color-gray: #303030;
+$color-gray-dark: #222;
+$color-gray-dark-2: #111;
+$color-alt: #f2e9b9;
+
 $slot-border-size: 1px;
 $slot-size: 38px;
 $slot-spacing: 0;
@@ -21,9 +26,9 @@ $primary-xbar-width: $primary-xbar-group-width * 3;
 
 $sidebar-width: 400px;
 
-$panel-bg: #303030;
-$panel-bg-dark: #222;
-$panel-bg-dark-2: #111;
+$panel-bg: $color-gray;
+$panel-bg-dark: $color-gray-dark;
+$panel-bg-dark-2: $color-gray-dark-2;
 $border-radius: 4px;
 $box-shadow: 0 6px 10px rgba(0, 0, 0, 66%);
 

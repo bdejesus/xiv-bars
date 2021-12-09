@@ -2,6 +2,7 @@
 
 button,
 .button {
+  align-items: center;
   background: #030303;
   border: 0;
   border-radius: 4px;
@@ -9,11 +10,10 @@ button,
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
   font-size: $font-size-sm;
   font-weight: 500;
   height: 32px;
+  justify-content: center;
   outline: none;
   padding: 0 $spacing-base;
   transition: background 0.2s ease, color 0.2s ease;
@@ -23,22 +23,29 @@ button,
     margin-left: 1em;
   }
 
-  &:hover,
-  &:active,
-  &:focus {
-    background-color: $panel-bg-dark;
-    color: #fff;
-  }
-
   img {
     height: 36px;
     width: 36px;
   }
-}
 
-.btn-icon {
-  height: 24px;
-  width: 24px;
-  display: block;
-  margin-right: $spacing-xs;
+  .btn-icon {
+    display: block;
+    height: 24px;
+    margin-right: $spacing-xs;
+    opacity: 66%;
+    transition: opacity 0.2s ease;
+    width: 24px;
+  }
+
+  &:hover,
+  &:active,
+  &:focus,
+  &[data-active="true"] {
+    background-color: $panel-bg-dark;
+    color: #fff;
+
+    .btn-icon {
+      opacity: 100%;
+    }
+  }
 }
