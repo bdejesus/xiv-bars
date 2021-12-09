@@ -73,12 +73,6 @@ function App(props) {
 
               <div className="app-view">
                 <div className="container">
-                  <div className={styles.viewHeader}>
-                    <h2 className={styles.sectionTitle}>
-                      FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
-                    </h2>
-                  </div>
-
                   <div className={styles.container}>
                     <div className={`panel ${styles.sidebar}`}>
                       <ActionPanel roleActions={roleActions} actions={actions} />

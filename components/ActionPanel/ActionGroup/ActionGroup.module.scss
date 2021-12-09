@@ -19,16 +19,17 @@
 
 .listActions {
   display: grid;
-  grid-gap: 8px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: $spacing-sm;
+  grid-row-gap: $spacing-base;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-[data-help="true"] .listActions {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+.container[data-show-titles="true"] .listActions {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 @media (max-width: $screen-md) {

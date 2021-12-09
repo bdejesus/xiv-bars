@@ -15,7 +15,7 @@ function EorzeaProfile() {
         <h2>FFXIV Profile Twitch Streamer Panel</h2>
 
         <p className={styles.subtitle}>
-          Display your Final Fantasy XIV character profile on your stream page.
+          Display your Final Fantasy XIV Endwalker character profile on your stream page.
         </p>
 
         <div className={styles.cta}>

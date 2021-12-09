@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Action from 'components/Action';
+import { useAppState } from 'components/App/context';
 import styles from './ActionGroup.module.scss';
 
 function ActionGroup({
   title, actions, limit, remote
 }) {
+  const { showTitles } = useAppState();
   const actionsList = limit ? actions.slice(0, limit) : actions;
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-show-titles={showTitles}>
       <h4 className={styles.groupTitle}>{title}</h4>
       <ul className={styles.listActions}>
         {actionsList.map((action, index) => (
