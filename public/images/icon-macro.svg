@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-macro</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(14.000000, 13.000000)">
+            <polygon id="M" fill="#FFFFFF" fill-rule="nonzero" points="21.0143043 19.4980494 21.0143043 5.81664499 21.0689207 5.81664499 25.8478544 19.4980494 29.1521456 19.4980494 33.9310793 5.68010403 33.9856957 5.68010403 33.9856957 19.4980494 38 19.4980494 38 0 31.9648895 0 27.6501951 13.4083225 27.5955787 13.4083225 23.0351105 0 17 0 17 19.4980494"></polygon>
+            <polyline id="Path" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" transform="translate(17.000000, 21.000000) rotate(270.000000) translate(-17.000000, -21.000000) " points="34 15.904605 34 4 0 4 -2.11386464e-13 38 13.7780713 38"></polyline>
+        </g>
+    </g>
+</svg>
