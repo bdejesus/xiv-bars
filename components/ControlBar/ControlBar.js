@@ -23,16 +23,23 @@ function ControlBar({ jobs, selectedJob }) {
       </div>
 
       <div className={styles.groupRight}>
-        <Sharing selectedJob={selectedJob} />
-        <ExportToMacros />
+        <div className={styles.control}>
+          <Sharing selectedJob={selectedJob} />
+        </div>
 
-        <button
-          type="button"
-          onClick={() => handleTitlesToggle()}
-          data-active={showTitles}
-        >
-          Titles
-        </button>
+        <div className={styles.control}>
+          <ExportToMacros />
+        </div>
+
+        <div className={styles.control}>
+          <button
+            type="button"
+            onClick={() => handleTitlesToggle()}
+            data-active={showTitles}
+          >
+            Titles
+          </button>
+        </div>
       </div>
 
     </div>
