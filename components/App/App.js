@@ -25,12 +25,6 @@ function App(props) {
     setExpanded(expandDescription);
   }, []);
 
-  function toggleDescription() {
-    const expandedState = !expanded;
-    localStorage.setItem(expandDescStore, expandedState);
-    setExpanded(expandedState);
-  }
-
   return (
     <AppContextProvider {...props}>
       <TooltipContextProvider>

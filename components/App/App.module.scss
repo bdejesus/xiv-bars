@@ -83,17 +83,12 @@ $icon-size: 6px;
 }
 
 .container {
+  align-items: flex-start;
   display: flex;
-  position: relative;
-}
-
-.main,
-.sidebar {
-  height: 100%;
 }
 
 .main {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
@@ -102,5 +97,8 @@ $icon-size: 6px;
 }
 
 .sidebar {
+  flex: 0 0;
   width: $sidebar-width;
+  position: sticky;
+  top: 104px + $spacing-lg;
 }

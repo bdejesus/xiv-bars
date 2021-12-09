@@ -4,7 +4,6 @@
 .actionsPanel {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 .panel {
@@ -12,5 +11,9 @@
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   flex: 1 1 auto;
-  padding: $spacing-sm $spacing-sm $spacing-base $spacing-base;
+  padding: $spacing-sm;
+
+  height: calc(100vh - 200px);
+  overflow-x: hidden;
+  overflow-y: auto;
 }
