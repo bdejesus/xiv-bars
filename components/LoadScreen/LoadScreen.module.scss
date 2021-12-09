@@ -19,12 +19,12 @@ $timing: 0.8s;
   z-index: 10;
 
   &[aria-hidden="false"] {
-    animation: enterLoading 0.15s ease;
+    animation: enterLoading 0.25s ease;
     opacity: 100%;
   }
 
   &[aria-hidden="true"] {
-    animation: exitLoading 0.15s ease;
+    animation: exitLoading 0.25s ease;
     display: flex;
     pointer-events: none;
   }

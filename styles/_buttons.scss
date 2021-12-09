@@ -2,18 +2,16 @@
 
 button,
 .button {
-  align-items: center;
   background: #030303;
   border: 0;
   border-radius: 4px;
   color: #999;
   cursor: pointer;
-  display: inline-flex;
   font-size: $font-size-sm;
   font-weight: 500;
   height: 32px;
   outline: none;
-  padding: 0 $spacing-sm;
+  padding: 0 $spacing-base;
   transition: background 0.2s ease, color 0.2s ease;
 
   + button,
@@ -21,43 +19,15 @@ button,
     margin-left: 1em;
   }
 
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: $panel-bg-dark;
+    color: #fff;
+  }
+
   img {
     height: 36px;
     width: 36px;
-  }
-
-  .icon {
-    display: block;
-    height: 26px;
-    margin: -2px $spacing-xs 0 -4px;
-    opacity: 66%;
-    transition: opacity 0.2s ease;
-    width: 26px;
-  }
-
-  &:focus,
-  &:active {
-    color: #fff;
-  }
-
-  &:hover {
-    color: #fff;
-  }
-
-  &:focus,
-  &:active,
-  &:hover {
-    .icon {
-      opacity: 100%;
-    }
-  }
-
-  &[data-active="true"] {
-    box-shadow: 0 0 8px 1px $color-active;
-    color: #fff;
-
-    .icon {
-      opacity: 100%;
-    }
   }
 }

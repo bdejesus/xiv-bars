@@ -4,18 +4,19 @@
 .actionsPanel {
   display: flex;
   flex-direction: column;
-  position: sticky;
-  top: $spacing-base;
+  height: 100%;
 }
 
 .panel {
-  background-color: $gray1;
+  background-color: $panel-bg;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
   flex: 1 1 auto;
-  position: relative;
-}
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: $spacing-sm $spacing-sm $spacing-base $spacing-base;
 
-.content {
-  padding: $spacing-base;
+  @include customScrollbar;
 }
 
 @media (max-width: $screen-sm) {

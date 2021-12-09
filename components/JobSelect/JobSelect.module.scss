@@ -6,17 +6,13 @@
   display: block;
   font-size: 24px;
   height: auto;
-  margin-left: -$spacing-sm;
-  padding: $spacing-xs 20px $spacing-xs $spacing-xs;
+  margin-left: -10px;
+  padding: 10px 20px 10px 10px;
   transition: background-color 0.33s ease;
 
   img {
     height: 36px;
     width: 36px;
-  }
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 15%);
   }
 }
 

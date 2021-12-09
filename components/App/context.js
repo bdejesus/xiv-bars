@@ -35,7 +35,8 @@ function AppContextProvider({
       encodedSlots,
       actions,
       roleActions,
-      host
+      host,
+      expandedHotbars: !!encodedSlots
     }
   );
 

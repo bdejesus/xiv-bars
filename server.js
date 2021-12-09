@@ -3,7 +3,7 @@ const next = require('next');
 const secure = require('ssl-express-www');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
-const dev = process.env.NODE_ENV !== 'production' || process.env.NODE_ENV !== 'staging';
+const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 

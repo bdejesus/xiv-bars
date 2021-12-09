@@ -12,39 +12,43 @@
   flex-direction: row;
 
   > li {
-    margin: 0 4px;
+    margin: 0 3px;
   }
 }
 
 .container {
-  align-items: flex-start;
+  align-items: center;
   counter-reset: slots;
   flex-direction: column;
   margin-bottom: $spacing-sm;
 
   > li {
     position: relative;
+
+    &:nth-child(n + 5) {
+      display: none;
+    }
   }
 
   > li::before {
     content: counter(slots);
     counter-increment: slots;
     font-weight: 700;
-    margin-right: $spacing-sm;
+    left: -20px;
     opacity: 33%;
-    position: relative;
-    text-align: right;
+    position: absolute;
+    top: 50%;
     transform: translateY(-50%);
-    width: 1.33em;
+  }
+
+  &[data-expanded="true"] > li:nth-child(n + 5) {
+    display: block;
   }
 }
 
 .rowWrapper {
-  align-items: center;
   border-bottom: 1px solid rgb(0 0 0 / 33%);
   border-top: 1px solid rgb(255 255 255 / 10%);
-  display: flex;
-  flex-direction: row;
   padding: $spacing-base 0;
 
   &:first-child {

@@ -8,7 +8,7 @@ import styles from './Intro.module.scss';
 
 function Intro({ jobs }) {
   return (
-    <div className={styles.wrapper}>
+    <>
       <div className={styles.header}>
         <Header />
       </div>
@@ -22,7 +22,7 @@ function Intro({ jobs }) {
           </JobSelectContextProvider>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
