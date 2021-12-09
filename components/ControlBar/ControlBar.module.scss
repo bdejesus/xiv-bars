@@ -1,0 +1,16 @@
+@import 'styles/mixins';
+
+.container {
+  padding: $spacing-xs $spacing-base;
+  background-color: $panel-bg;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.groupRight {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}

@@ -7,7 +7,7 @@ import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
 function UILayout() {
-  const { layout, encodedSlots } = useAppState();
+  const { layout, encodedSlots, showTitles } = useAppState();
   const appDispatch = useAppDispatch();
 
   useEffect(() => {

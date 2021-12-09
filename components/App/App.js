@@ -3,13 +3,10 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
+import ControlBar from 'components/ControlBar';
 import ActionPanel from 'components/ActionPanel';
-
 import UILayout from 'components/UILayout';
-import Sharing from 'components/Sharing';
-import ExportToMacros from 'components/ExportToMacro';
 import Lore from 'components/Lore';
-import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { AppContextProvider } from './context';
@@ -24,7 +21,6 @@ function App(props) {
     roleActions
   } = props;
   const [expanded, setExpanded] = useState(true);
-  const [displayHelp, setDisplayHelp] = useState(false);
   const expandDescStore = 'xivbars_expandDesc';
 
   useEffect(() => {
@@ -42,28 +38,13 @@ function App(props) {
     <AppContextProvider {...props}>
       <TooltipContextProvider>
         <SelectedActionContextProvider>
+          <ControlBar jobs={jobs} selectedJob={selectedJob} />
+
           <div className={styles.header}>
             <div className={`container ${styles.headerBody}`}>
               <h1 className={styles.title}>
                 {selectedJob.Name} {I18n.Global.title}
               </h1>
-
-              <a href="/" className={styles.returnLink}>
-                {I18n.App.return}
-              </a>
-
-              <div className={styles.controls}>
-                <div className={styles.columnLeft}>
-                  <JobSelectContextProvider>
-                    <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                  </JobSelectContextProvider>
-                </div>
-
-                <div className={styles.pageActions}>
-                  <Sharing selectedJob={selectedJob} />
-                  <ExportToMacros />
-                </div>
-              </div>
 
               <div
                 className={styles.description}
@@ -88,21 +69,12 @@ function App(props) {
             </button>
           </div>
 
-          <div className="app-view" data-help={displayHelp}>
+          <div className="app-view">
             <div className="container">
               <div className={styles.viewHeader}>
                 <h2 className={styles.sectionTitle}>
                   FFXIV <abbr title={selectedJob.Name}>{selectedJob.Abbr}</abbr> Hotbar Setup
                 </h2>
-                <div className={styles.viewControls}>
-                  <button
-                    type="button"
-                    onClick={() => setDisplayHelp(!displayHelp)}
-                    data-active={displayHelp}
-                  >
-                    Action Names
-                  </button>
-                </div>
               </div>
 
               <div className={styles.container}>

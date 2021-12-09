@@ -92,6 +92,10 @@ export default function AppReducer(state, payload) {
       return { ...state, encodedSlots: encodeSlots() };
     }
 
+    case 'toggleTitles': {
+      return { ...state, showTitles: !state.showTitles };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${payload.type}`);
     }

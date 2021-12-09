@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 
-[data-help="true"] .action::after {
+.action[data-show-title="true"]::after {
   color: #eee;
   content: attr(data-title);
   display: block;
