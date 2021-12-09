@@ -6,12 +6,18 @@
   display: block;
   font-size: 24px;
   height: auto;
-  padding: $spacing-sm 20px $spacing-sm $spacing-sm;
+  padding: $spacing-xs $spacing-base $spacing-xs $spacing-xs;
   transition: background-color 0.33s ease;
 
   img {
     height: 36px;
     width: 36px;
+  }
+
+  &:hover {
+    background-color: rgba(255 255 255 / 20%);
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0 0 0 / 33%);
   }
 }
 

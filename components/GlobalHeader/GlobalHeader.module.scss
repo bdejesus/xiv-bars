@@ -10,14 +10,34 @@
 .branding {
   align-items: center;
   font-size: 14px;
-  color: #333;
+  color: #666;
   display: flex;
 
-  b {
-    margin: 0 $spacing-base 0 $spacing-xs;
+  .logo {
+    display: block;
   }
 
   &:hover {
     text-decoration: none;
   }
+}
+
+.logo,
+.title,
+.subtitle {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.title {
+  color: #333;
+  font-weight: 700;
+  margin: 0 $spacing-base 0 $spacing-xs;
+}
+
+.subtitle {
+  position: relative;
+  top: -1px;
 }
