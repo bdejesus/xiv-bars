@@ -40,9 +40,6 @@ function Index(pageProps) {
 
 Index.getInitialProps = async ({ req, query }) => {
   const { s1, s } = query;
-  const host = (typeof req !== 'undefined')
-    ? req.headers.host
-    : undefined;
 
   // Decode Slots query param
   const encodedSlots = () => {
@@ -74,8 +71,7 @@ Index.getInitialProps = async ({ req, query }) => {
     actions: jobActions,
     selectedJob,
     roleActions,
-    encodedSlots: encodedSlots(),
-    host
+    encodedSlots: encodedSlots()
   };
 };
 
