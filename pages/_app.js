@@ -18,7 +18,7 @@ class AppContainer extends App {
       if (selectedJob) {
         return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup | ${I18n.Global.title}`;
       }
-      return I18n.Global.title;
+      return [I18n.Global.brand, I18n.Global.title].join(' • ');
     }
 
     function generateCanonicalUrl() {

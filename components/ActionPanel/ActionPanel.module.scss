@@ -15,4 +15,8 @@
   overflow-x: hidden;
   overflow-y: auto;
   padding: $spacing-sm;
+
+  [data-selected='true'] {
+    outline: 2px solid $color-alt;
+  }
 }

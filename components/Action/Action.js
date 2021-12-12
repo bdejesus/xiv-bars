@@ -3,7 +3,10 @@ import React, { createRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
-import { useSelectedActionDispatch } from 'components/SelectedAction';
+import {
+  useSelectedActionDispatch,
+  useSelectedActionState
+} from 'components/SelectedAction';
 
 import styles from './Action.module.scss';
 
@@ -19,6 +22,7 @@ export default function Action({
   const [position, setPosition] = useState({});
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
+  const { selectedAction } = useSelectedActionState();
 
   useEffect(() => {
     if (actionRef.current) {
@@ -92,7 +96,7 @@ export default function Action({
         data-title={action.Name}
         data-show-title={showTitles}
       >
-        <div className={styles.iconWrapper}>
+        <div className={styles.iconWrapper} data-selected={action.ID === selectedAction.ID}>
           <img
             src={action.customIcon ? action.Icon : `//xivapi.com/${action.Icon}`}
             alt={`${action.Name} Action`}
