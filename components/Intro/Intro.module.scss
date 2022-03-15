@@ -1,12 +1,22 @@
 @import "styles/mixins";
 
-.header {
-  border-bottom: 1px solid rgb(0 0 0 / 90%);
-  padding: $spacing-xl;
+.hero {
+  padding-top: $spacing-xl;
+  padding-bottom: $spacing-xl;
 }
 
 .title {
   margin-bottom: $spacing-base;
   margin-top: 0;
   text-align: center;
+}
+
+.app {
+  padding-top: $spacing-xl;
+  padding-bottom: $spacing-xl;
+}
+
+.jobSelect {
+  padding-left: $spacing-base;
+  padding-right: $spacing-base;
 }
