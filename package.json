@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@sentry/nextjs": "^6.10.0",
-    "@svgr/webpack": "5.5.0",
+    "@svgr/webpack": "^6.2.1",
     "express": "^4.17.1",
     "next": "^12.0.5",
     "node-fetch": "^2.6.6",
