@@ -3,7 +3,7 @@ import React from 'react';
 
 function Articles() {
   return (
-    <div className="container">
+    <div>
       <h2>FFXIV Guides</h2>
 
       <div className="mt-md">

@@ -1,9 +1,9 @@
 # XIV Bars
-## FFXIV WXHB Cross Hotbar Planner/Simulator
+## FFXIV Hotbar Planner/Simulator
 
 [https://xivbars.bejezus.com](https://xivbars.bejezus.com)
 
-The source code for the Final Fantasy XIV W Cross Hotbar (WXHB) Planning and Simulation Tool built in NextJS.
+The source code for the Final Fantasy XIV Hotbar Planning and Simulation Tool built in NextJS.
 
 ---
 

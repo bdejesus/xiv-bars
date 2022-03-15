@@ -9,12 +9,12 @@ import styles from './Intro.module.scss';
 function Intro({ jobs }) {
   return (
     <>
-      <div className={styles.header}>
+      <div className={`container-sm ${styles.hero}`}>
         <Hero />
       </div>
 
-      <div className="app-view">
-        <div className="container">
+      <div className={`app-view ${styles.app}`}>
+        <div className={styles.jobSelect}>
           <JobSelectContextProvider>
             <h2 className={styles.title} id="jobSelectTitle">
               Select A Job/Class

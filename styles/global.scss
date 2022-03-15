@@ -18,23 +18,39 @@ body {
   @include customScrollbar;
 }
 
-main {
-  min-width: $screen-lg;
-}
-
 [aria-hidden="true"] {
   display: none;
-}
-
-.container {
-  margin: 0 auto;
-  padding: 0 $spacing-lg;
-  width: $screen-lg;
 }
 
 .section {
   padding-bottom: $spacing-base;
   padding-top: $spacing-base;
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.container-sm {
+  margin: 0 auto;
+  max-width: 900px;
+  padding-left: $spacing-base;
+  padding-right: $spacing-base;
+  width: 100%;
+
+  @media (max-width: $screen-lg) {
+    width: $screen-sm;
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 $spacing-base;
+  width: $screen-lg;
+
+  @media (max-width: $screen-lg) {
+    width: $screen-sm;
+  }
 }
 
 .app-view {
@@ -43,14 +59,7 @@ main {
   box-shadow: inset 0 0 60px rgb(0 0 0 / 100%);
   margin-left: auto;
   margin-right: auto;
-  padding: $spacing-lg $spacing-base;
   position: relative;
-
-  .container {
-    max-width: $screen-lg;
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 
 @import "typography";

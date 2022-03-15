@@ -26,24 +26,26 @@ function ControlBar({ jobs, selectedJob }) {
   );
 
   return (
-    <div className={styles.container}>
-      <div className={styles.groupLeft}>
-        <JobSelectContextProvider>
-          <JobSelect jobs={jobs} selectedJob={selectedJob} />
-        </JobSelectContextProvider>
-      </div>
-
-      <div className={styles.groupRight}>
-        <div className={styles.control}>
-          <ToggleTitles />
+    <div className={styles.wrapper}>
+      <div className={`${styles.container} container`}>
+        <div className={styles.groupLeft}>
+          <JobSelectContextProvider>
+            <JobSelect jobs={jobs} selectedJob={selectedJob} />
+          </JobSelectContextProvider>
         </div>
 
-        <div className={styles.control}>
-          <ExportToMacros />
-        </div>
+        <div className={styles.groupRight}>
+          <div className={styles.control}>
+            <ToggleTitles />
+          </div>
 
-        <div className={styles.control}>
-          <Sharing selectedJob={selectedJob} />
+          <div className={styles.control}>
+            <ExportToMacros />
+          </div>
+
+          <div className={styles.control}>
+            <Sharing selectedJob={selectedJob} />
+          </div>
         </div>
       </div>
     </div>
