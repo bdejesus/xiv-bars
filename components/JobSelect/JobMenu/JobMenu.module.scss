@@ -9,15 +9,15 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   list-style: none;
   margin: 0 auto;
-  padding: $spacing-base;
   max-width: $screen-md;
+  padding: $spacing-base;
 
   @media (max-width: $screen-md) {
     width: 100%;
   }
 
   @media (max-width: $screen-sm-max) {
-    width: 90vw;
     grid-template-columns: 1fr 1fr;
+    width: 90vw;
   }
 }

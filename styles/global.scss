@@ -32,11 +32,11 @@ body {
 }
 
 .container-sm {
-  width: 100%;
-  max-width: 900px;
   margin: 0 auto;
+  max-width: 900px;
   padding-left: $spacing-base;
   padding-right: $spacing-base;
+  width: 100%;
 
   @media (max-width: $screen-lg) {
     width: $screen-sm;
