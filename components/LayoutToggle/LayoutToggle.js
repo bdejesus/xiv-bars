@@ -38,7 +38,7 @@ function LayoutToggle() {
             className={styles.label}
             data-selected={layouts[layout] === 'chotbar'}
           >
-            <abbr title="Cross Hotbar">XHB</abbr>
+            <abbr title="W Cross Hotbar">WXHB</abbr>
           </span>
           <span
             className={styles.label}

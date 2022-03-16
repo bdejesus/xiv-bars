@@ -4,7 +4,7 @@
   align-items: center;
   background-color: #fff;
   display: flex;
-  padding: $spacing-sm $spacing-sm;
+  padding: $spacing-sm $spacing-base;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -42,4 +42,5 @@
 
 .subtitle {
   position: relative;
+  top: -1px;
 }

@@ -6,7 +6,7 @@ import styles from './Hero.module.scss';
 
 function Hero({ primary }) {
   return (
-    <div className={styles.container}>
+    <div className="container">
       { primary
         ? <h1>{I18n.Global.title}</h1>
         : <h2>{I18n.Global.title}</h2>}

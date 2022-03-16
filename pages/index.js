@@ -30,7 +30,7 @@ function Index(pageProps) {
         <>
           <App {...pageProps} />
 
-          <div className="container-sm">
+          <div className="container section">
             <div className={styles.description}>
               <h2>{selectedJob.Name} {I18n.Global.title}</h2>
               <p className={styles.jobDesc}>
@@ -43,7 +43,7 @@ function Index(pageProps) {
         </>
       ) : <Intro jobs={jobs} /> }
 
-      <div className={`${styles.articles} container-sm`}>
+      <div className={styles.articles}>
         {(selectedJob) && <Hero primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />

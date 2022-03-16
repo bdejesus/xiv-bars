@@ -1,10 +1,5 @@
 @import "styles/mixins";
 
-.description {
-  padding-top: $spacing-lg;
-}
-
 .articles {
-  padding-bottom: $spacing-xl;
-  padding-top: $spacing-xl;
+  padding: $spacing-lg 0;
 }

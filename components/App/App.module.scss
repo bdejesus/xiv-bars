@@ -1,10 +1,5 @@
 @import "styles/mixins";
 
-.app {
-  padding-bottom: $spacing-base;
-  padding-top: $spacing-base;
-}
-
 .header {
   border-bottom: 1px solid rgb(0 0 0 / 90%);
   padding: $spacing-lg 0 0;
@@ -99,19 +94,11 @@ $icon-size: 6px;
   flex-direction: column;
   justify-content: flex-start;
   padding-left: $spacing-sm;
-
-  @media (max-width: $screen-lg) {
-    padding-left: 0;
-  }
 }
 
 .sidebar {
   flex: 0 0;
   position: sticky;
-  top: 112px + $spacing-base;
+  top: 104px + $spacing-lg;
   width: $sidebar-width;
-
-  @media (max-width: $screen-lg) {
-    display: none;
-  }
 }

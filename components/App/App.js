@@ -24,7 +24,7 @@ function App(props) {
           <ControlBar jobs={jobs} selectedJob={selectedJob} />
 
           { selectedJob && (
-            <div className={`app-view ${styles.app}`}>
+            <div className="app-view">
               <div className="container">
                 <div className={styles.container}>
                   <div className={`panel ${styles.sidebar}`}>
