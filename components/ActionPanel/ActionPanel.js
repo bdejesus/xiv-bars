@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { useAppState } from 'components/App/context';
+
 import GENERAL_ACTIONS from 'data/GeneralAction.json';
 import MAIN_COMMANDS from 'data/MainCommand.json';
 import MACROS from 'data/MacroIcon.json';
@@ -14,11 +16,16 @@ import Tabs from './Tabs';
 import styles from './ActionPanel.module.scss';
 
 function ActionPanel({ actions, roleActions }) {
+  const { showAllLvl } = useAppState();
   const [activeTab, setActiveTab] = useState('panel-actions');
 
   function handleTabClick(e) {
     const { target } = e.currentTarget.dataset;
     setActiveTab(target);
+  }
+
+  if (!showAllLvl){
+    actions = actions.filter(action => !action.upgradable)
   }
 
   return (

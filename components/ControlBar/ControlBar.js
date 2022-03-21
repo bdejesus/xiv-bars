@@ -7,10 +7,14 @@ import styles from './ControlBar.module.scss';
 
 function ControlBar({ jobs, selectedJob }) {
   const appDispatch = useAppDispatch();
-  const { showTitles } = useAppState();
+  const { showTitles, showAllLvl } = useAppState();
 
   function handleTitlesToggle() {
     appDispatch({ type: 'toggleTitles' });
+  }
+
+  function handleMaxLvlToggle() {
+    appDispatch({ type: 'toggleAllLvl' });
   }
 
   const ToggleTitles = () => (
@@ -25,6 +29,18 @@ function ControlBar({ jobs, selectedJob }) {
     </button>
   );
 
+  const ToggleMaxLvl = () => (
+    <button
+      type="button"
+      onClick={() => handleMaxLvlToggle()}
+      data-active={showAllLvl}
+      className={styles.toggleTitlesBtn}
+    >
+      <img src="/images/icon-titles.svg" className="btn-icon" alt="Max Lvl Icon" />
+      All levels
+    </button>
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.groupLeft}>
@@ -34,6 +50,10 @@ function ControlBar({ jobs, selectedJob }) {
       </div>
 
       <div className={styles.groupRight}>
+        <div className={styles.control}>
+          <ToggleMaxLvl />
+        </div>
+
         <div className={styles.control}>
           <ToggleTitles />
         </div>
