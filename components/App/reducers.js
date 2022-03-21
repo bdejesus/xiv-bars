@@ -96,6 +96,10 @@ export default function AppReducer(state, payload) {
       return { ...state, showTitles: !state.showTitles };
     }
 
+    case 'toggleAllLvl': {
+      return { ...state, showAllLvl: !state.showAllLvl };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${payload.type}`);
     }

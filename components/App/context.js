@@ -35,7 +35,8 @@ function AppContextProvider({
       encodedSlots,
       actions,
       roleActions,
-      showTitles: false
+      showTitles: false,
+      showAllLvl: false,
     }
   );
 
