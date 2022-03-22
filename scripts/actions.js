@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const fs = require('fs');
 const fetch = require('node-fetch');
-const { outputDir } = require('./config');
+const { apiData } = require('../app.config');
 const ACTION_TYPE = require('../lib/actionType');
 
 async function getActions() {
@@ -26,7 +26,7 @@ async function getActions() {
         // await clean();
 
         fs.writeFile(
-          `${outputDir}/${actionSet}.json`,
+          `${apiData}/${actionSet}.json`,
           JSON.stringify(decoratedResults),
           () => null
         );

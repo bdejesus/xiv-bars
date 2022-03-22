@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { useAppState } from 'components/App/context';
-
-import GENERAL_ACTIONS from 'data/GeneralAction.json';
-import MAIN_COMMANDS from 'data/MainCommand.json';
-import MACROS from 'data/MacroIcon.json';
-import PET_ACTIONS from 'data/PetAction.json';
-import BUDDY_ACTIONS from 'data/BuddyAction.json';
-import COMPANY_ACTIONS from 'data/CompanyAction.json';
+import MACROS from '.apiData/MacroIcon.json';
+import PET_ACTIONS from '.apiData/PetAction.json';
+import BUDDY_ACTIONS from '.apiData/BuddyAction.json';
+import COMPANY_ACTIONS from '.apiData/CompanyAction.json';
+import MAIN_COMMANDS from '.apiData/MainCommand.json';
+import GENERAL_ACTIONS from '.apiData/GeneralAction.json';
 
 import ActionGroup from './ActionGroup';
 import Tabs from './Tabs';

@@ -1,0 +1,7 @@
+{
+  "TANK": "Tank",
+  "PDPS": "Melee DPS",
+  "RDPS": "Physical Ranged DPS",
+  "MDPS": "Magic Ranged DPS",
+  "HEAL": "Healer"
+}
