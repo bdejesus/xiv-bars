@@ -24,9 +24,9 @@ function ActionPanel({ actions, roleActions }) {
     setActiveTab(target);
   }
 
-  if (!showAllLvl){
-    actions = actions.filter(action => !action.upgradable)
-  }
+  const displayActions = !showAllLvl
+    ? actions.filter((action) => !action.upgradable)
+    : actions;
 
   return (
     <div className={styles.actionsPanel}>
@@ -37,7 +37,7 @@ function ActionPanel({ actions, roleActions }) {
           className={styles.panel}
           aria-hidden={activeTab !== 'panel-actions'}
         >
-          <ActionGroup actions={actions} title="Job Actions" />
+          <ActionGroup actions={displayActions} title="Job Actions" />
 
           {(roleActions && roleActions.length) > 0 && (
             <ActionGroup actions={roleActions} title="Role Actions" />
