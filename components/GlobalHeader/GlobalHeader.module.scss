@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #fff;
   display: flex;
+  justify-content: space-between;
   padding: $spacing-sm $spacing-base;
   position: sticky;
   top: 0;
@@ -43,4 +44,17 @@
 .subtitle {
   position: relative;
   top: -1px;
+}
+
+.userNav {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.email {
+  color: #666;
+  font-size: $font-size-base;
+  font-style: italic;
+  margin-right: $spacing-base;
 }

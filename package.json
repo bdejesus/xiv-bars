@@ -22,7 +22,6 @@
   },
   "dependencies": {
     "@sentry/nextjs": "^6.10.0",
-    "express": "^4.18.1",
     "next": "^12.1.6",
     "node-fetch": "^2.6.1",
     "prop-types": "^15.8.1",
