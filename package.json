@@ -15,7 +15,7 @@
     "start": "NODE_ENV=production node server.js",
     "dev": "node server.js",
     "build": "next build",
-    "build:data": "node ./scripts/precompile.js",
+    "build:data": "node ./scripts/precompile.cjs",
     "lint": "eslint ./ --fix; stylelint './**/**/*.{css,scss,sass}' --fix",
     "lint:js": "eslint ./",
     "lint:css": "stylelint './**/**/*.{css,scss,sass}'"
