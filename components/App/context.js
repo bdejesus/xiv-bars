@@ -27,18 +27,16 @@ function AppContextProvider({
   children, actions, roleActions, encodedSlots
 }) {
   const router = useRouter();
-  const [state, dispatch] = useReducer(
-    AppReducer, {
-      chotbar,
-      hotbar,
-      layout: parseInt(router.query.l, 10) || 0,
-      encodedSlots,
-      actions,
-      roleActions,
-      showTitles: false,
-      showAllLvl: false,
-    }
-  );
+  const [state, dispatch] = useReducer(AppReducer, {
+    chotbar,
+    hotbar,
+    layout: parseInt(router.query.l, 10) || 0,
+    encodedSlots,
+    actions,
+    roleActions,
+    showTitles: false,
+    showAllLvl: false,
+  });
 
   return (
     <AppContext.Provider value={state}>

@@ -10,22 +10,20 @@ function JobMenu({ jobs }) {
   const DoL = jobs.filter((job) => job.Discipline === 'DOL');
 
   return (
-    <>
-      <ul className={styles.jobGroupList} labeledby="jobSelectTitle">
-        <li>
-          <JobsList title="DoW" jobs={DoW} />
-        </li>
-        <li>
-          <JobsList title="DoM" jobs={DoM} />
-        </li>
-        <li>
-          <JobsList title="DoH" jobs={DoH} />
-        </li>
-        <li>
-          <JobsList title="DoL" jobs={DoL} />
-        </li>
-      </ul>
-    </>
+    <ul className={styles.jobGroupList} labeledby="jobSelectTitle">
+      <li>
+        <JobsList title="DoW" jobs={DoW} />
+      </li>
+      <li>
+        <JobsList title="DoM" jobs={DoM} />
+      </li>
+      <li>
+        <JobsList title="DoH" jobs={DoH} />
+      </li>
+      <li>
+        <JobsList title="DoL" jobs={DoL} />
+      </li>
+    </ul>
   );
 }
 

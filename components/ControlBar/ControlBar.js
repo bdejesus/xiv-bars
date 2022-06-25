@@ -5,19 +5,15 @@ import ExportToMacros from 'components/ExportToMacro';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import styles from './ControlBar.module.scss';
 
-function ControlBar({ jobs, selectedJob }) {
+function ToggleTitles() {
   const appDispatch = useAppDispatch();
-  const { showTitles, showAllLvl } = useAppState();
+  const { showTitles } = useAppState();
 
   function handleTitlesToggle() {
     appDispatch({ type: 'toggleTitles' });
   }
 
-  function handleMaxLvlToggle() {
-    appDispatch({ type: 'toggleAllLvl' });
-  }
-
-  const ToggleTitles = () => (
+  return (
     <button
       type="button"
       onClick={() => handleTitlesToggle()}
@@ -28,8 +24,17 @@ function ControlBar({ jobs, selectedJob }) {
       Titles
     </button>
   );
+}
 
-  const ToggleMaxLvl = () => (
+function ToggleMaxLvl() {
+  const appDispatch = useAppDispatch();
+  const { showAllLvl } = useAppState();
+
+  function handleMaxLvlToggle() {
+    appDispatch({ type: 'toggleAllLvl' });
+  }
+
+  return (
     <button
       type="button"
       onClick={() => handleMaxLvlToggle()}
@@ -40,7 +45,9 @@ function ControlBar({ jobs, selectedJob }) {
       All levels
     </button>
   );
+}
 
+function ControlBar({ jobs, selectedJob }) {
   return (
     <div className={styles.container}>
       <div className={styles.groupLeft}>

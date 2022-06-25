@@ -2,7 +2,7 @@
 
 .macroBtn {
   &[disabled] {
-    opacity: 50%;
+    opacity: 0.5;
     pointer-events: none;
   }
 }
@@ -45,11 +45,11 @@
 }
 
 .modal[data-active="false"] {
-  opacity: 0%;
+  opacity: 0;
   pointer-events: none;
 }
 
 .modal[data-active="true"] {
-  opacity: 100%;
+  opacity: 1;
   pointer-events: auto;
 }

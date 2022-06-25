@@ -1,7 +1,33 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useTooltipState } from './context';
 
 import styles from './Tooltip.module.scss';
+
+function Description({ content }) {
+  const cleanDesc = () => {
+    const trim = content;
+    const str = trim.replace(/(?:\r\n|\r|\n)/g, '<div>');
+    return str;
+  };
+  const descHtml = { __html: cleanDesc() };
+
+  return (
+    <p
+      className={styles.description}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={descHtml}
+    />
+  );
+}
+
+Description.propTypes = {
+  content: PropTypes.string
+};
+
+Description.defaultProps = {
+  content: undefined
+};
 
 function Tooltip() {
   const [positionStyle, setPositionStyle] = useState({ transform: 'none' });
@@ -11,23 +37,6 @@ function Tooltip() {
   useEffect(() => {
     setAnchor(styles.right);
   }, [content]);
-
-  const Description = () => {
-    const cleanDesc = () => {
-      const trim = content.Description;
-      const str = trim.replace(/(?:\r\n|\r|\n)/g, '<div>');
-      return str;
-    };
-    const descHtml = { __html: cleanDesc() };
-
-    return (
-      <p
-        className={styles.description}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={descHtml}
-      />
-    );
-  };
 
   useEffect(() => {
     const posStyle = {
@@ -46,7 +55,7 @@ function Tooltip() {
         <>
           <h4 className={styles.title}>{content.Name}</h4>
           { content.Description && (
-            <Description />
+            <Description content={content.Description} />
           )}
         </>
       )}

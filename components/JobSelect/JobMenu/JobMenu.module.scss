@@ -13,10 +13,10 @@
 }
 
 .warning {
-  background-color: rgba(255, 245, 0, 10%);
+  background-color: rgb(255 245 0 / 10%);
   border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 33%);
-  color: rgba(255, 245, 150, 100%);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 33%);
+  color: rgb(255 245 150 / 100%);
   margin: 10px auto 0;
   max-width: 960px;
   padding: 20px;
