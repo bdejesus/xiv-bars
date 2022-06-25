@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
-const fs = require('fs');
-const { apiData } = require('../app.config');
-const getActions = require('./actions');
+import fs from 'fs';
+import { apiData } from '../app.config';
+import getActions from './actions';
 
 (async () => {
   try {
