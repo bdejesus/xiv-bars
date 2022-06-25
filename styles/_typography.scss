@@ -1,8 +1,8 @@
 @import "styles/mixins";
 
-$font-family-primary: "Segoe UI", Roboto, Ubuntu, Cantarell;
+$font-family-primary: "Segoe UI", "Roboto", "Ubuntu", "Cantarell";
 $font-family-fallback: "Fira Sans", "Droid Sans", "Helvetica Neue";
-$font-family-system: -apple-system, BlinkMacSystemFont, sans-serif;
+$font-family-system: -apple-system, "BlinkMacSystemFont", sans-serif;
 
 body {
   color: #ccc;
