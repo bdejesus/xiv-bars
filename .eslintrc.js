@@ -32,6 +32,7 @@ module.exports = {
     'linebreak-style': ['warn', 'unix'],
     'max-len': 'off',
     'no-debugger': 'warn',
+    'no-restricted-exports': 'off',
     'no-unused-vars': 'warn',
     'prefer-destructuring': 'off',
     'react/destructuring-assignment': 'off',

@@ -24,9 +24,6 @@ jobs:
       - name: Lint Stylesheets
         run: yarn lint:css
 
-      - name: Run Jest Tests
-        run: yarn test
-
       - name: Setup Build Cache
         id: cache-build
         uses: actions/cache@v1
