@@ -8,6 +8,7 @@
     "type": "git",
     "url": "https://github.com/bdejesus/xiv-bars.git"
   },
+  "type": "module",
   "engines": {
     "node": "16.x"
   },
