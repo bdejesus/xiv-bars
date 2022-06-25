@@ -1,6 +1,16 @@
 {
   "name": "xiv-bars",
+  "description": "The source code for the Final Fantasy XIV W Cross Hotbar (WXHB) Planning and Simulation Tool built in NextJS.",
   "private": true,
+  "license": "GPL-3.0",
+  "homepage": "https://xivbars.bejezus.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bdejesus/xiv-bars.git"
+  },
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "NODE_ENV=production node server.js",
     "dev": "node server.js",
