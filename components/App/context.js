@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import xbars, { chotbar } from 'lib/xbars';
+import { hotbar, chotbar } from 'lib/xbars';
 import AppReducer from './reducers';
 
 const AppContext = createContext();
@@ -29,7 +29,7 @@ function AppContextProvider({
   const router = useRouter();
   const [state, dispatch] = useReducer(AppReducer, {
     chotbar,
-    hotbar: xbars.hotbar,
+    hotbar,
     layout: parseInt(router.query.l, 10) || 0,
     encodedSlots,
     actions,

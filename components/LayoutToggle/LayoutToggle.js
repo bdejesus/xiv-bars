@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import xbars from 'lib/xbars';
+import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './LayoutToggle.module.scss';
 
@@ -10,7 +10,7 @@ function LayoutToggle() {
   const appDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
-    if (xbars.layouts[layout] === 'chotbar') {
+    if (layouts[layout] === 'chotbar') {
       router.push({
         pathname: router.pathname,
         query: { ...router.query, l: 1 }
@@ -36,13 +36,13 @@ function LayoutToggle() {
         >
           <span
             className={styles.label}
-            data-selected={xbars.layouts[layout] === 'chotbar'}
+            data-selected={layouts[layout] === 'chotbar'}
           >
             <abbr title="W Cross Hotbar">WXHB</abbr>
           </span>
           <span
             className={styles.label}
-            data-selected={xbars.layouts[layout] === 'hotbar'}
+            data-selected={layouts[layout] === 'hotbar'}
           >
             Hotbars
           </span>

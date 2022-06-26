@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import LayoutToggle from 'components/LayoutToggle';
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
-import xbars from 'lib/xbars';
+import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
 function SlotLayout() {
   const { layout } = useAppState();
 
-  switch (xbars.layouts[layout]) {
+  switch (layouts[layout]) {
     case 'chotbar': {
       return <Xbar />;
     }
