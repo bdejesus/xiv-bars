@@ -8,9 +8,8 @@
     "type": "git",
     "url": "https://github.com/bdejesus/xiv-bars.git"
   },
-  "type": "module",
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
     "start": "NODE_ENV=production node server.js",
@@ -35,6 +34,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
+    "@babel/eslint-parser": "^7.16.5",
     "eslint": "^8.18.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-next": "^12.1.6",
