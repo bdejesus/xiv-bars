@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import fs from 'fs';
 import fetch from 'node-fetch';
-import { apiData } from '../app.config';
+import { apiData } from '../app.config.json';
 import ACTION_TYPE from '../lib/actionType';
 
 async function getActions() {

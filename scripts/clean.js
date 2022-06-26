@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import fs from 'fs';
-import { apiData } from '../app.config';
+import { apiData } from '../app.config.json';
 
 function clean() {
   // Clean up files and recreate directory

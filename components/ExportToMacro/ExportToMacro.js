@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useRef, useState } from 'react';
-import { layouts, chotbarSlotNames } from 'lib/xbars';
+import xbars, { chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import I18n from 'lib/I18n/locale/en-US';
 import CloseButton from 'components/CloseButton';
@@ -9,6 +9,7 @@ import Modal from 'components/Modal';
 import styles from './ExportToMacros.module.scss';
 
 function ExportToMacros() {
+  const { layouts } = xbars;
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
   const textarea = useRef();

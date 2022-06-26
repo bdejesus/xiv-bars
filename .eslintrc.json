@@ -6,8 +6,9 @@
     "jest": true
   },
   "extends": [
+    "plugin:react/recommended",
     "airbnb",
-    "plugin:@next/next/recommended"
+    "next"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -44,6 +45,7 @@
     "react/no-unused-state": "warn",
     "react/prop-types": "warn",
     "react/react-in-jsx-scope": "off",
+    "react-hooks/exhaustive-deps": "warn",
     "jsx-a11y/accessible-emoji": "warn",
     "jsx-a11y/alt-text": "warn",
     "jsx-a11y/anchor-has-content": "warn",

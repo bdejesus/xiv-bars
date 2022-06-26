@@ -1,4 +1,4 @@
-import { layouts } from 'lib/xbars';
+import xbars from 'lib/xbars';
 import ACTION_TYPE from 'lib/actionType';
 import BUDDY_ACTION from '.apiData/BuddyAction.json';
 import COMPANY_ACTION from '.apiData/CompanyAction.json';
@@ -8,8 +8,8 @@ import MACRO_ICON from '.apiData/MacroIcon.json';
 import PET_ACTION from '.apiData/PetAction.json';
 
 export default function AppReducer(state, payload) {
+  const { layouts } = xbars;
   const { layout } = state;
-
   function assignActionIds(slots) {
     return Object.values(slots)
       .map(({ action }) => {
