@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
-const fs = require('fs');
-const { apiData } = require('../app.config');
+import fs from 'fs';
+import { apiData } from '../app.config.json';
 
 function clean() {
   // Clean up files and recreate directory
@@ -12,4 +12,4 @@ function clean() {
   });
 }
 
-module.exports = clean;
+export default clean;

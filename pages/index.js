@@ -1,8 +1,3 @@
-import {
-  listJobs,
-  listJobActions,
-  listRoleActions
-} from 'lib/api';
 import { group } from 'lib/utils/array';
 import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';
@@ -16,6 +11,11 @@ import App from 'components/App';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
 import shortDesc from 'lib/shortDesc';
+import {
+  listJobs,
+  listJobActions,
+  listRoleActions
+} from '../lib/api';
 
 import styles from './Index.module.scss';
 

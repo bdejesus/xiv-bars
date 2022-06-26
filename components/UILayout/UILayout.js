@@ -6,8 +6,24 @@ import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
+function SlotLayout() {
+  const { layout } = useAppState();
+
+  switch (layouts[layout]) {
+    case 'chotbar': {
+      return <Xbar />;
+    }
+    case 'hotbar': {
+      return <Hotbar />;
+    }
+    default: {
+      throw new Error(`Unknown layout type: ${layout}`);
+    }
+  }
+}
+
 function UILayout() {
-  const { layout, encodedSlots } = useAppState();
+  const { encodedSlots } = useAppState();
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
@@ -18,20 +34,6 @@ function UILayout() {
       });
     }
   }, []);
-
-  function SlotLayout() {
-    switch (layouts[layout]) {
-      case 'chotbar': {
-        return <Xbar />;
-      }
-      case 'hotbar': {
-        return <Hotbar />;
-      }
-      default: {
-        throw new Error(`Unknown layout type: ${layout}`);
-      }
-    }
-  }
 
   return (
     <>

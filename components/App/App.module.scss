@@ -28,11 +28,11 @@
 
 .viewControls {
   button {
-    opacity: 50%;
+    opacity: 0.5;
   }
 
   button[data-active="true"] {
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
@@ -47,7 +47,7 @@
   background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 0%));
   border: none;
   height: 32px;
-  opacity: 33%;
+  opacity: 0.33;
   transition: background-image 0.33s ease, opacity 0.33s ease;
   width: 100%;
 
@@ -56,7 +56,7 @@
     background-color: unset;
     background-image: linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 50%));
     border: none;
-    opacity: 66%;
+    opacity: 0.66;
   }
 }
 

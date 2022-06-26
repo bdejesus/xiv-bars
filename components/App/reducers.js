@@ -9,7 +9,6 @@ import PET_ACTION from '.apiData/PetAction.json';
 
 export default function AppReducer(state, payload) {
   const { layout } = state;
-
   function assignActionIds(slots) {
     return Object.values(slots)
       .map(({ action }) => {

@@ -32,7 +32,7 @@ button,
     display: block;
     height: 24px;
     margin-right: $spacing-xs;
-    opacity: 66%;
+    opacity: 0.66;
     transition: opacity 0.2s ease;
     width: 24px;
   }
@@ -45,7 +45,7 @@ button,
     color: #fff;
 
     .btn-icon {
-      opacity: 100%;
+      opacity: 1;
     }
   }
 }

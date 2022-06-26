@@ -1,27 +1,28 @@
 {
-  "extends": "stylelint-config-standard",
-  "plugins": ["stylelint-order", "stylelint-scss"],
   "customSyntax": "postcss-scss",
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss"
+  ],
   "rules": {
     "at-rule-no-unknown": [
-      true,
-      { "ignoreAtRules": ["import", "include", "mixin", "use"] }
+      true, { "ignoreAtRules": [ "import", "mixin", "use", "include" ] }
     ],
-    "color-function-notation": null,
     "comment-empty-line-before": "always",
-    "declaration-colon-newline-after": null,
-    "keyframes-name-pattern": null,
-    "max-nesting-depth": 2,
+    "function-no-unknown": [
+      true, { "ignoreFunctions": [ "math.div" ] }
+    ],
+    "keyframes-name-pattern": "^[a-z][a-zA-Z0-9]+$",
+    "max-nesting-depth": 3,
     "no-descending-specificity": null,
     "no-invalid-position-at-import-rule": null,
     "order/properties-alphabetical-order": true,
-    "selector-class-pattern": null,
+    "selector-class-pattern": "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$|^[a-z][a-zA-Z0-9]+$",
     "selector-pseudo-class-no-unknown": [
-      true,
-      {
-        "ignorePseudoClasses": ["global"]
-      }
+      true, { "ignorePseudoClasses": [ "global" ] }
     ],
-    "value-list-comma-newline-after": null
-  }
+    "value-list-comma-newline-after": "never-multi-line"
+  },
+  "ignore": []
 }

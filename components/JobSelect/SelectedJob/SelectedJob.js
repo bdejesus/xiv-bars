@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ROLE_NAMES } from 'lib/jobs';
+import jobs from 'lib/jobs';
 import styles from './SelectedJob.module.scss';
 
 function SelectedJob({ job }) {
@@ -16,11 +16,11 @@ function SelectedJob({ job }) {
       </div>
       <div className={styles.textWrapper}>
         <h2 className={styles.title}>
-          <abbr className={styles.abbr}>{ job.Abbr }</abbr>
+          <abbr className={styles.abbr}>{job.Abbr}</abbr>
           <span className={styles.name}>{job.Name}</span>
         </h2>
         <div className={styles.role}>
-          {job.Discipline} {job.Role && (`• ${ROLE_NAMES[job.Role]}`)}
+          {job.Discipline} {job.Role && (`• ${jobs.ROLE_NAMES[job.Role]}`)}
         </div>
       </div>
     </div>

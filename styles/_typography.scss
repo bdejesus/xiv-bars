@@ -1,10 +1,12 @@
 @import "styles/mixins";
 
+$font-family-primary: "Segoe UI", "Roboto", "Ubuntu", "Cantarell";
+$font-family-fallback: "Fira Sans", "Droid Sans", "Helvetica Neue";
+$font-family-system: -apple-system, "BlinkMacSystemFont", sans-serif;
+
 body {
   color: #ccc;
-  font-family: "Segoe UI", Roboto, Ubuntu, Cantarell, "Fira Sans",
-    "Droid Sans", "Helvetica Neue", -apple-system, BlinkMacSystemFont,
-    sans-serif;
+  font-family: $font-family-primary, $font-family-fallback, $font-family-system;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.45em;
@@ -30,7 +32,7 @@ h1 {
   margin-top: 0;
 
   b {
-    opacity: 75%;
+    opacity: 0.75;
   }
 }
 

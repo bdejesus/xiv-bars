@@ -54,9 +54,7 @@
 
   &::after {
     bottom: 0;
-    box-shadow:
-      inset 1px 1px 1px rgb(255 255 255 / 15%),
-      inset -1px -1px 1px rgb(0 0 0 / 33%);
+    box-shadow: inset 1px 1px 1px rgb(255 255 255 / 15%), inset -1px -1px 1px rgb(0 0 0 / 33%);
     content: "";
     display: block;
     left: 0;
