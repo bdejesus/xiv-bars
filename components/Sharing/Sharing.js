@@ -14,21 +14,22 @@ function Sharing({ selectedJob }) {
 
   const urlInput = createRef();
 
-  function buildShareUrl() {
-    const slots = (/\d/).test(encodedSlots) ? encodedSlots : '';
-    const query = { s1: slots };
-    if (typeof router.query.l !== 'undefined') query.l = router.query.l;
-
-    const queryString = Object.keys(query)
-      .filter((key) => query[key] !== '')
-      .map((key) => `${key}=${query[key]}`)
-      .join('&');
-
-    return `${host.host}/job/${selectedJob.Abbr}?${queryString}`;
-  }
-
   useEffect(() => {
-    urlInput.current.value = buildShareUrl();
+    function buildShareUrl() {
+      const slots = (/\d/).test(encodedSlots) ? encodedSlots : '';
+      const query = { s1: slots };
+      if (typeof router.query.l !== 'undefined') query.l = router.query.l;
+
+      const queryString = Object.keys(query)
+        .filter((key) => query[key] !== '')
+        .map((key) => `${key}=${query[key]}`)
+        .join('&');
+
+      return `${host.host}/job/${selectedJob.Abbr}?${queryString}`;
+    }
+
+    const shareURL = buildShareUrl();
+    urlInput.current.value = shareURL;
   }, [encodedSlots]);
 
   function selectInput() {

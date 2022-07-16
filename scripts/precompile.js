@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const fs = require('fs');
+const fetch = require('node-fetch');
 const { apiData } = require('../app.config.json');
 const ACTION_TYPE = require('../lib/actionType');
 
