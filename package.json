@@ -21,8 +21,11 @@
     "lint:css": "stylelint './**/**/*.{css,scss,sass}'"
   },
   "dependencies": {
+    "@prisma/client": "^3.12.0",
     "@sentry/nextjs": "^6.10.0",
+    "csurf": "^1.11.0",
     "next": "^12.1.6",
+    "next-auth": "^4.6.1",
     "node-fetch": "^2.6.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

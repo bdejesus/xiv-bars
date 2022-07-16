@@ -16,6 +16,7 @@ import App from 'components/App';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
 import shortDesc from 'lib/shortDesc';
+import { useSession } from 'next-auth/react';
 
 import styles from '../Index.module.scss';
 
@@ -25,6 +26,8 @@ export default function Index({
   actions,
   roleActions,
 }) {
+  const { data: session } = useSession();
+
   return (
     <>
       <GlobalHeader />
