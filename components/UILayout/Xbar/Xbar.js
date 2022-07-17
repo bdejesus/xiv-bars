@@ -37,7 +37,7 @@ function Group({ slots }) {
 }
 
 Group.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
 function Bar({ bar }) {

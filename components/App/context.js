@@ -24,18 +24,20 @@ function useAppDispatch() {
 }
 
 function AppContextProvider({
-  children, actions, roleActions, encodedSlots
+  children, actions, roleActions, selectedJob, jobs
 }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(AppReducer, {
+    jobs,
+    selectedJob,
     chotbar,
     hotbar,
     layout: parseInt(router.query.l, 10) || 0,
-    encodedSlots,
+    encodedSlots: undefined,
     actions,
     roleActions,
     showTitles: false,
-    showAllLvl: false,
+    showAllLvl: false
   });
 
   return (
@@ -48,22 +50,19 @@ function AppContextProvider({
 }
 
 AppContextProvider.propTypes = {
+  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.shape()),
     PropTypes.shape()
   ]).isRequired,
-  encodedSlots: PropTypes.arrayOf(
-    PropTypes.arrayOf(
-      PropTypes.string
-    )
-  )
+  selectedJob: PropTypes.shape()
 };
 
 AppContextProvider.defaultProps = {
   roleActions: undefined,
-  encodedSlots: undefined
+  selectedJob: undefined
 };
 
 export default AppContextProvider;

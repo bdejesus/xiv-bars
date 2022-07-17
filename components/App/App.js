@@ -1,60 +1,71 @@
 /* eslint-disable react/no-danger */
-import PropTypes from 'prop-types';
+import { useAppDispatch, useAppState } from 'components/App/context';
+import { group } from 'lib/utils/array';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import ControlBar from 'components/ControlBar';
 import ActionPanel from 'components/ActionPanel';
 import UILayout from 'components/UILayout';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
-import { AppContextProvider } from './context';
-
 import styles from './App.module.scss';
 
-function App(props) {
+function App() {
+  const appDispatch = useAppDispatch();
+  const router = useRouter();
   const {
     jobs,
     selectedJob,
     actions,
     roleActions
-  } = props;
+  } = useAppState();
+
+  useEffect(() => {
+    // Decode Slots query param
+    function decodeSlots() {
+      const { s1, s } = router.query;
+      if (s1) return group(s1.split(','), 16);
+      if (s) return JSON.parse(s);
+      return null;
+    }
+
+    if (router) {
+      const slots = decodeSlots();
+
+      if (slots) {
+        appDispatch({
+          type: 'bulkLoadActionsToSlots',
+          slottedActions: slots
+        });
+      }
+    }
+  }, [router]);
 
   return (
-    <AppContextProvider {...props}>
-      <TooltipContextProvider>
-        <SelectedActionContextProvider>
-          <ControlBar jobs={jobs} selectedJob={selectedJob} />
+    <TooltipContextProvider>
+      <SelectedActionContextProvider>
+        { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
 
-          { selectedJob && (
-            <div className="app-view">
-              <div className="container">
-                <div className={styles.container}>
-                  <div className={`panel ${styles.sidebar}`}>
-                    <ActionPanel roleActions={roleActions} actions={actions} />
-                  </div>
-
-                  <div className={styles.main}>
-                    <UILayout />
-                  </div>
+        { selectedJob && (
+          <div className="app-view">
+            <div className="container">
+              <div className={styles.container}>
+                <div className={`panel ${styles.sidebar}`}>
+                  <ActionPanel roleActions={roleActions} actions={actions} />
                 </div>
 
-                <Tooltip />
+                <div className={styles.main}>
+                  <UILayout />
+                </div>
               </div>
+
+              <Tooltip />
             </div>
-          )}
-        </SelectedActionContextProvider>
-      </TooltipContextProvider>
-    </AppContextProvider>
+          </div>
+        )}
+      </SelectedActionContextProvider>
+    </TooltipContextProvider>
   );
 }
-
-App.propTypes = {
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  selectedJob: PropTypes.shape()
-};
-
-App.defaultProps = {
-  selectedJob: undefined
-};
 
 export default App;

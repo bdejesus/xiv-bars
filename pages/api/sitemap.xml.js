@@ -2,7 +2,7 @@ const { SitemapStream, streamToPromise } = require('sitemap');
 const { ADVANCED_JOBS } = require('lib/jobs');
 const { host } = require('lib/host');
 
-export default async (req, res) => {
+async function buildSitemap(req, res) {
   try {
     const sitemap = new SitemapStream({
       hostname: `https://${host}`,
@@ -42,4 +42,6 @@ export default async (req, res) => {
     res.status = 500;
     res.end('Failed to generate the sitemap');
   }
-};
+}
+
+export default buildSitemap;
