@@ -12,13 +12,14 @@ datasource db {
 
 model User {
   id      Int      @id @default(autoincrement())
-  email   String   @unique
   name    String?
+  email   String   @unique
   pcid    Int?     @unique
 }
 
 model Layout {
   id      Int      @id @default(autoincrement())
+  user_id Int
   name    String?
   slots   String?
 }

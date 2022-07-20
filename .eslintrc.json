@@ -19,7 +19,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 11,
+    "ecmaVersion": 13,
     "sourceType": "module"
   },
   "plugins": [

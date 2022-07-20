@@ -36,7 +36,13 @@ function GlobalHeader() {
         { session
           ? (
             <>
-              <div className={styles.email}>{session.user.email}</div>
+              <div className={styles.email}>
+                <Link href="/player/me">
+                  <a>
+                    {session.user.name || session.user.email}
+                  </a>
+                </Link>
+              </div>
               <button type="button" onClick={handleSignOut}>Log out</button>
             </>
           )
