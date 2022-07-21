@@ -2,9 +2,9 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
-
 async function signinUser(session) {
+  const prisma = new PrismaClient();
+
   let user = await prisma.user.findUnique({
     where: { email: session.user.email }
   });

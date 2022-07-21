@@ -18,7 +18,9 @@
     "build:data": "node ./scripts/precompile.js",
     "lint": "eslint ./ --fix; stylelint './**/**/*.{css,scss,sass}' --fix",
     "lint:js": "eslint ./",
-    "lint:css": "stylelint './**/**/*.{css,scss,sass}'"
+    "lint:css": "stylelint './**/**/*.{css,scss,sass}'",
+    "migrate:dev": "npx prisma migrate dev",
+    "migrate:reset": "npx prisma migrate reset"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.3",

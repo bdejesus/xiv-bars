@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import fetch from 'node-fetch';
+import Link from 'next/link';
 import GlobalHeader from 'components/GlobalHeader';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
-import fetch from 'node-fetch';
-import { useSession } from 'next-auth/react';
 import { listJobs, } from 'lib/api';
 
 export default function Player(pageProps) {
@@ -14,7 +15,7 @@ export default function Player(pageProps) {
   useEffect(() => {
     fetch('/api/layouts')
       .then((data) => data.json())
-      .then((json) => setLayouts[json]);
+      .then((json) => setLayouts(json));
   }, []);
 
   return (
@@ -32,9 +33,18 @@ export default function Player(pageProps) {
       { layouts.length > 0
         ? (
           <div className="container section">
-            {layouts.map((layout) => (
-              <div key={layout.id}>Layout {layout.id}</div>
-            ))}
+            <ul>
+              {layouts.map((layout) => (
+                <li key={layout.id}>
+                  <h3>
+                    <Link href={`/layout/${layout.id}`}>
+                      <a>{layout.title}</a>
+                    </Link>
+                  </h3>
+                  <div>{layout.description}</div>
+                </li>
+              ))}
+            </ul>
           </div>
         ) : (
           <div className="app-view">

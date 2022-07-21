@@ -1,24 +1,32 @@
 /* eslint-disable react/no-danger */
 import { useAppDispatch, useAppState } from 'components/App/context';
+import fetch from 'node-fetch';
 import { group } from 'lib/utils/array';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import ControlBar from 'components/ControlBar';
 import ActionPanel from 'components/ActionPanel';
 import UILayout from 'components/UILayout';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
+import { useSession } from 'next-auth/react';
+
 import styles from './App.module.scss';
 
 function App() {
+  const { data: session } = useSession();
   const appDispatch = useAppDispatch();
   const router = useRouter();
   const {
     jobs,
     selectedJob,
     actions,
-    roleActions
+    roleActions,
+    layout,
+    encodedSlots
   } = useAppState();
+  const titleField = useRef();
+  const descriptionField = useRef();
 
   useEffect(() => {
     // Decode Slots query param
@@ -41,10 +49,42 @@ function App() {
     }
   }, [router]);
 
+  function saveLayout() {
+    const title = titleField.current.value;
+    const description = descriptionField.current.value;
+
+    fetch('/api/layout/create', {
+      method: 'POST',
+      body: JSON.stringify({
+        title,
+        description,
+        slotLayout: layout,
+        slots: encodedSlots
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then((data) => data.json())
+      .then((json) => console.log(json));
+  }
+
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
         { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
+
+        { session && (
+          <form className={styles.control}>
+            <label htmlFor="title">
+              <div>Title</div>
+              <input type="text" id="title" name="title" ref={titleField} />
+            </label>
+            <label htmlFor="description">
+              <div>Description</div>
+              <textarea id="description" ref={descriptionField} />
+            </label>
+            <button type="button" onClick={saveLayout}>Save</button>
+          </form>
+        )}
 
         { selectedJob && (
           <div className="app-view">
