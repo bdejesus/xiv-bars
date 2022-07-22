@@ -27,7 +27,7 @@
     padding: 0 16px;
     transition: background 0.33s ease, box-shadow 0.33s ease, color 0.33s ease;
 
-    &[data-disabled='true'] {
+    &[data-disabled="true"] {
       display: none;
     }
 

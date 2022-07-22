@@ -107,12 +107,13 @@ $icon-size: 6px;
 }
 
 .control {
-  input, textarea {
-    font-size: 15px;
-    padding: $spacing-sm;
+  input,
+  textarea {
     display: block;
-    width: 100%;
+    font-size: 15px;
     margin-bottom: $spacing-base;
+    padding: $spacing-sm;
+    width: 100%;
   }
 
   textarea {
