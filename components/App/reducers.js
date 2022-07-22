@@ -30,8 +30,6 @@ export default function AppReducer(state, payload) {
       const { slottedActions } = payload;
       const slots = state[layouts[layout]];
 
-      console.log(payload);
-
       slottedActions.forEach((actionGroup, groupIndex) => {
         const groupName = Object.keys(slots)[groupIndex];
         const slotGroup = state[layouts[layout]][groupName];
