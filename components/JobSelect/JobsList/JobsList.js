@@ -15,11 +15,9 @@ function JobsList({ title, jobs }) {
             key={job.Name}
             value={job.ID}
           >
-            <Link href={`/job/${job.Abbr}`}>
-              <a draggable={false}>
-                <Job job={job} />
-              </a>
-            </Link>
+            <a href={`/job/${job.Abbr}`} draggable={false}>
+              <Job job={job} />
+            </a>
           </li>
         ))}
       </ul>
