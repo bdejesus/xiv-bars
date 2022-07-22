@@ -1,4 +1,6 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import {
+  createContext, useContext, useReducer, useEffect
+} from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { hotbar, chotbar } from 'lib/xbars';
@@ -9,7 +11,7 @@ const AppContext = createContext();
 const AppDispatchContext = createContext();
 
 function useAppState() {
-  const context = React.useContext(AppContext);
+  const context = useContext(AppContext);
   if (context === undefined) {
     throw new Error('useAppState must be used within the AppContextProvider');
   }
@@ -17,7 +19,7 @@ function useAppState() {
 }
 
 function useAppDispatch() {
-  const context = React.useContext(AppDispatchContext);
+  const context = useContext(AppDispatchContext);
   if (context === undefined) {
     throw new Error('useAppDispatch must be used within the AppContextProvider');
   }

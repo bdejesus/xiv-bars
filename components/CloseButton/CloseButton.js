@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './CloseButton.module.scss';
 
-function CloseButton({ onClick, className }) {
+export function CloseButton({ onClick, className }) {
   return (
     <button
       type="button"

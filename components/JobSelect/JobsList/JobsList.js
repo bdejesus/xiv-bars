@@ -1,11 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import Job from '../Job';
 
 import styles from './JobsList.module.scss';
 
-function JobsList({ title, jobs }) {
+export function JobsList({ title, jobs }) {
   return (
     <div className={styles.group}>
       <h4 className={styles.title}>{title}</h4>

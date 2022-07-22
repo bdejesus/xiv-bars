@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 const JobSelectContext = createContext();
@@ -19,7 +19,7 @@ function jobSelectReducer(state, payload) {
 }
 
 function useJobSelectState() {
-  const context = React.useContext(JobSelectContext);
+  const context = useContext(JobSelectContext);
   if (context === undefined) {
     throw new Error('useJobSelectState must be used within a JobSelectContextProvider');
   }
@@ -27,7 +27,7 @@ function useJobSelectState() {
 }
 
 function useJobSelectDispatch() {
-  const context = React.useContext(JobSelectDispatchContext);
+  const context = useContext(JobSelectDispatchContext);
   if (context === undefined) {
     throw new Error('useJobSelectDispatch must be used within a JobSelectContextProvider');
   }

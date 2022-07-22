@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import styles from './GlobalHeader.module.scss';
 
-function GlobalHeader() {
+export function GlobalHeader() {
   const { data: session } = useSession();
 
   function handleSignIn() {

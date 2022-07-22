@@ -1,6 +1,6 @@
 import styles from './EorzeaProfile.module.scss';
 
-function EorzeaProfile() {
+export function EorzeaProfile() {
   return (
     <div className={`${styles.container} container`}>
       <a

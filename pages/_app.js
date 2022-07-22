@@ -9,7 +9,7 @@ import { SessionProvider } from 'next-auth/react';
 
 import 'styles/global.scss';
 
-function App({ Component, pageProps }) {
+export function App({ Component, pageProps }) {
   const { selectedJob, actions, session } = pageProps;
 
   function generateTitle() {

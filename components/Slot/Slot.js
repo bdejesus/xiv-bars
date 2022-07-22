@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Action from 'components/Action';
 import {
@@ -9,7 +9,7 @@ import { useAppState, useAppDispatch } from 'components/App/context';
 
 import styles from './Slot.module.scss';
 
-function Slot({ id, className, action }) {
+export function Slot({ id, className, action }) {
   const { readOnly } = useAppState();
   const appDispatch = useAppDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();

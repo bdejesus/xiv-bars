@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './Job.module.scss';
 
-function Job({ job }) {
+export function Job({ job }) {
   return (
     <div className={styles.wrapper}>
       <img

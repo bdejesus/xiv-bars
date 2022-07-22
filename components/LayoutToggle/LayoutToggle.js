@@ -1,10 +1,9 @@
-import React from 'react';
 import { useRouter } from 'next/router';
 import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import styles from './LayoutToggle.module.scss';
 
-function LayoutToggle() {
+export function LayoutToggle() {
   const router = useRouter();
   const { layout, readOnly } = useAppState();
   const appDispatch = useAppDispatch();

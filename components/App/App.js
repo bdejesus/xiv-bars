@@ -13,7 +13,7 @@ import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
 
-function App() {
+export function App() {
   const { data: session } = useSession();
   const appDispatch = useAppDispatch();
   const router = useRouter();

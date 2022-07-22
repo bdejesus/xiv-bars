@@ -24,7 +24,7 @@ function Index(pageProps) {
     if (jobAbbrs.includes(job)) {
       router.push({ pathname: `/job/${job}`, query: { s1, s } });
     }
-  }, [router]);
+  }, [router, jobs]);
 
   return (
     <>

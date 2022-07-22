@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from 'components/Modal';
@@ -7,7 +6,7 @@ import JobMenu from './JobMenu';
 import { useJobSelectState, useJobSelectDispatch } from './context';
 import styles from './JobSelect.module.scss';
 
-function JobSelect({ jobs, selectedJob }) {
+export function JobSelect({ jobs, selectedJob }) {
   const jobSelectDispatch = useJobSelectDispatch();
   const { isSelectingJob } = useJobSelectState();
 

@@ -3,7 +3,7 @@ import CloseButton from 'components/CloseButton';
 
 import styles from './Modal.module.scss';
 
-function Modal({ children, hidden, toClose }) {
+export function Modal({ children, hidden, toClose }) {
   return (
     <div
       className={styles.modal}

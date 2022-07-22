@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
-import React, { createRef, useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import host from 'lib/host';
 import styles from './Sharing.module.scss';
 
-function Sharing({ selectedJob }) {
+export function Sharing({ selectedJob }) {
   const router = useRouter();
   const { encodedSlots } = useAppState();
   const [copied, setCopied] = useState(false);

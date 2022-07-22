@@ -2,7 +2,7 @@ import { useState } from 'react';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './BuyMeABeer.module.scss';
 
-function BuyMeABeer() {
+export function BuyMeABeer() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (

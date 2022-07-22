@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
-import React from 'react';
 
-function Articles() {
+export function Articles() {
   return (
     <div className="container">
       <h2>FFXIV Guides</h2>

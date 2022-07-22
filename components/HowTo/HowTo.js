@@ -1,6 +1,6 @@
 import I18n from 'lib/I18n/locale/en-US';
 
-function HowTo() {
+export function HowTo() {
   return (
     <div className="container section">
       <h2>{I18n.HowTo.how_to_use_this}</h2>

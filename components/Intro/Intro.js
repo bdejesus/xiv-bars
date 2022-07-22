@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
@@ -6,7 +5,7 @@ import { JobSelectContextProvider } from 'components/JobSelect/context';
 
 import styles from './Intro.module.scss';
 
-function Intro({ jobs }) {
+export function Intro({ jobs }) {
   return (
     <>
       <div className={styles.header}>

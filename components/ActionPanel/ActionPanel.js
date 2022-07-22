@@ -14,7 +14,7 @@ import Tabs from './Tabs';
 
 import styles from './ActionPanel.module.scss';
 
-function ActionPanel({ actions, roleActions }) {
+export function ActionPanel({ actions, roleActions }) {
   const { showAllLvl } = useAppState();
   const [activeTab, setActiveTab] = useState('panel-actions');
 

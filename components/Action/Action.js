@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React, { createRef, useState, useEffect } from 'react';
+import { createRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
@@ -9,7 +9,7 @@ import styles from './Action.module.scss';
 
 let tooltipTimeout = null;
 
-export default function Action({
+export function Action({
   action, tooltip, remote
 }) {
   const { showTitles, readOnly } = useAppState();
@@ -113,3 +113,5 @@ Action.defaultProps = {
   tooltip: undefined,
   remote: true
 };
+
+export default Action;

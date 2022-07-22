@@ -1,5 +1,4 @@
 /* eslint-disable react/prefer-stateless-function */
-import React from 'react';
 import PropTypes from 'prop-types';
 import { group } from 'lib/utils';
 import Slot from 'components/Slot';
@@ -61,7 +60,7 @@ Bar.propTypes = {
   bar: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
-function Xbar() {
+export function Xbar() {
   const { chotbar } = useAppState();
 
   return (

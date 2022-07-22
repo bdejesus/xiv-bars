@@ -5,7 +5,7 @@ import ExportToMacros from 'components/ExportToMacro';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import styles from './ControlBar.module.scss';
 
-function ToggleTitles() {
+export function ToggleTitles() {
   const appDispatch = useAppDispatch();
   const { showTitles } = useAppState();
 
@@ -26,7 +26,7 @@ function ToggleTitles() {
   );
 }
 
-function ToggleMaxLvl() {
+export function ToggleMaxLvl() {
   const appDispatch = useAppDispatch();
   const { showAllLvl } = useAppState();
 
@@ -47,7 +47,7 @@ function ToggleMaxLvl() {
   );
 }
 
-function ControlBar({ jobs, selectedJob }) {
+export function ControlBar({ jobs, selectedJob }) {
   const { readOnly } = useAppState();
 
   return (

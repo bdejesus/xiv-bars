@@ -21,7 +21,7 @@ function SlotLayout() {
   }
 }
 
-function UILayout() {
+export function UILayout() {
   return (
     <>
       <div className={styles.controls}>

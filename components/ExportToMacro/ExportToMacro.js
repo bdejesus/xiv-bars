@@ -8,7 +8,7 @@ import CloseButton from 'components/CloseButton';
 import Modal from 'components/Modal';
 import styles from './ExportToMacros.module.scss';
 
-function ExportToMacros() {
+export function ExportToMacros() {
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
   const textarea = useRef();

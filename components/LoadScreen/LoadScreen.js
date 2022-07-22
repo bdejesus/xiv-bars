@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import styles from './LoadScreen.module.scss';
 
-function LoadScreen() {
+export function LoadScreen() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -15,7 +15,7 @@ function LoadScreen() {
       router.events.off('routeChangeStart', setIsLoading);
       router.events.off('routeChangeComplete', setIsLoading);
     };
-  }, []);
+  }, [router]);
 
   return (
     <div className={styles.container} aria-hidden={!isLoading}>
