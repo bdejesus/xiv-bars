@@ -48,18 +48,24 @@ function ToggleMaxLvl() {
 }
 
 function ControlBar({ jobs, selectedJob }) {
+  const { readOnly } = useAppState();
+
   return (
     <div className={styles.container}>
       <div className={styles.groupLeft}>
-        <JobSelectContextProvider>
-          <JobSelect jobs={jobs} selectedJob={selectedJob} />
-        </JobSelectContextProvider>
+        { !readOnly && (
+          <JobSelectContextProvider>
+            <JobSelect jobs={jobs} selectedJob={selectedJob} />
+          </JobSelectContextProvider>
+        )}
       </div>
 
       <div className={styles.groupRight}>
-        <div className={styles.control}>
-          <ToggleMaxLvl />
-        </div>
+        { !readOnly && (
+          <div className={styles.control}>
+            <ToggleMaxLvl />
+          </div>
+        )}
 
         <div className={styles.control}>
           <ToggleTitles />

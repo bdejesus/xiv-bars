@@ -6,7 +6,7 @@ import styles from './LayoutToggle.module.scss';
 
 function LayoutToggle() {
   const router = useRouter();
-  const { layout } = useAppState();
+  const { layout, readOnly } = useAppState();
   const appDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
@@ -33,16 +33,19 @@ function LayoutToggle() {
           className={styles.buttonToggle}
           type="button"
           onClick={toggleHotbarLayout}
+          disabled={readOnly}
         >
           <span
             className={styles.label}
             data-selected={layouts[layout] === 'chotbar'}
+            data-disabled={readOnly && layouts[layout] !== 'chotbar'}
           >
             <abbr title="W Cross Hotbar">WXHB</abbr>
           </span>
           <span
             className={styles.label}
             data-selected={layouts[layout] === 'hotbar'}
+            data-disabled={readOnly && layouts[layout] !== 'hotbar'}
           >
             Hotbars
           </span>

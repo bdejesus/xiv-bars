@@ -17,4 +17,8 @@
     outline: none;
     transform: scale(1.1);
   }
+
+  &[data-disabled='true'] {
+    pointer-events: none;
+  }
 }

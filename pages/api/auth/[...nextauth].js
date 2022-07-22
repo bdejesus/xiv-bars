@@ -1,16 +1,14 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import { PrismaClient } from '@prisma/client';
+import db from 'lib/db';
 
 async function signinUser(session) {
-  const prisma = new PrismaClient();
-
-  let user = await prisma.user.findUnique({
+  let user = await db.user.findUnique({
     where: { email: session.user.email }
   });
 
   if (session.user.email && !user) {
-    user = await prisma.user.create({
+    user = await db.user.create({
       data: {
         name: session.user.name,
         email: session.user.email

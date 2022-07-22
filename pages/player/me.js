@@ -5,6 +5,7 @@ import Link from 'next/link';
 import GlobalHeader from 'components/GlobalHeader';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { JobSelectContextProvider } from 'components/JobSelect/context';
+import Job from 'components/JobSelect/Job';
 import { listJobs, } from 'lib/api';
 
 export default function Player(pageProps) {
@@ -25,7 +26,7 @@ export default function Player(pageProps) {
       { session && session.user && (
         <div className="container section">
           <h1 className="mt-md">
-            Signed in as {session.user.name || session.user.email}
+            {session.user.name || session.user.email}
           </h1>
         </div>
       )}
@@ -33,17 +34,23 @@ export default function Player(pageProps) {
       { layouts.length > 0
         ? (
           <div className="container section">
+            <h3>Saved Layouts</h3>
             <ul>
-              {layouts.map((layout) => (
-                <li key={layout.id}>
-                  <h3>
-                    <Link href={`/layout/${layout.id}`}>
-                      <a>{layout.title}</a>
-                    </Link>
-                  </h3>
-                  <div>{layout.description}</div>
-                </li>
-              ))}
+              {layouts.map((layout) => {
+                const job = jobs.find((j) => j.ID === layout.jobId);
+
+                return (
+                  <li key={layout.id}>
+                    <h4>
+                      <Link href={`/job/${job.Abbr}/${layout.id}`}>
+                        <a>{layout.title}</a>
+                      </Link>
+                    </h4>
+                    <Job job={job} />
+                    <div>{layout.description}</div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ) : (

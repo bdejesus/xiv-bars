@@ -100,5 +100,22 @@ $icon-size: 6px;
   flex: 0 0;
   position: sticky;
   top: 104px + $spacing-lg;
-  width: $sidebar-width;
+
+  .section {
+    padding-right: $spacing-xl;
+  }
+}
+
+.control {
+  input, textarea {
+    font-size: 15px;
+    padding: $spacing-sm;
+    display: block;
+    width: 100%;
+    margin-bottom: $spacing-base;
+  }
+
+  textarea {
+    height: 100px;
+  }
 }

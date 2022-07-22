@@ -27,6 +27,10 @@
     padding: 0 16px;
     transition: background 0.33s ease, box-shadow 0.33s ease, color 0.33s ease;
 
+    &[data-disabled='true'] {
+      display: none;
+    }
+
     &[data-selected="true"] {
       background-color: $panel-bg;
       color: $color-alt;
@@ -39,5 +43,9 @@
     .label[data-selected="false"] {
       color: #fff;
     }
+  }
+
+  &[disabled] {
+    pointer-events: none;
   }
 }

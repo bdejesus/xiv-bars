@@ -58,8 +58,9 @@ function App() {
       body: JSON.stringify({
         title,
         description,
-        slotLayout: layout,
-        slots: encodedSlots
+        layout,
+        encodedSlots,
+        jobId: selectedJob.ID
       }),
       headers: { 'Content-Type': 'application/json' }
     })
@@ -73,7 +74,7 @@ function App() {
         { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
 
         { session && (
-          <form className={styles.control}>
+          <form className={`${styles.control} container section`}>
             <label htmlFor="title">
               <div>Title</div>
               <input type="text" id="title" name="title" ref={titleField} />

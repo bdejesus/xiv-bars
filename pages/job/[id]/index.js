@@ -17,7 +17,7 @@ import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
 import shortDesc from 'lib/shortDesc';
 
-import styles from '../Index.module.scss';
+import styles from '../../Index.module.scss';
 
 export default function Index({
   jobs,
@@ -68,12 +68,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const { params } = context;
+  const { id } = context.params;
 
   // Get Selected Job
   const decoratedJobs = await listJobs();
-  const selectedJob = params.id
-    ? decoratedJobs.find((job) => job.Abbr === params.id)
+  const selectedJob = id
+    ? decoratedJobs.find((job) => job.Abbr === id)
     : null;
 
   let jobActions = [];

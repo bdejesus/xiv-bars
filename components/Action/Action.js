@@ -12,7 +12,7 @@ let tooltipTimeout = null;
 export default function Action({
   action, tooltip, remote
 }) {
-  const { showTitles } = useAppState();
+  const { showTitles, readOnly } = useAppState();
   const actionRef = createRef();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
@@ -80,7 +80,7 @@ export default function Action({
       <div
         ref={actionRef}
         className={selectors}
-        draggable
+        draggable={!readOnly}
         onDragStart={selectAction}
         onDragEnd={handleDragEnd}
         onMouseMove={(e) => handleMouseMove(e)}

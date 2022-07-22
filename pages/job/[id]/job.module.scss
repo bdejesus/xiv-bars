@@ -1,0 +1,25 @@
+@import "styles/mixins";
+
+.container {
+  align-items: flex-start;
+  display: flex;
+}
+
+.main {
+  align-items: flex-start;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-left: $spacing-sm;
+}
+
+.sidebar {
+  flex: 1 1 auto;
+  position: sticky;
+  top: 104px + $spacing-lg;
+
+  .section {
+    padding-right: $spacing-xl;
+  }
+}

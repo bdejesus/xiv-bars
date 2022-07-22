@@ -5,11 +5,12 @@ import {
   useSelectedActionState,
   useSelectedActionDispatch
 } from 'components/SelectedAction';
-import { useAppDispatch } from 'components/App/context';
+import { useAppState, useAppDispatch } from 'components/App/context';
 
 import styles from './Slot.module.scss';
 
 function Slot({ id, className, action }) {
+  const { readOnly } = useAppState();
   const appDispatch = useAppDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();
@@ -23,7 +24,7 @@ function Slot({ id, className, action }) {
   }
 
   function handleDragStart() {
-    setDragging(true);
+    if (!readOnly) setDragging(true);
   }
 
   function handleDragLeave(event) {
@@ -48,6 +49,8 @@ function Slot({ id, className, action }) {
   }
 
   function setSelectedAction() {
+    if (readOnly) return null;
+
     setDragging(false);
     if (selectedAction) {
       appDispatch({
@@ -80,6 +83,7 @@ function Slot({ id, className, action }) {
         role="button"
         tabIndex={0}
         data-slotted={!!action.Name}
+        data-disabled={readOnly && !action.Name}
       >
         {action.Name && <Action action={action} />}
       </div>
