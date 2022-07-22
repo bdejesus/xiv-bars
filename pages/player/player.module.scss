@@ -1,0 +1,43 @@
+@import "styles/mixins";
+
+.layoutsList {
+  display: grid;
+  gap: $spacing-base;
+  grid-template-columns: 1fr 1fr 1fr;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  background-color: #111;
+  border-radius: 4px;
+  height: 100%;
+  padding: $spacing-base;
+
+  h4 {
+    margin: $spacing-base 0;
+  }
+
+  p {
+    font-size: $font-size-base;
+    line-height: 1.45;
+  }
+
+  .description {
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      background: linear-gradient(to bottom, rgb(0 0 0 / 0%), #111);
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 40px;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+}

@@ -109,11 +109,18 @@ $icon-size: 6px;
 .control {
   input,
   textarea {
+    background-color: rgb(0 0 0 / 80%);
+    border: none;
+    border-bottom: 1px solid rgb(255 255 255 / 50%);
+    color: #fff;
     display: block;
-    font-size: 15px;
     margin-bottom: $spacing-base;
     padding: $spacing-sm;
     width: 100%;
+  }
+
+  input {
+    font-size: $font-size-xl;
   }
 
   textarea {

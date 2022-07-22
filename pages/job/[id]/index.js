@@ -13,7 +13,6 @@ import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
-import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
 import shortDesc from 'lib/shortDesc';
 
@@ -36,6 +35,7 @@ export default function Index({
         jobs={jobs}
       >
         <App />
+
         <div className="container section">
           <div className={styles.description}>
             <h2>{selectedJob.Name} {I18n.Global.title}</h2>
@@ -56,7 +56,6 @@ export default function Index({
       </div>
 
       <Footer />
-      <LoadScreen />
     </>
   );
 }

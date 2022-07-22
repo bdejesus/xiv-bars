@@ -1,15 +1,15 @@
 /* eslint-disable react/no-danger */
-import { useAppDispatch, useAppState } from 'components/App/context';
 import fetch from 'node-fetch';
-import { group } from 'lib/utils/array';
 import { useEffect, useRef } from 'react';
+import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { group } from 'lib/utils/array';
+import { useAppDispatch, useAppState } from 'components/App/context';
 import ControlBar from 'components/ControlBar';
 import ActionPanel from 'components/ActionPanel';
 import UILayout from 'components/UILayout';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
-import { useSession } from 'next-auth/react';
 
 import styles from './App.module.scss';
 

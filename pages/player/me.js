@@ -8,6 +8,8 @@ import { JobSelectContextProvider } from 'components/JobSelect/context';
 import Job from 'components/JobSelect/Job';
 import { listJobs, } from 'lib/api';
 
+import styles from './player.module.scss';
+
 export default function Player(pageProps) {
   const { jobs } = pageProps;
   const [layouts, setLayouts] = useState([]);
@@ -35,19 +37,22 @@ export default function Player(pageProps) {
         ? (
           <div className="container section">
             <h3>Saved Layouts</h3>
-            <ul>
+            <ul className={styles.layoutsList}>
               {layouts.map((layout) => {
                 const job = jobs.find((j) => j.ID === layout.jobId);
 
                 return (
                   <li key={layout.id}>
-                    <h4>
-                      <Link href={`/job/${job.Abbr}/${layout.id}`}>
-                        <a>{layout.title}</a>
-                      </Link>
-                    </h4>
-                    <Job job={job} />
-                    <div>{layout.description}</div>
+                    <div className={styles.card}>
+                      <Job job={job} />
+                      <h4>
+                        <Link href={`/job/${job.Abbr}/${layout.id}`}>
+                          <a>{layout.title}</a>
+                        </Link>
+                      </h4>
+
+                      <p className={styles.description}>{layout.description}</p>
+                    </div>
                   </li>
                 );
               })}

@@ -1,10 +1,8 @@
-import React, { useEffect } from 'react';
 import LayoutToggle from 'components/LayoutToggle';
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
-import { group } from 'lib/utils/array';
 import { layouts } from 'lib/xbars';
-import { useAppState, useAppDispatch } from 'components/App/context';
+import { useAppState } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
 function SlotLayout() {
@@ -24,19 +22,6 @@ function SlotLayout() {
 }
 
 function UILayout() {
-  const { encodedSlots } = useAppState();
-  const appDispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (encodedSlots) {
-      const decodedSlots = group(encodedSlots.split(','), 16);
-      appDispatch({
-        type: 'bulkLoadActionsToSlots',
-        slottedActions: decodedSlots
-      });
-    }
-  }, []);
-
   return (
     <>
       <div className={styles.controls}>

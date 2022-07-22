@@ -6,6 +6,7 @@ import {
   listRoleActions
 } from 'lib/api';
 import I18n from 'lib/I18n/locale/en-US';
+import shortDesc from 'lib/shortDesc';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import Hero from 'components/Hero';
@@ -14,12 +15,8 @@ import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import UILayout from 'components/UILayout';
-import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
-import shortDesc from 'lib/shortDesc';
 import SelectedJob from 'components/JobSelect/SelectedJob';
-import Sharing from 'components/Sharing';
-import ExportToMacros from 'components/ExportToMacro';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import ControlBar from 'components/ControlBar';
@@ -35,6 +32,7 @@ export default function Index({
   layoutData
 }) {
   const { layout, encodedSlots } = layoutData;
+
   return (
     <>
       <GlobalHeader />
@@ -95,7 +93,6 @@ export default function Index({
       </div>
 
       <Footer />
-      <LoadScreen />
     </>
   );
 }
@@ -148,6 +145,8 @@ Index.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   layoutData: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
     layout: PropTypes.number.isRequired,
     encodedSlots: PropTypes.string.isRequired
   }).isRequired

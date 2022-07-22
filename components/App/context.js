@@ -1,7 +1,8 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { hotbar, chotbar } from 'lib/xbars';
+import { group } from 'lib/utils/array';
 import AppReducer from './reducers';
 
 const AppContext = createContext();
@@ -47,6 +48,16 @@ function AppContextProvider({
     showAllLvl: false,
     readOnly
   });
+
+  useEffect(() => {
+    if (encodedSlots) {
+      const decodedSlots = group(encodedSlots.split(','), 16);
+      dispatch({
+        type: 'bulkLoadActionsToSlots',
+        slottedActions: decodedSlots
+      });
+    }
+  }, [encodedSlots]);
 
   return (
     <AppContext.Provider value={state}>
