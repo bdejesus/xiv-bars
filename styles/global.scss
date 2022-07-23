@@ -53,7 +53,16 @@ main {
   }
 }
 
+.panel {
+  background-color: $panel-bg;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: $spacing-sm;
+}
+
+
 @import "typography";
 @import "links";
+@import "forms";
 @import "buttons";
 @import "utils";

@@ -5,7 +5,7 @@ import { layouts } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
-function SlotLayout() {
+export function SlotLayout() {
   const { layout } = useAppState();
 
   switch (layouts[layout]) {

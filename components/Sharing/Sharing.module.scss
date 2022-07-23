@@ -24,6 +24,9 @@
     bottom: 0;
     content: "URL Copied!";
     display: flex;
+    font-size: $font-size-base;
+    font-weight: 400;
+    font-style: italic;
     justify-content: center;
     left: 0;
     opacity: 0;
@@ -59,6 +62,7 @@
   padding: 10px;
   transition: background-color 0.33s ease;
   width: 200px;
+  margin: 0;
 
   &:focus {
     background-color: rgb(255 255 255 / 20%);

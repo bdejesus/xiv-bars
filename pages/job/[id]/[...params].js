@@ -7,6 +7,7 @@ import {
 } from 'lib/api';
 import I18n from 'lib/I18n/locale/en-US';
 import shortDesc from 'lib/shortDesc';
+import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import Hero from 'components/Hero';
@@ -14,14 +15,8 @@ import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
-import UILayout from 'components/UILayout';
+import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
-import SelectedJob from 'components/JobSelect/SelectedJob';
-import { SelectedActionContextProvider } from 'components/SelectedAction';
-import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
-import ControlBar from 'components/ControlBar';
-
-// import styles from '../../Index.module.scss';
 import styles from './job.module.scss';
 
 export default function Index({
@@ -29,12 +24,19 @@ export default function Index({
   selectedJob,
   actions,
   roleActions,
-  layoutData
+  viewData,
+  viewAction
 }) {
-  const { layout, encodedSlots } = layoutData;
+  const { layout, encodedSlots, title } = viewData;
+  const readOnly = (viewData && viewAction !== 'edit');
 
   return (
     <>
+      <Head>
+        <meta name="robots" content="noindex" />
+        <title>{`XIVBARS | ${title}`}</title>
+      </Head>
+
       <GlobalHeader />
 
       <AppContextProvider
@@ -44,16 +46,17 @@ export default function Index({
         jobs={jobs}
         layout={layout}
         encodedSlots={encodedSlots}
-        readOnly
+        readOnly={readOnly}
+        viewData={viewData}
       >
-        <TooltipContextProvider>
+        {/* <TooltipContextProvider>
           <SelectedActionContextProvider>
             <ControlBar jobs={jobs} selectedJob={selectedJob} />
 
             <div className="app-view">
               <div className="container">
                 <div className={styles.container}>
-                  <div className={`panel ${styles.sidebar}`}>
+                  <div className={`${styles.sidebar}`}>
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />
                       <h3>{layoutData.title}</h3>
@@ -62,7 +65,7 @@ export default function Index({
                   </div>
 
                   <div className={styles.main}>
-                    <UILayout />
+                    <SlotLayout />
                   </div>
                 </div>
 
@@ -70,7 +73,9 @@ export default function Index({
               </div>
             </div>
           </SelectedActionContextProvider>
-        </TooltipContextProvider>
+        </TooltipContextProvider> */}
+
+        <App />
 
         <div className="container section">
           <div className={styles.description}>
@@ -98,45 +103,49 @@ export default function Index({
 }
 
 export async function getServerSideProps(context) {
-  const { id, layoutId } = context.params;
+  try {
+    const { id, params } = context.params;
+    const [layoutId, viewAction] = params;
 
-  const layoutData = await db.layout.findUnique({
-    where: { id: Number.parseInt(layoutId, 6) }
-  });
+    // Get Selected Job
+    const decoratedJobs = await listJobs();
+    const selectedJob = id
+      ? decoratedJobs.find((job) => job.Abbr === id)
+      : null;
 
-  if (!layoutData) return { notFound: true };
+    const viewData = await db.layout.findFirst({
+      where: { id: Number.parseInt(layoutId, 6), jobId: selectedJob.ID }
+    });
 
-  const { layout, encodedSlots } = layoutData;
+    const { layout, encodedSlots } = viewData;
 
-  // Get Selected Job
-  const decoratedJobs = await listJobs();
-  const selectedJob = id
-    ? decoratedJobs.find((job) => job.Abbr === id)
-    : null;
+    let jobActions = [];
+    let roleActions = [];
 
-  let jobActions = [];
-  let roleActions = [];
-
-  // Fetch Actions
-  if (selectedJob) {
-    jobActions = await listJobActions(selectedJob);
-    // TODO: Refactor this is pull IDS from ClassJob object instead of ROLE_ACTION_IDS
-    if (selectedJob.Role) {
-      roleActions = await listRoleActions(selectedJob);
+    // Fetch Actions
+    if (selectedJob) {
+      jobActions = await listJobActions(selectedJob);
+      // TODO: Refactor this is pull IDS from ClassJob object instead of ROLE_ACTION_IDS
+      if (selectedJob.Role) {
+        roleActions = await listRoleActions(selectedJob);
+      }
     }
+
+    return {
+      props: {
+        jobs: decoratedJobs,
+        actions: jobActions,
+        selectedJob,
+        roleActions,
+        layout,
+        encodedSlots,
+        viewData,
+        viewAction: viewAction || 'show'
+      }
+    };
+  } catch (error) {
+    return { notFound: true };
   }
-
-  return {
-    props: {
-      jobs: decoratedJobs,
-      actions: jobActions,
-      selectedJob,
-      roleActions,
-      layoutData,
-      layout,
-      encodedSlots
-    }
-  };
 }
 
 Index.propTypes = {
@@ -144,10 +153,11 @@ Index.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  layoutData: PropTypes.shape({
+  viewData: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
     layout: PropTypes.number.isRequired,
     encodedSlots: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  viewAction: PropTypes.string.isRequired
 };

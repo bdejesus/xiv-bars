@@ -1,20 +1,26 @@
 @import "styles/mixins";
 
-.container {
-  align-items: flex-end;
+.controlBar {
   background-color: $panel-bg;
   box-shadow: 0 2px 0 $color-gray-dark-2;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: $spacing-xs $spacing-base;
   position: sticky;
   top: 48px;
   z-index: 10;
 }
 
+.container {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0;
+  max-width: $screen-lg;
+  margin: 0 auto;
+}
+
 .groupLeft {
   margin-left: -$spacing-sm;
+  flex: 1 1 auto;
 }
 
 .groupRight {
@@ -23,17 +29,26 @@
   flex-direction: row;
   padding-bottom: $spacing-sm;
   padding-top: $spacing-base;
+
+  + .groupRight {
+    margin-left: $spacing-sm;
+    padding-left: $spacing-sm;
+  }
 }
 
 .control {
   margin-left: $spacing-xs;
 
+  &:first-child {
+    margin-left: 0;
+  }
+
   button,
   :global(.button) {
-    padding: 0 $spacing-sm;
+    padding: 0 10px;
 
     img {
-      margin-left: -4px;
+      margin-left: -2px;
     }
 
     &[data-active="true"] {

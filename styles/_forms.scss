@@ -1,0 +1,20 @@
+.control {
+  margin-bottom: $spacing-base;
+
+}
+
+label {
+  line-height: 1.6;
+  margin: 0;
+}
+
+input,
+textarea {
+  background-color: $panel-bg-dark;
+  border: none;
+  color: #eee;
+  display: block;
+  margin-bottom: $spacing-sm;
+  padding: $spacing-sm;
+  width: 100%;
+}

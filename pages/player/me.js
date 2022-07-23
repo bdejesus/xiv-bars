@@ -29,7 +29,7 @@ export default function Player(pageProps) {
       { session && session.user && (
         <div className="container section">
           <h1 className="mt-md">
-            {session.user.name || session.user.email}
+            Saved Layouts
           </h1>
         </div>
       )}
@@ -37,7 +37,7 @@ export default function Player(pageProps) {
       { layouts.length > 0
         ? (
           <div className="container section">
-            <h3>Saved Layouts</h3>
+
             <ul className={styles.layoutsList}>
               {layouts.map((layout) => {
                 const job = jobs.find((j) => j.ID === layout.jobId);

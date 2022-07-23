@@ -99,6 +99,10 @@ export default function AppReducer(state, payload) {
       return { ...state, showAllLvl: !state.showAllLvl };
     }
 
+    case 'editLayout': {
+      return { ...state, readOnly: false };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${payload.type}`);
     }

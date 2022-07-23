@@ -91,19 +91,17 @@ export function ExportToMacros() {
           data-copied={copied}
         >
           <div
-            className={styles.modalContent}
+            className="modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <CloseButton onClick={(e) => toggleModal(e)} />
-
-            <div className={styles.modalHeader}>
+            <div className="modal-header">
               <h3>{I18n.ExportToMacro.export_to_macro}</h3>
               <p>{I18n.ExportToMacro.limitations}</p>
             </div>
 
             <textarea ref={textarea} readOnly onClick={selectTextarea} />
 
-            <div className={styles.modalFooter}>
+            <div className="modal-footer">
               <button type="button" onClick={copyText}>
                 {copied ? 'Copied!' : 'Copy'}
               </button>

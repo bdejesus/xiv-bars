@@ -1,0 +1,21 @@
+@import 'styles/mixins';
+
+.content {
+  padding: $spacing-base;
+  max-width: 420px;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .titleField {
+    font-size: $font-size-xl;
+    font-weight: 100;
+  }
+
+  .descriptionField {
+    font-size: $font-size-base;
+    height: 100px;
+    resize: vertical;
+  }
+}

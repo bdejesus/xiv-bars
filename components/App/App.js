@@ -1,20 +1,20 @@
 /* eslint-disable react/no-danger */
-import fetch from 'node-fetch';
-import { useEffect, useRef } from 'react';
-import { useSession } from 'next-auth/react';
+
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { group } from 'lib/utils/array';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import ControlBar from 'components/ControlBar';
+import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
 import ActionPanel from 'components/ActionPanel';
 import UILayout from 'components/UILayout';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
+import SelectedJob from 'components/JobSelect/SelectedJob';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
 
 export function App() {
-  const { data: session } = useSession();
   const appDispatch = useAppDispatch();
   const router = useRouter();
   const {
@@ -22,11 +22,9 @@ export function App() {
     selectedJob,
     actions,
     roleActions,
-    layout,
-    encodedSlots
+    readOnly,
+    viewData
   } = useAppState();
-  const titleField = useRef();
-  const descriptionField = useRef();
 
   useEffect(() => {
     // Decode Slots query param
@@ -49,50 +47,30 @@ export function App() {
     }
   }, [router]);
 
-  function saveLayout() {
-    const title = titleField.current.value;
-    const description = descriptionField.current.value;
-
-    fetch('/api/layout/create', {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-        description,
-        layout,
-        encodedSlots,
-        jobId: selectedJob.ID
-      }),
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then((data) => data.json())
-      .then((json) => console.log(json));
-  }
-
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
         { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
 
-        { session && (
-          <form className={`${styles.control} container section`}>
-            <label htmlFor="title">
-              <div>Title</div>
-              <input type="text" id="title" name="title" ref={titleField} />
-            </label>
-            <label htmlFor="description">
-              <div>Description</div>
-              <textarea id="description" ref={descriptionField} />
-            </label>
-            <button type="button" onClick={saveLayout}>Save</button>
-          </form>
-        )}
-
         { selectedJob && (
           <div className="app-view">
             <div className="container">
               <div className={styles.container}>
-                <div className={`panel ${styles.sidebar}`}>
-                  <ActionPanel roleActions={roleActions} actions={actions} />
+                <div className={`${styles.sidebar}`}>
+                  { readOnly ? (
+                    <div className={styles.section}>
+                      <SelectedJob job={selectedJob} />
+                      <h3>{viewData.title}</h3>
+                      <p>{viewData.description}</p>
+                    </div>
+                  ) : (
+                    <>
+                      <JobSelectContextProvider>
+                        <JobSelect jobs={jobs} selectedJob={selectedJob} />
+                      </JobSelectContextProvider>
+                      <ActionPanel roleActions={roleActions} actions={actions} />
+                    </>
+                  )}
                 </div>
 
                 <div className={styles.main}>

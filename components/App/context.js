@@ -34,7 +34,8 @@ function AppContextProvider({
   jobs,
   encodedSlots,
   layout,
-  readOnly
+  readOnly,
+  viewData
 }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(AppReducer, {
@@ -48,7 +49,8 @@ function AppContextProvider({
     roleActions,
     showTitles: false,
     showAllLvl: false,
-    readOnly
+    readOnly,
+    viewData
   });
 
   useEffect(() => {
@@ -83,7 +85,8 @@ AppContextProvider.propTypes = {
   }),
   encodedSlots: PropTypes.string,
   layout: PropTypes.number,
-  readOnly: PropTypes.bool
+  readOnly: PropTypes.bool,
+  viewData: PropTypes.shape()
 };
 
 AppContextProvider.defaultProps = {
@@ -91,7 +94,8 @@ AppContextProvider.defaultProps = {
   selectedJob: undefined,
   encodedSlots: undefined,
   layout: 0,
-  readOnly: false
+  readOnly: false,
+  viewData: undefined
 };
 
 export default AppContextProvider;

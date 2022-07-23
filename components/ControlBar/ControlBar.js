@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
 import Sharing from 'components/Sharing';
+import SaveLayout from 'components/SaveLayout';
 import ExportToMacros from 'components/ExportToMacro';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import styles from './ControlBar.module.scss';
@@ -41,42 +41,56 @@ export function ToggleMaxLvl() {
       data-active={showAllLvl}
       className={styles.toggleTitlesBtn}
     >
-      <img src="/images/icon-titles.svg" className="btn-icon" alt="Max Lvl Icon" />
+      <img src="/images/icon-levels.svg" className="btn-icon" alt="Max Lvl Icon" />
       All levels
     </button>
   );
 }
 
-export function ControlBar({ jobs, selectedJob }) {
+export function ControlBar({ selectedJob }) {
+  const appDispatch = useAppDispatch();
   const { readOnly } = useAppState();
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.groupLeft}>
-        { !readOnly && (
-          <JobSelectContextProvider>
-            <JobSelect jobs={jobs} selectedJob={selectedJob} />
-          </JobSelectContextProvider>
-        )}
-      </div>
+  function handleEdit() {
+    appDispatch({ type: 'editLayout' });
+  }
 
-      <div className={styles.groupRight}>
-        { !readOnly && (
+  return (
+    <div className={styles.controlBar}>
+      <div className={styles.container}>
+        <div className={styles.groupRight}>
+          { !readOnly && (
           <div className={styles.control}>
             <ToggleMaxLvl />
           </div>
-        )}
+          )}
 
-        <div className={styles.control}>
-          <ToggleTitles />
+          <div className={styles.control}>
+            <ToggleTitles />
+          </div>
         </div>
 
-        <div className={styles.control}>
-          <ExportToMacros />
-        </div>
+        <div className={styles.groupRight}>
+          { readOnly ? (
+            <div className={styles.control}>
+              <button type="button" onClick={handleEdit}>
+                <img src="/images/icon-save.svg" className="btn-icon" alt="Edit Icon" />
+                Edit
+              </button>
+            </div>
+          ) : (
+            <div className={styles.control}>
+              <SaveLayout />
+            </div>
+          )}
 
-        <div className={styles.control}>
-          <Sharing selectedJob={selectedJob} />
+          <div className={styles.control}>
+            <ExportToMacros />
+          </div>
+
+          <div className={styles.control}>
+            <Sharing selectedJob={selectedJob} />
+          </div>
         </div>
       </div>
     </div>

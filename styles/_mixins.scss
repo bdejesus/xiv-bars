@@ -42,9 +42,15 @@ $spacing-xl-2: 64px;
 $screen-xxs: 320px;
 $screen-xs: 480px;
 $screen-sm: 720px;
-$screen-lg: 1080px;
-$screen-xl: 1500px;
 $screen-md: 980px;
+$screen-lg: 1080px;
+$screen-xl: 1900px;
+
+
+// 1440 x 900
+// 1920 x 1080
+// 2560 x 1440
+// 3840 x 2160
 
 $screen-xs-max: $screen-sm - 1;
 $screen-sm-max: $screen-md - 1;
