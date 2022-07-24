@@ -7,7 +7,7 @@ export function Lore({ selectedJob }) {
       className={styles.lore}
     >
       <h3 className={styles.loreTitle}>
-        {selectedJob.Name} Lore
+        Lore
       </h3>
       <div
         className={styles.loreBody}

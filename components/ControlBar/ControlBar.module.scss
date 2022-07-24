@@ -27,8 +27,8 @@
   align-items: flex-end;
   display: flex;
   flex-direction: row;
-  padding-bottom: $spacing-sm;
-  padding-top: $spacing-base;
+  padding-bottom: $spacing-xs;
+  padding-top: 12px;
 
   + .groupRight {
     margin-left: $spacing-sm;

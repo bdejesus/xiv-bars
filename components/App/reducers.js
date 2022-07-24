@@ -103,6 +103,10 @@ export default function AppReducer(state, payload) {
       return { ...state, readOnly: false };
     }
 
+    case 'saveLayout': {
+      return { ...state, readOnly: true, viewData: payload.props.data };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${payload.type}`);
     }

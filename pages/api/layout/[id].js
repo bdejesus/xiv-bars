@@ -3,7 +3,7 @@ import db from 'lib/db';
 async function showLayout(req, res) {
   try {
     const result = await db.layout.findUnique({
-      where: { id: Number.parseInt(req.query.id, 6) }
+      where: { id: parseInt(req.query.id, 10) }
     });
 
     res.status(200).json(result);

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import Job from '../Job';
 
 import styles from './JobsList.module.scss';
@@ -9,10 +10,7 @@ export function JobsList({ title, jobs }) {
       <h4 className={styles.title}>{title}</h4>
       <ul className={styles.jobList}>
         {jobs.map((job) => (
-          <li
-            key={job.Name}
-            value={job.ID}
-          >
+          <li key={job.Name} value={job.ID}>
             <a href={`/job/${job.Abbr}`} draggable={false}>
               <Job job={job} />
             </a>

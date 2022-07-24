@@ -9,7 +9,7 @@
 
 .buttonToggle {
   align-items: stretch;
-  border-bottom: none;
+  border: none;
   border-radius: $border-radius $border-radius 0 0;
   display: flex;
   flex-direction: row;
@@ -21,7 +21,7 @@
 
   .label {
     align-items: center;
-    color: rgb(255 255 255 / 66%);
+    color: #ddd;
     display: flex;
     height: 32px;
     padding: 0 16px;
@@ -41,7 +41,7 @@
     border-bottom: none;
 
     .label[data-selected="false"] {
-      color: #fff;
+      color: $color-alt;
     }
   }
 

@@ -47,29 +47,29 @@
       pointer-events: auto;
     }
   }
-}
 
-.shareUrlInput {
-  background-color: $panel-bg;
-  border: 2px solid $panel-bg-dark-2;
-  border-radius: $border-radius 0 0 $border-radius;
-  color: #999;
-  display: block;
-  font-family: Verdana, sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  height: 32px;
-  padding: 10px;
-  transition: background-color 0.33s ease;
-  width: 200px;
-  margin: 0;
+  .shareUrlInput {
+    background-color: $panel-bg;
+    border: 2px solid $panel-bg-dark-2;
+    border-radius: $border-radius 0 0 $border-radius;
+    color: #999;
+    display: block;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    height: 32px;
+    padding: 10px;
+    transition: background-color 0.33s ease;
+    width: 200px;
+    margin: 0;
 
-  &:focus {
-    background-color: rgb(255 255 255 / 20%);
-    color: #ccc;
+    &:focus {
+      background-color: rgb(255 255 255 / 20%);
+      color: #ccc;
+    }
   }
-}
 
-.copyButton {
-  border-radius: 0 $border-radius $border-radius 0;
+  .copyButton {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
 }

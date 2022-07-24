@@ -1,6 +1,6 @@
 {
   "name": "xiv-bars",
-  "description": "The source code for the Final Fantasy XIV W Cross Hotbar (WXHB) Planning and Simulation Tool built in NextJS.",
+  "description": "The source code for the Final Fantasy XIV Cross Hotbar (XHB) Planning Tool.",
   "private": true,
   "license": "GPL-3.0",
   "homepage": "https://xivbars.bejezus.com",

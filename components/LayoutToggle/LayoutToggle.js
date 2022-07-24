@@ -39,7 +39,7 @@ export function LayoutToggle() {
             data-selected={layouts[layout] === 'chotbar'}
             data-disabled={readOnly && layouts[layout] !== 'chotbar'}
           >
-            <abbr title="W Cross Hotbar">WXHB</abbr>
+            <abbr title="Cross Hotbar">XHB</abbr>
           </span>
           <span
             className={styles.label}

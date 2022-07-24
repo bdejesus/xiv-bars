@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import fetch from 'node-fetch';
-import { useAppState } from 'components/App/context';
+import { useAppDispatch, useAppState } from 'components/App/context';
 
 import styles from './SaveLayout.module.scss';
 
@@ -14,6 +14,7 @@ function SaveForm({ onSubmit }) {
     viewData,
     selectedJob
   } = useAppState();
+  const appDispatch = useAppDispatch();
 
   function saveLayout() {
     const title = titleField.current.value;
@@ -37,7 +38,10 @@ function SaveForm({ onSubmit }) {
       headers: { 'Content-Type': 'application/json' }
     };
 
-    fetch('/api/layout/save', fetchOptions).then(() => onSubmit());
+    fetch('/api/layout/save', fetchOptions).then(() => {
+      onSubmit();
+      appDispatch({ type: 'saveLayout', props: { ...viewData, ...body } });
+    });
   }
 
   return (

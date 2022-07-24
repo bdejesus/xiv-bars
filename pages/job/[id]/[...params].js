@@ -88,7 +88,7 @@ export async function getServerSideProps(context) {
       : null;
 
     const viewData = await db.layout.findFirst({
-      where: { id: Number.parseInt(layoutId, 6), jobId: selectedJob.Abbr }
+      where: { id: parseInt(layoutId, 10), jobId: selectedJob.Abbr }
     });
 
     const { layout, encodedSlots } = viewData;
@@ -118,6 +118,7 @@ export async function getServerSideProps(context) {
       }
     };
   } catch (error) {
+    console.error(error);
     return { notFound: true };
   }
 }

@@ -29,8 +29,8 @@
   overflow: hidden;
   position: relative;
   text-align: center;
-  transition-duration: 0.15s;
-  transition-property: border, box-shadow, opacity, filter;
+  transition-duration: 0.33s;
+  transition-property: border, box-shadow, opacity, filter, transform;
   transition-timing-function: ease;
   width: $slot-size;
 
@@ -41,6 +41,7 @@
     cursor: pointer;
     cursor: grab;
     cursor: grab;
+    transform: scale(1.1);
   }
 
   &:focus {

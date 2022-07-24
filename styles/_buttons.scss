@@ -4,9 +4,11 @@ button,
 .button {
   align-items: center;
   background: #030303;
-  border: 0;
-  border-radius: 4px;
-  color: #999;
+  border: 1px solid #666;
+  border-bottom: 1px solid #333;
+  border-right: 1px solid #333;
+  border-radius: $border-radius;
+  color: #ddd;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -32,7 +34,6 @@ button,
     display: block;
     height: 16px;
     margin-right: $spacing-xs;
-    opacity: 0.66;
     transition: opacity 0.2s ease;
     width: 16px;
   }
@@ -42,7 +43,8 @@ button,
   &:focus,
   &[data-active="true"] {
     background-color: $panel-bg-dark;
-    color: #fff;
+    border-color: $color-alt;
+    color: $color-alt;
 
     .btn-icon {
       opacity: 1;

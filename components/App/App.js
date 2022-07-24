@@ -64,8 +64,10 @@ export function App() {
           <div className="app-view">
             <div className="container">
               { isEditing && <SaveForm /> }
+
               <div className={styles.container}>
                 <div className={`${styles.sidebar}`}>
+
                   { readOnly ? (
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />
@@ -78,6 +80,7 @@ export function App() {
                         jobs={jobs}
                         selectedJob={selectedJob}
                         toOpen={() => setShowJobMenu(true)}
+                        disabled={readOnly || isEditing}
                       />
                       <ActionPanel
                         roleActions={roleActions}
@@ -85,6 +88,7 @@ export function App() {
                       />
                     </>
                   )}
+
                 </div>
 
                 <div className={styles.main}>
