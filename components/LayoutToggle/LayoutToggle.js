@@ -9,19 +9,9 @@ export function LayoutToggle() {
   const appDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
-    if (layouts[layout] === 'chotbar') {
-      router.push({
-        pathname: router.pathname,
-        query: { ...router.query, l: 1 }
-      });
-      appDispatch({ type: 'updateLayout', layout: 1 });
-    } else {
-      router.push({
-        pathname: router.pathname,
-        query: { ...router.query, l: 0 }
-      });
-      appDispatch({ type: 'updateLayout', layout: 0 });
-    }
+    const layoutValue = (layouts[layout] === 'chotbar') ? 1 : 0;
+    router.push({ pathname: router.pathname, query: { ...router.query, l: layoutValue } });
+    appDispatch({ type: 'updateLayout', layout: layoutValue });
   }
 
   return (
