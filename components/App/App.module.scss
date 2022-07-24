@@ -101,6 +101,7 @@ $icon-size: 6px;
   position: sticky;
   top: 104px + $spacing-lg;
   min-width: 320px;
+  z-index: 5;
 
   .section {
     padding-right: $spacing-xl;

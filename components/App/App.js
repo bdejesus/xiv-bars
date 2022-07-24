@@ -1,22 +1,22 @@
-/* eslint-disable react/no-danger */
-
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { group } from 'lib/utils/array';
 import { useAppDispatch, useAppState } from 'components/App/context';
-import ControlBar from 'components/ControlBar';
-import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
-import ActionPanel from 'components/ActionPanel';
-import UILayout from 'components/UILayout';
+import Modal from 'components/Modal';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
+import ControlBar from 'components/ControlBar';
 import SelectedJob from 'components/JobSelect/SelectedJob';
+import JobSelect from 'components/JobSelect';
+import JobMenu from 'components/JobSelect/JobMenu';
+import UILayout from 'components/UILayout';
+import ActionPanel from 'components/ActionPanel';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
 
 export function App() {
+  const [showJobMenu, setShowJobMenu] = useState(false);
   const appDispatch = useAppDispatch();
-  const router = useRouter();
   const {
     jobs,
     selectedJob,
@@ -25,6 +25,8 @@ export function App() {
     readOnly,
     viewData
   } = useAppState();
+
+  const router = useRouter();
 
   useEffect(() => {
     // Decode Slots query param
@@ -65,10 +67,15 @@ export function App() {
                     </div>
                   ) : (
                     <>
-                      <JobSelectContextProvider>
-                        <JobSelect jobs={jobs} selectedJob={selectedJob} />
-                      </JobSelectContextProvider>
-                      <ActionPanel roleActions={roleActions} actions={actions} />
+                      <JobSelect
+                        jobs={jobs}
+                        selectedJob={selectedJob}
+                        toOpen={() => setShowJobMenu(true)}
+                      />
+                      <ActionPanel
+                        roleActions={roleActions}
+                        actions={actions}
+                      />
                     </>
                   )}
                 </div>
@@ -82,6 +89,13 @@ export function App() {
             </div>
           </div>
         )}
+
+        <Modal
+          hidden={!showJobMenu}
+          toClose={() => setShowJobMenu(false)}
+        >
+          <JobMenu jobs={jobs} />
+        </Modal>
       </SelectedActionContextProvider>
     </TooltipContextProvider>
   );

@@ -98,7 +98,6 @@ export function ControlBar({ selectedJob }) {
 }
 
 ControlBar.propTypes = {
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape()
 };
 
