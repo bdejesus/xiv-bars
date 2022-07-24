@@ -55,7 +55,9 @@ function AppContextProvider({
 
   useEffect(() => {
     if (encodedSlots) {
-      const decodedSlots = group(encodedSlots.split(','), 16);
+      const decodedSlots = state.layout === 1
+        ? group(encodedSlots.split(','), 12)
+        : group(encodedSlots.split(','), 16);
       dispatch({
         type: 'bulkLoadActionsToSlots',
         slottedActions: decodedSlots

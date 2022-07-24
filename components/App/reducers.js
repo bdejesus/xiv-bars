@@ -61,10 +61,7 @@ export default function AppReducer(state, payload) {
           };
 
           const slottedAction = actionLib().find((action) => action.ID === parsedID);
-
-          if (slottedAction) {
-            slotGroup[slotIndex].action = slottedAction;
-          }
+          if (slottedAction) slotGroup[slotIndex].action = slottedAction;
         });
       });
 
