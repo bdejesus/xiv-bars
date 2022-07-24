@@ -25,7 +25,7 @@ model Layout {
   userId        Int
   title         String
   description   String?
-  jobId         Int
+  jobId         String
   isPvp         Boolean   @default(false)
   layout        Int
   encodedSlots  String

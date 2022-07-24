@@ -10,12 +10,14 @@ import JobSelect from 'components/JobSelect';
 import JobMenu from 'components/JobSelect/JobMenu';
 import UILayout from 'components/UILayout';
 import ActionPanel from 'components/ActionPanel';
+import SaveForm from 'components/SaveLayout/SaveForm';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
 
 export function App() {
   const [showJobMenu, setShowJobMenu] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const appDispatch = useAppDispatch();
   const {
     jobs,
@@ -32,22 +34,26 @@ export function App() {
     // Decode Slots query param
     function decodeSlots() {
       const { s1, s } = router.query;
-      if (s1) return group(s1.split(','), 16);
-      if (s) return JSON.parse(s);
-      return null;
-    }
-
-    if (router) {
-      const slots = decodeSlots();
+      let slots;
+      if (s1) slots = group(s1.split(','), 16);
+      if (s) slots = JSON.parse(s);
 
       if (slots) {
-        appDispatch({
-          type: 'bulkLoadActionsToSlots',
-          slottedActions: slots
-        });
+        appDispatch({ type: 'bulkLoadActionsToSlots', slottedActions: slots });
       }
     }
+
+    if (router) decodeSlots();
   }, [router]);
+
+  useEffect(() => {
+    const { params } = router.query;
+
+    if (params) {
+      const [layoutId] = params;
+      setIsEditing(!readOnly && !!layoutId);
+    }
+  }, [readOnly]);
 
   return (
     <TooltipContextProvider>
@@ -57,6 +63,7 @@ export function App() {
         { selectedJob && (
           <div className="app-view">
             <div className="container">
+              { isEditing && <SaveForm /> }
               <div className={styles.container}>
                 <div className={`${styles.sidebar}`}>
                   { readOnly ? (

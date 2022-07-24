@@ -3,12 +3,19 @@ import db from 'lib/db';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 
-async function createLayout(req, res) {
+async function saveLayout(req, res) {
   try {
     const session = await unstable_getServerSession(req, res, authOptions);
-    await db.layout.create({
-      data: { ...req.body, userId: session.user.id }
-    });
+
+    if (req.body.id) {
+      await db.layout.update({
+        where: { id: req.body.id }, data: req.body.data
+      });
+    } else {
+      await db.layout.create({
+        data: { ...req.body.data, userId: session.user.id }
+      });
+    }
 
     res.status(200).json({ status: 'ok' });
   } catch (error) {
@@ -17,4 +24,4 @@ async function createLayout(req, res) {
   }
 }
 
-export default createLayout;
+export default saveLayout;

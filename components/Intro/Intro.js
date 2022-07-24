@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
-import { JobSelectContextProvider } from 'components/JobSelect/context';
 
 import styles from './Intro.module.scss';
 
@@ -14,12 +13,10 @@ export function Intro({ jobs }) {
 
       <div className="app-view">
         <div className="container">
-          <JobSelectContextProvider>
-            <h2 className={styles.title} id="jobSelectTitle">
-              Select A Job/Class
-            </h2>
-            <JobMenu jobs={jobs} />
-          </JobSelectContextProvider>
+          <h2 className={styles.title} id="jobSelectTitle">
+            Select A Job/Class
+          </h2>
+          <JobMenu jobs={jobs} />
         </div>
       </div>
     </>

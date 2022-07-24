@@ -8,14 +8,25 @@
     margin-top: 0;
   }
 
-  .titleField {
-    font-size: $font-size-xl;
-    font-weight: 100;
-  }
+}
 
-  .descriptionField {
-    font-size: $font-size-base;
-    height: 100px;
-    resize: vertical;
+.form {
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding-bottom: $spacing-base;
+  margin-bottom: $spacing-base;
+
+  :global(.control) {
+    margin-bottom: $spacing-xs;
   }
+}
+
+.titleField {
+  font-size: $font-size-xl;
+  font-weight: 100;
+}
+
+.descriptionField {
+  font-size: $font-size-base;
+  height: 60px;
+  resize: vertical;
 }

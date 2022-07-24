@@ -49,32 +49,6 @@ export default function Index({
         readOnly={readOnly}
         viewData={viewData}
       >
-        {/* <TooltipContextProvider>
-          <SelectedActionContextProvider>
-            <ControlBar jobs={jobs} selectedJob={selectedJob} />
-
-            <div className="app-view">
-              <div className="container">
-                <div className={styles.container}>
-                  <div className={`${styles.sidebar}`}>
-                    <div className={styles.section}>
-                      <SelectedJob job={selectedJob} />
-                      <h3>{layoutData.title}</h3>
-                      <p>{layoutData.description}</p>
-                    </div>
-                  </div>
-
-                  <div className={styles.main}>
-                    <SlotLayout />
-                  </div>
-                </div>
-
-                <Tooltip />
-              </div>
-            </div>
-          </SelectedActionContextProvider>
-        </TooltipContextProvider> */}
-
         <App />
 
         <div className="container section">
@@ -114,7 +88,7 @@ export async function getServerSideProps(context) {
       : null;
 
     const viewData = await db.layout.findFirst({
-      where: { id: Number.parseInt(layoutId, 6), jobId: selectedJob.ID }
+      where: { id: Number.parseInt(layoutId, 6), jobId: selectedJob.Abbr }
     });
 
     const { layout, encodedSlots } = viewData;

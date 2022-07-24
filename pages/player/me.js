@@ -5,7 +5,6 @@ import fetch from 'node-fetch';
 import Link from 'next/link';
 import GlobalHeader from 'components/GlobalHeader';
 import JobMenu from 'components/JobSelect/JobMenu';
-import { JobSelectContextProvider } from 'components/JobSelect/context';
 import Job from 'components/JobSelect/Job';
 import { listJobs, } from 'lib/api';
 
@@ -40,14 +39,14 @@ export default function Player(pageProps) {
 
             <ul className={styles.layoutsList}>
               {layouts.map((layout) => {
-                const job = jobs.find((j) => j.ID === layout.jobId);
+                const job = jobs.find((j) => j.Abbr === layout.jobId);
 
                 return (
                   <li key={layout.id}>
                     <div className={styles.card}>
                       <Job job={job} />
                       <h4>
-                        <Link href={`/job/${job.Abbr}/${layout.id}`}>
+                        <Link href={`/job/${layout.jobId}/${layout.id}`}>
                           <a>{layout.title}</a>
                         </Link>
                       </h4>
@@ -62,12 +61,10 @@ export default function Player(pageProps) {
         ) : (
           <div className="app-view">
             <div className="container">
-              <JobSelectContextProvider>
-                <h2 id="jobSelectTitle">
-                  No Layouts – Create a new one?
-                </h2>
-                <JobMenu jobs={jobs} />
-              </JobSelectContextProvider>
+              <h2 id="jobSelectTitle">
+                No Layouts – Create a new one?
+              </h2>
+              <JobMenu jobs={jobs} />
             </div>
           </div>
         )}
