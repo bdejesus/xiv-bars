@@ -10,7 +10,7 @@ import JobSelect from 'components/JobSelect';
 import JobMenu from 'components/JobSelect/JobMenu';
 import UILayout from 'components/UILayout';
 import ActionPanel from 'components/ActionPanel';
-import SaveForm from 'components/SaveLayout/SaveForm';
+import SaveForm from 'components/SaveForm';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
@@ -25,7 +25,8 @@ export function App() {
     actions,
     roleActions,
     readOnly,
-    viewData
+    viewData,
+    viewAction
   } = useAppState();
 
   const router = useRouter();
@@ -55,15 +56,21 @@ export function App() {
     }
   }, [readOnly]);
 
+  useEffect(() => {
+    console.log(viewData);
+  }, [viewData]);
+
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
         { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
 
+        { viewAction === 'edit' && <SaveForm /> }
+
         { selectedJob && (
           <div className="app-view">
+
             <div className="container">
-              { isEditing && <SaveForm /> }
 
               <div className={styles.container}>
                 <div className={`${styles.sidebar}`}>

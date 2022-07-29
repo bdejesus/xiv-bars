@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import fetch from 'node-fetch';
 import { useAppDispatch, useAppState } from 'components/App/context';
 
-import styles from './SaveLayout.module.scss';
+import styles from './SaveForm.module.scss';
 
 function SaveForm({ onSubmit }) {
   const titleField = useRef();
@@ -45,43 +45,45 @@ function SaveForm({ onSubmit }) {
   }
 
   return (
-    <form className={styles.form}>
-      <div className="control">
-        <label htmlFor="title">
-          <div>Title</div>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            ref={titleField}
-            className={styles.titleField}
-            defaultValue={viewData && viewData.title}
-          />
-        </label>
-      </div>
+    <div className={styles.saveForm}>
+      <form className={`${styles.form} container`}>
+        <div className="control">
+          <label htmlFor="title">
+            <div>Title</div>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              ref={titleField}
+              className={styles.titleField}
+              defaultValue={viewData && viewData.title}
+            />
+          </label>
+        </div>
 
-      <div className="control">
-        <label htmlFor="description">
-          <div>Description</div>
-          <textarea
-            id="description"
-            ref={descriptionField}
-            className={styles.descriptionField}
-            defaultValue={viewData && viewData.description}
-          />
-        </label>
-      </div>
+        <div className="control">
+          <label htmlFor="description">
+            <div>Description</div>
+            <textarea
+              id="description"
+              ref={descriptionField}
+              className={styles.descriptionField}
+              defaultValue={viewData && viewData.description}
+            />
+          </label>
+        </div>
 
-      <div className="modal-footer">
-        <button
-          type="button"
-          onClick={saveLayout}
-          className={styles.submitButton}
-        >
-          Save
-        </button>
-      </div>
-    </form>
+        <div className="modal-footer">
+          <button
+            type="button"
+            onClick={saveLayout}
+            className={styles.submitButton}
+          >
+            Save Layout
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

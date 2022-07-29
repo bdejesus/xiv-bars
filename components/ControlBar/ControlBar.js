@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import Sharing from 'components/Sharing';
-import SaveLayout from 'components/SaveLayout';
 import ExportToMacros from 'components/ExportToMacro';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import styles from './ControlBar.module.scss';
@@ -9,9 +8,7 @@ export function ToggleTitles() {
   const appDispatch = useAppDispatch();
   const { showTitles } = useAppState();
 
-  function handleTitlesToggle() {
-    appDispatch({ type: 'toggleTitles' });
-  }
+  function handleTitlesToggle() { appDispatch({ type: 'toggleTitles' }); }
 
   return (
     <button
@@ -30,9 +27,7 @@ export function ToggleMaxLvl() {
   const appDispatch = useAppDispatch();
   const { showAllLvl } = useAppState();
 
-  function handleMaxLvlToggle() {
-    appDispatch({ type: 'toggleAllLvl' });
-  }
+  function handleMaxLvlToggle() { appDispatch({ type: 'toggleAllLvl' }); }
 
   return (
     <button
@@ -47,22 +42,56 @@ export function ToggleMaxLvl() {
   );
 }
 
-export function ControlBar({ selectedJob }) {
+export function ToggleSaveForm() {
   const appDispatch = useAppDispatch();
-  const { readOnly } = useAppState();
+  const { viewAction, readOnly } = useAppState();
 
-  function handleEdit() {
-    appDispatch({ type: 'editLayout' });
-  }
+  function showForm() { appDispatch({ type: 'editLayout' }); }
+
+  return (
+    <div className={styles.control}>
+      { readOnly ? (
+        <button
+          type="button"
+          onClick={showForm}
+        >
+          <img
+            src="/images/icon-save.svg"
+            className="btn-icon"
+            alt="Edit Icon"
+          />
+          Edit
+        </button>
+      ) : (
+        <button
+          type="button"
+          title="Save this Layout"
+          onClick={showForm}
+          disabled
+        >
+          <img
+            src="/images/icon-save.svg"
+            className="btn-icon"
+            alt="Save Icon"
+          />
+          Save
+        </button>
+      )}
+    </div>
+  );
+}
+
+export function ControlBar({ selectedJob }) {
+  const { readOnly } = useAppState();
 
   return (
     <div className={styles.controlBar}>
       <div className={styles.container}>
         <div className={styles.groupRight}>
           { !readOnly && (
-          <div className={styles.control}>
-            <ToggleMaxLvl />
-          </div>
+            <div className={styles.control}>
+              <ToggleMaxLvl />
+            </div>
           )}
 
           <div className={styles.control}>
@@ -71,18 +100,9 @@ export function ControlBar({ selectedJob }) {
         </div>
 
         <div className={styles.groupRight}>
-          { readOnly ? (
-            <div className={styles.control}>
-              <button type="button" onClick={handleEdit}>
-                <img src="/images/icon-save.svg" className="btn-icon" alt="Edit Icon" />
-                Edit
-              </button>
-            </div>
-          ) : (
-            <div className={styles.control}>
-              <SaveLayout />
-            </div>
-          )}
+          <div className={styles.control}>
+            <ToggleSaveForm />
+          </div>
 
           <div className={styles.control}>
             <ExportToMacros />

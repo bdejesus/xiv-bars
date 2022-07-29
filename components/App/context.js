@@ -28,29 +28,31 @@ function useAppDispatch() {
 
 function AppContextProvider({
   children,
+  jobs,
+  selectedJob,
+  layout,
+  encodedSlots,
   actions,
   roleActions,
-  selectedJob,
-  jobs,
-  encodedSlots,
-  layout,
   readOnly,
-  viewData
+  viewData,
+  viewAction
 }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(AppReducer, {
     jobs,
     selectedJob,
-    chotbar,
-    hotbar,
     layout: layout || parseInt(router.query.l, 10) || 0,
     encodedSlots,
     actions,
     roleActions,
-    showTitles: false,
-    showAllLvl: false,
     readOnly,
-    viewData
+    viewData,
+    viewAction,
+    chotbar,
+    hotbar,
+    showTitles: false,
+    showAllLvl: false
   });
 
   useEffect(() => {
@@ -88,7 +90,8 @@ AppContextProvider.propTypes = {
   encodedSlots: PropTypes.string,
   layout: PropTypes.number,
   readOnly: PropTypes.bool,
-  viewData: PropTypes.shape()
+  viewData: PropTypes.shape(),
+  viewAction: PropTypes.oneOf(['show', 'edit'])
 };
 
 AppContextProvider.defaultProps = {
@@ -97,7 +100,8 @@ AppContextProvider.defaultProps = {
   encodedSlots: undefined,
   layout: 0,
   readOnly: false,
-  viewData: undefined
+  viewData: undefined,
+  viewAction: 'show'
 };
 
 export default AppContextProvider;

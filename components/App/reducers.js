@@ -97,11 +97,16 @@ export default function AppReducer(state, payload) {
     }
 
     case 'editLayout': {
-      return { ...state, readOnly: false };
+      return { ...state, readOnly: false, viewAction: 'edit' };
     }
 
     case 'saveLayout': {
-      return { ...state, readOnly: true, viewData: payload.props.data };
+      return {
+        ...state,
+        readOnly: true,
+        viewData: payload.props.data,
+        viewAction: 'show'
+      };
     }
 
     default: {

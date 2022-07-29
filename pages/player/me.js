@@ -44,14 +44,13 @@ export default function Player(pageProps) {
                 return (
                   <li key={layout.id}>
                     <div className={styles.card}>
-                      <Job job={job} />
                       <h4>
                         <Link href={`/job/${layout.jobId}/${layout.id}`}>
                           <a>{layout.title}</a>
                         </Link>
                       </h4>
-
                       <p className={styles.description}>{layout.description}</p>
+                      <Job job={job} />
                     </div>
                   </li>
                 );

@@ -1,19 +1,11 @@
 @import 'styles/mixins';
 
-.content {
-  padding: $spacing-base;
-  max-width: 420px;
-
-  h3 {
-    margin-top: 0;
-  }
-
+.saveForm {
+  background-color: rgba(0,0,0,0.75);
 }
 
 .form {
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  padding-bottom: $spacing-base;
-  margin-bottom: $spacing-base;
+  padding: $spacing-base 0;
 
   :global(.control) {
     margin-bottom: $spacing-xs;
@@ -27,6 +19,8 @@
 
 .descriptionField {
   font-size: $font-size-base;
-  height: 60px;
+  max-height: 118px;
+  min-height: 56px;
+  height: 56px;
   resize: vertical;
 }

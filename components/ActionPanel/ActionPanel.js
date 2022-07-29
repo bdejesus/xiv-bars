@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { useAppState } from 'components/App/context';
@@ -15,8 +15,10 @@ import Tabs from './Tabs';
 import styles from './ActionPanel.module.scss';
 
 export function ActionPanel({ actions, roleActions }) {
+  const actionPanelRef = useRef();
   const { showAllLvl } = useAppState();
   const [activeTab, setActiveTab] = useState('panel-actions');
+  const [maxHeight, setMaxHeight] = useState();
 
   function handleTabClick(e) {
     const { target } = e.currentTarget.dataset;
@@ -27,8 +29,15 @@ export function ActionPanel({ actions, roleActions }) {
     ? actions.filter((action) => !action.upgradable)
     : actions;
 
+  useEffect(() => {
+    const panelTop = actionPanelRef.current.getBoundingClientRect().y;
+    const margin = 20;
+    const height = window.innerHeight - panelTop - margin;
+    setMaxHeight(height);
+  }, []);
+
   return (
-    <div className={styles.actionsPanel}>
+    <div className={styles.actionsPanel} ref={actionPanelRef} style={{ maxHeight }}>
       <Tabs onTabClick={(e) => handleTabClick(e)} activeTab={activeTab} />
 
       { activeTab === 'panel-actions' && (
