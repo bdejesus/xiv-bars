@@ -35,6 +35,7 @@ export function Sharing({ selectedJob }) {
 
     const shareURL = readOnly ? getLayoutUrl() : buildShareUrl();
     urlInput.current.value = shareURL;
+    router.push(shareURL, undefined, { shallow: true });
   }, [encodedSlots]);
 
   function selectInput() {
