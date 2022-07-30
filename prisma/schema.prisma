@@ -17,6 +17,9 @@ model User {
   characterId     Int?      @unique
   layouts         Layout[]
   role            Role      @default(USER)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime?  @updatedAt
+  deletedAt       DateTime?
 }
 
 model Layout {
@@ -29,6 +32,9 @@ model Layout {
   isPvp         Boolean   @default(false)
   layout        Int
   encodedSlots  String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime?  @updatedAt
+  deletedAt     DateTime?
 }
 
 enum Role {

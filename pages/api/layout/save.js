@@ -6,14 +6,22 @@ import { authOptions } from 'pages/api/auth/[...nextauth]';
 async function saveLayout(req, res) {
   try {
     const session = await unstable_getServerSession(req, res, authOptions);
+    if (!session) throw new Error('Not logged in');
 
     if (req.body.id) {
+      const layout = db.layout.findFirst({ where: { id: req.body.id, userId: session.user.id } });
+      if (!layout) throw new Error('Layout not found');
+
       await db.layout.update({
-        where: { id: req.body.id }, data: req.body.data
+        where: { id: req.body.id },
+        data: req.body.data
       });
     } else {
       await db.layout.create({
-        data: { ...req.body.data, userId: session.user.id }
+        data: {
+          ...req.body.data,
+          userId: session.user.id
+        }
       });
     }
 

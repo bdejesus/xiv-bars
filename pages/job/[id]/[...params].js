@@ -91,8 +91,6 @@ export async function getServerSideProps(context) {
       where: { id: parseInt(layoutId, 10), jobId: selectedJob.Abbr }
     });
 
-    const { layout, encodedSlots } = viewData;
-
     let jobActions = [];
     let roleActions = [];
 
@@ -111,9 +109,11 @@ export async function getServerSideProps(context) {
         actions: jobActions,
         selectedJob,
         roleActions,
-        layout,
-        encodedSlots,
-        viewData,
+        viewData: {
+          ...viewData,
+          createdAt: viewData.createdAt.toString(),
+          updatedAt: viewData.updatedAt?.toString() || null
+        },
         viewAction: viewAction || 'show'
       }
     };

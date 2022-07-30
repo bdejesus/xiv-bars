@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useSession } from 'next-auth/react';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
 import { useAppDispatch, useAppState } from 'components/App/context';
@@ -43,40 +44,30 @@ export function ToggleMaxLvl() {
 }
 
 export function ToggleSaveForm() {
+  const { data: session } = useSession();
   const appDispatch = useAppDispatch();
-  const { viewAction, readOnly } = useAppState();
+  const { readOnly, viewData } = useAppState();
+  const canEdit = session
+    && (!readOnly || (session.user.id === viewData.userId));
 
   function showForm() { appDispatch({ type: 'editLayout' }); }
 
   return (
     <div className={styles.control}>
-      { readOnly ? (
-        <button
-          type="button"
-          onClick={showForm}
-        >
-          <img
-            src="/images/icon-save.svg"
-            className="btn-icon"
-            alt="Edit Icon"
-          />
-          Edit
-        </button>
-      ) : (
+      { canEdit && (
         <button
           type="button"
           title="Save this Layout"
           onClick={showForm}
-          disabled
         >
           <img
             src="/images/icon-save.svg"
             className="btn-icon"
-            alt="Save Icon"
+            alt="Details Icon"
           />
-          Save
+          Publish
         </button>
-      )}
+      ) }
     </div>
   );
 }

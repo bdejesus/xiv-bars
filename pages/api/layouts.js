@@ -2,6 +2,7 @@
 import db from 'lib/db';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
+import { ascByKey } from 'lib/utils/array';
 
 export default async function layouts(req, res) {
   try {
@@ -9,7 +10,11 @@ export default async function layouts(req, res) {
     const results = await db.layout.findMany({
       where: { userId: session.user.id }
     });
-    res.status(200).json(results);
+    const sortResults = results
+      .sort(ascByKey('dateCreated'))
+      .sort(ascByKey('title'));
+
+    res.status(200).json(sortResults);
   } catch (error) {
     console.error(error);
     res.status(404).json({ status: 404, message: 'Not Found' });

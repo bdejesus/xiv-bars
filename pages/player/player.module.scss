@@ -3,7 +3,7 @@
 .layoutsList {
   display: grid;
   gap: $spacing-base;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -24,20 +24,23 @@
     line-height: 1.45;
   }
 
-  .description {
-    height: 100px;
-    overflow: hidden;
-    position: relative;
-
-    &::after {
-      background: linear-gradient(to bottom, rgb(0 0 0 / 0%), #111);
-      bottom: 0;
-      content: "";
-      display: block;
-      height: 40px;
-      left: 0;
-      position: absolute;
-      right: 0;
-    }
+  h4 {
+    margin: 0;
   }
+
+  // .description {
+  //   overflow: hidden;
+  //   position: relative;
+
+  //   &::after {
+  //     background: linear-gradient(to bottom, rgb(0 0 0 / 0%), #111);
+  //     bottom: 0;
+  //     content: "";
+  //     display: block;
+  //     height: 40px;
+  //     left: 0;
+  //     position: absolute;
+  //     right: 0;
+  //   }
+  // }
 }

@@ -56,10 +56,6 @@ export function App() {
     }
   }, [readOnly]);
 
-  useEffect(() => {
-    console.log(viewData);
-  }, [viewData]);
-
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>

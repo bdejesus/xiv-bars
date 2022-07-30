@@ -40,8 +40,12 @@ function SaveForm({ onSubmit }) {
 
     fetch('/api/layout/save', fetchOptions).then(() => {
       onSubmit();
-      appDispatch({ type: 'saveLayout', props: { ...viewData, ...body } });
+      appDispatch({ type: 'saveLayout', viewData: { ...viewData, ...body } });
     });
+  }
+
+  function closeForm() {
+    appDispatch({ type: 'cancelLayout' });
   }
 
   return (
@@ -73,13 +77,21 @@ function SaveForm({ onSubmit }) {
           </label>
         </div>
 
-        <div className="modal-footer">
+        <div className={`modal-footer ${styles.actions}`}>
           <button
             type="button"
             onClick={saveLayout}
             className={styles.submitButton}
           >
             Save Layout
+          </button>
+
+          <button
+            type="button"
+            onClick={closeForm}
+            className={styles.cancelButton}
+          >
+            Cancel
           </button>
         </div>
       </form>

@@ -104,7 +104,15 @@ export default function AppReducer(state, payload) {
       return {
         ...state,
         readOnly: true,
-        viewData: payload.props.data,
+        viewData: payload.viewData,
+        viewAction: 'show'
+      };
+    }
+
+    case 'cancelLayout': {
+      return {
+        ...state,
+        readOnly: true,
         viewAction: 'show'
       };
     }

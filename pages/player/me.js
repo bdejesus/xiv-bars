@@ -18,7 +18,9 @@ export default function Player(pageProps) {
   useEffect(() => {
     fetch('/api/layouts')
       .then((data) => data.json())
-      .then((json) => setLayouts(json));
+      .then((json) => {
+        setLayouts(json);
+      });
   }, []);
 
   return (
@@ -49,8 +51,13 @@ export default function Player(pageProps) {
                           <a>{layout.title}</a>
                         </Link>
                       </h4>
-                      <p className={styles.description}>{layout.description}</p>
+                      <p className={styles.description}>
+                        {layout.description}
+                      </p>
                       <Job job={job} />
+                      <div>
+                        <small>{layout.createdAt}</small>
+                      </div>
                     </div>
                   </li>
                 );

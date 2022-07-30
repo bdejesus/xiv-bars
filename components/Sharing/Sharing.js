@@ -29,7 +29,8 @@ export function Sharing({ selectedJob }) {
     }
 
     function getLayoutUrl() {
-      return `${host.host}/job/${selectedJob.Abbr}/${router.query.layoutId}`;
+      const [layoutId] = router.query.params;
+      return `${host.host}/job/${selectedJob.Abbr}/${layoutId}`;
     }
 
     const shareURL = readOnly ? getLayoutUrl() : buildShareUrl();
