@@ -1,0 +1,11 @@
+.system-message {
+  border-radius: 4px;
+  display: block;
+  padding: $spacing-base $spacing-lg;
+  margin: $spacing-xl 0;
+
+  &.error {
+    background-color: rgb(180,0,0);
+    color: #fff;
+  }
+}
