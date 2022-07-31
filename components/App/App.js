@@ -26,7 +26,8 @@ export function App() {
     roleActions,
     readOnly,
     viewData,
-    viewAction
+    viewAction,
+    message
   } = useAppState();
 
   const router = useRouter();
@@ -59,6 +60,12 @@ export function App() {
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
+        { message && (
+          <div className="system-message">
+            System Message
+          </div>
+        )}
+
         { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
 
         { viewAction === 'edit' && <SaveForm /> }

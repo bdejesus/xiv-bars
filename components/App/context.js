@@ -49,6 +49,7 @@ function AppContextProvider({
     readOnly,
     viewData,
     viewAction,
+    message: undefined,
     chotbar,
     hotbar,
     showTitles: false,

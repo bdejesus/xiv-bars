@@ -105,16 +105,17 @@ export default function AppReducer(state, payload) {
         ...state,
         readOnly: true,
         viewData: payload.viewData,
-        viewAction: 'show'
+        viewAction: 'show',
+        message: { type: 'success', body: 'Success!' }
       };
     }
 
     case 'cancelLayout': {
-      return {
-        ...state,
-        readOnly: true,
-        viewAction: 'show'
-      };
+      return { ...state, readOnly: true, viewAction: 'show' };
+    }
+
+    case 'setMessage': {
+      return { ...state, message: payload.message };
     }
 
     default: {

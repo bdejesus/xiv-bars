@@ -4,7 +4,7 @@ export function renderMeta(title, description, canonical) {
   return (
     <>
       <meta name="description" content={description} />
-      <meta name="keywords" content="hotbar cross ffxiv endwalker simulator xhb wxhb controller xiv fantasy final tool hotbars simulate planner interface configurations pc ps4 layouts" />
+      <meta name="keywords" content="hotbar cross ffxiv endwalker simulator xhb wxhb controller xiv fantasy final tool hotbars simulate planner interface configurations pc ps4 ps5 layouts" />
       <link rel="preconnect" href="https://xivapi.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
 

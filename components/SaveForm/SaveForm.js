@@ -41,6 +41,15 @@ function SaveForm({ onSubmit }) {
     fetch('/api/layout/save', fetchOptions).then(() => {
       onSubmit();
       appDispatch({ type: 'saveLayout', viewData: { ...viewData, ...body } });
+    }).catch((error) => {
+      console.error(error);
+      appDispatch({
+        type: 'setMessage',
+        message: {
+          type: 'error',
+          body: 'Couldn’t save layout. Please try again'
+        }
+      });
     });
   }
 
