@@ -50,6 +50,27 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+
+  a {
+    color: #666;
+    display: inline-block;
+    font-size: $font-size-base;
+    padding: $spacing-xs $spacing-sm;
+  }
+}
+
+.nav {
+  margin-right: $spacing-base;
+
+  a {
+    border-radius: 6px;
+
+    &:hover {
+      background-color: #eee;
+      color: #333;
+      text-decoration: none;
+    }
+  }
 }
 
 .email {

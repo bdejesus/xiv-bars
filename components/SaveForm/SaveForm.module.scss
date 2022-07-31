@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .saveForm {
   background-color: $panel-bg;
@@ -19,9 +19,9 @@
 
 .descriptionField {
   font-size: $font-size-base;
+  height: 56px;
   max-height: 118px;
   min-height: 56px;
-  height: 56px;
   resize: vertical;
 }
 

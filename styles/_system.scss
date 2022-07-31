@@ -1,12 +1,12 @@
 .system-message {
   border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
   display: block;
-  padding: $spacing-base $spacing-lg;
   margin: $spacing-xl 0;
+  padding: $spacing-base $spacing-lg;
 
   &.error {
-    background-color: rgb(180,0,0);
+    background-color: rgb(180 0 0);
     color: #fff;
   }
 }

@@ -98,9 +98,9 @@ $icon-size: 6px;
 
 .sidebar {
   flex: 0 0;
+  min-width: 320px;
   position: sticky;
   top: 104px + $spacing-lg;
-  min-width: 320px;
   z-index: 5;
 
   .section {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useSession } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
 import { useAppDispatch, useAppState } from 'components/App/context';
@@ -52,9 +52,14 @@ export function ToggleSaveForm() {
 
   function showForm() { appDispatch({ type: 'editLayout' }); }
 
+  function handleSignin(e) {
+    e.preventDefault();
+    signIn();
+  }
+
   return (
     <div className={styles.control}>
-      { canEdit && (
+      { canEdit ? (
         <button
           type="button"
           title="Save this Layout"
@@ -67,6 +72,10 @@ export function ToggleSaveForm() {
           />
           Publish
         </button>
+      ) : (
+        <a href="/api/auth/signin" onClick={handleSignin}>
+          Sign in to save and publish your layout
+        </a>
       ) }
     </div>
   );

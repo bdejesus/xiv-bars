@@ -1,8 +1,8 @@
 @import "styles/mixins";
 
 .container {
-  padding-bottom: $spacing-base;
   margin-bottom: $spacing-base;
+  padding-bottom: $spacing-base;
 
   &:last-child {
     margin-bottom: 0;

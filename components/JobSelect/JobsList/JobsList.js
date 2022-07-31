@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import Link from 'next/link';
 import Job from '../Job';
 
 import styles from './JobsList.module.scss';

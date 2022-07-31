@@ -13,14 +13,14 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0;
-  max-width: $screen-lg;
   margin: 0 auto;
+  max-width: $screen-lg;
+  padding: 0;
 }
 
 .groupLeft {
-  margin-left: -$spacing-sm;
   flex: 1 1 auto;
+  margin-left: -$spacing-sm;
 }
 
 .groupRight {

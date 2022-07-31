@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import I18n from 'lib/I18n/locale/en-US';
-import CloseButton from 'components/CloseButton';
 import Modal from 'components/Modal';
 import styles from './ExportToMacros.module.scss';
 

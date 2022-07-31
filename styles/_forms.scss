@@ -1,8 +1,7 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .control {
   margin-bottom: $spacing-base;
-
 }
 
 label {
@@ -10,7 +9,7 @@ label {
   margin: 0;
 }
 
-input[type='text'],
+input[type="text"],
 textarea {
   background-color: $panel-bg-dark;
   border: none;
@@ -19,10 +18,10 @@ textarea {
   display: block;
   margin-bottom: $spacing-sm;
   padding: $spacing-sm;
-  width: 100%;
-  transition-property: background-color, color, outline;
   transition-duration: 0.15s;
+  transition-property: background-color, color, outline;
   transition-timing-function: ease;
+  width: 100%;
 
   &:focus {
     background-color: #333;

@@ -38,17 +38,24 @@ export function GlobalHeader() {
         { session
           ? (
             <>
-              <div className={styles.email}>
+              <nav className={styles.nav}>
                 <Link href="/player/me">
                   <a>
-                    {session.user.name || session.user.email}
+                    My Layouts
                   </a>
                 </Link>
+              </nav>
+
+              <div className={styles.email}>
+                {session.user.name || session.user.email}
               </div>
-              <button type="button" onClick={handleSignOut}>Log out</button>
+
+              <a className={styles.logout} href="/api/auth/signout" onClick={handleSignOut}>
+                Log out
+              </a>
             </>
           )
-          : <button type="button" onClick={handleSignIn}>Login</button>}
+          : <button type="button" onClick={handleSignIn}>Sign in</button>}
       </div>
     </div>
   );
