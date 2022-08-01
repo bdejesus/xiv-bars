@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import { useSession, signIn } from 'next-auth/react';
+import { useAppDispatch, useAppState } from 'components/App/context';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
-import { useAppDispatch, useAppState } from 'components/App/context';
+import SaveForm from 'components/SaveForm';
 import styles from './ControlBar.module.scss';
 
 export function ToggleTitles() {
@@ -46,9 +47,13 @@ export function ToggleMaxLvl() {
 export function ToggleSaveForm() {
   const { data: session } = useSession();
   const appDispatch = useAppDispatch();
-  const { readOnly, viewData } = useAppState();
-  const canEdit = session
-    && (!readOnly || (session.user.id === viewData.userId));
+  const { viewData } = useAppState();
+
+  // have session
+  // owns layout
+
+  const canPublish = session && !viewData;
+  const canEdit = session && (session.user.id === viewData?.userId);
 
   function showForm() { appDispatch({ type: 'editLayout' }); }
 
@@ -59,7 +64,7 @@ export function ToggleSaveForm() {
 
   return (
     <div className={styles.control}>
-      { canEdit ? (
+      { canPublish || canEdit ? (
         <button
           type="button"
           title="Save this Layout"
@@ -73,7 +78,7 @@ export function ToggleSaveForm() {
           Publish
         </button>
       ) : (
-        <a href="/api/auth/signin" onClick={handleSignin}>
+        <a href="/api/auth/signin" onClick={handleSignin} className={styles.upsell}>
           Sign in to save and publish your layout
         </a>
       ) }
@@ -82,38 +87,42 @@ export function ToggleSaveForm() {
 }
 
 export function ControlBar({ selectedJob }) {
-  const { readOnly } = useAppState();
+  const { readOnly, showPublish } = useAppState();
 
   return (
-    <div className={styles.controlBar}>
-      <div className={styles.container}>
-        <div className={styles.groupRight}>
-          { !readOnly && (
+    <>
+      <div className={styles.controlBar}>
+        <div className={styles.container}>
+          <div className={styles.groupRight}>
+            { !readOnly && (
             <div className={styles.control}>
               <ToggleMaxLvl />
             </div>
-          )}
+            )}
 
-          <div className={styles.control}>
-            <ToggleTitles />
-          </div>
-        </div>
-
-        <div className={styles.groupRight}>
-          <div className={styles.control}>
-            <ToggleSaveForm />
+            <div className={styles.control}>
+              <ToggleTitles />
+            </div>
           </div>
 
-          <div className={styles.control}>
-            <ExportToMacros />
-          </div>
+          <div className={styles.groupRight}>
+            <div className={styles.control}>
+              <ToggleSaveForm />
+            </div>
 
-          <div className={styles.control}>
-            <Sharing selectedJob={selectedJob} />
+            <div className={styles.control}>
+              <ExportToMacros />
+            </div>
+
+            <div className={styles.control}>
+              <Sharing selectedJob={selectedJob} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      { showPublish && <SaveForm /> }
+    </>
   );
 }
 

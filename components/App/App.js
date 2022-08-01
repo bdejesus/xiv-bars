@@ -10,7 +10,7 @@ import JobSelect from 'components/JobSelect';
 import JobMenu from 'components/JobSelect/JobMenu';
 import UILayout from 'components/UILayout';
 import ActionPanel from 'components/ActionPanel';
-import SaveForm from 'components/SaveForm';
+import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
@@ -26,11 +26,22 @@ export function App() {
     roleActions,
     readOnly,
     viewData,
-    viewAction,
-    message
   } = useAppState();
 
   const router = useRouter();
+
+  useEffect(() => {
+    // rest system messages whenever user navigates
+    function resetMessage() {
+      appDispatch({ type: 'setMessage', message: undefined });
+    }
+
+    router.events.on('routeDhangeStart', resetMessage);
+
+    return () => {
+      router.events.off('routeChangeStart', resetMessage);
+    };
+  }, []);
 
   useEffect(() => {
     // Decode Slots query param
@@ -60,15 +71,10 @@ export function App() {
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
-        { message && (
-          <div className="system-message">
-            System Message
-          </div>
-        )}
 
         { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
 
-        { viewAction === 'edit' && <SaveForm /> }
+        <SystemMessage />
 
         { selectedJob && (
           <div className="app-view">
@@ -78,7 +84,7 @@ export function App() {
               <div className={styles.container}>
                 <div className={`${styles.sidebar}`}>
 
-                  { readOnly ? (
+                  { viewData && readOnly ? (
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />
                       <h3>{viewData.title}</h3>

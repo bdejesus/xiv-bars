@@ -2,10 +2,11 @@
   border-radius: 6px;
   box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
   display: block;
-  margin: $spacing-xl 0;
   padding: $spacing-base $spacing-lg;
+  text-align: center;
 
   &.error {
+    margin: $spacing-xl 0;
     background-color: rgb(180 0 0);
     color: #fff;
   }

@@ -48,6 +48,7 @@ export default function Index({
         encodedSlots={encodedSlots}
         readOnly={readOnly}
         viewData={viewData}
+        viewAction="show"
       >
         <App />
 

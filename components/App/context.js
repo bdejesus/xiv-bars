@@ -52,6 +52,7 @@ function AppContextProvider({
     message: undefined,
     chotbar,
     hotbar,
+    showPublish: false,
     showTitles: false,
     showAllLvl: false
   });
@@ -61,6 +62,7 @@ function AppContextProvider({
       const decodedSlots = state.layout === 1
         ? group(encodedSlots.split(','), 12)
         : group(encodedSlots.split(','), 16);
+
       dispatch({
         type: 'bulkLoadActionsToSlots',
         slottedActions: decodedSlots
@@ -92,7 +94,7 @@ AppContextProvider.propTypes = {
   layout: PropTypes.number,
   readOnly: PropTypes.bool,
   viewData: PropTypes.shape(),
-  viewAction: PropTypes.oneOf(['show', 'edit'])
+  viewAction: PropTypes.oneOf(['show', 'edit', 'new'])
 };
 
 AppContextProvider.defaultProps = {

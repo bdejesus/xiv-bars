@@ -54,7 +54,7 @@ function SaveForm({ onSubmit }) {
   }
 
   function closeForm() {
-    appDispatch({ type: 'cancelLayout' });
+    appDispatch({ type: 'cancelPublish' });
   }
 
   return (

@@ -33,6 +33,7 @@ export default function Index({
         roleActions={roleActions}
         selectedJob={selectedJob}
         jobs={jobs}
+        viewAction="new"
       >
         <App />
 
