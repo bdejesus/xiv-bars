@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import db from 'lib/db';
+import fetch from 'node-fetch';
+import { root } from 'lib/host';
 import {
   listJobs,
   listJobActions,
@@ -88,9 +89,8 @@ export async function getServerSideProps(context) {
       ? decoratedJobs.find((job) => job.Abbr === id)
       : null;
 
-    const viewData = await db.layout.findFirst({
-      where: { id: parseInt(layoutId, 10), jobId: selectedJob.Abbr }
-    });
+    const fetchView = await fetch(`${root}/api/layout/${layoutId}`);
+    const viewData = await fetchView.json();
 
     let jobActions = [];
     let roleActions = [];
