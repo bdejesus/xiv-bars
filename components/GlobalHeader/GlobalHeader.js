@@ -8,7 +8,7 @@ export function GlobalHeader() {
   const { data: session } = useSession();
 
   function handleSignIn() {
-    signIn();
+    signIn('google', { callbackUrl: '/' });
   }
 
   function handleSignOut() {
@@ -50,9 +50,14 @@ export function GlobalHeader() {
                 {session.user.name || session.user.email}
               </div>
 
-              <a className={styles.logout} href="/api/auth/signout" onClick={handleSignOut}>
+              <button
+                type="button"
+                className={styles.logout}
+                href="/api/auth/signout"
+                onClick={handleSignOut}
+              >
                 Log out
-              </a>
+              </button>
             </>
           )
           : <button type="button" onClick={handleSignIn}>Sign in</button>}

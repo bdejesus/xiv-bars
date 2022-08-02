@@ -29,7 +29,6 @@ function Index({ jobs }) {
     <>
       <GlobalHeader />
       <Intro jobs={jobs} />
-
       <div className={styles.articles}>
         <HowTo />
         <EorzeaProfile />

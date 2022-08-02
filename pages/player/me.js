@@ -13,7 +13,7 @@ import styles from './player.module.scss';
 export default function Player(pageProps) {
   const { jobs } = pageProps;
   const [layouts, setLayouts] = useState([]);
-  const { data: session } = useSession();
+  const { data: session } = useSession({ required: true });
 
   useEffect(() => {
     fetch('/api/layouts')

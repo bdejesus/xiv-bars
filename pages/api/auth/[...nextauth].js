@@ -23,6 +23,8 @@ export const authOptions = {
   providers: [
     // OAuth authentication providers...
     GoogleProvider({
+      id: 'google',
+      name: 'Google',
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
       authorization: {
