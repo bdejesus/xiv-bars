@@ -58,9 +58,9 @@
 }
 
 .upsell {
+  align-items: center;
+  display: inline-flex;
   font-size: $font-size-sm;
   height: 32px;
-  display: inline-flex;
-  align-items: center;
   margin-right: $spacing-base;
 }

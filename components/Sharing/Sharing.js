@@ -9,7 +9,7 @@ import styles from './Sharing.module.scss';
 
 export function Sharing({ selectedJob }) {
   const router = useRouter();
-  const { encodedSlots, readOnly, viewAction } = useAppState();
+  const { encodedSlots, readOnly } = useAppState();
   const [copied, setCopied] = useState(false);
 
   const urlInput = createRef();
