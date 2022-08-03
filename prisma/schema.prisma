@@ -33,7 +33,7 @@ model Layout {
   layout        Int
   encodedSlots  String
   createdAt     DateTime  @default(now())
-  updatedAt     DateTime?  @updatedAt
+  updatedAt     DateTime?  @default(now())
   deletedAt     DateTime?
 }
 

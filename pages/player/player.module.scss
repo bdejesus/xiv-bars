@@ -2,10 +2,10 @@
 
 .layoutsList {
   display: grid;
-  gap: $spacing-base;
-  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+  grid-template-columns: 1fr 1fr 1fr;
   list-style: none;
-  margin: 0;
+  margin: 0 0 $spacing-lg;
   padding: 0;
 }
 
@@ -14,29 +14,87 @@
   border-radius: 4px;
   height: 100%;
   padding: $spacing-base;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    text-decoration: none;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.33);
+
+    h4 {
+      color: $color-alt;
+    }
+
+    p {
+      color: #ccc;
+    }
+
+    .job {
+      filter: grayscale(0);
+    }
+  }
+
+  .cardFooter {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   h4 {
+    color: #fff;
     margin: 0;
+    transition: color 0.3s ease;
   }
 
   p {
     font-size: $font-size-base;
     line-height: 1.45;
+    height: 64px;
+    color: #999;
+    transition: color 0.3s ease;
   }
 
-  // .description {
-  //   overflow: hidden;
-  //   position: relative;
+  .description {
+    overflow: hidden;
+    position: relative;
+    flex: 1 1 auto;
 
-  //   &::after {
-  //     background: linear-gradient(to bottom, rgb(0 0 0 / 0%), #111);
-  //     bottom: 0;
-  //     content: "";
-  //     display: block;
-  //     height: 40px;
-  //     left: 0;
-  //     position: absolute;
-  //     right: 0;
-  //   }
-  // }
+    &::after {
+      background: linear-gradient(to bottom, rgb(0 0 0 / 0%), #111);
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 40px;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .job {
+    color: #999;
+    filter: grayscale(1);
+    transition: filter 0.3s ease;
+
+    :global(.job-icon) {
+      height: 20px;
+      width: 20px;
+    }
+    :global(.job-abbr) {
+      position: relative;
+      bottom: -2px;
+    }
+    :global(.job-name) {
+      display: none;
+    }
+  }
+
+  .timestamp {
+    font-size: $font-size-sm;
+    opacity: 0.33;
+  }
 }

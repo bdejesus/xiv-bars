@@ -1,5 +1,4 @@
 .system-message {
-  border-radius: 6px;
   box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
   display: block;
   padding: $spacing-base $spacing-lg;
@@ -8,6 +7,9 @@
   &.error {
     background-color: rgb(180 0 0);
     color: #fff;
-    margin: $spacing-xl 0;
+  }
+
+  &.success {
+    background-color: rgba(0,140,0,0.8);
   }
 }

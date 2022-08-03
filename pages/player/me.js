@@ -6,6 +6,7 @@ import Link from 'next/link';
 import GlobalHeader from 'components/GlobalHeader';
 import JobMenu from 'components/JobSelect/JobMenu';
 import Job from 'components/JobSelect/Job';
+import LoadScreen from 'components/LoadScreen';
 import { listJobs, } from 'lib/api';
 
 import styles from './player.module.scss';
@@ -23,6 +24,10 @@ export default function Player(pageProps) {
       });
   }, []);
 
+  function formatDate(date) {
+    const formattedDate = new Date(date);
+    return formattedDate.toDateString();
+  }
   return (
     <>
       <GlobalHeader />
@@ -30,7 +35,7 @@ export default function Player(pageProps) {
       { session && session.user && (
         <div className="container section">
           <h1 className="mt-md">
-            Saved Layouts
+            My Layouts
           </h1>
         </div>
       )}
@@ -45,20 +50,22 @@ export default function Player(pageProps) {
 
                 return (
                   <li key={layout.id}>
-                    <div className={styles.card}>
-                      <h4>
-                        <Link href={`/job/${layout.jobId}/${layout.id}`}>
-                          <a>{layout.title}</a>
-                        </Link>
-                      </h4>
-                      <p className={styles.description}>
-                        {layout.description}
-                      </p>
-                      <Job job={job} />
-                      <div>
-                        <small>{layout.createdAt}</small>
-                      </div>
-                    </div>
+                    <Link href={`/job/${layout.jobId}/${layout.id}`}>
+                      <a className={styles.card}>
+                        <h4>
+                          {layout.title}
+                        </h4>
+                        <p className={styles.description}>
+                          {layout.description}
+                        </p>
+                        <div className={styles.cardFooter}>
+                          <Job job={job} className={styles.job} />
+                          <div className={styles.timestamp}>
+                            {formatDate(layout.createdAt)}
+                          </div>
+                        </div>
+                      </a>
+                    </Link>
                   </li>
                 );
               })}
@@ -74,6 +81,8 @@ export default function Player(pageProps) {
             </div>
           </div>
         )}
+
+      <LoadScreen />
     </>
   );
 }
