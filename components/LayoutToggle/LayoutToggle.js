@@ -5,12 +5,22 @@ import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
   const router = useRouter();
-  const { layout, readOnly } = useAppState();
+  const { layout, readOnly, viewAction } = useAppState();
   const appDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
     const layoutValue = (layouts[layout] === 'chotbar') ? 1 : 0;
-    router.push({ pathname: router.pathname, query: { ...router.query, l: layoutValue } });
+
+    if (viewAction === 'new') {
+      router.push(
+        {
+          pathname: router.pathname,
+          query: { ...router.query, l: layoutValue }
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
     appDispatch({ type: 'updateLayout', layout: layoutValue });
   }
 

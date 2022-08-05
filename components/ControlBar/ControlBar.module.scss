@@ -4,6 +4,7 @@
   background-color: $panel-bg;
   box-shadow: 0 2px 0 $color-gray-dark-2;
   position: sticky;
+  padding: 0 $spacing-base;
   top: 48px;
   z-index: 10;
 }

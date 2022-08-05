@@ -42,7 +42,7 @@ function AppContextProvider({
   const [state, dispatch] = useReducer(AppReducer, {
     jobs,
     selectedJob,
-    layout: layout || parseInt(router.query.l, 10) || 0,
+    layout: layout || viewData?.layout || parseInt(router.query.l, 10) || 0,
     encodedSlots,
     actions,
     roleActions,

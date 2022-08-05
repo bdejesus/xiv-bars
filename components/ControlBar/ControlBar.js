@@ -1,90 +1,12 @@
 import PropTypes from 'prop-types';
-import { useSession, signIn } from 'next-auth/react';
-import { useAppDispatch, useAppState } from 'components/App/context';
+import { useAppState } from 'components/App/context';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
 import SaveForm from 'components/SaveForm';
+import ToggleTitles from './ToggleTitles';
+import ToggleMaxLvl from './ToggleMaxLvl';
+import ToggleSaveForm from './ToggleSaveForm';
 import styles from './ControlBar.module.scss';
-
-export function ToggleTitles() {
-  const appDispatch = useAppDispatch();
-  const { showTitles } = useAppState();
-
-  function handleTitlesToggle() { appDispatch({ type: 'toggleTitles' }); }
-
-  return (
-    <button
-      type="button"
-      onClick={() => handleTitlesToggle()}
-      data-active={showTitles}
-      className={styles.toggleTitlesBtn}
-    >
-      <img src="/images/icon-titles.svg" className="btn-icon" alt="Titles Icon" />
-      Titles
-    </button>
-  );
-}
-
-export function ToggleMaxLvl() {
-  const appDispatch = useAppDispatch();
-  const { showAllLvl } = useAppState();
-
-  function handleMaxLvlToggle() { appDispatch({ type: 'toggleAllLvl' }); }
-
-  return (
-    <button
-      type="button"
-      onClick={() => handleMaxLvlToggle()}
-      data-active={showAllLvl}
-      className={styles.toggleTitlesBtn}
-    >
-      <img src="/images/icon-levels.svg" className="btn-icon" alt="Max Lvl Icon" />
-      All levels
-    </button>
-  );
-}
-
-export function ToggleSaveForm() {
-  const { data: session } = useSession();
-  const appDispatch = useAppDispatch();
-  const { viewData } = useAppState();
-
-  // have session
-  // owns layout
-
-  const canPublish = session && !viewData;
-  const canEdit = session && (session.user.id === viewData?.userId);
-
-  function showForm() { appDispatch({ type: 'editLayout' }); }
-
-  function handleSignin(e) {
-    e.preventDefault();
-    signIn();
-  }
-
-  return (
-    <div className={styles.control}>
-      { canPublish || canEdit ? (
-        <button
-          type="button"
-          title="Save this Layout"
-          onClick={showForm}
-        >
-          <img
-            src="/images/icon-save.svg"
-            className="btn-icon"
-            alt="Details Icon"
-          />
-          Publish
-        </button>
-      ) : (
-        <a href="/api/auth/signin" onClick={handleSignin} className={styles.upsell}>
-          Sign in to save and publish your layout
-        </a>
-      ) }
-    </div>
-  );
-}
 
 export function ControlBar({ selectedJob }) {
   const { readOnly, showPublish } = useAppState();
@@ -95,9 +17,9 @@ export function ControlBar({ selectedJob }) {
         <div className={styles.container}>
           <div className={styles.groupRight}>
             { !readOnly && (
-            <div className={styles.control}>
-              <ToggleMaxLvl />
-            </div>
+              <div className={styles.control}>
+                <ToggleMaxLvl />
+              </div>
             )}
 
             <div className={styles.control}>

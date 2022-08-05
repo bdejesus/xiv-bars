@@ -9,7 +9,7 @@ import styles from './Sharing.module.scss';
 
 export function Sharing({ selectedJob }) {
   const router = useRouter();
-  const { encodedSlots, readOnly } = useAppState();
+  const { encodedSlots, readOnly, viewAction } = useAppState();
   const [copied, setCopied] = useState(false);
 
   const urlInput = createRef();
@@ -36,9 +36,9 @@ export function Sharing({ selectedJob }) {
     const shareURL = readOnly ? getLayoutUrl() : buildShareUrl();
     urlInput.current.value = shareURL;
 
-    // if (viewAction === 'new') {
-    //   router.push(shareURL, undefined, { shallow: true });
-    // }
+    if (viewAction === 'new') {
+      router.push(shareURL, undefined, { shallow: true });
+    }
   }, [encodedSlots]);
 
   function selectInput() {

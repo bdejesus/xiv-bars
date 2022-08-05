@@ -1,11 +1,12 @@
 import { useRef } from 'react';
-import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import fetch from 'node-fetch';
 import { useAppDispatch, useAppState } from 'components/App/context';
 
 import styles from './SaveForm.module.scss';
 
-function SaveForm({ onSubmit }) {
+function SaveForm() {
+  const router = useRouter();
   const titleField = useRef();
   const descriptionField = useRef();
   const {
@@ -32,25 +33,28 @@ function SaveForm({ onSubmit }) {
       }
     };
 
-    const fetchOptions = {
+    const options = {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }
     };
 
-    fetch('/api/layout/save', fetchOptions).then(() => {
-      onSubmit();
-      appDispatch({ type: 'saveLayout', viewData: { ...viewData, ...body } });
-    }).catch((error) => {
-      console.error(error);
-      appDispatch({
-        type: 'setMessage',
-        message: {
-          type: 'error',
-          body: 'Couldn’t save layout. Please try again'
-        }
+    fetch('/api/layout/save', options)
+      .then((data) => data.json())
+      .then((json) => {
+        appDispatch({ type: 'saveLayout', viewData: { ...json, ...body } });
+        router.push(`/job/${json.jobId}/${json.id}`, undefined, { shallow: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        appDispatch({
+          type: 'setMessage',
+          message: {
+            type: 'error',
+            body: 'Couldn’t save layout. Please try again'
+          }
+        });
       });
-    });
   }
 
   function closeForm() {
@@ -109,13 +113,3 @@ function SaveForm({ onSubmit }) {
 }
 
 export default SaveForm;
-
-SaveForm.propTypes = {
-  onSubmit: PropTypes.func
-};
-
-SaveForm.defaultProps = {
-  onSubmit: () => {
-    // noop
-  }
-};
