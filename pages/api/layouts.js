@@ -2,7 +2,7 @@
 import db from 'lib/db';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
-import { ascByKey } from 'lib/utils/array';
+import { byKey } from 'lib/utils/array';
 
 export default async function layouts(req, res) {
   try {
@@ -11,8 +11,7 @@ export default async function layouts(req, res) {
       where: { userId: session.user.id }
     });
     const sortResults = results
-      .sort(ascByKey('dateCreated'))
-      .sort(ascByKey('title'));
+      .sort(byKey('updatedAt', 'desc'));
 
     res.status(200).json(sortResults);
   } catch (error) {

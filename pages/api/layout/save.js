@@ -9,16 +9,22 @@ async function saveLayout(req, res) {
     if (!session) throw new Error('Not logged in');
 
     if (req.body.id) {
+      // update data
       const layout = db.layout.findFirst({ where: { id: req.body.id, userId: session.user.id } });
       if (!layout) throw new Error('Layout not found');
 
+      const today = new Date().toISOString();
       const viewData = await db.layout.update({
         where: { id: req.body.id },
-        data: req.body.data
+        data: {
+          ...req.body.data,
+          updatedAt: today
+        }
       });
 
       res.status(200).json(viewData);
     } else {
+      // create data
       const viewData = await db.layout.create({
         data: {
           ...req.body.data,

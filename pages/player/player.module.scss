@@ -17,10 +17,12 @@
   flex-direction: column;
   height: 100%;
   padding: $spacing-base;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  border: 1px solid transparent;
 
   &:hover {
     box-shadow: 0 4px 10px rgb(0 0 0 / 33%);
+    border-color: $color-alt;
     text-decoration: none;
     transform: scale(1.05);
 

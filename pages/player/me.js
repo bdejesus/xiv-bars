@@ -61,7 +61,7 @@ export default function Player(pageProps) {
                         <div className={styles.cardFooter}>
                           <Job job={job} className={styles.job} />
                           <div className={styles.timestamp}>
-                            {formatDate(layout.createdAt)}
+                            Last updated: {formatDate(layout.updatedAt)}
                           </div>
                         </div>
                       </a>

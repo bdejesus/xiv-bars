@@ -66,7 +66,7 @@ export default function Index({
         </div>
       </AppContextProvider>
 
-      <div className={styles.articles}>
+      <div className="section">
         {(selectedJob) && <Hero primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />
