@@ -9,15 +9,9 @@ export function SlotLayout() {
   const { layout } = useAppState();
 
   switch (layouts[layout]) {
-    case 'chotbar': {
-      return <Xbar />;
-    }
-    case 'hotbar': {
-      return <Hotbar />;
-    }
-    default: {
-      throw new Error(`Unknown layout type: ${layout}`);
-    }
+    case 'chotbar': return <Xbar />;
+    case 'hotbar': return <Hotbar />;
+    default: return <Xbar />;
   }
 }
 

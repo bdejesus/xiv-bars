@@ -113,7 +113,8 @@ export default function AppReducer(state, payload) {
         ...state,
         readOnly: false,
         showPublish: true,
-        message: undefined
+        message: undefined,
+        layout: state.viewData?.layout || state.layout
       };
     }
 
@@ -131,7 +132,7 @@ export default function AppReducer(state, payload) {
         showPublish: false,
         readOnly: state.viewAction === 'show',
         message: undefined,
-        layout: state.viewData?.layout
+        layout: state.viewData?.layout || state.layout
       };
     }
 

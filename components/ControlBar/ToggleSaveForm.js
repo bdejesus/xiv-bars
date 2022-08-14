@@ -6,10 +6,6 @@ function ToggleSaveForm() {
   const { data: session } = useSession();
   const appDispatch = useAppDispatch();
   const { viewData } = useAppState();
-
-  // have session
-  // owns layout
-
   const canPublish = session && !viewData;
   const canEdit = session && (session.user.id === viewData?.userId);
 

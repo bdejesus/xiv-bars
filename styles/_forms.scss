@@ -24,7 +24,7 @@ textarea {
   width: 100%;
 
   &:focus {
-    background-color: #666;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.33);
     color: #fff;
     outline: 2px solid $color-alt;
   }
