@@ -13,7 +13,7 @@ function ToggleSaveForm() {
 
   function handleSignin(e) {
     e.preventDefault();
-    signIn('google');
+    signIn('discord');
   }
 
   return (
