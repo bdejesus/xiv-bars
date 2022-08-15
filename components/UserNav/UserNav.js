@@ -8,7 +8,7 @@ export function UserNav() {
   const { data: session } = useSession();
 
   function handleSignIn() {
-    signIn('google', { callbackUrl: '/' });
+    signIn('discord', { callbackUrl: '/' });
   }
 
   function handleSignOut(e) {
