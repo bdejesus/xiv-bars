@@ -74,6 +74,7 @@ function SaveForm() {
               ref={titleField}
               className={styles.titleField}
               defaultValue={viewData && viewData.title}
+              required
             />
           </label>
         </div>
