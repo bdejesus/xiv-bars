@@ -9,11 +9,11 @@ import ToggleSaveForm from './ToggleSaveForm';
 import styles from './ControlBar.module.scss';
 
 export function ControlBar({ selectedJob }) {
-  const { readOnly, showPublish } = useAppState();
+  const { readOnly, showPublish, showModal } = useAppState();
 
   return (
     <>
-      <div className={styles.controlBar}>
+      <div className={styles.controlBar} data-active-modal={showModal}>
         <div className={styles.container}>
           <div className={styles.groupRight}>
             { !readOnly && (

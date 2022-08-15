@@ -108,6 +108,10 @@ export default function AppReducer(state, payload) {
       return { ...state, showAllLvl: !state.showAllLvl };
     }
 
+    case 'toggleModal': {
+      return { ...state, showModal: !state.showModal };
+    }
+
     case 'editLayout': {
       return {
         ...state,

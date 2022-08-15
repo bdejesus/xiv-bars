@@ -54,7 +54,8 @@ function AppContextProvider({
     hotbar,
     showPublish: false,
     showTitles: false,
-    showAllLvl: false
+    showAllLvl: false,
+    showModal: false
   });
 
   useEffect(() => {
