@@ -19,7 +19,9 @@ export function Modal({ children, hidden, toClose }) {
     >
       <div className={styles.container}>
         <CloseButton onClick={toClose} />
-        {children}
+        <div className={styles.content}>
+          {children}
+        </div>
       </div>
     </div>
   );

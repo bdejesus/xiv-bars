@@ -1,12 +1,14 @@
 @import "styles/mixins";
 
 .modal {
-  align-items: center;
+  align-items: top;
   bottom: 0;
   display: flex;
   justify-content: center;
   left: 0;
+  max-height: 100vh;
   overflow: auto;
+  padding: $spacing-xl-2 $spacing-lg;
   position: fixed;
   right: 0;
   top: 0;
@@ -64,5 +66,9 @@
 
   :global(.modal-footer) {
     margin-top: $spacing-sm;
+  }
+
+  .content {
+    margin-bottom: $spacing-xl;
   }
 }

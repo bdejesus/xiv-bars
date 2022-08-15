@@ -28,7 +28,7 @@ function Index({ jobs }) {
   return (
     <>
       <GlobalHeader />
-      <Intro jobs={jobs} />
+      <Intro jobs={jobs} className={styles.intro} />
       <div className={styles.articles}>
         <HowTo />
         <EorzeaProfile />

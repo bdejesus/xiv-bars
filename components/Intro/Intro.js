@@ -1,12 +1,13 @@
+import PropTypes from 'prop-types';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { jobsType } from 'lib/types/jobs';
 import styles from './Intro.module.scss';
 
-export function Intro({ jobs }) {
+export function Intro({ jobs, className }) {
   return (
     <>
-      <div className={styles.header}>
+      <div className={[styles.header, className].join(' ')}>
         <Hero />
       </div>
 
@@ -31,7 +32,12 @@ export function Intro({ jobs }) {
 }
 
 Intro.propTypes = {
-  jobs: jobsType.isRequired
+  jobs: jobsType.isRequired,
+  className: PropTypes.string
+};
+
+Intro.defaultProps = {
+  className: undefined
 };
 
 export default Intro;
