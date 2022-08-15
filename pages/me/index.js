@@ -9,9 +9,9 @@ import Job from 'components/JobSelect/Job';
 import LoadScreen from 'components/LoadScreen';
 import { listJobs, } from 'lib/api';
 
-import styles from './player.module.scss';
+import styles from './me.module.scss';
 
-export default function Player(pageProps) {
+export default function Me(pageProps) {
   const { jobs } = pageProps;
   const [layouts, setLayouts] = useState([]);
   const { data: session } = useSession({ required: true });
@@ -87,7 +87,7 @@ export default function Player(pageProps) {
   );
 }
 
-Player.getInitialProps = async () => {
+Me.getInitialProps = async () => {
   // Get Selected Job
   const decoratedJobs = await listJobs();
 

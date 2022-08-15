@@ -4,8 +4,9 @@
   background-color: $panel-bg;
   box-shadow: 0 2px 0 $color-gray-dark-2;
   padding: 0 $spacing-base;
-  position: sticky;
+  position: fixed;
   top: 48px;
+  width: 100vw;
   z-index: 9;
 
   &[data-active-modal="true"] {

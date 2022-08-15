@@ -19,7 +19,7 @@ body {
 }
 
 main {
-  min-width: $screen-lg;
+  padding-top: 96px;
 }
 
 [aria-hidden="true"] {
@@ -28,8 +28,8 @@ main {
 
 .container {
   margin: 0 auto;
+  max-width: $screen-lg;
   padding: 0 $spacing-lg;
-  width: $screen-lg;
 }
 
 .section {
@@ -43,7 +43,7 @@ main {
   box-shadow: inset 0 0 60px rgb(0 0 0 / 100%);
   margin-left: auto;
   margin-right: auto;
-  padding: $spacing-lg $spacing-base;
+  padding: $spacing-base;
   position: relative;
 
   .container {

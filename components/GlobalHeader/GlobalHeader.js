@@ -18,9 +18,6 @@ export function GlobalHeader() {
             />
           </div>
           <div className={styles.title}>XIVBARS</div>
-          <div className={styles.subtitle}>
-            A Final Fantasy XIV Cross Hotbar Planner
-          </div>
         </a>
       </Link>
 

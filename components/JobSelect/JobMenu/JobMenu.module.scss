@@ -25,3 +25,11 @@
     margin: 0;
   }
 }
+
+@media (max-width: $screen-md) {
+  .jobGroupList {
+    grid-template-columns: 1fr 1fr;
+    max-height: 80vh;
+    overflow: auto;
+  }
+}

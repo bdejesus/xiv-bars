@@ -85,6 +85,7 @@ $icon-size: 6px;
 .container {
   align-items: flex-start;
   display: flex;
+  max-width: 100vw;
 }
 
 .main {
@@ -93,14 +94,14 @@ $icon-size: 6px;
   flex: 1 1 auto;
   flex-direction: column;
   justify-content: flex-start;
-  padding-left: $spacing-sm;
+  padding: 0 $spacing-base;
 }
 
 .sidebar {
   flex: 0 0;
   min-width: 320px;
   position: sticky;
-  top: 104px + $spacing-lg;
+  top: 80px + $spacing-lg;
   z-index: 5;
 
   .section {

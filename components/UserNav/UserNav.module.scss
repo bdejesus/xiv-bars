@@ -1,32 +1,59 @@
 @import "styles/mixins";
 
 .userNav {
-  color: #666;
+  align-items: center;
+  color: #333;
+  display: flex;
+  flex-direction: row;
   font-size: $font-size-base;
+  position: relative;
+
+  a {
+    border-radius: 6px;
+    color: #333;
+    display: block;
+    padding: $spacing-xs $spacing-sm;
+    transition-duration: 0.3s;
+    transition-property: color, background-color, box-shadow;
+    transition-timing-function: ease;
+
+    &:hover {
+      background-color: $color-alt;
+      text-decoration: none;
+    }
+  }
+}
+
+.globalNav {
+  list-style: none;
+  margin: 0 $spacing-lg;
+  padding: 0;
+}
+
+.profileNav {
   position: relative;
 }
 
 .profile {
   align-items: center;
-  border: 1px solid #fff;
   border-radius: 6px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  margin: -$spacing-sm (-$spacing-sm - 1px);
-  padding: $spacing-sm;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: -$spacing-xs (-$spacing-sm);
+  padding: $spacing-xs $spacing-sm;
+  transition-duration: 0.3s;
+  transition-property: color, background-color, box-shadow;
+  transition-timing-function: ease;
   user-select: none;
 
   &:hover,
   &[data-active="true"] {
-    background-color: $color-gray-dark-2;
-    box-shadow: inset 0 0 0 1px #fff;
-    color: #fff;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 20%);
   }
 
   &[data-active="true"] {
-    border-color: $color-alt;
     border-radius: 6px 6px 0 0;
   }
 }
@@ -36,10 +63,10 @@
   border-radius: 8px;
   color: rgb(0 0 0 / 0%);
   font-size: 10px;
-  height: 32px;
-  margin-left: $spacing-base;
+  height: 30px;
+  margin: 0 0 0  $spacing-sm;
   overflow: hidden;
-  width: 32px;
+  width: 30px;
 
   img {
     display: block;
@@ -49,13 +76,13 @@
 }
 
 .menu {
-  background-color: $color-gray-dark-2;
-  border: 1px solid $color-alt;
+  background-color: #fff;
   border-radius: 0 0 6px 6px;
-  border-top-color: #333;
+  border-top-color: #eee;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 20%);
   left: -$spacing-sm;
   list-style: none;
-  margin: ($spacing-sm - 2) 0 0;
+  margin: 0;
   min-width: 120px;
   padding: 0;
   padding: $spacing-sm 2px;
@@ -70,19 +97,6 @@
 
   &[data-active="false"] {
     display: none;
-  }
-
-  a {
-    color: #fff;
-    display: block;
-    padding: $spacing-xs $spacing-sm;
-    transition: color 0.3s ease;
-
-    &:hover {
-      background-color: #333;
-      color: $color-alt;
-      text-decoration: none;
-    }
   }
 }
 

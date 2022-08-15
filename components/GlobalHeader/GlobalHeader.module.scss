@@ -6,8 +6,10 @@
   display: flex;
   justify-content: space-between;
   padding: $spacing-sm $spacing-base;
-  position: sticky;
+  position: fixed;
   top: 0;
+  white-space: nowrap;
+  width: 100vw;
   z-index: 10;
 }
 
