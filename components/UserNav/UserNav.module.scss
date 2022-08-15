@@ -1,45 +1,45 @@
-@import 'styles/mixins';
+@import "styles/mixins";
 
 .userNav {
-  position: relative;
   color: #666;
   font-size: $font-size-base;
+  position: relative;
 }
 
 .profile {
+  align-items: center;
+  border: 1px solid #fff;
   border-radius: 6px;
+  cursor: pointer;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  cursor: pointer;
-  padding: $spacing-sm;
   margin: -$spacing-sm (-$spacing-sm - 1px);
-  user-select: none;
+  padding: $spacing-sm;
   transition: background-color 0.3s ease, color 0.3s ease;
-  border: 1px solid #fff;
+  user-select: none;
 
   &:hover,
-  &[data-active='true'] {
-    color: #fff;
+  &[data-active="true"] {
     background-color: $color-gray-dark-2;
     box-shadow: inset 0 0 0 1px #fff;
+    color: #fff;
   }
 
-  &[data-active='true'] {
+  &[data-active="true"] {
+    border-color: $color-alt;
     border-radius: 6px 6px 0 0;
-    border-color:  $color-alt;
   }
 }
 
 .profileImage {
   background-color: #333;
+  border-radius: 8px;
+  color: rgb(0 0 0 / 0%);
   font-size: 10px;
-  color: rgba(0,0,0,0);
   height: 32px;
-  width: 32px;
   margin-left: $spacing-base;
   overflow: hidden;
-  border-radius: 8px;
+  width: 32px;
 
   img {
     display: block;
@@ -49,32 +49,32 @@
 }
 
 .menu {
-  position: absolute;
   background-color: $color-gray-dark-2;
   border: 1px solid $color-alt;
-  border-top-color: #333;
-  list-style: none;
-  padding: 0;
-  margin: ($spacing-sm - 2) 0 0;
-  top: 100%;
   border-radius: 0 0 6px 6px;
-  padding: $spacing-sm 2px;
-  right: -$spacing-sm;
+  border-top-color: #333;
   left: -$spacing-sm;
+  list-style: none;
+  margin: ($spacing-sm - 2) 0 0;
   min-width: 120px;
+  padding: 0;
+  padding: $spacing-sm 2px;
+  position: absolute;
+  right: -$spacing-sm;
+  top: 100%;
   z-index: 10;
 
-  &[data-active='true'] {
+  &[data-active="true"] {
     display: block;
   }
 
-  &[data-active='false'] {
+  &[data-active="false"] {
     display: none;
   }
 
   a {
-    display: block;
     color: #fff;
+    display: block;
     padding: $spacing-xs $spacing-sm;
     transition: color 0.3s ease;
 

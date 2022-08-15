@@ -8,7 +8,7 @@
   top: 48px;
   z-index: 9;
 
-  &[data-active-modal='true'] {
+  &[data-active-modal="true"] {
     z-index: 11;
   }
 }
