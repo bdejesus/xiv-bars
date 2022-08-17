@@ -43,7 +43,9 @@ export function ControlBar({ selectedJob }) {
         </div>
       </div>
 
-      { showPublish && <SaveForm /> }
+      <div className={styles.controlContent}>
+        { showPublish && <SaveForm /> }
+      </div>
     </>
   );
 }
