@@ -60,6 +60,11 @@ export function UserNav() {
               onMouseLeave={toggleMenu}
             >
               <li className={styles.navItem}>
+                <a href="https://www.buymeacoffee.com/bejezus" target="_blank" rel="noreferrer">
+                  Donate
+                </a>
+              </li>
+              <li className={styles.navItem}>
                 <a
                   className={styles.logout}
                   href="/api/auth/signout"

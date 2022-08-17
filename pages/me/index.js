@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import Head from 'next/head';
+import I18n from 'lib/I18n/locale/en-US';
 import fetch from 'node-fetch';
 import Link from 'next/link';
 import GlobalHeader from 'components/GlobalHeader';
@@ -30,12 +32,17 @@ export default function Me(pageProps) {
   }
   return (
     <>
+      <Head>
+        <meta name="robots" content="noindex" />
+        <title>{I18n.Pages.Me.my_layouts} • XIVBARS</title>
+      </Head>
+
       <GlobalHeader />
 
       { session && session.user && (
         <div className="container section">
           <h1 className="mt-md">
-            My Layouts
+            {I18n.Pages.Me.my_layouts}
           </h1>
         </div>
       )}
@@ -61,7 +68,7 @@ export default function Me(pageProps) {
                         <div className={styles.cardFooter}>
                           <Job job={job} className={styles.job} />
                           <div className={styles.timestamp}>
-                            Last updated: {formatDate(layout.updatedAt)}
+                            {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
                           </div>
                         </div>
                       </a>
@@ -75,7 +82,7 @@ export default function Me(pageProps) {
           <div className="app-view">
             <div className="container">
               <h2 id="jobSelectTitle">
-                No Layouts – Create a new one?
+                {I18n.Pages.Me.no_layouts}
               </h2>
               <JobMenu jobs={jobs} />
             </div>

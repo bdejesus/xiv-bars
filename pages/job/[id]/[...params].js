@@ -35,7 +35,9 @@ export default function Index({
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`${title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`}</title>
+        <title>
+          {title} • {selectedJob.Name} ({selectedJob.Abbr}) Hotbars • XIVBARS
+        </title>
       </Head>
 
       <GlobalHeader />

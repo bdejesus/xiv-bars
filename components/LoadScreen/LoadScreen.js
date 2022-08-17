@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import I18n from 'lib/I18n/locale/en-US';
 
 import styles from './LoadScreen.module.scss';
 
@@ -21,7 +22,7 @@ export function LoadScreen() {
     <div className={styles.container} aria-hidden={!isLoading}>
       <div className={styles.wrapper}>
         <img src="/images/mog_trumpet.png" alt="" />
-        <div className={styles.title}>Loading...</div>
+        <div className={styles.title}>{I18n.Global.loading}</div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import I18n from 'lib/I18n/locale/en-US';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
 import { jobsType } from 'lib/types/jobs';
@@ -16,13 +17,13 @@ export function Intro({ jobs, className }) {
           { jobs.length > 0 ? (
             <>
               <h2 className={styles.title} id="jobSelectTitle">
-                Select A Job/Class
+                { I18n.Intro.select_a_job }
               </h2>
               <JobMenu jobs={jobs} />
             </>
           ) : (
             <div className="system-message error">
-              Something went wrong and we couldn’t load any <code>jobs</code> data. Please try again later.
+              { I18n.Error.no_jobs }
             </div>
           )}
         </div>

@@ -1,5 +1,6 @@
 import { useSession, signIn } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
+import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
 function ToggleSaveForm() {
@@ -21,20 +22,24 @@ function ToggleSaveForm() {
       { canPublish || canEdit ? (
         <button
           type="button"
-          title="Save this Layout"
+          title={I18n.ControlBar.ToggleSaveForm.save_this_layout}
           onClick={showForm}
         >
           <img
             src="/images/icon-save.svg"
             className="btn-icon"
-            alt="Details Icon"
+            alt={I18n.ControlBar.ToggleSaveForm.details_icon}
           />
-          { canPublish && 'Publish' }
-          { canEdit && 'Edit' }
+          { canPublish && I18n.ControlBar.ToggleSaveForm.publish }
+          { canEdit && I18n.ControlBar.ToggleSaveForm.edit }
         </button>
       ) : (
-        <a href="/api/auth/signin" onClick={handleSignin} className={styles.upsell}>
-          Sign in to save and publish your layout
+        <a
+          href="/api/auth/signin"
+          onClick={handleSignin}
+          className={styles.upsell}
+        >
+          {I18n.ControlBar.ToggleSaveForm.signin}
         </a>
       ) }
     </div>
