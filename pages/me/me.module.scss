@@ -7,6 +7,14 @@
   list-style: none;
   margin: 0 0 $spacing-lg;
   padding: 0;
+
+  @media (max-width: $screen-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: $screen-sm) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {

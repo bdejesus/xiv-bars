@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import PropTypes from 'prop-types';
 import Head from 'next/head';
 import I18n from 'lib/I18n/locale/en-US';
 import fetch from 'node-fetch';
@@ -13,10 +14,37 @@ import { listJobs, } from 'lib/api';
 
 import styles from './me.module.scss';
 
+function LayoutCard({ layout, job }) {
+  function formatDate(date) {
+    const formattedDate = new Date(date);
+    return formattedDate.toDateString();
+  }
+
+  return (
+    <Link href={`/job/${layout.jobId}/${layout.id}`}>
+      <a className={styles.card}>
+        <h4>{layout.title}</h4>
+        <p className={styles.description}>{layout.description}</p>
+        <div className={styles.cardFooter}>
+          <Job job={job} className={styles.job} />
+          <div className={styles.timestamp}>
+            {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
+          </div>
+        </div>
+      </a>
+    </Link>
+  );
+}
+
+LayoutCard.propTypes = {
+  layout: PropTypes.shape().isRequired,
+  job: PropTypes.shape().isRequired
+};
+
 export default function Me(pageProps) {
   const { jobs } = pageProps;
   const [layouts, setLayouts] = useState([]);
-  const { data: session } = useSession({ required: true });
+  const { status } = useSession({ required: true });
 
   useEffect(() => {
     fetch('/api/layouts')
@@ -26,10 +54,8 @@ export default function Me(pageProps) {
       });
   }, []);
 
-  function formatDate(date) {
-    const formattedDate = new Date(date);
-    return formattedDate.toDateString();
-  }
+  if (status === 'unauthenticated') return null;
+
   return (
     <>
       <Head>
@@ -39,40 +65,21 @@ export default function Me(pageProps) {
 
       <GlobalHeader />
 
-      { session && session.user && (
-        <div className="container section">
-          <h1 className="mt-md">
-            {I18n.Pages.Me.my_layouts}
-          </h1>
-        </div>
-      )}
+      <div className="container section">
+        <h1 className="mt-md">
+          {I18n.Pages.Me.my_layouts}
+        </h1>
+      </div>
 
       { layouts.length > 0
         ? (
           <div className="container section">
-
             <ul className={styles.layoutsList}>
               {layouts.map((layout) => {
                 const job = jobs.find((j) => j.Abbr === layout.jobId);
-
                 return (
                   <li key={layout.id}>
-                    <Link href={`/job/${layout.jobId}/${layout.id}`}>
-                      <a className={styles.card}>
-                        <h4>
-                          {layout.title}
-                        </h4>
-                        <p className={styles.description}>
-                          {layout.description}
-                        </p>
-                        <div className={styles.cardFooter}>
-                          <Job job={job} className={styles.job} />
-                          <div className={styles.timestamp}>
-                            {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
-                          </div>
-                        </div>
-                      </a>
-                    </Link>
+                    <LayoutCard layout={layout} job={job} />
                   </li>
                 );
               })}
