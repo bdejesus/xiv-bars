@@ -4,7 +4,7 @@ import { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
-import host from 'lib/host';
+import { domain } from 'lib/host';
 import styles from './Sharing.module.scss';
 
 export function Sharing({ selectedJob }) {
@@ -25,12 +25,12 @@ export function Sharing({ selectedJob }) {
         .map((key) => `${key}=${query[key]}`)
         .join('&');
 
-      return `${host.host}/job/${selectedJob.Abbr}?${queryString}`;
+      return `${domain}/job/${selectedJob.Abbr}?${queryString}`;
     }
 
     function getLayoutUrl() {
       const [layoutId] = router.query.params;
-      return `${host.host}/job/${selectedJob.Abbr}/${layoutId}`;
+      return `${domain}/job/${selectedJob.Abbr}/${layoutId}`;
     }
 
     const shareURL = readOnly ? getLayoutUrl() : buildShareUrl();

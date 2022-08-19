@@ -1,11 +1,17 @@
 import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
 import DiscordProvider from 'next-auth/providers/discord';
+import fetch from 'node-fetch';
 import db from 'lib/db';
+import { domain } from 'lib/host';
 
 async function signinUser(session) {
   let user = await db.user.findUnique({
-    where: { email: session.user.email }
+    where: { email: session.user.email },
+    include: {
+      _count: {
+        select: { layouts: true }
+      }
+    }
   });
 
   if (session.user.email && !user) {
@@ -33,8 +39,13 @@ export const authOptions = {
   callbacks: {
     async session({ session }) {
       const user = await signinUser(session);
+
       // eslint-disable-next-line no-param-reassign
-      session.user = { ...session.user, ...user };
+      session.user = {
+        ...session.user,
+        ...user
+      };
+
       return session;
     }
   },

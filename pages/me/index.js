@@ -60,7 +60,7 @@ export default function Me(pageProps) {
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{I18n.Pages.Me.my_layouts} • XIVBARS</title>
+        <title>{`${I18n.Pages.Me.my_layouts} • XIVBARS`}</title>
       </Head>
 
       <GlobalHeader />

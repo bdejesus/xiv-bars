@@ -24,6 +24,7 @@ function SaveForm() {
 
     const body = {
       id: viewData ? viewData.id : null,
+      method: viewData ? 'update' : 'create',
       data: {
         title,
         description,
@@ -39,7 +40,7 @@ function SaveForm() {
       headers: { 'Content-Type': 'application/json' }
     };
 
-    fetch('/api/layout/save', options)
+    fetch('/api/layout', options)
       .then((data) => data.json())
       .then((json) => {
         appDispatch({ type: 'saveLayout', viewData: { ...json, ...body } });
