@@ -14,7 +14,7 @@ import { listJobs, } from 'lib/api';
 
 import styles from './me.module.scss';
 
-function LayoutCard({ layout, job }) {
+function LayoutCard({ layout, job, onDelete }) {
   function formatDate(date) {
     const formattedDate = new Date(date);
     return formattedDate.toDateString();
@@ -24,12 +24,24 @@ function LayoutCard({ layout, job }) {
     <Link href={`/job/${layout.jobId}/${layout.id}`}>
       <a className={styles.card}>
         <h4>{layout.title}</h4>
+
         <p className={styles.description}>{layout.description}</p>
+
         <div className={styles.cardFooter}>
           <Job job={job} className={styles.job} />
           <div className={styles.timestamp}>
             {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
           </div>
+        </div>
+
+        <div className={styles.actions}>
+          <button
+            type="button"
+            onClick={onDelete}
+            className={styles.removeButton}
+          >
+            Delete
+          </button>
         </div>
       </a>
     </Link>
@@ -38,7 +50,8 @@ function LayoutCard({ layout, job }) {
 
 LayoutCard.propTypes = {
   layout: PropTypes.shape().isRequired,
-  job: PropTypes.shape().isRequired
+  job: PropTypes.shape().isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default function Me(pageProps) {
@@ -46,12 +59,32 @@ export default function Me(pageProps) {
   const [layouts, setLayouts] = useState([]);
   const { status } = useSession({ required: true });
 
-  useEffect(() => {
-    fetch('/api/layouts')
+  function getLayouts() {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ method: 'list' }),
+      headers: { 'Content-Type': 'application/json' }
+    };
+
+    fetch('/api/layout', options)
       .then((data) => data.json())
       .then((json) => {
         setLayouts(json);
       });
+  }
+
+  function deleteLayout(e, layoutId) {
+    e.preventDefault();
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({ id: layoutId, method: 'destroy' }),
+      headers: { 'Content-Type': 'application/json' }
+    };
+    fetch('/api/layout', options).then(() => getLayouts());
+  }
+
+  useEffect(() => {
+    getLayouts();
   }, []);
 
   if (status === 'unauthenticated') return null;
@@ -79,7 +112,11 @@ export default function Me(pageProps) {
                 const job = jobs.find((j) => j.Abbr === layout.jobId);
                 return (
                   <li key={layout.id}>
-                    <LayoutCard layout={layout} job={job} />
+                    <LayoutCard
+                      layout={layout}
+                      job={job}
+                      onDelete={(e) => deleteLayout(e, layout.id)}
+                    />
                   </li>
                 );
               })}

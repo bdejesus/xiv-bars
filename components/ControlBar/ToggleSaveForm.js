@@ -1,6 +1,5 @@
 import { useSession, signIn } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
-import { maxLayouts } from 'lib/user';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
@@ -8,7 +7,7 @@ function ToggleSaveForm() {
   const { data: session } = useSession();
   const appDispatch = useAppDispatch();
   const { viewData } = useAppState();
-  const canPublish = session && !viewData && (maxLayouts);
+  const canPublish = session && !viewData;
   const canEdit = session && (session.user.id === viewData?.userId);
 
   function showForm() { appDispatch({ type: 'editLayout' }); }

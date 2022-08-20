@@ -1,8 +1,6 @@
 import NextAuth from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
-import fetch from 'node-fetch';
 import db from 'lib/db';
-import { domain } from 'lib/host';
 
 async function signinUser(session) {
   let user = await db.user.findUnique({

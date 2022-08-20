@@ -3,12 +3,21 @@ import db from 'lib/db';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { maxLayouts } from 'lib/user';
+import { byKey } from 'lib/utils/array';
+
+async function list(userId) {
+  const listLayouts = await db.layout.findMany({ where: { userId } });
+  return listLayouts.sort(byKey('updatedAt', 'desc'));
+}
 
 async function create(userId, { data }) {
   const userLayouts = await db.layout.findMany({ where: { userId } });
-  if (userLayouts.length < maxLayouts) throw new Error('Too many layouts');
-  const createLayout = await db.layout.create({ data: { ...data, userId } });
-  return createLayout;
+  if (userLayouts.length > maxLayouts) {
+    throw new Error('Too many layouts');
+  } else {
+    const createLayout = await db.layout.create({ data: { ...data, userId } });
+    return createLayout;
+  }
 }
 
 async function read(id) {
@@ -31,7 +40,8 @@ async function update(userId, { id, data }) {
 
 async function destroy(userId, { id }) {
   await db.layout.deleteMany({ where: { id, userId } });
-  return { status: 'ok' };
+  const newList = await list(userId);
+  return newList;
 }
 
 export default async function layout(req, res) {
@@ -41,6 +51,11 @@ export default async function layout(req, res) {
     const { body } = req;
 
     switch (body.method) {
+      case 'list': {
+        const listLayouts = await list(userId);
+        res.status(200).json(listLayouts);
+        break;
+      }
       case 'create': {
         const createLayout = await create(userId, body);
         res.status(200).json(createLayout);
@@ -73,5 +88,6 @@ export default async function layout(req, res) {
     }
   } catch (error) {
     console.error(error);
+    res.status(200).json(error);
   }
 }

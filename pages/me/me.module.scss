@@ -26,7 +26,20 @@
   flex-direction: column;
   height: 100%;
   padding: $spacing-base;
+  position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+
+  .actions {
+    opacity: 0;
+    position: absolute;
+    right: $spacing-sm;
+    top: $spacing-sm;
+    transition: opacity 0.3s ease;
+  }
+
+  .removeButton {
+    padding: $spacing-xs $spacing-sm;
+  }
 
   &:hover {
     border-color: $color-alt;
@@ -44,6 +57,10 @@
 
     .job {
       filter: grayscale(0);
+    }
+
+    .actions {
+      opacity: 1;
     }
   }
 

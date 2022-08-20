@@ -44,7 +44,11 @@ function SaveForm() {
       .then((data) => data.json())
       .then((json) => {
         appDispatch({ type: 'saveLayout', viewData: { ...json, ...body } });
-        router.push(`/job/${json.jobId}/${json.id}`, undefined, { shallow: true });
+        router.push(
+          `/job/${json.jobId}/${json.id}`,
+          undefined,
+          { shallow: true }
+        );
       })
       .catch((error) => {
         console.error(error);
