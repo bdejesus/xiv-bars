@@ -4,6 +4,7 @@
   align-items: center;
   background-color: #fff;
   display: flex;
+  height: 48px;
   justify-content: space-between;
   padding: $spacing-sm $spacing-base;
   position: fixed;
@@ -11,7 +12,6 @@
   white-space: nowrap;
   width: 100vw;
   z-index: 10;
-  height: 48px;
 }
 
 .branding {

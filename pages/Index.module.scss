@@ -5,25 +5,26 @@
 }
 
 .errorPage {
-  min-height: calc(100vh - 48px);
-  flex-direction: column;
   display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 48px);
 
   .main {
-    flex: 1 1 auto;
+    align-items: center;
     display: flex;
+    flex: 1 1 auto;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
   }
 
   h1 {
     margin: 0;
     margin-bottom: $spacing-lg;
   }
+
   small {
-    opacity: 0.5;
     display: block;
+    opacity: 0.5;
   }
 
   li {
