@@ -48,6 +48,10 @@ export const authOptions = {
     }
   },
 
+  pages: {
+    signIn: '/'
+  },
+
   secret: process.env.JWT_SECRET
 };
 
