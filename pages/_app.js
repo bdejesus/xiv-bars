@@ -41,7 +41,7 @@ export function App({ Component, pageProps }) {
     <>
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=UA-144541753-2"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -51,7 +51,7 @@ export function App({ Component, pageProps }) {
             dataLayer.push(arguments);
           }
           gtag("js", new Date());
-          gtag("config", "UA-144541753-2");
+          gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
         `}
       </Script>
 
