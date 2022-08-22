@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import { useUserDispatch } from 'components/User/context';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import I18n from 'lib/I18n/locale/en-US';
@@ -11,6 +12,7 @@ import JobMenu from 'components/JobSelect/JobMenu';
 import Job from 'components/JobSelect/Job';
 import LoadScreen from 'components/LoadScreen';
 import { listJobs, } from 'lib/api';
+import { maxLayouts } from 'lib/user';
 
 import styles from './me.module.scss';
 
@@ -57,6 +59,7 @@ LayoutCard.propTypes = {
 export default function Me(pageProps) {
   const { jobs } = pageProps;
   const [layouts, setLayouts] = useState([]);
+  const userDispatch = useUserDispatch();
   const { status } = useSession({ required: true });
 
   function getLayouts() {
@@ -80,12 +83,15 @@ export default function Me(pageProps) {
       body: JSON.stringify({ id: layoutId, method: 'destroy' }),
       headers: { 'Content-Type': 'application/json' }
     };
-    fetch('/api/layout', options).then(() => getLayouts());
+    fetch('/api/layout', options)
+      .then((data) => data.json())
+      .then((json) => {
+        setLayouts(json);
+        userDispatch({ type: 'UPDATE_LAYOUTS', layouts: json.length });
+      });
   }
 
-  useEffect(() => {
-    getLayouts();
-  }, []);
+  useEffect(() => { getLayouts(); }, []);
 
   if (status === 'unauthenticated') return null;
 
@@ -120,6 +126,16 @@ export default function Me(pageProps) {
                   </li>
                 );
               })}
+
+              { [...Array(maxLayouts - layouts.length)].map((e, i) => (
+                <li key={`placeholder-${i}`}>
+                  <Link href="/">
+                    <a className={styles.card}>
+                      <h4 className={styles.placeholder}>+ New Layout</h4>
+                    </a>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         ) : (

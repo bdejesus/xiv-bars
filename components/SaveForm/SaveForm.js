@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import fetch from 'node-fetch';
 import { useAppDispatch, useAppState } from 'components/App/context';
+import { useUserDispatch } from 'components/User/context';
 
 import styles from './SaveForm.module.scss';
 
@@ -16,6 +17,7 @@ function SaveForm() {
     selectedJob
   } = useAppState();
   const appDispatch = useAppDispatch();
+  const userDispatch = useUserDispatch();
 
   function saveLayout() {
     const title = titleField.current.value;
@@ -34,6 +36,8 @@ function SaveForm() {
       }
     };
 
+    console.log(body);
+
     const options = {
       method: 'POST',
       body: JSON.stringify(body),
@@ -43,12 +47,10 @@ function SaveForm() {
     fetch('/api/layout', options)
       .then((data) => data.json())
       .then((json) => {
-        appDispatch({ type: 'saveLayout', viewData: { ...json, ...body } });
-        router.push(
-          `/job/${json.jobId}/${json.id}`,
-          undefined,
-          { shallow: true }
-        );
+        const [currentLayout, layouts] = json;
+        appDispatch({ type: 'saveLayout', viewData: { ...currentLayout, ...body } });
+        userDispatch({ type: 'UPDATE_LAYOUTS', layouts: layouts.length });
+        router.push(`/job/${json.jobId}/${json.id}`, undefined, { shallow: true });
       })
       .catch((error) => {
         console.error(error);

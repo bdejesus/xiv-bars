@@ -6,7 +6,7 @@ import I18n from 'lib/I18n/locale/en-US';
 import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
 import { SessionProvider } from 'next-auth/react';
-
+import { UserProvider } from 'components/User/context';
 import 'styles/global.scss';
 
 export function App({ Component, pageProps }) {
@@ -63,7 +63,9 @@ export function App({ Component, pageProps }) {
 
       <main>
         <SessionProvider session={session}>
-          <Component {...pageProps} />
+          <UserProvider>
+            <Component {...pageProps} />
+          </UserProvider>
         </SessionProvider>
       </main>
     </>

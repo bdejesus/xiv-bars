@@ -10,7 +10,7 @@ import AppReducer from './reducers';
 const AppContext = createContext();
 const AppDispatchContext = createContext();
 
-function useAppState() {
+export function useAppState() {
   const context = useContext(AppContext);
   if (context === undefined) {
     throw new Error('useAppState must be used within the AppContextProvider');
@@ -18,7 +18,7 @@ function useAppState() {
   return context;
 }
 
-function useAppDispatch() {
+export function useAppDispatch() {
   const context = useContext(AppDispatchContext);
   if (context === undefined) {
     throw new Error('useAppDispatch must be used within the AppContextProvider');
@@ -26,7 +26,7 @@ function useAppDispatch() {
   return context;
 }
 
-function AppContextProvider({
+export function AppContextProvider({
   children,
   jobs,
   selectedJob,
@@ -109,8 +109,3 @@ AppContextProvider.defaultProps = {
 };
 
 export default AppContextProvider;
-export {
-  AppContextProvider,
-  useAppState,
-  useAppDispatch
-};

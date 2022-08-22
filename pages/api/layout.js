@@ -13,7 +13,7 @@ async function list(userId) {
 async function create(userId, { data }) {
   const userLayouts = await db.layout.findMany({ where: { userId } });
   if (userLayouts.length > maxLayouts) {
-    throw new Error('Too many layouts');
+    throw new Error('Max number of layouts reached.');
   } else {
     const createLayout = await db.layout.create({ data: { ...data, userId } });
     return createLayout;
@@ -58,7 +58,8 @@ export default async function layout(req, res) {
       }
       case 'create': {
         const createLayout = await create(userId, body);
-        res.status(200).json(createLayout);
+        const layouts = await list(userId);
+        res.status(200).json([createLayout, layouts]);
         break;
       }
 
@@ -70,13 +71,14 @@ export default async function layout(req, res) {
 
       case 'update': {
         const updateLayout = await update(userId, body);
-        res.status(200).json(updateLayout);
+        const layouts = await list(userId);
+        res.status(200).json([updateLayout, layouts]);
         break;
       }
 
       case 'destroy': {
-        await destroy(userId, body);
-        res.status(200).json({ message: 'ok' });
+        const newList = await destroy(userId, body);
+        res.status(200).json(newList);
         break;
       }
 

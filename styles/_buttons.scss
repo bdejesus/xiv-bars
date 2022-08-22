@@ -50,4 +50,12 @@ button,
       opacity: 1;
     }
   }
+
+  &[disabled] {
+    opacity: 0.5;
+    background-color: #111 !important;
+    border-color: transparent !important;
+    color: #fff !important;
+    cursor: default;
+  }
 }
