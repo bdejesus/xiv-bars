@@ -48,7 +48,7 @@ function SaveForm() {
         const [currentLayout, layouts] = json;
         appDispatch({ type: 'saveLayout', viewData: { ...currentLayout, ...body } });
         userDispatch({ type: 'UPDATE_LAYOUTS', layouts: layouts.length });
-        router.push(`/job/${json.jobId}/${json.id}`, undefined, { shallow: true });
+        router.push(`/job/${currentLayout.jobId}/${currentLayout.id}`, undefined, { shallow: true });
       })
       .catch((error) => {
         console.error(error);

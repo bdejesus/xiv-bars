@@ -11,6 +11,7 @@ import JobMenu from 'components/JobSelect/JobMenu';
 import UILayout from 'components/UILayout';
 import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
+import ReactMarkdown from 'react-markdown';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
@@ -88,7 +89,17 @@ export function App() {
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />
                       <h3>{viewData.title}</h3>
-                      <p>{viewData.description}</p>
+                      <ReactMarkdown
+                        components={{
+                          h1: 'h4',
+                          h2: 'h5',
+                          h3: 'h6',
+                          h4: 'p',
+                          h5: 'p'
+                        }}
+                      >
+                        {viewData.description}
+                      </ReactMarkdown>
                     </div>
                   ) : (
                     <>
