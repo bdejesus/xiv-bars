@@ -18,7 +18,7 @@ export function Modal({ children, hidden, toClose }) {
       tabIndex={-1}
     >
       <div className={styles.container}>
-        <CloseButton onClick={toClose} />
+        { toClose && <CloseButton onClick={toClose} /> }
         <div className={styles.content}>
           {children}
         </div>

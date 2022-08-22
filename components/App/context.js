@@ -82,7 +82,7 @@ export function AppContextProvider({
 
 AppContextProvider.propTypes = {
   jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  actions: PropTypes.arrayOf(PropTypes.shape()),
   roleActions: PropTypes.arrayOf(PropTypes.shape()),
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.shape()),
@@ -99,6 +99,7 @@ AppContextProvider.propTypes = {
 };
 
 AppContextProvider.defaultProps = {
+  actions: undefined,
   roleActions: undefined,
   selectedJob: undefined,
   encodedSlots: undefined,

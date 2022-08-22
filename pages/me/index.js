@@ -18,36 +18,57 @@ import { maxLayouts } from 'lib/user';
 import styles from './me.module.scss';
 
 function LayoutCard({ layout, job, onDelete }) {
+  const [showPrompt, setShowPrompt] = useState(false);
+
   function formatDate(date) {
     const formattedDate = new Date(date);
     return formattedDate.toDateString();
   }
 
   return (
-    <Link href={`/job/${layout.jobId}/${layout.id}`}>
-      <a className={styles.card}>
-        <h4>{layout.title}</h4>
+    <>
+      <Link href={`/job/${layout.jobId}/${layout.id}`}>
+        <a className={styles.card}>
+          <h4>{layout.title}</h4>
+          <p className={styles.description}>{layout.description}</p>
 
-        <p className={styles.description}>{layout.description}</p>
+          <div className={styles.cardFooter}>
+            <Job job={job} className={styles.job} />
+            <div className={styles.timestamp}>
+              {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
+            </div>
+          </div>
 
-        <div className={styles.cardFooter}>
-          <Job job={job} className={styles.job} />
-          <div className={styles.timestamp}>
-            {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
+        </a>
+
+      </Link>
+      <div className={styles.actions}>
+        <button
+          type="button"
+          onClick={() => setShowPrompt(true)}
+          className={styles.removeButton}
+        >
+          Delete
+        </button>
+      </div>
+
+      { showPrompt && (
+        <div className={styles.prompt} data-active={!showPrompt}>
+          <div className={styles.promptContent}>
+            <p>Are you sure you want to delete <b>{layout.title}</b>?</p>
+            <div className={styles.promptActions}>
+              <button type="button" onClick={onDelete}>Delete</button>
+              <button
+                type="button"
+                onClick={() => setShowPrompt(false)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className={styles.actions}>
-          <button
-            type="button"
-            onClick={onDelete}
-            className={styles.removeButton}
-          >
-            Delete
-          </button>
-        </div>
-      </a>
-    </Link>
+      )}
+    </>
   );
 }
 
@@ -77,8 +98,7 @@ export default function Me(pageProps) {
       });
   }
 
-  function deleteLayout(e, layoutId) {
-    e.preventDefault();
+  function destroyLayout(layoutId) {
     const options = {
       method: 'POST',
       body: JSON.stringify({ id: layoutId, method: 'destroy' }),
@@ -90,6 +110,10 @@ export default function Me(pageProps) {
         setLayouts(json);
         userDispatch({ type: 'UPDATE_LAYOUTS', layouts: json.length });
       });
+  }
+
+  function deleteLayout(e, layoutId) {
+    destroyLayout(layoutId);
   }
 
   useEffect(() => { getLayouts(); }, []);
