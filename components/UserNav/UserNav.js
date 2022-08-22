@@ -11,7 +11,7 @@ export function UserNav() {
   const router = useRouter();
 
   function handleSignIn() {
-    gtag.event({ action: 'login' });
+    gtag.event({ action: 'login', value: { method: 'discord' } });
     signIn('discord', { callbackUrl: '/' });
   }
 

@@ -25,7 +25,7 @@ function SaveForm() {
     const jobId = viewData ? viewData.jobId : selectedJob.Abbr;
 
     const body = {
-      id: viewData ? viewData.id : null,
+      id: viewData?.id,
       method: viewData ? 'update' : 'create',
       data: {
         title,
@@ -36,13 +36,11 @@ function SaveForm() {
       }
     };
 
-    const options = {
+    fetch('/api/layout', {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }
-    };
-
-    fetch('/api/layout', options)
+    })
       .then((data) => data.json())
       .then((json) => {
         const [currentLayout, layouts] = json;
