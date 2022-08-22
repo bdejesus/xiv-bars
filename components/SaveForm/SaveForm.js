@@ -36,8 +36,6 @@ function SaveForm() {
       }
     };
 
-    console.log(body);
-
     const options = {
       method: 'POST',
       body: JSON.stringify(body),
