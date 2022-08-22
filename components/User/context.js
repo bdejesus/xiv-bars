@@ -39,7 +39,7 @@ export function UserProvider({ children }) {
       type: 'UPDATE_USER',
       user: {
         loggedIn: status === 'authenticated',
-        canPublish: session?.user._count.layouts < maxLayouts
+        canPublish: session?.user?._count?.layouts < maxLayouts
       }
     });
   }, [status]);
