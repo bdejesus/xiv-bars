@@ -1,10 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Action from 'components/Action';
 import { useAppState } from 'components/App/context';
 import styles from './ActionGroup.module.scss';
 
-function ActionGroup({
+export function ActionGroup({
   title, actions, limit, remote
 }) {
   const { showTitles } = useAppState();

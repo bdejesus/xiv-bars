@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from 'react';
+import { createContext, useContext, useReducer } from 'react';
 import PropTypes from 'prop-types';
 
 const SelectedActionContext = createContext();
@@ -18,23 +18,23 @@ function selectedActionReducer(state, payload) {
   }
 }
 
-function useSelectedActionState() {
-  const context = React.useContext(SelectedActionContext);
+export function useSelectedActionState() {
+  const context = useContext(SelectedActionContext);
   if (context === undefined) {
     throw new Error('useSelectedActionState must be used within a SelectedActionContextProvider');
   }
   return context;
 }
 
-function useSelectedActionDispatch() {
-  const context = React.useContext(SelectedActionDispatchContext);
+export function useSelectedActionDispatch() {
+  const context = useContext(SelectedActionDispatchContext);
   if (context === undefined) {
     throw new Error('useSelectedActionDispatch must be used within a SelectedActionContextProvider');
   }
   return context;
 }
 
-function SelectedActionContextProvider({ children }) {
+export function SelectedActionContextProvider({ children }) {
   const [state, dispatch] = useReducer(
     selectedActionReducer,
     { selectedAction: {} }
@@ -57,8 +57,3 @@ SelectedActionContextProvider.propTypes = {
 };
 
 export default SelectedActionContextProvider;
-export {
-  SelectedActionContextProvider,
-  useSelectedActionState,
-  useSelectedActionDispatch
-};

@@ -1,26 +1,31 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import I18n from 'lib/I18n/locale/en-US';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
-import { JobSelectContextProvider } from 'components/JobSelect/context';
-
+import { jobsType } from 'lib/types/jobs';
 import styles from './Intro.module.scss';
 
-function Intro({ jobs }) {
+export function Intro({ jobs, className }) {
   return (
     <>
-      <div className={styles.header}>
+      <div className={[styles.header, className].join(' ')}>
         <Hero />
       </div>
 
       <div className="app-view">
         <div className="container">
-          <JobSelectContextProvider>
-            <h2 className={styles.title} id="jobSelectTitle">
-              Select A Job/Class
-            </h2>
-            <JobMenu jobs={jobs} />
-          </JobSelectContextProvider>
+          { jobs.length > 0 ? (
+            <>
+              <h2 className={styles.title} id="jobSelectTitle">
+                { I18n.Intro.select_a_job }
+              </h2>
+              <JobMenu jobs={jobs} />
+            </>
+          ) : (
+            <div className="system-message error">
+              { I18n.Error.no_jobs }
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -28,7 +33,12 @@ function Intro({ jobs }) {
 }
 
 Intro.propTypes = {
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  jobs: jobsType.isRequired,
+  className: PropTypes.string
+};
+
+Intro.defaultProps = {
+  className: undefined
 };
 
 export default Intro;

@@ -1,13 +1,14 @@
 @import "styles/mixins";
 
 .button {
-  background: rgb(0 0 0 / 0%);
   color: #fff;
   display: block;
   font-size: 24px;
   height: auto;
+  margin-bottom: $spacing-sm;
   padding: $spacing-xs $spacing-base $spacing-xs $spacing-xs;
   transition: background-color 0.33s ease;
+  width: 100%;
 
   img {
     height: 36px;
@@ -15,9 +16,14 @@
   }
 
   &:hover {
-    background-color: rgba(255 255 255 / 20%);
     color: #fff;
     text-shadow: 1px 1px 1px rgba(0 0 0 / 33%);
+  }
+
+  &[disabled] {
+    background: none;
+    border: none;
+    pointer-events: none;
   }
 }
 

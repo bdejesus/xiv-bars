@@ -4,7 +4,8 @@ $font-family-primary: "Segoe UI", "Roboto", "Ubuntu", "Cantarell";
 $font-family-fallback: "Fira Sans", "Droid Sans", "Helvetica Neue";
 $font-family-system: -apple-system, "BlinkMacSystemFont", sans-serif;
 
-body {
+body,
+textarea {
   color: #ccc;
   font-family: $font-family-primary, $font-family-fallback, $font-family-system;
   font-size: 16px;

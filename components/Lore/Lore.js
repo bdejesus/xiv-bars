@@ -1,14 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import I18n from 'lib/I18n/locale/en-US';
 import styles from './Lore.module.scss';
 
-function Lore({ selectedJob }) {
+export function Lore({ selectedJob }) {
   return (
     <div
       className={styles.lore}
     >
       <h3 className={styles.loreTitle}>
-        {selectedJob.Name} Lore
+        {I18n.Lore.lore}
       </h3>
       <div
         className={styles.loreBody}

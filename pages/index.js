@@ -7,14 +7,13 @@ import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
-import { listJobs, } from '../lib/api';
-// import { useSession } from 'next-auth/react';
+import { jobsType } from 'lib/types/jobs';
+import { listJobs, } from 'lib/api';
 
 import styles from './Index.module.scss';
 
-function Index(pageProps) {
+function Index({ jobs }) {
   const router = useRouter();
-  const { jobs } = pageProps;
 
   useEffect(() => {
     const jobAbbrs = jobs.map(({ Abbr }) => Abbr);
@@ -24,13 +23,12 @@ function Index(pageProps) {
     if (jobAbbrs.includes(job)) {
       router.push({ pathname: `/job/${job}`, query: { s1, s } });
     }
-  }, [router]);
+  }, [router, jobs]);
 
   return (
     <>
       <GlobalHeader />
       <Intro jobs={jobs} />
-
       <div className={styles.articles}>
         <HowTo />
         <EorzeaProfile />
@@ -50,6 +48,10 @@ Index.getInitialProps = async () => {
   return {
     jobs: decoratedJobs,
   };
+};
+
+Index.propTypes = {
+  jobs: jobsType.isRequired
 };
 
 export default Index;

@@ -6,9 +6,6 @@ const options = {
   eslint: {
     // ESlint is run outside of the build step
     ignoreDuringBuilds: true,
-  },
-
-  redirects: {
   }
 };
 

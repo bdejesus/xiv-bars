@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
 import { useTooltipState } from './context';
 
 import styles from './Tooltip.module.scss';
@@ -29,7 +29,7 @@ Description.defaultProps = {
   content: undefined
 };
 
-function Tooltip() {
+export function Tooltip() {
   const [positionStyle, setPositionStyle] = useState({ transform: 'none' });
   const [anchor, setAnchor] = useState('right');
   const { content, position } = useTooltipState();

@@ -1,84 +1,56 @@
 import PropTypes from 'prop-types';
-import JobSelect, { JobSelectContextProvider } from 'components/JobSelect';
+import { useAppState } from 'components/App/context';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
-import { useAppDispatch, useAppState } from 'components/App/context';
+import SaveForm from 'components/SaveForm';
+import ToggleTitles from './ToggleTitles';
+import ToggleMaxLvl from './ToggleMaxLvl';
+import ToggleSaveForm from './ToggleSaveForm';
 import styles from './ControlBar.module.scss';
 
-function ToggleTitles() {
-  const appDispatch = useAppDispatch();
-  const { showTitles } = useAppState();
-
-  function handleTitlesToggle() {
-    appDispatch({ type: 'toggleTitles' });
-  }
+export function ControlBar({ selectedJob }) {
+  const { readOnly, showPublish, showModal } = useAppState();
 
   return (
-    <button
-      type="button"
-      onClick={() => handleTitlesToggle()}
-      data-active={showTitles}
-      className={styles.toggleTitlesBtn}
-    >
-      <img src="/images/icon-titles.svg" className="btn-icon" alt="Titles Icon" />
-      Titles
-    </button>
-  );
-}
+    <>
+      <div className={styles.controlBar} data-active-modal={showModal}>
+        <div className={styles.container}>
+          <div className={styles.groupLeft}>
+            <div className={styles.control}>
+              <ToggleSaveForm />
+            </div>
+          </div>
 
-function ToggleMaxLvl() {
-  const appDispatch = useAppDispatch();
-  const { showAllLvl } = useAppState();
+          <div className={styles.groupRight}>
+            { !readOnly && (
+              <div className={styles.control}>
+                <ToggleMaxLvl />
+              </div>
+            )}
 
-  function handleMaxLvlToggle() {
-    appDispatch({ type: 'toggleAllLvl' });
-  }
+            <div className={styles.control}>
+              <ToggleTitles />
+            </div>
 
-  return (
-    <button
-      type="button"
-      onClick={() => handleMaxLvlToggle()}
-      data-active={showAllLvl}
-      className={styles.toggleTitlesBtn}
-    >
-      <img src="/images/icon-titles.svg" className="btn-icon" alt="Max Lvl Icon" />
-      All levels
-    </button>
-  );
-}
+            <div className={styles.control}>
+              <ExportToMacros />
+            </div>
 
-function ControlBar({ jobs, selectedJob }) {
-  return (
-    <div className={styles.container}>
-      <div className={styles.groupLeft}>
-        <JobSelectContextProvider>
-          <JobSelect jobs={jobs} selectedJob={selectedJob} />
-        </JobSelectContextProvider>
+            <div className={styles.control}>
+              <Sharing selectedJob={selectedJob} />
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className={styles.groupRight}>
-        <div className={styles.control}>
-          <ToggleMaxLvl />
-        </div>
-
-        <div className={styles.control}>
-          <ToggleTitles />
-        </div>
-
-        <div className={styles.control}>
-          <ExportToMacros />
-        </div>
-
-        <div className={styles.control}>
-          <Sharing selectedJob={selectedJob} />
-        </div>
+      <div className={styles.controlContent}>
+        { showPublish && <SaveForm /> }
       </div>
-    </div>
+    </>
   );
 }
 
 ControlBar.propTypes = {
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedJob: PropTypes.shape()
 };
 

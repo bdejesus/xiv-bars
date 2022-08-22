@@ -17,4 +17,9 @@
     outline: none;
     transform: scale(1.1);
   }
+
+  &[data-disabled="true"] {
+    background-color: rgb(0 0 0 / 10%);
+    pointer-events: none;
+  }
 }

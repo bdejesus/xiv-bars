@@ -4,11 +4,10 @@ import { useRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import I18n from 'lib/I18n/locale/en-US';
-import CloseButton from 'components/CloseButton';
 import Modal from 'components/Modal';
 import styles from './ExportToMacros.module.scss';
 
-function ExportToMacros() {
+export function ExportToMacros() {
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
   const textarea = useRef();
@@ -91,21 +90,19 @@ function ExportToMacros() {
           data-copied={copied}
         >
           <div
-            className={styles.modalContent}
+            className="modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <CloseButton onClick={(e) => toggleModal(e)} />
-
-            <div className={styles.modalHeader}>
+            <div className="modal-header">
               <h3>{I18n.ExportToMacro.export_to_macro}</h3>
               <p>{I18n.ExportToMacro.limitations}</p>
             </div>
 
             <textarea ref={textarea} readOnly onClick={selectTextarea} />
 
-            <div className={styles.modalFooter}>
+            <div className="modal-footer">
               <button type="button" onClick={copyText}>
-                {copied ? 'Copied!' : 'Copy'}
+                {copied ? I18n.ExportToMacro.copied : I18n.ExportToMacro.copy}
               </button>
             </div>
           </div>

@@ -1,6 +1,7 @@
 @import "styles/mixins";
 
 .container {
+  margin-bottom: $spacing-base;
   padding-bottom: $spacing-base;
 
   &:last-child {
@@ -12,7 +13,7 @@
   color: rgb(255 255 255 / 66%);
   font-size: 10px;
   line-height: 1.2em;
-  margin: $spacing-base 0;
+  margin: 0 0 $spacing-base;
   text-transform: uppercase;
   white-space: nowrap;
 }

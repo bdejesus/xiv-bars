@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
-import React, { createRef, useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
-import host from 'lib/host';
+import { domain } from 'lib/host';
 import styles from './Sharing.module.scss';
 
-function Sharing({ selectedJob }) {
+export function Sharing({ selectedJob }) {
   const router = useRouter();
-  const { encodedSlots } = useAppState();
+  const { encodedSlots, readOnly, viewAction } = useAppState();
   const [copied, setCopied] = useState(false);
 
   const urlInput = createRef();
@@ -25,11 +25,20 @@ function Sharing({ selectedJob }) {
         .map((key) => `${key}=${query[key]}`)
         .join('&');
 
-      return `${host.host}/job/${selectedJob.Abbr}?${queryString}`;
+      return `${domain}/job/${selectedJob.Abbr}?${queryString}`;
     }
 
-    const shareURL = buildShareUrl();
+    function getLayoutUrl() {
+      const [layoutId] = router.query.params;
+      return `${domain}/job/${selectedJob.Abbr}/${layoutId}`;
+    }
+
+    const shareURL = readOnly ? getLayoutUrl() : buildShareUrl();
     urlInput.current.value = shareURL;
+
+    if (viewAction === 'new') {
+      router.push(shareURL, undefined, { shallow: true });
+    }
   }, [encodedSlots]);
 
   function selectInput() {
@@ -64,7 +73,7 @@ function Sharing({ selectedJob }) {
         onClick={copyUrl}
       >
         <img src="/images/icon-copy.svg" className="btn-icon" alt="Copy Icon" />
-        Copy
+        Copy URL
       </button>
     </div>
   );

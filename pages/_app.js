@@ -5,11 +5,12 @@ import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
 import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
-
+import { SessionProvider } from 'next-auth/react';
+import { UserProvider } from 'components/User/context';
 import 'styles/global.scss';
 
-function App({ Component, pageProps }) {
-  const { selectedJob, actions } = pageProps;
+export function App({ Component, pageProps }) {
+  const { selectedJob, actions, session } = pageProps;
 
   function generateTitle() {
     if (selectedJob) {
@@ -61,10 +62,19 @@ function App({ Component, pageProps }) {
       </Head>
 
       <main>
-        <Component {...pageProps} />
+        <SessionProvider session={session}>
+          <UserProvider>
+            <Component {...pageProps} />
+          </UserProvider>
+        </SessionProvider>
       </main>
     </>
   );
 }
 
 export default App;
+
+App.propTypes = {
+  Component: PropTypes.func.isRequired,
+  pageProps: PropTypes.shape().isRequired
+};

@@ -1,28 +1,32 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './Job.module.scss';
 
-function Job({ job }) {
+export function Job({ job, className }) {
   return (
-    <div className={styles.wrapper}>
+    <div className={[styles.wrapper, className].join(' ')}>
       <img
-        className={styles.icon}
+        className={`${styles.icon} job-icon`}
         src={job.PreIcon || `//xivapi.com/${job.Icon}`}
         alt={`${job.Name} Icon`}
         draggable={false}
         height={28}
         width={28}
       />
-      <b className={styles.abbr}>{job.Abbr}</b>
+      <b className={`${styles.abbr} job-abbr`}>{job.Abbr}</b>
       &nbsp;
-      <span className={styles.name}>{job.Name}</span>
+      <span className={`${styles.name} job-name`}>{job.Name}</span>
     </div>
   );
 }
 
 Job.propTypes = {
-  job: PropTypes.shape().isRequired
+  job: PropTypes.shape().isRequired,
+  className: PropTypes.string
+};
+
+Job.defaultProps = {
+  className: ''
 };
 
 export default Job;

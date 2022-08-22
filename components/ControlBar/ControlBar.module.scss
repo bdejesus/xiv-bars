@@ -1,43 +1,79 @@
 @import "styles/mixins";
 
-.container {
-  align-items: flex-end;
+.controlBar {
   background-color: $panel-bg;
   box-shadow: 0 2px 0 $color-gray-dark-2;
+  padding: 0 $spacing-base;
+  position: fixed;
+  top: 48px;
+  width: 100vw;
+  z-index: 9;
+
+  &[data-active-modal="true"] {
+    z-index: 11;
+  }
+}
+
+.controlContent {
+  padding-top: 48px;
+}
+
+.container {
+  align-items: flex-end;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: $spacing-xs $spacing-base;
-  position: sticky;
-  top: 48px;
-  z-index: 10;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .groupLeft {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
   margin-left: -$spacing-sm;
+  padding-bottom: $spacing-xs;
+  padding-top: 12px;
 }
 
 .groupRight {
   align-items: flex-end;
   display: flex;
   flex-direction: row;
-  padding-bottom: $spacing-sm;
-  padding-top: $spacing-base;
+  padding-bottom: $spacing-xs;
+  padding-top: 12px;
+
+  + .groupRight {
+    margin-left: $spacing-sm;
+    padding-left: $spacing-sm;
+  }
 }
 
 .control {
   margin-left: $spacing-xs;
 
+  &:first-child {
+    margin-left: 0;
+  }
+
   button,
   :global(.button) {
-    padding: 0 $spacing-sm;
+    padding: 0 10px;
 
     img {
-      margin-left: -4px;
+      margin-left: -2px;
     }
 
     &[data-active="true"] {
       box-shadow: inset 0 0 1px 1px $color-alt;
     }
   }
+}
+
+.upsell {
+  align-items: center;
+  display: inline-flex;
+  font-size: $font-size-sm;
+  height: 32px;
+  margin-right: $spacing-base;
 }

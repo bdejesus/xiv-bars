@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Slot from 'components/Slot';
 import { useAppState } from 'components/App/context';
@@ -24,7 +23,7 @@ Row.propTypes = {
   slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
 };
 
-function Hotbar() {
+export function Hotbar() {
   const { hotbar } = useAppState();
 
   return (

@@ -1,12 +1,14 @@
 @import "styles/mixins";
 
 .modal {
-  align-items: center;
+  align-items: top;
   bottom: 0;
   display: flex;
   justify-content: center;
   left: 0;
+  max-height: 100vh;
   overflow: auto;
+  padding: ($spacing-xl * 2) $spacing-lg;
   position: fixed;
   right: 0;
   top: 0;
@@ -37,5 +39,36 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
+
+  :global(.modal-content) {
+    background-color: $panel-bg;
+    border-radius: $border-radius;
+    max-width: 460px;
+    padding: $spacing-base;
+    position: relative;
+
+    h3 {
+      margin: 0 0 $spacing-sm;
+    }
+
+    button {
+      padding-left: $spacing-lg;
+      padding-right: $spacing-lg;
+    }
+  }
+
+  :global(.modal-header) {
+    margin: $spacing-sm 0 $spacing-base;
+    max-width: 100%;
+    position: relative;
+  }
+
+  :global(.modal-footer) {
+    margin-top: $spacing-sm;
+  }
+
+  .content {
+    margin-bottom: $spacing-xl;
   }
 }

@@ -1,10 +1,9 @@
 /* eslint-disable max-len */
-import React from 'react';
 import PropTypes from 'prop-types';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './Hero.module.scss';
 
-function Hero({ primary }) {
+export function Hero({ primary }) {
   return (
     <div className="container">
       { primary

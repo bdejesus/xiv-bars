@@ -1,0 +1,120 @@
+@import "styles/mixins";
+
+.userNav {
+  align-items: center;
+  color: #333;
+  display: flex;
+  flex-direction: row;
+  font-size: $font-size-base;
+  position: relative;
+
+  a {
+    border-radius: 6px;
+    color: #333;
+    display: block;
+    padding: $spacing-xs $spacing-sm;
+    transition-duration: 0.3s;
+    transition-property: color, background-color, box-shadow;
+    transition-timing-function: ease;
+
+    &:hover {
+      background-color: $color-alt;
+      text-decoration: none;
+    }
+  }
+}
+
+.globalNav {
+  list-style: none;
+  margin: 0 $spacing-lg;
+  padding: 0;
+}
+
+.profileNav {
+  position: relative;
+}
+
+.profile {
+  align-items: center;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  margin: -$spacing-xs (-$spacing-sm);
+  padding: $spacing-xs $spacing-sm;
+  transition-duration: 0.3s;
+  transition-property: color, background-color, box-shadow;
+  transition-timing-function: ease;
+  user-select: none;
+
+  &:hover,
+  &[data-active="true"] {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgb(0 0 0 / 20%);
+  }
+
+  &[data-active="true"] {
+    border-radius: 6px 6px 0 0;
+  }
+}
+
+.profileImage {
+  background-color: #333;
+  border-radius: 8px;
+  color: rgb(0 0 0 / 0%);
+  font-size: 10px;
+  height: 30px;
+  margin: 0 0 0  $spacing-sm;
+  overflow: hidden;
+  width: 30px;
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.menu {
+  background-color: #fff;
+  border-radius: 0 0 6px 6px;
+  border-top-color: #eee;
+  box-shadow: 0 4px 6px rgb(0 0 0 / 20%);
+  left: -$spacing-sm;
+  list-style: none;
+  margin: 0;
+  min-width: 120px;
+  padding: 0;
+  padding: $spacing-sm 2px;
+  position: absolute;
+  right: -$spacing-sm;
+  top: 100%;
+  z-index: 10;
+
+  &[data-active="true"] {
+    display: block;
+  }
+
+  &[data-active="false"] {
+    display: none;
+  }
+}
+
+.navItem {
+  margin: 0;
+
+  a[data-active="true"] {
+    font-weight: 500;
+  }
+}
+
+.email {
+  color: #666;
+  font-size: $font-size-base;
+  font-style: italic;
+  margin-right: $spacing-base;
+
+  a {
+    color: #333;
+  }
+}

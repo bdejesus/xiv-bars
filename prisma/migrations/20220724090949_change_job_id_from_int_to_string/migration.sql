@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Layout" ALTER COLUMN "jobId" SET DATA TYPE TEXT;

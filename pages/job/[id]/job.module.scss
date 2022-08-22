@@ -1,0 +1,16 @@
+@import "styles/mixins";
+
+.container {
+  align-items: flex-start;
+  display: flex;
+}
+
+.sidebar {
+  flex: 1 1 auto;
+  position: sticky;
+  top: 104px + $spacing-lg;
+
+  .section {
+    padding-right: $spacing-xl;
+  }
+}

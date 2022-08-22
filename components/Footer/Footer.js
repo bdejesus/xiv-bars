@@ -2,7 +2,7 @@ import I18n from 'lib/I18n/locale/en-US';
 import BuyMeABeer from 'components/BuyMeABeer';
 import styles from './Footer.module.scss';
 
-function Footer() {
+export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.container}`}>

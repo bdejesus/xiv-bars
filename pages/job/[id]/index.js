@@ -13,11 +13,10 @@ import HowTo from 'components/HowTo';
 import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
-import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
 import shortDesc from 'lib/shortDesc';
 
-import styles from '../Index.module.scss';
+import styles from '../../Index.module.scss';
 
 export default function Index({
   jobs,
@@ -34,8 +33,10 @@ export default function Index({
         roleActions={roleActions}
         selectedJob={selectedJob}
         jobs={jobs}
+        viewAction="new"
       >
         <App />
+
         <div className="container section">
           <div className={styles.description}>
             <h2>{selectedJob.Name} {I18n.Global.title}</h2>
@@ -56,7 +57,6 @@ export default function Index({
       </div>
 
       <Footer />
-      <LoadScreen />
     </>
   );
 }
@@ -68,12 +68,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const { params } = context;
+  const { id } = context.params;
 
   // Get Selected Job
   const decoratedJobs = await listJobs();
-  const selectedJob = params.id
-    ? decoratedJobs.find((job) => job.Abbr === params.id)
+  const selectedJob = id
+    ? decoratedJobs.find((job) => job.Abbr === id)
     : null;
 
   let jobActions = [];

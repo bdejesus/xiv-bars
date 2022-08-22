@@ -4,6 +4,7 @@ $color-gray: #303030;
 $color-gray-dark: #222;
 $color-gray-dark-2: #111;
 $color-alt: #f2e9b9;
+$link-color: #6cf;
 
 $slot-border-size: 1px;
 $slot-size: 38px;
@@ -29,7 +30,7 @@ $sidebar-width: 400px;
 $panel-bg: $color-gray;
 $panel-bg-dark: $color-gray-dark;
 $panel-bg-dark-2: $color-gray-dark-2;
-$border-radius: 4px;
+$border-radius: 6px;
 $box-shadow: 0 6px 10px rgb(0 0 0 / 66%);
 
 $spacing-xs: 4px;
@@ -42,9 +43,14 @@ $spacing-xl-2: 64px;
 $screen-xxs: 320px;
 $screen-xs: 480px;
 $screen-sm: 720px;
-$screen-lg: 1080px;
-$screen-xl: 1500px;
 $screen-md: 980px;
+$screen-lg: 1246px;
+$screen-xl: 1900px;
+
+// 1440 x 900
+// 1920 x 1080
+// 2560 x 1440
+// 3840 x 2160
 
 $screen-xs-max: $screen-sm - 1;
 $screen-sm-max: $screen-md - 1;

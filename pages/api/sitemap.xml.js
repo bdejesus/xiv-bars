@@ -1,11 +1,11 @@
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { ADVANCED_JOBS } = require('lib/jobs');
-const { host } = require('lib/host');
+const { domain } = require('lib/host');
 
 async function buildSitemap(req, res) {
   try {
     const sitemap = new SitemapStream({
-      hostname: `https://${host}`,
+      hostname: domain,
       cacheTime: 600000
     });
 

@@ -1,8 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Tabs.module.scss';
 
-function Tabs({ activeTab, onTabClick }) {
+export function Tabs({ activeTab, onTabClick }) {
   return (
     <div className={styles.tabs}>
       <ul className={styles.tabItems}>

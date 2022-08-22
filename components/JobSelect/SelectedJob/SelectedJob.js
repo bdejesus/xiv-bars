@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import jobs from 'lib/jobs';
 import styles from './SelectedJob.module.scss';
 
-function SelectedJob({ job }) {
+export function SelectedJob({ job }) {
   return (
     <div className={styles.container}>
       <div className={styles.iconWrapper}>

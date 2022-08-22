@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { useAppState } from 'components/App/context';
@@ -14,9 +14,11 @@ import Tabs from './Tabs';
 
 import styles from './ActionPanel.module.scss';
 
-function ActionPanel({ actions, roleActions }) {
+export function ActionPanel({ actions, roleActions }) {
+  const actionPanelRef = useRef();
   const { showAllLvl } = useAppState();
   const [activeTab, setActiveTab] = useState('panel-actions');
+  const [maxHeight, setMaxHeight] = useState();
 
   function handleTabClick(e) {
     const { target } = e.currentTarget.dataset;
@@ -27,13 +29,20 @@ function ActionPanel({ actions, roleActions }) {
     ? actions.filter((action) => !action.upgradable)
     : actions;
 
+  useEffect(() => {
+    const panelTop = actionPanelRef.current.getBoundingClientRect().y;
+    const margin = 20;
+    const height = window.innerHeight - panelTop - margin;
+    setMaxHeight(height);
+  }, []);
+
   return (
-    <div className={styles.actionsPanel}>
+    <div className={styles.actionsPanel} ref={actionPanelRef} style={{ maxHeight }}>
       <Tabs onTabClick={(e) => handleTabClick(e)} activeTab={activeTab} />
 
       { activeTab === 'panel-actions' && (
         <div
-          className={styles.panel}
+          className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-actions'}
         >
           <ActionGroup actions={displayActions} title="Job Actions" />
@@ -46,7 +55,7 @@ function ActionPanel({ actions, roleActions }) {
 
       { activeTab === 'panel-general' && (
         <div
-          className={styles.panel}
+          className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-general'}
         >
           <ActionGroup actions={GENERAL_ACTIONS} title="General Actions" />
@@ -57,7 +66,7 @@ function ActionPanel({ actions, roleActions }) {
 
       { activeTab === 'panel-menu' && (
         <div
-          className={styles.panel}
+          className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-menu'}
         >
           <ActionGroup actions={MAIN_COMMANDS} title="Menu Commands" />
@@ -66,7 +75,7 @@ function ActionPanel({ actions, roleActions }) {
 
       { activeTab === 'panel-company' && (
         <div
-          className={styles.panel}
+          className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-company'}
         >
           <ActionGroup actions={COMPANY_ACTIONS} title="Company Actions" />
@@ -75,7 +84,7 @@ function ActionPanel({ actions, roleActions }) {
 
       { activeTab === 'panel-macros' && (
         <div
-          className={styles.panel}
+          className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-macros'}
         >
           <ActionGroup actions={MACROS} title="Macros" />

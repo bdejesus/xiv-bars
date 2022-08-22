@@ -1,16 +1,17 @@
-import React from 'react';
+import Script from 'next/script';
 
 export function renderMeta(title, description, canonical) {
   return (
     <>
       <meta name="description" content={description} />
-      <meta name="keywords" content="hotbar cross ffxiv endwalker simulator wxhb controller xiv fantasy final tool hotbars simulate planner interface configurations pc ps4 layouts" />
+      <meta name="keywords" content="hotbar cross ffxiv endwalker simulator xhb wxhb controller xiv fantasy final tool hotbars simulate planner interface configurations pc ps4 ps5 layouts" />
       <link rel="preconnect" href="https://xivapi.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
 
       <link rel="canonical" href={canonical} />
       <link rel="manifest" href="/manifest.json" />
-      <script
+      <Script
+        id="schema"
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
@@ -49,7 +50,7 @@ export function renderMeta(title, description, canonical) {
         content="icons/favicon-144x144.png"
       />
       <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
-      <script data-ad-client="ca-pub-3274093949320222" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
+      <Script data-ad-client="ca-pub-3274093949320222" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
     </>
   );
 }

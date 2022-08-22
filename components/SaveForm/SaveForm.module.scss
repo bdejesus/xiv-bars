@@ -1,0 +1,31 @@
+@import "styles/mixins";
+
+.saveForm {
+  background-color: $panel-bg;
+}
+
+.form {
+  padding: $spacing-base;
+
+  :global(.control) {
+    margin-bottom: $spacing-xs;
+  }
+}
+
+.titleField {
+  font-size: $font-size-xl;
+  font-weight: 100;
+}
+
+.descriptionField {
+  font-size: $font-size-base;
+  height: 56px;
+  max-height: 218px;
+  min-height: 56px;
+  resize: vertical;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}

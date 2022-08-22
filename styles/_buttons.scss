@@ -4,9 +4,11 @@ button,
 .button {
   align-items: center;
   background: #030303;
-  border: 0;
-  border-radius: 4px;
-  color: #999;
+  border: 1px solid #666;
+  border-bottom: 1px solid #333;
+  border-radius: $border-radius;
+  border-right: 1px solid #333;
+  color: #ddd;
   cursor: pointer;
   display: flex;
   flex-direction: row;
@@ -30,11 +32,10 @@ button,
 
   .btn-icon {
     display: block;
-    height: 24px;
+    height: 16px;
     margin-right: $spacing-xs;
-    opacity: 0.66;
     transition: opacity 0.2s ease;
-    width: 24px;
+    width: 16px;
   }
 
   &:hover,
@@ -42,10 +43,19 @@ button,
   &:focus,
   &[data-active="true"] {
     background-color: $panel-bg-dark;
-    color: #fff;
+    border-color: $color-alt;
+    color: $color-alt;
 
     .btn-icon {
       opacity: 1;
     }
+  }
+
+  &[disabled] {
+    background-color: #111 !important;
+    border-color: transparent !important;
+    color: #fff !important;
+    cursor: default;
+    opacity: 0.5;
   }
 }

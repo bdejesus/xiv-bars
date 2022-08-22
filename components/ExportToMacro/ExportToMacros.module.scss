@@ -8,29 +8,6 @@
 }
 
 .exportPrompt {
-  .modalContent {
-    background-color: $panel-bg;
-    border-radius: $border-radius;
-    max-width: 460px;
-    padding: $spacing-base;
-    position: relative;
-
-    h3 {
-      margin: 0;
-    }
-  }
-
-  .modalHeader {
-    margin: $spacing-sm 0 $spacing-base;
-    max-width: 100%;
-    position: relative;
-  }
-
-  .modalFooter {
-    margin-top: $spacing-sm;
-    text-align: right;
-  }
-
   textarea {
     background-color: $panel-bg-dark;
     border: none;

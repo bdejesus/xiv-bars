@@ -2,9 +2,9 @@
 <svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>icon-copy</title>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
-        <g id="copy-icon" transform="translate(14.000000, 14.000000)" stroke="#FFFFFF" stroke-width="4">
-            <rect id="Rectangle" x="9.92177582" y="9.97187805" width="28" height="28"></rect>
-            <polyline id="Path" stroke-linecap="round" points="28 3.97187805 28 0 0 0 0 28 3.92177582 28"></polyline>
+        <g id="copy-icon" transform="translate(7.000000, 7.000000)" stroke="#FFFFFF" stroke-width="4">
+            <rect id="Rectangle" x="14" y="14" width="38" height="38"></rect>
+            <polyline id="Path" stroke-linecap="round" points="38 5.39040593 38 0 0 0 0 38 5.32241004 38"></polyline>
         </g>
     </g>
 </svg>

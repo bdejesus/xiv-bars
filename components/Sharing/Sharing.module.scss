@@ -22,8 +22,11 @@
     background-color: #111;
     border-radius: $border-radius;
     bottom: 0;
-    content: "Copied!";
+    content: "URL Copied!";
     display: flex;
+    font-size: $font-size-base;
+    font-style: italic;
+    font-weight: 400;
     justify-content: center;
     left: 0;
     opacity: 0;
@@ -44,28 +47,29 @@
       pointer-events: auto;
     }
   }
-}
 
-.shareUrlInput {
-  background-color: $panel-bg;
-  border: 2px solid $panel-bg-dark-2;
-  border-radius: $border-radius 0 0 $border-radius;
-  color: #999;
-  display: block;
-  font-family: Verdana, sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  height: 32px;
-  padding: 10px;
-  transition: background-color 0.33s ease;
-  width: 200px;
+  .shareUrlInput {
+    background-color: $panel-bg;
+    border: 1px solid #666;
+    border-radius: $border-radius 0 0 $border-radius;
+    color: #999;
+    display: block;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    height: 32px;
+    margin: 0;
+    padding: 10px;
+    transition: background-color 0.33s ease;
+    width: 200px;
 
-  &:focus {
-    background-color: rgb(255 255 255 / 20%);
-    color: #ccc;
+    &:focus {
+      background-color: rgb(255 255 255 / 20%);
+      color: #ccc;
+    }
   }
-}
 
-.copyButton {
-  border-radius: 0 $border-radius $border-radius 0;
+  .copyButton {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
 }
