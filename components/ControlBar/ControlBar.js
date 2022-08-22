@@ -15,6 +15,12 @@ export function ControlBar({ selectedJob }) {
     <>
       <div className={styles.controlBar} data-active-modal={showModal}>
         <div className={styles.container}>
+          <div className={styles.groupLeft}>
+            <div className={styles.control}>
+              <ToggleSaveForm />
+            </div>
+          </div>
+
           <div className={styles.groupRight}>
             { !readOnly && (
               <div className={styles.control}>
@@ -24,12 +30,6 @@ export function ControlBar({ selectedJob }) {
 
             <div className={styles.control}>
               <ToggleTitles />
-            </div>
-          </div>
-
-          <div className={styles.groupRight}>
-            <div className={styles.control}>
-              <ToggleSaveForm />
             </div>
 
             <div className={styles.control}>

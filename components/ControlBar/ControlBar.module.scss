@@ -28,8 +28,12 @@
 }
 
 .groupLeft {
+  display: flex;
   flex: 1 1 auto;
+  flex-direction: row;
   margin-left: -$spacing-sm;
+  padding-bottom: $spacing-xs;
+  padding-top: 12px;
 }
 
 .groupRight {

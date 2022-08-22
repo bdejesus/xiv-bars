@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import styles from './UserNav.module.scss';
 
 export function UserNav() {
-  const [showMenu, setShowMenu] = useState(false);
   const { data: session } = useSession();
+  const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
 
   function handleSignIn() {
     signIn('discord', { callbackUrl: '/' });
@@ -29,7 +31,7 @@ export function UserNav() {
             <li className={styles.navItem}>
               <Link href="/me">
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a>My Layouts</a>
+                <a data-active={router.pathname === '/me'}>My Layouts</a>
               </Link>
             </li>
           </ul>

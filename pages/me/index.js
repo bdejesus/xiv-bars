@@ -10,6 +10,7 @@ import Link from 'next/link';
 import GlobalHeader from 'components/GlobalHeader';
 import JobMenu from 'components/JobSelect/JobMenu';
 import Job from 'components/JobSelect/Job';
+import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import { listJobs, } from 'lib/api';
 import { maxLayouts } from 'lib/user';
@@ -108,6 +109,8 @@ export default function Me(pageProps) {
         <h1 className="mt-md">
           {I18n.Pages.Me.my_layouts}
         </h1>
+
+        { layouts.length <= 0 && <h2 id="jobSelectTitle">{I18n.Pages.Me.no_layouts}</h2> }
       </div>
 
       { layouts.length > 0
@@ -141,14 +144,12 @@ export default function Me(pageProps) {
         ) : (
           <div className="app-view">
             <div className="container">
-              <h2 id="jobSelectTitle">
-                {I18n.Pages.Me.no_layouts}
-              </h2>
               <JobMenu jobs={jobs} />
             </div>
           </div>
         )}
 
+      <Footer />
       <LoadScreen />
     </>
   );
