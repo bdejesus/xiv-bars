@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import * as gtag from 'lib/gtag';
 import Link from 'next/link';
 import styles from './UserNav.module.scss';
 
@@ -10,6 +11,7 @@ export function UserNav() {
   const router = useRouter();
 
   function handleSignIn() {
+    gtag.event({ action: 'login' });
     signIn('discord', { callbackUrl: '/' });
   }
 
@@ -62,7 +64,12 @@ export function UserNav() {
               onMouseLeave={toggleMenu}
             >
               <li className={styles.navItem}>
-                <a href="https://www.buymeacoffee.com/bejezus" target="_blank" rel="noreferrer">
+                <a
+                  href="https://www.buymeacoffee.com/bejezus"
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => gtag.event({ action: 'donate' })}
+                >
                   Donate
                 </a>
               </li>
