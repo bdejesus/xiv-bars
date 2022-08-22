@@ -3,3 +3,30 @@
 .articles {
   padding: $spacing-lg 0;
 }
+
+.errorPage {
+  min-height: calc(100vh - 48px);
+  flex-direction: column;
+  display: flex;
+
+  .main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    margin: 0;
+    margin-bottom: $spacing-lg;
+  }
+  small {
+    opacity: 0.5;
+    display: block;
+  }
+
+  li {
+    margin: $spacing-sm 0;
+  }
+}
