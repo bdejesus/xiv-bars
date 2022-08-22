@@ -1,6 +1,6 @@
 {
   "name": "xiv-bars",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "The source code for the Final Fantasy XIV Cross Hotbar (XHB) Planning Tool.",
   "private": true,
   "license": "GPL-3.0",
@@ -27,7 +27,7 @@
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.3",
     "@prisma/client": "^3.12.0",
-    "@sentry/nextjs": "^6.10.0",
+    "@sentry/nextjs": "^7.11.1",
     "csurf": "^1.11.0",
     "next": "^12.1.6",
     "next-auth": "^4.10.3",
