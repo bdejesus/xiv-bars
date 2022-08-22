@@ -25,9 +25,17 @@
 }
 
 .globalNav {
+  align-items: center;
+  border-right: 1px solid #eee;
+  display: flex;
+  flex-direction: row;
   list-style: none;
-  margin: 0 $spacing-lg;
-  padding: 0;
+  margin: 0 $spacing-base;
+  padding: 0 $spacing-sm;
+
+  > li {
+    margin-left: $spacing-sm;
+  }
 }
 
 .profileNav {
