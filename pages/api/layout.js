@@ -92,4 +92,6 @@ export default async function layout(req, res) {
     console.error(error);
     res.status(200).json(error);
   }
+
+  req.end();
 }
