@@ -1,6 +1,7 @@
 const { SitemapStream, streamToPromise } = require('sitemap');
 const { ADVANCED_JOBS } = require('lib/jobs');
 const { domain } = require('lib/host');
+const { withSentry } = require('@sentry/nextjs');
 
 async function buildSitemap(req, res) {
   try {
@@ -44,4 +45,4 @@ async function buildSitemap(req, res) {
   }
 }
 
-export default buildSitemap;
+export default withSentry(buildSitemap);
