@@ -4,6 +4,8 @@ import {
   listJobActions,
   listRoleActions
 } from 'lib/api';
+import { getUrlParams } from 'lib/utils/url';
+import { useRouter } from 'next/router';
 import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
@@ -24,6 +26,8 @@ export default function Index({
   actions,
   roleActions,
 }) {
+  const router = useRouter();
+
   return (
     <>
       <GlobalHeader />
@@ -34,6 +38,7 @@ export default function Index({
         selectedJob={selectedJob}
         jobs={jobs}
         viewAction="new"
+        layout={parseInt(getUrlParams(router.asPath)?.l, 10)}
       >
         <App />
 
