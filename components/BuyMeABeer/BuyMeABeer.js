@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import I18n from 'lib/I18n/locale/en-US';
-import * as analytics from 'lib/analytics';
+import * as gtag from 'lib/gtag';
 import styles from './BuyMeABeer.module.scss';
 
 export function BuyMeABeer() {
@@ -18,10 +18,7 @@ export function BuyMeABeer() {
       <a
         className={styles.button}
         href="https://www.buymeacoffee.com/bejezus"
-        onClick={() => analytics.event({
-          action: 'click',
-          params: { method: 'donate' }
-        })}
+        onClick={() => gtag.event({ action: 'donate' })}
       >
         <span className={styles.icon}>{I18n.BuyMeABeer.cheers}</span>
         <span>
