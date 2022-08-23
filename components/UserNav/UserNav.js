@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import * as gtag from 'lib/gtag';
+import * as analytics from 'lib/analytics';
 import Link from 'next/link';
 import styles from './UserNav.module.scss';
 
@@ -11,7 +11,10 @@ export function UserNav() {
   const router = useRouter();
 
   function handleSignIn() {
-    gtag.event({ action: 'login', value: { method: 'discord' } });
+    analytics.event({
+      action: 'login',
+      params: { method: 'discord' }
+    });
     signIn('discord', { callbackUrl: '/' });
   }
 
@@ -72,7 +75,12 @@ export function UserNav() {
                 href="https://www.buymeacoffee.com/bejezus"
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => gtag.event({ action: 'donate' })}
+                onClick={() => analytics.event({
+                  action: 'click',
+                  params: {
+                    method: 'donate'
+                  }
+                })}
               >
                 Donate
               </a>
