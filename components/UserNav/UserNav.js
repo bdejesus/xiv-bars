@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import * as analytics from 'lib/analytics';
-import Link from 'next/link';
+import analytics from 'lib/analytics';
 import styles from './UserNav.module.scss';
 
 export function UserNav() {
@@ -36,10 +35,7 @@ export function UserNav() {
 
         { session && (
           <li className={styles.navItem}>
-            <Link href="/me">
-              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-              <a data-active={router.pathname === '/me'}>My Layouts</a>
-            </Link>
+            <a href="/me" data-active={router.pathname === '/me'}>My Layouts</a>
           </li>
         )}
       </ul>

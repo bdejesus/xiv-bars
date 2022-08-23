@@ -27,21 +27,18 @@ function LayoutCard({ layout, job, onDelete }) {
 
   return (
     <>
-      <Link href={`/job/${layout.jobId}/${layout.id}`}>
-        <a className={styles.card}>
-          <h4>{layout.title}</h4>
-          <p className={styles.description}>{layout.description}</p>
+      <a className={styles.card} href={`/job/${layout.jobId}/${layout.id}`}>
+        <h4>{layout.title}</h4>
+        <p className={styles.description}>{layout.description}</p>
 
-          <div className={styles.cardFooter}>
-            <Job job={job} className={styles.job} />
-            <div className={styles.timestamp}>
-              {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
-            </div>
+        <div className={styles.cardFooter}>
+          <Job job={job} className={styles.job} />
+          <div className={styles.timestamp}>
+            {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
           </div>
+        </div>
+      </a>
 
-        </a>
-
-      </Link>
       <div className={styles.actions}>
         <button
           type="button"
