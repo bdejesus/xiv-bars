@@ -20,7 +20,7 @@ export function App({ Component, pageProps }) {
 
   function generateTitle() {
     if (selectedJob) {
-      return `${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup | ${I18n.Global.title}`;
+      return `FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup Guide | ${I18n.Global.title}`;
     }
     return I18n.Global.title;
   }
