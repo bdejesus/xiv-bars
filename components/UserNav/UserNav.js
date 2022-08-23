@@ -94,7 +94,7 @@ export function UserNav() {
         </div>
       ) : (
         <button type="button" onClick={handleSignIn}>
-          Discord Sign in
+          Sign in with Discord
         </button>
       )}
     </div>
