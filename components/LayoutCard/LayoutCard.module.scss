@@ -1,0 +1,122 @@
+@import "styles/mixins";
+
+.layoutCard {
+  position: relative;
+  height: 100%;
+
+  .cardActions {
+    position: absolute;
+    right: $spacing-sm;
+    top: $spacing-sm;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transition-delay: 0.15s;
+  }
+
+  &:hover {
+    .cardActions {
+      opacity: 1;
+    }
+
+    .card {
+      p {
+        color: #ccc;
+      }
+
+      .job {
+        filter: grayscale(0);
+      }
+    }
+  }
+}
+
+.card {
+  .cardFooter {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  h4 {
+    color: #fff;
+    margin: 0;
+    transition: color 0.3s ease;
+  }
+
+  p {
+    color: #999;
+    font-size: $font-size-base;
+    height: 64px;
+    line-height: 1.45;
+    transition: color 0.3s ease;
+  }
+
+  .description {
+    flex: 1 1 auto;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+      background: linear-gradient(to bottom, rgb(0 0 0 / 0%), #111);
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 40px;
+      left: 0;
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  .job {
+    color: #999;
+    filter: grayscale(1);
+    transition: filter 0.3s ease;
+
+    :global(.job-icon) {
+      height: 20px;
+      width: 20px;
+    }
+
+    :global(.job-abbr) {
+      bottom: -2px;
+      position: relative;
+    }
+
+    :global(.job-name) {
+      display: none;
+    }
+  }
+
+  .timestamp {
+    font-size: $font-size-sm;
+    opacity: 0.33;
+  }
+}
+
+.prompt {
+  align-items: center;
+  background-color: rgb(0 0 0 / 90%);
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: $spacing-base;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  z-index: 4;
+
+  b {
+    color: $color-alt;
+    font-weight: 700;
+  }
+}
+
+.promptActions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
