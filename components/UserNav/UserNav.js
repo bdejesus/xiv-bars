@@ -93,7 +93,7 @@ export function UserNav() {
           </ul>
         </div>
       ) : (
-        <button type="button" onClick={handleSignIn}>
+        <button type="button" onClick={handleSignIn} className={styles.signin}>
           Sign in with Discord
         </button>
       )}
