@@ -23,7 +23,9 @@
 
 .card {
   height: 100%;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  transition-duration: 0.3s;
+  transition-property: transform, box-shadow, border;
+  transition-timing-function: ease;
 
   &:hover {
     border-color: $color-alt;
