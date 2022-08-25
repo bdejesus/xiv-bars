@@ -8,6 +8,14 @@
   margin: 0 0 $spacing-lg;
   padding: 0;
 
+  > li {
+    transition: transform 0.3s ease;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+
   a {
     text-decoration: none;
   }
@@ -26,6 +34,10 @@
   transition-duration: 0.3s;
   transition-property: transform, box-shadow, border;
   transition-timing-function: ease;
+
+  h4 {
+    transition: color 0.3s ease;
+  }
 
   &:hover {
     border-color: $color-alt;

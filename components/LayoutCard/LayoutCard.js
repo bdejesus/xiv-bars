@@ -36,9 +36,10 @@ function LayoutCard({
         <button
           type="button"
           onClick={() => setShowPrompt(true)}
-          className={styles.removeButton}
+          className={styles.deleteButton}
+          title="Delete Layout"
         >
-          Delete
+          <div className={styles.deleteIcon}>&times;</div>
         </button>
       </div>
 
