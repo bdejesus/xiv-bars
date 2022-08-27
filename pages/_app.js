@@ -78,17 +78,6 @@ export function App({ Component, pageProps }) {
   );
 }
 
-App.getInitialProps = async (props) => {
-  const { Component, ctx } = props;
-
-  // Return early if there is an error
-  // pass the error to the component
-  if (ctx.err) return { pageProps: { err: ctx.err } };
-
-  const componentProps = await Component.getInitialProps(ctx);
-
-  return { pageProps: { ...componentProps } };
-};
 export default App;
 
 App.propTypes = {
