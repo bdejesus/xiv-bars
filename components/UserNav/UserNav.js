@@ -30,7 +30,25 @@ export function UserNav() {
     <div className={styles.userNav}>
       <ul className={styles.globalNav}>
         <li className={styles.navItem}>
-          <a href="https://github.com/bdejesus/xiv-bars/blob/main/CHANGELOG.md">What’s New</a>
+          <a href="https://github.com/bdejesus/xiv-bars/blob/main/CHANGELOG.md">
+            <i>What’s New</i>
+          </a>
+        </li>
+
+        <li className={styles.navItem}>
+          <a
+            href="https://www.buymeacoffee.com/bejezus"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => analytics.event({
+              action: 'click',
+              params: {
+                method: 'donate'
+              }
+            })}
+          >
+            Donate
+          </a>
         </li>
 
         { session && (
@@ -68,21 +86,6 @@ export function UserNav() {
           >
             <li className={styles.navItem}>
               <a
-                href="https://www.buymeacoffee.com/bejezus"
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => analytics.event({
-                  action: 'click',
-                  params: {
-                    method: 'donate'
-                  }
-                })}
-              >
-                Donate
-              </a>
-            </li>
-            <li className={styles.navItem}>
-              <a
                 className={styles.logout}
                 href="/api/auth/signout"
                 onClick={handleSignOut}
@@ -93,7 +96,7 @@ export function UserNav() {
           </ul>
         </div>
       ) : (
-        <button type="button" onClick={handleSignIn}>
+        <button type="button" onClick={handleSignIn} className={styles.signin}>
           Sign in with Discord
         </button>
       )}
