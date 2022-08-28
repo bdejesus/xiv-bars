@@ -27,7 +27,7 @@ function LayoutCard({
             { job && <Job job={job} className={styles.job} /> }
 
             <div className={styles.timestamp}>
-              {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
+              {I18n.LayoutCard.last_updated}: {formatDate(layout.updatedAt)}
             </div>
           </div>
         </Card>

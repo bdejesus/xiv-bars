@@ -66,15 +66,14 @@ export function UserNav() {
             tabIndex={0}
             data-active={showMenu}
           >
-            <div className={styles.title}>
-              {session.user.name || session.user.email}
-            </div>
-
             <div className={styles.profileImage}>
               <img
                 src={session.user.image}
                 alt={session.user.name || session.user.email}
               />
+            </div>
+            <div className={styles.title}>
+              {session.user.name || session.user.email}
             </div>
           </div>
 
@@ -83,6 +82,16 @@ export function UserNav() {
             data-active={showMenu}
             onMouseLeave={toggleMenu}
           >
+            <li className={styles.navItem}>
+              <a
+                href="https://github.com/bdejesus/xiv-bars/issues/new"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {I18n.UserNav.report_an_issue}
+              </a>
+            </li>
+
             <li className={styles.navItem}>
               <a
                 className={styles.logout}
