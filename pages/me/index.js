@@ -31,9 +31,7 @@ export default function Me(pageProps) {
 
     fetch('/api/layout', options)
       .then((data) => data.json())
-      .then((json) => {
-        setLayouts(json);
-      });
+      .then((json) => setLayouts(json));
   }
 
   function destroyLayout(layoutId) {

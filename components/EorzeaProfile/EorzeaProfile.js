@@ -1,3 +1,5 @@
+import I18n from 'lib/I18n/locale/en-US';
+
 import styles from './EorzeaProfile.module.scss';
 
 export function EorzeaProfile() {
@@ -12,15 +14,18 @@ export function EorzeaProfile() {
         <div className={styles.image}>
           <img src="/images/ffxiv-screenshot.png" alt="" />
         </div>
+
         <div className={styles.body}>
-          <h2>FFXIV Profile Twitch Streamer Panel</h2>
+          <h2>
+            {I18n.EorzeaProfile.title}
+          </h2>
 
           <p className={styles.subtitle}>
-            Display your Final Fantasy XIV Endwalker character profile on your stream page.
+            {I18n.EorzeaProfile.body}
           </p>
 
           <div className={styles.cta}>
-            Install on Twitch.tv
+            {I18n.EorzeaProfile.cta}
           </div>
         </div>
       </a>

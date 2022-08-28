@@ -22,9 +22,9 @@ $group-padding: 10px;
     content: counter(xbarCount);
     counter-increment: xbarCount;
     font-size: $font-size-lg;
-    font-weight: 100;
+    font-weight: 300;
     left: -$spacing-sm;
-    opacity: 0.75;
+    opacity: 0.66;
     position: absolute;
   }
 

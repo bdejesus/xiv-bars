@@ -29,9 +29,9 @@
   > li::before {
     content: counter(slots);
     counter-increment: slots;
-    font-weight: 700;
+    font-weight: 300;
     left: -20px;
-    opacity: 0.33;
+    opacity: 0.66;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);

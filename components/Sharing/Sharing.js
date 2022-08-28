@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import { domain } from 'lib/host';
+import I18n from 'lib/I18n/locale/en-US';
 import styles from './Sharing.module.scss';
 
 export function Sharing({ selectedJob }) {
@@ -57,7 +58,10 @@ export function Sharing({ selectedJob }) {
   return (
     <div className={`${styles.container}`} data-copied={copied}>
       <div className="controlGroup">
-        <label htmlFor="shareUrl">Share URL</label>
+        <label htmlFor="shareUrl">
+          {I18n.Sharing.share_url}
+        </label>
+
         <input
           id="shareUrl"
           className={styles.shareUrlInput}
@@ -67,13 +71,18 @@ export function Sharing({ selectedJob }) {
           readOnly
         />
       </div>
+
       <button
         type="button"
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        <img src="/images/icon-copy.svg" className="btn-icon" alt="Copy Icon" />
-        Copy URL
+        <img
+          src="/images/icon-copy.svg"
+          className="btn-icon"
+          alt={I18n.Sharing.copy_icon}
+        />
+        {I18n.Sharing.copy_url}
       </button>
     </div>
   );

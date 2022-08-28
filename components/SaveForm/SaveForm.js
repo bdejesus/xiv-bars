@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import fetch from 'node-fetch';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
+import I18n from 'lib/I18n/locale/en-US';
 
 import styles from './SaveForm.module.scss';
 
@@ -44,9 +45,16 @@ function SaveForm() {
       .then((data) => data.json())
       .then((json) => {
         const [currentLayout, layouts] = json;
-        appDispatch({ type: 'saveLayout', viewData: { ...currentLayout, ...body } });
+        appDispatch({
+          type: 'saveLayout',
+          viewData: { ...currentLayout, ...body }
+        });
         userDispatch({ type: 'UPDATE_LAYOUTS', layouts: layouts.length });
-        router.push(`/job/${currentLayout.jobId}/${currentLayout.id}`, undefined, { shallow: true });
+        router.push(
+          `/job/${currentLayout.jobId}/${currentLayout.id}`,
+          undefined,
+          { shallow: true }
+        );
       })
       .catch((error) => {
         console.error(error);
@@ -54,7 +62,7 @@ function SaveForm() {
           type: 'setMessage',
           message: {
             type: 'error',
-            body: 'Couldn’t save layout. Please try again'
+            body: I18n.SaveForm.failed
           }
         });
       });
@@ -69,7 +77,7 @@ function SaveForm() {
       <form className={`${styles.form} container`}>
         <div className="control">
           <label htmlFor="title">
-            <div>Title</div>
+            <div>{I18n.SaveForm.title}</div>
             <input
               type="text"
               id="title"
@@ -84,7 +92,7 @@ function SaveForm() {
 
         <div className="control">
           <label htmlFor="description">
-            <div>Description</div>
+            <div>{I18n.SaveForm.description}</div>
             <textarea
               id="description"
               ref={descriptionField}
@@ -100,7 +108,7 @@ function SaveForm() {
             onClick={saveLayout}
             className={styles.submitButton}
           >
-            Save Layout
+            {I18n.SaveForm.save_layout}
           </button>
 
           <button
@@ -108,7 +116,7 @@ function SaveForm() {
             onClick={closeForm}
             className={styles.cancelButton}
           >
-            Cancel
+            {I18n.SaveForm.cancel}
           </button>
         </div>
       </form>

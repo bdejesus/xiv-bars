@@ -25,8 +25,9 @@ function LayoutCard({
 
           <div className={styles.cardFooter}>
             { job && <Job job={job} className={styles.job} /> }
+
             <div className={styles.timestamp}>
-              {I18n.Pages.Me.last_updated}: {formatDate(layout.updatedAt)}
+              {I18n.LayoutCard.last_updated}: {formatDate(layout.updatedAt)}
             </div>
           </div>
         </Card>
@@ -37,7 +38,7 @@ function LayoutCard({
           type="button"
           onClick={() => setShowPrompt(true)}
           className={styles.deleteButton}
-          title="Delete Layout"
+          title={I18n.LayoutCard.delete_layout}
         >
           <div className={styles.deleteIcon}>&times;</div>
         </button>
@@ -47,13 +48,13 @@ function LayoutCard({
         <div className={styles.prompt} data-active={!showPrompt}>
           <div className={styles.promptContent}>
             <p>Are you sure you want to delete <b>{layout.title}</b>?</p>
+
             <div className={styles.promptActions}>
-              <button type="button" onClick={onDelete}>Delete</button>
-              <button
-                type="button"
-                onClick={() => setShowPrompt(false)}
-              >
-                Cancel
+              <button type="button" onClick={onDelete}>
+                {I18n.LayoutCard.delete}
+              </button>
+              <button type="button" onClick={() => setShowPrompt(false)}>
+                {I18n.LayoutCard.cancel}
               </button>
             </div>
           </div>

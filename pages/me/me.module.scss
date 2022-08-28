@@ -30,6 +30,7 @@
 }
 
 .card {
+  box-shadow: 0 0 0 rgb(0 0 0 / 33%);
   height: 100%;
   transition-duration: 0.3s;
   transition-property: transform, box-shadow, border;
@@ -41,7 +42,7 @@
 
   &:hover {
     border-color: $color-alt;
-    box-shadow: 0 4px 10px rgb(0 0 0 / 33%);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 33%);
 
     h4 {
       color: $color-alt;
