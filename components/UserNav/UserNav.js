@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
 import styles from './UserNav.module.scss';
 
@@ -10,10 +11,7 @@ export function UserNav() {
   const router = useRouter();
 
   function handleSignIn() {
-    analytics.event({
-      action: 'login',
-      params: { method: 'discord' }
-    });
+    analytics.event({ action: 'login', params: { method: 'discord' } });
     signIn('discord', { callbackUrl: '/' });
   }
 
@@ -31,7 +29,7 @@ export function UserNav() {
       <ul className={styles.globalNav}>
         <li className={styles.navItem}>
           <a href="https://github.com/bdejesus/xiv-bars/blob/main/CHANGELOG.md">
-            <i>What’s New</i>
+            <i>{I18n.UserNav.whats_new}</i>
           </a>
         </li>
 
@@ -42,18 +40,18 @@ export function UserNav() {
             rel="noreferrer"
             onClick={() => analytics.event({
               action: 'click',
-              params: {
-                method: 'donate'
-              }
+              params: { method: 'donate' }
             })}
           >
-            Donate
+            {I18n.UserNav.donate}
           </a>
         </li>
 
         { session && (
           <li className={styles.navItem}>
-            <a href="/me" data-active={router.pathname === '/me'}>My Layouts</a>
+            <a href="/me" data-active={router.pathname === '/me'}>
+              {I18n.UserNav.my_layouts}
+            </a>
           </li>
         )}
       </ul>
@@ -71,6 +69,7 @@ export function UserNav() {
             <div className={styles.title}>
               {session.user.name || session.user.email}
             </div>
+
             <div className={styles.profileImage}>
               <img
                 src={session.user.image}
@@ -90,14 +89,18 @@ export function UserNav() {
                 href="/api/auth/signout"
                 onClick={handleSignOut}
               >
-                Log out
+                {I18n.UserNav.logout}
               </a>
             </li>
           </ul>
         </div>
       ) : (
-        <button type="button" onClick={handleSignIn} className={styles.signin}>
-          Sign in with Discord
+        <button
+          type="button"
+          onClick={handleSignIn}
+          className={styles.signin}
+        >
+          {I18n.UserNav.signin_with_discord}
         </button>
       )}
     </div>

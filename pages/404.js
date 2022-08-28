@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import Head from 'next/head';
+import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
@@ -9,33 +10,37 @@ function Error500() {
   return (
     <>
       <Head>
-        <title>500 – Something went wrong • XIVBars</title>
+        <title>
+          {I18n.Pages.NotFound.title} • {I18n.Pages.NotFound.status} • XIVBARS
+        </title>
       </Head>
+
       <div className={styles.errorPage}>
         <GlobalHeader />
 
         <div className={styles.main}>
           <div className="container section">
-            <small>404 PAGE NOT FOUND</small>
-            <h1>This is not the page you’re looking for</h1>
-
-            <p>
-              It doesn’t look like the page your looking for exists at this url.
-            </p>
+            <small>{I18n.Pages.NotFound.status}</small>
+            <h1>{I18n.Pages.NotFound.title}</h1>
+            <p>{I18n.Pages.NotFound.body}</p>
 
             <ul>
               <li>
                 <a href="/" onClick={() => history.back()}>
-                  Go back to the previous page and try again
+                  {I18n.Pages.NotFound.option1}
                 </a>
               </li>
+
               <li>
                 <a href="https://github.com/bdejesus/xiv-bars/issues">
-                  Report an issue if you think this page should be here
+                  {I18n.Pages.NotFound.option2}
                 </a>
               </li>
+
               <li>
-                <a href="/">Return to the home page</a>
+                <a href="/">
+                  {I18n.Pages.NotFound.option3}
+                </a>
               </li>
             </ul>
 

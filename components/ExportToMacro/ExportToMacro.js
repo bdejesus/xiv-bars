@@ -102,7 +102,9 @@ export function ExportToMacros() {
 
             <div className="modal-footer">
               <button type="button" onClick={copyText}>
-                {copied ? I18n.ExportToMacro.copied : I18n.ExportToMacro.copy}
+                {copied
+                  ? I18n.ExportToMacro.copied
+                  : I18n.ExportToMacro.copy}
               </button>
             </div>
           </div>

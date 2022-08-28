@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 import Head from 'next/head';
+import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
@@ -9,33 +10,37 @@ function Error500() {
   return (
     <>
       <Head>
-        <title>500 – Something went wrong • XIVBars</title>
+        <title>
+          {I18n.Pages.ServerError.title} • {I18n.Pages.ServerError.status} • XIVBARS
+        </title>
       </Head>
+
       <div className={styles.errorPage}>
         <GlobalHeader />
 
         <div className={styles.main}>
           <div className="container section">
-            <small>500 SERVER ERROR</small>
-            <h1>Yikes! Something went wrong</h1>
-
-            <p>
-              The error has been logged and we’ll try to fix it as soon as possible.
-            </p>
+            <small>{I18n.Pages.ServerError.status}</small>
+            <h1>{I18n.Pages.ServerError.title}</h1>
+            <p>{I18n.Pages.ServerError.body}</p>
 
             <ul>
               <li>
                 <a href="/" onClick={() => history.back()}>
-                  Go back to the previous page and try again
+                  {I18n.Pages.ServerError.option1}
                 </a>
               </li>
+
               <li>
                 <a href="https://github.com/bdejesus/xiv-bars/issues">
-                  Check on the status of this issue or report a bug
+                  {I18n.Pages.ServerError.option2}
                 </a>
               </li>
+
               <li>
-                <a href="/">Return to the home page</a>
+                <a href="/">
+                  {I18n.Pages.ServerError.option3}
+                </a>
               </li>
             </ul>
 
