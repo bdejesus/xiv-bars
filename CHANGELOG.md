@@ -8,6 +8,7 @@
 * Upgrades Sentry package
 * Customized error pages
 * Moves copy into localization file
+* Adds sentry logging to db component
 
 ## v2.0.0 User Accounts & Saved Layouts
 
