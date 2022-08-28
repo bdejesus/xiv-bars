@@ -1,4 +1,15 @@
-# v2.0.0 User Accounts & Saved Layouts
+# Changelog
+
+## 2.1.0
+
+* Control label fixups
+* Refactoring Layouts Card components
+* Fixup to analytics scripts
+* Upgrades Sentry package
+* Customized error pages
+* Moves copy into localization file
+
+## v2.0.0 User Accounts & Saved Layouts
 
 * You can now authenticate using your Discord account.
 * Save layouts to your account for easy access.
