@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1
+
+* Package upgrades
+
 ## 2.1.0
 
 * Control label fixups
