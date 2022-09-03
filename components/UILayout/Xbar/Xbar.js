@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable react/prefer-stateless-function */
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { group } from 'lib/utils';
 import Slot from 'components/Slot';
@@ -48,7 +50,7 @@ function Bar({ bar }) {
   return (
     <>
       {Object.keys(barGroups).map((slots, index) => (
-        <div className={styles[slots]} key={`group-${index}`}>
+        <div className={`${styles[slots]} ${slots}`} key={`group-${index}`}>
           <Group slots={barGroups[slots]} />
         </div>
       ))}
@@ -62,15 +64,87 @@ Bar.propTypes = {
 
 export function Xbar() {
   const { chotbar } = useAppState();
+  const [WXHB, setWXHB] = useState();
+  const [mainXHB, setMainXHB] = useState('one');
+
+  function handleSelectMainXHB(e) {
+    const { value } = e.currentTarget;
+    if (value === WXHB) setWXHB('undefined');
+    setMainXHB(value);
+  }
+
+  function handleSelectWXHB(e) {
+    const { value } = e.currentTarget;
+
+    if (value === mainXHB) {
+      const keys = Object.keys(chotbar);
+      const keyIndex = keys.indexOf(value);
+      const nextIndex = keyIndex + 1 >= keys.length ? 0 : keyIndex + 1;
+      setMainXHB(keys[nextIndex]);
+    }
+
+    setWXHB(value);
+  }
 
   return (
-    <div className={styles.container}>
-      {Object.keys(chotbar).map((xbar) => (
-        <div className={styles.xbar} key={xbar}>
-          <Bar bar={chotbar[xbar]} id={xbar} />
+    <>
+      <div className={styles.xhbControls}>
+        <div className={styles.xhbControl}>
+          <label htmlFor="mainXHB">
+            <span className={styles.controlLabel}>
+              Main XHB
+            </span>
+            <select
+              id="mainXHB"
+              name="mainXHB"
+              onChange={handleSelectMainXHB}
+              value={mainXHB}
+            >
+              { Object.keys(chotbar).map((key, index) => (
+                <option value={key} key={key}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
+          </label>
         </div>
-      ))}
-    </div>
+
+        <div className={styles.xhbControl}>
+          <label htmlFor="wxhbOptions">
+            <span className={styles.controlLabel}>
+              WXHB
+            </span>
+            <select
+              id="wxhbOptions"
+              name="wxhbOptions"
+              onChange={handleSelectWXHB}
+              value={WXHB}
+            >
+              <option value="undefined">Off</option>
+              { Object.keys(chotbar).map((key, index) => (
+                <option value={key} key={key}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div className={styles.container}>
+
+        {Object.keys(chotbar).map((xbar) => (
+          <div
+            className={[styles.xbar, styles[xbar]].join(' ')}
+            key={xbar}
+            data-main={xbar === mainXHB}
+            data-wxhb={xbar === WXHB}
+          >
+            <Bar bar={chotbar[xbar]} id={xbar} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 

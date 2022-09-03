@@ -15,6 +15,7 @@ $group-padding: 10px;
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto;
+  order: 2;
   padding: 28px 10px;
   position: relative;
 
@@ -31,6 +32,26 @@ $group-padding: 10px;
   &:last-child {
     border-bottom: none;
   }
+
+  &[data-wxhb="true"] {
+    border-bottom: none;
+    margin: 0;
+    order: 0;
+    padding-bottom: 0;
+    width: 100%;
+
+    :global(.right) {
+      border-left: none;
+    }
+  }
+
+  &[data-main="true"] {
+    border-bottom: 1px solid rgb(255 255 255 / 33%);
+    margin-bottom: $spacing-lg;
+    order: 1;
+    padding-bottom: $spacing-xl;
+    transform: scale(1.1);
+  }
 }
 
 .left {
@@ -38,6 +59,7 @@ $group-padding: 10px;
 }
 
 .right {
+  border-left: 1px solid rgb(255 255 255 / 20%);
   padding-left: 6px;
 }
 
@@ -82,4 +104,32 @@ $group-padding: 10px;
 .set .slot:nth-child(3) :global(.action)[data-show-title="true"]::after {
   position: absolute;
   transform: translateY(-180%);
+}
+
+.xhbControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: $spacing-lg;
+}
+
+.xhbControl {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: $spacing-lg;
+
+  .controlLabel {
+    margin-right: $spacing-sm;
+  }
+
+  select {
+    border: none;
+    background-color: $panel-bg-dark;
+    color: #fff;
+    font-size: $font-size-lg;
+    font-weight: 100;
+    padding: $spacing-sm;
+    border-radius: 6px;
+  }
 }
