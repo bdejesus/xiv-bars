@@ -1,89 +1,34 @@
 /* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable react/prefer-stateless-function */
 import { useState } from 'react';
-import PropTypes from 'prop-types';
-import { group } from 'lib/utils';
-import Slot from 'components/Slot';
-import { useAppState } from 'components/App/context';
+import { useAppState, useAppDispatch } from 'components/App/context';
+import Bar from './Bar';
 import styles from './Xbar.module.scss';
-
-function Set({ slots }) {
-  return (
-    <div className={styles.set}>
-      { slots.map((slot) => (
-        <Slot
-          id={slot.id}
-          key={`slot-${slot.id}`}
-          action={slot.action}
-          className={styles.slot}
-        />
-      ))}
-    </div>
-  );
-}
-
-Set.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
-
-function Group({ slots }) {
-  const slotSets = group(slots, 4);
-  return (
-    <>
-      {slotSets.map((groupSlots, index) => (
-        <Set slots={groupSlots} key={`set-${index}`} />
-      ))}
-    </>
-  );
-}
-
-Group.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
-
-function Bar({ bar }) {
-  const barGroups = {
-    left: bar.slice(0, 8),
-    right: bar.slice(8, bar.length + 1)
-  };
-
-  return (
-    <>
-      {Object.keys(barGroups).map((slots, index) => (
-        <div className={`${styles[slots]} ${slots}`} key={`group-${index}`}>
-          <Group slots={barGroups[slots]} />
-        </div>
-      ))}
-    </>
-  );
-}
-
-Bar.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
 
 export function Xbar() {
   const { chotbar } = useAppState();
-  const [WXHB, setWXHB] = useState();
-  const [mainXHB, setMainXHB] = useState('one');
+  const [wxhb, setWxhb] = useState();
+  const [mainXhb, setMainXhb] = useState('one');
+  const appDispatch = useAppDispatch();
 
   function handleSelectMainXHB(e) {
     const { value } = e.currentTarget;
-    if (value === WXHB) setWXHB('undefined');
-    setMainXHB(value);
+    if (value === wxhb) setWxhb('undefined');
+    setMainXhb(value);
+    appDispatch({ type: 'updateLayout', mainXhb: value, wxhb });
   }
 
   function handleSelectWXHB(e) {
     const { value } = e.currentTarget;
 
-    if (value === mainXHB) {
+    if (value === mainXhb) {
       const keys = Object.keys(chotbar);
       const keyIndex = keys.indexOf(value);
       const nextIndex = keyIndex + 1 >= keys.length ? 0 : keyIndex + 1;
-      setMainXHB(keys[nextIndex]);
+      setMainXhb(keys[nextIndex]);
     }
 
-    setWXHB(value);
+    setWxhb(value);
   }
 
   return (
@@ -98,7 +43,7 @@ export function Xbar() {
               id="mainXHB"
               name="mainXHB"
               onChange={handleSelectMainXHB}
-              value={mainXHB}
+              value={mainXhb}
             >
               { Object.keys(chotbar).map((key, index) => (
                 <option value={key} key={key}>
@@ -118,7 +63,7 @@ export function Xbar() {
               id="wxhbOptions"
               name="wxhbOptions"
               onChange={handleSelectWXHB}
-              value={WXHB}
+              value={wxhb}
             >
               <option value="undefined">Off</option>
               { Object.keys(chotbar).map((key, index) => (
@@ -137,8 +82,8 @@ export function Xbar() {
           <div
             className={[styles.xbar, styles[xbar]].join(' ')}
             key={xbar}
-            data-main={xbar === mainXHB}
-            data-wxhb={xbar === WXHB}
+            data-main={xbar === mainXhb}
+            data-wxhb={xbar === wxhb}
           >
             <Bar bar={chotbar[xbar]} id={xbar} />
           </div>

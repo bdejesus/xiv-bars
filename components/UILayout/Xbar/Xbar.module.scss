@@ -124,12 +124,17 @@ $group-padding: 10px;
   }
 
   select {
-    border: none;
     background-color: $panel-bg-dark;
+    border: none;
+    border-radius: 6px;
     color: #fff;
     font-size: $font-size-lg;
     font-weight: 100;
     padding: $spacing-sm;
-    border-radius: 6px;
+
+    &:hover {
+      outline: 1px solid $color-alt;
+      cursor: pointer;
+    }
   }
 }
