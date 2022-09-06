@@ -52,6 +52,8 @@ export function AppContextProvider({
     message: undefined,
     chotbar,
     hotbar,
+    xhb: 1,
+    wxhb: 0,
     showPublish: false,
     showTitles: false,
     showAllLvl: false,

@@ -1,34 +1,39 @@
 /* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable react/prefer-stateless-function */
-import { useState } from 'react';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import Bar from './Bar';
 import styles from './Xbar.module.scss';
 
 export function Xbar() {
-  const { chotbar } = useAppState();
-  const [wxhb, setWxhb] = useState();
-  const [mainXhb, setMainXhb] = useState('one');
+  const { chotbar, wxhb, xhb } = useAppState();
   const appDispatch = useAppDispatch();
 
   function handleSelectMainXHB(e) {
-    const { value } = e.currentTarget;
-    if (value === wxhb) setWxhb('undefined');
-    setMainXhb(value);
-    appDispatch({ type: 'updateLayout', mainXhb: value, wxhb });
+    const targetXhb = parseInt(e.currentTarget.value, 10);
+    appDispatch({
+      type: 'updateUI',
+      params: {
+        xhb: targetXhb,
+        wxhb: (targetXhb === wxhb) ? 0 : wxhb
+      }
+    });
   }
 
   function handleSelectWXHB(e) {
-    const { value } = e.currentTarget;
-
-    if (value === mainXhb) {
+    const targetWxhb = parseInt(e.currentTarget.value, 10);
+    if (targetWxhb === xhb) {
       const keys = Object.keys(chotbar);
-      const keyIndex = keys.indexOf(value);
-      const nextIndex = keyIndex + 1 >= keys.length ? 0 : keyIndex + 1;
-      setMainXhb(keys[nextIndex]);
+      const nextIndex = chotbar[targetWxhb + 1] >= keys.length ? 0 : targetWxhb + 1;
+      appDispatch({
+        type: 'updateUI',
+        params: { xhb: nextIndex, wxhb: targetWxhb }
+      });
+    } else {
+      appDispatch({
+        type: 'updateUI',
+        params: { xhb, wxhb: targetWxhb }
+      });
     }
-
-    setWxhb(value);
   }
 
   return (
@@ -43,10 +48,10 @@ export function Xbar() {
               id="mainXHB"
               name="mainXHB"
               onChange={handleSelectMainXHB}
-              value={mainXhb}
+              value={xhb}
             >
               { Object.keys(chotbar).map((key, index) => (
-                <option value={key} key={key}>
+                <option value={index + 1} key={key}>
                   {index + 1}
                 </option>
               ))}
@@ -65,9 +70,9 @@ export function Xbar() {
               onChange={handleSelectWXHB}
               value={wxhb}
             >
-              <option value="undefined">Off</option>
+              <option value={0}>Off</option>
               { Object.keys(chotbar).map((key, index) => (
-                <option value={key} key={key}>
+                <option value={index + 1} key={key}>
                   {index + 1}
                 </option>
               ))}
@@ -77,13 +82,12 @@ export function Xbar() {
       </div>
 
       <div className={styles.container}>
-
         {Object.keys(chotbar).map((xbar) => (
           <div
             className={[styles.xbar, styles[xbar]].join(' ')}
             key={xbar}
-            data-main={xbar === mainXhb}
-            data-wxhb={xbar === wxhb}
+            data-main={xbar === Object.keys(chotbar)[xhb - 1]}
+            data-wxhb={xbar === Object.keys(chotbar)[wxhb - 1]}
           >
             <Bar bar={chotbar[xbar]} id={xbar} />
           </div>

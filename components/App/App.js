@@ -47,13 +47,17 @@ export function App() {
   useEffect(() => {
     // Decode Slots query param
     function decodeSlots() {
-      const { s1, s } = router.query;
+      const {
+        s1, s, wxhb, xhb
+      } = router.query;
       let slots;
       if (s1) slots = group(s1.split(','), 16);
       if (s) slots = JSON.parse(s);
 
       if (slots) {
-        appDispatch({ type: 'bulkLoadActionsToSlots', slottedActions: slots });
+        appDispatch({ type: 'bulkLoadActionsToSlots', params: { slottedActions: slots, wxhb, xhb } });
+      } else if (xhb || wxhb) {
+        appDispatch({ type: 'updateUI', params: { wxhb, xhb } });
       }
     }
 
