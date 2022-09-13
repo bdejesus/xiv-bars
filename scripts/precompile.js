@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import fs from 'fs';
-import fetch from 'node-fetch';
-import { apiData } from '../app.config.json';
-import ACTION_TYPE from '../lib/actionType';
+const fs = require('fs');
+const fetch = require('node-fetch');
+const { apiData } = require('../app.config.json');
+const ACTION_TYPE = require('../lib/actionType');
 
 async function getActions() {
   const baseUrl = 'https://xivapi.com';
