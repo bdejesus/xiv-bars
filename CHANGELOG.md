@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0
+
+* Adds a "Copy Layout" button for duplicating a saved layout into a new one.
+
 ## 2.1.1
 
 * Package upgrades
