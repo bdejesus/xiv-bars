@@ -11,10 +11,10 @@ function Card({ children, className }) {
 }
 
 Card.propTypes = {
-  children: PropTypes.oneOf([
+  children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.shape(),
-    PropTypes.array
+    PropTypes.arrayOf(PropTypes.shape())
   ]).isRequired,
   className: PropTypes.string
 };

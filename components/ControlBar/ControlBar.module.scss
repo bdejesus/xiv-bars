@@ -6,7 +6,7 @@
   padding: 0 $spacing-base;
   position: fixed;
   top: 48px;
-  width: 100vw;
+  width: 100%;
   z-index: 9;
 
   &[data-active-modal="true"] {
