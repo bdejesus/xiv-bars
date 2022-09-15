@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.3.0
+
+* Adds XHB/WXHB settings controls to enable assigning specific cross hotbars to the main `XHB` and `WXHB`
+  * Updates prisma schema to include `XHB` and `WXHB` setting values
+
 ## 2.2.0
 
 * Adds a "Copy Layout" button for duplicating a saved layout into a new one.
@@ -25,3 +30,7 @@
 * Saved layouts can have titles and notations to help others use your configurations.
 * Easily return to your saved layouts and edit or improve them.
 * The app is still fully functional without a registered account, but certain features will require a registered account.
+
+## v1.0.0
+
+The beginning of time...
