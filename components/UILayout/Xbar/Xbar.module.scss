@@ -133,8 +133,8 @@ $group-padding: 10px;
     padding: $spacing-sm;
 
     &:hover {
-      outline: 1px solid $color-alt;
       cursor: pointer;
+      outline: 1px solid $color-alt;
     }
   }
 }
