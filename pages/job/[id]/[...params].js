@@ -35,7 +35,6 @@ export default function Index({
   return (
     <>
       <Head>
-        <meta name="robots" content="noindex" />
         <title>{pageTitle}</title>
       </Head>
 
