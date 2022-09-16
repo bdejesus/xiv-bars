@@ -60,6 +60,23 @@ main {
   padding: $spacing-sm;
 }
 
+.branding {
+  font-weight: 400;
+  letter-spacing: 0.15em;
+
+  b {
+    color: currentcolor;
+    font-weight: 700;
+  }
+}
+
+h1,
+h2 {
+  &.branding {
+    font-weight: 100;
+  }
+}
+
 @import "typography";
 @import "links";
 @import "forms";

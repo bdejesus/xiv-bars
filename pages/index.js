@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
@@ -27,6 +28,10 @@ function Index({ jobs }) {
 
   return (
     <>
+      <Head>
+        <link rel="canonical" href="https://xivbars.bejezus.com" />
+      </Head>
+
       <GlobalHeader />
       <Intro jobs={jobs} />
       <div className={styles.articles}>

@@ -13,6 +13,7 @@ function Error500() {
     <>
       <Head>
         <title>{pageTitle}</title>
+        <meta name="robots" content="noindex" />
       </Head>
 
       <div className={styles.errorPage}>

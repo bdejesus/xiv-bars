@@ -7,8 +7,8 @@ export function Hero({ primary }) {
   return (
     <div className="container">
       { primary
-        ? <h1>XIVBARS</h1>
-        : <h2>XIVBARS</h2>}
+        ? <h1 className="branding">XIV<b>BARS</b></h1>
+        : <h2 className="branding">XIV<b>BARS</b></h2>}
 
       <div className={styles.description}>
         <p>{I18n.Global.subtitle}</p>

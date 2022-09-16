@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import analytics from 'lib/analytics';
 import Head from 'next/head';
 import Script from 'next/script';
-import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
 import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
@@ -13,7 +12,7 @@ import { UserProvider } from 'components/User/context';
 import 'styles/global.scss';
 
 export function App({ Component, pageProps }) {
-  const { selectedJob, actions, session } = pageProps;
+  const { selectedJob, session } = pageProps;
   const router = useRouter();
 
   useEffect(() => { analytics.pageview(router.asPath); }, []);
@@ -25,22 +24,11 @@ export function App({ Component, pageProps }) {
     return I18n.Global.title;
   }
 
-  function generateCanonicalUrl() {
-    if (selectedJob) {
-      return `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
-    }
-    return 'https://xivbars.bejezus.com';
-  }
-
   function generateDescription() {
-    if (selectedJob) {
-      return shortDesc(selectedJob, actions);
-    }
     return I18n.Global.description;
   }
 
   const pageTitle = generateTitle();
-  const canonicalUrl = generateCanonicalUrl();
   const description = generateDescription();
 
   return (
@@ -63,7 +51,7 @@ export function App({ Component, pageProps }) {
 
       <Head>
         <title>{pageTitle}</title>
-        { renderMeta(pageTitle, description, canonicalUrl) }
+        { renderMeta(pageTitle, description) }
         { renderFavicon() }
       </Head>
 

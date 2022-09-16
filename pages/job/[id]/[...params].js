@@ -32,10 +32,14 @@ export default function Index({
   const readOnly = (viewData && viewAction !== 'edit');
   const pageTitle = `${title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
 
+  const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${viewData.id}`;
+
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
+        <meta name="description" content={viewData.description} />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
 
       <GlobalHeader />
@@ -135,10 +139,11 @@ Index.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   viewData: PropTypes.shape({
-    title: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    title: PropTypes.string,
     description: PropTypes.string,
-    layout: PropTypes.number.isRequired,
-    encodedSlots: PropTypes.string.isRequired
+    layout: PropTypes.number,
+    encodedSlots: PropTypes.string
   }).isRequired,
   viewAction: PropTypes.string.isRequired
 };

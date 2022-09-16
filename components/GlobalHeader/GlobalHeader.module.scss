@@ -40,16 +40,10 @@
 
 .title {
   color: #333;
-  font-weight: 400;
-  letter-spacing: 2px;
-  margin: 0 $spacing-base 0 $spacing-xs;
+  margin: 0 $spacing-base 0 $spacing-sm;
 
   b {
-    font-weight: 900;
+    position: relative;
+    top: 1px;
   }
-}
-
-.subtitle {
-  position: relative;
-  top: -1px;
 }

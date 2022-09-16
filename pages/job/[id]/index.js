@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
+import Head from 'next/head';
 import {
   listJobs,
   listJobActions,
   listRoleActions
 } from 'lib/api';
+import shortDesc from 'lib/shortDesc';
 import { getUrlParams } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import I18n from 'lib/I18n/locale/en-US';
@@ -16,7 +18,6 @@ import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
-import shortDesc from 'lib/shortDesc';
 
 import styles from '../../Index.module.scss';
 
@@ -27,9 +28,15 @@ export default function Index({
   roleActions,
 }) {
   const router = useRouter();
+  const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
+  const pageDescription = shortDesc(selectedJob, actions);
 
   return (
     <>
+      <Head>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+      </Head>
       <GlobalHeader />
 
       <AppContextProvider
