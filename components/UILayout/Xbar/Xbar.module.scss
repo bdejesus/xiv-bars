@@ -36,12 +36,12 @@ $group-padding: 10px;
   .left::before,
   .right::before {
     bottom: 0;
-    color: #000;
+    color: #111;
     display: block;
     font-size: $font-size-sm;
     font-weight: 700;
     left: 0;
-    opacity: 0.5;
+    opacity: 0.66;
     position: absolute;
     right: 0;
     text-align: center;
@@ -68,6 +68,7 @@ $group-padding: 10px;
     margin: 0;
     order: 0;
     padding-bottom: 0;
+    padding-top: $spacing-base;
     width: 100%;
 
     :global(.right) {
@@ -109,7 +110,7 @@ $group-padding: 10px;
 }
 
 .right {
-  border-left: 1px solid rgb(255 255 255 / 20%);
+  border-left: 1px solid rgb(0 0 0 / 20%);
 }
 
 .left,
@@ -156,65 +157,4 @@ $group-padding: 10px;
 .set .slot:nth-child(3) :global(.action)[data-show-title="true"]::after {
   position: absolute;
   transform: translateY(-180%);
-}
-
-.xhbControls {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: $spacing-base;
-}
-
-.xhbControl {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-right: $spacing-lg;
-
-  .controlLabel {
-    margin-right: $spacing-sm;
-  }
-
-  .controlGuide + .controlGuide {
-    border-left: 1px solid #444;
-    display: inline-block;
-    margin-left: $spacing-sm;
-    padding-left: $spacing-sm;
-  }
-
-  label {
-    display: flex;
-    flex-direction: row;
-  }
-
-  b {
-    background-color: #444;
-    display: inline-block;
-    padding: 1px;
-    text-align: center;
-    width: 24px;
-
-    &.lt {
-      border-radius: 0 0 0 8px;
-    }
-
-    &.rt {
-      border-radius: 0 0 8px;
-    }
-  }
-
-  select {
-    background-color: $panel-bg-dark;
-    border: none;
-    border-radius: 6px;
-    color: #fff;
-    font-size: $font-size-lg;
-    font-weight: 100;
-    padding: $spacing-sm;
-
-    &:hover {
-      cursor: pointer;
-      outline: 1px solid $color-alt;
-    }
-  }
 }
