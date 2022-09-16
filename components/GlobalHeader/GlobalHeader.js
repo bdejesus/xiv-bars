@@ -17,7 +17,7 @@ export function GlobalHeader() {
               width={24}
             />
           </div>
-          <div className={styles.title}>XIVBARS</div>
+          <div className={styles.title}>XIV<b>BARS</b></div>
         </a>
       </Link>
 

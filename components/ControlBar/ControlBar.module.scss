@@ -72,9 +72,8 @@
 
 .upsell {
   align-items: center;
-  background-color: #fff;
   border-radius: 6px;
-  color: #333;
+  color: $color-alt;
   display: inline-flex;
   font-size: $font-size-sm;
   font-weight: 500;
@@ -84,9 +83,4 @@
   padding: 0 $spacing-sm;
   position: relative;
   top: -4px;
-
-  &:hover {
-    background-color: $color-alt;
-    text-decoration: none;
-  }
 }

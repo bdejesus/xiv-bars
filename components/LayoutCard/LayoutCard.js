@@ -20,15 +20,11 @@ function LayoutCard({
     <div className={styles.layoutCard}>
       <a href={`/job/${layout.jobId}/${layout.id}`}>
         <Card className={[styles.card, className].join(' ')}>
+          { job && <Job job={job} className={styles.job} /> }
           <h4>{layout.title}</h4>
           <p className={styles.description}>{layout.description}</p>
-
-          <div className={styles.cardFooter}>
-            { job && <Job job={job} className={styles.job} /> }
-
-            <div className={styles.timestamp}>
-              {I18n.LayoutCard.last_updated}: {formatDate(layout.updatedAt)}
-            </div>
+          <div className={styles.timestamp}>
+            {I18n.LayoutCard.last_updated}: {formatDate(layout.updatedAt)}
           </div>
         </Card>
       </a>

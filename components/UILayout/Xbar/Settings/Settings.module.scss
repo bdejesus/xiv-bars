@@ -32,11 +32,14 @@
   b {
     background-color: #444;
     box-shadow: 1px 1px 1px #000, -1px -1px 1px rgb(255 255 255 / 33%);
-    display: inline-block;
+    display: inline-flex;
     margin: 0 2px;
     padding: 1px;
-    text-align: center;
+    align-items: center;
+    justify-content: center;
     width: 24px;
+    line-height: 1;
+    height: 16px;
 
     &.lt {
       border-radius: 0 0 0 8px;

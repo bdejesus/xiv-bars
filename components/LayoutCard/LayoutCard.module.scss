@@ -47,16 +47,11 @@
 }
 
 .card {
-  .cardFooter {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  border: 1px solid #333;
 
   h4 {
     color: #fff;
-    margin: 0;
+    margin: $spacing-sm 0 $spacing-base;
     transition: color 0.3s ease;
   }
 
@@ -78,7 +73,7 @@
       bottom: 0;
       content: "";
       display: block;
-      height: 40px;
+      height: 60px;
       left: 0;
       position: absolute;
       right: 0;
@@ -86,18 +81,20 @@
   }
 
   .job {
-    color: #999;
+    color: #666;
     filter: grayscale(1);
     transition: filter 0.3s ease;
 
     :global(.job-icon) {
-      height: 20px;
-      width: 20px;
+      height: 16px;
+      width: 16px;
+      opacity: 0.5;
     }
 
     :global(.job-abbr) {
       bottom: -2px;
       position: relative;
+      font-size: 14px;
     }
 
     :global(.job-name) {

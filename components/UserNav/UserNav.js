@@ -28,12 +28,6 @@ export function UserNav() {
     <div className={styles.userNav}>
       <ul className={styles.globalNav}>
         <li className={styles.navItem}>
-          <a href="https://github.com/bdejesus/xiv-bars/blob/main/CHANGELOG.md">
-            <i>{I18n.UserNav.whats_new}</i>
-          </a>
-        </li>
-
-        <li className={styles.navItem}>
           <a
             href="https://www.buymeacoffee.com/bejezus"
             target="_blank"
