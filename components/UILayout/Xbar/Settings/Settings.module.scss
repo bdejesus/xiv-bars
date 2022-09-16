@@ -30,16 +30,16 @@
   }
 
   b {
+    align-items: center;
     background-color: #444;
     box-shadow: 1px 1px 1px #000, -1px -1px 1px rgb(255 255 255 / 33%);
     display: inline-flex;
+    height: 16px;
+    justify-content: center;
+    line-height: 1;
     margin: 0 2px;
     padding: 1px;
-    align-items: center;
-    justify-content: center;
     width: 24px;
-    line-height: 1;
-    height: 16px;
 
     &.lt {
       border-radius: 0 0 0 8px;

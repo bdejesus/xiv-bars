@@ -87,14 +87,14 @@
 
     :global(.job-icon) {
       height: 16px;
-      width: 16px;
       opacity: 0.5;
+      width: 16px;
     }
 
     :global(.job-abbr) {
       bottom: -2px;
-      position: relative;
       font-size: 14px;
+      position: relative;
     }
 
     :global(.job-name) {
