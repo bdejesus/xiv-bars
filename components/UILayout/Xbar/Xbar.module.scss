@@ -45,8 +45,8 @@ $group-padding: 10px;
     position: absolute;
     right: 0;
     text-align: center;
+    text-shadow: -1px -1px 0 #000, 1px 1px 0 rgb(255 255 255 / 33%);
     user-select: none;
-    text-shadow: -1px -1px 0 #000, 1px 1px 0 rgba(255,255,255,0.33);
   }
 
   &[data-exhb="true"] {

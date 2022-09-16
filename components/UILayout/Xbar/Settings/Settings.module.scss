@@ -31,12 +31,12 @@
 
   b {
     background-color: #444;
-    box-shadow: 1px 1px 1px #000, -1px -1px 1px rgba(255,255,255,0.33);
+    box-shadow: 1px 1px 1px #000, -1px -1px 1px rgb(255 255 255 / 33%);
     display: inline-block;
+    margin: 0 2px;
     padding: 1px;
     text-align: center;
     width: 24px;
-    margin: 0 2px;
 
     &.lt {
       border-radius: 0 0 0 8px;
