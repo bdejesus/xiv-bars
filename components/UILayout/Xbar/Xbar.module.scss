@@ -36,16 +36,17 @@ $group-padding: 10px;
   .left::before,
   .right::before {
     bottom: 0;
-    color: #111;
+    color: #eee;
     display: block;
     font-size: $font-size-sm;
     font-weight: 700;
     left: 0;
-    opacity: 0.66;
+    opacity: 0.33;
     position: absolute;
     right: 0;
     text-align: center;
     user-select: none;
+    text-shadow: -1px -1px 0 #000, 1px 1px 0 rgba(255,255,255,0.33);
   }
 
   &[data-exhb="true"] {
