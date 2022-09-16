@@ -1,0 +1,62 @@
+@import "styles/mixins";
+
+.xhbControls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: $spacing-base;
+}
+
+.xhbControl {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-right: $spacing-lg;
+
+  .controlLabel {
+    margin-right: $spacing-sm;
+  }
+
+  .controlGuide + .controlGuide {
+    border-left: 1px solid #444;
+    display: inline-block;
+    margin-left: $spacing-sm;
+    padding-left: $spacing-sm;
+  }
+
+  label {
+    display: flex;
+    flex-direction: row;
+  }
+
+  b {
+    background-color: #444;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    width: 24px;
+
+    &.lt {
+      border-radius: 0 0 0 8px;
+    }
+
+    &.rt {
+      border-radius: 0 0 8px;
+    }
+  }
+
+  select {
+    background-color: $panel-bg-dark;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: $font-size-lg;
+    font-weight: 100;
+    padding: $spacing-sm;
+
+    &:hover {
+      cursor: pointer;
+      outline: 1px solid $color-alt;
+    }
+  }
+}

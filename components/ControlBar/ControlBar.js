@@ -15,11 +15,13 @@ export function ControlBar({ selectedJob }) {
   const router = useRouter();
 
   const {
-    readOnly, showPublish, showModal, encodedSlots, layout, viewData
+    readOnly, showPublish, showModal, encodedSlots, layout, viewData, xhb, wxhb, exhb
   } = useAppState();
 
   function copyLayout() {
-    const query = jsonToQuery({ l: layout, s1: encodedSlots });
+    const query = jsonToQuery({
+      l: layout, s1: encodedSlots, xhb, wxhb, exhb
+    });
     router.push(`/job/${selectedJob.Abbr}?${query}`);
   }
 

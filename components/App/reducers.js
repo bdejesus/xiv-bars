@@ -70,14 +70,12 @@ export default function AppReducer(state, payload) {
     const slottedAction = getActionKey(actionType)
       .find((action) => action.ID === parsedID);
     // eslint-disable-next-line no-param-reassign
-    if (slottedAction) slotGroup[slotIndex].action = slottedAction;
+    if (slottedAction && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
   }
 
   function setActionsToSlot() {
-    const { slottedActions } = payload;
     const slots = state[layouts[layout]];
-
-    slottedActions.forEach((actionGroup, groupIndex) => {
+    payload.params.slottedActions.forEach((actionGroup, groupIndex) => {
       const groupName = Object.keys(slots)[groupIndex];
       const slotGroup = state[layouts[layout]][groupName];
       actionGroup
@@ -86,13 +84,23 @@ export default function AppReducer(state, payload) {
   }
 
   switch (payload.type) {
+    case 'updateUI': {
+      return { ...state, ...payload.params };
+    }
+
     case 'updateLayout': {
       return { ...state, layout: payload.layout };
     }
 
     case 'bulkLoadActionsToSlots': {
       setActionsToSlot();
-      return { ...state };
+      const { xhb, wxhb, exhb } = payload.params;
+      return {
+        ...state,
+        xhb: parseInt(xhb, 10) || state.xhb,
+        wxhb: parseInt(wxhb, 10) || state.wxhb,
+        exhb: parseInt(exhb, 10) || state.exhb
+      };
     }
 
     case 'setActionToSlot': {
@@ -123,11 +131,7 @@ export default function AppReducer(state, payload) {
     }
 
     case 'publishLayout': {
-      return {
-        ...state,
-        showPublish: true,
-        message: undefined
-      };
+      return { ...state, showPublish: true, message: undefined };
     }
 
     case 'cancelPublish': {

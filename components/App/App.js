@@ -47,13 +47,29 @@ export function App() {
   useEffect(() => {
     // Decode Slots query param
     function decodeSlots() {
-      const { s1, s } = router.query;
+      const {
+        s1, s, wxhb, xhb, exhb
+      } = router.query;
       let slots;
       if (s1) slots = group(s1.split(','), 16);
       if (s) slots = JSON.parse(s);
 
       if (slots) {
-        appDispatch({ type: 'bulkLoadActionsToSlots', slottedActions: slots });
+        appDispatch({
+          type: 'bulkLoadActionsToSlots',
+          params: {
+            slottedActions: slots, wxhb, xhb, exhb
+          }
+        });
+      } else if (xhb || wxhb || exhb) {
+        appDispatch({
+          type: 'updateUI',
+          params: {
+            wxhb: parseInt(wxhb, 10),
+            xhb: parseInt(xhb, 10),
+            exhb: parseInt(exhb, 10)
+          }
+        });
       }
     }
 

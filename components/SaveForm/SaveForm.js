@@ -15,7 +15,10 @@ function SaveForm() {
     layout,
     encodedSlots,
     viewData,
-    selectedJob
+    selectedJob,
+    xhb,
+    wxhb,
+    exhb
   } = useAppState();
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
@@ -33,7 +36,10 @@ function SaveForm() {
         description,
         layout,
         encodedSlots,
-        jobId
+        jobId,
+        xhb,
+        wxhb,
+        exhb
       }
     };
 

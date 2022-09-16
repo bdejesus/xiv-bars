@@ -15,6 +15,7 @@ $group-padding: 10px;
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto;
+  order: 3;
   padding: 28px 10px;
   position: relative;
 
@@ -22,7 +23,7 @@ $group-padding: 10px;
     content: counter(xbarCount);
     counter-increment: xbarCount;
     font-size: $font-size-lg;
-    font-weight: 300;
+    font-weight: 400;
     left: -$spacing-sm;
     opacity: 0.66;
     position: absolute;
@@ -31,20 +32,94 @@ $group-padding: 10px;
   &:last-child {
     border-bottom: none;
   }
-}
 
-.left {
-  padding-right: 6px;
+  .left::before,
+  .right::before {
+    bottom: 0;
+    color: #111;
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: 700;
+    left: 0;
+    opacity: 0.66;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    user-select: none;
+  }
+
+  &[data-exhb="true"] {
+    border-bottom: 1px solid rgb(255 255 255 / 33%);
+    margin-bottom: $spacing-lg;
+    order: 2;
+    padding-bottom: $spacing-xl;
+
+    .left::before {
+      content: "LT → RT";
+    }
+
+    .right::before {
+      content: "RT → LT";
+    }
+  }
+
+  &[data-wxhb="true"] {
+    border-bottom: none;
+    margin: 0;
+    order: 0;
+    padding-bottom: 0;
+    padding-top: $spacing-base;
+    width: 100%;
+
+    :global(.right) {
+      border-left: none;
+    }
+
+    .left::before {
+      content: "LT, LT";
+    }
+
+    .right::before {
+      content: "RT, RT";
+    }
+  }
+
+  &[data-main="true"] {
+    &::before {
+      left: -$spacing-base;
+    }
+
+    background-color: rgb(255 255 255 / 3.3%);
+    border-radius: 10px;
+    margin-bottom: $spacing-base;
+    margin-top: $spacing-lg;
+    order: 1;
+    padding: $spacing-sm;
+    transform: scale(1.1);
+
+    .left::before {
+      content: "LT";
+      display: block;
+    }
+
+    .right::before {
+      content: "RT";
+      display: block;
+    }
+  }
 }
 
 .right {
-  padding-left: 6px;
+  border-left: 1px solid rgb(0 0 0 / 20%);
 }
 
 .left,
 .right {
   display: flex;
   flex-direction: row;
+  padding-left: 6px;
+  padding-right: 6px;
+  position: relative;
 }
 
 .set {

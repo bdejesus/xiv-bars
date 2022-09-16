@@ -30,14 +30,12 @@ export default function Index({
 }) {
   const { layout, encodedSlots, title } = viewData;
   const readOnly = (viewData && viewAction !== 'edit');
+  const pageTitle = `${title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
 
   return (
     <>
       <Head>
-        <meta name="robots" content="noindex" />
-        <title>
-          {`${title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`}
-        </title>
+        <title>{pageTitle}</title>
       </Head>
 
       <GlobalHeader />

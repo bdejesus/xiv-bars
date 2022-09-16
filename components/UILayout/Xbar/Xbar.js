@@ -1,76 +1,34 @@
+/* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable react/prefer-stateless-function */
-import PropTypes from 'prop-types';
-import { group } from 'lib/utils';
-import Slot from 'components/Slot';
 import { useAppState } from 'components/App/context';
+import Bar from './Bar';
+import Settings from './Settings';
 import styles from './Xbar.module.scss';
 
-function Set({ slots }) {
-  return (
-    <div className={styles.set}>
-      { slots.map((slot) => (
-        <Slot
-          id={slot.id}
-          key={`slot-${slot.id}`}
-          action={slot.action}
-          className={styles.slot}
-        />
-      ))}
-    </div>
-  );
-}
-
-Set.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
-
-function Group({ slots }) {
-  const slotSets = group(slots, 4);
-  return (
-    <>
-      {slotSets.map((groupSlots, index) => (
-        <Set slots={groupSlots} key={`set-${index}`} />
-      ))}
-    </>
-  );
-}
-
-Group.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
-
-function Bar({ bar }) {
-  const barGroups = {
-    left: bar.slice(0, 8),
-    right: bar.slice(8, bar.length + 1)
-  };
-
-  return (
-    <>
-      {Object.keys(barGroups).map((slots, index) => (
-        <div className={styles[slots]} key={`group-${index}`}>
-          <Group slots={barGroups[slots]} />
-        </div>
-      ))}
-    </>
-  );
-}
-
-Bar.propTypes = {
-  bar: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
-
 export function Xbar() {
-  const { chotbar } = useAppState();
+  const {
+    chotbar, wxhb, xhb, exhb, viewData, readOnly
+  } = useAppState();
+  const hbKeys = Object.keys(chotbar);
 
   return (
-    <div className={styles.container}>
-      {Object.keys(chotbar).map((xbar) => (
-        <div className={styles.xbar} key={xbar}>
-          <Bar bar={chotbar[xbar]} id={xbar} />
-        </div>
-      ))}
-    </div>
+    <>
+      { !(viewData && readOnly) && <Settings />}
+
+      <div className={styles.container}>
+        {hbKeys.map((xbar) => (
+          <div
+            key={xbar}
+            className={[styles.xbar, styles[xbar]].join(' ')}
+            data-main={xbar === hbKeys[xhb - 1]}
+            data-wxhb={xbar === hbKeys[wxhb - 1]}
+            data-exhb={xbar === hbKeys[exhb - 1]}
+          >
+            <Bar bar={chotbar[xbar]} id={xbar} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
