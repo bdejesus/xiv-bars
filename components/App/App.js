@@ -48,16 +48,21 @@ export function App() {
     // Decode Slots query param
     function decodeSlots() {
       const {
-        s1, s, wxhb, xhb
+        s1, s, wxhb, xhb, exhb
       } = router.query;
       let slots;
       if (s1) slots = group(s1.split(','), 16);
       if (s) slots = JSON.parse(s);
 
       if (slots) {
-        appDispatch({ type: 'bulkLoadActionsToSlots', params: { slottedActions: slots, wxhb, xhb } });
-      } else if (xhb || wxhb) {
-        appDispatch({ type: 'updateUI', params: { wxhb, xhb } });
+        appDispatch({
+          type: 'bulkLoadActionsToSlots',
+          params: {
+            slottedActions: slots, wxhb, xhb, exhb
+          }
+        });
+      } else if (xhb || wxhb || exhb) {
+        appDispatch({ type: 'updateUI', params: { wxhb, xhb, exhb } });
       }
     }
 

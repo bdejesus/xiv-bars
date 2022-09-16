@@ -17,7 +17,8 @@ function SaveForm() {
     viewData,
     selectedJob,
     xhb,
-    wxhb
+    wxhb,
+    exhb
   } = useAppState();
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
@@ -37,7 +38,8 @@ function SaveForm() {
         encodedSlots,
         jobId,
         xhb,
-        wxhb
+        wxhb,
+        exhb
       }
     };
 

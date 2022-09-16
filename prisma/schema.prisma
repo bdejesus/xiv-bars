@@ -37,6 +37,7 @@ model Layout {
   deletedAt     DateTime?
   xhb           Int?
   wxhb          Int?
+  exhb          Int?
 }
 
 enum Role {

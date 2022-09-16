@@ -39,7 +39,7 @@ export function App({ Component, pageProps }) {
     return I18n.Global.description;
   }
 
-  const title = generateTitle();
+  const pageTitle = generateTitle();
   const canonicalUrl = generateCanonicalUrl();
   const description = generateDescription();
 
@@ -62,8 +62,8 @@ export function App({ Component, pageProps }) {
       </Script>
 
       <Head>
-        <title>{title}</title>
-        { renderMeta(title, description, canonicalUrl) }
+        <title>{pageTitle}</title>
+        { renderMeta(pageTitle, description, canonicalUrl) }
         { renderFavicon() }
       </Head>
 

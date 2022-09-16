@@ -52,8 +52,9 @@ export function AppContextProvider({
     message: undefined,
     chotbar,
     hotbar,
-    xhb: 1,
-    wxhb: 0,
+    xhb: viewData?.xhb || 1,
+    wxhb: viewData?.wxhb || 2,
+    exhb: viewData?.exhb || 3,
     showPublish: false,
     showTitles: false,
     showAllLvl: false,
@@ -68,7 +69,7 @@ export function AppContextProvider({
 
       dispatch({
         type: 'bulkLoadActionsToSlots',
-        slottedActions: decodedSlots
+        params: { slottedActions: decodedSlots }
       });
     }
   }, [encodedSlots]);

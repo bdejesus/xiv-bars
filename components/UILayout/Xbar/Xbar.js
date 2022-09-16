@@ -5,35 +5,25 @@ import Bar from './Bar';
 import styles from './Xbar.module.scss';
 
 export function Xbar() {
-  const { chotbar, wxhb, xhb } = useAppState();
+  const {
+    chotbar, wxhb, xhb, exhb
+  } = useAppState();
+  const hbKeys = Object.keys(chotbar);
   const appDispatch = useAppDispatch();
 
   function handleSelectMainXHB(e) {
     const targetXhb = parseInt(e.currentTarget.value, 10);
-    appDispatch({
-      type: 'updateUI',
-      params: {
-        xhb: targetXhb,
-        wxhb: (targetXhb === wxhb) ? 0 : wxhb
-      }
-    });
+    appDispatch({ type: 'updateUI', params: { xhb: targetXhb } });
   }
 
   function handleSelectWXHB(e) {
     const targetWxhb = parseInt(e.currentTarget.value, 10);
-    if (targetWxhb === xhb) {
-      const keys = Object.keys(chotbar);
-      const nextIndex = chotbar[targetWxhb + 1] >= keys.length ? 0 : targetWxhb + 1;
-      appDispatch({
-        type: 'updateUI',
-        params: { xhb: nextIndex, wxhb: targetWxhb }
-      });
-    } else {
-      appDispatch({
-        type: 'updateUI',
-        params: { xhb, wxhb: targetWxhb }
-      });
-    }
+    appDispatch({ type: 'updateUI', params: { wxhb: targetWxhb } });
+  }
+
+  function handleSelectEXHB(e) {
+    const targetExhb = parseInt(e.currentTarget.value, 10);
+    appDispatch({ type: 'updateUI', params: { exhb: targetExhb } });
   }
 
   return (
@@ -43,18 +33,35 @@ export function Xbar() {
           <label htmlFor="mainXHB">
             <span className={styles.controlLabel}>
               Main XHB
+              <br />
+
+              <span className={styles.controlGuide}>
+                <b className={styles.lt}>LT</b>
+              </span>
+
+              <span className={styles.controlGuide}>
+                <b className={styles.rt}>RT</b>
+              </span>
             </span>
+
             <select
               id="mainXHB"
               name="mainXHB"
               onChange={handleSelectMainXHB}
               value={xhb}
             >
-              { Object.keys(chotbar).map((key, index) => (
-                <option value={index + 1} key={key}>
-                  {index + 1}
-                </option>
-              ))}
+              { hbKeys.map((key, index) => {
+                const value = index + 1;
+                return (
+                  <option
+                    value={value}
+                    key={key}
+                    disabled={value === wxhb || value === exhb}
+                  >
+                    {value}
+                  </option>
+                );
+              })}
             </select>
           </label>
         </div>
@@ -63,7 +70,16 @@ export function Xbar() {
           <label htmlFor="wxhbOptions">
             <span className={styles.controlLabel}>
               WXHB
+              <br />
+
+              <span className={styles.controlGuide}>
+                <b className={styles.lt}>LT</b> <b className={styles.lt}>LT</b>
+              </span>
+              <span className={styles.controlGuide}>
+                <b className={styles.rt}>RT</b> <b className={styles.rt}>RT</b>
+              </span>
             </span>
+
             <select
               id="wxhbOptions"
               name="wxhbOptions"
@@ -71,23 +87,68 @@ export function Xbar() {
               value={wxhb}
             >
               <option value={0}>Off</option>
-              { Object.keys(chotbar).map((key, index) => (
-                <option value={index + 1} key={key}>
-                  {index + 1}
-                </option>
-              ))}
+              { hbKeys.map((key, index) => {
+                const value = index + 1;
+                return (
+                  <option
+                    value={value}
+                    key={key}
+                    disabled={value === xhb || value === exhb}
+                  >
+                    {value}
+                  </option>
+                );
+              })}
+            </select>
+          </label>
+        </div>
+
+        <div className={styles.xhbControl}>
+          <label htmlFor="exhbOptions">
+            <span className={styles.controlLabel}>
+              Expanded XHB
+              <br />
+
+              <span className={styles.controlGuide}>
+                <b className={styles.lt}>LT</b>&rarr;<b className={styles.rt}>RT</b>
+              </span>
+              <span className={styles.controlGuide}>
+                <b className={styles.rt}>RT</b>&rarr;<b className={styles.lt}>LT</b>
+              </span>
+            </span>
+
+            <select
+              id="exhbOptions"
+              name="exhbOptions"
+              onChange={handleSelectEXHB}
+              value={exhb}
+            >
+              <option value={0}>Off</option>
+              { hbKeys.map((key, index) => {
+                const value = index + 1;
+                return (
+                  <option
+                    value={value}
+                    key={key}
+                    disabled={value === wxhb || value === xhb}
+                  >
+                    {value}
+                  </option>
+                );
+              })}
             </select>
           </label>
         </div>
       </div>
 
       <div className={styles.container}>
-        {Object.keys(chotbar).map((xbar) => (
+        {hbKeys.map((xbar) => (
           <div
-            className={[styles.xbar, styles[xbar]].join(' ')}
             key={xbar}
-            data-main={xbar === Object.keys(chotbar)[xhb - 1]}
-            data-wxhb={xbar === Object.keys(chotbar)[wxhb - 1]}
+            className={[styles.xbar, styles[xbar]].join(' ')}
+            data-main={xbar === hbKeys[xhb - 1]}
+            data-wxhb={xbar === hbKeys[wxhb - 1]}
+            data-exhb={xbar === hbKeys[exhb - 1]}
           >
             <Bar bar={chotbar[xbar]} id={xbar} />
           </div>

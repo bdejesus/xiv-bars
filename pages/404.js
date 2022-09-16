@@ -7,12 +7,12 @@ import LoadScreen from 'components/LoadScreen';
 import styles from './Index.module.scss';
 
 function Error500() {
+  const pageTitle = `${I18n.Pages.NotFound.title} • ${I18n.Pages.NotFound.status} • XIVBARS`;
+
   return (
     <>
       <Head>
-        <title>
-          {I18n.Pages.NotFound.title} • {I18n.Pages.NotFound.status} • XIVBARS
-        </title>
+        <title>{pageTitle}</title>
       </Head>
 
       <div className={styles.errorPage}>

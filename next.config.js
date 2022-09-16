@@ -2,10 +2,9 @@ const { withSentryConfig } = require('@sentry/nextjs');
 
 const options = {
   poweredByHeader: false,
-
   eslint: {
     // ESlint is run outside of the build step
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true
   }
 };
 
@@ -17,7 +16,8 @@ const SentryWebpackPluginOptions = {
   //   urlPrefix, include, ignore
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
-  silent: true
+  silent: true,
+  hideSourceMaps: true
 };
 
 // Make sure adding Sentry options is the last code to run before exporting, to

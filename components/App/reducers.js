@@ -94,8 +94,13 @@ export default function AppReducer(state, payload) {
 
     case 'bulkLoadActionsToSlots': {
       setActionsToSlot();
-      const { xhb, wxhb } = payload.params;
-      return { ...state, xhb, wxhb: wxhb || 0 };
+      const { xhb, wxhb, exhb } = payload.params;
+      return {
+        ...state,
+        xhb: xhb || state.xhb,
+        wxhb: wxhb || state.wxhb,
+        exhb: exhb || state.exhb
+      };
     }
 
     case 'setActionToSlot': {
