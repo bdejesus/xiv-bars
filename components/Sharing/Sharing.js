@@ -15,7 +15,8 @@ export function Sharing({ selectedJob }) {
     readOnly,
     viewAction,
     xhb,
-    wxhb
+    wxhb,
+    exhb
   } = useAppState();
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
@@ -24,7 +25,9 @@ export function Sharing({ selectedJob }) {
 
   function buildShareUrl() {
     const slots = (/\d/).test(encodedSlots) ? encodedSlots : '';
-    const query = { s1: slots, xhb, wxhb };
+    const query = {
+      s1: slots, xhb, wxhb, exhb
+    };
     if (typeof router.query.l !== 'undefined') query.l = router.query.l;
 
     const queryString = Object.keys(query)
@@ -59,7 +62,7 @@ export function Sharing({ selectedJob }) {
   useEffect(() => {
     const urlString = readOnly ? getLayoutUrl() : buildShareUrl();
     setShareURL(urlString);
-  }, [encodedSlots, xhb, wxhb]);
+  }, [encodedSlots, xhb, wxhb, exhb]);
 
   return (
     <div className={`${styles.container}`} data-copied={copied}>

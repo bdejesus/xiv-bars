@@ -6,7 +6,7 @@ import styles from './Xbar.module.scss';
 
 export function Xbar() {
   const {
-    chotbar, wxhb, xhb, exhb
+    chotbar, wxhb, xhb, exhb, viewData, readOnly
   } = useAppState();
   const hbKeys = Object.keys(chotbar);
   const appDispatch = useAppDispatch();
@@ -28,6 +28,7 @@ export function Xbar() {
 
   return (
     <>
+      { !(viewData && readOnly) && (
       <div className={styles.xhbControls}>
         <div className={styles.xhbControl}>
           <label htmlFor="mainXHB">
@@ -140,6 +141,7 @@ export function Xbar() {
           </label>
         </div>
       </div>
+      )}
 
       <div className={styles.container}>
         {hbKeys.map((xbar) => (

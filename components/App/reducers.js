@@ -70,7 +70,7 @@ export default function AppReducer(state, payload) {
     const slottedAction = getActionKey(actionType)
       .find((action) => action.ID === parsedID);
     // eslint-disable-next-line no-param-reassign
-    if (slottedAction) slotGroup[slotIndex].action = slottedAction;
+    if (slottedAction && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
   }
 
   function setActionsToSlot() {
