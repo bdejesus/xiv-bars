@@ -7,19 +7,9 @@ function Settings() {
   const { wxhb, xhb, exhb } = useAppState();
   const appDispatch = useAppDispatch();
 
-  function handleSelectMainXHB(e) {
-    const targetXhb = parseInt(e.currentTarget.value, 10);
-    appDispatch({ type: 'updateUI', params: { xhb: targetXhb } });
-  }
-
-  function handleSelectWXHB(e) {
-    const targetWxhb = parseInt(e.currentTarget.value, 10);
-    appDispatch({ type: 'updateUI', params: { wxhb: targetWxhb } });
-  }
-
-  function handleSelectEXHB(e) {
-    const targetExhb = parseInt(e.currentTarget.value, 10);
-    appDispatch({ type: 'updateUI', params: { exhb: targetExhb } });
+  function handleSelect(id, value) {
+    const targetValue = parseInt(value, 10);
+    appDispatch({ type: 'updateUI', params: { [id]: targetValue } });
   }
 
   return (
@@ -27,7 +17,7 @@ function Settings() {
       <div className={styles.xhbControl}>
         <Options
           id="xhb"
-          onChange={(e) => handleSelectMainXHB(e)}
+          onChange={({ currentTarget }) => handleSelect('xhb', currentTarget.value)}
           value={xhb}
           required
         >
@@ -49,7 +39,7 @@ function Settings() {
       <div className={styles.xhbControl}>
         <Options
           id="wxhb"
-          onChange={(e) => handleSelectWXHB(e)}
+          onChange={({ currentTarget }) => handleSelect('wxhb', currentTarget.value)}
           value={wxhb}
         >
           <span className={styles.controlLabel}>
@@ -70,7 +60,7 @@ function Settings() {
       <div className={styles.xhbControl}>
         <Options
           id="exhb"
-          onChange={(e) => handleSelectEXHB(e)}
+          onChange={({ currentTarget }) => handleSelect('exhb', currentTarget.value)}
           value={exhb}
         >
           <span className={styles.controlLabel}>

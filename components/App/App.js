@@ -62,7 +62,14 @@ export function App() {
           }
         });
       } else if (xhb || wxhb || exhb) {
-        appDispatch({ type: 'updateUI', params: { wxhb, xhb, exhb } });
+        appDispatch({
+          type: 'updateUI',
+          params: {
+            wxhb: parseInt(wxhb, 10),
+            xhb: parseInt(xhb, 10),
+            exhb: parseInt(exhb, 10)
+          }
+        });
       }
     }
 

@@ -29,7 +29,7 @@
   > li::before {
     content: counter(slots);
     counter-increment: slots;
-    font-weight: 300;
+    font-weight: 400;
     left: -20px;
     opacity: 0.66;
     position: absolute;

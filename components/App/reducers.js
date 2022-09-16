@@ -97,9 +97,9 @@ export default function AppReducer(state, payload) {
       const { xhb, wxhb, exhb } = payload.params;
       return {
         ...state,
-        xhb: xhb || state.xhb,
-        wxhb: wxhb || state.wxhb,
-        exhb: exhb || state.exhb
+        xhb: parseInt(xhb, 10) || state.xhb,
+        wxhb: parseInt(wxhb, 10) || state.wxhb,
+        exhb: parseInt(exhb, 10) || state.exhb
       };
     }
 

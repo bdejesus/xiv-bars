@@ -3,7 +3,8 @@
 ## 2.3.0
 
 * Adds XHB/WXHB settings controls to enable assigning specific cross hotbars to the main `XHB` and `WXHB`
-  * Updates prisma schema to include `XHB` and `WXHB` setting values
+  * Updates db schema to store `XHB` and `WXHB` setting values
+* Removes `noindex` meta header to allow for search indexing
 
 ## 2.2.0
 
