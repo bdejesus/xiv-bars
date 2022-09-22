@@ -44,14 +44,27 @@ export function ExportToMacros() {
       .join('\n');
   }
 
+  function groupMacros(lines) {
+    const size = 15;
+    const groups = [];
+
+    for (let i = 0; i < lines.length; i += size) {
+      groups.push(lines.slice(i, i + size).join('\n'));
+    }
+    return groups;
+  }
+
   function buildMacros() {
     const hotbarMacros = Object
       .values(appState[currLayout])
       .map((row, index) => generateHotbarMacros(row, index + 1))
       .join('\n')
-      .trim();
+      .trim()
+      .split('\n');
 
-    textarea.current.value = hotbarMacros;
+    const macroGroups = groupMacros(hotbarMacros);
+
+    textarea.current.value = macroGroups.join('\n\n');
   }
 
   function selectTextarea() {
@@ -98,7 +111,7 @@ export function ExportToMacros() {
               <p>{I18n.ExportToMacro.limitations}</p>
             </div>
 
-            <textarea ref={textarea} readOnly onClick={selectTextarea} />
+            <textarea ref={textarea} />
 
             <div className="modal-footer">
               <button type="button" onClick={copyText}>
