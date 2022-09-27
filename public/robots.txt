@@ -1,4 +1,7 @@
 Sitemap: https://xivbars.bejezus.com/api/sitemap.xml
 
 User-agent: *
+Disallow: /Action/*
+Disallow: /CraftAction/*
+Disallow: /ClassJob/*
 Allow: /*
