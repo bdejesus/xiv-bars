@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import childrenProps from 'propTypes/children';
+import childrenProps from 'lib/propTypes/children';
 import CloseButton from 'components/CloseButton';
 import { useAppDispatch } from 'components/App/context';
 import styles from './Modal.module.scss';
