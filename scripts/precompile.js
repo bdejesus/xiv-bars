@@ -4,8 +4,8 @@ const { writeFile, rm, mkdir } = require('fs');
 const appConfig = require('../app.config.json');
 const JobsMeta = require('../data/JobsMeta.json');
 const BaseClassIDs = require('../data/BaseClassIDs.json');
-const ACTION_TYPE = require('../data/ActionType.json');
-const array = require('../lib/utils/array.js');
+const ActionType = require('../data/ActionType.json');
+const array = require('../lib/utils/array');
 
 const { apiData } = appConfig;
 const apiURL = 'https://xivapi.com';
@@ -25,7 +25,7 @@ async function getJobs() {
 }
 
 async function getActions() {
-  const actionTypes = Object.keys(ACTION_TYPE);
+  const actionTypes = Object.keys(ActionType);
 
   actionTypes.forEach(async (actionSet) => {
     const actions = await fetch(`${apiURL}/${actionSet}`)
@@ -38,8 +38,8 @@ async function getActions() {
           ...action,
           Name: action.Name ? action.Name : `${actionSet} ${action.ID}`,
           UrlType: actionSet,
-          Prefix: ACTION_TYPE[actionSet].prefix,
-          Command: ACTION_TYPE[actionSet].command
+          Prefix: ActionType[actionSet].prefix,
+          Command: ActionType[actionSet].command
         }));
 
         // await clean();
