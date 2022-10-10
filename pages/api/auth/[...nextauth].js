@@ -1,5 +1,4 @@
 import NextAuth from 'next-auth';
-import { withSentry } from '@sentry/nextjs';
 import DiscordProvider from 'next-auth/providers/discord';
 import db from 'lib/db';
 
@@ -56,4 +55,4 @@ export const authOptions = {
   secret: process.env.JWT_SECRET
 };
 
-export default withSentry(NextAuth(authOptions));
+export default NextAuth(authOptions);
