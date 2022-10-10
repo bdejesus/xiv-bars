@@ -8,23 +8,22 @@ import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
-import { jobsType } from 'lib/types/jobs';
-import { listJobs, } from 'lib/api';
+import Jobs from '.apiData/Jobs.json';
 
 import styles from './Index.module.scss';
 
-function Index({ jobs }) {
+function Index() {
   const router = useRouter();
 
   useEffect(() => {
-    const jobAbbrs = jobs.map(({ Abbr }) => Abbr);
+    const jobAbbrs = Jobs.map(({ Abbr }) => Abbr);
     // `s` param is deprecated but is there to provide backward support
     // for an earlier format of the encodedSlots
     const { job, s1, s } = router.query;
     if (jobAbbrs.includes(job)) {
       router.push({ pathname: `/job/${job}`, query: { s1, s } });
     }
-  }, [router, jobs]);
+  }, [router]);
 
   return (
     <>
@@ -33,7 +32,7 @@ function Index({ jobs }) {
       </Head>
 
       <GlobalHeader />
-      <Intro jobs={jobs} />
+      <Intro jobs={Jobs} />
       <div className={styles.articles}>
         <HowTo />
         <EorzeaProfile />
@@ -45,18 +44,5 @@ function Index({ jobs }) {
     </>
   );
 }
-
-Index.getInitialProps = async () => {
-  // Get Selected Job
-  const decoratedJobs = await listJobs();
-
-  return {
-    jobs: decoratedJobs,
-  };
-};
-
-Index.propTypes = {
-  jobs: jobsType.isRequired
-};
 
 export default Index;

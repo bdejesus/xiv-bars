@@ -11,13 +11,12 @@ import LayoutCard from 'components/LayoutCard';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
-import { listJobs, } from 'lib/api';
+import Jobs from '.apiData/Jobs.json';
 import { maxLayouts } from 'lib/user';
 
 import styles from './me.module.scss';
 
-export default function Me(pageProps) {
-  const { jobs } = pageProps;
+export default function Me() {
   const [layouts, setLayouts] = useState([]);
   const userDispatch = useUserDispatch();
   const { status } = useSession({ required: true });
@@ -82,7 +81,7 @@ export default function Me(pageProps) {
           <div className="container section">
             <ul className={styles.layoutsList}>
               {layouts.map((layout) => {
-                const job = jobs.find((j) => j.Abbr === layout.jobId);
+                const job = Jobs.find((j) => j.Abbr === layout.jobId);
                 return (
                   <li key={layout.id}>
                     <LayoutCard
@@ -111,7 +110,7 @@ export default function Me(pageProps) {
         ) : (
           <div className="app-view">
             <div className="container">
-              <JobMenu jobs={jobs} />
+              <JobMenu jobs={Jobs} />
             </div>
           </div>
         )}
@@ -121,12 +120,3 @@ export default function Me(pageProps) {
     </>
   );
 }
-
-Me.getInitialProps = async () => {
-  // Get Selected Job
-  const decoratedJobs = await listJobs();
-
-  return {
-    jobs: decoratedJobs,
-  };
-};

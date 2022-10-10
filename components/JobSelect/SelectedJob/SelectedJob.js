@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import jobs from 'lib/jobs';
+import RoleNames from 'data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
 export function SelectedJob({ job }) {
@@ -19,7 +19,7 @@ export function SelectedJob({ job }) {
           <span className={styles.name}>{job.Name}</span>
         </h2>
         <div className={styles.role}>
-          {job.Discipline} {job.Role && (`• ${jobs.ROLE_NAMES[job.Role]}`)}
+          {job.Discipline} {job.Role && (`• ${RoleNames[job.Role]}`)}
         </div>
       </div>
     </div>

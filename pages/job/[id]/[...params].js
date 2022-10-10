@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import fetch from 'node-fetch';
 import { domain } from 'lib/host';
 import {
-  listJobs,
   listJobActions,
   listRoleActions
 } from 'lib/api';
@@ -18,10 +17,11 @@ import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
+import Jobs from '.apiData/Jobs.json';
+
 import styles from './job.module.scss';
 
 export default function Index({
-  jobs,
   selectedJob,
   actions,
   roleActions,
@@ -48,7 +48,6 @@ export default function Index({
         actions={actions}
         roleActions={roleActions}
         selectedJob={selectedJob}
-        jobs={jobs}
         layout={layout}
         encodedSlots={encodedSlots}
         readOnly={readOnly}
@@ -88,10 +87,7 @@ export async function getServerSideProps(context) {
     const [layoutId, viewAction] = params;
 
     // Get Selected Job
-    const decoratedJobs = await listJobs();
-    const selectedJob = id
-      ? decoratedJobs.find((job) => job.Abbr === id)
-      : null;
+    const selectedJob = id ? Jobs.find((job) => job.Abbr === id) : null;
 
     const fetchOptions = {
       method: 'POST',
@@ -115,7 +111,6 @@ export async function getServerSideProps(context) {
 
     return {
       props: {
-        jobs: decoratedJobs,
         actions: jobActions,
         selectedJob,
         roleActions,
@@ -135,7 +130,6 @@ export async function getServerSideProps(context) {
 
 Index.propTypes = {
   selectedJob: PropTypes.shape().isRequired,
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   viewData: PropTypes.shape({
