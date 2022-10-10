@@ -2,7 +2,7 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 const { apiData } = require('../app.config.json');
-const ACTION_TYPE = require('../lib/actionType');
+const ACTION_TYPE = require('../data/ActionType.json');
 
 async function getActions() {
   const baseUrl = 'https://xivapi.com';
