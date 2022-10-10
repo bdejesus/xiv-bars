@@ -4,7 +4,7 @@ import {
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { hotbar, chotbar } from 'lib/xbars';
-import { group } from 'lib/utils/array';
+import { group } from 'lib/utils/array.js';
 import AppReducer from './reducers';
 
 const AppContext = createContext();
