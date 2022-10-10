@@ -3,7 +3,7 @@ import db from 'lib/db';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { maxLayouts } from 'lib/user';
-import { byKey } from 'lib/utils/array.js';
+import { byKey } from 'lib/utils/array';
 import { withSentry } from '@sentry/nextjs';
 
 async function list(userId) {

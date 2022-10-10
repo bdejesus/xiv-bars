@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { group } from 'lib/utils/array.js';
+import { group } from 'lib/utils/array';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import Modal from 'components/Modal';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
