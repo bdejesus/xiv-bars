@@ -70,18 +70,19 @@ export default function Index({
   );
 }
 
-export async function getStaticPaths() {
-  const paths = Jobs.map((job) => `/job/${job.Abbr}`);
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { id } = context.params;
 
   // Get Selected Job
   const selectedJob = id
     ? Jobs.find((job) => job.Abbr === id)
     : null;
+
+  if (!selectedJob) {
+    return {
+      notFound: true,
+    };
+  }
 
   let jobActions = [];
   let roleActions = [];
