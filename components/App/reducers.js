@@ -1,5 +1,5 @@
 import { layouts } from 'lib/xbars';
-import ACTION_TYPE from 'lib/actionType';
+import ACTION_TYPE from 'data/ActionType.json';
 import BUDDY_ACTION from '.apiData/BuddyAction.json';
 import COMPANY_ACTION from '.apiData/CompanyAction.json';
 import GENERAL_ACTION from '.apiData/GeneralAction.json';

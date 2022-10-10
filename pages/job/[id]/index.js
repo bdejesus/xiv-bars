@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import {
-  listJobs,
   listJobActions,
   listRoleActions
 } from 'lib/api';
@@ -18,11 +17,10 @@ import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
-
+import Jobs from '.apiData/Jobs.json';
 import styles from '../../Index.module.scss';
 
 export default function Index({
-  jobs,
   selectedJob,
   actions,
   roleActions,
@@ -43,7 +41,6 @@ export default function Index({
         actions={actions}
         roleActions={roleActions}
         selectedJob={selectedJob}
-        jobs={jobs}
         viewAction="new"
         layout={parseInt(getUrlParams(router.asPath)?.l, 10)}
       >
@@ -73,20 +70,19 @@ export default function Index({
   );
 }
 
-export async function getStaticPaths() {
-  const jobs = await listJobs();
-  const paths = jobs.map((job) => `/job/${job.Abbr}`);
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { id } = context.params;
 
   // Get Selected Job
-  const decoratedJobs = await listJobs();
   const selectedJob = id
-    ? decoratedJobs.find((job) => job.Abbr === id)
+    ? Jobs.find((job) => job.Abbr === id)
     : null;
+
+  if (!selectedJob) {
+    return {
+      notFound: true,
+    };
+  }
 
   let jobActions = [];
   let roleActions = [];
@@ -102,7 +98,6 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      jobs: decoratedJobs,
       actions: jobActions,
       selectedJob,
       roleActions
@@ -112,7 +107,6 @@ export async function getStaticProps(context) {
 
 Index.propTypes = {
   selectedJob: PropTypes.shape().isRequired,
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

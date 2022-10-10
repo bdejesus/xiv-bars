@@ -1,5 +1,6 @@
 const { SitemapStream, streamToPromise } = require('sitemap');
-const { ADVANCED_JOBS } = require('lib/jobs');
+const Jobs = require('.apiData/Jobs.json');
+const BaseClassIDs = require('data/BaseClassIDs.json');
 const { domain } = require('lib/host');
 const { withSentry } = require('@sentry/nextjs');
 
@@ -17,8 +18,9 @@ async function buildSitemap(req, res) {
     });
 
     // Create each URL row
+    const advancedJobs = Jobs.filter((job) => !BaseClassIDs.includes(job.ID));
 
-    ADVANCED_JOBS.forEach((job) => {
+    advancedJobs.forEach((job) => {
       sitemap.write({
         url: `/job/${job.Abbr}`,
         priority: 0.9,

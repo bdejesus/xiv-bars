@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { hotbar, chotbar } from 'lib/xbars';
 import { group } from 'lib/utils/array';
+import Jobs from '.apiData/Jobs.json';
 import AppReducer from './reducers';
 
 const AppContext = createContext();
@@ -28,7 +29,6 @@ export function useAppDispatch() {
 
 export function AppContextProvider({
   children,
-  jobs,
   selectedJob,
   layout,
   encodedSlots,
@@ -40,7 +40,7 @@ export function AppContextProvider({
 }) {
   const router = useRouter();
   const [state, dispatch] = useReducer(AppReducer, {
-    jobs,
+    jobs: Jobs,
     selectedJob,
     layout: layout || viewData?.layout || parseInt(router.query.l, 10) || 0,
     encodedSlots,
@@ -84,7 +84,6 @@ export function AppContextProvider({
 }
 
 AppContextProvider.propTypes = {
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   actions: PropTypes.arrayOf(PropTypes.shape()),
   roleActions: PropTypes.arrayOf(PropTypes.shape()),
   children: PropTypes.oneOfType([

@@ -47,7 +47,7 @@ export function ActionPanel({ actions, roleActions }) {
         >
           <ActionGroup actions={displayActions} title="Job Actions" />
 
-          {(roleActions && roleActions.length) > 0 && (
+          {(roleActions && (roleActions.length > 0)) && (
             <ActionGroup actions={roleActions} title="Role Actions" />
           )}
         </div>
