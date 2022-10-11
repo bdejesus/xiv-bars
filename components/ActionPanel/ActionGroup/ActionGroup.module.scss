@@ -29,5 +29,23 @@
 }
 
 .container[data-show-titles="true"] .listActions {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  display: block;
+
+  > li {
+    margin-bottom: $spacing-base;
+    margin-left: $spacing-sm;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  :global(.action) {
+    flex-direction: row;
+    &::after {
+      font-size: $font-size-sm;
+      margin-left: $spacing-base;
+      margin-top: 0;
+    }
+  }
 }
