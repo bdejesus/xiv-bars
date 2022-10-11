@@ -42,6 +42,7 @@
 
   :global(.action) {
     flex-direction: row;
+
     &::after {
       font-size: $font-size-sm;
       margin-left: $spacing-base;
