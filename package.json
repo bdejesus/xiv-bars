@@ -10,7 +10,7 @@
     "url": "https://github.com/bdejesus/xiv-bars.git"
   },
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
     "start": "next start -p $PORT",
@@ -29,7 +29,7 @@
     "@prisma/client": "^4.3.1",
     "@sentry/nextjs": "^7.11.1",
     "csurf": "^1.11.0",
-    "next": "^12.1.6",
+    "next": "^13.0.2",
     "next-auth": "^4.10.3",
     "node-fetch": "^2.6.1",
     "prisma": "^4.2.1",
@@ -46,7 +46,7 @@
     "@babel/eslint-parser": "^7.16.5",
     "eslint": "^8.18.0",
     "eslint-config-airbnb": "19.0.4",
-    "eslint-config-next": "^12.1.6",
+    "eslint-config-next": "^13.0.2",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.0",
@@ -56,7 +56,7 @@
     "postcss": "^8.3.3",
     "postcss-scss": "^4.0.4",
     "stylelint": "^14.9.1",
-    "stylelint-config-standard": "^28.0.0",
+    "stylelint-config-standard": "^29.0.0",
     "stylelint-order": "^5.0.0",
     "stylelint-scss": "^4.2.0"
   },
