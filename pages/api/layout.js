@@ -4,7 +4,6 @@ import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { maxLayouts } from 'lib/user';
 import { byKey } from 'lib/utils/array';
-import { withSentry } from '@sentry/nextjs';
 
 async function list(userId) {
   const listLayouts = await db.layout.findMany({ where: { userId } });
@@ -97,4 +96,4 @@ async function layout(req, res) {
   req.end();
 }
 
-export default withSentry(layout);
+export default layout;
