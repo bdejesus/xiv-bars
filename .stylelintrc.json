@@ -13,6 +13,7 @@
     "function-no-unknown": [
       true, { "ignoreFunctions": [ "math.div" ] }
     ],
+    "import-notation": "string",
     "keyframes-name-pattern": "^[a-z][a-zA-Z0-9]+$",
     "max-nesting-depth": 3,
     "no-descending-specificity": null,
