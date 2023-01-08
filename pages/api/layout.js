@@ -7,7 +7,7 @@ import { byKey } from 'lib/utils/array';
 
 async function list(userId) {
   const listLayouts = await db.layout.findMany({ where: { userId } });
-  return listLayouts.sort(byKey('updatedAt', 'desc'));
+  return listLayouts.slice(0, maxLayouts).sort(byKey('updatedAt', 'desc'));
 }
 
 async function create(userId, { data }) {
