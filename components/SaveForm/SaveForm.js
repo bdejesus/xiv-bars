@@ -43,8 +43,6 @@ function SaveForm() {
       }
     };
 
-    console.log(encodedSlots);
-
     fetch('/api/layout', {
       method: 'POST',
       body: JSON.stringify(body),
@@ -77,6 +75,7 @@ function SaveForm() {
   }
 
   function closeForm() {
+    router.reload();
     appDispatch({ type: 'cancelPublish' });
   }
 
