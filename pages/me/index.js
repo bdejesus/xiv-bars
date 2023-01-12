@@ -17,7 +17,7 @@ import { maxLayouts } from 'lib/user';
 import styles from './me.module.scss';
 
 export default function Me() {
-  const [layouts, setLayouts] = useState([]);
+  const [layouts, setLayouts] = useState();
   const userDispatch = useUserDispatch();
   const { status } = useSession({ required: true });
 
@@ -53,7 +53,7 @@ export default function Me() {
 
   useEffect(() => { getLayouts(); }, []);
 
-  if (status === 'unauthenticated') return null;
+  if (!layouts || status === 'unauthenticated') return null;
 
   return (
     <>
