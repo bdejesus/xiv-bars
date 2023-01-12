@@ -58,7 +58,11 @@ export function App() {
         appDispatch({
           type: 'bulkLoadActionsToSlots',
           params: {
-            slottedActions: slots, wxhb, xhb, exhb
+            slottedActions: slots,
+            wxhb,
+            xhb,
+            exhb,
+            encodedSlots: router.query.s1 || router.query.s
           }
         });
       } else if (xhb || wxhb || exhb) {
