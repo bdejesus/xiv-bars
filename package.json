@@ -30,7 +30,7 @@
     "@sentry/nextjs": "^7.11.1",
     "csurf": "^1.11.0",
     "next": "^13.0.2",
-    "next-auth": "^4.10.3",
+    "next-auth": "^4.20.1",
     "node-fetch": "^2.6.1",
     "prisma": "^4.2.1",
     "prop-types": "^15.8.1",
