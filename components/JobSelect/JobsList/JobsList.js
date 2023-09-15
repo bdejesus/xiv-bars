@@ -14,8 +14,10 @@ export function JobsList({ title, jobs }) {
             <a href={`/job/${job.Abbr}/layouts`} draggable={false}>
               <Job job={job} />
             </a>
+
             <a href={`/job/${job.Abbr}`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
-              <span className={styles.addBtnLabel}>+</span>
+              <span className={styles.addIcon}>+</span>
+              <span className={styles.addLabel}>New</span>
             </a>
           </li>
         ))}

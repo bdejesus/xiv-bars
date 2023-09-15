@@ -61,17 +61,17 @@ button,
   }
 
   &.btn-flat {
-    display: inline-flex;
-    border: none;
-    height: 32px;
     background-color: #303030;
+    border: none;
     color: #f2e9b9;
+    display: inline-flex;
+    height: 32px;
     opacity: 0.5;
     transition: opacity 0.1s ease;
 
     &:hover, &:focus, &:active {
-      opacity: 1;
       color: $color-alt;
+      opacity: 1;
     }
 
     &:focus {
