@@ -72,8 +72,8 @@
   }
 
   > li:empty {
-    position: absolute;
     pointer-events: none;
+    position: absolute;
 
     &::before {
       opacity: 0;
