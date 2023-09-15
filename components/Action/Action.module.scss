@@ -53,14 +53,11 @@
   }
 
   &::after {
-    bottom: 0;
     box-shadow: inset 1px 1px 1px rgb(255 255 255 / 15%), inset -1px -1px 1px rgb(0 0 0 / 33%);
     content: "";
     display: block;
-    left: 0;
+    inset: 0;
     position: absolute;
-    right: 0;
-    top: 0;
   }
 
   img {
@@ -77,12 +74,9 @@
   filter: grayscale(0.9);
 
   &::before {
-    bottom: 0;
     content: "";
-    left: 0;
+    inset: 0;
     position: absolute;
-    right: 0;
-    top: 0;
   }
 
   &:hover {

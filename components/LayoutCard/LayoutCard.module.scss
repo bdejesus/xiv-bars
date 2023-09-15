@@ -117,15 +117,12 @@
 .prompt {
   align-items: center;
   background-color: rgb(0 0 0 / 90%);
-  bottom: 0;
   display: flex;
+  inset: 0;
   justify-content: center;
-  left: 0;
   padding: $spacing-base;
   position: absolute;
-  right: 0;
   text-align: center;
-  top: 0;
   z-index: 4;
 
   b {

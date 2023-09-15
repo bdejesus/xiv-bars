@@ -55,10 +55,10 @@
     "json-loader": "^0.5.7",
     "postcss": "^8.3.3",
     "postcss-scss": "^4.0.4",
-    "stylelint": "^14.9.1",
-    "stylelint-config-standard": "^29.0.0",
-    "stylelint-order": "^5.0.0",
-    "stylelint-scss": "^4.2.0"
+    "stylelint": "15.10.3",
+    "stylelint-config-standard": "34.0.0",
+    "stylelint-order": "6.0.3",
+    "stylelint-scss": "5.2.0"
   },
   "cacheDirectories": [
     ".next/cache"

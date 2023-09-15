@@ -21,19 +21,16 @@
     align-items: center;
     background-color: #111;
     border-radius: $border-radius;
-    bottom: 0;
     content: "URL Copied!";
     display: flex;
     font-size: $font-size-base;
     font-style: italic;
     font-weight: 400;
+    inset: 0;
     justify-content: center;
-    left: 0;
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    right: 0;
-    top: 0;
     transition: opacity 0.33s ease;
   }
 
