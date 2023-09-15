@@ -5,10 +5,13 @@
 }
 
 .icon {
+  display: inline-block;
   height: 32px;
   margin-right: 6px;
   vertical-align: middle;
   width: 32px;
+  font-size: 10px;
+  overflow: hidden;
 }
 
 .abbr {
