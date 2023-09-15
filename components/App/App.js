@@ -108,14 +108,9 @@ export function App() {
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />
                       <h3>{viewData.title}</h3>
-                      <ReactMarkdown
-                        components={{
-                          h1: 'h4',
-                          h2: 'h5',
-                          h3: 'h6',
-                          h4: 'p',
-                          h5: 'p'
-                        }}
+                      <ReactMarkdown components={{
+                        h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p'
+                      }}
                       >
                         {viewData.description}
                       </ReactMarkdown>
