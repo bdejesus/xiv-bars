@@ -2,12 +2,14 @@ import PropTypes from 'prop-types';
 import RoleNames from 'data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
-export function SelectedJob({ job }) {
+export function SelectedJob({ job, className }) {
+  const jobIconName = job.Icon.toLowerCase().replace('/cj/1/', '');
+
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>
         <img
-          src={job.PreIcon || `//xivapi.com/${job.Icon}`}
+          src={job.PreIcon || `/vendor/classjob-icons/icons/${jobIconName}`}
           alt=""
           height={36}
           width={36}
@@ -27,7 +29,12 @@ export function SelectedJob({ job }) {
 }
 
 SelectedJob.propTypes = {
-  job: PropTypes.shape().isRequired
+  job: PropTypes.shape().isRequired,
+  className: PropTypes.string
+};
+
+SelectedJob.defaultProps = {
+  className: undefined
 };
 
 export default SelectedJob;

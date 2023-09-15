@@ -7,3 +7,14 @@
 .newLink {
   @include newLink;
 }
+
+
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.job {
+  flex: 1 1 auto;
+}
