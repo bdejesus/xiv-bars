@@ -45,6 +45,7 @@ button,
     background-color: $panel-bg-dark;
     border-color: $color-alt;
     color: $color-alt;
+    text-decoration: none;
 
     .btn-icon {
       opacity: 1;
@@ -57,5 +58,24 @@ button,
     color: #fff !important;
     cursor: default;
     opacity: 0.5;
+  }
+
+  &.btn-flat {
+    display: inline-flex;
+    border: none;
+    height: 32px;
+    background-color: #303030;
+    color: #f2e9b9;
+    opacity: 0.5;
+    transition: opacity 0.1s ease;
+
+    &:hover, &:focus, &:active {
+      opacity: 1;
+      color: $color-alt;
+    }
+
+    &:focus {
+      text-decoration: underline;
+    }
   }
 }

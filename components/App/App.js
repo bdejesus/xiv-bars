@@ -104,7 +104,6 @@ export function App() {
 
               <div className={styles.container}>
                 <div className={`${styles.sidebar}`}>
-
                   { viewData && readOnly ? (
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />

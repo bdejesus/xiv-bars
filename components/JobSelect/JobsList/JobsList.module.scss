@@ -19,11 +19,26 @@ $button-inset: 10px;
   margin-bottom: $spacing-base;
   padding: 0;
 
+  > li {
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+
+    &:hover {
+      background-color: #444;
+
+      .addBtn {
+        opacity: 1;
+      }
+    }
+  }
+
   a {
     background-color: transparent;
     border-radius: 4px;
     color: #fff;
-    display: block;
+    display: flex;
+    align-items: center;
     margin: 1px;
     padding: 4px $button-inset 4px 4px;
     position: relative;
@@ -35,7 +50,6 @@ $button-inset: 10px;
     }
 
     &:hover {
-      background-color: #444;
       text-decoration: none;
       z-index: 2;
     }
@@ -43,5 +57,31 @@ $button-inset: 10px;
     &:hover img {
       transform: scale(1);
     }
+
+    &:first-child {
+      flex: 1 1 auto;
+    }
+  }
+
+  .addBtn {
+    width: 40px;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.33s ease;
+
+    &:hover {
+      background-color: rgba(0,0,0,0.33);
+    }
+  }
+
+  .addBtnLabel {
+    display: block;
+    text-align: center;
+    line-height: 1;
+    position: relative;
+    top: -2px;
+    right: -2px;
+    font-size: $font-size-xl-2;
+    font-weight: 500;
   }
 }
