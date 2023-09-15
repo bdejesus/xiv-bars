@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useRouter } from 'next/router';
-import fetch from 'node-fetch';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import I18n from 'lib/I18n/locale/en-US';

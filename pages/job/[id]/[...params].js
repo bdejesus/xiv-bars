@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import fetch from 'node-fetch';
 import { domain } from 'lib/host';
 import {
   listJobActions,

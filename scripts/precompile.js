@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-const fetch = require('node-fetch');
 const { writeFile, rm, mkdir } = require('fs');
 const appConfig = require('../app.config.json');
 const JobsMeta = require('../data/JobsMeta.json');

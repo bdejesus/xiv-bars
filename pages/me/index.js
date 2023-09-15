@@ -4,7 +4,6 @@ import { useSession } from 'next-auth/react';
 import { useUserDispatch } from 'components/User/context';
 import Head from 'next/head';
 import I18n from 'lib/I18n/locale/en-US';
-import fetch from 'node-fetch';
 import GlobalHeader from 'components/GlobalHeader';
 import JobMenu from 'components/JobSelect/JobMenu';
 import LayoutCard from 'components/LayoutCard';
