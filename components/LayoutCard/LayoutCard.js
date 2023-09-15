@@ -7,7 +7,7 @@ import Job from 'components/JobSelect/Job';
 import styles from './LayoutCard.module.scss';
 
 function LayoutCard({
-  layout, job, onDelete, className
+  layout, job, onDelete, className, hideName
 }) {
   const [showPrompt, setShowPrompt] = useState(false);
 
@@ -19,26 +19,33 @@ function LayoutCard({
   return (
     <div className={styles.layoutCard}>
       <a href={`/job/${layout.jobId}/${layout.id}`}>
-        <Card className={[styles.card, className].join(' ')}>
-          { job && <Job job={job} className={styles.job} /> }
-          <h4>{layout.title}</h4>
-          <p className={styles.description}>{layout.description}</p>
-          <div className={styles.timestamp}>
-            {I18n.LayoutCard.last_updated}: {formatDate(layout.updatedAt)}
-          </div>
+        <Card className={[styles.card, className].join(' ')} href={`/job/${layout.jobId}/${layout.id}`}>
+          <>
+            { job && <Job job={job} className={styles.job} /> }
+            <h4>{layout.title}</h4>
+            <p className={styles.description}>{layout.description}</p>
+
+            { !hideName && <div className={styles.owner}>{layout.user.name}</div> }
+
+            <div className={styles.timestamp}>
+              {I18n.LayoutCard.last_updated}: {formatDate(layout.updatedAt)}
+            </div>
+          </>
         </Card>
       </a>
 
-      <div className={styles.cardActions}>
-        <button
-          type="button"
-          onClick={() => setShowPrompt(true)}
-          className={styles.deleteButton}
-          title={I18n.LayoutCard.delete_layout}
-        >
-          <div className={styles.deleteIcon}>&times;</div>
-        </button>
-      </div>
+      { onDelete && (
+        <div className={styles.cardActions}>
+          <button
+            type="button"
+            onClick={() => setShowPrompt(true)}
+            className={styles.deleteButton}
+            title={I18n.LayoutCard.delete_layout}
+          >
+            <div className={styles.deleteIcon}>&times;</div>
+          </button>
+        </div>
+      )}
 
       { showPrompt && (
         <div className={styles.prompt} data-active={!showPrompt}>
@@ -63,12 +70,15 @@ function LayoutCard({
 LayoutCard.propTypes = {
   layout: PropTypes.shape().isRequired,
   job: PropTypes.shape().isRequired,
-  onDelete: PropTypes.func.isRequired,
-  className: PropTypes.string
+  onDelete: PropTypes.func,
+  className: PropTypes.string,
+  hideName: PropTypes.bool
 };
 
 LayoutCard.defaultProps = {
-  className: ''
+  onDelete: null,
+  className: '',
+  hideName: true
 };
 
 export default LayoutCard;
