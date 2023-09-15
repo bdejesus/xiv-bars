@@ -83,6 +83,9 @@ export async function getServerSideProps(context) {
       user: {
         select: { name: true }
       }
+    },
+    orderBy: {
+      updatedAt: 'desc'
     }
   });
 
