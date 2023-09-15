@@ -13,7 +13,6 @@ import GlobalHeader from 'components/GlobalHeader';
 import Hero from 'components/Hero';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
-import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
@@ -64,7 +63,6 @@ export default function Index({
         {(selectedJob) && <Hero primary={(!selectedJob)} />}
         <HowTo />
         <EorzeaProfile />
-        <Articles />
       </div>
 
       <Footer />

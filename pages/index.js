@@ -4,7 +4,6 @@ import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
-import Articles from 'components/Articles';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
@@ -36,7 +35,6 @@ function Index() {
       <div className={styles.articles}>
         <HowTo />
         <EorzeaProfile />
-        <Articles />
       </div>
 
       <Footer />

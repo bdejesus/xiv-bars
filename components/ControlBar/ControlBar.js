@@ -31,7 +31,7 @@ export function ControlBar({ selectedJob }) {
         <div className={styles.container}>
           <div className={styles.groupLeft}>
             <div className={styles.control}>
-              <a href={`/job/${selectedJob.Abbr}/layouts`} className={`button ${styles.returnButton}`}>
+              <a href={`/job/${selectedJob.Abbr}/layouts`} className={`button btn-flat ${styles.returnButton}`}>
                 {selectedJob.Name} Layouts
               </a>
             </div>
