@@ -24,6 +24,7 @@ export default function Layouts({ selectedJob, layouts }) {
         <h1 className={`mt-md ${styles.title}`}>
           <SelectedJob job={selectedJob} className={styles.job} />
           <a href={`/job/${selectedJob.Abbr}`} className={styles.newLink}>
+            <span className={styles.newIcon}>+</span>
             New {selectedJob.Name} Layout
           </a>
         </h1>

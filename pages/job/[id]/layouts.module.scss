@@ -18,3 +18,10 @@
 .job {
   flex: 1 1 auto;
 }
+
+.newIcon {
+  font-weight: 700;
+  font-size: $font-size-xl;
+  display: inline-block;
+  margin-right: $spacing-sm;
+}
