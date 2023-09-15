@@ -11,12 +11,17 @@ export function Xbar() {
   } = useAppState();
   const hbKeys = Object.keys(chotbar);
 
+  function hasActions(xbar) {
+    const slottedActions = xbar.map((a) => Object.keys(a.action).length > 0);
+    return slottedActions.includes(true);
+  }
+
   return (
     <>
       { !(viewData && readOnly) && <Settings />}
 
       <div className={styles.container}>
-        {hbKeys.map((xbar) => (
+        {hbKeys.map((xbar) => (!readOnly || hasActions(chotbar[xbar])) && (
           <div
             key={xbar}
             className={[styles.xbar, styles[xbar]].join(' ')}
