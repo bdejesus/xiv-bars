@@ -6,7 +6,9 @@ const options = {
     // ESlint is run outside of the build step
     ignoreDuringBuilds: true
   },
-  hideSourceMaps: true
+  sentry: {
+    hideSourceMaps: true
+  }
 };
 
 const SentryWebpackPluginOptions = {
