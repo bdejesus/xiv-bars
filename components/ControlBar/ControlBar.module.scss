@@ -12,6 +12,11 @@
   &[data-active-modal="true"] {
     z-index: 11;
   }
+
+  .returnButton {
+    background-color: #000;
+    box-shadow: none;
+  }
 }
 
 .controlContent {
