@@ -10,22 +10,22 @@ function LayoutControl({ handler, defaultValue }) {
     // eslint-disable-next-line jsx-a11y/no-onchange
     <select className={styles.layoutControl} onChange={handler} defaultValue={defaultValue}>
       <option value={1}>
-        1&times;12
+        12&times;1
       </option>
       <option value={2}>
-        2&times;6
-      </option>
-      <option value={3}>
-        3&times;4
-      </option>
-      <option value={4}>
-        4&times;3
-      </option>
-      <option value={6}>
         6&times;2
       </option>
+      <option value={3}>
+        4&times;3
+      </option>
+      <option value={4}>
+        3&times;4
+      </option>
+      <option value={6}>
+        2&times;6
+      </option>
       <option value={12}>
-        12&times;1
+        1&times;12
       </option>
     </select>
   );
@@ -58,7 +58,7 @@ function Row({ slots, id }) {
 
   return (
     <>
-      <ol className={styles.row} data-rows={hotbarLayout}>
+      <ol className={styles.row} data-columns={hotbarLayout}>
         {Object.keys(slots).map((slot) => (
           <li key={`slot-${slots[slot].id}`}>
             <Slot
