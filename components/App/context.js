@@ -55,6 +55,7 @@ export function AppContextProvider({
     xhb: viewData?.xhb || 1,
     wxhb: viewData?.wxhb || 0,
     exhb: viewData?.exhb || 0,
+    hb: viewData?.hb || new Array(10).fill(1, 0, 10),
     showPublish: false,
     showTitles: false,
     showAllLvl: false,

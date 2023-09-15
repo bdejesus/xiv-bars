@@ -17,7 +17,8 @@ function SaveForm() {
     selectedJob,
     xhb,
     wxhb,
-    exhb
+    exhb,
+    hb
   } = useAppState();
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
@@ -38,7 +39,8 @@ function SaveForm() {
         jobId,
         xhb,
         wxhb,
-        exhb
+        exhb,
+        hb
       }
     };
 

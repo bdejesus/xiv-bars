@@ -48,7 +48,7 @@ export function App() {
     // Decode Slots query param
     function decodeSlots() {
       const {
-        s1, s, wxhb, xhb, exhb
+        s1, s, wxhb, xhb, exhb, hb
       } = router.query;
       let slots;
       if (s1) slots = group(s1.split(','), 16);
@@ -72,6 +72,13 @@ export function App() {
             wxhb: parseInt(wxhb, 10),
             xhb: parseInt(xhb, 10),
             exhb: parseInt(exhb, 10)
+          }
+        });
+      } else if (hb) {
+        appDispatch({
+          type: 'updateUI',
+          params: {
+            hb: JSON.stringify(hb)
           }
         });
       }
@@ -129,7 +136,6 @@ export function App() {
                       />
                     </>
                   )}
-
                 </div>
 
                 <div className={styles.main}>
