@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable react/prefer-stateless-function */
 import { useAppState } from 'components/App/context';
+import { hasActions } from 'lib/xbars';
 import Bar from './Bar';
 import Settings from './Settings';
 import styles from './Xbar.module.scss';
@@ -10,11 +11,6 @@ export function Xbar() {
     chotbar, wxhb, xhb, exhb, viewData, readOnly
   } = useAppState();
   const hbKeys = Object.keys(chotbar);
-
-  function hasActions(xbar) {
-    const slottedActions = xbar.map((a) => Object.keys(a.action).length > 0);
-    return slottedActions.includes(true);
-  }
 
   return (
     <>
