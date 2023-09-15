@@ -70,6 +70,15 @@
     position: absolute;
     top: 25px;
   }
+
+  > li:empty {
+    position: absolute;
+    pointer-events: none;
+
+    &::before {
+      opacity: 0;
+    }
+  }
 }
 
 .rowWrapper {

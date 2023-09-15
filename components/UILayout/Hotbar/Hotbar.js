@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Slot from 'components/Slot';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { hotbarKeyPos } from 'lib/xbars';
+import { hotbarKeyPos, hasActions } from 'lib/xbars';
 import styles from './Hotbar.module.scss';
 
 function LayoutControl({ handler, defaultValue }) {
@@ -86,13 +86,13 @@ Row.propTypes = {
 };
 
 export function Hotbar() {
-  const { hotbar } = useAppState();
+  const { hotbar, readOnly } = useAppState();
 
   return (
     <ol className={styles.container}>
       {Object.keys(hotbar).map((barKey) => (
         <li key={barKey} className={styles.rowWrapper}>
-          <Row slots={hotbar[barKey]} id={barKey} />
+          { (!readOnly || hasActions(hotbar[barKey])) && <Row slots={hotbar[barKey]} id={barKey} /> }
         </li>
       ))}
     </ol>
