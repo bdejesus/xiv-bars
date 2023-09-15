@@ -9,7 +9,7 @@ export function SelectedJob({ job, className }) {
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>
         <img
-          src={job.PreIcon || `/vendor/classjob-icons/icons/${jobIconName}`}
+          src={job.PreIcon || `/jobIcons/${jobIconName}`}
           alt=""
           height={36}
           width={36}
