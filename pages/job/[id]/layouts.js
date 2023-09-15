@@ -5,6 +5,7 @@ import GlobalHeader from 'components/GlobalHeader';
 import JobMenu from 'components/JobSelect/JobMenu';
 import LayoutCard from 'components/LayoutCard';
 import Jobs from '.apiData/Jobs.json';
+import SelectedJob from 'components/JobSelect/SelectedJob';
 
 import styles from './layouts.module.scss';
 
@@ -14,47 +15,46 @@ export default function Layouts({ selectedJob, layouts }) {
   return (
     <>
       <Head>
-        <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) • XIVBARS`}</title>
+        <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Layouts • XIVBARS`}</title>
       </Head>
 
       <GlobalHeader />
 
       <div className="container section">
-        <h1 className="mt-md">
-          {selectedJob.Name} Layouts
-
+        <h1 className={`mt-md ${styles.title}`}>
+          <SelectedJob job={selectedJob} className={styles.job} />
           <a href={`/job/${selectedJob.Abbr}`} className={styles.newLink}>
             New {selectedJob.Name} Layout
           </a>
         </h1>
-      </div>
 
-      { layoutsData.length > 0
-        ? (
-          <div className="container section">
-            <ul className={styles.layoutsList}>
-              {layoutsData.map((layout) => {
-                const job = Jobs.find((j) => j.Abbr === layout.jobId);
-                return (
-                  <li key={layout.id}>
-                    <LayoutCard
-                      layout={layout}
-                      job={job}
-                      className={styles.card}
-                      hideName={false}
-                    />
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        ) : (
-          <div className="app-view">
-            <div className="container">
-              <JobMenu jobs={Jobs} />
+        { layoutsData.length > 0
+          ? (
+            <div>
+              <ul className={styles.layoutsList}>
+                {layoutsData.map((layout) => {
+                  const job = Jobs.find((j) => j.Abbr === layout.jobId);
+                  return (
+                    <li key={layout.id}>
+                      <LayoutCard
+                        layout={layout}
+                        job={job}
+                        className={styles.card}
+                        hideName={false}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="app-view">
+              <div className="container">
+                <JobMenu jobs={Jobs} />
+              </div>
+            </div>
+          )}
+      </div>
     </>
   );
 }
