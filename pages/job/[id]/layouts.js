@@ -75,7 +75,10 @@ export async function getServerSideProps(context) {
     : null;
 
   const layouts = await db.layout.findMany({
-    where: { jobId: selectedJob.Abbr },
+    where: {
+      jobId: selectedJob.Abbr,
+      description: { not: '' }
+    },
     include: {
       user: {
         select: { name: true }
