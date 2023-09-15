@@ -40,7 +40,7 @@ function SaveForm() {
         xhb,
         wxhb,
         exhb,
-        hb
+        hb: JSON.stringify(hb)
       }
     };
 

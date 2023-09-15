@@ -35,6 +35,7 @@ export default function Index({
         <meta name="description" content={pageDescription} />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
+
       <GlobalHeader />
 
       <AppContextProvider
@@ -42,6 +43,7 @@ export default function Index({
         roleActions={roleActions}
         selectedJob={selectedJob}
         viewAction="new"
+        hbConfig={getUrlParams(router.asPath)?.hb}
         layout={parseInt(getUrlParams(router.asPath)?.l, 10)}
       >
         <App />

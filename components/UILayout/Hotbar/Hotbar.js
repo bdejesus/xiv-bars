@@ -1,13 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Slot from 'components/Slot';
 import { useAppState, useAppDispatch } from 'components/App/context';
+import { hotbarKeyPos } from 'lib/xbars';
 import styles from './Hotbar.module.scss';
 
-function LayoutControl({ handler }) {
+function LayoutControl({ handler, defaultValue }) {
   return (
     // eslint-disable-next-line jsx-a11y/no-onchange
-    <select className={styles.layoutControl} onChange={handler}>
+    <select className={styles.layoutControl} onChange={handler} defaultValue={defaultValue}>
       <option value={1}>
         1&times;12
       </option>
@@ -31,12 +32,15 @@ function LayoutControl({ handler }) {
 }
 
 LayoutControl.propTypes = {
-  handler: PropTypes.func.isRequired
+  handler: PropTypes.func.isRequired,
+  defaultValue: PropTypes.number.isRequired
 };
 
 function Row({ slots, id }) {
   const appDispatch = useAppDispatch();
+  const { readOnly, hb } = useAppState();
   const [hotbarLayout, setHotbarLayout] = useState();
+  const defaultValue = parseInt(hb[hotbarKeyPos(id)], 10);
 
   function handleLayoutControl(e) {
     const { value } = e.currentTarget;
@@ -47,6 +51,10 @@ function Row({ slots, id }) {
       hbConfig: value
     });
   }
+
+  useEffect(() => {
+    setHotbarLayout(defaultValue);
+  }, []);
 
   return (
     <>
@@ -62,13 +70,19 @@ function Row({ slots, id }) {
         ))}
       </ol>
 
-      <LayoutControl handler={(e) => handleLayoutControl(e)} />
+      { !readOnly && (
+        <LayoutControl
+          handler={(e) => handleLayoutControl(e)}
+          defaultValue={defaultValue}
+        />
+      )}
     </>
   );
 }
 
 Row.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  id: PropTypes.string.isRequired
 };
 
 export function Hotbar() {

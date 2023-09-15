@@ -36,8 +36,10 @@ export function AppContextProvider({
   roleActions,
   readOnly,
   viewData,
-  viewAction
+  viewAction,
+  hbConfig
 }) {
+  const formatHbConfig = hbConfig?.split(',').map((i) => parseInt(i, 10));
   const router = useRouter();
   const [state, dispatch] = useReducer(AppReducer, {
     jobs: Jobs,
@@ -55,7 +57,7 @@ export function AppContextProvider({
     xhb: viewData?.xhb || 1,
     wxhb: viewData?.wxhb || 0,
     exhb: viewData?.exhb || 0,
-    hb: viewData?.hb || new Array(10).fill(1, 0, 10),
+    hb: formatHbConfig || (viewData?.hb && JSON.parse(viewData?.hb)) || new Array(10).fill(1, 0, 10),
     showPublish: false,
     showTitles: false,
     showAllLvl: false,
@@ -98,7 +100,8 @@ AppContextProvider.propTypes = {
   layout: PropTypes.number,
   readOnly: PropTypes.bool,
   viewData: PropTypes.shape(),
-  viewAction: PropTypes.oneOf(['show', 'edit', 'new'])
+  viewAction: PropTypes.oneOf(['show', 'edit', 'new']),
+  hbConfig: PropTypes.string
 };
 
 AppContextProvider.defaultProps = {
@@ -109,7 +112,8 @@ AppContextProvider.defaultProps = {
   layout: 0,
   readOnly: false,
   viewData: undefined,
-  viewAction: 'show'
+  viewAction: 'show',
+  hbConfig: undefined
 };
 
 export default AppContextProvider;

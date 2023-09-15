@@ -12,7 +12,7 @@
   grid-template-columns: repeat(12, 1fr);
 
   > li {
-    margin: 0 3px 3px 3px;
+    margin: 0 3px 3px;
   }
 
   &[data-rows='1'] {
@@ -47,15 +47,14 @@
 
 
 .container {
-  display: flex;
   align-items: flex-start;
-  justify-content: center;
+  column-gap: $spacing-xl;
   counter-reset: slots;
-  flex-direction: row;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   margin-bottom: $spacing-sm;
   max-width: 838px;
-  flex-wrap: wrap;
-  column-gap: $spacing-xl;
   row-gap: $spacing-base;
 
   > li {
@@ -69,23 +68,23 @@
     left: -20px;
     opacity: 0.66;
     position: absolute;
-    top: 30px;
+    top: 25px;
   }
 }
 
 .rowWrapper {
   border-top: 1px solid rgb(255 255 255 / 10%);
-  padding: $spacing-base 0 0;
   height: 100%;
+  padding: $spacing-base 0 0;
 
   .layoutControl {
-    position: absolute;
-    left: 5px;
     bottom: 100%;
-    transform: translateY(15px);
+    left: 5px;
     opacity: 0;
-    transition-property: opacity, transform;
+    position: absolute;
+    transform: translateY(15px);
     transition-duration: 0.3s;
+    transition-property: opacity, transform;
     transition-timing-function: ease;
   }
 

@@ -37,7 +37,7 @@ export function App() {
       appDispatch({ type: 'setMessage', message: undefined });
     }
 
-    router.events.on('routeDhangeStart', resetMessage);
+    router.events.on('routeChangeStart', resetMessage);
 
     return () => {
       router.events.off('routeChangeStart', resetMessage);
@@ -45,7 +45,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    // Decode Slots query param
+    // convert Slots from query param to JSON
     function decodeSlots() {
       const {
         s1, s, wxhb, xhb, exhb, hb
@@ -53,6 +53,8 @@ export function App() {
       let slots;
       if (s1) slots = group(s1.split(','), 16);
       if (s) slots = JSON.parse(s);
+
+      const formatHbConfig = hb?.split(',').map((i) => parseInt(i, 10));
 
       if (slots) {
         appDispatch({
@@ -62,6 +64,7 @@ export function App() {
             wxhb,
             xhb,
             exhb,
+            hb: formatHbConfig,
             encodedSlots: router.query.s1 || router.query.s
           }
         });
@@ -71,14 +74,15 @@ export function App() {
           params: {
             wxhb: parseInt(wxhb, 10),
             xhb: parseInt(xhb, 10),
-            exhb: parseInt(exhb, 10)
+            exhb: parseInt(exhb, 10),
+            hb: formatHbConfig,
           }
         });
       } else if (hb) {
         appDispatch({
           type: 'updateUI',
           params: {
-            hb: JSON.stringify(hb)
+            hb: formatHbConfig
           }
         });
       }
@@ -116,7 +120,7 @@ export function App() {
                       <SelectedJob job={selectedJob} />
                       <h3>{viewData.title}</h3>
                       <ReactMarkdown components={{
-                        h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p'
+                        h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
                       }}
                       >
                         {viewData.description}
