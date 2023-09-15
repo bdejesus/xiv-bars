@@ -102,6 +102,12 @@
     }
   }
 
+  .owner {
+    color: #666;
+    font-style: italic;
+    font-weight: 300;
+  }
+
   .timestamp {
     font-size: $font-size-sm;
     opacity: 0.33;

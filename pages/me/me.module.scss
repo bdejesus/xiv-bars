@@ -1,37 +1,12 @@
 @import "styles/mixins";
+@import "styles/grid";
 
 .newLink {
-  float: right;
-  font-size: $font-size-lg;
+  @include newLink;
 }
 
 .layoutsList {
-  display: grid;
-  gap: $spacing-lg;
-  grid-template-columns: 1fr 1fr 1fr;
-  list-style: none;
-  margin: 0 0 $spacing-lg;
-  padding: 0;
-
-  > li {
-    transition: transform 0.3s ease;
-
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  @media (max-width: $screen-md) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (max-width: $screen-sm) {
-    grid-template-columns: 1fr;
-  }
+  @include grid;
 }
 
 .card {
