@@ -38,6 +38,7 @@ model Layout {
   xhb           Int?
   wxhb          Int?
   exhb          Int?
+  hb            String?
 }
 
 enum Role {

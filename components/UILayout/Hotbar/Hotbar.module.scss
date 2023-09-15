@@ -2,25 +2,60 @@
 
 .container,
 .row {
-  display: flex;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .row {
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
 
   > li {
-    margin: 0 3px;
+    margin: 0 3px 3px;
+  }
+
+  &[data-rows='1'] {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  &[data-rows='2'] {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr;
+  }
+
+  &[data-rows='3'] {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  &[data-rows='4'] {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  &[data-rows='6'] {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
+
+  &[data-rows='12'] {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(12, 1fr);
   }
 }
 
+
 .container {
-  align-items: center;
+  align-items: flex-start;
+  column-gap: $spacing-xl;
   counter-reset: slots;
-  flex-direction: column;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   margin-bottom: $spacing-sm;
+  max-width: 838px;
+  row-gap: $spacing-base;
 
   > li {
     position: relative;
@@ -33,21 +68,35 @@
     left: -20px;
     opacity: 0.66;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 25px;
   }
 }
 
 .rowWrapper {
-  border-bottom: 1px solid rgb(0 0 0 / 33%);
   border-top: 1px solid rgb(255 255 255 / 10%);
-  padding: 20px 0;
+  height: 100%;
+  padding: $spacing-base 0 0;
 
-  &:first-child {
-    border-top: none;
+  .layoutControl {
+    background-color: #222;
+    border: none;
+    border-radius: 6px;
+    bottom: 100%;
+    color: #fff;
+    left: 3px;
+    opacity: 0;
+    padding: 4px 6px;
+    position: absolute;
+    transform: translateY(15px);
+    transition-duration: 0.3s;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
   }
 
-  &:last-child {
-    border-bottom: none;
+  &:hover {
+    .layoutControl {
+      opacity: 1;
+      transform: translateY(11px);
+    }
   }
 }

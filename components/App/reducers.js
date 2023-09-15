@@ -1,4 +1,4 @@
-import { layouts } from 'lib/xbars';
+import { layouts, hotbarKeyPos } from 'lib/xbars';
 import ACTION_TYPE from 'data/ActionType.json';
 import BUDDY_ACTION from '.apiData/BuddyAction.json';
 import COMPANY_ACTION from '.apiData/CompanyAction.json';
@@ -90,6 +90,13 @@ export default function AppReducer(state, payload) {
 
     case 'updateLayout': {
       return { ...state, layout: payload.layout };
+    }
+
+    case 'updateHotbarLayout': {
+      const position = hotbarKeyPos(payload.hbId);
+      const configValue = parseInt(payload.hbConfig, 10);
+      const updatedHb = state.hb.toSpliced(position, 1, configValue);
+      return { ...state, hb: updatedHb };
     }
 
     case 'bulkLoadActionsToSlots': {
