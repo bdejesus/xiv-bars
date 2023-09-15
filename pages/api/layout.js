@@ -3,12 +3,21 @@ import db from 'lib/db';
 import { unstable_getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { maxLayouts } from 'lib/user';
-import { byKey } from 'lib/utils/array';
 
 async function list(userId) {
-  const layouts = await db.layout.findMany({ where: { userId }, include: { user: { select: { name: true } } } });
-  const listLayouts = layouts.slice(0, maxLayouts).sort(byKey('updatedAt', 'desc'));
-  return listLayouts;
+  const layouts = await db.layout.findMany({
+    where: { userId },
+    include: {
+      user: {
+        select: { name: true }
+      }
+    },
+    orderBy: {
+      updatedAt: 'desc'
+    },
+    take: maxLayouts
+  });
+  return layouts;
 }
 
 async function create(userId, { data }) {
