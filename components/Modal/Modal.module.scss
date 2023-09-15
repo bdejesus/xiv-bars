@@ -2,16 +2,13 @@
 
 .modal {
   align-items: top;
-  bottom: 0;
   display: flex;
+  inset: 0;
   justify-content: center;
-  left: 0;
   max-height: 100vh;
   overflow: auto;
   padding: ($spacing-xl * 2) $spacing-lg;
   position: fixed;
-  right: 0;
-  top: 0;
   transition: background 0.33s ease;
   z-index: 100;
 

@@ -16,14 +16,14 @@
     "import-notation": "string",
     "keyframes-name-pattern": "^[a-z][a-zA-Z0-9]+$",
     "max-nesting-depth": 3,
+    "media-query-no-invalid": null,
     "no-descending-specificity": null,
     "no-invalid-position-at-import-rule": null,
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$|^[a-z][a-zA-Z0-9]+$",
     "selector-pseudo-class-no-unknown": [
       true, { "ignorePseudoClasses": [ "global" ] }
-    ],
-    "value-list-comma-newline-after": "never-multi-line"
+    ]
   },
   "ignore": []
 }
