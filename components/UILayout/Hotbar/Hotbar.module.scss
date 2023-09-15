@@ -78,9 +78,14 @@
   padding: $spacing-base 0 0;
 
   .layoutControl {
+    background-color: #222;
+    border: none;
+    border-radius: 6px;
     bottom: 100%;
-    left: 5px;
+    color: #fff;
+    left: 3px;
     opacity: 0;
+    padding: 4px 6px;
     position: absolute;
     transform: translateY(15px);
     transition-duration: 0.3s;
@@ -91,7 +96,7 @@
   &:hover {
     .layoutControl {
       opacity: 1;
-      transform: translateY(10px);
+      transform: translateY(11px);
     }
   }
 }
