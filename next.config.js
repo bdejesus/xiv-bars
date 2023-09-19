@@ -1,6 +1,10 @@
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const options = {
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
   poweredByHeader: false,
   eslint: {
     // ESlint is run outside of the build step
