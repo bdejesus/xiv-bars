@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
-import PropTypes from 'prop-types';
 import Link from 'next/link';
 import UserNav from 'components/UserNav';
+import { useAppState } from 'components/App/context';
 import styles from './GlobalHeader.module.scss';
 
-export function GlobalHeader({ selectedJob }) {
+export function GlobalHeader() {
+  const { selectedJob, viewData } = useAppState();
+
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.branding}>
@@ -26,9 +28,31 @@ export function GlobalHeader({ selectedJob }) {
         <nav className={styles.globalNav}>
           <ol>
             <li>
-              {selectedJob.Icon}
-              {selectedJob.Abbr}
+              <a href={`/job/${selectedJob.Abbr}`}>
+                <img
+                  src={`/jobIcons${selectedJob.Icon}`}
+                  alt=""
+                  height={24}
+                  width={24}
+                />
+                {selectedJob.Name}
+              </a>
             </li>
+
+            {viewData?.title
+              ? (
+                <li className={styles.titleSegment}>
+                  <span className={styles.title}>{viewData.title}</span>
+                </li>
+              )
+              : (
+                <li>
+                  <a href={`/job/${selectedJob.Abbr}/new`}>
+                    <span className="newIcon">+</span> NEW LAYOUT
+                  </a>
+                </li>
+              )}
+
           </ol>
         </nav>
       )}
@@ -37,13 +61,5 @@ export function GlobalHeader({ selectedJob }) {
     </div>
   );
 }
-
-GlobalHeader.propTypes = {
-  selectedJob: PropTypes.shape()
-};
-
-GlobalHeader.defaultProps = {
-  selectedJob: undefined
-};
 
 export default GlobalHeader;

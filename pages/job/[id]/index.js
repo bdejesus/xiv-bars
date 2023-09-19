@@ -3,12 +3,13 @@ import { useEffect } from 'react';
 import db from 'lib/db';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutCard from 'components/LayoutCard';
 import Jobs from '.apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
 
-import styles from './layouts.module.scss';
+import styles from './index.module.scss';
 
 export default function Layouts({ selectedJob, layouts }) {
   const layoutsData = JSON.parse(layouts);
@@ -32,13 +33,15 @@ export default function Layouts({ selectedJob, layouts }) {
         <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
       </Head>
 
-      <GlobalHeader selectedJob={selectedJob} />
+      <AppContextProvider selectedJob={selectedJob}>
+        <GlobalHeader />
+      </AppContextProvider>
 
       <div className="container section">
         <h1 className={`mt-md ${styles.title}`}>
           <SelectedJob job={selectedJob} className={styles.job} />
           <a href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
-            <span className={styles.newIcon}>+</span>
+            <span className="newIcon">+</span>
             New {selectedJob.Name} Layout
           </a>
         </h1>

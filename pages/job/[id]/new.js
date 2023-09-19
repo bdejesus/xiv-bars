@@ -35,8 +35,6 @@ export default function Index({
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
-      <GlobalHeader />
-
       <AppContextProvider
         actions={actions}
         roleActions={roleActions}
@@ -45,6 +43,8 @@ export default function Index({
         hbConfig={getUrlParams(router.asPath)?.hb}
         layout={parseInt(getUrlParams(router.asPath)?.l, 10)}
       >
+        <GlobalHeader />
+
         <App />
 
         <div className="container section">
