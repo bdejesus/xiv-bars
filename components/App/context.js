@@ -4,7 +4,7 @@ import {
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { hotbar, chotbar } from 'lib/xbars';
-import { group } from 'lib/utils/array';
+
 import Jobs from '.apiData/Jobs.json';
 import AppReducer from './reducers';
 
@@ -66,14 +66,7 @@ export function AppContextProvider({
 
   useEffect(() => {
     if (encodedSlots) {
-      const decodedSlots = state.layout === 1
-        ? group(encodedSlots.split(','), 12)
-        : group(encodedSlots.split(','), 16);
-
-      dispatch({
-        type: 'bulkLoadActionsToSlots',
-        params: { slottedActions: decodedSlots }
-      });
+      dispatch({ type: 'bulkLoadActionsToSlots', params: { encodedSlots } });
     }
   }, [encodedSlots]);
 

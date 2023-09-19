@@ -6,7 +6,7 @@ import { useAppState } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
 export function SlotLayout() {
-  const { layout } = useAppState();
+  const { layout, encodedSlots } = useAppState();
 
   switch (layouts[layout]) {
     case 'chotbar': return <Xbar />;

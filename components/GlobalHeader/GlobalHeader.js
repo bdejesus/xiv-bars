@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import UserNav from 'components/UserNav';
 import styles from './GlobalHeader.module.scss';
 
-export function GlobalHeader() {
+export function GlobalHeader({ selectedJob }) {
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.branding}>
@@ -21,9 +22,28 @@ export function GlobalHeader() {
         </div>
       </Link>
 
+      { selectedJob && (
+        <nav className={styles.globalNav}>
+          <ol>
+            <li>
+              {selectedJob.Icon}
+              {selectedJob.Abbr}
+            </li>
+          </ol>
+        </nav>
+      )}
+
       <UserNav />
     </div>
   );
 }
+
+GlobalHeader.propTypes = {
+  selectedJob: PropTypes.shape()
+};
+
+GlobalHeader.defaultProps = {
+  selectedJob: undefined
+};
 
 export default GlobalHeader;
