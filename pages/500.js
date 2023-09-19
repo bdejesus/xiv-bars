@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-globals */
 import Head from 'next/head';
 import I18n from 'lib/I18n/locale/en-US';
+import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
@@ -17,7 +18,9 @@ function Error500() {
       </Head>
 
       <div className={styles.errorPage}>
-        <GlobalHeader />
+        <AppContextProvider>
+          <GlobalHeader />
+        </AppContextProvider>
 
         <div className={styles.main}>
           <div className="container section">

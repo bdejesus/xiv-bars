@@ -6,7 +6,7 @@ import { useAppState } from 'components/App/context';
 import styles from './GlobalHeader.module.scss';
 
 export function GlobalHeader() {
-  const { selectedJob, viewData } = useAppState();
+  const { selectedJob, viewData } = useAppState() || null;
 
   return (
     <div className={styles.container}>
