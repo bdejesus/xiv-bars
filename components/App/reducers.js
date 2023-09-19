@@ -6,6 +6,7 @@ import GENERAL_ACTION from '.apiData/GeneralAction.json';
 import MAIN_COMMAND from '.apiData/MainCommand.json';
 import MACRO_ICON from '.apiData/MacroIcon.json';
 import PET_ACTION from '.apiData/PetAction.json';
+import { group } from 'lib/utils/array';
 
 export default function AppReducer(state, payload) {
   const { layout } = state;
@@ -73,9 +74,12 @@ export default function AppReducer(state, payload) {
     if (slottedAction && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
   }
 
-  function setActionsToSlot() {
+  function setActionsToSlot(encodedSlots) {
     const slots = state[layouts[layout]];
-    payload.params.slottedActions.forEach((actionGroup, groupIndex) => {
+    const slottedActions = state.layout === 1
+      ? group(encodedSlots.split(','), 12)
+      : group(encodedSlots.split(','), 16);
+    slottedActions.forEach((actionGroup, groupIndex) => {
       const groupName = Object.keys(slots)[groupIndex];
       const slotGroup = state[layouts[layout]][groupName];
       actionGroup
@@ -100,15 +104,18 @@ export default function AppReducer(state, payload) {
     }
 
     case 'bulkLoadActionsToSlots': {
-      setActionsToSlot();
       const {
-        xhb, wxhb, exhb, encodedSlots
+        xhb, wxhb, exhb, encodedSlots, hb
       } = payload.params;
+
+      setActionsToSlot(encodedSlots);
+
       return {
         ...state,
         xhb: parseInt(xhb, 10) || state.xhb,
         wxhb: parseInt(wxhb, 10) || state.wxhb,
         exhb: parseInt(exhb, 10) || state.exhb,
+        hb: hb || state.hb,
         encodedSlots
       };
     }

@@ -13,9 +13,6 @@ export function Hero({ primary }) {
       <div className={styles.description}>
         <p>{I18n.Global.subtitle}</p>
         <p>{I18n.Global.description}</p>
-
-        <h2 className="text-xl">{I18n.Header.title}</h2>
-        <p>{I18n.Header.body}</p>
       </div>
     </div>
 

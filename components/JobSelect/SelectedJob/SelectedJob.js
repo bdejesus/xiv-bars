@@ -3,13 +3,11 @@ import RoleNames from 'data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
 export function SelectedJob({ job, className }) {
-  const jobIconName = job.Icon.toLowerCase().replace('/cj/1/', '');
-
   return (
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>
         <img
-          src={job.PreIcon || `/jobIcons/${jobIconName}`}
+          src={job.PreIcon || `/jobIcons${job.Icon}`}
           alt=""
           height={36}
           width={36}

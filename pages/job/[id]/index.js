@@ -1,112 +1,114 @@
 import PropTypes from 'prop-types';
-import Head from 'next/head';
-import {
-  listJobActions,
-  listRoleActions
-} from 'lib/api';
-import shortDesc from 'lib/shortDesc';
-import { getUrlParams } from 'lib/utils/url';
+import { useEffect } from 'react';
+import db from 'lib/db';
 import { useRouter } from 'next/router';
-import I18n from 'lib/I18n/locale/en-US';
+import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
-import Hero from 'components/Hero';
-import Lore from 'components/Lore';
-import HowTo from 'components/HowTo';
-import Footer from 'components/Footer';
-import App from 'components/App';
-import EorzeaProfile from 'components/EorzeaProfile';
+import LayoutCard from 'components/LayoutCard';
 import Jobs from '.apiData/Jobs.json';
-import styles from '../../Index.module.scss';
+import SelectedJob from 'components/JobSelect/SelectedJob';
 
-export default function Index({
-  selectedJob,
-  actions,
-  roleActions,
-}) {
+import styles from './index.module.scss';
+
+export default function Layouts({ selectedJob, layouts }) {
+  const layoutsData = JSON.parse(layouts);
   const router = useRouter();
-  const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
-  const pageDescription = shortDesc(selectedJob, actions);
+
+  useEffect(() => {
+    const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
+    const keys = Object.keys(router.query);
+    if (keys.some((i) => items.includes(i))) {
+      router.push({
+        pathname: `/job/${selectedJob.Abbr}/new`,
+        query: router.query
+      });
+    }
+  }, []);
 
   return (
     <>
       <Head>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={canonicalUrl} />
+        <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Layouts • XIVBARS`}</title>
+        <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
       </Head>
 
-      <GlobalHeader />
-
-      <AppContextProvider
-        actions={actions}
-        roleActions={roleActions}
-        selectedJob={selectedJob}
-        viewAction="new"
-        hbConfig={getUrlParams(router.asPath)?.hb}
-        layout={parseInt(getUrlParams(router.asPath)?.l, 10)}
-      >
-        <App />
-
-        <div className="container section">
-          <div className={styles.description}>
-            <h2>{selectedJob.Name} {I18n.Global.title}</h2>
-            <p className={styles.jobDesc}>
-              {shortDesc(selectedJob, actions)}
-            </p>
-
-            { selectedJob.Description && <Lore selectedJob={selectedJob} /> }
-          </div>
-        </div>
+      <AppContextProvider selectedJob={selectedJob}>
+        <GlobalHeader />
       </AppContextProvider>
 
-      <div className={styles.articles}>
-        {(selectedJob) && <Hero primary={(!selectedJob)} />}
-        <HowTo />
-        <EorzeaProfile />
-      </div>
+      <div className="container section">
+        <h1 className={`mt-md ${styles.title}`}>
+          <SelectedJob job={selectedJob} className={styles.job} />
+          <a href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
+            <span className="newIcon">+</span>
+            New {selectedJob.Name} Layout
+          </a>
+        </h1>
 
-      <Footer />
+        { layoutsData.length > 0
+          ? (
+            <div>
+              <ul className={styles.layoutsList}>
+                {layoutsData.map((layout) => {
+                  const job = Jobs.find((j) => j.Abbr === layout.jobId);
+                  return (
+                    <li key={layout.id}>
+                      <LayoutCard
+                        layout={layout}
+                        job={job}
+                        className={styles.card}
+                        hideName={false}
+                      />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ) : (
+            <h2>
+              No {selectedJob.Name} Layouts yet. <a href={`/job/${selectedJob.Abbr}/new`}>Create one?</a>
+            </h2>
+          )}
+      </div>
     </>
   );
 }
 
+Layouts.propTypes = {
+  selectedJob: PropTypes.shape().isRequired,
+  layouts: PropTypes.string
+};
+
+Layouts.defaultProps = {
+  layouts: undefined
+};
+
 export async function getServerSideProps(context) {
   const { id } = context.params;
-
-  // Get Selected Job
   const selectedJob = id
     ? Jobs.find((job) => job.Abbr === id)
     : null;
 
-  if (!selectedJob) {
-    return {
-      notFound: true,
-    };
-  }
-
-  let jobActions = [];
-  let roleActions = [];
-
-  // Fetch Actions
-  if (selectedJob) {
-    jobActions = await listJobActions(selectedJob);
-    // TODO: Refactor this is pull IDS from ClassJob object instead of ROLE_ACTION_IDS
-    if (selectedJob.Role) {
-      roleActions = await listRoleActions(selectedJob);
+  const layouts = await db.layout.findMany({
+    where: {
+      jobId: selectedJob.Abbr,
+      description: { not: '' }
+    },
+    include: {
+      user: {
+        select: { name: true }
+      }
+    },
+    orderBy: {
+      updatedAt: 'desc'
     }
-  }
+  });
 
   return {
     props: {
-      actions: jobActions,
       selectedJob,
-      roleActions
+      layouts: JSON.stringify(layouts)
     }
   };
 }
-
-Index.propTypes = {
-  selectedJob: PropTypes.shape().isRequired,
-  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-};

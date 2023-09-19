@@ -17,7 +17,7 @@ import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from '.apiData/Jobs.json';
 
-import styles from './job.module.scss';
+import styles from './params.module.scss';
 
 export default function Index({
   selectedJob,
@@ -40,8 +40,6 @@ export default function Index({
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
-      <GlobalHeader />
-
       <AppContextProvider
         actions={actions}
         roleActions={roleActions}
@@ -52,6 +50,8 @@ export default function Index({
         viewData={viewData}
         viewAction="show"
       >
+        <GlobalHeader selectedJob={selectedJob} title={title} />
+
         <App />
 
         <div className="container section">

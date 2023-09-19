@@ -36,7 +36,7 @@ export function Sharing({ selectedJob }) {
       .map((key) => `${key}=${query[key]}`)
       .join('&');
 
-    return `${domain}/job/${selectedJob.Abbr}?${queryString}`;
+    return `${domain}/job/${selectedJob.Abbr}/new?${queryString}`;
   }
 
   function getLayoutUrl() {

@@ -33,7 +33,11 @@ function LayoutControl({ handler, defaultValue }) {
 
 LayoutControl.propTypes = {
   handler: PropTypes.func.isRequired,
-  defaultValue: PropTypes.number.isRequired
+  defaultValue: PropTypes.number
+};
+
+LayoutControl.defaultProps = {
+  defaultValue: 1
 };
 
 function Row({ slots, id }) {

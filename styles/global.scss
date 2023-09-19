@@ -70,6 +70,13 @@ main {
   }
 }
 
+.newIcon {
+  display: inline-block;
+  font-size: $font-size-xl;
+  font-weight: 700;
+  margin-right: $spacing-sm;
+}
+
 h1,
 h2 {
   &.branding {

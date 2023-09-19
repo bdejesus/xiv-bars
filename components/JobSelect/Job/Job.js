@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './Job.module.scss';
 
 export function Job({ job, className }) {
-  const jobIconName = job.Icon.toLowerCase().replace('/cj/1/', '');
-
   return (
     <div className={[styles.wrapper, className].join(' ')}>
       <img
         className={`${styles.icon} job-icon`}
-        src={job.PreIcon || `/jobIcons/${jobIconName}`}
+        src={job.PreIcon || `/jobIcons${job.Icon}`}
         alt={`${job.Name} Icon`}
         draggable={false}
         height={28}

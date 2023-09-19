@@ -15,14 +15,23 @@ export function ControlBar({ selectedJob }) {
   const router = useRouter();
 
   const {
-    readOnly, showPublish, showModal, encodedSlots, layout, viewData, xhb, wxhb, exhb
+    readOnly,
+    showPublish,
+    showModal,
+    encodedSlots,
+    layout,
+    viewData,
+    xhb,
+    wxhb,
+    exhb,
+    hb
   } = useAppState();
 
   function copyLayout() {
     const query = jsonToQuery({
-      l: layout, s1: encodedSlots, xhb, wxhb, exhb
+      l: layout, s1: encodedSlots, xhb, wxhb, exhb, hb
     });
-    router.push(`/job/${selectedJob.Abbr}?${query}`);
+    router.push(`/job/${selectedJob.Abbr}/new?${query}`);
   }
 
   return (
@@ -30,12 +39,6 @@ export function ControlBar({ selectedJob }) {
       <div className={styles.controlBar} data-active-modal={showModal}>
         <div className={styles.container}>
           <div className={styles.groupLeft}>
-            <div className={styles.control}>
-              <a href={`/job/${selectedJob.Abbr}/layouts`} className={`button btn-flat ${styles.returnButton}`}>
-                {selectedJob.Name} Layouts
-              </a>
-            </div>
-
             <div className={styles.control}>
               <ToggleSaveForm />
             </div>

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
@@ -30,7 +31,10 @@ function Index() {
         <link rel="canonical" href="https://xivbars.bejezus.com" />
       </Head>
 
-      <GlobalHeader />
+      <AppContextProvider>
+        <GlobalHeader />
+      </AppContextProvider>
+
       <Intro jobs={Jobs} />
       <div className={styles.articles}>
         <HowTo />

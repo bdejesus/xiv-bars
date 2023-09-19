@@ -16,16 +16,37 @@
 
 .branding {
   align-items: center;
+  border-radius: $border-radius;
   color: #666;
   display: flex;
   font-size: 14px;
+  height: 30px;
+  margin-right: $spacing-sm;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  transition-property: background-color, color;
+  transition-timing-function: ease;
 
   .logo {
     display: block;
+    margin-left: $spacing-xs;
+    transition-duration: 0.3s;
+    transition-property: filter;
+    transition-timing-function: ease;
   }
 
   &:hover {
+    background-color: #000;
+    color: #333;
     text-decoration: none;
+
+    .title {
+      color: #fff;
+    }
+
+    .logo {
+      filter: invert(100%);
+    }
   }
 }
 
@@ -40,10 +61,83 @@
 
 .title {
   color: #333;
-  margin: 0 $spacing-base 0 $spacing-sm;
+  margin: 0 $spacing-sm 0 $spacing-sm;
 
   b {
     position: relative;
     top: 1px;
+  }
+}
+
+.globalNav {
+  flex: 1 1 auto;
+  height: 100%;
+  position: relative;
+
+  ol {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+  }
+
+  li {
+    border-left: 1px solid #ddd;
+    color: #999;
+    flex: none;
+    font-size: $font-size-base;
+    overflow: hidden;
+    padding: 0 $spacing-sm;
+
+    &.titleSegment {
+      flex: 1 1 auto;
+    }
+
+    a {
+      align-items: center;
+      border-radius: $border-radius;
+      color: #333;
+      display: flex;
+      flex-direction: row;
+      font-weight: 400;
+      min-height: 30px;
+      padding: 0 $spacing-sm 0 $spacing-xs;
+      text-transform: uppercase;
+      transition-duration: 0.3s;
+      transition-property: color, background-color;
+      transition-timing-function: ease;
+
+      &:hover, &:focus, &:active {
+        background-color: $color-alt;
+        text-decoration: none;
+      }
+
+      &:active {
+        background-color: $color-gray;
+        color: #fff;
+      }
+    }
+
+    img {
+      margin-right: $spacing-xs;
+    }
+
+    .title {
+      color: #999;
+      display: block;
+      font-weight: 300;
+      letter-spacing: 0.033em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  :global(.newIcon) {
+    margin-right: $spacing-xs;
+    position: relative;
+    top: -3px;
   }
 }

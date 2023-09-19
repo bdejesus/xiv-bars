@@ -11,11 +11,11 @@ export function JobsList({ title, jobs }) {
       <ul className={styles.jobList}>
         {jobs.map((job) => (
           <li key={job.Name} value={job.ID}>
-            <a href={`/job/${job.Abbr}/layouts`} draggable={false}>
+            <a href={`/job/${job.Abbr}`} draggable={false}>
               <Job job={job} />
             </a>
 
-            <a href={`/job/${job.Abbr}`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
+            <a href={`/job/${job.Abbr}/new`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
               <span className={styles.addIcon}>+</span>
               <span className={styles.addLabel}>New</span>
             </a>
