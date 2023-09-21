@@ -14,7 +14,13 @@ type Props = {
   className: string
 }
 
+type RoleNames = {
+  [key: string]: string
+}
+
 export function SelectedJob({ job, className }: Props) {
+  const roleNames: RoleNames = RoleNames;
+  
   return (
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>
@@ -31,7 +37,7 @@ export function SelectedJob({ job, className }: Props) {
           <span className={styles.name}>{job.Name}</span>
         </h2>
         <div className={styles.role}>
-          {job.Discipline} {job.Role && (`• ${RoleNames[job.Role]}`)}
+          {job.Discipline} {job.Role && (`• ${roleNames[job.Role]}`)}
         </div>
       </div>
     </div>
