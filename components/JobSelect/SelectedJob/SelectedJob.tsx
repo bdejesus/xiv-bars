@@ -20,7 +20,7 @@ type RoleNames = {
 
 export function SelectedJob({ job, className }: Props) {
   const roleNames: RoleNames = RoleNames;
-  
+
   return (
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>

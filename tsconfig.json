@@ -109,7 +109,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/JobSelect/Job/index.js", "components/JobSelect/Job/index.js", "components/JobSelect/Job/index.js", "components/JobSelect/Job/index.js"  ],
+, "components/JobSelect/Job/index.js", "components/JobSelect/Job/index.js", "components/JobSelect/Job/index.js", "components/JobSelect/Job/index.js", "components/JobSelect/SelectedJob/index.js"  ],
   "exclude": [
     "node_modules"
   ]
