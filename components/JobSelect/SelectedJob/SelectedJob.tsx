@@ -1,8 +1,20 @@
-import PropTypes from 'prop-types';
-import RoleNames from 'data/RoleNames.json';
+import React from 'react';
+import RoleNames from '../../../data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
-export function SelectedJob({ job, className }) {
+type Props = {
+  job: {
+    PreIcon: string,
+    Icon: string,
+    Abbr: string,
+    Name: string,
+    Discipline: string,
+    Role: string
+  },
+  className: string
+}
+
+export function SelectedJob({ job, className }: Props) {
   return (
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>
@@ -25,14 +37,5 @@ export function SelectedJob({ job, className }) {
     </div>
   );
 }
-
-SelectedJob.propTypes = {
-  job: PropTypes.shape().isRequired,
-  className: PropTypes.string
-};
-
-SelectedJob.defaultProps = {
-  className: undefined
-};
 
 export default SelectedJob;
