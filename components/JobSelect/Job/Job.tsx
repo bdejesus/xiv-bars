@@ -1,8 +1,17 @@
-import PropTypes from 'prop-types';
-
+import React from 'react';
 import styles from './Job.module.scss';
 
-export function Job({ job, className }) {
+type Props = {
+  job: {
+    PreIcon: string,
+    Icon: string,
+    Name: string,
+    Abbr: string
+  },
+  className: string
+}
+
+export function Job({ job, className }: Props) {
   return (
     <div className={[styles.wrapper, className].join(' ')}>
       <img
@@ -19,14 +28,5 @@ export function Job({ job, className }) {
     </div>
   );
 }
-
-Job.propTypes = {
-  job: PropTypes.shape().isRequired,
-  className: PropTypes.string
-};
-
-Job.defaultProps = {
-  className: ''
-};
 
 export default Job;
