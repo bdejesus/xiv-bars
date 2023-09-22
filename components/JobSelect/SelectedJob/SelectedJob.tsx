@@ -11,7 +11,7 @@ type Props = {
     Discipline: string,
     Role: string
   },
-  className: string
+  className: string | undefined
 }
 
 type RoleNames = {
@@ -45,3 +45,7 @@ export function SelectedJob({ job, className }: Props) {
 }
 
 export default SelectedJob;
+
+SelectedJob.defaultProps = {
+  className: ''
+};

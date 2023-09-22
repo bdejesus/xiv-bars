@@ -16,6 +16,10 @@ import { SelectedActionContextProvider } from 'components/SelectedAction';
 
 import styles from './App.module.scss';
 
+type QueryProps = {
+  [key: string]: string
+}
+
 export function App() {
   const [showJobMenu, setShowJobMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -49,7 +53,8 @@ export function App() {
     function decodeSlots() {
       const {
         s1, s, wxhb, xhb, exhb, hb
-      } = router.query;
+      } = router.query as QueryProps;
+
       let slots;
       if (s1) slots = group(s1.split(','), 16);
       if (s) slots = JSON.parse(s);
@@ -104,7 +109,7 @@ export function App() {
     <TooltipContextProvider>
       <SelectedActionContextProvider>
 
-        { jobs && <ControlBar jobs={jobs} selectedJob={selectedJob} /> }
+        { jobs && <ControlBar selectedJob={selectedJob} /> }
 
         <SystemMessage />
 
@@ -129,7 +134,6 @@ export function App() {
                   ) : (
                     <>
                       <JobSelect
-                        jobs={jobs}
                         selectedJob={selectedJob}
                         toOpen={() => setShowJobMenu(true)}
                         disabled={readOnly || isEditing}

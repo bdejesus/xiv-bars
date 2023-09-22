@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import Sharing from 'components/Sharing';
@@ -11,7 +10,13 @@ import ToggleMaxLvl from './ToggleMaxLvl';
 import ToggleSaveForm from './ToggleSaveForm';
 import styles from './ControlBar.module.scss';
 
-export function ControlBar({ selectedJob }) {
+type Props = {
+  selectedJob: {
+    Abbr: string
+  }
+}
+
+export function ControlBar({ selectedJob }: Props) {
   const router = useRouter();
 
   const {
@@ -84,10 +89,6 @@ export function ControlBar({ selectedJob }) {
     </>
   );
 }
-
-ControlBar.propTypes = {
-  selectedJob: PropTypes.shape()
-};
 
 ControlBar.defaultProps = {
   selectedJob: undefined
