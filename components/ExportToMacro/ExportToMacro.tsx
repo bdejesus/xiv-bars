@@ -1,16 +1,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useRef, useState } from 'react';
+import { createRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import I18n from 'lib/I18n/locale/en-US';
 import Modal from 'components/Modal';
+import { SlottedAction } from 'types/Action';
 import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {
   const [showModal, setShowModal] = useState(false);
+  const [macroText, setMacroText] = useState('');
   const [copied, setCopied] = useState(false);
-  const textarea = useRef();
+  const textarea = createRef<HTMLTextAreaElement>();
   const appState = useAppState();
   const { layout } = appState;
   const currLayout = layouts[layout];
@@ -20,7 +22,7 @@ export function ExportToMacros() {
     'CompanyAction'
   ];
 
-  function generateHotbarMacros(hotbarRow, hotbarNum) {
+  function generateHotbarMacros(hotbarRow: SlottedAction[], hotbarNum: number) {
     return hotbarRow
       .map(({ action }, index) => {
         if (action.Name && !excludeTypes.includes(action.UrlType)) {
@@ -44,7 +46,7 @@ export function ExportToMacros() {
       .join('\n');
   }
 
-  function groupMacros(lines) {
+  function groupMacros(lines: string[]) {
     const size = 15;
     const groups = [];
 
@@ -57,19 +59,18 @@ export function ExportToMacros() {
   function buildMacros() {
     const hotbarMacros = Object
       .values(appState[currLayout])
-      .map((row, index) => generateHotbarMacros(row, index + 1))
+      .map((row, index) => generateHotbarMacros(row as SlottedAction[], index + 1))
       .join('\n')
       .trim()
       .split('\n');
 
-    const macroGroups = groupMacros(hotbarMacros);
-
-    textarea.current.value = macroGroups.join('\n\n');
+    const macroGroups = groupMacros(hotbarMacros).join('\n\n');
+    setMacroText(macroGroups);
   }
 
   function selectTextarea() {
-    textarea.current.focus();
-    textarea.current.select();
+    textarea.current?.focus();
+    textarea.current?.select();
   }
 
   function toggleModal() {
@@ -80,7 +81,7 @@ export function ExportToMacros() {
   function copyText() {
     selectTextarea();
     document.execCommand('copy');
-    textarea.current.blur();
+    textarea.current?.blur();
     setCopied(true);
     setTimeout(() => { setCopied(false); }, 3000);
   }
@@ -111,7 +112,7 @@ export function ExportToMacros() {
               <p>{I18n.ExportToMacro.limitations}</p>
             </div>
 
-            <textarea ref={textarea} />
+            <textarea ref={textarea} defaultValue={macroText} />
 
             <div className="modal-footer">
               <button type="button" onClick={copyText}>

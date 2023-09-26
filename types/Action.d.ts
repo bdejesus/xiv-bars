@@ -1,4 +1,4 @@
-export interface ActionType {
+export type ActionType = {
   ID: string,
   PreIcon: string,
   Icon: string,
@@ -7,5 +7,13 @@ export interface ActionType {
   Discipline: string,
   Role: string,
   UrlType: string,
-  customIcon: string
+  customIcon: string,
+  Command: string
+}
+
+export type SlottedAction = {
+  action: ActionType,
+  id: string,
+  key: number,
+  name: string
 }
