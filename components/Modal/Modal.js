@@ -7,6 +7,8 @@ import styles from './Modal.module.scss';
 export function Modal({ children, hidden, toClose }) {
   const appDispatch = useAppDispatch();
 
+  console.log(toClose);
+
   useEffect(() => {
     appDispatch({ type: 'toggleModal' });
   }, [hidden]);

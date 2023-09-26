@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './CloseButton.module.scss';
 
-export function CloseButton({ onClick, className }) {
+interface Props {
+  onClick: React.MouseEventHandler,
+  className?: string
+}
+
+export function CloseButton({ onClick, className }: Props) {
   return (
     <button
       type="button"
@@ -13,14 +18,5 @@ export function CloseButton({ onClick, className }) {
     </button>
   );
 }
-
-CloseButton.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  className: PropTypes.string
-};
-
-CloseButton.defaultProps = {
-  className: undefined
-};
 
 export default CloseButton;

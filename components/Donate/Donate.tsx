@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
-import styles from './BuyMeABeer.module.scss';
+import styles from './Donate.module.scss';
 
-export function BuyMeABeer() {
+export function Donate() {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -34,4 +34,4 @@ export function BuyMeABeer() {
   );
 }
 
-export default BuyMeABeer;
+export default Donate;

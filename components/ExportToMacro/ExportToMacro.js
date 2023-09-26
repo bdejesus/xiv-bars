@@ -97,7 +97,7 @@ export function ExportToMacros() {
         {I18n.ExportToMacro.export_to_macro}
       </button>
 
-      <Modal toClose={(e) => toggleModal(e)} hidden={!showModal}>
+      <Modal toClose={() => toggleModal()} hidden={!showModal}>
         <div
           className={styles.exportPrompt}
           data-copied={copied}
