@@ -11,8 +11,8 @@ let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
   action: ActionType,
-  tooltip: object,
-  remote: boolean
+  tooltip?: object,
+  remote?: boolean
 }
 
 export function Action({ action, tooltip, remote }: Props) {

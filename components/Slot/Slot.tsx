@@ -1,22 +1,25 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import Action from 'components/Action';
-import {
-  useSelectedActionState,
-  useSelectedActionDispatch
-} from 'components/SelectedAction';
+import { useSelectedActionState, useSelectedActionDispatch } from 'components/SelectedAction';
 import { useAppState, useAppDispatch } from 'components/App/context';
+import { ActionType } from 'types/Action';
 
 import styles from './Slot.module.scss';
 
-export function Slot({ id, className, action }) {
+interface Props {
+  id: string,
+  className?: string,
+  action: ActionType
+}
+
+export function Slot({ id, className, action }: Props) {
   const { readOnly } = useAppState();
   const appDispatch = useAppDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
 
-  function resetSlot(event) {
+  function resetSlot(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const { currentTarget } = event;
     if (currentTarget.getAttribute('data-state') === 'active') {
       currentTarget.setAttribute('data-state', 'inactive');
@@ -27,7 +30,7 @@ export function Slot({ id, className, action }) {
     if (!readOnly) setDragging(true);
   }
 
-  function handleDragLeave(event) {
+  function handleDragLeave(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
     if (dragging) {
       appDispatch({
@@ -39,7 +42,7 @@ export function Slot({ id, className, action }) {
     resetSlot(event);
   }
 
-  function handleDragOver(event) {
+  function handleDragOver(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
     const { currentTarget } = event;
 
@@ -63,7 +66,7 @@ export function Slot({ id, className, action }) {
     return null;
   }
 
-  function handleDrop(event) {
+  function handleDrop(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
     setSelectedAction();
     resetSlot(event);
@@ -76,7 +79,7 @@ export function Slot({ id, className, action }) {
         id={id}
         className={`${styles.slot} ${className}`}
         onDrop={(event) => handleDrop(event)}
-        onDragStart={(event) => handleDragStart(event)}
+        onDragStart={handleDragStart}
         onDragOver={(event) => handleDragOver(event)}
         onDragLeave={(event) => handleDragLeave(event)}
         onClick={setSelectedAction}
@@ -92,14 +95,3 @@ export function Slot({ id, className, action }) {
 }
 
 export default Slot;
-
-Slot.propTypes = {
-  id: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  action: PropTypes.shape()
-};
-
-Slot.defaultProps = {
-  className: '',
-  action: undefined
-};
