@@ -1,19 +1,23 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import { createRef, useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction';
+import { ActionType } from 'types/Action';
 
 import styles from './Action.module.scss';
 
-let tooltipTimeout = null;
+let tooltipTimeout: NodeJS.Timeout | undefined;
 
-export function Action({
-  action, tooltip, remote
-}) {
+interface Props {
+  action: ActionType,
+  tooltip: object,
+  remote: boolean
+}
+
+export function Action({ action, tooltip, remote }: Props) {
   const { showTitles, readOnly } = useAppState();
-  const actionRef = createRef();
+  const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [position, setPosition] = useState({});
@@ -31,9 +35,8 @@ export function Action({
         bottom: rect.top + rect.height
       });
     }
-    return function cleanup() {
-      clearTimeout(tooltipTimeout);
-    };
+
+    return () => clearTimeout(tooltipTimeout);
   }, [hovering]);
 
   function handleMouseLeave() {
@@ -42,7 +45,7 @@ export function Action({
     tooltipDispatch({ type: 'hide' });
   }
 
-  function handleMouseMove(e) {
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const mouse = { x: e.clientX, y: e.clientY };
     tooltipDispatch({ type: 'updatePosition', mouse });
     clearTimeout(tooltipTimeout);
@@ -102,16 +105,5 @@ export function Action({
     </>
   );
 }
-
-Action.propTypes = {
-  action: PropTypes.shape().isRequired,
-  tooltip: PropTypes.string,
-  remote: PropTypes.bool
-};
-
-Action.defaultProps = {
-  tooltip: undefined,
-  remote: true
-};
 
 export default Action;
