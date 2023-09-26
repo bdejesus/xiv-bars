@@ -1,14 +1,20 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 import { createRef, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { jsonToQuery } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
+import { ClassJob } from 'types/ClassJob';
+
 import styles from './Sharing.module.scss';
 
-export function Sharing({ selectedJob }) {
+interface Props {
+  selectedJob: ClassJob
+}
+
+export function Sharing({ selectedJob }: Props) {
   const router = useRouter();
   const {
     encodedSlots,
@@ -22,37 +28,37 @@ export function Sharing({ selectedJob }) {
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
 
-  const urlInput = createRef();
+  const urlInput = createRef<HTMLInputElement>();
 
   function buildShareUrl() {
     const slots = (/\d/).test(encodedSlots) ? encodedSlots : '';
     const query = {
-      s1: slots, xhb, wxhb, exhb, hb
+      s1: slots,
+      xhb,
+      wxhb,
+      exhb,
+      hb,
+      l: router.query.l || null
     };
-    if (typeof router.query.l !== 'undefined') query.l = router.query.l;
 
-    const queryString = Object.keys(query)
-      .filter((key) => query[key] !== '')
-      .map((key) => `${key}=${query[key]}`)
-      .join('&');
-
+    const queryString = jsonToQuery(query);
     return `${domain}/job/${selectedJob.Abbr}/new?${queryString}`;
   }
 
   function getLayoutUrl() {
-    const [layoutId] = router.query.params;
+    const layoutId: string | string[] | undefined = router.query.params;
     return `${domain}/job/${selectedJob.Abbr}/${layoutId}`;
   }
 
   function selectInput() {
-    urlInput.current.focus();
-    urlInput.current.select();
+    urlInput.current?.focus();
+    urlInput.current?.select();
   }
 
   function copyUrl() {
     selectInput();
     document.execCommand('copy');
-    urlInput.current.blur();
+    urlInput.current?.blur();
     setCopied(true);
     setTimeout(() => { setCopied(false); }, 3000);
     if (viewAction === 'new') {
@@ -98,13 +104,5 @@ export function Sharing({ selectedJob }) {
     </div>
   );
 }
-
-Sharing.propTypes = {
-  selectedJob: PropTypes.shape()
-};
-
-Sharing.defaultProps = {
-  selectedJob: undefined
-};
 
 export default Sharing;

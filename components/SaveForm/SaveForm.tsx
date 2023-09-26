@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { createRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
@@ -8,8 +8,8 @@ import styles from './SaveForm.module.scss';
 
 function SaveForm() {
   const router = useRouter();
-  const titleField = useRef();
-  const descriptionField = useRef();
+  const titleField = createRef<HTMLInputElement>();
+  const descriptionField = createRef<HTMLTextAreaElement>();
   const {
     layout,
     encodedSlots,
@@ -24,8 +24,8 @@ function SaveForm() {
   const userDispatch = useUserDispatch();
 
   function saveLayout() {
-    const title = titleField.current.value;
-    const description = descriptionField.current.value;
+    const title = titleField.current?.value;
+    const description = descriptionField.current?.value;
     const jobId = viewData ? viewData.jobId : selectedJob.Abbr;
 
     const body = {
