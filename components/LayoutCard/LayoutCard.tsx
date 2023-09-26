@@ -1,17 +1,33 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import I18n from 'lib/I18n/locale/en-US';
 import Card from 'components/Card';
 import Job from 'components/JobSelect/Job';
-
+import { ClassJob } from 'types/ClassJob';
 import styles from './LayoutCard.module.scss';
+
+interface Props {
+  layout: {
+    jobId: string,
+    id: string,
+    title: string,
+    description: string,
+    updatedAt: string,
+    user: {
+      name: string
+    }
+  },
+  job: ClassJob,
+  onDelete: React.MouseEventHandler,
+  className?: string,
+  hideName: boolean
+}
 
 function LayoutCard({
   layout, job, onDelete, className, hideName
-}) {
+}: Props) {
   const [showPrompt, setShowPrompt] = useState(false);
 
-  function formatDate(date) {
+  function formatDate(date: string) {
     const formattedDate = new Date(date);
     return formattedDate.toDateString();
   }
@@ -19,7 +35,7 @@ function LayoutCard({
   return (
     <div className={styles.layoutCard}>
       <a href={`/job/${layout.jobId}/${layout.id}`}>
-        <Card className={[styles.card, className].join(' ')} href={`/job/${layout.jobId}/${layout.id}`}>
+        <Card className={[styles.card, className].join(' ')}>
           <>
             { job && <Job job={job} className={styles.job} /> }
             <h4>{layout.title}</h4>
@@ -34,7 +50,7 @@ function LayoutCard({
         </Card>
       </a>
 
-      { onDelete && (
+      { !!onDelete && (
         <div className={styles.cardActions}>
           <button
             type="button"
@@ -66,19 +82,5 @@ function LayoutCard({
     </div>
   );
 }
-
-LayoutCard.propTypes = {
-  layout: PropTypes.shape().isRequired,
-  job: PropTypes.shape().isRequired,
-  onDelete: PropTypes.func,
-  className: PropTypes.string,
-  hideName: PropTypes.bool
-};
-
-LayoutCard.defaultProps = {
-  onDelete: null,
-  className: '',
-  hideName: true
-};
 
 export default LayoutCard;
