@@ -1,6 +1,6 @@
 import Script from 'next/script';
 
-export function renderMeta(title, description) {
+export function renderMeta(title: string, description: string) {
   return (
     <>
       <meta name="description" content={description} />

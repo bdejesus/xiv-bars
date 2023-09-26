@@ -1,10 +1,16 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import childrenProps from 'lib/propTypes/children';
 import CloseButton from 'components/CloseButton';
 import { useAppDispatch } from 'components/App/context';
 import styles from './Modal.module.scss';
 
-export function Modal({ children, hidden, toClose }) {
+interface Props {
+  children: ReactNode,
+  hidden: boolean,
+  toClose: React.MouseEventHandler
+}
+
+export function Modal({ children, hidden, toClose }: Props) {
   const appDispatch = useAppDispatch();
 
   useEffect(() => {

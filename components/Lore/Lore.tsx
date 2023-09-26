@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
 import I18n from 'lib/I18n/locale/en-US';
+import { ClassJob } from 'types/ClassJob';
 import styles from './Lore.module.scss';
 
-export function Lore({ selectedJob }) {
+interface Props {
+  selectedJob: ClassJob
+}
+
+export function Lore({ selectedJob }: Props) {
   return (
     <div
       className={styles.lore}
@@ -18,9 +22,5 @@ export function Lore({ selectedJob }) {
     </div>
   );
 }
-
-Lore.propTypes = {
-  selectedJob: PropTypes.shape().isRequired
-};
 
 export default Lore;

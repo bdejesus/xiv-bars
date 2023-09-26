@@ -5,5 +5,6 @@ export interface ClassJob {
   Name: string,
   Abbr: string,
   Discipline: string,
-  Role: string
+  Role: string,
+  Description: string
 }
