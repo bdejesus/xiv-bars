@@ -1,10 +1,15 @@
-import PropTypes from 'prop-types';
 import I18n from 'lib/I18n/locale/en-US';
+import { ClassJob } from 'types/ClassJob';
 import Job from '../Job';
 
 import styles from './JobsList.module.scss';
 
-export function JobsList({ title, jobs }) {
+type Props = {
+  title: string,
+  jobs: ClassJob[]
+}
+
+export function JobsList({ title, jobs }: Props) {
   return (
     <div className={styles.group}>
       <h4 className={styles.title}>{title}</h4>
@@ -25,10 +30,5 @@ export function JobsList({ title, jobs }) {
     </div>
   );
 }
-
-JobsList.propTypes = {
-  title: PropTypes.string.isRequired,
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
 
 export default JobsList;
