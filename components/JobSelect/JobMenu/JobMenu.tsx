@@ -1,15 +1,19 @@
-import PropTypes from 'prop-types';
+import { ClassJob } from 'types/ClassJob';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 
-export function JobMenu({ jobs }) {
+type Props = {
+  jobs: ClassJob[]
+}
+
+export function JobMenu({ jobs }: Props) {
   const DoW = jobs.filter((job) => job.Discipline === 'DOW');
   const DoM = jobs.filter((job) => job.Discipline === 'DOM');
   const DoH = jobs.filter((job) => job.Discipline === 'DOH');
   const DoL = jobs.filter((job) => job.Discipline === 'DOL');
 
   return (
-    <ul className={styles.jobGroupList} labeledby="jobSelectTitle">
+    <ul className={styles.jobGroupList}>
       <li>
         <JobsList title="DoW" jobs={DoW} />
       </li>
@@ -25,9 +29,5 @@ export function JobMenu({ jobs }) {
     </ul>
   );
 }
-
-JobMenu.propTypes = {
-  jobs: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
 
 export default JobMenu;

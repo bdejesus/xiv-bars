@@ -14,12 +14,12 @@ type Props = {
   className: string | undefined
 }
 
-type RoleNames = {
+type RoleNamesType = {
   [key: string]: string
 }
 
 export function SelectedJob({ job, className }: Props) {
-  const roleNames: RoleNames = RoleNames;
+  const roleNames: RoleNamesType = RoleNames;
 
   return (
     <div className={[styles.container, className].join(' ')}>

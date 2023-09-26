@@ -3,5 +3,6 @@ export interface ClassJob {
   PreIcon: string,
   Icon: string,
   Name: string,
-  Abbr: string
+  Abbr: string,
+  Discipline: string
 }
