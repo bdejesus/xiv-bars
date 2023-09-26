@@ -11,7 +11,7 @@ export type ActionType = {
   Command: string
 }
 
-export type SlottedAction = {
+export type SlotType = {
   action: ActionType,
   id: string,
   key: number,
