@@ -1,11 +1,15 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserState } from 'components/User/context';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
-function PublishButton({ showForm }) {
+interface ButtonProps {
+  showForm: React.MouseEventHandler
+}
+
+function PublishButton({ showForm }: ButtonProps) {
   const { canPublish } = useUserState();
 
   return (
@@ -27,11 +31,7 @@ function PublishButton({ showForm }) {
   );
 }
 
-PublishButton.propTypes = {
-  showForm: PropTypes.func.isRequired
-};
-
-function EditButton({ showForm }) {
+function EditButton({ showForm }: ButtonProps) {
   return (
     <button
       type="button"
@@ -48,10 +48,6 @@ function EditButton({ showForm }) {
   );
 }
 
-EditButton.propTypes = {
-  showForm: PropTypes.func.isRequired
-};
-
 function ToggleSaveForm() {
   const { data: session, status } = useSession();
 
@@ -59,11 +55,11 @@ function ToggleSaveForm() {
   const appDispatch = useAppDispatch();
 
   const canCreate = session && !viewData;
-  const canEdit = session && (session.user.id === viewData?.userId);
+  const canEdit = session && (session.user?.id === viewData?.userId);
 
   function showForm() { appDispatch({ type: 'editLayout' }); }
 
-  function handleSignin(e) {
+  function handleSignin(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
     signIn('discord');
   }
@@ -75,7 +71,7 @@ function ToggleSaveForm() {
       { status !== 'authenticated' && (
         <a
           href="/api/auth/signin"
-          onClick={handleSignin}
+          onClick={(e) => handleSignin(e)}
           className={styles.upsell}
         >
           {I18n.ControlBar.ToggleSaveForm.signin}

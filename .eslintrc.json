@@ -38,6 +38,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
+    "no-unused-vars": "off",
 
     "@next/next/no-html-link-for-pages": "off",
     "@next/next/no-img-element": "off",
@@ -50,7 +51,6 @@
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-debugger": "warn",
     "no-restricted-exports": "off",
-    "no-unused-vars": "warn",
     "prefer-destructuring": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-filename-extension": "off",
