@@ -2,7 +2,7 @@ import { ClassJob } from 'types/ClassJob';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 
-type Props = {
+interface Props {
   jobs: ClassJob[]
 }
 

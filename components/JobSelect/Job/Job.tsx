@@ -2,7 +2,7 @@ import React from 'react';
 import { ClassJob } from 'types/ClassJob';
 import styles from './Job.module.scss';
 
-type Props = {
+interface Props {
   job: ClassJob,
   className?: string
 }

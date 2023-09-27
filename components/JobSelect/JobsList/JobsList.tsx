@@ -4,7 +4,7 @@ import Job from '../Job';
 
 import styles from './JobsList.module.scss';
 
-type Props = {
+interface Props {
   title: string,
   jobs: ClassJob[]
 }

@@ -11,7 +11,7 @@ import ToggleMaxLvl from './ToggleMaxLvl';
 import ToggleSaveForm from './ToggleSaveForm';
 import styles from './ControlBar.module.scss';
 
-type Props = {
+interface Props {
   selectedJob: ClassJob
 }
 

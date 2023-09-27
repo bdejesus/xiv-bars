@@ -2,7 +2,7 @@ import React from 'react';
 import RoleNames from '../../../data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
-type Props = {
+interface Props {
   job: {
     PreIcon: string,
     Icon: string,
