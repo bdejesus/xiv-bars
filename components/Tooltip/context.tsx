@@ -1,30 +1,21 @@
 import React, {
   ReactNode, createContext, useContext, useReducer
 } from 'react';
-import { TooltipState, TooltipDispatch, TooltipActions } from 'types/Tooltip';
+import {
+  TooltipState, TooltipDispatch, TooltipActions
+} from 'types/Tooltip';
 
-export const initialTooltipState:TooltipState = {
+import { TooltipAction } from './actions';
+
+const initialState: TooltipState = {
   content: undefined,
-  position: {
-    left: 0,
-    top: 0
-  },
-  mouse: {
-    x: 0,
-    y: 0
-  },
+  position: { left: 0, top: 0 },
+  mouse: { x: 0, y: 0 },
   error: undefined
 };
 
-const TooltipContext = createContext<TooltipState>(initialTooltipState);
+const TooltipContext = createContext<TooltipState>(initialState);
 const TooltipDispatchContext = createContext<React.Dispatch<TooltipDispatch>>(() => undefined);
-const TooltipAction = {
-  HIDE: 'hide',
-  UPDATE: 'updatePosition',
-  START: 'startUpdate',
-  FINISH: 'finishUpdate',
-  FAIL: 'updateFailed'
-};
 
 function tooltipReducer(state: TooltipState, action: TooltipActions) {
   switch (action.type) {
@@ -88,7 +79,7 @@ interface Props {
 }
 
 export function TooltipContextProvider({ children }: Props) {
-  const [state, dispatch] = useReducer(tooltipReducer as React.ReducerWithoutAction<TooltipState>, initialTooltipState);
+  const [state, dispatch] = useReducer(tooltipReducer as React.ReducerWithoutAction<TooltipState>, initialState);
 
   return (
     <TooltipContext.Provider value={state}>

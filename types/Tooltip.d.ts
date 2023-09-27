@@ -13,27 +13,6 @@ export interface TooltipState {
   error?: string
 }
 
-export const initialTooltipState:TooltipState = {
-  content: undefined,
-  position: {
-    left: 0,
-    top: 0
-  },
-  mouse: {
-    x: 0,
-    y: 0
-  },
-  error: undefined
-};
-
-export const TooltipAction = {
-  HIDE: 'hide',
-  UPDATE: 'updatePosition',
-  START: 'startUpdate',
-  FINISH: 'finishUpdate',
-  FAIL: 'updateFailed'
-};
-
 export interface HideTooltip {
   type: TooltipAction.HIDE,
   payload: TooltipState
