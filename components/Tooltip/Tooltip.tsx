@@ -15,7 +15,7 @@ export function Tooltip() {
   useEffect(() => {
     if (position) {
       const posStyle = {
-        transform: `translate(${position?.left}px, ${position?.top}px)`
+        transform: `translate(${position?.x}px, ${position?.y}px)`
       };
       setPositionStyle(posStyle);
     }

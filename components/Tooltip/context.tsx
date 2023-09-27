@@ -9,7 +9,7 @@ import { TooltipAction } from './actions';
 
 const initialState: TooltipState = {
   content: undefined,
-  position: { left: 0, top: 0 },
+  position: { x: 0, y: 0 },
   mouse: { x: 0, y: 0 },
   error: undefined
 };
@@ -22,7 +22,7 @@ function tooltipReducer(state: TooltipState, action: TooltipActions) {
     case TooltipAction.HIDE: {
       return {
         content: {},
-        position: { left: 0, top: 0 }
+        position: { x: 0, y: 0 }
       };
     }
 
@@ -36,7 +36,7 @@ function tooltipReducer(state: TooltipState, action: TooltipActions) {
     case TooltipAction.START: {
       return {
         content: {},
-        position: { left: 0, top: 0 }
+        position: { x: 0, y: 0 }
       };
     }
 

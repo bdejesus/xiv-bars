@@ -2,9 +2,9 @@ import { ActionType } from 'types/Action';
 
 export interface TooltipState {
   content?: ActionType,
-  position?: {
-    left?: number,
-    top?: number
+  position: {
+    x: number,
+    y: number
   },
   mouse?: {
     x: number,
