@@ -14,7 +14,7 @@ interface Props {
   className: string | undefined
 }
 
-type RoleNamesType = {
+interface RoleNamesType {
   [key: string]: string
 }
 

@@ -1,4 +1,4 @@
-export type ActionType = {
+export interface ActionType {
   ID: number | string,
   PreIcon?: string,
   Icon: string,
@@ -12,7 +12,7 @@ export type ActionType = {
   upgradable?: boolean
 }
 
-export type SlotType = {
+export interface SlotType {
   action: ActionType,
   id: string,
   key: number,
