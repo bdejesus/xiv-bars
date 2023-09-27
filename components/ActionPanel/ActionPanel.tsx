@@ -1,6 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
-import PropTypes from 'prop-types';
-
+import { useEffect, useState, createRef } from 'react';
 import { useAppState } from 'components/App/context';
 import MACROS from '.apiData/MacroIcon.json';
 import PET_ACTIONS from '.apiData/PetAction.json';
@@ -8,21 +6,26 @@ import BUDDY_ACTIONS from '.apiData/BuddyAction.json';
 import COMPANY_ACTIONS from '.apiData/CompanyAction.json';
 import MAIN_COMMANDS from '.apiData/MainCommand.json';
 import GENERAL_ACTIONS from '.apiData/GeneralAction.json';
-
+import { ActionType } from 'types/Action';
 import ActionGroup from './ActionGroup';
 import Tabs from './Tabs';
 
 import styles from './ActionPanel.module.scss';
 
-export function ActionPanel({ actions, roleActions }) {
-  const actionPanelRef = useRef();
+interface Props {
+  actions: ActionType[],
+  roleActions: ActionType[]
+}
+
+export function ActionPanel({ actions, roleActions }: Props) {
+  const actionPanelRef = createRef<HTMLDivElement>();
   const { showAllLvl } = useAppState();
   const [activeTab, setActiveTab] = useState('panel-actions');
-  const [maxHeight, setMaxHeight] = useState();
+  const [maxHeight, setMaxHeight] = useState(0);
 
-  function handleTabClick(e) {
+  function handleTabClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     const { target } = e.currentTarget.dataset;
-    setActiveTab(target);
+    setActiveTab(target as string);
   }
 
   const displayActions = !showAllLvl
@@ -30,9 +33,9 @@ export function ActionPanel({ actions, roleActions }) {
     : actions;
 
   useEffect(() => {
-    const panelTop = actionPanelRef.current.getBoundingClientRect().y;
+    const panelTop = actionPanelRef.current?.getBoundingClientRect().y;
     const margin = 20;
-    const height = window.innerHeight - panelTop - margin;
+    const height = panelTop ? window.innerHeight - panelTop - margin : 0;
     setMaxHeight(height);
   }, []);
 
@@ -93,10 +96,5 @@ export function ActionPanel({ actions, roleActions }) {
     </div>
   );
 }
-
-ActionPanel.propTypes = {
-  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
 
 export default ActionPanel;

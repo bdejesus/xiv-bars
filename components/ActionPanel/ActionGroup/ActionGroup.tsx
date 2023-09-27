@@ -1,11 +1,18 @@
-import PropTypes from 'prop-types';
 import Action from 'components/Action';
 import { useAppState } from 'components/App/context';
+import { ActionType } from 'types/Action';
 import styles from './ActionGroup.module.scss';
+
+interface Props {
+  title: string,
+  actions: ActionType[],
+  limit?: number,
+  remote?: boolean
+}
 
 export function ActionGroup({
   title, actions, limit, remote
-}) {
+}: Props) {
   const { showTitles } = useAppState();
   const actionsList = limit ? actions.slice(0, limit) : actions;
   return (
@@ -21,21 +28,5 @@ export function ActionGroup({
     </div>
   );
 }
-
-ActionGroup.propTypes = {
-  title: PropTypes.string.isRequired,
-  actions: PropTypes.arrayOf(PropTypes.shape({
-    ID: PropTypes.number,
-    Name: PropTypes.string,
-    Icon: PropTypes.string
-  })).isRequired,
-  limit: PropTypes.number,
-  remote: PropTypes.bool
-};
-
-ActionGroup.defaultProps = {
-  limit: undefined,
-  remote: true
-};
 
 export default ActionGroup;

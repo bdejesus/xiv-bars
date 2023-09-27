@@ -1,14 +1,15 @@
 export type ActionType = {
-  ID: string,
-  PreIcon: string,
+  ID: number | string,
+  PreIcon?: string,
   Icon: string,
   Name: string,
-  Abbr: string,
-  Discipline: string,
-  Role: string,
+  Abbr?: string,
+  Discipline?: string,
+  Role?: string,
   UrlType: string,
-  customIcon: string,
-  Command: string
+  Command?: string,
+  customIcon?: string,
+  upgradable?: boolean
 }
 
 export type SlotType = {

@@ -28,6 +28,7 @@
       "components/*": ["./components/*"],
       "lib/*": ["./lib/*"],
       "data/*": ["./data/*"],
+      ".apiData/*": ["./.apiData/*"],
       "types/*": ["./types/*"],
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
@@ -114,7 +115,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.d.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.json"
   ],
   "exclude": [
     "node_modules"

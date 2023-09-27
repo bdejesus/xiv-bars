@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import styles from './Tabs.module.scss';
 
-export function Tabs({ activeTab, onTabClick }) {
+interface Props {
+  activeTab: string,
+  onTabClick: React.MouseEventHandler<HTMLButtonElement>
+}
+
+export function Tabs({ activeTab, onTabClick }: Props) {
   return (
     <div className={styles.tabs}>
       <ul className={styles.tabItems}>
@@ -11,7 +16,7 @@ export function Tabs({ activeTab, onTabClick }) {
             className={styles.tabButton}
             data-target="panel-actions"
             data-active={activeTab === 'panel-actions'}
-            onClick={(e) => onTabClick(e)}
+            onClick={onTabClick}
           >
             Job
           </button>
