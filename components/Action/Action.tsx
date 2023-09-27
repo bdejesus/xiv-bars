@@ -28,7 +28,7 @@ export function Action({ action, remote = true }: Props) {
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [position, setPosition] = useState({});
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
 

@@ -2,7 +2,7 @@ import { ActionType } from 'types/Action';
 
 export interface TooltipState {
   content?: ActionType,
-  position: {
+  position?: {
     x: number,
     y: number
   },
