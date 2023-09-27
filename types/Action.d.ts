@@ -10,7 +10,8 @@ export interface ActionType {
   UrlType: string,
   Command?: string,
   customIcon?: string,
-  upgradable?: boolean
+  upgradable?: boolean,
+  Prefix?: string
 }
 
 export interface SlotType {
