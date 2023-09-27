@@ -1,8 +1,6 @@
-import PropTypes from 'prop-types';
 import I18n from 'lib/I18n/locale/en-US';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
-import { jobsType } from 'lib/types/jobs';
 import { ClassJob } from 'types/ClassJob';
 import styles from './Intro.module.scss';
 
@@ -37,14 +35,5 @@ export function Intro({ jobs, className }: Props) {
     </>
   );
 }
-
-Intro.propTypes = {
-  jobs: jobsType.isRequired,
-  className: PropTypes.string
-};
-
-Intro.defaultProps = {
-  className: undefined
-};
 
 export default Intro;

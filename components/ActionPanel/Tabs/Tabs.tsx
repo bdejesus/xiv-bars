@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styles from './Tabs.module.scss';
 
 interface Props {
@@ -71,14 +70,5 @@ export function Tabs({ activeTab, onTabClick }: Props) {
     </div>
   );
 }
-
-Tabs.propTypes = {
-  activeTab: PropTypes.string,
-  onTabClick: PropTypes.func.isRequired
-};
-
-Tabs.defaultProps = {
-  activeTab: undefined
-};
 
 export default Tabs;
