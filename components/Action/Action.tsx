@@ -2,7 +2,7 @@
 import { createRef, useState, useEffect } from 'react';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
-import { useSelectedActionDispatch } from 'components/SelectedAction';
+import { useSelectedActionDispatch } from 'components/SelectedAction/context';
 import { ActionType } from 'types/Action';
 
 import styles from './Action.module.scss';
