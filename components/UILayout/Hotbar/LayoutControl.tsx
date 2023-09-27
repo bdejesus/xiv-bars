@@ -9,7 +9,7 @@ interface Props {
 export default function LayoutControl({ id, defaultValue }: Props) {
   const appDispatch = useAppDispatch();
 
-  function handleLayoutControl(e: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+  function handleLayoutControl(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.currentTarget;
     appDispatch({
       type: 'updateHotbarLayout',

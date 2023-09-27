@@ -1,15 +1,23 @@
 /* eslint-disable jsx-a11y/no-onchange */
-import PropTypes from 'prop-types';
+import React, { ReactNode } from 'react';
 import { useAppState } from 'components/App/context';
+
+interface Props {
+  id: string,
+  onChange: React.ChangeEventHandler<HTMLSelectElement>,
+  value: string,
+  children: ReactNode,
+  required?: boolean
+}
 
 function Options({
   id, onChange, value, children, required
-}) {
+}: Props) {
   const appState = useAppState();
   const { chotbar } = appState;
-  const inactive = ['xhb', 'wxhb', 'exhb'].reduce((collect, v) => {
-    if (v !== id) return [...collect, appState[v]];
-    return collect;
+  const inactive = ['xhb', 'wxhb', 'exhb'].reduce((collection: number[], v: string) => {
+    if (v !== id) return [...collection, appState[v]];
+    return collection;
   }, []);
 
   return (
@@ -25,7 +33,7 @@ function Options({
         { !required && <option value={0}>Off</option> }
 
         { Object.keys(chotbar).map((key, index) => {
-          const optValue = index + 1;
+          const optValue: number = index + 1;
           return (
             <option
               value={optValue}
@@ -42,19 +50,3 @@ function Options({
 }
 
 export default Options;
-
-Options.propTypes = {
-  id: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.number.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.shape(),
-    PropTypes.array
-  ]).isRequired,
-  required: PropTypes.bool
-};
-
-Options.defaultProps = {
-  required: false
-};

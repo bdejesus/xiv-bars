@@ -1,8 +1,12 @@
-import PropTypes from 'prop-types';
 import Slot from 'components/Slot';
+import { SlotType } from 'types/Action';
 import styles from './Xbar.module.scss';
 
-function Set({ slots }) {
+interface Props {
+  slots: SlotType[]
+}
+
+function Set({ slots }: Props) {
   return (
     <div className={styles.set}>
       { slots.map((slot) => (
@@ -16,9 +20,5 @@ function Set({ slots }) {
     </div>
   );
 }
-
-Set.propTypes = {
-  slots: PropTypes.arrayOf(PropTypes.shape()).isRequired
-};
 
 export default Set;

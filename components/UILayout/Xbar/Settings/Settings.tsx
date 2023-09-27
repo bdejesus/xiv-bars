@@ -7,7 +7,8 @@ function Settings() {
   const { wxhb, xhb, exhb } = useAppState();
   const appDispatch = useAppDispatch();
 
-  function handleSelect(id, value) {
+  function handleSelect(id: string, event: React.ChangeEvent<HTMLSelectElement>) {
+    const { value } = event.currentTarget;
     const targetValue = parseInt(value, 10);
     appDispatch({ type: 'updateUI', params: { [id]: targetValue } });
   }
@@ -17,7 +18,7 @@ function Settings() {
       <div className={styles.xhbControl}>
         <Options
           id="xhb"
-          onChange={({ currentTarget }) => handleSelect('xhb', currentTarget.value)}
+          onChange={(event) => handleSelect('xhb', event)}
           value={xhb}
           required
         >
@@ -39,7 +40,7 @@ function Settings() {
       <div className={styles.xhbControl}>
         <Options
           id="wxhb"
-          onChange={({ currentTarget }) => handleSelect('wxhb', currentTarget.value)}
+          onChange={(event) => handleSelect('wxhb', event)}
           value={wxhb}
         >
           <span className={styles.controlLabel}>
@@ -60,7 +61,7 @@ function Settings() {
       <div className={styles.xhbControl}>
         <Options
           id="exhb"
-          onChange={({ currentTarget }) => handleSelect('exhb', currentTarget.value)}
+          onChange={(event) => handleSelect('exhb', event)}
           value={exhb}
         >
           <span className={styles.controlLabel}>
