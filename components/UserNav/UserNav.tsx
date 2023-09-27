@@ -15,7 +15,7 @@ export function UserNav() {
     signIn('discord', { callbackUrl: '/' });
   }
 
-  function handleSignOut(e) {
+  function handleSignOut(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
     signOut({ callbackUrl: '/' });
   }
