@@ -5,6 +5,7 @@ export interface ActionType {
   Name: string,
   Abbr?: string,
   Discipline?: string,
+  Description?: string,
   Role?: string,
   UrlType: string,
   Command?: string,

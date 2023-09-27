@@ -1,33 +1,7 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useTooltipState } from './context';
-
+import Description from './Description';
 import styles from './Tooltip.module.scss';
-
-function Description({ content }) {
-  const cleanDesc = () => {
-    const trim = content;
-    const str = trim.replace(/(?:\r\n|\r|\n)/g, '<div>');
-    return str;
-  };
-  const descHtml = { __html: cleanDesc() };
-
-  return (
-    <p
-      className={styles.description}
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={descHtml}
-    />
-  );
-}
-
-Description.propTypes = {
-  content: PropTypes.string
-};
-
-Description.defaultProps = {
-  content: undefined
-};
 
 export function Tooltip() {
   const [positionStyle, setPositionStyle] = useState({ transform: 'none' });
@@ -39,19 +13,21 @@ export function Tooltip() {
   }, [content]);
 
   useEffect(() => {
-    const posStyle = {
-      transform: `translate(${position.x}px, ${position.y}px)`
-    };
-    setPositionStyle(posStyle);
+    if (position) {
+      const posStyle = {
+        transform: `translate(${position?.left}px, ${position?.top}px)`
+      };
+      setPositionStyle(posStyle);
+    }
   }, [position]);
 
   return (
     <div
       className={`${styles.tooltip} ${anchor}`}
       style={positionStyle}
-      aria-hidden={!content.Name && !content.Description}
+      aria-hidden={!content?.Name && !content?.Description}
     >
-      {content.Name && (
+      {content?.Name && (
         <>
           <h4 className={styles.title}>{content.Name}</h4>
           { content.Description && (

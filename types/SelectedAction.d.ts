@@ -1,5 +1,5 @@
 export interface SelectedActionType {
-  selectedAction: object | undefined
+  selectedAction?: object
 }
 
 export interface SelectedActionDispatchType {

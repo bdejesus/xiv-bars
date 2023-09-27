@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import { createRef, useState, useEffect } from 'react';
 import { useAppState } from 'components/App/context';
-import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
+import { useTooltipDispatch } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
 import { ActionType } from 'types/Action';
+import { getContent } from 'lib/api';
 
 import styles from './Action.module.scss';
 
@@ -11,11 +12,18 @@ let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
   action: ActionType,
-  tooltip?: object,
   remote?: boolean
 }
 
-export function Action({ action, tooltip, remote = true }: Props) {
+const TooltipAction = {
+  HIDE: 'hide',
+  UPDATE: 'updatePosition',
+  START: 'startUpdate',
+  FINISH: 'finishUpdate',
+  FAIL: 'updateFailed'
+};
+
+export function Action({ action, remote = true }: Props) {
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
@@ -39,27 +47,45 @@ export function Action({ action, tooltip, remote = true }: Props) {
     return () => clearTimeout(tooltipTimeout);
   }, [hovering]);
 
+  async function updateTooltip() {
+    if (!remote) {
+      tooltipDispatch({
+        type: TooltipAction.FINISH,
+        payload: {
+          content: action,
+          position
+        }
+      });
+    } else {
+      try {
+        const content:ActionType = await getContent(action.UrlType, action.ID);
+
+        if (content.Description) {
+          tooltipDispatch({ type: TooltipAction.FINISH, payload: { content, position } });
+        } else {
+          tooltipDispatch({ type: TooltipAction.FINISH, payload: { content: action, position } });
+        }
+      } catch (error) {
+        tooltipDispatch({ type: TooltipAction.FAIL, payload: { error: 'Something went wrong' } });
+      }
+    }
+  }
+
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);
     setHovering(false);
-    tooltipDispatch({ type: 'hide' });
+    tooltipDispatch({ type: TooltipAction.HIDE });
   }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     const mouse = { x: e.clientX, y: e.clientY };
-    tooltipDispatch({ type: 'updatePosition', mouse });
+    tooltipDispatch({ type: 'updatePosition', payload: { mouse } });
     clearTimeout(tooltipTimeout);
 
     tooltipTimeout = setTimeout(() => {
       if (!hovering) {
-        const data = {
-          action, position, staticContent: tooltip, remote
-        };
-
         setHovering(true);
-        if (action.ID) {
-          updateTooltip(tooltipDispatch, data);
-        }
+        if (action.ID) updateTooltip();
       }
     }, 150);
   }
