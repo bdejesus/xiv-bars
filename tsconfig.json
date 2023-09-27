@@ -117,7 +117,7 @@
     "**/*.d.ts",
     "**/*.tsx",
     "**/*.json"
-, "components/SelectedAction/context.js"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

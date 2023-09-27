@@ -1,7 +1,7 @@
 import {
   ReactNode, createContext, useContext, useReducer
 } from 'react';
-import { SelectedActionType, selectedActionDefaults, SelectedActionDispatchType } from 'types/SelectedAction';
+import { SelectedActionType, SelectedActionDispatchType } from 'types/SelectedAction';
 
 const SelectedActionContext = createContext<SelectedActionType | null>(null);
 const SelectedActionDispatchContext = createContext<SelectedActionDispatchType | null>(null);
@@ -39,12 +39,12 @@ export function useSelectedActionDispatch() {
 export function SelectedActionContextProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(
     selectedActionReducer,
-    selectedActionDefaults
+    { selectedAction: undefined }
   );
 
   return (
     <SelectedActionContext.Provider value={state}>
-      <SelectedActionDispatchContext.Provider value={dispatch}>
+      <SelectedActionDispatchContext.Provider value={dispatch as SelectedActionDispatchType}>
         {children}
       </SelectedActionDispatchContext.Provider>
     </SelectedActionContext.Provider>
