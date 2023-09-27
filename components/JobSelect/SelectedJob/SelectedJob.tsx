@@ -2,7 +2,7 @@ import React from 'react';
 import RoleNames from '../../../data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
-type Props = {
+interface Props {
   job: {
     PreIcon: string,
     Icon: string,
@@ -14,12 +14,12 @@ type Props = {
   className: string | undefined
 }
 
-type RoleNames = {
+interface RoleNamesType {
   [key: string]: string
 }
 
 export function SelectedJob({ job, className }: Props) {
-  const roleNames: RoleNames = RoleNames;
+  const roleNames: RoleNamesType = RoleNames;
 
   return (
     <div className={[styles.container, className].join(' ')}>

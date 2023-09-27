@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import db from 'lib/db';
-import { unstable_getServerSession } from 'next-auth/next';
+import { getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { maxLayouts } from 'lib/user';
 
@@ -56,7 +56,7 @@ async function destroy(userId, { id }) {
 
 async function layout(req, res) {
   try {
-    const session = await unstable_getServerSession(req, res, authOptions);
+    const session = await getServerSession(req, res, authOptions);
     const userId = session?.user.id;
     const { body } = req;
 

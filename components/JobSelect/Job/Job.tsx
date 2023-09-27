@@ -1,14 +1,10 @@
 import React from 'react';
+import { ClassJob } from 'types/ClassJob';
 import styles from './Job.module.scss';
 
-type Props = {
-  job: {
-    PreIcon: string,
-    Icon: string,
-    Name: string,
-    Abbr: string
-  },
-  className: string
+interface Props {
+  job: ClassJob,
+  className?: string
 }
 
 export function Job({ job, className }: Props) {
