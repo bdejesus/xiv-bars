@@ -25,7 +25,7 @@ export function Xbar() {
             data-wxhb={xbar === hbKeys[wxhb - 1]}
             data-exhb={xbar === hbKeys[exhb - 1]}
           >
-            <Bar bar={chotbar[xbar]} id={xbar} />
+            <Bar bar={chotbar[xbar]} />
           </div>
         ))}
       </div>
