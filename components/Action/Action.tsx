@@ -35,13 +35,7 @@ export function Action({ action, remote = true }: Props) {
   useEffect(() => {
     if (actionRef.current) {
       const rect = actionRef.current.getBoundingClientRect();
-
-      setPosition({
-        left: rect.left,
-        right: rect.left + rect.width,
-        top: rect.top,
-        bottom: rect.top + rect.height
-      });
+      setPosition({ x: rect.left, y: rect.top, });
     }
 
     return () => clearTimeout(tooltipTimeout);
