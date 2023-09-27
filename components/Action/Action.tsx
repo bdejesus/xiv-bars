@@ -15,7 +15,7 @@ interface Props {
   remote?: boolean
 }
 
-export function Action({ action, tooltip, remote }: Props) {
+export function Action({ action, tooltip, remote = true }: Props) {
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
