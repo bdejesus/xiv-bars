@@ -13,7 +13,7 @@ import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import ReactMarkdown from 'react-markdown';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
-
+import { AppAction } from './actions';
 import styles from './App.module.scss';
 
 type QueryProps = {
@@ -31,6 +31,7 @@ export function App() {
     roleActions,
     readOnly,
     viewData,
+    encodedSlots
   } = useAppState();
 
   const router = useRouter();
@@ -38,10 +39,14 @@ export function App() {
   useEffect(() => {
     // rest system messages whenever user navigates
     function resetMessage() {
-      appDispatch({ type: 'setMessage', message: undefined });
+      appDispatch({ type: AppAction.UPDATE_MESSAGE, payload: { message: undefined } });
     }
 
-    router.events.on('routeChangeStart', resetMessage);
+    if (encodedSlots) {
+      appDispatch({ type: AppAction.SLOT_ACTIONS, payload: { encodedSlots } });
+    } else {
+      router.events.on('routeChangeStart', resetMessage);
+    }
 
     return () => {
       router.events.off('routeChangeStart', resetMessage);
@@ -63,20 +68,20 @@ export function App() {
 
       if (slots) {
         appDispatch({
-          type: 'bulkLoadActionsToSlots',
-          params: {
+          type: AppAction.SLOT_ACTIONS,
+          payload: {
             slottedActions: slots,
-            wxhb,
-            xhb,
-            exhb,
+            wxhb: parseInt(wxhb, 10),
+            xhb: parseInt(xhb, 10),
+            exhb: parseInt(exhb, 10),
             hb: formatHbConfig,
-            encodedSlots: router.query.s1 || router.query.s
+            encodedSlots: router.query.s1?.toString() || router.query.s?.toString()
           }
         });
       } else if (xhb || wxhb || exhb) {
         appDispatch({
-          type: 'updateUI',
-          params: {
+          type: AppAction.UPDATE_UI,
+          payload: {
             wxhb: parseInt(wxhb, 10),
             xhb: parseInt(xhb, 10),
             exhb: parseInt(exhb, 10),
@@ -85,8 +90,8 @@ export function App() {
         });
       } else if (hb) {
         appDispatch({
-          type: 'updateUI',
-          params: {
+          type: AppAction.UPDATE_UI,
+          payload: {
             hb: formatHbConfig
           }
         });
@@ -124,12 +129,14 @@ export function App() {
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />
                       <h3>{viewData.title}</h3>
-                      <ReactMarkdown components={{
-                        h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
-                      }}
-                      >
-                        {viewData.description}
-                      </ReactMarkdown>
+                      { viewData.description && (
+                        <ReactMarkdown components={{
+                          h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
+                        }}
+                        >
+                          {viewData.description}
+                        </ReactMarkdown>
+                      )}
                     </div>
                   ) : (
                     <>
@@ -138,10 +145,7 @@ export function App() {
                         toOpen={() => setShowJobMenu(true)}
                         disabled={readOnly || isEditing}
                       />
-                      <ActionPanel
-                        roleActions={roleActions}
-                        actions={actions}
-                      />
+                      { roleActions && actions && <ActionPanel roleActions={roleActions} actions={actions} /> }
                     </>
                   )}
                 </div>

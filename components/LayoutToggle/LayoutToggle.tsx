@@ -7,9 +7,10 @@ export function LayoutToggle() {
   const router = useRouter();
   const { layout, readOnly, viewAction } = useAppState();
   const appDispatch = useAppDispatch();
+  const layoutId = layouts[layout as keyof typeof layouts];
 
   function toggleHotbarLayout() {
-    const layoutValue = (layouts[layout] === 'chotbar') ? 1 : 0;
+    const layoutValue = (layoutId === 'chotbar') ? 1 : 0;
 
     if (viewAction === 'new') {
       router.push(
@@ -21,7 +22,7 @@ export function LayoutToggle() {
         { shallow: true }
       );
     }
-    appDispatch({ type: 'updateLayout', layout: layoutValue });
+    appDispatch({ type: 'updateLayout', payload: { layout: layoutValue } });
   }
 
   return (
@@ -36,15 +37,15 @@ export function LayoutToggle() {
         >
           <span
             className={styles.label}
-            data-selected={layouts[layout] === 'chotbar'}
-            data-disabled={readOnly && layouts[layout] !== 'chotbar'}
+            data-selected={layoutId === 'chotbar'}
+            data-disabled={readOnly && layoutId !== 'chotbar'}
           >
             <abbr title="Cross Hotbar">XHB</abbr>
           </span>
           <span
             className={styles.label}
-            data-selected={layouts[layout] === 'hotbar'}
-            data-disabled={readOnly && layouts[layout] !== 'hotbar'}
+            data-selected={layoutId === 'hotbar'}
+            data-disabled={readOnly && layoutId !== 'hotbar'}
           >
             Hotbars
           </span>

@@ -54,7 +54,7 @@ function SaveForm() {
         const [currentLayout, layouts] = json;
         appDispatch({
           type: 'saveLayout',
-          viewData: { ...currentLayout, ...body }
+          payload: { viewData: { ...currentLayout, ...body } }
         });
         userDispatch({ type: 'UPDATE_LAYOUTS', layouts: layouts.length });
         router.push(
@@ -67,9 +67,11 @@ function SaveForm() {
         console.error(error);
         appDispatch({
           type: 'setMessage',
-          message: {
-            type: 'error',
-            body: I18n.SaveForm.failed
+          payload: {
+            message: {
+              type: 'error',
+              body: I18n.SaveForm.failed
+            }
           }
         });
       });

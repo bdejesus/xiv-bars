@@ -12,7 +12,8 @@ interface Props {
 
 export default function Row({ slots, id }: Props) {
   const { readOnly, hb } = useAppState();
-  const defaultValue = parseInt(hb[hotbarKeyPos(id)], 10);
+  const hotbarKey: string = hb[hotbarKeyPos(id) as keyof typeof hb] as string;
+  const defaultValue: number = parseInt(hotbarKey, 10);
 
   return (
     <>

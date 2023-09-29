@@ -6,12 +6,12 @@ import GENERAL_ACTION from '.apiData/GeneralAction.json';
 import MAIN_COMMAND from '.apiData/MainCommand.json';
 import MACRO_ICON from '.apiData/MacroIcon.json';
 import PET_ACTION from '.apiData/PetAction.json';
-import { AppState, AppActions } from 'types/App';
+import { AppState, AppDispatchActions } from 'types/App';
 import { group } from 'lib/utils/array';
 import { ActionType, SlotType } from 'types/Action';
 import { AppAction } from './actions';
 
-export default function AppReducer(state: AppState, action: AppActions) {
+export default function AppReducer(state: AppState, action: AppDispatchActions) {
   const { layout } = state;
 
   const layoutKey = layouts[layout as keyof typeof layouts];
@@ -31,7 +31,7 @@ export default function AppReducer(state: AppState, action: AppActions) {
   function encodeSlots() {
     if (slots) {
       const slotIDs = Object.values(slots);
-      const slotsQuery = slotIDs.map((arr) => assignActionIds(arr));
+      const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotType[]));
       const queryString = slotsQuery
         .reduce((flat, next) => flat.concat(next), [])
         .join(',');
@@ -42,14 +42,17 @@ export default function AppReducer(state: AppState, action: AppActions) {
 
   function setActionToSlot() {
     // update slotted actions
-    const [parent, id] = action.slotID.split('-');
-    const slot = { parent, id: parseInt(id, 10) - 1 };
-    const slotObject: { action: object | undefined } = slots
-      ? slots[slot.parent as keyof typeof slots][slot.id]
-      : { action: undefined };
-    if (slotObject) slotObject.action = action.action;
-    // update slots string query
-    return encodeSlots();
+    if (action.payload?.slotID) {
+      const [parent, id] = action.payload.slotID.split('-');
+      const slot = { parent, id: parseInt(id, 10) - 1 };
+      const slotObject: { action: object | undefined } = slots
+        ? slots[slot.parent as keyof typeof slots][slot.id]
+        : { action: undefined };
+      if (slotObject) slotObject.action = action.payload.action;
+      // update slots string query
+      return encodeSlots();
+    }
+    return null;
   }
 
   function getActionKey(actionCategory: string | undefined) {
@@ -77,14 +80,14 @@ export default function AppReducer(state: AppState, action: AppActions) {
     const typeMatch = IDString.match(actionRegex);
     const actionType = typeMatch ? typeMatch[0] : undefined;
 
-    const parsedID = actionType
-      ? parseInt(IDString.replace(actionType, ''), 10)
-      : parseInt(IDString, 10);
-
-    const slottedAction = getActionKey(actionType)
-      .find((slotAction: ActionType) => slotAction.ID === parsedID);
-    // eslint-disable-next-line no-param-reassign
-    if (slottedAction && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
+    if (actionType) {
+      const parsedID = actionType
+        ? parseInt(IDString.replace(actionType, ''), 10)
+        : parseInt(IDString, 10);
+      const slottedAction = getActionKey(actionType)?.find((slotAction: ActionType) => slotAction.ID === parsedID);
+      // eslint-disable-next-line no-param-reassign
+      if (slottedAction && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
+    }
   }
 
   function setActionsToSlot(encodedSlots: string) {
@@ -105,31 +108,37 @@ export default function AppReducer(state: AppState, action: AppActions) {
 
   switch (action.type) {
     case AppAction.UPDATE_UI: {
-      return { ...state, ...action.params };
+      return { ...state, ...action.payload };
     }
 
     case AppAction.UPDATE_LAYOUT: {
-      return { ...state, layout: action.layout };
+      if (action.payload?.layout) {
+        return { ...state, layout: action.payload.layout };
+      }
+      return state;
     }
 
     case AppAction.UPDATE_HB_LAYOUT: {
-      const position = hotbarKeyPos(action.hbId);
-      const configValue = parseInt(action.hbConfig, 10);
-      const updatedHb = state.hb?.toSpliced(position, 1, configValue) || state.hb;
-      return { ...state, hb: updatedHb };
+      if (action.payload?.hbId) {
+        const position = hotbarKeyPos(action.payload.hbId);
+        const configValue = action.payload.hbConfig;
+        const updatedHb = configValue ? state.hb?.toSpliced(position, 1, configValue) : state.hb;
+        return { ...state, hb: updatedHb };
+      }
+      return state;
     }
 
     case AppAction.SLOT_ACTIONS: {
-      if (action.params) {
-        setActionsToSlot(action.params.encodedSlots);
+      if (action.payload?.encodedSlots) {
+        setActionsToSlot(action.payload.encodedSlots);
 
         return {
           ...state,
-          xhb: parseInt(action.params.xhb, 10) || state.xhb,
-          wxhb: parseInt(action.params.wxhb, 10) || state.wxhb,
-          exhb: parseInt(action.params.exhb, 10) || state.exhb,
-          hb: action.params.hb || state.hb,
-          encodedSlots: action.params.encodedSlots
+          xhb: action.payload.xhb || state.xhb,
+          wxhb: action.payload.xhb || state.wxhb,
+          exhb: action.payload.xhb || state.exhb,
+          hb: action.payload.hb || state.hb,
+          encodedSlots: action.payload.encodedSlots
         };
       }
       return state;
@@ -177,18 +186,24 @@ export default function AppReducer(state: AppState, action: AppActions) {
     }
 
     case AppAction.SAVE_LAYOUT: {
-      return {
-        ...state,
-        readOnly: true,
-        viewData: action.viewData,
-        showPublish: false,
-        viewAction: 'show',
-        message: { type: 'success', body: 'Success!' }
-      };
+      if (action.payload?.viewData) {
+        return {
+          ...state,
+          readOnly: true,
+          viewData: action.payload.viewData,
+          showPublish: false,
+          viewAction: 'show',
+          message: { type: 'success', body: 'Success!' }
+        };
+      }
+      return state;
     }
 
     case AppAction.UPDATE_MESSAGE: {
-      return { ...state, message: action.message };
+      if (action.payload?.message) {
+        return { ...state, message: action.payload.message };
+      }
+      return state;
     }
 
     default: {

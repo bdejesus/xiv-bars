@@ -1,5 +1,6 @@
 import { useAppState } from 'components/App/context';
 import { hasActions } from 'lib/xbars';
+import { SlotType } from 'types/Action';
 import Row from './Row';
 import styles from './Hotbar.module.scss';
 
@@ -8,9 +9,9 @@ export function Hotbar() {
 
   return (
     <ol className={styles.container}>
-      {Object.keys(hotbar).map((barKey) => (
+      {hotbar && Object.keys(hotbar).map((barKey) => (
         <li key={barKey} className={styles.rowWrapper}>
-          { (!readOnly || hasActions(hotbar[barKey])) && <Row slots={hotbar[barKey]} id={barKey} /> }
+          { (!readOnly || hasActions(hotbar[barKey])) && <Row slots={hotbar[barKey] as SlotType[]} id={barKey} /> }
         </li>
       ))}
     </ol>

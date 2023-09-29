@@ -8,7 +8,8 @@ import styles from './UILayout.module.scss';
 export function SlotLayout() {
   const { layout } = useAppState();
 
-  switch (layouts[layout]) {
+  const selectedLayout = layout ? layouts[layout] : undefined;
+  switch (selectedLayout) {
     case 'chotbar': return <Xbar />;
     case 'hotbar': return <Hotbar />;
     default: return <Xbar />;
