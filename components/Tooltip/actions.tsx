@@ -1,9 +1,7 @@
 export const TooltipAction = {
   HIDE: 'hide',
-  UPDATE: 'updatePosition',
-  START: 'startUpdate',
-  FINISH: 'finishUpdate',
-  FAIL: 'updateFailed'
+  UPDATE: 'update',
+  FAIL: 'fail'
 };
 
 export default TooltipAction;

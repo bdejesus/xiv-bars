@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import { createRef, useState, useEffect } from 'react';
+import { createRef, useState } from 'react';
 import { useAppState } from 'components/App/context';
-import { useTooltipDispatch } from 'components/Tooltip';
+import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
 import { ActionType } from 'types/Action';
 import { getContent } from 'lib/api';
@@ -15,53 +15,26 @@ interface Props {
   remote?: boolean
 }
 
-const TooltipAction = {
-  HIDE: 'hide',
-  UPDATE: 'updatePosition',
-  START: 'startUpdate',
-  FINISH: 'finishUpdate',
-  FAIL: 'updateFailed'
-};
-
 export function Action({ action, remote = true }: Props) {
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
 
-  useEffect(() => {
-    if (actionRef.current) {
-      const rect = actionRef.current.getBoundingClientRect();
-      setPosition({ x: rect.left, y: rect.top, });
-    }
-
-    return () => clearTimeout(tooltipTimeout);
-  }, [hovering]);
-
-  async function updateTooltip() {
-    if (!remote) {
+  async function fetchActionContent(mousePosition: { x: number, y: number}) {
+    try {
+      const content:ActionType = await getContent(action.UrlType, action.ID);
       tooltipDispatch({
-        type: TooltipAction.FINISH,
+        type: TooltipAction.UPDATE,
         payload: {
-          content: action,
-          position
+          content: content.Description ? content : action,
+          position: mousePosition
         }
       });
-    } else {
-      try {
-        const content:ActionType = await getContent(action.UrlType, action.ID);
-
-        if (content.Description) {
-          tooltipDispatch({ type: TooltipAction.FINISH, payload: { content, position } });
-        } else {
-          tooltipDispatch({ type: TooltipAction.FINISH, payload: { content: action, position } });
-        }
-      } catch (error) {
-        tooltipDispatch({ type: TooltipAction.FAIL, payload: { error: 'Something went wrong' } });
-      }
+    } catch (error) {
+      tooltipDispatch({ type: TooltipAction.FAIL, payload: { error: 'Something went wrong' } });
     }
   }
 
@@ -72,16 +45,22 @@ export function Action({ action, remote = true }: Props) {
   }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const mouse = { x: e.clientX, y: e.clientY };
-    tooltipDispatch({ type: 'updatePosition', payload: { mouse } });
     clearTimeout(tooltipTimeout);
 
     tooltipTimeout = setTimeout(() => {
       if (!hovering) {
         setHovering(true);
-        if (action.ID) updateTooltip();
+        const mousePosition = { x: e.clientX, y: e.clientY };
+
+        if (action.ID && remote) fetchActionContent(mousePosition);
+        else {
+          tooltipDispatch({
+            type: TooltipAction.UPDATE,
+            payload: { content: action, position: mousePosition }
+          });
+        }
       }
-    }, 150);
+    }, 160);
   }
 
   function selectAction() {

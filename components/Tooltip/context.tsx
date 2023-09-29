@@ -21,15 +21,7 @@ function tooltipReducer(state: TooltipState, action: TooltipActions) {
   switch (action.type) {
     case TooltipAction.HIDE: {
       return {
-        content: {},
-        position: { x: 0, y: 0 }
-      };
-    }
-
-    case TooltipAction.UPDATE: {
-      return {
-        ...state,
-        position: action.payload.mouse
+        content: {}
       };
     }
 
@@ -40,7 +32,7 @@ function tooltipReducer(state: TooltipState, action: TooltipActions) {
       };
     }
 
-    case TooltipAction.FINISH: {
+    case TooltipAction.UPDATE: {
       const { content, position } = action.payload;
       return {
         content: { Name: content?.Name, Description: content?.Description },

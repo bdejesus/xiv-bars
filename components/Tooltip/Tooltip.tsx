@@ -23,7 +23,7 @@ export function Tooltip() {
 
   return (
     <div
-      className={`${styles.tooltip} ${anchor}`}
+      className={[styles.tooltip, anchor].join(' ')}
       style={positionStyle}
       aria-hidden={!content?.Name && !content?.Description}
     >

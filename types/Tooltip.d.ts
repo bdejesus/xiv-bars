@@ -23,22 +23,12 @@ export interface UpdateTooltip {
   payload: TooltipState
 }
 
-export interface StartTooltipUpdate {
-  type: TooltipAction.START,
-  payload: TooltipState
-}
-
-export interface FinishTooltipUpdate {
-  type: TooltipAction.FINISH,
-  payload: TooltipState
-}
-
 export interface FailTooltip {
   type: TooltipAction.FAIL,
   payload: TooltipState
 }
 
-export type TooltipActions = HideTooltip | UpdateTooltip | StartTooltipUpdate | FinishTooltipUpdate | FailTooltip;
+export type TooltipActions = HideTooltip | UpdateTooltip | FailTooltip;
 
 export interface TooltipDispatch {
   type: string,
