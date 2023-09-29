@@ -1,15 +1,14 @@
-import LayoutToggle from 'components/LayoutToggle';
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
 import { layouts } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
+import LayoutToggle from './LayoutToggle';
 import styles from './UILayout.module.scss';
 
 export function SlotLayout() {
   const { layout } = useAppState();
 
-  const selectedLayout = layout ? layouts[layout] : undefined;
-  switch (selectedLayout) {
+  switch (layouts[layout]) {
     case 'chotbar': return <Xbar />;
     case 'hotbar': return <Hotbar />;
     default: return <Xbar />;

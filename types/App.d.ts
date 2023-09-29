@@ -1,5 +1,5 @@
 export interface AppData {
-  layout?: number,
+  layout: number,
   params?: object,
   hb?: string,
   xhb: number,
@@ -18,7 +18,7 @@ export interface AppData {
 }
 
 export interface AppState {
-  layout?: number,
+  layout: number,
   params?: object,
   hb: number[] | string[],
   xhb: number,

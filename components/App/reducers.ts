@@ -17,6 +17,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
   const layoutKey = layouts[layout as keyof typeof layouts];
   const slots = state[layoutKey as keyof typeof state];
 
+  // TODO: Extract these functions to external js?
   function assignActionIds(slotActions: SlotType[]) {
     return Object.values(slotActions).map((slot) => {
       if (slot.action?.ID) {
@@ -112,7 +113,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     }
 
     case AppAction.UPDATE_LAYOUT: {
-      if (action.payload?.layout) {
+      if (action.payload) {
         return { ...state, layout: action.payload.layout };
       }
       return state;

@@ -25,13 +25,6 @@ function tooltipReducer(state: TooltipState, action: TooltipActions) {
       };
     }
 
-    case TooltipAction.START: {
-      return {
-        content: {},
-        position: { x: 0, y: 0 }
-      };
-    }
-
     case TooltipAction.UPDATE: {
       const { content, position } = action.payload;
       return {
