@@ -105,7 +105,9 @@
           ["components", "./components"],
           ["lib", "./lib"],
           ["data", "./data"],
-          ["types", "./types"]
+          ["types", "./types"],
+          ["apiData", "./.apiData"],
+          [".apiData", "./.apiData"]
         ]
       }
     }
