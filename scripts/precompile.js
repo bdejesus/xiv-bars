@@ -37,8 +37,8 @@ async function getActions() {
           ...action,
           Name: action.Name ? action.Name : `${actionSet} ${action.ID}`,
           UrlType: actionSet,
-          Prefix: ActionType[actionSet].prefix,
-          Command: ActionType[actionSet].command
+          Prefix: ActionCategory[actionSet].prefix,
+          Command: ActionCategory[actionSet].command
         }));
 
         // await clean();
