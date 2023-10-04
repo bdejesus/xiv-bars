@@ -64,38 +64,19 @@ export function App() {
       if (s1) slots = group(s1.split(','), 16);
       if (s) slots = JSON.parse(s);
 
-      const formatHbConfig = hb?.split(',').map((i) => parseInt(i, 10));
+      const formatHbConfig: number[] = hb?.split(',').map((i) => parseInt(i, 10));
 
-      if (slots) {
-        appDispatch({
-          type: AppAction.SLOT_ACTIONS,
-          payload: {
-            slottedActions: slots,
-            wxhb: parseInt(wxhb, 10),
-            xhb: parseInt(xhb, 10),
-            exhb: parseInt(exhb, 10),
-            hb: formatHbConfig,
-            encodedSlots: router.query.s1?.toString() || router.query.s?.toString()
-          }
-        });
-      } else if (xhb || wxhb || exhb) {
-        appDispatch({
-          type: AppAction.UPDATE_UI,
-          payload: {
-            wxhb: parseInt(wxhb, 10),
-            xhb: parseInt(xhb, 10),
-            exhb: parseInt(exhb, 10),
-            hb: formatHbConfig,
-          }
-        });
-      } else if (hb) {
-        appDispatch({
-          type: AppAction.UPDATE_UI,
-          payload: {
-            hb: formatHbConfig
-          }
-        });
-      }
+      appDispatch({
+        type: AppAction.SLOT_ACTIONS,
+        payload: {
+          slottedActions: slots,
+          wxhb: parseInt(wxhb, 10),
+          xhb: parseInt(xhb, 10),
+          exhb: parseInt(exhb, 10),
+          hb: formatHbConfig,
+          encodedSlots: router.query.s1?.toString() || router.query.s?.toString()
+        }
+      });
     }
 
     if (router) decodeSlots();

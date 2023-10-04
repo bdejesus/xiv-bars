@@ -87,7 +87,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
         : parseInt(IDString, 10);
       const slottedAction = getActionKey(actionType)?.find((slotAction: ActionType) => slotAction.ID === parsedID);
       // eslint-disable-next-line no-param-reassign
-      if (slottedAction && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
+      if (slottedAction && slotGroup && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
     }
   }
 
@@ -132,17 +132,15 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     case AppAction.SLOT_ACTIONS: {
       if (action.payload?.encodedSlots) {
         setActionsToSlot(action.payload.encodedSlots);
-
-        return {
-          ...state,
-          xhb: action.payload.xhb || state.xhb,
-          wxhb: action.payload.xhb || state.wxhb,
-          exhb: action.payload.xhb || state.exhb,
-          hb: action.payload.hb || state.hb,
-          encodedSlots: action.payload.encodedSlots
-        };
       }
-      return state;
+      return {
+        ...state,
+        xhb: action.payload?.xhb || state.xhb,
+        wxhb: action.payload?.xhb || state.wxhb,
+        exhb: action.payload?.xhb || state.exhb,
+        hb: action.payload?.hb || state.hb,
+        encodedSlots: action.payload?.encodedSlots || undefined
+      };
     }
 
     case AppAction.SLOT_ACTION: {
