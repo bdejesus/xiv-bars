@@ -29,6 +29,8 @@ $button-inset: 10px;
       background-color: #444;
 
       .addBtn {
+        transition-delay: 0.15s;
+        transition-duration: 0.15s;
         opacity: 1;
       }
     }
@@ -69,7 +71,10 @@ $button-inset: 10px;
     position: absolute;
     right: 0;
     top: 0;
-    transition: opacity 0.33s ease;
+    transition-property: opacity;
+    transition-duration: 0.1s;
+    transition-timing-function: ease;
+    transition-delay: 0;
     z-index: 2;
 
     .addLabel {

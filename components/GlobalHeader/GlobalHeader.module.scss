@@ -33,20 +33,14 @@
     transition-duration: 0.3s;
     transition-property: filter;
     transition-timing-function: ease;
+    border-radius: 2px;
+    overflow: hidden;
   }
 
   &:hover {
-    background-color: #000;
+    background-color: #ccc;
     color: #333;
     text-decoration: none;
-
-    .title {
-      color: #fff;
-    }
-
-    .logo {
-      filter: invert(100%);
-    }
   }
 }
 
