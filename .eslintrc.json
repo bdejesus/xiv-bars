@@ -106,7 +106,6 @@
           ["lib", "./lib"],
           ["data", "./data"],
           ["types", "./types"],
-          ["apiData", "./.apiData"],
           [".apiData", "./.apiData"]
         ]
       }
