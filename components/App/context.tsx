@@ -13,7 +13,7 @@ import { ActionType } from 'types/Action';
 import { AppState, AppData, AppDispatchActions } from 'types/App';
 import AppReducer from './reducers';
 
-const initialState = {
+const defaultState = {
   jobs: Jobs,
   layout: 0,
   readOnly: false,
@@ -40,7 +40,7 @@ const initialState = {
   hbConfig: undefined
 };
 
-const AppContext = createContext<AppState>(initialState);
+const AppContext = createContext<AppState>(defaultState);
 const AppDispatchContext = createContext<React.Dispatch<AppDispatchActions>>(() => undefined);
 
 export function useAppState() {
@@ -61,15 +61,15 @@ export function useAppDispatch() {
 
 interface Props {
   children: ReactNode,
-  selectedJob: ClassJob,
-  layout: number,
-  encodedSlots: string,
-  actions: ActionType[],
-  roleActions: ActionType[],
-  readOnly: boolean,
-  viewData: AppData,
-  viewAction: string,
-  hbConfig: string
+  selectedJob?: ClassJob,
+  layout?: number,
+  encodedSlots?: string,
+  actions?: ActionType[],
+  roleActions?: ActionType[],
+  readOnly?: boolean,
+  viewData?: AppData,
+  viewAction?: string,
+  hbConfig?: string
 }
 
 interface QueryProps {
@@ -91,8 +91,8 @@ export function AppContextProvider({
   const formatHbConfig = hbConfig?.split(',').map((i) => parseInt(i, 10));
   const router = useRouter();
   const query = router.query as QueryProps;
-  const updateState = {
-    ...initialState,
+  const initialState = {
+    ...defaultState,
     selectedJob,
     layout: layout || viewData?.layout || parseInt(query.l, 10) || 0,
     encodedSlots,
@@ -109,7 +109,7 @@ export function AppContextProvider({
     hb: formatHbConfig || (viewData?.hb && JSON.parse(viewData?.hb)) || new Array(10).fill(1, 0, 10),
   };
 
-  const [state, dispatch] = useReducer(AppReducer as React.ReducerWithoutAction<AppState>, updateState);
+  const [state, dispatch] = useReducer(AppReducer as React.ReducerWithoutAction<AppState>, initialState);
 
   return (
     <AppContext.Provider value={state}>

@@ -7,6 +7,8 @@ interface Props {
 }
 
 export function Lore({ selectedJob }: Props) {
+  if (!selectedJob.Description) return null;
+
   return (
     <div
       className={styles.lore}

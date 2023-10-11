@@ -27,7 +27,7 @@ export interface AppState {
   wxhb: number,
   exhb: number,
   jobs: ClassJob[],
-  readOnly: boolean,
+  readOnly?: boolean,
   selectedJob?: ClassJob,
   showTitles: boolean,
   showAllLvl: boolean,
