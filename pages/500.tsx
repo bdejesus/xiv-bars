@@ -1,4 +1,5 @@
 /* eslint-disable no-restricted-globals */
+import React from 'react';
 import Head from 'next/head';
 import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
