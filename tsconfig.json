@@ -30,6 +30,7 @@
       "data/*": ["./data/*"],
       "apiData/*": ["./.apiData/*"],
       "types/*": ["./types/*"],
+      "pages/*": ["./pages/*"],
 
       "@components/*": ["./components/*"],
       "@lib/*": ["./lib/*"],

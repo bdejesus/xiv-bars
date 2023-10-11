@@ -102,17 +102,18 @@
       },
       "alias": {
         "map": [
-          ["components", "./components"],
-          ["lib", "./lib"],
-          ["data", "./data"],
-          ["types", "./types"],
           ["apiData", "./.apiData"],
+          ["components", "./components"],
+          ["data", "./data"],
+          ["lib", "./lib"],
+          ["types", "./types"],
+          ["pages", "./pages"],
 
+          ["@apiData", "./.apiData"],
           ["@components", "./components"],
-          ["@lib", "./lib"],
           ["@data", "./data"],
-          ["@types", "./types"],
-          ["@apiData", "./.apiData"]
+          ["@lib", "./lib"],
+          ["@types", "./types"]
         ]
       }
     }
