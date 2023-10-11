@@ -1,13 +1,13 @@
-const { SitemapStream, streamToPromise } = require('sitemap');
-const Jobs = require('.apiData/Jobs.json');
-const BaseClassIDs = require('data/BaseClassIDs.json');
-const { domain } = require('lib/host');
+import { SitemapStream, streamToPromise } from 'sitemap';
+import Jobs from 'apiData/Jobs.json';
+import BaseClassIDs from 'data/BaseClassIDs.json';
+import { domain } from 'lib/host';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-async function buildSitemap(req, res) {
+async function buildSitemap(req: NextApiRequest, res: NextApiResponse) {
   try {
     const sitemap = new SitemapStream({
-      hostname: domain,
-      cacheTime: 600000
+      hostname: domain
     });
 
     sitemap.write({
@@ -41,8 +41,7 @@ async function buildSitemap(req, res) {
     // Display output to user
     res.end(sitemapOutput);
   } catch (e) {
-    res.status = 500;
-    res.end('Failed to generate the sitemap');
+    res.status(500).end('Failed to generate the sitemap');
   }
 }
 
