@@ -68,8 +68,6 @@ export default function Index({
       </AppContextProvider>
 
       <div className="section">
-        {(selectedJob) && <Hero primary={(!selectedJob)} />}
-        <HowTo />
         <EorzeaProfile />
       </div>
 
