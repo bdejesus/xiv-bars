@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { maxLayouts } from 'lib/user';
 
-type UserID = number;
+type UserID = number | undefined;
 type LayoutID = string;
 
 async function list(userId: UserID) {

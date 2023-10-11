@@ -1,3 +1,5 @@
+import { UserActions } from 'components/User/actions';
+
 export interface UserState {
   loggedIn: boolean,
   canPublish: boolean,

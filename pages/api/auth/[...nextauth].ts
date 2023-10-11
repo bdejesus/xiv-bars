@@ -1,8 +1,8 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Session } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
 import db from 'lib/db';
 
-async function signinUser(session) {
+async function signinUser(session: Session) {
   let user = await db.user.findUnique({
     where: { email: session.user.email },
     include: {
@@ -29,13 +29,13 @@ export const authOptions = {
     DiscordProvider({
       id: 'discord',
       name: 'Discord',
-      clientId: process.env.DISCORD_ID,
-      clientSecret: process.env.DISCORD_SECRET
+      clientId: process.env.DISCORD_ID || '',
+      clientSecret: process.env.DISCORD_SECRET || ''
     })
   ],
 
   callbacks: {
-    async session({ session }) {
+    async session({ session }: { session: Session }) {
       const user = await signinUser(session);
 
       // eslint-disable-next-line no-param-reassign
