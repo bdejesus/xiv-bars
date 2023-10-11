@@ -42,6 +42,7 @@ export function Sharing({ selectedJob }: Props) {
     };
 
     const queryString = jsonToQuery(query);
+
     return `${domain}/job/${selectedJob.Abbr}/new?${queryString}`;
   }
 
