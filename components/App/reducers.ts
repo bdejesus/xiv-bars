@@ -1,11 +1,11 @@
 import { layouts, hotbarKeyPos } from 'lib/xbars';
-import ACTION_CAT from 'data/ActionCategory.json';
-import BUDDY_ACTION from '.apiData/BuddyAction.json';
-import COMPANY_ACTION from '.apiData/CompanyAction.json';
-import GENERAL_ACTION from '.apiData/GeneralAction.json';
-import MAIN_COMMAND from '.apiData/MainCommand.json';
-import MACRO_ICON from '.apiData/MacroIcon.json';
-import PET_ACTION from '.apiData/PetAction.json';
+import ACTION_CAT from '@data/ActionCategory.json';
+import BUDDY_ACTION from 'apiData/BuddyAction.json';
+import COMPANY_ACTION from 'apiData/CompanyAction.json';
+import GENERAL_ACTION from 'apiData/GeneralAction.json';
+import MAIN_COMMAND from 'apiData/MainCommand.json';
+import MACRO_ICON from 'apiData/MacroIcon.json';
+import PET_ACTION from 'apiData/PetAction.json';
 import { AppState, AppDispatchActions } from 'types/App';
 import { group } from 'lib/utils/array';
 import { ActionType, SlotType } from 'types/Action';

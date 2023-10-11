@@ -8,7 +8,7 @@ import Intro from 'components/Intro';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
 
 import styles from './Index.module.scss';
 

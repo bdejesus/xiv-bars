@@ -14,7 +14,7 @@ import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
 import styles from '../../Index.module.scss';
 
 export default function Index({

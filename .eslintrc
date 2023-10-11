@@ -106,7 +106,13 @@
           ["lib", "./lib"],
           ["data", "./data"],
           ["types", "./types"],
-          [".apiData", "./.apiData"]
+          ["apiData", "./.apiData"],
+
+          ["@components", "./components"],
+          ["@lib", "./lib"],
+          ["@data", "./data"],
+          ["@types", "./types"],
+          ["@apiData", "./.apiData"]
         ]
       }
     }

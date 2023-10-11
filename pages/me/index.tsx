@@ -11,13 +11,15 @@ import LayoutCard from 'components/LayoutCard';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
 import { maxLayouts } from 'lib/user';
-
+import { UserActions } from 'components/User/actions';
+import { LayoutProps } from 'types/Layout';
 import styles from './me.module.scss';
 
 export default function Me() {
-  const [layouts, setLayouts] = useState();
+  const initialLayouts: LayoutProps[] = [];
+  const [layouts, setLayouts] = useState(initialLayouts);
   const userDispatch = useUserDispatch();
   const { status } = useSession({ required: true });
 
@@ -33,7 +35,7 @@ export default function Me() {
       .then((json) => setLayouts(json));
   }
 
-  function destroyLayout(layoutId) {
+  function destroyLayout(layoutId: number) {
     const options = {
       method: 'POST',
       body: JSON.stringify({ id: layoutId, method: 'destroy' }),
@@ -43,17 +45,17 @@ export default function Me() {
       .then((data) => data.json())
       .then((json) => {
         setLayouts(json);
-        userDispatch({ type: 'UPDATE_LAYOUTS', layouts: json.length });
+        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: json.length } });
       });
   }
 
-  function deleteLayout(e, layoutId) {
+  function deleteLayout(layoutId: number) {
     destroyLayout(layoutId);
   }
 
   useEffect(() => { getLayouts(); }, []);
 
-  if (!layouts || status === 'unauthenticated') return null;
+  if (!layouts || status !== 'authenticated') return null;
 
   return (
     <>
@@ -87,13 +89,15 @@ export default function Me() {
             <ul className={styles.layoutsList}>
               {layouts.map((layout) => {
                 const job = Jobs.find((j) => j.Abbr === layout.jobId);
+                if (!job) return null;
                 return (
                   <li key={layout.id}>
                     <LayoutCard
                       layout={layout}
                       job={job}
-                      onDelete={(e) => deleteLayout(e, layout.id)}
+                      onDelete={() => deleteLayout(layout.id)}
                       className={styles.card}
+                      hideName={false}
                     />
                   </li>
                 );

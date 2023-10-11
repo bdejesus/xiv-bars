@@ -7,7 +7,7 @@ import React, {
 import { useRouter } from 'next/router';
 import { hotbar, chotbar } from 'lib/xbars';
 
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
 import { ClassJob } from 'types/ClassJob';
 import { ActionType } from 'types/Action';
 import { AppState, AppData, AppDispatchActions } from 'types/App';

@@ -6,7 +6,7 @@ import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutCard from 'components/LayoutCard';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
 
 import styles from './index.module.scss';

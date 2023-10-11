@@ -3,19 +3,11 @@ import I18n from 'lib/I18n/locale/en-US';
 import Card from 'components/Card';
 import Job from 'components/JobSelect/Job';
 import { ClassJob } from 'types/ClassJob';
+import { LayoutProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
-  layout: {
-    jobId: string,
-    id: string,
-    title: string,
-    description: string,
-    updatedAt: string,
-    user: {
-      name: string
-    }
-  },
+  layout: LayoutProps,
   job: ClassJob,
   onDelete: React.MouseEventHandler,
   className?: string,

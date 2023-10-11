@@ -13,7 +13,7 @@ import Lore from 'components/Lore';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
 
 import styles from './params.module.scss';
 
