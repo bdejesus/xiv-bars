@@ -1,10 +1,10 @@
 import React from 'react';
-import { ClassJob } from 'types/ClassJob';
+import { ClassJobProps } from 'types/ClassJob';
 import RoleNames from '../../../data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
 interface Props {
-  job: ClassJob,
+  job: ClassJobProps,
   className: string | undefined
 }
 

@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 import { hotbar, chotbar } from 'lib/xbars';
 
 import Jobs from 'apiData/Jobs.json';
-import { ClassJob } from 'types/ClassJob';
-import { ActionType } from 'types/Action';
-import { AppState, AppData, AppDispatchActions } from 'types/App';
+import { ClassJobProps } from 'types/ClassJob';
+import { ActionProps } from 'types/Action';
+import { AppState, ViewProps, AppDispatchActions } from 'types/App';
 import AppReducer from './reducers';
 
 const defaultState = {
@@ -61,13 +61,13 @@ export function useAppDispatch() {
 
 interface Props {
   children: ReactNode,
-  selectedJob?: ClassJob,
+  selectedJob?: ClassJobProps,
   layout?: number,
   encodedSlots?: string,
-  actions?: ActionType[],
-  roleActions?: ActionType[],
+  actions?: ActionProps[],
+  roleActions?: ActionProps[],
   readOnly?: boolean,
-  viewData?: AppData,
+  viewData?: ViewProps,
   viewAction?: string,
   hbConfig?: string
 }

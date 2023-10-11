@@ -1,8 +1,8 @@
-export interface SelectedActionType {
+export interface SelectedActionProps {
   selectedAction?: object
 }
 
-export interface SelectedActionDispatchType {
+export interface SelectedActionDispatchProps {
   type?: string,
   payload?: string | number | object,
   selectedAction?: object,

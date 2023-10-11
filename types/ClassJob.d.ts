@@ -1,4 +1,4 @@
-export interface ClassJob {
+export interface ClassJobProps {
   Abbr: string,
   ClassID?: number | null
   Description?: string,

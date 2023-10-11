@@ -5,14 +5,14 @@ import ExportToMacros from 'components/ExportToMacro';
 import SaveForm from 'components/SaveForm';
 import { jsonToQuery } from 'lib/utils/url';
 import I18n from 'lib/I18n/locale/en-US';
-import { ClassJob } from 'types/ClassJob';
+import { ClassJobProps } from 'types/ClassJob';
 import ToggleTitles from './ToggleTitles';
 import ToggleMaxLvl from './ToggleMaxLvl';
 import ToggleSaveForm from './ToggleSaveForm';
 import styles from './ControlBar.module.scss';
 
 interface Props {
-  selectedJob: ClassJob
+  selectedJob: ClassJobProps
 }
 
 export function ControlBar({ selectedJob }: Props) {

@@ -1,11 +1,11 @@
 import Action from 'components/Action';
 import { useAppState } from 'components/App/context';
-import { ActionType } from 'types/Action';
+import { ActionProps } from 'types/Action';
 import styles from './ActionGroup.module.scss';
 
 interface Props {
   title: string,
-  actions: ActionType[],
+  actions: ActionProps[],
   limit?: number,
   remote?: boolean
 }

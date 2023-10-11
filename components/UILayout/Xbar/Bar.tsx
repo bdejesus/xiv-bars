@@ -1,9 +1,9 @@
-import { SlotType } from 'types/Action';
+import { SlotProps } from 'types/Action';
 import Group from './Group';
 import styles from './Xbar.module.scss';
 
 interface Props {
-  bar: SlotType[]
+  bar: SlotProps[]
 }
 
 export default function Bar({ bar }: Props) {

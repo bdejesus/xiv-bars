@@ -2,13 +2,13 @@ import { useState } from 'react';
 import I18n from 'lib/I18n/locale/en-US';
 import Card from 'components/Card';
 import Job from 'components/JobSelect/Job';
-import { ClassJob } from 'types/ClassJob';
+import { ClassJobProps } from 'types/ClassJob';
 import { LayoutProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
   layout: LayoutProps,
-  job: ClassJob,
+  job: ClassJobProps,
   onDelete: React.MouseEventHandler,
   className?: string,
   hideName: boolean

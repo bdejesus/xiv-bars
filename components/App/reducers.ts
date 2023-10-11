@@ -8,7 +8,7 @@ import MACRO_ICON from 'apiData/MacroIcon.json';
 import PET_ACTION from 'apiData/PetAction.json';
 import { AppState, AppDispatchActions } from 'types/App';
 import { group } from 'lib/utils/array';
-import { ActionType, SlotType } from 'types/Action';
+import { ActionProps, SlotProps } from 'types/Action';
 import { AppAction } from './actions';
 
 export default function AppReducer(state: AppState, action: AppDispatchActions) {
@@ -18,7 +18,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
   const slots = state[layoutKey as keyof typeof state];
 
   // TODO: Extract these functions to external js?
-  function assignActionIds(slotActions: SlotType[]) {
+  function assignActionIds(slotActions: SlotProps[]) {
     return Object.values(slotActions).map((slot) => {
       if (slot.action?.ID) {
         return (typeof slot.action.Prefix !== 'undefined')
@@ -32,7 +32,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
   function encodeSlots() {
     if (slots) {
       const slotIDs = Object.values(slots);
-      const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotType[]));
+      const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
       const queryString = slotsQuery
         .reduce((flat, next) => flat.concat(next), [])
         .join(',');
@@ -73,7 +73,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     return state.actions;
   }
 
-  function setActionsByGroup(slotGroup: { action: ActionType }[], actionID: string, slotIndex: number) {
+  function setActionsByGroup(slotGroup: { action: ActionProps }[], actionID: string, slotIndex: number) {
     const actionPrefixes = Object.values(ACTION_CAT).map((type) => type.prefix);
     const prefixes = [...actionPrefixes, 'r'].join('|');
     const actionRegex = new RegExp(prefixes);
@@ -84,7 +84,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     const parsedID = actionType
       ? parseInt(IDString.replace(actionType, ''), 10)
       : parseInt(IDString, 10);
-    const slottedAction = getActionKey(actionType)?.find((slotAction: ActionType) => slotAction.ID === parsedID);
+    const slottedAction = getActionKey(actionType)?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
     // eslint-disable-next-line no-param-reassign
     if (slottedAction && slotGroup && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
   }

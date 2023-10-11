@@ -1,9 +1,9 @@
-import { ClassJob } from 'types/ClassJob';
+import { ClassJobProps } from 'types/ClassJob';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 
 interface Props {
-  jobs: ClassJob[]
+  jobs: ClassJobProps[]
 }
 
 export function JobMenu({ jobs }: Props) {

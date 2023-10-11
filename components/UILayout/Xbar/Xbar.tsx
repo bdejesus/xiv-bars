@@ -2,7 +2,7 @@
 /* eslint-disable react/prefer-stateless-function */
 import { useAppState } from 'components/App/context';
 import { hasActions } from 'lib/xbars';
-import { SlotType } from 'types/Action';
+import { SlotProps } from 'types/Action';
 import Bar from './Bar';
 import Settings from './Settings';
 import styles from './Xbar.module.scss';
@@ -29,7 +29,7 @@ export function Xbar() {
             data-wxhb={xbar === hbKeys[wxhb - 1]}
             data-exhb={xbar === hbKeys[exhb - 1]}
           >
-            <Bar bar={chotbar[xbar] as SlotType[]} />
+            <Bar bar={chotbar[xbar] as SlotProps[]} />
           </div>
         ))}
       </div>

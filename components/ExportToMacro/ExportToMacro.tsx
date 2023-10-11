@@ -5,7 +5,7 @@ import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import I18n from 'lib/I18n/locale/en-US';
 import Modal from 'components/Modal';
-import { SlotType } from 'types/Action';
+import { SlotProps } from 'types/Action';
 import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {
@@ -22,7 +22,7 @@ export function ExportToMacros() {
     'CompanyAction'
   ];
 
-  function generateHotbarMacros(hotbarRow: SlotType[], hotbarNum: number) {
+  function generateHotbarMacros(hotbarRow: SlotProps[], hotbarNum: number) {
     return hotbarRow
       .map(({ action }, index) => {
         if (action.Name && !excludeTypes.includes(action.UrlType)) {
@@ -60,7 +60,7 @@ export function ExportToMacros() {
     if (currLayout) {
       const hotbarMacros = Object
         .values(appState[currLayout])
-        .map((row, index) => generateHotbarMacros(row as SlotType[], index + 1))
+        .map((row, index) => generateHotbarMacros(row as SlotProps[], index + 1))
         .join('\n')
         .trim()
         .split('\n');

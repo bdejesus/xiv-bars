@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import Action from 'components/Action';
 import { useSelectedActionState, useSelectedActionDispatch } from 'components/SelectedAction';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { ActionType } from 'types/Action';
+import { ActionProps } from 'types/Action';
 
 import styles from './Slot.module.scss';
 
 interface Props {
   id: string,
   className?: string,
-  action: ActionType
+  action: ActionProps
 }
 
 export function Slot({ id, className, action }: Props) {

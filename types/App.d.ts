@@ -1,6 +1,6 @@
 import { AppAction } from 'components/App/actions';
 
-export interface AppData {
+export interface ViewProps {
   layout: number,
   params?: object,
   hb?: string,
@@ -33,7 +33,7 @@ export interface AppState {
   showAllLvl: boolean,
   showModal: boolean,
   showPublish: boolean,
-  viewData?: AppData,
+  viewData?: ViewProps,
   viewAction?: string,
   roleActions?: ActionType[],
   actions?: ActionType[],
@@ -56,7 +56,7 @@ interface DispatchPayload {
   action?: ActionType,
   hbId?: string,
   hbConfig?: string,
-  viewData?: AppData,
+  viewData?: ViewProps,
 }
 
 export interface UpdateUI {

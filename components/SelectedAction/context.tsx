@@ -1,13 +1,13 @@
 import {
   ReactNode, createContext, useContext, useReducer
 } from 'react';
-import { SelectedActionType, SelectedActionDispatchType } from 'types/SelectedAction';
+import { SelectedActionProps, SelectedActionDispatchProps } from 'types/SelectedAction';
 
 const InitialSelectedActionState = { selectedAction: undefined };
-const SelectedActionContext = createContext<SelectedActionType>(InitialSelectedActionState);
-const SelectedActionDispatchContext = createContext<React.Dispatch<SelectedActionDispatchType>>(() => undefined);
+const SelectedActionContext = createContext<SelectedActionProps>(InitialSelectedActionState);
+const SelectedActionDispatchContext = createContext<React.Dispatch<SelectedActionDispatchProps>>(() => undefined);
 
-function selectedActionReducer(state: SelectedActionType, payload: SelectedActionDispatchType) {
+function selectedActionReducer(state: SelectedActionProps, payload: SelectedActionDispatchProps) {
   switch (payload.type) {
     case 'selectAction': {
       return { selectedAction: payload.selectedAction };
@@ -45,7 +45,7 @@ export function SelectedActionContextProvider({ children }: { children: ReactNod
 
   return (
     <SelectedActionContext.Provider value={state}>
-      <SelectedActionDispatchContext.Provider value={dispatch as React.ReducerWithoutAction<SelectedActionDispatchType>}>
+      <SelectedActionDispatchContext.Provider value={dispatch as React.ReducerWithoutAction<SelectedActionDispatchProps>}>
         {children}
       </SelectedActionDispatchContext.Provider>
     </SelectedActionContext.Provider>

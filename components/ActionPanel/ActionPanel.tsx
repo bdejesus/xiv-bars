@@ -6,15 +6,15 @@ import BUDDY_ACTIONS from 'apiData/BuddyAction.json';
 import COMPANY_ACTIONS from 'apiData/CompanyAction.json';
 import MAIN_COMMANDS from 'apiData/MainCommand.json';
 import GENERAL_ACTIONS from 'apiData/GeneralAction.json';
-import { ActionType } from 'types/Action';
+import { ActionProps } from 'types/Action';
 import ActionGroup from './ActionGroup';
 import Tabs from './Tabs';
 
 import styles from './ActionPanel.module.scss';
 
 interface Props {
-  actions: ActionType[],
-  roleActions: ActionType[]
+  actions: ActionProps[],
+  roleActions: ActionProps[]
 }
 
 export function ActionPanel({ actions, roleActions }: Props) {

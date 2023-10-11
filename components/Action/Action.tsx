@@ -3,7 +3,7 @@ import { createRef, useState } from 'react';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
-import { ActionType } from 'types/Action';
+import { ActionProps } from 'types/Action';
 import { getContent } from 'lib/api';
 
 import styles from './Action.module.scss';
@@ -11,7 +11,7 @@ import styles from './Action.module.scss';
 let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
-  action: ActionType,
+  action: ActionProps,
   remote?: boolean
 }
 
@@ -25,7 +25,7 @@ export function Action({ action, remote = true }: Props) {
 
   async function fetchActionContent(mousePosition: { x: number, y: number}) {
     try {
-      const content:ActionType = await getContent(action.UrlType, action.ID);
+      const content:ActionProps = await getContent(action.UrlType, action.ID);
       tooltipDispatch({
         type: TooltipAction.UPDATE,
         payload: {
