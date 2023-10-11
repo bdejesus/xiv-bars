@@ -56,7 +56,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     return null;
   }
 
-  function getActionKey(actionCategory: string | undefined) {
+  function getActionKey(actionCategory: string | null) {
     if (actionCategory) {
       switch (actionCategory) {
         case ACTION_CAT.BuddyAction.prefix: return BUDDY_ACTION;
@@ -79,16 +79,14 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     const actionRegex = new RegExp(prefixes);
     const IDString = actionID.toString();
     const typeMatch = IDString.match(actionRegex);
-    const actionType = typeMatch ? typeMatch[0] : undefined;
+    const actionType = typeMatch ? typeMatch[0] : null;
 
-    if (actionType) {
-      const parsedID = actionType
-        ? parseInt(IDString.replace(actionType, ''), 10)
-        : parseInt(IDString, 10);
-      const slottedAction = getActionKey(actionType)?.find((slotAction: ActionType) => slotAction.ID === parsedID);
-      // eslint-disable-next-line no-param-reassign
-      if (slottedAction && slotGroup && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
-    }
+    const parsedID = actionType
+      ? parseInt(IDString.replace(actionType, ''), 10)
+      : parseInt(IDString, 10);
+    const slottedAction = getActionKey(actionType)?.find((slotAction: ActionType) => slotAction.ID === parsedID);
+    // eslint-disable-next-line no-param-reassign
+    if (slottedAction && slotGroup && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
   }
 
   function setActionsToSlot(encodedSlots: string) {
