@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import analytics from 'lib/analytics';
+import { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
 import I18n from 'lib/I18n/locale/en-US';
@@ -9,9 +9,10 @@ import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
 import { SessionProvider } from 'next-auth/react';
 import { UserProvider } from 'components/User/context';
+
 import 'styles/global.scss';
 
-export function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   const { selectedJob, session } = pageProps;
   const router = useRouter();
 
@@ -65,10 +66,3 @@ export function App({ Component, pageProps }) {
     </>
   );
 }
-
-export default App;
-
-App.propTypes = {
-  Component: PropTypes.func.isRequired,
-  pageProps: PropTypes.shape().isRequired
-};
