@@ -1,6 +1,7 @@
 import { AppAction } from 'components/App/actions';
 
 export interface ViewProps {
+  encodedSlots?: string,
   layout: number,
   params?: object,
   hb?: string,
