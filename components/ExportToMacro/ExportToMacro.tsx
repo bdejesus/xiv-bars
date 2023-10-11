@@ -15,7 +15,7 @@ export function ExportToMacros() {
   const textarea = createRef<HTMLTextAreaElement>();
   const appState = useAppState();
   const { layout } = appState;
-  const currLayout = layouts[layout];
+  const currLayout = layout ? layouts[layout] as keyof typeof appState : undefined;
 
   const excludeTypes = [
     'MacroIcon',
@@ -57,15 +57,17 @@ export function ExportToMacros() {
   }
 
   function buildMacros() {
-    const hotbarMacros = Object
-      .values(appState[currLayout])
-      .map((row, index) => generateHotbarMacros(row as SlotType[], index + 1))
-      .join('\n')
-      .trim()
-      .split('\n');
+    if (currLayout) {
+      const hotbarMacros = Object
+        .values(appState[currLayout])
+        .map((row, index) => generateHotbarMacros(row as SlotType[], index + 1))
+        .join('\n')
+        .trim()
+        .split('\n');
 
-    const macroGroups = groupMacros(hotbarMacros).join('\n\n');
-    setMacroText(macroGroups);
+      const macroGroups = groupMacros(hotbarMacros).join('\n\n');
+      setMacroText(macroGroups);
+    }
   }
 
   function selectTextarea() {

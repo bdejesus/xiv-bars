@@ -13,8 +13,10 @@ export default function LayoutControl({ id, defaultValue }: Props) {
     const { value } = e.currentTarget;
     appDispatch({
       type: 'updateHotbarLayout',
-      hbId: id,
-      hbConfig: value
+      payload: {
+        hbId: id,
+        hbConfig: value
+      }
     });
   }
 

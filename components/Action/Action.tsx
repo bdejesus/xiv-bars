@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import { createRef, useState, useEffect } from 'react';
+import { createRef, useState } from 'react';
 import { useAppState } from 'components/App/context';
-import { useTooltipDispatch, updateTooltip } from 'components/Tooltip';
-import { useSelectedActionDispatch } from 'components/SelectedAction';
+import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
+import { useSelectedActionDispatch } from 'components/SelectedAction/context';
 import { ActionType } from 'types/Action';
+import { getContent } from 'lib/api';
 
 import styles from './Action.module.scss';
 
@@ -11,57 +12,55 @@ let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
   action: ActionType,
-  tooltip?: object,
   remote?: boolean
 }
 
-export function Action({ action, tooltip, remote = true }: Props) {
+export function Action({ action, remote = true }: Props) {
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const [position, setPosition] = useState({});
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
 
-  useEffect(() => {
-    if (actionRef.current) {
-      const rect = actionRef.current.getBoundingClientRect();
-
-      setPosition({
-        left: rect.left,
-        right: rect.left + rect.width,
-        top: rect.top,
-        bottom: rect.top + rect.height
+  async function fetchActionContent(mousePosition: { x: number, y: number}) {
+    try {
+      const content:ActionType = await getContent(action.UrlType, action.ID);
+      tooltipDispatch({
+        type: TooltipAction.UPDATE,
+        payload: {
+          content: content.Description ? content : action,
+          position: mousePosition
+        }
       });
+    } catch (error) {
+      tooltipDispatch({ type: TooltipAction.FAIL, payload: { error: 'Something went wrong' } });
     }
-
-    return () => clearTimeout(tooltipTimeout);
-  }, [hovering]);
+  }
 
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);
     setHovering(false);
-    tooltipDispatch({ type: 'hide' });
+    tooltipDispatch({ type: TooltipAction.HIDE });
   }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const mouse = { x: e.clientX, y: e.clientY };
-    tooltipDispatch({ type: 'updatePosition', mouse });
     clearTimeout(tooltipTimeout);
 
     tooltipTimeout = setTimeout(() => {
       if (!hovering) {
-        const data = {
-          action, position, staticContent: tooltip, remote
-        };
-
         setHovering(true);
-        if (action.ID) {
-          updateTooltip(tooltipDispatch, data);
+        const mousePosition = { x: e.clientX, y: e.clientY };
+
+        if (action.ID && remote) fetchActionContent(mousePosition);
+        else {
+          tooltipDispatch({
+            type: TooltipAction.UPDATE,
+            payload: { content: action, position: mousePosition }
+          });
         }
       }
-    }, 150);
+    }, 160);
   }
 
   function selectAction() {

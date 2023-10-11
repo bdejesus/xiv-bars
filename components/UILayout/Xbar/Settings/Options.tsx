@@ -15,8 +15,9 @@ function Options({
 }: Props) {
   const appState = useAppState();
   const { chotbar } = appState;
-  const inactive = ['xhb', 'wxhb', 'exhb'].reduce((collection: number[], v: string) => {
-    if (v !== id) return [...collection, appState[v]];
+  const inactive = ['xhb', 'wxhb', 'exhb'].reduce((collection: number[], key: string) => {
+    const inactiveId = key as keyof typeof appState;
+    if (inactiveId !== id) return [...collection, appState[inactiveId]];
     return collection;
   }, []);
 
@@ -32,7 +33,7 @@ function Options({
       >
         { !required && <option value={0}>Off</option> }
 
-        { Object.keys(chotbar).map((key, index) => {
+        { chotbar && Object.keys(chotbar).map((key, index) => {
           const optValue: number = index + 1;
           return (
             <option

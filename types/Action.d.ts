@@ -5,11 +5,13 @@ export interface ActionType {
   Name: string,
   Abbr?: string,
   Discipline?: string,
+  Description?: string,
   Role?: string,
   UrlType: string,
   Command?: string,
   customIcon?: string,
-  upgradable?: boolean
+  upgradable?: boolean,
+  Prefix?: string
 }
 
 export interface SlotType {

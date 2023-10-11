@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { layouts } from 'lib/xbars';
 import { useAppState, useAppDispatch } from 'components/App/context';
@@ -6,22 +7,21 @@ import styles from './LayoutToggle.module.scss';
 export function LayoutToggle() {
   const router = useRouter();
   const { layout, readOnly, viewAction } = useAppState();
+  const [layoutKey, setLayoutKey] = useState(layouts[layout]);
   const appDispatch = useAppDispatch();
 
   function toggleHotbarLayout() {
-    const layoutValue = (layouts[layout] === 'chotbar') ? 1 : 0;
+    const key = layoutKey === 'chotbar' ? layouts[1] : layouts[0];
+    const layoutId = layouts.indexOf(key);
+    setLayoutKey(key);
 
     if (viewAction === 'new') {
-      router.push(
-        {
-          pathname: router.pathname,
-          query: { ...router.query, l: layoutValue }
-        },
-        undefined,
-        { shallow: true }
-      );
+      const { query, pathname } = router;
+      const queryParams = { pathname, query: { ...query, l: layoutId } };
+      router.push(queryParams, undefined, { shallow: true });
     }
-    appDispatch({ type: 'updateLayout', layout: layoutValue });
+
+    appDispatch({ type: 'updateLayout', payload: { layout: layoutId } });
   }
 
   return (
@@ -36,15 +36,16 @@ export function LayoutToggle() {
         >
           <span
             className={styles.label}
-            data-selected={layouts[layout] === 'chotbar'}
-            data-disabled={readOnly && layouts[layout] !== 'chotbar'}
+            data-selected={layoutKey === 'chotbar'}
+            data-disabled={readOnly && layoutKey !== 'chotbar'}
           >
             <abbr title="Cross Hotbar">XHB</abbr>
           </span>
+
           <span
             className={styles.label}
-            data-selected={layouts[layout] === 'hotbar'}
-            data-disabled={readOnly && layouts[layout] !== 'hotbar'}
+            data-selected={layoutKey === 'hotbar'}
+            data-disabled={readOnly && layoutKey !== 'hotbar'}
           >
             Hotbars
           </span>

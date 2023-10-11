@@ -104,7 +104,9 @@
         "map": [
           ["components", "./components"],
           ["lib", "./lib"],
-          ["data", "./data"]
+          ["data", "./data"],
+          ["types", "./types"],
+          [".apiData", "./.apiData"]
         ]
       }
     }

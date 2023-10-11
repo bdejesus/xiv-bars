@@ -35,8 +35,10 @@ export function Slot({ id, className, action }: Props) {
     if (dragging) {
       appDispatch({
         type: 'setActionToSlot',
-        slotID: id,
-        action: {}
+        payload: {
+          slotID: id,
+          action: {}
+        }
       });
     }
     resetSlot(event);
@@ -58,8 +60,10 @@ export function Slot({ id, className, action }: Props) {
     if (selectedAction) {
       appDispatch({
         type: 'setActionToSlot',
-        slotID: id,
-        action: selectedAction
+        payload: {
+          slotID: id,
+          action: selectedAction
+        }
       });
     }
     selectedActionDispatch({ type: 'deselectAction' });

@@ -28,25 +28,19 @@
   transition-timing-function: ease;
 
   .logo {
+    border-radius: 2px;
     display: block;
     margin-left: $spacing-xs;
+    overflow: hidden;
     transition-duration: 0.3s;
     transition-property: filter;
     transition-timing-function: ease;
   }
 
   &:hover {
-    background-color: #000;
+    background-color: #ccc;
     color: #333;
     text-decoration: none;
-
-    .title {
-      color: #fff;
-    }
-
-    .logo {
-      filter: invert(100%);
-    }
   }
 }
 
@@ -126,9 +120,9 @@
     }
 
     .title {
-      color: #999;
+      color: #666;
       display: block;
-      font-weight: 300;
+      font-weight: 400;
       letter-spacing: 0.033em;
       overflow: hidden;
       text-overflow: ellipsis;

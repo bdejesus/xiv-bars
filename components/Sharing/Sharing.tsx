@@ -31,7 +31,7 @@ export function Sharing({ selectedJob }: Props) {
   const urlInput = createRef<HTMLInputElement>();
 
   function buildShareUrl() {
-    const slots = (/\d/).test(encodedSlots) ? encodedSlots : '';
+    const slots = encodedSlots && (/\d/).test(encodedSlots) ? encodedSlots : '';
     const query = {
       s1: slots,
       xhb,

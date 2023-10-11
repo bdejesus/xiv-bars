@@ -3,7 +3,7 @@ const { writeFile, rm, mkdir } = require('fs');
 const appConfig = require('../app.config.json');
 const JobsMeta = require('../data/JobsMeta.json');
 const BaseClassIDs = require('../data/BaseClassIDs.json');
-const ActionType = require('../data/ActionType.json');
+const ActionCategory = require('../data/ActionCategory.json');
 const array = require('../lib/utils/array');
 
 const { apiData } = appConfig;
@@ -24,7 +24,7 @@ async function getJobs() {
 }
 
 async function getActions() {
-  const actionTypes = Object.keys(ActionType);
+  const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionSet) => {
     const actions = await fetch(`${apiURL}/${actionSet}`)
@@ -37,8 +37,8 @@ async function getActions() {
           ...action,
           Name: action.Name ? action.Name : `${actionSet} ${action.ID}`,
           UrlType: actionSet,
-          Prefix: ActionType[actionSet].prefix,
-          Command: ActionType[actionSet].command
+          Prefix: ActionCategory[actionSet].prefix,
+          Command: ActionCategory[actionSet].command
         }));
 
         // await clean();

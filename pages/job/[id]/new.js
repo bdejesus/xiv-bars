@@ -5,8 +5,6 @@ import {
   listRoleActions
 } from 'lib/api';
 import shortDesc from 'lib/shortDesc';
-import { getUrlParams } from 'lib/utils/url';
-import { useRouter } from 'next/router';
 import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
@@ -24,7 +22,6 @@ export default function Index({
   actions,
   roleActions,
 }) {
-  const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
   const pageDescription = shortDesc(selectedJob, actions);
 
@@ -40,8 +37,6 @@ export default function Index({
         roleActions={roleActions}
         selectedJob={selectedJob}
         viewAction="new"
-        hbConfig={getUrlParams(router.asPath)?.hb}
-        layout={parseInt(getUrlParams(router.asPath)?.l, 10)}
       >
         <GlobalHeader />
 
