@@ -1,3 +1,5 @@
+import { AppAction } from 'components/App/actions';
+
 export interface AppData {
   layout: number,
   params?: object,

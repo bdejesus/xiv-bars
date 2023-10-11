@@ -1,14 +1,20 @@
 /* eslint-disable no-underscore-dangle */
-import PropTypes from 'prop-types';
-import {
-  createContext, useContext, useReducer, useEffect
+import React, {
+  createContext, useContext, useReducer, useEffect, ReactNode
 } from 'react';
 import { useSession } from 'next-auth/react';
 import { maxLayouts } from 'lib/user';
+import { UserState, UserDispatchActions } from 'types/User';
+import { UserActions } from './actions';
 import UserReducer from './reducers';
 
-const UserContext = createContext();
-const UserDispatchContext = createContext();
+const initialState = {
+  loggedIn: false,
+  canPublish: false
+};
+
+const UserContext = createContext<UserState>(initialState);
+const UserDispatchContext = createContext<React.Dispatch<UserDispatchActions>>(() => undefined);
 
 export function useUserState() {
   const context = useContext(UserContext);
@@ -26,20 +32,21 @@ export function useUserDispatch() {
   return context;
 }
 
-export function UserProvider({ children }) {
+interface Props {
+  children: ReactNode
+}
+
+export function UserProvider({ children }: Props) {
   const { data: session, status } = useSession();
-  const defaultState = {
-    canPublish: false,
-    loggedIn: false
-  };
-  const [state, dispatch] = useReducer(UserReducer, defaultState);
+  const [state, dispatch] = useReducer(UserReducer as React.Reducer<UserState, UserDispatchActions>, initialState);
 
   useEffect(() => {
+    const layoutsCount = session?.user?._count?.layouts;
+    const canPublish = layoutsCount ? layoutsCount < maxLayouts : false;
     dispatch({
-      type: 'UPDATE_USER',
-      user: {
-        loggedIn: status === 'authenticated',
-        canPublish: session?.user?._count?.layouts < maxLayouts
+      type: UserActions.UPDATE_USER,
+      payload: {
+        user: { loggedIn: status === 'authenticated', canPublish }
       }
     });
   }, [status]);
@@ -52,12 +59,5 @@ export function UserProvider({ children }) {
     </UserContext.Provider>
   );
 }
-
-UserProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.shape()),
-    PropTypes.shape()
-  ]).isRequired,
-};
 
 export default UserProvider;
