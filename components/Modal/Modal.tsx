@@ -1,5 +1,4 @@
 import { ReactNode, useEffect } from 'react';
-import childrenProps from 'lib/propTypes/children';
 import CloseButton from 'components/CloseButton';
 import { useAppDispatch } from 'components/App/context';
 import styles from './Modal.module.scss';
@@ -32,7 +31,5 @@ export function Modal({ children, hidden, toClose }: Props) {
     </div>
   );
 }
-
-Modal.propTypes = childrenProps;
 
 export default Modal;
