@@ -1,5 +1,5 @@
 import { layouts, hotbarKeyPos } from 'lib/xbars';
-import ACTION_CAT from '@data/ActionCategory.json';
+import ACTION_CAT from 'data/ActionCategory.json';
 import BUDDY_ACTION from 'apiData/BuddyAction.json';
 import COMPANY_ACTION from 'apiData/CompanyAction.json';
 import GENERAL_ACTION from 'apiData/GeneralAction.json';
