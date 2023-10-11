@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import {
   listJobActions,
@@ -14,14 +15,22 @@ import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
+import type { ClassJobProps } from 'types/ClassJob';
+import type { ActionProps } from 'types/Action';
 import styles from '../../Index.module.scss';
+
+interface Props {
+  selectedJob: ClassJobProps,
+  actions: ActionProps[],
+  roleActions: ActionProps[]
+}
 
 export default function Index({
   selectedJob,
   actions,
   roleActions,
-}) {
+}: Props) {
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
   const pageDescription = shortDesc(selectedJob, actions);
 
@@ -65,8 +74,8 @@ export default function Index({
   );
 }
 
-export async function getServerSideProps(context) {
-  const { id } = context.params;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = context.params?.id;
 
   // Get Selected Job
   const selectedJob = id
@@ -98,10 +107,4 @@ export async function getServerSideProps(context) {
       roleActions
     }
   };
-}
-
-Index.propTypes = {
-  selectedJob: PropTypes.shape().isRequired,
-  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 };

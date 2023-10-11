@@ -2,6 +2,7 @@ import { createRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
+import { UserActions } from 'components/User/actions';
 import I18n from 'lib/I18n/locale/en-US';
 
 import styles from './SaveForm.module.scss';
@@ -56,7 +57,7 @@ function SaveForm() {
           type: 'saveLayout',
           payload: { viewData: { ...currentLayout, ...body } }
         });
-        userDispatch({ type: 'UPDATE_LAYOUTS', layouts: layouts.length });
+        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
         router.push(
           `/job/${currentLayout.jobId}/${currentLayout.id}`,
           undefined,

@@ -1,4 +1,4 @@
-export interface ActionType {
+export interface ActionProps {
   ID: number | string,
   PreIcon?: string,
   Icon: string,
@@ -14,8 +14,8 @@ export interface ActionType {
   Prefix?: string
 }
 
-export interface SlotType {
-  action: ActionType,
+export interface SlotProps {
+  action: ActionProps,
   id: string,
   key: number,
   name: string

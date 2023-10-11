@@ -10,7 +10,10 @@ declare module 'next-auth' {
       id: number,
       name: string,
       email: string,
-      image: string
+      image: string,
+      _count: {
+        layouts?: number
+      }
     }
   }
 }

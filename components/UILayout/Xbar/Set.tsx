@@ -1,9 +1,9 @@
 import Slot from 'components/Slot';
-import { SlotType } from 'types/Action';
+import { SlotProps } from 'types/Action';
 import styles from './Xbar.module.scss';
 
 interface Props {
-  slots: SlotType[]
+  slots: SlotProps[]
 }
 
 function Set({ slots }: Props) {

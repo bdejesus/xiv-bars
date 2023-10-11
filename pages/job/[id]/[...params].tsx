@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types';
+import React from 'react';
+import { GetServerSideProps } from 'next';
 import { domain } from 'lib/host';
 import {
   listJobActions,
@@ -13,9 +14,21 @@ import Lore from 'components/Lore';
 import Footer from 'components/Footer';
 import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
+
+import type { ViewProps } from 'types/App';
+import type { ClassJobProps } from 'types/ClassJob';
+import type { ActionProps } from 'types/Action';
 
 import styles from './params.module.scss';
+
+interface Props {
+  selectedJob: ClassJobProps,
+  actions: ActionProps[],
+  roleActions: ActionProps[],
+  viewData: ViewProps,
+  viewAction: string
+}
 
 export default function Index({
   selectedJob,
@@ -23,7 +36,7 @@ export default function Index({
   roleActions,
   viewData,
   viewAction
-}) {
+}: Props) {
   const { layout, encodedSlots, title } = viewData;
   const readOnly = (viewData && viewAction !== 'edit');
   const pageTitle = `${title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
@@ -48,7 +61,7 @@ export default function Index({
         viewData={viewData}
         viewAction="show"
       >
-        <GlobalHeader selectedJob={selectedJob} title={title} />
+        <GlobalHeader />
 
         <App />
 
@@ -74,13 +87,16 @@ export default function Index({
   );
 }
 
-export async function getServerSideProps(context) {
+type ContextParam = string | string[] | undefined;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
-    const { id, params } = context.params;
-    const [layoutId, viewAction] = params;
+    const id: ContextParam = context.params?.id;
+    const params: ContextParam = context.params?.params;
+    const [layoutId, viewAction] = params as ContextParam[];
 
     // Get Selected Job
-    const selectedJob = id ? Jobs.find((job) => job.Abbr === id) : null;
+    const selectedJob = id ? Jobs.find((job: ClassJobProps) => job.Abbr === id) : null;
 
     const fetchOptions = {
       method: 'POST',
@@ -119,18 +135,4 @@ export async function getServerSideProps(context) {
     console.error(error);
     return { notFound: true };
   }
-}
-
-Index.propTypes = {
-  selectedJob: PropTypes.shape().isRequired,
-  actions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  roleActions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  viewData: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    layout: PropTypes.number,
-    encodedSlots: PropTypes.string
-  }).isRequired,
-  viewAction: PropTypes.string.isRequired
 };

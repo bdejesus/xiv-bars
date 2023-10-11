@@ -1,12 +1,12 @@
 import I18n from 'lib/I18n/locale/en-US';
-import { ClassJob } from 'types/ClassJob';
+import { ClassJobProps } from 'types/ClassJob';
 import Job from '../Job';
 
 import styles from './JobsList.module.scss';
 
 interface Props {
   title: string,
-  jobs: ClassJob[]
+  jobs: ClassJobProps[]
 }
 
 export function JobsList({ title, jobs }: Props) {

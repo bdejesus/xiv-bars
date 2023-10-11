@@ -28,8 +28,9 @@
       "components/*": ["./components/*"],
       "lib/*": ["./lib/*"],
       "data/*": ["./data/*"],
-      ".apiData/*": ["./.apiData/*"],
+      "apiData/*": ["./.apiData/*"],
       "types/*": ["./types/*"],
+      "pages/*": ["./pages/*"]
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
@@ -117,8 +118,9 @@
     "**/*.d.ts",
     "**/*.tsx",
     "**/*.json"
-  ],
+, "pages/job/[id]/index.tsx"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.tsconfig"
   ]
 }

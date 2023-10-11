@@ -1,4 +1,4 @@
-import { SlotType } from 'types/Action';
+import { SlotProps } from 'types/Action';
 import { useAppState } from 'components/App/context';
 import { hotbarKeyPos } from 'lib/xbars';
 import Slot from 'components/Slot';
@@ -6,7 +6,7 @@ import LayoutControl from './LayoutControl';
 import styles from './Hotbar.module.scss';
 
 interface Props {
-  slots: SlotType[],
+  slots: SlotProps[],
   id: string
 }
 

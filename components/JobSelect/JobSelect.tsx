@@ -1,10 +1,10 @@
 import React from 'react';
-import { ClassJob } from 'types/ClassJob';
+import { ClassJobProps } from 'types/ClassJob';
 import SelectedJob from './SelectedJob';
 import styles from './JobSelect.module.scss';
 
 interface Props {
-  selectedJob: ClassJob,
+  selectedJob: ClassJobProps,
   toOpen: React.MouseEventHandler,
   disabled: boolean
 }

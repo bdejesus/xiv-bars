@@ -102,11 +102,12 @@
       },
       "alias": {
         "map": [
+          ["apiData", "./.apiData"],
           ["components", "./components"],
-          ["lib", "./lib"],
           ["data", "./data"],
+          ["lib", "./lib"],
           ["types", "./types"],
-          [".apiData", "./.apiData"]
+          ["pages", "./pages"]
         ]
       }
     }

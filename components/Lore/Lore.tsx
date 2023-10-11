@@ -1,12 +1,14 @@
 import I18n from 'lib/I18n/locale/en-US';
-import { ClassJob } from 'types/ClassJob';
+import { ClassJobProps } from 'types/ClassJob';
 import styles from './Lore.module.scss';
 
 interface Props {
-  selectedJob: ClassJob
+  selectedJob: ClassJobProps
 }
 
 export function Lore({ selectedJob }: Props) {
+  if (!selectedJob.Description) return null;
+
   return (
     <div
       className={styles.lore}

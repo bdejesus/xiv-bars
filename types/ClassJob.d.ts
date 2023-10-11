@@ -1,10 +1,13 @@
-export interface ClassJob {
-  ID: string,
-  PreIcon: string,
+export interface ClassJobProps {
+  Abbr: string,
+  ClassID?: number | null
+  Description?: string,
+  Discipline: string,
+  ID: number,
   Icon: string,
   Name: string,
-  Abbr: string,
-  Discipline: string,
-  Role: string,
-  Description: string
+  Role?: string | null,
+  Url: string,
+  Weapon?: string,
+  PreIcon?: string,
 }

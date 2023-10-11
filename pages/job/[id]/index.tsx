@@ -1,18 +1,25 @@
-import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import db from 'lib/db';
+import type { ClassJobProps } from 'types/ClassJob';
+import type { LayoutProps } from 'types/Layout';
+import type { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutCard from 'components/LayoutCard';
-import Jobs from '.apiData/Jobs.json';
+import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
 
 import styles from './index.module.scss';
 
-export default function Layouts({ selectedJob, layouts }) {
-  const layoutsData = JSON.parse(layouts);
+interface Props {
+  selectedJob: ClassJobProps,
+  layouts: string
+}
+
+export default function Layouts({ selectedJob, layouts }: Props) {
+  const layoutsData: LayoutProps[] = JSON.parse(layouts);
   const router = useRouter();
 
   useEffect(() => {
@@ -52,6 +59,7 @@ export default function Layouts({ selectedJob, layouts }) {
               <ul className={styles.layoutsList}>
                 {layoutsData.map((layout) => {
                   const job = Jobs.find((j) => j.Abbr === layout.jobId);
+                  if (!job) return null;
                   return (
                     <li key={layout.id}>
                       <LayoutCard
@@ -75,24 +83,15 @@ export default function Layouts({ selectedJob, layouts }) {
   );
 }
 
-Layouts.propTypes = {
-  selectedJob: PropTypes.shape().isRequired,
-  layouts: PropTypes.string
-};
-
-Layouts.defaultProps = {
-  layouts: undefined
-};
-
-export async function getServerSideProps(context) {
-  const { id } = context.params;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id: string | string[] | undefined = context.params?.id;
   const selectedJob = id
     ? Jobs.find((job) => job.Abbr === id)
     : null;
 
   const layouts = await db.layout.findMany({
     where: {
-      jobId: selectedJob.Abbr,
+      jobId: selectedJob?.Abbr,
       description: { not: '' }
     },
     include: {
@@ -111,4 +110,4 @@ export async function getServerSideProps(context) {
       layouts: JSON.stringify(layouts)
     }
   };
-}
+};

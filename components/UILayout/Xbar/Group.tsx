@@ -1,9 +1,9 @@
 import { group } from 'lib/utils/array';
-import { SlotType } from 'types/Action';
+import { SlotProps } from 'types/Action';
 import Set from './Set';
 
 interface Props {
-  slots: SlotType[]
+  slots: SlotProps[]
 }
 
 function Group({ slots }: Props) {
@@ -11,7 +11,7 @@ function Group({ slots }: Props) {
 
   return (
     <>
-      {slotSets.map((groupSlots: SlotType[], index: number) => (
+      {slotSets.map((groupSlots: SlotProps[], index: number) => (
         <Set slots={groupSlots} key={`set-${index}`} />
       ))}
     </>

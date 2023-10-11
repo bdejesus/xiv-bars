@@ -1,4 +1,7 @@
-export interface AppData {
+import { AppAction } from 'components/App/actions';
+
+export interface ViewProps {
+  encodedSlots?: string,
   layout: number,
   params?: object,
   hb?: string,
@@ -25,13 +28,13 @@ export interface AppState {
   wxhb: number,
   exhb: number,
   jobs: ClassJob[],
-  readOnly: boolean,
+  readOnly?: boolean,
   selectedJob?: ClassJob,
   showTitles: boolean,
   showAllLvl: boolean,
   showModal: boolean,
   showPublish: boolean,
-  viewData?: AppData,
+  viewData?: ViewProps,
   viewAction?: string,
   roleActions?: ActionType[],
   actions?: ActionType[],
@@ -54,7 +57,7 @@ interface DispatchPayload {
   action?: ActionType,
   hbId?: string,
   hbConfig?: string,
-  viewData?: AppData,
+  viewData?: ViewProps,
 }
 
 export interface UpdateUI {

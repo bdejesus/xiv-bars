@@ -1,10 +1,14 @@
 /* eslint-disable camelcase */
 import db from 'lib/db';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { maxLayouts } from 'lib/user';
 
-async function list(userId) {
+type UserID = number | undefined;
+type LayoutID = string;
+
+async function list(userId: UserID) {
   const layouts = await db.layout.findMany({
     where: { userId },
     include: {
@@ -20,7 +24,7 @@ async function list(userId) {
   return layouts;
 }
 
-async function create(userId, { data }) {
+async function create(userId: UserID, { data }: { data: object }) {
   const userLayouts = await db.layout.findMany({ where: { userId } });
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
@@ -30,14 +34,14 @@ async function create(userId, { data }) {
   }
 }
 
-async function read(id) {
+async function read(id: LayoutID) {
   const readLayout = await db.layout.findUnique({
     where: { id: parseInt(id, 10) }
   });
   return readLayout;
 }
 
-async function update(userId, { id, data }) {
+async function update(userId: UserID, { id, data }: { id: LayoutID, data: object }) {
   const layoutToUpdate = await db.layout.findFirst({ where: { id, userId } });
   if (!layoutToUpdate) throw new Error('Layout not found');
   const today = new Date().toISOString();
@@ -48,16 +52,16 @@ async function update(userId, { id, data }) {
   return updateLayout;
 }
 
-async function destroy(userId, { id }) {
+async function destroy(userId: UserID, { id }: { id: LayoutID}) {
   await db.layout.deleteMany({ where: { id, userId } });
   const newList = await list(userId);
   return newList;
 }
 
-async function layout(req, res) {
+async function layout(req: NextApiRequest, res: NextApiResponse) {
   try {
     const session = await getServerSession(req, res, authOptions);
-    const userId = session?.user.id;
+    const userId: UserID = session?.user.id;
     const { body } = req;
 
     switch (body.method) {

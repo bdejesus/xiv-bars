@@ -1,7 +1,7 @@
-import { ActionType } from 'types/Action';
+import { ActionProps } from 'types/Action';
 
 export interface TooltipState {
-  content?: ActionType,
+  content?: ActionProps,
   position?: {
     x: number,
     y: number
