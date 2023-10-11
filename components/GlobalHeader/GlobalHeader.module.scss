@@ -28,13 +28,13 @@
   transition-timing-function: ease;
 
   .logo {
+    border-radius: 2px;
     display: block;
     margin-left: $spacing-xs;
+    overflow: hidden;
     transition-duration: 0.3s;
     transition-property: filter;
     transition-timing-function: ease;
-    border-radius: 2px;
-    overflow: hidden;
   }
 
   &:hover {

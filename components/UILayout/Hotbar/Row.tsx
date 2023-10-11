@@ -16,7 +16,6 @@ export default function Row({ slots, id }: Props) {
   const dataColumns: number = parseInt(hotbarKey, 10);
 
   // console.log(id, hotbarKeyPos(id), hb);
-  
 
   return (
     <>
