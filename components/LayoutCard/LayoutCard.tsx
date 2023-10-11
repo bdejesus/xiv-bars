@@ -9,7 +9,7 @@ import styles from './LayoutCard.module.scss';
 interface Props {
   layout: LayoutProps,
   job: ClassJobProps,
-  onDelete: React.MouseEventHandler,
+  onDelete?: React.MouseEventHandler,
   className?: string,
   hideName: boolean
 }
