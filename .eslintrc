@@ -107,13 +107,7 @@
           ["data", "./data"],
           ["lib", "./lib"],
           ["types", "./types"],
-          ["pages", "./pages"],
-
-          ["@apiData", "./.apiData"],
-          ["@components", "./components"],
-          ["@data", "./data"],
-          ["@lib", "./lib"],
-          ["@types", "./types"]
+          ["pages", "./pages"]
         ]
       }
     }
