@@ -7,7 +7,7 @@ interface Props {
   className?: string
 }
 
-export function Job({ job, className }: Props) {
+export default function Job({ job, className }: Props) {
   return (
     <div className={[styles.wrapper, className].join(' ')}>
       <img
@@ -25,4 +25,6 @@ export function Job({ job, className }: Props) {
   );
 }
 
-export default Job;
+Job.defaultProps = {
+  className: ''
+};

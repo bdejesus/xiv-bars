@@ -6,7 +6,7 @@ interface Props {
   className?: string
 }
 
-function Card({ children, className }: Props) {
+export default function Card({ children, className }: Props) {
   return (
     <div className={[styles.card, className].join(' ')}>
       { children }
@@ -14,4 +14,6 @@ function Card({ children, className }: Props) {
   );
 }
 
-export default Card;
+Card.defaultProps = {
+  className: ''
+};

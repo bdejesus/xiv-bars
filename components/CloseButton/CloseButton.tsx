@@ -7,7 +7,7 @@ interface Props {
   className?: string
 }
 
-export function CloseButton({ onClick, className }: Props) {
+export default function CloseButton({ onClick, className }: Props) {
   return (
     <button
       type="button"
@@ -19,4 +19,6 @@ export function CloseButton({ onClick, className }: Props) {
   );
 }
 
-export default CloseButton;
+CloseButton.defaultProps = {
+  className: ''
+};

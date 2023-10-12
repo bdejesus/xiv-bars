@@ -14,7 +14,7 @@ interface Props {
   hideName: boolean
 }
 
-function LayoutCard({
+export default function LayoutCard({
   layout, job, onDelete, className, hideName
 }: Props) {
   const [showPrompt, setShowPrompt] = useState(false);
@@ -75,4 +75,7 @@ function LayoutCard({
   );
 }
 
-export default LayoutCard;
+LayoutCard.defaultProps = {
+  onDelete: undefined,
+  className: ''
+};

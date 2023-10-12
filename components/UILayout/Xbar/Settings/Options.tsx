@@ -12,7 +12,7 @@ interface Props {
 
 type ReduceType = (number|string|never|boolean|object|undefined)[]
 
-function Options({
+export function Options({
   id, onChange, value, children, required
 }: Props) {
   const appState = useAppState();
@@ -57,3 +57,7 @@ function Options({
 }
 
 export default Options;
+
+Options.defaultProps = {
+  required: false
+};

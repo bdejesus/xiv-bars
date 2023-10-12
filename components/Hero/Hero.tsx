@@ -2,7 +2,11 @@
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './Hero.module.scss';
 
-export function Hero({ primary }: { primary?: boolean }) {
+interface Props {
+  primary?: boolean
+}
+
+export default function Hero({ primary }: Props) {
   return (
     <div className="container">
       { primary
@@ -18,4 +22,6 @@ export function Hero({ primary }: { primary?: boolean }) {
   );
 }
 
-export default Hero;
+Hero.defaultProps = {
+  primary: true
+};

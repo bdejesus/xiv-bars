@@ -5,14 +5,14 @@ import styles from './SelectedJob.module.scss';
 
 interface Props {
   job: ClassJobProps,
-  className: string | undefined
+  className?: string
 }
 
 interface RoleNamesType {
   [key: string]: string
 }
 
-export function SelectedJob({ job, className }: Props) {
+export default function SelectedJob({ job, className }: Props) {
   const roleNames: RoleNamesType = RoleNames;
 
   return (
@@ -37,8 +37,6 @@ export function SelectedJob({ job, className }: Props) {
     </div>
   );
 }
-
-export default SelectedJob;
 
 SelectedJob.defaultProps = {
   className: ''
