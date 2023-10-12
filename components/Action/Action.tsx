@@ -79,8 +79,8 @@ export default function Action({ action, remote }: Props) {
     setDragging(false);
   }
 
-  const actionType = `${action.UrlType.toLowerCase()}Type`;
-  const selectors = `action ${styles.action} ${styles[actionType]} ${dragging ? styles.dragging : undefined}`;
+  const actionTypeSelector = action.UrlType ? `${action.UrlType.toLowerCase()}Type` : '';
+  const selectors = `action ${styles.action} ${styles[actionTypeSelector]} ${dragging ? styles.dragging : undefined}`;
 
   return (
     <>

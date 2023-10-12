@@ -25,7 +25,10 @@ export function ExportToMacros() {
   function generateHotbarMacros(hotbarRow: SlotProps[], hotbarNum: number) {
     return hotbarRow
       .map(({ action }, index) => {
-        if (action.Name && !excludeTypes.includes(action.UrlType)) {
+        if (action.Name
+          && action.UrlType
+          && !excludeTypes.includes(action.UrlType)
+        ) {
           const slotName = (currLayout === 'chotbar')
             ? chotbarSlotNames[index]
             : index + 1;
