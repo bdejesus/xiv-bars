@@ -1,4 +1,4 @@
-import arrayUtils from 'lib/utils/array';
+import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { SlotProps } from 'types/Action';
 import Set from './Set';
 
@@ -7,7 +7,7 @@ interface Props {
 }
 
 function Group({ slots }: Props) {
-  const slotSets = arrayUtils.group(slots, 4);
+  const slotSets = sortIntoGroups(slots, 4);
 
   return (
     <>

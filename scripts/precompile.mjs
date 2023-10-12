@@ -4,7 +4,7 @@ import appConfig from '../app.config.json' assert { type: "json" };
 import JobsMeta from '../data/JobsMeta.json' assert { type: "json" };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: "json" };
 import ActionCategory from '../data/ActionCategory.json' assert { type: "json" };
-import array from '../lib/utils/array.js';
+import array from '../lib/utils/array.mjs';
 
 const { apiData } = appConfig;
 const apiURL = 'https://xivapi.com';
