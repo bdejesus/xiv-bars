@@ -38,7 +38,7 @@ export default function Slot({ id, className, action }: Props) {
         type: AppAction.SLOT_ACTION,
         payload: {
           slotID: id,
-          action: undefined
+          action: {}
         }
       });
     }
@@ -90,7 +90,7 @@ export default function Slot({ id, className, action }: Props) {
         onClick={setSelectedAction}
         role="button"
         tabIndex={0}
-        data-slotted={!!action.Name}
+        data-slotted={!!action?.Name}
         data-disabled={readOnly && !action.Name}
       >
         {action.Name && <Action action={action} />}
