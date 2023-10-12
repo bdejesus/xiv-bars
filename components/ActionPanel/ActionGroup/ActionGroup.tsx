@@ -10,7 +10,7 @@ interface Props {
   remote?: boolean
 }
 
-export function ActionGroup({
+export default function ActionGroup({
   title, actions, limit, remote
 }: Props) {
   const { showTitles } = useAppState();
@@ -29,4 +29,7 @@ export function ActionGroup({
   );
 }
 
-export default ActionGroup;
+ActionGroup.defaultProps = {
+  limit: undefined,
+  remote: true
+};

@@ -16,7 +16,7 @@ interface Props {
   remote?: boolean
 }
 
-export function Action({ action, remote = true }: Props) {
+export default function Action({ action, remote }: Props) {
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
@@ -109,4 +109,6 @@ export function Action({ action, remote = true }: Props) {
   );
 }
 
-export default Action;
+Action.defaultProps = {
+  remote: true
+};

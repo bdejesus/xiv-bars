@@ -121,3 +121,15 @@ export function AppContextProvider({
 }
 
 export default AppContextProvider;
+
+AppContextProvider.defaultProps = {
+  selectedJob: undefined,
+  layout: undefined,
+  encodedSlots: undefined,
+  actions: undefined,
+  roleActions: undefined,
+  readOnly: true,
+  viewData: undefined,
+  viewAction: undefined,
+  hbConfig: undefined
+};

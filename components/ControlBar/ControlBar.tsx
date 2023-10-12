@@ -89,8 +89,4 @@ export function ControlBar({ selectedJob }: Props) {
   );
 }
 
-ControlBar.defaultProps = {
-  selectedJob: undefined
-};
-
 export default ControlBar;

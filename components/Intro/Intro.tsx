@@ -9,7 +9,7 @@ interface Props {
   className?: string
 }
 
-export function Intro({ jobs, className }: Props) {
+export default function Intro({ jobs, className }: Props) {
   return (
     <>
       <div className={[styles.header, className].join(' ')}>
@@ -36,4 +36,6 @@ export function Intro({ jobs, className }: Props) {
   );
 }
 
-export default Intro;
+Intro.defaultProps = {
+  className: ''
+};

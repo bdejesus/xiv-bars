@@ -13,7 +13,7 @@ interface Props {
   action: ActionProps
 }
 
-export function Slot({ id, className, action }: Props) {
+export default function Slot({ id, className, action }: Props) {
   const { readOnly } = useAppState();
   const appDispatch = useAppDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
@@ -99,4 +99,6 @@ export function Slot({ id, className, action }: Props) {
   );
 }
 
-export default Slot;
+Slot.defaultProps = {
+  className: ''
+};

@@ -95,7 +95,7 @@ export function App() {
     <TooltipContextProvider>
       <SelectedActionContextProvider>
 
-        { jobs && <ControlBar selectedJob={selectedJob} /> }
+        { jobs && selectedJob && <ControlBar selectedJob={selectedJob} /> }
 
         <SystemMessage />
 
