@@ -128,7 +128,7 @@ AppContextProvider.defaultProps = {
   encodedSlots: undefined,
   actions: undefined,
   roleActions: undefined,
-  readOnly: true,
+  readOnly: false,
   viewData: undefined,
   viewAction: undefined,
   hbConfig: undefined
