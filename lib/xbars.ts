@@ -1,3 +1,5 @@
+import type { SlotProps } from 'types/Action';
+
 export const chotbarSlotNames = [
   'LDD',
   'LDL',
@@ -17,7 +19,7 @@ export const chotbarSlotNames = [
   'RAR'
 ];
 
-const xBarSlots = (group, key) => {
+const xBarSlots = (group: string, key: number) => {
   const numSlots = 16;
   const slotsArr = [];
 
@@ -48,12 +50,12 @@ export const xbars = () => (
 
 export const chotbar = xbars();
 
-const hotbarSlots = (group, key) => {
+const hotbarSlots = (group: string) => {
   const numSlots = 12;
   const slotsArr = [];
 
   for (let i = 1; i <= numSlots; i += 1) {
-    slotsArr.push({ id: `${group}-${i}`, action: {}, key });
+    slotsArr.push({ id: `${group}-${i}`, action: {}, key: undefined });
   }
   return slotsArr;
 };
@@ -77,9 +79,9 @@ export const hotbar = hotbars();
 
 export const layouts = ['chotbar', 'hotbar'];
 
-export const hotbarKeyPos = (id) => Object.keys(hotbar).indexOf(id);
+export const hotbarKeyPos = (id: string) => Object.keys(hotbar).indexOf(id);
 
-export const hasActions = (barData) => {
+export const hasActions = (barData: SlotProps[]) => {
   const slottedActions = barData.map((a) => Object.keys(a.action).length > 0);
   return slottedActions.includes(true);
 };
