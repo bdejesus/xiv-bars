@@ -4,7 +4,7 @@ import BaseClassIDs from 'data/BaseClassIDs.json';
 import { domain } from 'lib/host';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-async function buildSitemap(req: NextApiRequest, res: NextApiResponse) {
+async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
   try {
     const sitemap = new SitemapStream({
       hostname: domain

@@ -11,7 +11,7 @@ const initialState = { selectedAction: undefined };
 const SelectedActionContext = createContext<SelectedActionState>(initialState);
 const SelectedActionDispatchContext = createContext<React.Dispatch<SelectedActionDispatchActions>>(() => undefined);
 
-function selectedActionReducer(state: SelectedActionState, action: SelectedActionDispatchActions) {
+function selectedActionReducer(_state: SelectedActionState, action: SelectedActionDispatchActions) {
   switch (action.type) {
     case SelectedActionAction.SELECT: {
       return { selectedAction: action.payload?.selectedAction };
