@@ -8,16 +8,31 @@
 }
 
 .exportPrompt {
+  p {
+    font-size: $font-size-base;
+    line-height: 1.2em;
+  }
+
+  :global(.modal-content) {
+    max-width: 900px;
+  }
+}
+
+.textareaContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+
   textarea {
     background-color: $panel-bg-dark;
     border: none;
     color: #ccc;
     display: block;
     font-family: "Fira Code", Consolas, Courier, monospace;
-    font-size: 12px;
-    height: 320px;
+    font-size: 10px;
+    height: 250px;
     padding: $spacing-base;
-    width: 100%;
+    width: 32.5%;
   }
 }
 

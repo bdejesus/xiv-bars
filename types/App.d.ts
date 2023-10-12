@@ -17,6 +17,9 @@ export interface ViewProps {
   actions: ActionProps[],
   title: string,
   description?: string,
+  user: {
+    name: string
+  },
   userId?: number,
   jobId?: string,
   id?: number

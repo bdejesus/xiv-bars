@@ -36,7 +36,14 @@ async function create(userId: UserID, { data }: { data: object }) {
 
 async function read(id: LayoutID) {
   const readLayout = await db.layout.findUnique({
-    where: { id: parseInt(id, 10) }
+    where: {
+      id: parseInt(id, 10)
+    },
+    include: {
+      user: {
+        select: { name: true }
+      }
+    }
   });
   return readLayout;
 }

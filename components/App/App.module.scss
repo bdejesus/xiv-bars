@@ -107,4 +107,16 @@ $icon-size: 6px;
   .section {
     padding-right: $spacing-lg;
   }
+
+  h3 {
+    color: #fff;
+    margin-bottom: 0;
+  }
+
+  .owner {
+    color: #666;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: $spacing-base;
+  }
 }
