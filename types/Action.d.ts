@@ -1,5 +1,5 @@
 export interface ActionProps {
-  ID: number | string,
+  ID: string | number,
   PreIcon?: string,
   Icon: string,
   Name: string,

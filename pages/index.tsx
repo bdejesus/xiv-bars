@@ -42,6 +42,7 @@ function Index() {
       </AppContextProvider>
 
       <Intro jobs={Jobs} />
+
       <div className={styles.articles}>
         <HowTo />
         <EorzeaProfile />

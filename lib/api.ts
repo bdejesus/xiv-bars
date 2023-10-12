@@ -34,12 +34,13 @@ export async function listJobActions(job: ClassJobProps) {
 
         if (job.ClassActionAllowlist) {
           classJobActions = classJobActions
-            .filter(({ Name }: { Name: string }) => job.ClassActionAllowlist.includes(Name));
+            .filter(({ Name }: { Name: string }) => job.ClassActionAllowlist?.includes(Name));
         }
       }
 
       // Are actions upgradable (not usable at max level)
-      const upgradableActions = UpgradableActions[job.Abbr] ?? [];
+      const jobKey = job.Abbr as keyof typeof UpgradableActions;
+      const upgradableActions = UpgradableActions[jobKey] ?? [];
       const actionsWithUpgradedInfo = [...classJobActions, ...filteredActions]
         .map((action) => ({ ...action, upgradable: upgradableActions.includes(action.Name) }));
 
@@ -52,15 +53,17 @@ export async function listJobActions(job: ClassJobProps) {
   return actions;
 }
 
-export async function listRoleActions(job) {
+export async function listRoleActions(job: ClassJobProps) {
   try {
+    if (!job.Role) return [];
+    const actionKey = job.Role as keyof typeof RoleActionIDs;
     const request = await fetch(
-      `${baseUrl}/Action?ids=${RoleActionIDs[job.Role].toString()}`
+      `${baseUrl}/Action?ids=${RoleActionIDs[actionKey].toString()}`
     );
     const roleActions = await request.json();
 
     if (roleActions) {
-      return roleActions.Results.map((action) => ({
+      return roleActions.Results.map((action: ActionProps) => ({
         ...action, Prefix: 'r', UrlType: 'Action'
       }));
     }
@@ -71,7 +74,7 @@ export async function listRoleActions(job) {
   }
 }
 
-export async function getContent(type, id) {
+export async function getContent(type: string, id: string | number) {
   const req = `${baseUrl}/${type}/${id}`;
   const content = await fetch(req).then((res) => res.json());
   return content;
