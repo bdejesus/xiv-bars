@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import { createRef, useState } from 'react';
+import React, { createRef, useState } from 'react';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
@@ -8,6 +8,7 @@ import { getContent } from 'lib/api';
 
 import styles from './Action.module.scss';
 
+// eslint-disable-next-line no-undef
 let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
@@ -65,7 +66,10 @@ export function Action({ action, remote = true }: Props) {
 
   function selectAction() {
     tooltipDispatch({ type: 'hide' });
-    selectedActionDispatch({ type: 'selectAction', selectedAction: action });
+    selectedActionDispatch({
+      type: 'selectAction',
+      payload: { selectedAction: action }
+    });
     setDragging(true);
   }
 

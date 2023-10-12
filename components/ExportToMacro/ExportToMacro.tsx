@@ -58,9 +58,8 @@ export function ExportToMacros() {
 
   function buildMacros() {
     if (currLayout) {
-      const hotbarMacros = Object
-        .values(appState[currLayout])
-        .map((row, index) => generateHotbarMacros(row as SlotProps[], index + 1))
+      const hotbarMacros = Object.values(appState[currLayout] as SlotProps[])
+        .map((row, index) => generateHotbarMacros(row as unknown as SlotProps[], index + 1))
         .join('\n')
         .trim()
         .split('\n');

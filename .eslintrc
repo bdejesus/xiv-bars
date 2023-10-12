@@ -30,15 +30,14 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/no-var-requires": "off",
-    "no-undef": "off",
+    "@typescript-eslint/no-var-requires": "error",
+    "no-undef": "error",
     "react/require-default-props": "off",
     "react/default-props-match-prop-types": "off",
     "import/extensions": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    "no-unused-vars": "off",
+    "no-unused-vars": "warn",
 
     "@next/next/no-html-link-for-pages": "off",
     "@next/next/no-img-element": "off",

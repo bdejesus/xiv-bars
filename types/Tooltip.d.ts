@@ -1,3 +1,4 @@
+import { TooltipAction } from 'components/Tooltip/actions';
 import { ActionProps } from 'types/Action';
 
 export interface TooltipState {

@@ -46,7 +46,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     if (action.payload?.slotID) {
       const [parent, id] = action.payload.slotID.split('-');
       const slot = { parent, id: parseInt(id, 10) - 1 };
-      const slotObject: { action: object | undefined } = slots
+      const slotObject: { action: ActionProps | undefined } = slots
         ? slots[slot.parent as keyof typeof slots][slot.id]
         : { action: undefined };
       if (slotObject) slotObject.action = action.payload.action;

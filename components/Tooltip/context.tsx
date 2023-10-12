@@ -17,7 +17,7 @@ const initialState: TooltipState = {
 const TooltipContext = createContext<TooltipState>(initialState);
 const TooltipDispatchContext = createContext<React.Dispatch<TooltipDispatch>>(() => undefined);
 
-function tooltipReducer(state: TooltipState, action: TooltipActions) {
+function tooltipReducer(_state: TooltipState, action: TooltipActions) {
   switch (action.type) {
     case TooltipAction.HIDE: {
       return {

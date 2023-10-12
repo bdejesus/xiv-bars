@@ -103,7 +103,7 @@ export default function Me() {
                 );
               })}
 
-              { [...Array(maxLayouts - layouts.length)].map((e, i) => (
+              { [...Array(maxLayouts - layouts.length)].map((_e, i) => (
                 <li key={`placeholder-${i}`}>
                   <a href="/">
                     <Card className={styles.card}>

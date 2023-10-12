@@ -1,22 +1,26 @@
-import {
+import React, {
   ReactNode, createContext, useContext, useReducer
 } from 'react';
-import { SelectedActionProps, SelectedActionDispatchProps } from 'types/SelectedAction';
+import type {
+  SelectedActionState,
+  SelectedActionDispatchActions
+} from 'types/SelectedAction';
+import { SelectedActionAction } from 'components/SelectedAction/actions';
 
-const InitialSelectedActionState = { selectedAction: undefined };
-const SelectedActionContext = createContext<SelectedActionProps>(InitialSelectedActionState);
-const SelectedActionDispatchContext = createContext<React.Dispatch<SelectedActionDispatchProps>>(() => undefined);
+const initialState = { selectedAction: undefined };
+const SelectedActionContext = createContext<SelectedActionState>(initialState);
+const SelectedActionDispatchContext = createContext<React.Dispatch<SelectedActionDispatchActions>>(() => undefined);
 
-function selectedActionReducer(state: SelectedActionProps, payload: SelectedActionDispatchProps) {
-  switch (payload.type) {
-    case 'selectAction': {
-      return { selectedAction: payload.selectedAction };
+function selectedActionReducer(_state: SelectedActionState, action: SelectedActionDispatchActions) {
+  switch (action.type) {
+    case SelectedActionAction.SELECT: {
+      return { selectedAction: action.payload?.selectedAction };
     }
-    case 'deselectAction': {
-      return { selectedAction: {} };
+    case SelectedActionAction.DESELECT: {
+      return { selectedAction: undefined };
     }
     default: {
-      throw new Error(`Unhandled action type: ${payload.type}`);
+      throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
 }
@@ -37,15 +41,19 @@ export function useSelectedActionDispatch() {
   return context;
 }
 
-export function SelectedActionContextProvider({ children }: { children: ReactNode }) {
+interface Props {
+  children: ReactNode
+}
+
+export function SelectedActionContextProvider({ children }: Props) {
   const [state, dispatch] = useReducer(
-    selectedActionReducer,
-    InitialSelectedActionState
+    selectedActionReducer as React.Reducer<SelectedActionState, SelectedActionDispatchActions>,
+    initialState
   );
 
   return (
     <SelectedActionContext.Provider value={state}>
-      <SelectedActionDispatchContext.Provider value={dispatch as React.ReducerWithoutAction<SelectedActionDispatchProps>}>
+      <SelectedActionDispatchContext.Provider value={dispatch}>
         {children}
       </SelectedActionDispatchContext.Provider>
     </SelectedActionContext.Provider>

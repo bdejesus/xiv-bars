@@ -1,3 +1,4 @@
+import React from 'react';
 import { useAppDispatch } from 'components/App/context';
 import styles from './Hotbar.module.scss';
 

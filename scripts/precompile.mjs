@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-const { writeFile, rm, mkdir } = require('fs');
-const appConfig = require('../app.config.json');
-const JobsMeta = require('../data/JobsMeta.json');
-const BaseClassIDs = require('../data/BaseClassIDs.json');
-const ActionCategory = require('../data/ActionCategory.json');
-const array = require('../lib/utils/array');
+import { writeFile, rm, mkdir } from 'fs';
+import appConfig from '../app.config.json' assert { type: "json" };
+import JobsMeta from '../data/JobsMeta.json' assert { type: "json" };
+import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: "json" };
+import ActionCategory from '../data/ActionCategory.json' assert { type: "json" };
+import array from '../lib/utils/array.js';
 
 const { apiData } = appConfig;
 const apiURL = 'https://xivapi.com';

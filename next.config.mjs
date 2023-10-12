@@ -1,4 +1,4 @@
-const { withSentryConfig } = require('@sentry/nextjs');
+import { withSentryConfig } from '@sentry/nextjs';
 
 const options = {
   i18n: {
@@ -30,4 +30,4 @@ const SentryWebpackPluginOptions = {
 // ensure that your source maps include changes from all other Webpack plugins
 const moduleExports = withSentryConfig(options, SentryWebpackPluginOptions);
 
-module.exports = moduleExports;
+export default moduleExports;

@@ -1,4 +1,6 @@
 import { AppAction } from 'components/App/actions';
+import { ActionProps, SlotProps } from 'types/Action';
+import { ClassJobProps } from 'types/ClassJob';
 
 export interface ViewProps {
   encodedSlots?: string,
@@ -11,8 +13,8 @@ export interface ViewProps {
   showTitles: boolean,
   showAllLvl: boolean,
   showModal: boolean,
-  roleActions: ActionType[],
-  actions: ActionType[],
+  roleActions: ActionProps[],
+  actions: ActionProps[],
   title: string,
   description?: string,
   userId?: number,
@@ -27,17 +29,17 @@ export interface AppState {
   xhb: number,
   wxhb: number,
   exhb: number,
-  jobs: ClassJob[],
+  jobs: ClassJobProps[],
   readOnly?: boolean,
-  selectedJob?: ClassJob,
+  selectedJob?: ClassJobProps,
   showTitles: boolean,
   showAllLvl: boolean,
   showModal: boolean,
   showPublish: boolean,
   viewData?: ViewProps,
   viewAction?: string,
-  roleActions?: ActionType[],
-  actions?: ActionType[],
+  roleActions?: ActionProps[],
+  actions?: ActionProps[],
   encodedSlots?: string,
   message?: { type: string, body: string },
   chotbar?: {[key: string]: object},
@@ -47,14 +49,14 @@ export interface AppState {
 interface DispatchPayload {
   layout?: number,
   message?: { type: string, body: string },
-  slottedActions?: SlotType[],
+  slottedActions?: SlotProps[],
   wxhb?: number,
   xhb?: number,
   exhb?: number
   hb?: number[],
   encodedSlots?: string,
   slotID?: string,
-  action?: ActionType,
+  action?: ActionProps,
   hbId?: string,
   hbConfig?: string,
   viewData?: ViewProps,
