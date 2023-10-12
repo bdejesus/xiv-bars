@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ArgType = string | number | object | any;
+type ArgType = any;
 
 /* eslint-disable no-extend-native */
 const group = (array: Array<ArgType>, size: number) => {
