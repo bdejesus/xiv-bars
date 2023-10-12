@@ -15,11 +15,12 @@ function Options({
 }: Props) {
   const appState = useAppState();
   const { chotbar } = appState;
-  const inactive = ['xhb', 'wxhb', 'exhb'].reduce((collection: number[], key: string) => {
-    const inactiveId = key as keyof typeof appState;
-    if (inactiveId !== id) return [...collection, appState[inactiveId]];
-    return collection;
-  }, []);
+  const inactive = ['xhb', 'wxhb', 'exhb']
+    .reduce((collection: any[], key: string) => {
+      const inactiveId = key as keyof typeof appState;
+      if (inactiveId !== id) return [...collection, appState[inactiveId]];
+      return collection;
+    }, [] as number[]);
 
   return (
     <label htmlFor={id}>

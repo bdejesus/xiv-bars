@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Action from 'components/Action';
 import { useSelectedActionState, useSelectedActionDispatch } from 'components/SelectedAction';
+import { SelectedActionAction } from 'components/SelectedAction/actions';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { ActionProps } from 'types/Action';
-
+import { AppAction } from 'components/App/actions';
 import styles from './Slot.module.scss';
 
 interface Props {
@@ -34,10 +35,10 @@ export function Slot({ id, className, action }: Props) {
     event.preventDefault();
     if (dragging) {
       appDispatch({
-        type: 'setActionToSlot',
+        type: AppAction.SLOT_ACTION,
         payload: {
           slotID: id,
-          action: {}
+          action: undefined
         }
       });
     }
@@ -59,14 +60,14 @@ export function Slot({ id, className, action }: Props) {
     setDragging(false);
     if (selectedAction) {
       appDispatch({
-        type: 'setActionToSlot',
+        type: AppAction.SLOT_ACTION,
         payload: {
           slotID: id,
           action: selectedAction
         }
       });
     }
-    selectedActionDispatch({ type: 'deselectAction' });
+    selectedActionDispatch({ type: SelectedActionAction.DESELECT });
     return null;
   }
 

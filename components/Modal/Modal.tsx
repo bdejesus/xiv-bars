@@ -1,4 +1,4 @@
-import { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import CloseButton from 'components/CloseButton';
 import { useAppDispatch } from 'components/App/context';
 import styles from './Modal.module.scss';

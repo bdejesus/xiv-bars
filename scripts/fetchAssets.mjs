@@ -1,5 +1,5 @@
-const fs = require('fs');
-const http = require('http');
+import fs from 'fs';
+import http from 'http';
 
 async function fetchAssets(data) {
   const images = data.map(({ Icon }) => Icon);

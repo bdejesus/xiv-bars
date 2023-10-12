@@ -27,7 +27,7 @@ function SaveForm() {
   function saveLayout() {
     const title = titleField.current?.value;
     const description = descriptionField.current?.value;
-    const jobId = viewData ? viewData.jobId : selectedJob.Abbr;
+    const jobId = viewData?.jobId || selectedJob?.Abbr;
 
     const body = {
       id: viewData?.id,

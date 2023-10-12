@@ -1,3 +1,5 @@
+import React from 'react';
+
 import styles from './Tabs.module.scss';
 
 interface Props {

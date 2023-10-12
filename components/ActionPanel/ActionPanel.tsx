@@ -1,4 +1,4 @@
-import { useEffect, useState, createRef } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import { useAppState } from 'components/App/context';
 import MACROS from 'apiData/MacroIcon.json';
 import PET_ACTIONS from 'apiData/PetAction.json';

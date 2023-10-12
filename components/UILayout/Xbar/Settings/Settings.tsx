@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-onchange */
+import React from 'react';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import Options from './Options';
 import styles from './Settings.module.scss';
