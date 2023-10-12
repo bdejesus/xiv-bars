@@ -1,6 +1,7 @@
 export interface ClassJobProps {
   Abbr: string,
-  ClassID?: number | null
+  ClassID?: number | null,
+  ClassActionAllowlist: string[],
   Description?: string,
   Discipline: string,
   ID: number,

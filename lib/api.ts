@@ -3,22 +3,25 @@
 import UpgradableActions from 'data/UpgradableActions.json';
 import RoleActionIDs from 'data/RoleActionIDs.json';
 
+import type { ClassJobProps } from 'types/ClassJob';
+import type { ActionProps } from 'types/Action';
+
 const baseUrl = 'https://xivapi.com';
 
-export async function listJobActions(job) {
+export async function listJobActions(job: ClassJobProps) {
   const isPvP = ['DOM', 'DOW'].includes(job.Discipline) ? 'IsPvP=0,' : '';
   const endpoint = `search?indexes=Action,CraftAction&filters=${isPvP}ClassJobTargetID`;
   const actions = await fetch(`${baseUrl}/${endpoint}=${job.ID}`)
     .then((res) => res.json())
     .then(async (actionsRes) => {
       const { Results } = actionsRes;
-      const names = Results.map((a) => a.Name);
+      const names = Results.map((act: ActionProps) => act.Name);
 
-      const uniqNames = (current, index) => names.indexOf(current.Name) === index;
+      const uniqNames = (current: ActionProps, index: number) => names.indexOf(current.Name) === index;
 
       const filteredActions = Results
         .filter(uniqNames)
-        .map((action) => (job.Abbr === 'BLU'
+        .map((action: ActionProps) => (job.Abbr === 'BLU'
           ? { ...action, Command: 'blueaction' }
           : action));
 
@@ -31,7 +34,7 @@ export async function listJobActions(job) {
 
         if (job.ClassActionAllowlist) {
           classJobActions = classJobActions
-            .filter(({ Name }) => job.ClassActionAllowlist.includes(Name));
+            .filter(({ Name }: { Name: string }) => job.ClassActionAllowlist.includes(Name));
         }
       }
 
