@@ -118,9 +118,8 @@
     "**/*.d.ts",
     "**/*.tsx",
     "**/*.json"
-, "pages/job/[id]/index.tsx"  ],
+  ],
   "exclude": [
-    "node_modules",
-    "**/*.tsconfig"
+    "node_modules"
   ]
 }

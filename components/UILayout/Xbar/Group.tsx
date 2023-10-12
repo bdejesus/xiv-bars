@@ -1,4 +1,4 @@
-import { group } from 'lib/utils/array';
+import arrayUtils from 'lib/utils/array';
 import { SlotProps } from 'types/Action';
 import Set from './Set';
 
@@ -7,7 +7,7 @@ interface Props {
 }
 
 function Group({ slots }: Props) {
-  const slotSets = group(slots, 4);
+  const slotSets = arrayUtils.group(slots, 4);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { group } from 'lib/utils/array';
+import arrayUtils from 'lib/utils/array';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import Modal from 'components/Modal';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
@@ -61,7 +61,7 @@ export function App() {
       } = router.query as QueryProps;
 
       let slots;
-      if (s1) slots = group(s1.split(','), 16);
+      if (s1) slots = arrayUtils.group(s1.split(','), 16);
       if (s) slots = JSON.parse(s);
 
       const formatHbConfig: number[] = hb?.split(',').map((i) => parseInt(i, 10));
