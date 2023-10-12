@@ -1,4 +1,4 @@
-export function getUrlParams(url) {
+export function getUrlParams(url: string) {
   const search = url.split('?')[1];
   if (search) {
     const searchString = decodeURI(search);
@@ -8,7 +8,7 @@ export function getUrlParams(url) {
   return {};
 }
 
-export function jsonToQuery(json) {
+export function jsonToQuery(json: object) {
   return Object.entries(json)
     .map(([key, value]) => {
       const encodedKey = encodeURI(key);
@@ -18,7 +18,7 @@ export function jsonToQuery(json) {
     .join('&');
 }
 
-export function queryToJson(hash) {
+export function queryToJson(hash: string) {
   return Object.fromEntries(new URLSearchParams(hash.slice(1)));
 }
 
