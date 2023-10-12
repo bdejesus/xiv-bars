@@ -30,7 +30,7 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "@typescript-eslint/no-var-requires": "warn",
+    "@typescript-eslint/no-var-requires": "error",
     "no-undef": "error",
     "react/require-default-props": "off",
     "react/default-props-match-prop-types": "off",

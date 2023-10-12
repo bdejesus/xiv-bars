@@ -10,17 +10,22 @@ interface Props {
   required?: boolean
 }
 
+type ReduceType = (number|string|never|boolean|object|undefined)[]
+
 function Options({
   id, onChange, value, children, required
 }: Props) {
   const appState = useAppState();
   const { chotbar } = appState;
-  const inactive = ['xhb', 'wxhb', 'exhb']
-    .reduce((collection: any[], key: string) => {
+  const options = ['xhb', 'wxhb', 'exhb'];
+  const inactive = options
+    .reduce<ReduceType>((collection, key) => {
       const inactiveId = key as keyof typeof appState;
-      if (inactiveId !== id) return [...collection, appState[inactiveId]];
+      if (inactiveId && inactiveId !== id) {
+        return [...[collection], appState[inactiveId]];
+      }
       return collection;
-    }, [] as number[]);
+    }, []);
 
   return (
     <label htmlFor={id}>
