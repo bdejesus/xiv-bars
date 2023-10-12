@@ -4,7 +4,7 @@ const appConfig = require('../app.config.json');
 const JobsMeta = require('../data/JobsMeta.json');
 const BaseClassIDs = require('../data/BaseClassIDs.json');
 const ActionCategory = require('../data/ActionCategory.json');
-const array = require('../lib/utils/array');
+const array = require('../lib/utils/array.ts');
 
 const { apiData } = appConfig;
 const apiURL = 'https://xivapi.com';
