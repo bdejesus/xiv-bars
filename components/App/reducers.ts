@@ -7,7 +7,7 @@ import MAIN_COMMAND from 'apiData/MainCommand.json';
 import MACRO_ICON from 'apiData/MacroIcon.json';
 import PET_ACTION from 'apiData/PetAction.json';
 import { AppState, AppDispatchActions } from 'types/App';
-import arrayUtils from 'lib/utils/array';
+import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { ActionProps, SlotProps } from 'types/Action';
 import { AppAction } from './actions';
 
@@ -91,8 +91,8 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
 
   function setActionsToSlot(encodedSlots: string) {
     const slottedActions = state.layout === 1
-      ? arrayUtils.group(encodedSlots.split(','), 12)
-      : arrayUtils.group(encodedSlots.split(','), 16);
+      ? sortIntoGroups(encodedSlots.split(','), 12)
+      : sortIntoGroups(encodedSlots.split(','), 16);
 
     slottedActions.forEach((actionGroup, groupIndex) => {
       if (slots) {

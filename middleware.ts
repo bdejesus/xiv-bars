@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-function middleware(req) {
-  const currentEnv = process.env.NEXT_PUBLIC_ENV;
+function middleware(req: NextRequest) {
+  const currentEnv = process.env.NEXT_PUBLIC_ENV || '';
 
   // ssl redirect
   if (['production', 'staging'].includes(currentEnv)
