@@ -10,8 +10,8 @@ import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {
   const [showModal, setShowModal] = useState(false);
-  const [macroText, setMacroText] = useState('');
-  const [copied, setCopied] = useState(false);
+  const [macroText, setMacroText] = useState([] as string[]);
+  // const [copied, setCopied] = useState(false);
   const textarea = createRef<HTMLTextAreaElement>();
   const appState = useAppState();
   const { layout } = appState;
@@ -68,28 +68,28 @@ export function ExportToMacros() {
         .trim()
         .split('\n');
 
-      const macroGroups = groupMacros(hotbarMacros).join('\n\n');
+      const macroGroups: string[] = groupMacros(hotbarMacros);
       setMacroText(macroGroups);
     }
   }
 
-  function selectTextarea() {
-    textarea.current?.focus();
-    textarea.current?.select();
-  }
+  // function selectTextarea() {
+  //   textarea.current?.focus();
+  //   textarea.current?.select();
+  // }
 
   function toggleModal() {
     buildMacros();
     setShowModal(!showModal);
   }
 
-  function copyText() {
-    selectTextarea();
-    document.execCommand('copy');
-    textarea.current?.blur();
-    setCopied(true);
-    setTimeout(() => { setCopied(false); }, 3000);
-  }
+  // function copyText() {
+  //   selectTextarea();
+  //   document.execCommand('copy');
+  //   textarea.current?.blur();
+  //   setCopied(true);
+  //   setTimeout(() => { setCopied(false); }, 3000);
+  // }
 
   return (
     <div className={styles.container}>
@@ -106,7 +106,7 @@ export function ExportToMacros() {
       <Modal toClose={() => toggleModal()} hidden={!showModal}>
         <div
           className={styles.exportPrompt}
-          data-copied={copied}
+          // data-copied={copied}
         >
           <div
             className="modal-content"
@@ -117,15 +117,12 @@ export function ExportToMacros() {
               <p>{I18n.ExportToMacro.limitations}</p>
             </div>
 
-            <textarea ref={textarea} defaultValue={macroText} />
-
-            <div className="modal-footer">
-              <button type="button" onClick={copyText}>
-                {copied
-                  ? I18n.ExportToMacro.copied
-                  : I18n.ExportToMacro.copy}
-              </button>
+            <div className={styles.textareaContainer}>
+              { macroText.map((text, i) => (
+                <textarea ref={textarea} defaultValue={text} key={`macro-group-${i}`} readOnly />
+              ))}
             </div>
+
           </div>
         </div>
       </Modal>
