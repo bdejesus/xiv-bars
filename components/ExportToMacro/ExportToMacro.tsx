@@ -15,7 +15,8 @@ export function ExportToMacros() {
   const textarea = createRef<HTMLTextAreaElement>();
   const appState = useAppState();
   const { layout } = appState;
-  const currLayout = layout ? layouts[layout] as keyof typeof appState : undefined;
+  const layoutIndex = layout || 0;
+  const currLayout = layouts[layoutIndex] as keyof typeof appState;
 
   const excludeTypes = [
     'MacroIcon',
