@@ -41,8 +41,8 @@ export function UserProvider({ children }: Props) {
   const [state, dispatch] = useReducer(UserReducer as React.Reducer<UserState, UserDispatchActions>, initialState);
 
   useEffect(() => {
-    const layoutsCount = session?.user?._count?.layouts;
-    const canPublish = layoutsCount ? layoutsCount < maxLayouts : false;
+    const layoutsCount = session?.user?._count?.layouts || 0;
+    const canPublish = layoutsCount < maxLayouts;
     dispatch({
       type: UserActions.UPDATE_USER,
       payload: {
