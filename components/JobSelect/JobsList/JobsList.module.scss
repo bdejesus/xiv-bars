@@ -74,6 +74,18 @@ $button-inset: 10px;
     transition: opacity 0.1s ease 0;
     z-index: 2;
 
+    &::before {
+      display: block;
+      content: '';
+      height: 100%;
+      width: 26px;
+      position: absolute;
+      right: 100%;
+      top: 0;
+      transition: width 0.3s ease;
+      transition-delay: 0.1s;
+    }
+
     .addLabel {
       display: block;
       font-size: $font-size-base;
@@ -101,6 +113,10 @@ $button-inset: 10px;
 
     &:hover {
       background-color: rgb(0 0 0 / 66%);
+
+      &::before {
+        width: 0;
+      }
 
       .addLabel {
         opacity: 1;
