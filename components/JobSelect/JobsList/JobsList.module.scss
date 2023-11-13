@@ -75,15 +75,15 @@ $button-inset: 10px;
     z-index: 2;
 
     &::before {
-      display: block;
       content: '';
+      display: block;
       height: 100%;
-      width: 26px;
       position: absolute;
       right: 100%;
       top: 0;
       transition: width 0.3s ease;
       transition-delay: 0.1s;
+      width: 26px;
     }
 
     .addLabel {
