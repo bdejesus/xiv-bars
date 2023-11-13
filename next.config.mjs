@@ -6,10 +6,6 @@ const options = {
     defaultLocale: 'en',
   },
   poweredByHeader: false,
-  eslint: {
-    // ESlint is run outside of the build step
-    ignoreDuringBuilds: true
-  },
   sentry: {
     hideSourceMaps: true
   }

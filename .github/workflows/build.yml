@@ -21,9 +21,6 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
-      - name: Lint Javascript
-        run: yarn lint:js
-
       - name: Lint Stylesheets
         run: yarn lint:css
 
