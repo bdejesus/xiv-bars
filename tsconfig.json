@@ -131,9 +131,7 @@
     "**/*.ts",
     "**/*.d.ts",
     "**/*.tsx",
-    "**/*.json",
-    "jest.setup.mjs",
-    "jest.config.mjs"
+    "**/*.json"
   ],
 
   "exclude": [
