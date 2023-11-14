@@ -100,7 +100,9 @@
           ["data", "./data"],
           ["lib", "./lib"],
           ["types", "./types"],
-          ["pages", "./pages"]
+          ["pages", "./pages"],
+          ["tests", "./tests"],
+          ["mocks", "./tests/__mocks__"]
         ]
       }
     }
