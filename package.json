@@ -34,6 +34,7 @@
     "prisma": "5.4.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-error-boundary": "^4.0.11",
     "react-markdown": "8.0.3",
     "sass": "1.69.2",
     "sitemap": "7.1.1",

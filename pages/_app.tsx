@@ -9,6 +9,7 @@ import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
 import { SessionProvider } from 'next-auth/react';
 import { UserProvider } from 'components/User/context';
+import { ErrorBoundary } from "react-error-boundary";
 
 import 'styles/global.scss';
 
@@ -57,11 +58,13 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <main>
-        <SessionProvider session={session}>
-          <UserProvider>
-            <Component {...pageProps} />
-          </UserProvider>
-        </SessionProvider>
+        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+          <SessionProvider session={session}>
+            <UserProvider>
+              <Component {...pageProps} />
+            </UserProvider>
+          </SessionProvider>
+        </ErrorBoundary>
       </main>
     </>
   );
