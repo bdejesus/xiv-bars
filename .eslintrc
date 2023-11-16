@@ -102,7 +102,7 @@
           ["types", "./types"],
           ["pages", "./pages"],
           ["tests", "./tests"],
-          ["mocks", "./tests/__mocks__"]
+          ["mocks", "./__mocks__"]
         ]
       }
     }

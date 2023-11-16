@@ -45,7 +45,7 @@
       "types/*": ["./types/*"],
       "pages/*": ["./pages/*"],
       "tests/*": ["./tests/*"],
-      "mocks/*": ["./tests/__mocks__/*"]
+      "mocks/*": ["./__mocks__/*"]
     },                                                   /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */

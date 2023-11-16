@@ -23,7 +23,7 @@
     "migrate:dev": "npx prisma migrate dev",
     "migrate:reset": "npx prisma migrate reset",
     "heroku-prebuild": "npx prisma migrate deploy",
-    "test": "jest --watch"
+    "test": "jest --watch --silent false"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "1.0.7",

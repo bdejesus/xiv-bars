@@ -7,6 +7,8 @@ describe('Action', () => {
     render(<Action action={{ ID: 1, Name: 'Test' }} />);
 
     const actionName = screen.getByRole('button', { name: /Test Action/i });
+
+    expect(actionName.dataset.title).toBe('Test');
     expect(actionName).toBeInTheDocument();
   });
 });
