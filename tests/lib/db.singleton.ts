@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+
 import { PrismaClient } from '@prisma/client';
 import { mockDeep, mockReset, DeepMockProxy } from 'jest-mock-extended';
 import db from 'lib/db';
@@ -8,6 +10,7 @@ jest.mock('../../lib/db', () => ({
 }));
 
 beforeEach(() => {
+  // eslint-disable-next-line no-use-before-define
   mockReset(prismaMock);
 });
 

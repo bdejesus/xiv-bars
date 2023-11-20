@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const description = generateDescription();
 
   return (
-    <>
+    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
@@ -64,6 +64,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </UserProvider>
         </SessionProvider>
       </main>
-    </>
+    </ErrorBoundary>
   );
 }
