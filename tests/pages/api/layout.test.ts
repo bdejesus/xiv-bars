@@ -4,7 +4,6 @@
 
 /* eslint-disable import/no-extraneous-dependencies */
 
-
 import '@testing-library/jest-dom';
 import { createMocks, RequestMethod } from 'node-mocks-http';
 import type { NextApiRequest, NextApiResponse } from 'next';
