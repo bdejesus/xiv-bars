@@ -58,13 +58,11 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <main>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
-          <SessionProvider session={session}>
-            <UserProvider>
-              <Component {...pageProps} />
-            </UserProvider>
-          </SessionProvider>
-        </ErrorBoundary>
+        <SessionProvider session={session}>
+          <UserProvider>
+            <Component {...pageProps} />
+          </UserProvider>
+        </SessionProvider>
       </main>
     </>
   );

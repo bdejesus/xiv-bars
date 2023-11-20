@@ -3,7 +3,7 @@ import db from 'lib/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { maxLayouts } from 'lib/user';
-import { authOptions } from './auth/[...nextauth]';
+import { authOptions } from 'pages/api/auth/[...nextauth]';
 
 type UserID = number | undefined;
 type LayoutID = string;
