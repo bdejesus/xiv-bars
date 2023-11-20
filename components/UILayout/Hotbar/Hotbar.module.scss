@@ -48,10 +48,10 @@
 
 .container {
   align-items: flex-start;
-  gap: $spacing-base $spacing-xl;
   counter-reset: slots;
   display: flex;
   flex-flow: row wrap;
+  gap: $spacing-base $spacing-xl;
   justify-content: center;
   margin-bottom: $spacing-sm;
   max-width: 838px;
