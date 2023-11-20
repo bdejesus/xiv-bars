@@ -187,7 +187,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
         return {
           ...state,
           readOnly: true,
-          viewData: action.payload.viewData,
+          viewData: { ...state.viewData, ...action.payload.viewData },
           showPublish: false,
           viewAction: 'show',
           message: { type: 'success', body: 'Success!' }

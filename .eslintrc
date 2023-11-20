@@ -35,6 +35,7 @@
     "class-methods-use-this": "warn",
     "comma-dangle": "off",
     "comma-spacing": "warn",
+    "import/no-named-as-default-member": "off",
     "import/no-named-as-default": "off",
     "import/extensions": "off",
     "linebreak-style": ["warn", "unix"],

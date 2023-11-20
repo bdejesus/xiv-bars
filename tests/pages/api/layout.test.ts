@@ -35,7 +35,6 @@ describe('/api/layout API Endpoint', () => {
     const { req, res } = mockRequestResponse();
     req.body = { method: 'list' };
     await layoutHandler(req, res);
-
     expect(res.statusCode).toBe(200);
     expect(res.getHeaders()).toEqual({ 'content-type': 'application/json' });
     expect(res.statusMessage).toEqual('OK');
@@ -43,7 +42,7 @@ describe('/api/layout API Endpoint', () => {
 
   it('returns a layout', async () => {
     const { req, res } = mockRequestResponse();
-    req.body = { method: 'read' };
+    req.body = { method: 'read', id: 1 };
     await layoutHandler(req, res);
 
     expect(res.statusCode).toBe(200);
@@ -53,7 +52,7 @@ describe('/api/layout API Endpoint', () => {
 
   it('does not return invalid methods', async () => {
     const { req, res } = mockRequestResponse();
-    req.body = { method: 'not_a_method' };
+    req.body = { method: 'not_a_method', id: null };
     await layoutHandler(req, res);
 
     expect(res.statusCode).toBe(404);

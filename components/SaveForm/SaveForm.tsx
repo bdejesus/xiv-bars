@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
+import { AppAction } from 'components/App/actions';
 import I18n from 'lib/I18n/locale/en-US';
 
 import styles from './SaveForm.module.scss';
@@ -52,14 +53,12 @@ function SaveForm() {
     })
       .then((data) => data.json())
       .then((json) => {
-        const [currentLayout, layouts] = json;
-        appDispatch({
-          type: 'saveLayout',
-          payload: { viewData: { ...currentLayout, ...body } }
-        });
+        const { layoutView, layouts } = json;
+        appDispatch({ type: AppAction.SAVE_LAYOUT, payload: { viewData: { ...layoutView, ...body } } });
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
+
         router.push(
-          `/job/${currentLayout.jobId}/${currentLayout.id}`,
+          `/job/${layoutView.jobId}/${layoutView.id}`,
           undefined,
           { shallow: true }
         );
