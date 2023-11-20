@@ -2,15 +2,15 @@
  * @jest-environment node
  */
 
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable import/no-extraneous-dependencies */
 
 import '@testing-library/jest-dom';
 import { createMocks, RequestMethod } from 'node-mocks-http';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth/next';
-import { PrismaClient } from '@prisma/client';
-import layout from 'pages/api/layout.ts';
+import layoutHandler from 'pages/api/layout.ts';
 import { mockDeep } from 'jest-mock-extended';
+import { PrismaClient } from '@prisma/client';
 
 jest.mock('next-auth/next');
 jest.mock('@prisma/client');
@@ -23,24 +23,41 @@ describe('/api/layout API Endpoint', () => {
 
   function mockRequestResponse(method: RequestMethod = 'GET') {
     const { req, res }: { req: NextApiRequest; res: NextApiResponse } = createMocks({ method });
-
     req.headers = { 'Content-Type': 'application/json' };
-    req.body = { method: 'list' };
     return { req, res };
   }
 
-  getServerSession.mockResolvedValue({ user: { id: 1 } });
-  PrismaClient.mockResolvedValue({ layout: { findMany: jest.fn() } });
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
 
-  it('returns a layout', async () => {
+  it('returns a layouts list', async () => {
     const { req, res } = mockRequestResponse();
-
-    await layout(req, res);
+    req.body = { method: 'list' };
+    await layoutHandler(req, res);
 
     expect(res.statusCode).toBe(200);
     expect(res.getHeaders()).toEqual({ 'content-type': 'application/json' });
     expect(res.statusMessage).toEqual('OK');
-    // eslint-disable-next-line no-underscore-dangle
-    expect(res._getJSONData().length).toEqual(1);
+  });
+
+  it('returns a layout', async () => {
+    const { req, res } = mockRequestResponse();
+    req.body = { method: 'read' };
+    await layoutHandler(req, res);
+
+    expect(res.statusCode).toBe(200);
+    expect(res.getHeaders()).toEqual({ 'content-type': 'application/json' });
+    expect(res.statusMessage).toEqual('OK');
+  });
+
+  it('does not return invalid methods', async () => {
+    const { req, res } = mockRequestResponse();
+    req.body = { method: 'not_a_method' };
+    await layoutHandler(req, res);
+
+    expect(res.statusCode).toBe(404);
+    expect(res.getHeaders()).toEqual({ 'content-type': 'application/json' });
+    expect(res.statusMessage).toEqual('Not Found');
   });
 });

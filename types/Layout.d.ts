@@ -4,12 +4,12 @@ export interface LayoutProps {
   description?: string,
   encodedSlots: string,
   exhb: number,
-  hb: number,
+  hb: string,
   id: number,
   isPvp: boolean,
   jobId: string,
   layout: number,
-  title: number,
+  title: string,
   updatedAt: string,
   user: {
     name: string
