@@ -48,14 +48,13 @@
 
 .container {
   align-items: flex-start;
-  column-gap: $spacing-xl;
   counter-reset: slots;
   display: flex;
   flex-flow: row wrap;
+  gap: $spacing-base $spacing-xl;
   justify-content: center;
   margin-bottom: $spacing-sm;
   max-width: 838px;
-  row-gap: $spacing-base;
 
   > li {
     position: relative;

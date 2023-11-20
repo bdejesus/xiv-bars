@@ -100,7 +100,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const fetchOptions = {
       method: 'POST',
-      body: JSON.stringify({ id: layoutId }),
+      body: JSON.stringify({ id: layoutId, method: 'read' }),
       headers: { 'Content-Type': 'application/json' }
     };
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);

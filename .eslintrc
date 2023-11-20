@@ -35,6 +35,7 @@
     "class-methods-use-this": "warn",
     "comma-dangle": "off",
     "comma-spacing": "warn",
+    "import/no-named-as-default-member": "off",
     "import/no-named-as-default": "off",
     "import/extensions": "off",
     "linebreak-style": ["warn", "unix"],
@@ -63,6 +64,7 @@
     "jsx-a11y/aria-role": "warn",
     "jsx-a11y/aria-unsupported-elements": "warn",
     "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/control-has-associated-label": "warn",
     "jsx-a11y/heading-has-content": "warn",
     "jsx-a11y/html-has-lang": "warn",
     "jsx-a11y/iframe-has-title": "warn",
@@ -100,7 +102,9 @@
           ["data", "./data"],
           ["lib", "./lib"],
           ["types", "./types"],
-          ["pages", "./pages"]
+          ["pages", "./pages"],
+          ["tests", "./tests"],
+          ["mocks", "./__mocks__"]
         ]
       }
     }

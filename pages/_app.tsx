@@ -9,6 +9,7 @@ import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
 import { SessionProvider } from 'next-auth/react';
 import { UserProvider } from 'components/User/context';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import 'styles/global.scss';
 
@@ -33,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const description = generateDescription();
 
   return (
-    <>
+    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
@@ -63,6 +64,6 @@ export default function App({ Component, pageProps }: AppProps) {
           </UserProvider>
         </SessionProvider>
       </main>
-    </>
+    </ErrorBoundary>
   );
 }
