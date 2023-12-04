@@ -13,14 +13,11 @@ export function GlobalHeader() {
       <Link href="/" className={styles.branding}>
         <div className={styles.logo}>
           <img
-            src="/icons/favicon-96x96.png"
-            alt="XIVBARS Logo"
-            height={24}
-            width={24}
+            src="/xivbars-logo.svg"
+            alt="XIV BARS"
+            height={20}
+            width={120}
           />
-        </div>
-        <div className={`${styles.title} branding`}>
-          XIV<b>BARS</b>
         </div>
       </Link>
 
