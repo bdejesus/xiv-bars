@@ -25,9 +25,7 @@ export function Donate() {
       >
         <span className={styles.icon}>{I18n.BuyMeABeer.cheers}</span>
         <span>
-          <b>{I18n.BuyMeABeer.tips_appreciated}</b>
-          <br />
-          {I18n.BuyMeABeer.donate}
+          {I18n.BuyMeABeer.tips_appreciated}
         </span>
       </a>
     </div>
