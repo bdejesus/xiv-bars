@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: row;
   font-size: $font-size-base;
+  padding-right: $spacing-base;
   position: relative;
 
   a {

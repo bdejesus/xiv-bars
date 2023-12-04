@@ -9,6 +9,7 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:react/recommended",
+    "plugin:import/typescript",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "airbnb",
@@ -93,7 +94,8 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["."]
+        "paths": ["."],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
       },
       "alias": {
         "map": [
