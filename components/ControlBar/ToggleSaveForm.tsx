@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSession, signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserState } from 'components/User/context';
 import I18n from 'lib/I18n/locale/en-US';
@@ -49,7 +49,7 @@ function EditButton({ showForm }: ButtonProps) {
 }
 
 function ToggleSaveForm() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const { viewData } = useAppState();
   const appDispatch = useAppDispatch();
@@ -59,24 +59,10 @@ function ToggleSaveForm() {
 
   function showForm() { appDispatch({ type: 'editLayout' }); }
 
-  function handleSignin(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    e.preventDefault();
-    signIn('discord');
-  }
-
   return (
     <div className={styles.control}>
       { canCreate && <PublishButton showForm={() => showForm()} /> }
       { canEdit && <EditButton showForm={() => showForm()} /> }
-      { status !== 'authenticated' && (
-        <a
-          href="/api/auth/signin"
-          onClick={(e) => handleSignin(e)}
-          className={styles.upsell}
-        >
-          {I18n.ControlBar.ToggleSaveForm.signin}
-        </a>
-      ) }
     </div>
   );
 }
