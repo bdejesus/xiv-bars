@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import { useSession } from 'next-auth/react';
 import { maxLayouts } from 'lib/user';
-import { UserState, UserDispatchActions } from 'types/User';
+import type { UserState, UserDispatchActions } from 'types/User';
 import { UserActions } from './actions';
 import UserReducer from './reducers';
 

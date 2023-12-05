@@ -1,4 +1,4 @@
-import { SlotProps } from 'types/Action';
+import type { SlotProps } from 'types/Action';
 import { useAppState } from 'components/App/context';
 import { hotbarKeyPos } from 'lib/xbars';
 import Slot from 'components/Slot';

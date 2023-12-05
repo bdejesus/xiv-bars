@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
-import type { ClassJobProps } from 'types/ClassJob';
-import type { LayoutProps } from 'types/Layout';
-import type { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutCard from 'components/LayoutCard';
 import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
+
+import type { ClassJobProps } from 'types/ClassJob';
+import type { LayoutProps } from 'types/Layout';
+import type { GetServerSideProps } from 'next';
 
 import styles from './index.module.scss';
 
@@ -47,10 +49,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       <div className="container section">
         <h1 className={`mt-md ${styles.title}`}>
           <SelectedJob job={selectedJob} className={styles.job} />
-          <a href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
+          <Link href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
             <span className="newIcon">+</span>
             New {selectedJob.Name} Layout
-          </a>
+          </Link>
         </h1>
 
         { layoutsData.length > 0
@@ -75,7 +77,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             </div>
           ) : (
             <h2>
-              No {selectedJob.Name} Layouts yet. <a href={`/job/${selectedJob.Abbr}/new`}>Create one?</a>
+              No {selectedJob.Name} Layouts yet. <Link href={`/job/${selectedJob.Abbr}/new`}>Create one?</Link>
             </h2>
           )}
       </div>

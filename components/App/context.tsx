@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 import { hotbar, chotbar } from 'lib/xbars';
 
 import Jobs from 'apiData/Jobs.json';
-import { ClassJobProps } from 'types/ClassJob';
-import { ActionProps } from 'types/Action';
-import { AppState, ViewProps, AppDispatchActions } from 'types/App';
+import type { ClassJobProps } from 'types/ClassJob';
+import type { ActionProps } from 'types/Action';
+import type { AppState, ViewProps, AppDispatchActions } from 'types/App';
 import AppReducer from './reducers';
 
 const defaultState = {

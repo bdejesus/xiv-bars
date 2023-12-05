@@ -1,5 +1,5 @@
 import Slot from 'components/Slot';
-import { SlotProps } from 'types/Action';
+import type { SlotProps } from 'types/Action';
 import styles from './Xbar.module.scss';
 
 interface Props {

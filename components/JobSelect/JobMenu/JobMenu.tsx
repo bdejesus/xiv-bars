@@ -1,4 +1,4 @@
-import { ClassJobProps } from 'types/ClassJob';
+import type { ClassJobProps } from 'types/ClassJob';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 

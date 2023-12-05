@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useUserDispatch } from 'components/User/context';
 import Head from 'next/head';
+import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
@@ -71,9 +72,9 @@ export default function Me() {
       <div className="container section">
         <h1 className="mt-md">
           {I18n.Pages.Me.my_layouts} ({layouts.length ? layouts.length : '-'}/{maxLayouts})
-          <a href="/" className={styles.newLink}>
+          <Link href="/" className={styles.newLink}>
             New Layout
-          </a>
+          </Link>
         </h1>
 
         { layouts.length <= 0 && (
@@ -105,13 +106,13 @@ export default function Me() {
 
               { layouts.length < maxLayouts && (
                 <li>
-                  <a href="/">
+                  <Link href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
                         + New Layout
                       </h4>
                     </Card>
-                  </a>
+                  </Link>
                 </li>
               )}
             </ul>

@@ -1,6 +1,6 @@
 import Action from 'components/Action';
 import { useAppState } from 'components/App/context';
-import { ActionProps } from 'types/Action';
+import type { ActionProps } from 'types/Action';
 import styles from './ActionGroup.module.scss';
 
 interface Props {

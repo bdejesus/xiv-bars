@@ -1,4 +1,4 @@
-import { SlotProps } from 'types/Action';
+import type { SlotProps } from 'types/Action';
 import Group from './Group';
 import styles from './Xbar.module.scss';
 

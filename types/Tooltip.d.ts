@@ -1,5 +1,5 @@
 import { TooltipAction } from 'components/Tooltip/actions';
-import { ActionProps } from 'types/Action';
+import type { ActionProps } from 'types/Action';
 
 export interface TooltipState {
   content?: ActionProps,

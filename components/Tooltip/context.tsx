@@ -1,7 +1,7 @@
 import React, {
   ReactNode, createContext, useContext, useReducer
 } from 'react';
-import {
+import type {
   TooltipState, TooltipDispatch, TooltipActions
 } from 'types/Tooltip';
 

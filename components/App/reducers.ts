@@ -6,9 +6,9 @@ import GENERAL_ACTION from 'apiData/GeneralAction.json';
 import MAIN_COMMAND from 'apiData/MainCommand.json';
 import MACRO_ICON from 'apiData/MacroIcon.json';
 import PET_ACTION from 'apiData/PetAction.json';
-import { AppState, AppDispatchActions } from 'types/App';
 import { sortIntoGroups } from 'lib/utils/array.mjs';
-import { ActionProps, SlotProps } from 'types/Action';
+import type { AppState, AppDispatchActions } from 'types/App';
+import type { ActionProps, SlotProps } from 'types/Action';
 import { AppAction } from './actions';
 
 export default function AppReducer(state: AppState, action: AppDispatchActions) {

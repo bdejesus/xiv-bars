@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClassJobProps } from 'types/ClassJob';
+import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Job.module.scss';
 
 interface Props {
