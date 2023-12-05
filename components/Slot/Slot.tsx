@@ -3,7 +3,7 @@ import Action from 'components/Action';
 import { useSelectedActionState, useSelectedActionDispatch } from 'components/SelectedAction';
 import { SelectedActionAction } from 'components/SelectedAction/actions';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { ActionProps } from 'types/Action';
+import type { ActionProps } from 'types/Action';
 import { AppAction } from 'components/App/actions';
 import styles from './Slot.module.scss';
 

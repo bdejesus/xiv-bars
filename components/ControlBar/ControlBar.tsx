@@ -5,7 +5,7 @@ import ExportToMacros from 'components/ExportToMacro';
 import SaveForm from 'components/SaveForm';
 import { jsonToQuery } from 'lib/utils/url';
 import I18n from 'lib/I18n/locale/en-US';
-import { ClassJobProps } from 'types/ClassJob';
+import type { ClassJobProps } from 'types/ClassJob';
 import ToggleTitles from './ToggleTitles';
 import ToggleMaxLvl from './ToggleMaxLvl';
 import ToggleSaveForm from './ToggleSaveForm';

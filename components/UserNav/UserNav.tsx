@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
 import styles from './UserNav.module.scss';
@@ -43,9 +44,9 @@ export function UserNav() {
 
         { session && (
           <li className={styles.navItem}>
-            <a href="/me" data-active={router.pathname === '/me'}>
+            <Link href="/me" data-active={router.pathname === '/me'}>
               {I18n.UserNav.my_layouts}
-            </a>
+            </Link>
           </li>
         )}
       </ul>

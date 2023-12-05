@@ -1,6 +1,6 @@
 import { useAppState } from 'components/App/context';
 import { hasActions } from 'lib/xbars';
-import { SlotProps } from 'types/Action';
+import type { SlotProps } from 'types/Action';
 import Row from './Row';
 import styles from './Hotbar.module.scss';
 

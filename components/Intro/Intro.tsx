@@ -1,7 +1,7 @@
 import I18n from 'lib/I18n/locale/en-US';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
-import { ClassJobProps } from 'types/ClassJob';
+import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Intro.module.scss';
 
 interface Props {

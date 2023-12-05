@@ -25,7 +25,7 @@ export function GlobalHeader() {
         <nav className={styles.globalNav}>
           <ol>
             <li>
-              <a href={`/job/${selectedJob.Abbr}`}>
+              <Link href={`/job/${selectedJob.Abbr}`}>
                 <img
                   src={`/jobIcons${selectedJob.Icon}`}
                   alt=""
@@ -33,7 +33,7 @@ export function GlobalHeader() {
                   width={24}
                 />
                 {selectedJob.Name}
-              </a>
+              </Link>
             </li>
 
             {viewData?.title
@@ -44,9 +44,9 @@ export function GlobalHeader() {
               )
               : (
                 <li>
-                  <a href={`/job/${selectedJob.Abbr}/new`}>
+                  <Link href={`/job/${selectedJob.Abbr}/new`}>
                     <span className="newIcon">+</span> NEW LAYOUT
-                  </a>
+                  </Link>
                 </li>
               )}
 

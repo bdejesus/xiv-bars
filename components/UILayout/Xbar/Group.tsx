@@ -1,5 +1,5 @@
 import { sortIntoGroups } from 'lib/utils/array.mjs';
-import { SlotProps } from 'types/Action';
+import type { SlotProps } from 'types/Action';
 import Set from './Set';
 
 interface Props {

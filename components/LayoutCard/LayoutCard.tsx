@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import Card from 'components/Card';
 import Job from 'components/JobSelect/Job';
-import { ClassJobProps } from 'types/ClassJob';
-import { LayoutProps } from 'types/Layout';
+import type { ClassJobProps } from 'types/ClassJob';
+import type { LayoutProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
@@ -26,7 +27,7 @@ export default function LayoutCard({
 
   return (
     <div className={styles.layoutCard}>
-      <a href={`/job/${layout.jobId}/${layout.id}`}>
+      <Link href={`/job/${layout.jobId}/${layout.id}`}>
         <Card className={[styles.card, className].join(' ')}>
           <>
             { job && <Job job={job} className={styles.job} /> }
@@ -40,7 +41,7 @@ export default function LayoutCard({
             </div>
           </>
         </Card>
-      </a>
+      </Link>
 
       { !!onDelete && (
         <div className={styles.cardActions}>

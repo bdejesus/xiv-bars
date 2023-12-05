@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClassJobProps } from 'types/ClassJob';
+import type { ClassJobProps } from 'types/ClassJob';
 import SelectedJob from './SelectedJob';
 import styles from './JobSelect.module.scss';
 

@@ -1,4 +1,4 @@
-import { UserState, UserDispatchActions } from 'types/User';
+import type { UserState, UserDispatchActions } from 'types/User';
 import { maxLayouts } from 'lib/user';
 import { UserActions } from './actions';
 

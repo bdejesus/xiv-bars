@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
-import { ClassJobProps } from 'types/ClassJob';
+import type { ClassJobProps } from 'types/ClassJob';
 
 import styles from './Sharing.module.scss';
 

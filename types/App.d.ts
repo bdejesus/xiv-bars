@@ -1,6 +1,6 @@
 import { AppAction } from 'components/App/actions';
-import { ActionProps, SlotProps } from 'types/Action';
-import { ClassJobProps } from 'types/ClassJob';
+import type { ActionProps, SlotProps } from 'types/Action';
+import type { ClassJobProps } from 'types/ClassJob';
 
 export interface ViewProps {
   encodedSlots?: string,

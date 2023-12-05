@@ -5,7 +5,7 @@ import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import I18n from 'lib/I18n/locale/en-US';
 import Modal from 'components/Modal';
-import { SlotProps } from 'types/Action';
+import type { SlotProps } from 'types/Action';
 import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {

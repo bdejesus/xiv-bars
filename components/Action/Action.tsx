@@ -3,7 +3,7 @@ import React, { createRef, useState } from 'react';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
-import { ActionProps } from 'types/Action';
+import type { ActionProps } from 'types/Action';
 import { getContent } from 'lib/api';
 
 import styles from './Action.module.scss';

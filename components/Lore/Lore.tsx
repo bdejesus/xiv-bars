@@ -1,5 +1,5 @@
 import I18n from 'lib/I18n/locale/en-US';
-import { ClassJobProps } from 'types/ClassJob';
+import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Lore.module.scss';
 
 interface Props {
