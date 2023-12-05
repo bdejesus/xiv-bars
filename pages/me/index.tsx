@@ -14,7 +14,7 @@ import LoadScreen from 'components/LoadScreen';
 import Jobs from 'apiData/Jobs.json';
 import { maxLayouts } from 'lib/user';
 import { UserActions } from 'components/User/actions';
-import { LayoutProps } from 'types/Layout';
+import type { LayoutProps } from 'types/Layout';
 import styles from './me.module.scss';
 
 export default function Me() {
@@ -103,17 +103,17 @@ export default function Me() {
                 );
               })}
 
-              { [...Array(maxLayouts - layouts.length)].map((_e, i) => (
-                <li key={`placeholder-${i}`}>
+              { layouts.length < maxLayouts && (
+                <li>
                   <a href="/">
-                    <Card className={styles.card}>
+                    <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
                         + New Layout
                       </h4>
                     </Card>
                   </a>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
         ) : (
