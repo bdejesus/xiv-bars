@@ -21,7 +21,9 @@ const layout:LayoutProps = {
   wxhb: 0,
   exhb: 0,
   hb: '[1,1,1,1,1,1,1,1,1,1]',
-  user: { name: 'bejezus' }
+  user: {
+    name: 'bejezus'
+  }
 };
 
 const layouts:LayoutProps[] = [layout];
