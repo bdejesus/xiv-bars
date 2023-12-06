@@ -35,6 +35,7 @@ describe('/api/layout API Endpoint', () => {
     const { req, res } = mockRequestResponse();
     req.body = { method: 'list' };
     await layoutHandler(req, res);
+
     expect(res.statusCode).toBe(200);
     expect(res.getHeaders()).toEqual({ 'content-type': 'application/json' });
     expect(res.statusMessage).toEqual('OK');

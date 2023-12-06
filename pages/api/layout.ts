@@ -19,6 +19,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
         res.status(200).json(listLayouts);
         break;
       }
+
       case 'create': {
         const createLayout = await layoutApiMethods.create(userId, body);
         const layouts = await layoutApiMethods.list(userId);
