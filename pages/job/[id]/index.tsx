@@ -49,10 +49,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       <div className="container section">
         <h1 className={`mt-md ${styles.title}`}>
           <SelectedJob job={selectedJob} className={styles.job} />
-          <Link href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
+          <a href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
             <span className="newIcon">+</span>
             New {selectedJob.Name} Layout
-          </Link>
+          </a>
         </h1>
 
         { layoutsData.length > 0
