@@ -72,9 +72,9 @@ export default function Me() {
       <div className="container section">
         <h1 className="mt-md">
           {I18n.Pages.Me.my_layouts} ({layouts.length ? layouts.length : '-'}/{maxLayouts})
-          <Link href="/" className={styles.newLink}>
+          <a href="/" className={styles.newLink}>
             New Layout
-          </Link>
+          </a>
         </h1>
 
         { layouts.length <= 0 && (
@@ -106,13 +106,13 @@ export default function Me() {
 
               { layouts.length < maxLayouts && (
                 <li>
-                  <Link href="/">
+                  <a href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
                         + New Layout
                       </h4>
                     </Card>
-                  </Link>
+                  </a>
                 </li>
               )}
             </ul>

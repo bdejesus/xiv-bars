@@ -44,9 +44,9 @@ export function GlobalHeader() {
               )
               : (
                 <li>
-                  <Link href={`/job/${selectedJob.Abbr}/new`}>
+                  <a href={`/job/${selectedJob.Abbr}/new`}>
                     <span className="newIcon">+</span> NEW LAYOUT
-                  </Link>
+                  </a>
                 </li>
               )}
 

@@ -56,14 +56,13 @@ export default function Index({
         roleActions={roleActions}
         selectedJob={selectedJob}
         layout={layout}
-        encodedSlots={encodedSlots}
         readOnly={readOnly}
         viewData={viewData}
         viewAction="show"
       >
         <GlobalHeader />
 
-        <App />
+        <App encodedSlots={encodedSlots} />
 
         <div className="container section">
           <div className={styles.description}>

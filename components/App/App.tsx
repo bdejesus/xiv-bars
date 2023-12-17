@@ -20,7 +20,7 @@ type QueryProps = {
   [key: string]: string
 }
 
-export function App() {
+export function App({ encodedSlots }:{ encodedSlots?: string }) {
   const [showJobMenu, setShowJobMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const appDispatch = useAppDispatch();
@@ -30,8 +30,7 @@ export function App() {
     actions,
     roleActions,
     readOnly,
-    viewData,
-    encodedSlots
+    viewData
   } = useAppState();
 
   const router = useRouter();
@@ -157,5 +156,9 @@ export function App() {
     </TooltipContextProvider>
   );
 }
+
+App.defaultProps = {
+  encodedSlots: undefined
+};
 
 export default App;

@@ -21,10 +21,10 @@ export function JobsList({ title, jobs }: Props) {
               <Job job={job} />
             </Link>
 
-            <Link href={`/job/${job.Abbr}/new`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
+            <a href={`/job/${job.Abbr}/new`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
               <span className={styles.addIcon}>+</span>
               <span className={styles.addLabel}>New</span>
-            </Link>
+            </a>
           </li>
         ))}
       </ul>
