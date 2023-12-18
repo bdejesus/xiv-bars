@@ -11,13 +11,13 @@ import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Sharing.module.scss';
 
 interface Props {
-  selectedJob: ClassJobProps
+  selectedJob: ClassJobProps,
+  encodedSlots?: string
 }
 
-export function Sharing({ selectedJob }: Props) {
+export function Sharing({ selectedJob, encodedSlots }:Props) {
   const router = useRouter();
   const {
-    encodedSlots,
     readOnly,
     viewAction,
     xhb,
@@ -105,5 +105,9 @@ export function Sharing({ selectedJob }: Props) {
     </div>
   );
 }
+
+Sharing.defaultProps = {
+  encodedSlots: undefined
+};
 
 export default Sharing;
