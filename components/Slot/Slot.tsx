@@ -73,6 +73,10 @@ export default function Slot({ id, className, action }: Props) {
 
   function handleDrop(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
+
+    // Update URL route
+    console.log(event, selectedAction);
+
     setSelectedAction();
     resetSlot(event);
   }

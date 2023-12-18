@@ -1,109 +1,12 @@
 import { layouts, hotbarKeyPos } from 'lib/xbars';
-import ACTION_CAT from 'data/ActionCategory.json';
-import BUDDY_ACTION from 'apiData/BuddyAction.json';
-import COMPANY_ACTION from 'apiData/CompanyAction.json';
-import GENERAL_ACTION from 'apiData/GeneralAction.json';
-import MAIN_COMMAND from 'apiData/MainCommand.json';
-import MACRO_ICON from 'apiData/MacroIcon.json';
-import PET_ACTION from 'apiData/PetAction.json';
-import { sortIntoGroups } from 'lib/utils/array.mjs';
 import type { AppState, AppDispatchActions } from 'types/App';
-import type { ActionProps, SlotProps } from 'types/Action';
+import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { AppAction } from './actions';
 
 export default function AppReducer(state: AppState, action: AppDispatchActions) {
   const { layout } = state;
-
   const layoutKey = layouts[layout as keyof typeof layouts];
   const slots = state[layoutKey as keyof typeof state];
-
-  // TODO: Extract these functions to external js?
-  function assignActionIds(slotActions: SlotProps[]) {
-    return Object.values(slotActions).map((slot) => {
-      if (slot.action?.ID) {
-        return (typeof slot.action.Prefix !== 'undefined')
-          ? `${slot.action.Prefix}${slot.action.ID}`
-          : `${slot.action.ID}`;
-      }
-      return '0';
-    });
-  }
-
-  function encodeSlots() {
-    if (slots) {
-      const slotIDs = Object.values(slots);
-      const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
-      const queryString = slotsQuery
-        .reduce((flat, next) => flat.concat(next), [])
-        .join(',');
-      return queryString;
-    }
-    return null;
-  }
-
-  function setActionToSlot() {
-    // update slotted actions
-    if (action.payload?.slotID) {
-      const [parent, id] = action.payload.slotID.split('-');
-      const slot = { parent, id: parseInt(id, 10) - 1 };
-      const slotObject: { action: ActionProps | undefined } = slots
-        ? slots[slot.parent as keyof typeof slots][slot.id]
-        : { action: undefined };
-      if (slotObject) slotObject.action = action.payload.action;
-      // update slots string query
-      return encodeSlots();
-    }
-    return null;
-  }
-
-  function getActionKey(actionCategory: string | null) {
-    if (actionCategory) {
-      switch (actionCategory) {
-        case ACTION_CAT.BuddyAction.prefix: return BUDDY_ACTION;
-        case ACTION_CAT.CompanyAction.prefix: return COMPANY_ACTION;
-        case ACTION_CAT.GeneralAction.prefix: return GENERAL_ACTION;
-        case ACTION_CAT.MainCommand.prefix: return MAIN_COMMAND;
-        case ACTION_CAT.MacroIcon.prefix: return MACRO_ICON;
-        case ACTION_CAT.PetAction.prefix: return PET_ACTION;
-        case 'r': return state.roleActions;
-        default: return state.actions;
-      }
-    }
-
-    return state.actions;
-  }
-
-  function setActionsByGroup(slotGroup: { action: ActionProps }[], actionID: string, slotIndex: number) {
-    const actionPrefixes = Object.values(ACTION_CAT).map((type) => type.prefix);
-    const prefixes = [...actionPrefixes, 'r'].join('|');
-    const actionRegex = new RegExp(prefixes);
-    const IDString = actionID.toString();
-    const typeMatch = IDString.match(actionRegex);
-    const actionType = typeMatch ? typeMatch[0] : null;
-
-    const parsedID = actionType
-      ? parseInt(IDString.replace(actionType, ''), 10)
-      : parseInt(IDString, 10);
-    const slottedAction = getActionKey(actionType)?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
-    // eslint-disable-next-line no-param-reassign
-    if (slottedAction && slotGroup && slotGroup[slotIndex]) slotGroup[slotIndex].action = slottedAction;
-  }
-
-  function setActionsToSlot(encodedSlots: string) {
-    const slottedActions = state.layout === 1
-      ? sortIntoGroups(encodedSlots.split(','), 12)
-      : sortIntoGroups(encodedSlots.split(','), 16);
-
-    slottedActions.forEach((actionGroup, groupIndex) => {
-      if (slots) {
-        const slotKeys = Object.keys(slots);
-        const groupName = slotKeys[groupIndex] as keyof typeof slots;
-        const slotGroup = slots[groupName];
-        actionGroup
-          .forEach((actionID: string, slotIndex: number) => setActionsByGroup(slotGroup, actionID, slotIndex));
-      }
-    });
-  }
 
   switch (action.type) {
     case AppAction.UPDATE_UI: {
@@ -129,7 +32,13 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
 
     case AppAction.SLOT_ACTIONS: {
       if (action.payload?.encodedSlots) {
-        setActionsToSlot(action.payload.encodedSlots);
+        setActionsToSlots({
+          encodedSlots: action.payload.encodedSlots,
+          layout,
+          slots: slots as object,
+          actions: state.actions,
+          roleActions: state.roleActions
+        });
       }
       return {
         ...state,
@@ -142,7 +51,11 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     }
 
     case AppAction.SLOT_ACTION: {
-      const encodedSlots = setActionToSlot();
+      const encodedSlots = setActionToSlot({
+        action: action.payload?.action,
+        slotID: action.payload?.slotID,
+        slots: slots as object
+      });
       return { ...state, encodedSlots };
     }
 
