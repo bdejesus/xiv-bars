@@ -76,7 +76,7 @@ export function ControlBar({ selectedJob }: Props) {
             </div>
 
             <div className={styles.control}>
-              <Sharing selectedJob={selectedJob} />
+              <Sharing selectedJob={selectedJob} encodedSlots={encodedSlots} />
             </div>
           </div>
         </div>

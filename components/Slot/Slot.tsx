@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Action from 'components/Action';
-import { useSelectedActionState, useSelectedActionDispatch } from 'components/SelectedAction';
+import {
+  useSelectedActionState,
+  useSelectedActionDispatch
+} from 'components/SelectedAction';
 import { SelectedActionAction } from 'components/SelectedAction/actions';
-import { useAppState, useAppDispatch } from 'components/App/context';
+import { useAppState } from 'components/App/context';
 import type { ActionProps } from 'types/Action';
-import { AppAction } from 'components/App/actions';
+import { setActionToSlot } from 'lib/utils/slots';
+import { hotbar, chotbar } from 'lib/xbars';
 import styles from './Slot.module.scss';
 
 interface Props {
@@ -15,16 +20,17 @@ interface Props {
 
 export default function Slot({ id, className, action }: Props) {
   const { readOnly } = useAppState();
-  const appDispatch = useAppDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
+  const router = useRouter();
+
+  const { query, pathname } = router;
+  const layout = query.l?.toString() === '1' ? 1 : 0;
+  const slotLayouts = [chotbar, hotbar];
 
   function resetSlot(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    const { currentTarget } = event;
-    if (currentTarget.getAttribute('data-state') === 'active') {
-      currentTarget.setAttribute('data-state', 'inactive');
-    }
+    event.currentTarget.setAttribute('data-state', 'inactive');
   }
 
   function handleDragStart() {
@@ -34,49 +40,47 @@ export default function Slot({ id, className, action }: Props) {
   function handleDragLeave(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
     if (dragging) {
-      appDispatch({
-        type: AppAction.SLOT_ACTION,
-        payload: {
-          slotID: id,
-          action: {}
-        }
+      // Update URL route
+      const updatedSlots = setActionToSlot({
+        action: {},
+        slotID: id,
+        slots: slotLayouts[layout]
       });
+
+      const params = { pathname, query: { ...query, s1: updatedSlots } };
+      router.push(params, undefined, { shallow: true });
     }
     resetSlot(event);
   }
 
   function handleDragOver(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
-    const { currentTarget } = event;
-
-    if (currentTarget.getAttribute('data-state') !== 'active') {
-      currentTarget.setAttribute('data-state', 'active');
-    }
+    event.currentTarget.setAttribute('data-state', 'active');
   }
 
   function setSelectedAction() {
     if (readOnly) return null;
 
     setDragging(false);
+
     if (selectedAction) {
-      appDispatch({
-        type: AppAction.SLOT_ACTION,
-        payload: {
-          slotID: id,
-          action: selectedAction
-        }
+      // Update URL route
+      const updatedSlots = setActionToSlot({
+        action: selectedAction,
+        slotID: id,
+        slots: slotLayouts[layout]
       });
+
+      const params = { pathname, query: { ...query, s1: updatedSlots } };
+      router.push(params, undefined, { shallow: true });
     }
+
     selectedActionDispatch({ type: SelectedActionAction.DESELECT });
     return null;
   }
 
-  function handleDrop(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function handleDrop(event: React.MouseEvent<HTMLDivElement, DragEvent>) {
     event.preventDefault();
-
-    // Update URL route
-    console.log(event, selectedAction);
-
     setSelectedAction();
     resetSlot(event);
   }

@@ -20,6 +20,10 @@ export function assignActionIds(slotActions: SlotProps[]) {
   });
 }
 
+type QueryProps = {
+  [key: string]: string
+}
+
 export function encodeSlots(slots:object) {
   if (slots) {
     const slotIDs = Object.values(slots);
@@ -30,6 +34,26 @@ export function encodeSlots(slots:object) {
     return queryString;
   }
   return null;
+}
+
+export function decodeSlots(query:object) {
+  const {
+    s1, s, wxhb, xhb, exhb, hb
+  } = query as QueryProps;
+
+  let slots;
+  if (s1) slots = sortIntoGroups(s1.split(','), 16);
+  if (s) slots = JSON.parse(s);
+
+  const formatHbConfig: number[] = hb?.split(',').map((i) => parseInt(i, 10));
+
+  return {
+    slottedActions: slots,
+    wxhb: parseInt(wxhb, 10),
+    xhb: parseInt(xhb, 10),
+    exhb: parseInt(exhb, 10),
+    hb: formatHbConfig
+  };
 }
 
 interface SlotObject {
@@ -152,6 +176,7 @@ export function setActionsToSlots({
 
 const modules = {
   encodeSlots,
+  decodeSlots,
   assignActionIds,
   setActionToSlot,
   setActionsToSlots

@@ -34,9 +34,9 @@ export function Sharing({ selectedJob, encodedSlots }:Props) {
     const slots = encodedSlots && (/\d/).test(encodedSlots) ? encodedSlots : '';
     const query = {
       s1: slots,
-      xhb,
-      wxhb,
-      exhb,
+      xhb: xhb || 1,
+      wxhb: wxhb || 0,
+      exhb: exhb || 0,
       hb,
       l: router.query.l || null
     };

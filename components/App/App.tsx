@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { sortIntoGroups } from 'lib/utils/array.mjs';
+import { decodeSlots } from 'lib/utils/slots';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import Modal from 'components/Modal';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
@@ -15,10 +15,6 @@ import ReactMarkdown from 'react-markdown';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { AppAction } from './actions';
 import styles from './App.module.scss';
-
-type QueryProps = {
-  [key: string]: string
-}
 
 export function App({ encodedSlots }:{ encodedSlots?: string }) {
   const [showJobMenu, setShowJobMenu] = useState(false);
@@ -54,31 +50,16 @@ export function App({ encodedSlots }:{ encodedSlots?: string }) {
 
   useEffect(() => {
     // convert Slots from query param to JSON
-    function decodeSlots() {
-      const {
-        s1, s, wxhb, xhb, exhb, hb
-      } = router.query as QueryProps;
-
-      let slots;
-      if (s1) slots = sortIntoGroups(s1.split(','), 16);
-      if (s) slots = JSON.parse(s);
-
-      const formatHbConfig: number[] = hb?.split(',').map((i) => parseInt(i, 10));
-
+    if (router) {
+      const slots = decodeSlots(router.query);
       appDispatch({
         type: AppAction.SLOT_ACTIONS,
         payload: {
-          slottedActions: slots,
-          wxhb: parseInt(wxhb, 10),
-          xhb: parseInt(xhb, 10),
-          exhb: parseInt(exhb, 10),
-          hb: formatHbConfig,
+          ...slots,
           encodedSlots: router.query.s1?.toString() || router.query.s?.toString()
         }
       });
     }
-
-    if (router) decodeSlots();
   }, [router]);
 
   useEffect(() => {
