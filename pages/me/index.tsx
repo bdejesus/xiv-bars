@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useUserDispatch } from 'components/User/context';
 import Head from 'next/head';
-import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
