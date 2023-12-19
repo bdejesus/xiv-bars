@@ -11,18 +11,15 @@ import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Sharing.module.scss';
 
 interface Props {
-  selectedJob: ClassJobProps,
-  encodedSlots?: string
+  selectedJob: ClassJobProps
 }
 
-export function Sharing({ selectedJob, encodedSlots }:Props) {
+export function Sharing({ selectedJob }:Props) {
   const router = useRouter();
+
   const {
     readOnly,
     viewAction,
-    xhb,
-    wxhb,
-    exhb,
     hb
   } = useAppState();
   const [shareURL, setShareURL] = useState(domain);
@@ -31,18 +28,20 @@ export function Sharing({ selectedJob, encodedSlots }:Props) {
   const urlInput = createRef<HTMLInputElement>();
 
   function buildShareUrl() {
-    const slots = encodedSlots && (/\d/).test(encodedSlots) ? encodedSlots : '';
+    const {
+      s1, xhb, wxhb, exhb, l
+    } = router.query;
+
     const query = {
-      s1: slots,
+      s1,
       xhb: xhb || 1,
       wxhb: wxhb || 0,
       exhb: exhb || 0,
       hb,
-      l: router.query.l || null
+      l: l || 0
     };
 
     const queryString = jsonToQuery(query);
-
     return `${domain}/job/${selectedJob.Abbr}/new?${queryString}`;
   }
 
@@ -70,7 +69,7 @@ export function Sharing({ selectedJob, encodedSlots }:Props) {
   useEffect(() => {
     const urlString = readOnly ? getLayoutUrl() : buildShareUrl();
     setShareURL(urlString);
-  }, [encodedSlots, xhb, wxhb, exhb, hb]);
+  }, [router.query]);
 
   return (
     <div className={`${styles.container}`} data-copied={copied}>
@@ -105,9 +104,5 @@ export function Sharing({ selectedJob, encodedSlots }:Props) {
     </div>
   );
 }
-
-Sharing.defaultProps = {
-  encodedSlots: undefined
-};
 
 export default Sharing;
