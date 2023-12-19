@@ -20,6 +20,7 @@ export function App({ encodedSlots }:{ encodedSlots?: string }) {
   const [showJobMenu, setShowJobMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const appDispatch = useAppDispatch();
+  const appState = useAppState();
   const {
     jobs,
     selectedJob,
@@ -51,6 +52,15 @@ export function App({ encodedSlots }:{ encodedSlots?: string }) {
   useEffect(() => {
     // convert Slots from query param to JSON
     const slots = decodeSlots(router.query);
+
+    console.log(router.query);
+    console.log(appState);
+    /*
+      Values from router.query are cast as strings
+      Values ingested into the context are converted to their natrual type
+      Reading values should use the app state
+      Pushing state changes should be pushed to the router or url query
+    */
 
     appDispatch({
       type: AppAction.SLOT_ACTIONS,

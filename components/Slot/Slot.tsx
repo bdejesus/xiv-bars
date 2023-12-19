@@ -19,14 +19,13 @@ interface Props {
 }
 
 export default function Slot({ id, className, action }: Props) {
-  const { readOnly } = useAppState();
+  const { readOnly, layout } = useAppState();
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
   const router = useRouter();
 
   const { query, pathname } = router;
-  const layout = query.l?.toString() === '1' ? 1 : 0;
   const slotLayouts = [chotbar, hotbar];
 
   function resetSlot(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -44,7 +43,7 @@ export default function Slot({ id, className, action }: Props) {
       const updatedSlots = setActionToSlot({
         action: {},
         slotID: id,
-        slots: slotLayouts[layout]
+        slots: slotLayouts[parseInt(layout, 10)]
       });
 
       const params = { pathname, query: { ...query, s1: updatedSlots } };
@@ -68,7 +67,7 @@ export default function Slot({ id, className, action }: Props) {
       const updatedSlots = setActionToSlot({
         action: selectedAction,
         slotID: id,
-        slots: slotLayouts[layout]
+        slots: slotLayouts[parseInt(layout, 10)]
       });
 
       const params = { pathname, query: { ...query, s1: updatedSlots } };

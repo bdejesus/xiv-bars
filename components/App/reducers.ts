@@ -43,9 +43,9 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
 
       return {
         ...state,
-        xhb: action.payload?.xhb || state.xhb || 0,
-        wxhb: action.payload?.xhb || state.wxhb || 0,
-        exhb: action.payload?.xhb || state.exhb || 0,
+        xhb: action.payload?.xhb || state.xhb,
+        wxhb: action.payload?.xhb || state.wxhb,
+        exhb: action.payload?.xhb || state.exhb,
         hb: action.payload?.hb || state.hb,
         layout: action.payload?.layout,
         encodedSlots: action.payload?.encodedSlots || undefined

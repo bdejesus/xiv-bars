@@ -4,12 +4,12 @@ import type { ClassJobProps } from 'types/ClassJob';
 
 export interface ViewProps {
   encodedSlots?: string,
-  layout: number,
+  layout: string,
   params?: object,
   hb?: string,
-  xhb: number,
-  wxhb: number,
-  exhb: number,
+  xhb: string,
+  wxhb: string,
+  exhb: string,
   showTitles: boolean,
   showAllLvl: boolean,
   showModal: boolean,
@@ -26,12 +26,12 @@ export interface ViewProps {
 }
 
 export interface AppState {
-  layout: number,
+  layout: string,
   params?: object,
-  hb: number[] | string[],
-  xhb: number,
-  wxhb: number,
-  exhb: number,
+  hb: string[],
+  xhb: string,
+  wxhb: string,
+  exhb: string,
   jobs: ClassJobProps[],
   readOnly?: boolean,
   selectedJob?: ClassJobProps,
@@ -50,13 +50,13 @@ export interface AppState {
 }
 
 interface DispatchPayload {
-  layout?: number,
+  layout?: string,
   message?: { type: string, body: string },
   slottedActions?: SlotProps[],
-  wxhb?: number,
-  xhb?: number,
-  exhb?: number
-  hb?: number[],
+  wxhb?: string,
+  xhb?: string,
+  exhb?: string
+  hb?: string[],
   encodedSlots?: string,
   slotID?: string,
   action?: ActionProps,
