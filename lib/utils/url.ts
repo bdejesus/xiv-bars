@@ -22,5 +22,9 @@ export function queryToJson(hash: string) {
   return Object.fromEntries(new URLSearchParams(hash.slice(1)));
 }
 
-const exportFunctions = { getUrlParams, jsonToQuery, queryToJson };
+const exportFunctions = {
+  getUrlParams,
+  jsonToQuery,
+  queryToJson
+};
 export default exportFunctions;
