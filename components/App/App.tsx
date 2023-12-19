@@ -50,17 +50,16 @@ export function App({ encodedSlots }:{ encodedSlots?: string }) {
 
   useEffect(() => {
     // convert Slots from query param to JSON
-    if (router) {
-      const slots = decodeSlots(router.query);
-      appDispatch({
-        type: AppAction.SLOT_ACTIONS,
-        payload: {
-          ...slots,
-          encodedSlots: router.query.s1?.toString() || router.query.s?.toString()
-        }
-      });
-    }
-  }, [router]);
+    const slots = decodeSlots(router.query);
+
+    appDispatch({
+      type: AppAction.SLOT_ACTIONS,
+      payload: {
+        ...slots,
+        encodedSlots: router.query.s1?.toString() || router.query.s?.toString()
+      }
+    });
+  }, [router.query]);
 
   useEffect(() => {
     const { params } = router.query;

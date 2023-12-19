@@ -172,6 +172,8 @@ export function setActionsToSlots({
         }));
     }
   });
+
+  return slottedActions;
 }
 
 const modules = {

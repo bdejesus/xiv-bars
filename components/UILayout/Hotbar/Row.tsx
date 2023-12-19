@@ -15,8 +15,6 @@ export default function Row({ slots, id }: Props) {
   const hotbarKey: string = hb[hotbarKeyPos(id)] as string;
   const dataColumns: number = parseInt(hotbarKey, 10);
 
-  // console.log(id, hotbarKeyPos(id), hb);
-
   return (
     <>
       <ol className={styles.row} data-columns={dataColumns}>

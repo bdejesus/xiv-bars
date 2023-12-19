@@ -1,17 +1,27 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React from 'react';
-import { useAppState, useAppDispatch } from 'components/App/context';
+import { useRouter } from 'next/router';
 import Options from './Options';
 import styles from './Settings.module.scss';
 
+interface QueryProps {
+  xhb?: string,
+  wxhb?: string,
+  exhb?: string
+}
+
 function Settings() {
-  const { wxhb, xhb, exhb } = useAppState();
-  const appDispatch = useAppDispatch();
+  const router = useRouter();
+  const { xhb, wxhb, exhb }:QueryProps = router.query;
 
   function handleSelect(id: string, event: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = event.currentTarget;
-    const targetValue = parseInt(value, 10);
-    appDispatch({ type: 'updateUI', payload: { [id]: targetValue } });
+    const params = {
+      pathname: router.pathname,
+      query: { ...router.query, [id]: value }
+    };
+
+    router.push(params, undefined, { shallow: true });
   }
 
   return (
@@ -20,7 +30,7 @@ function Settings() {
         <Options
           id="xhb"
           onChange={(event) => handleSelect('xhb', event)}
-          value={xhb.toString()}
+          value={xhb}
           required
         >
           <span className={styles.controlLabel}>
@@ -42,7 +52,7 @@ function Settings() {
         <Options
           id="wxhb"
           onChange={(event) => handleSelect('wxhb', event)}
-          value={wxhb.toString()}
+          value={wxhb}
         >
           <span className={styles.controlLabel}>
             WXHB
@@ -63,7 +73,7 @@ function Settings() {
         <Options
           id="exhb"
           onChange={(event) => handleSelect('exhb', event)}
-          value={exhb.toString()}
+          value={exhb}
         >
           <span className={styles.controlLabel}>
             Expanded XHB

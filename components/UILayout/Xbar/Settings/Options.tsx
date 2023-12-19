@@ -5,7 +5,7 @@ import { useAppState } from 'components/App/context';
 interface Props {
   id: string,
   onChange: React.ChangeEventHandler<HTMLSelectElement>,
-  value: string,
+  value?: string,
   children: ReactNode,
   required?: boolean
 }
@@ -35,12 +35,12 @@ export function Options({
         id={id}
         name={id}
         onChange={onChange}
-        value={value}
+        defaultValue={value}
       >
         { !required && <option value={0}>Off</option> }
 
         { chotbar && Object.keys(chotbar).map((key, index) => {
-          const optValue: number = index + 1;
+          const optValue = (index + 1).toString();
           return (
             <option
               value={optValue}
@@ -59,5 +59,6 @@ export function Options({
 export default Options;
 
 Options.defaultProps = {
-  required: false
+  required: false,
+  value: '0'
 };
