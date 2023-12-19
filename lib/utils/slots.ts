@@ -8,6 +8,7 @@ import PET_ACTION from 'apiData/PetAction.json';
 
 import type { SlotProps, ActionProps } from 'types/Action';
 import { sortIntoGroups } from 'lib/utils/array.mjs';
+import { defaultState } from 'components/App/defaultState';
 
 export function assignActionIds(slotActions: SlotProps[]) {
   return Object.values(slotActions).map((slot) => {
@@ -45,15 +46,16 @@ export function decodeSlots(query:object) {
   if (s1) slots = sortIntoGroups(s1.split(','), 16);
   if (s) slots = JSON.parse(s);
 
-  const formatHbConfig: string[] = hb?.split(',');
+  const formatHbConfig: string[] = hb?.split(',') || new Array(10).fill(1, 0, 10);
 
   return {
+    ...query,
     slottedActions: slots,
-    wxhb,
-    xhb,
-    exhb,
-    hb: formatHbConfig,
-    layout: l
+    wxhb: wxhb || defaultState.wxhb,
+    xhb: xhb || defaultState.xhb,
+    exhb: exhb || defaultState.exhb,
+    hb: formatHbConfig || defaultState.hb,
+    layout: l || defaultState.layout
   };
 }
 
@@ -141,7 +143,7 @@ function setActionsByGroup({
 
 interface SetActionsToSlotsProps {
   encodedSlots: string,
-  layout: string,
+  layout: string | number,
   slots: object,
   actions?: ActionProps[],
   roleActions?: ActionProps[]
@@ -154,7 +156,7 @@ export function setActionsToSlots({
   actions,
   roleActions
 }:SetActionsToSlotsProps) {
-  const slottedActions = layout === '1'
+  const slottedActions = layout?.toString() === '1'
     ? sortIntoGroups(encodedSlots.split(','), 12)
     : sortIntoGroups(encodedSlots.split(','), 16);
 

@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppState } from 'components/App/context';
+import { AppAction } from 'components/App/actions';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
@@ -6,7 +7,7 @@ function ToggleTitles() {
   const appDispatch = useAppDispatch();
   const { showTitles } = useAppState();
 
-  function handleTitlesToggle() { appDispatch({ type: 'toggleTitles' }); }
+  function handleTitlesToggle() { appDispatch({ type: AppAction.TOGGLE_TITLES }); }
 
   return (
     <button

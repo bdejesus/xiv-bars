@@ -1,5 +1,8 @@
 import React from 'react';
-import { useAppDispatch } from 'components/App/context';
+import { useRouter } from 'next/router';
+import { useAppState } from 'components/App/context';
+import { hotbarKeyPos } from 'lib/xbars';
+
 import styles from './Hotbar.module.scss';
 
 interface Props {
@@ -8,17 +11,17 @@ interface Props {
 }
 
 export default function LayoutControl({ id, defaultValue }: Props) {
-  const appDispatch = useAppDispatch();
+  const router = useRouter();
+  const { hb } = useAppState();
 
   function handleLayoutControl(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.currentTarget;
-    appDispatch({
-      type: 'updateHotbarLayout',
-      payload: {
-        hbId: id,
-        hbConfig: value
-      }
-    });
+    const position = hotbarKeyPos(id);
+    const configValue = parseInt(value, 10);
+    const updatedHb = configValue ? hb?.toSpliced(position, 1, configValue) : hb;
+    const { query, pathname } = router;
+    const queryParams = { pathname, query: { ...query, hb: updatedHb.toString() } };
+    router.push(queryParams, undefined, { shallow: true });
   }
 
   return (

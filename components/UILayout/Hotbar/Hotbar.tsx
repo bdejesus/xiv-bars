@@ -5,16 +5,16 @@ import Row from './Row';
 import styles from './Hotbar.module.scss';
 
 export function Hotbar() {
-  const { hotbar, readOnly } = useAppState();
+  const { hotbar, readOnly, hb } = useAppState();
 
   return (
     <ol className={styles.container}>
-      {hotbar && Object.keys(hotbar).map((barKey) => {
-        const hotbarSet = hotbar[barKey] as SlotProps[];
+      {hb && hotbar && Object.keys(hotbar).map((barKey) => {
+        const hotbarRow = hotbar[barKey] as SlotProps[];
         return (
           <li key={barKey} className={styles.rowWrapper}>
-            { (!readOnly || hasActions(hotbarSet)) && (
-              <Row slots={hotbarSet} id={barKey} />
+            { (!readOnly || hasActions(hotbarRow)) && (
+              <Row slots={hotbarRow} id={barKey} />
             ) }
           </li>
         );

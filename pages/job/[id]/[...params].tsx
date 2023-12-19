@@ -16,17 +16,16 @@ import App from 'components/App';
 import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from 'apiData/Jobs.json';
 
-import type { ViewProps } from 'types/App';
+import type { ViewDataProps } from 'types/App';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ActionProps } from 'types/Action';
 
 import styles from './params.module.scss';
 
-interface Props {
+interface ViewProps extends ViewDataProps {
   selectedJob: ClassJobProps,
   actions: ActionProps[],
   roleActions: ActionProps[],
-  viewData: ViewProps,
   viewAction: string
 }
 
@@ -34,20 +33,29 @@ export default function Index({
   selectedJob,
   actions,
   roleActions,
-  viewData,
-  viewAction
-}: Props) {
-  const { layout, encodedSlots, title } = viewData;
-  const readOnly = (viewData && viewAction !== 'edit');
+  layout,
+  encodedSlots,
+  title,
+  user,
+  hb,
+  xhb,
+  wxhb,
+  exhb,
+  description,
+  viewAction,
+  layoutId,
+  userId
+}:ViewProps) {
+  const formatHb = hb ? JSON.parse(hb) : undefined;
+  const readOnly = (viewAction !== 'edit');
   const pageTitle = `${title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
-
-  const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${viewData.id}`;
+  const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${layoutId}`;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
-        <meta name="description" content={viewData.description} />
+        <meta name="description" content={description} />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
@@ -57,12 +65,23 @@ export default function Index({
         selectedJob={selectedJob}
         layout={layout}
         readOnly={readOnly}
-        viewData={viewData}
+        user={user}
+        userId={userId}
         viewAction="show"
+        hb={formatHb}
+        xhb={xhb}
+        wxhb={wxhb}
+        exhb={exhb}
+        layoutId={layoutId}
       >
         <GlobalHeader />
 
-        <App encodedSlots={encodedSlots} />
+        <App
+          title={title}
+          description={description}
+          user={user}
+          encodedSlots={encodedSlots}
+        />
 
         <div className="container section">
           <div className={styles.description}>
@@ -122,11 +141,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         actions: jobActions,
         selectedJob,
         roleActions,
-        viewData: {
-          ...viewData,
-          createdAt: viewData.createdAt.toString(),
-          updatedAt: viewData.updatedAt?.toString() || null
-        },
+        ...viewData,
+        layoutId: id,
+        createdAt: viewData.createdAt.toString(),
+        updatedAt: viewData.updatedAt?.toString() || null,
         viewAction: viewAction || 'show'
       }
     };

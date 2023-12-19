@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
+import { AppAction } from 'components/App/actions';
 import { useUserState } from 'components/User/context';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
@@ -49,19 +50,16 @@ function EditButton({ showForm }: ButtonProps) {
 }
 
 function ToggleSaveForm() {
-  const { data: session } = useSession();
-
-  const { viewData } = useAppState();
+  const session = useSession();
+  const { layoutId, user } = useAppState();
   const appDispatch = useAppDispatch();
-
-  const canCreate = session && !viewData;
-  const canEdit = session && (session.user?.id === viewData?.userId);
-
-  function showForm() { appDispatch({ type: 'editLayout' }); }
+  const canSaveNew = (session.status === 'authenticated' && !layoutId);
+  const canEdit = session.status === 'authenticated' && (session.data.user?.id === user?.id);
+  function showForm() { appDispatch({ type: AppAction.EDIT_LAYOUT }); }
 
   return (
     <div className={styles.control}>
-      { canCreate && <PublishButton showForm={() => showForm()} /> }
+      { canSaveNew && <PublishButton showForm={() => showForm()} /> }
       { canEdit && <EditButton showForm={() => showForm()} /> }
     </div>
   );

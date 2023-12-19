@@ -12,12 +12,11 @@ interface Props {
 
 export default function Row({ slots, id }: Props) {
   const { readOnly, hb } = useAppState();
-  const hotbarKey: string = hb[hotbarKeyPos(id)] as string;
-  const dataColumns: number = parseInt(hotbarKey, 10);
+  const hotbarKey = hb[hotbarKeyPos(id)];
 
   return (
     <>
-      <ol className={styles.row} data-columns={dataColumns}>
+      <ol className={styles.row} data-columns={hotbarKey}>
         {Object.keys(slots).map((slot: string) => {
           const slotItem = slots[parseInt(slot, 10)];
           return (
@@ -31,7 +30,7 @@ export default function Row({ slots, id }: Props) {
       { !readOnly && (
         <LayoutControl
           id={id}
-          defaultValue={dataColumns}
+          defaultValue={hotbarKey}
         />
       )}
     </>

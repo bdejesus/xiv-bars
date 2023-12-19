@@ -46,7 +46,10 @@ export async function read(id: LayoutID) {
     },
     include: {
       user: {
-        select: { name: true }
+        select: {
+          name: true,
+          id: true
+        }
       }
     }
   });

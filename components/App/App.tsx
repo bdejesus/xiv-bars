@@ -13,21 +13,36 @@ import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import ReactMarkdown from 'react-markdown';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
-import { AppAction } from './actions';
+import { AppAction } from 'components/App/actions';
+
 import styles from './App.module.scss';
 
-export function App({ encodedSlots }:{ encodedSlots?: string }) {
+interface AppProps {
+  title?: string,
+  description?: string,
+  encodedSlots?: string,
+  user?: {
+    name: string,
+    id: number
+  }
+}
+
+export function App(props:AppProps) {
+  const {
+    title,
+    description,
+    encodedSlots,
+    user
+  } = props;
   const [showJobMenu, setShowJobMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const appDispatch = useAppDispatch();
-  const appState = useAppState();
   const {
     jobs,
     selectedJob,
     actions,
     roleActions,
-    readOnly,
-    viewData
+    readOnly
   } = useAppState();
 
   const router = useRouter();
@@ -53,8 +68,6 @@ export function App({ encodedSlots }:{ encodedSlots?: string }) {
     // convert Slots from query param to JSON
     const slots = decodeSlots(router.query);
 
-    console.log(router.query);
-    console.log(appState);
     /*
       Values from router.query are cast as strings
       Values ingested into the context are converted to their natrual type
@@ -92,25 +105,24 @@ export function App({ encodedSlots }:{ encodedSlots?: string }) {
           <div className="app-view">
 
             <div className="container">
-
               <div className={styles.container}>
                 <div className={`${styles.sidebar}`}>
-                  { viewData && readOnly ? (
+                  { readOnly && title && user ? (
                     <div className={styles.section}>
                       <SelectedJob job={selectedJob} />
 
-                      <h3>{viewData.title}</h3>
+                      <h3>{title}</h3>
 
                       <div className={styles.owner}>
-                        {viewData.user.name}
+                        {user.name}
                       </div>
 
-                      { viewData.description && (
+                      { description && (
                         <ReactMarkdown components={{
                           h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
                         }}
                         >
-                          {viewData.description}
+                          {description}
                         </ReactMarkdown>
                       )}
                     </div>
@@ -136,19 +148,24 @@ export function App({ encodedSlots }:{ encodedSlots?: string }) {
           </div>
         )}
 
-        <Modal
-          hidden={!showJobMenu}
-          toClose={() => setShowJobMenu(false)}
-        >
-          <JobMenu jobs={jobs} />
-        </Modal>
+        { jobs && (
+          <Modal
+            hidden={!showJobMenu}
+            toClose={() => setShowJobMenu(false)}
+          >
+            <JobMenu jobs={jobs} />
+          </Modal>
+        )}
       </SelectedActionContextProvider>
     </TooltipContextProvider>
   );
 }
 
 App.defaultProps = {
-  encodedSlots: undefined
+  user: undefined,
+  encodedSlots: undefined,
+  title: undefined,
+  description: undefined
 };
 
 export default App;
