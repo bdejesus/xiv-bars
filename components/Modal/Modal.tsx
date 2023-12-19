@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from 'react';
 import CloseButton from 'components/CloseButton';
 import { useAppDispatch } from 'components/App/context';
+import { AppAction } from 'components/App/actions';
 import styles from './Modal.module.scss';
 
 interface Props {
@@ -13,7 +14,7 @@ export function Modal({ children, hidden, toClose }: Props) {
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
-    appDispatch({ type: 'toggleModal' });
+    appDispatch({ type: AppAction.TOGGLE_MODAL });
   }, [hidden]);
 
   return (

@@ -4,41 +4,10 @@ import React, {
   useContext,
   useReducer,
 } from 'react';
-import { useRouter } from 'next/router';
 import { hotbar, chotbar } from 'lib/xbars';
-
-import Jobs from 'apiData/Jobs.json';
-import type { ClassJobProps } from 'types/ClassJob';
-import type { ActionProps } from 'types/Action';
-import type { AppState, ViewProps, AppDispatchActions } from 'types/App';
+import { defaultState } from 'components/App/defaultState';
+import type { AppState, AppDispatchActions } from 'types/App';
 import AppReducer from './reducers';
-
-const defaultState = {
-  jobs: Jobs,
-  layout: 0,
-  readOnly: false,
-  xhb: 1,
-  wxhb: 0,
-  exhb: 0,
-  hb: new Array(10).fill(1, 0, 10),
-  showPublish: false,
-  showTitles: false,
-  showAllLvl: false,
-  showModal: false,
-  selectedJob: undefined,
-  encodedSlots: undefined,
-  actions: undefined,
-  roleActions: undefined,
-  viewData: undefined,
-  viewAction: undefined,
-  message: undefined,
-  chotbar: undefined,
-  hotbar: undefined,
-  slotId: undefined,
-  action: undefined,
-  hbId: undefined,
-  hbConfig: undefined
-};
 
 const AppContext = createContext<AppState>(defaultState);
 const AppDispatchContext = createContext<React.Dispatch<AppDispatchActions>>(() => undefined);
@@ -59,21 +28,9 @@ export function useAppDispatch() {
   return context;
 }
 
-interface Props {
+interface ContextProps extends AppState {
   children: ReactNode,
-  selectedJob?: ClassJobProps,
-  layout?: number,
-  encodedSlots?: string,
-  actions?: ActionProps[],
-  roleActions?: ActionProps[],
-  readOnly?: boolean,
-  viewData?: ViewProps,
-  viewAction?: string,
-  hbConfig?: string
-}
-
-interface QueryProps {
-  [key: string]: string
+  viewAction?: string
 }
 
 export function AppContextProvider({
@@ -84,29 +41,35 @@ export function AppContextProvider({
   actions,
   roleActions,
   readOnly,
-  viewData,
-  viewAction,
-  hbConfig
-}: Props) {
-  const formatHbConfig = hbConfig?.split(',').map((i) => parseInt(i, 10));
-  const router = useRouter();
-  const query = router.query as QueryProps;
+  user,
+  xhb,
+  wxhb,
+  exhb,
+  hb,
+  layoutId,
+  title,
+  description,
+  viewAction
+}:ContextProps) {
   const initialState = {
     ...defaultState,
-    selectedJob,
-    layout: layout || viewData?.layout || parseInt(query.l, 10) || 0,
-    encodedSlots,
-    actions,
-    roleActions,
+    layout: layout || defaultState.layout,
+    hb: hb || defaultState.hb,
+    xhb: xhb || defaultState.xhb,
+    wxhb: wxhb || defaultState.wxhb,
+    exhb: exhb || defaultState.exhb,
     readOnly,
-    viewData,
+    selectedJob,
+    encodedSlots,
+    user,
     viewAction,
+    roleActions,
+    actions,
     chotbar,
     hotbar,
-    xhb: viewData?.xhb || 1,
-    wxhb: viewData?.wxhb || 0,
-    exhb: viewData?.exhb || 0,
-    hb: formatHbConfig || (viewData?.hb && JSON.parse(viewData?.hb)) || new Array(10).fill(1, 0, 10),
+    layoutId,
+    title,
+    description
   };
 
   const [state, dispatch] = useReducer(AppReducer as React.ReducerWithoutAction<AppState>, initialState);
@@ -123,13 +86,5 @@ export function AppContextProvider({
 export default AppContextProvider;
 
 AppContextProvider.defaultProps = {
-  selectedJob: undefined,
-  layout: undefined,
-  encodedSlots: undefined,
-  actions: undefined,
-  roleActions: undefined,
-  readOnly: false,
-  viewData: undefined,
-  viewAction: undefined,
-  hbConfig: undefined
+  viewAction: undefined
 };

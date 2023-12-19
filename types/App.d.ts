@@ -2,77 +2,54 @@ import { AppAction } from 'components/App/actions';
 import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
 
-export interface ViewProps {
-  encodedSlots?: string,
-  layout: string,
-  params?: object,
-  hb?: string,
-  xhb: string,
-  wxhb: string,
-  exhb: string,
-  showTitles: boolean,
-  showAllLvl: boolean,
-  showModal: boolean,
-  roleActions: ActionProps[],
-  actions: ActionProps[],
-  title: string,
-  description?: string,
-  user: {
-    name: string
-  },
-  userId?: number,
-  jobId?: string,
-  id?: number
-}
-
 export interface AppState {
-  layout: string,
-  params?: object,
-  hb: string[],
-  xhb: string,
-  wxhb: string,
-  exhb: string,
-  jobs: ClassJobProps[],
+  layout: number,
+  hb: number[],
+  xhb: number,
+  wxhb: number,
+  exhb: number,
+  jobs?: ClassJobProps[],
   readOnly?: boolean,
   selectedJob?: ClassJobProps,
-  showTitles: boolean,
-  showAllLvl: boolean,
-  showModal: boolean,
-  showPublish: boolean,
-  viewData?: ViewProps,
+  showTitles?: boolean,
+  showAllLvl?: boolean,
+  showModal?: boolean,
+  showPublish?: boolean,
   viewAction?: string,
   roleActions?: ActionProps[],
   actions?: ActionProps[],
   encodedSlots?: string,
-  message?: { type: string, body: string },
+  message?: {
+    type: string,
+    body: string
+  },
   chotbar?: {[key: string]: object},
-  hotbar?: {[key: string]: object}
+  hotbar?: {[key: string]: object},
+  title?: string,
+  description?: string,
+  user?: {
+    name: string,
+    id: number
+  },
+  userId?: number,
+  jobId?: string,
+  layoutId?: number,
+}
+
+export interface ViewDataProps extends AppState {
+  hb: string
 }
 
 interface DispatchPayload {
-  layout?: string,
-  message?: { type: string, body: string },
   slottedActions?: SlotProps[],
-  wxhb?: string,
-  xhb?: string,
-  exhb?: string
-  hb?: string[],
-  encodedSlots?: string,
   slotID?: string,
   action?: ActionProps,
   hbId?: string,
-  hbConfig?: string,
-  viewData?: ViewProps,
-}
-
-export interface UpdateUI {
-  type: AppAction.UPDATE_UI,
-  payload?: DispatchPayload
-}
-
-export interface UpdateHotbarLayout {
-  type: AppAction.UPDATE_HB_LAYOUT,
-  payload?: DispatchPayload
+  message?: {
+    type: string,
+    body: string
+  },
+  encodedSlots?: string
 }
 
 export interface SlotActions {
@@ -100,11 +77,6 @@ export interface ToggleModal {
   payload?: DispatchPayload
 }
 
-export interface UpdateLayout {
-  type: AppAction.UPDATE_LAYOUT,
-  payload?: DispatchPayload
-}
-
 export interface EditLayout {
   type: AppAction.EDIT_LAYOUT,
   payload?: DispatchPayload
@@ -120,8 +92,8 @@ export interface PublishLayout {
   payload?: DispatchPayload
 }
 
-export interface SaveLayout {
-  type: AppAction.SAVE_LAYOUT,
+export interface LayoutSaved {
+  type: AppAction.LAYOUT_SAVED,
   payload?: DispatchPayload
 }
 
@@ -130,4 +102,4 @@ export interface UpdateMessage {
   payload?: DispatchPayload
 }
 
-export type AppDispatchActions = UpdateUI | UpdateHotbarLayout | SlotActions | SlotAction | ToggleTitles | ToggleLvls | ToggleModal | UpdateLayout | EditLayout | CancelLayout | PublishLayout | SaveLayout | UpdateMessage;
+export type AppDispatchActions = SlotActions | SlotAction | ToggleTitles | ToggleLvls | ToggleModal | EditLayout | CancelLayout | PublishLayout | LayoutSaved | UpdateMessage;

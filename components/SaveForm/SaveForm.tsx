@@ -15,30 +15,29 @@ function SaveForm() {
   const {
     layout,
     encodedSlots,
-    viewData,
     selectedJob,
     xhb,
     wxhb,
     exhb,
-    hb
+    hb,
+    layoutId,
+    title,
+    description,
+    jobId
   } = useAppState();
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
 
   function saveLayout() {
-    const title = titleField.current?.value;
-    const description = descriptionField.current?.value;
-    const jobId = viewData?.jobId || selectedJob?.Abbr;
-
     const body = {
-      id: viewData?.id,
-      method: viewData ? 'update' : 'create',
+      id: layoutId,
+      method: layoutId ? 'update' : 'create',
       data: {
-        title,
-        description,
+        title: titleField.current?.value,
+        description: descriptionField.current?.value,
         layout,
         encodedSlots,
-        jobId,
+        jobId: jobId || selectedJob?.Abbr,
         xhb,
         wxhb,
         exhb,
@@ -54,7 +53,15 @@ function SaveForm() {
       .then((data) => data.json())
       .then((json) => {
         const { layoutView, layouts } = json;
-        appDispatch({ type: AppAction.SAVE_LAYOUT, payload: { viewData: { ...layoutView, ...body } } });
+        appDispatch({
+          type: AppAction.LAYOUT_SAVED,
+          payload: {
+            message: {
+              type: 'success',
+              body: I18n.SaveForm.success
+            }
+          }
+        });
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
         router.push(
@@ -66,7 +73,7 @@ function SaveForm() {
       .catch((error) => {
         console.error(error);
         appDispatch({
-          type: 'setMessage',
+          type: AppAction.UPDATE_MESSAGE,
           payload: {
             message: {
               type: 'error',
@@ -79,7 +86,7 @@ function SaveForm() {
 
   function closeForm() {
     router.reload();
-    appDispatch({ type: 'cancelPublish' });
+    appDispatch({ type: AppAction.CANCEL_LAYOUT });
   }
 
   return (
@@ -94,7 +101,7 @@ function SaveForm() {
               name="title"
               ref={titleField}
               className={styles.titleField}
-              defaultValue={viewData && viewData.title}
+              defaultValue={title}
               required
             />
           </label>
@@ -107,7 +114,7 @@ function SaveForm() {
               id="description"
               ref={descriptionField}
               className={styles.descriptionField}
-              defaultValue={viewData && viewData.description}
+              defaultValue={description}
             />
           </label>
         </div>

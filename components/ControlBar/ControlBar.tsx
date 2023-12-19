@@ -24,11 +24,11 @@ export function ControlBar({ selectedJob }: Props) {
     showModal,
     encodedSlots,
     layout,
-    viewData,
     xhb,
     wxhb,
     exhb,
-    hb
+    hb,
+    layoutId
   } = useAppState();
 
   function copyLayout() {
@@ -47,7 +47,7 @@ export function ControlBar({ selectedJob }: Props) {
               <ToggleSaveForm />
             </div>
 
-            { viewData && (
+            { layoutId && (
               <div className={styles.control}>
                 <button
                   type="button"

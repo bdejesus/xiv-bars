@@ -1,4 +1,4 @@
-import { layouts, hotbarKeyPos } from 'lib/xbars';
+import { layouts } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
 import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { AppAction } from './actions';
@@ -9,27 +9,6 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
   const slots = state[layoutKey as keyof typeof state];
 
   switch (action.type) {
-    case AppAction.UPDATE_UI: {
-      return { ...state, ...action.payload };
-    }
-
-    case AppAction.UPDATE_LAYOUT: {
-      if (action.payload) {
-        return { ...state, layout: action.payload.layout };
-      }
-      return state;
-    }
-
-    case AppAction.UPDATE_HB_LAYOUT: {
-      if (action.payload?.hbId) {
-        const position = hotbarKeyPos(action.payload.hbId);
-        const configValue = action.payload.hbConfig;
-        const updatedHb = configValue ? state.hb?.toSpliced(position, 1, configValue) : state.hb;
-        return { ...state, hb: updatedHb };
-      }
-      return state;
-    }
-
     case AppAction.SLOT_ACTIONS: {
       if (action.payload?.encodedSlots) {
         setActionsToSlots({
@@ -43,12 +22,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
 
       return {
         ...state,
-        xhb: action.payload?.xhb || state.xhb,
-        wxhb: action.payload?.xhb || state.wxhb,
-        exhb: action.payload?.xhb || state.exhb,
-        hb: action.payload?.hb || state.hb,
-        layout: action.payload?.layout,
-        encodedSlots: action.payload?.encodedSlots || undefined
+        ...action.payload
       };
     }
 
@@ -78,8 +52,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
         ...state,
         readOnly: false,
         showPublish: true,
-        message: undefined,
-        layout: state.viewData?.layout || state.layout
+        message: undefined
       };
     }
 
@@ -92,23 +65,18 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
         ...state,
         showPublish: false,
         readOnly: state.viewAction === 'show',
-        message: undefined,
-        layout: state.viewData?.layout || state.layout
+        message: undefined
       };
     }
 
-    case AppAction.SAVE_LAYOUT: {
-      if (action.payload?.viewData) {
-        return {
-          ...state,
-          readOnly: true,
-          viewData: { ...state.viewData, ...action.payload.viewData },
-          showPublish: false,
-          viewAction: 'show',
-          message: { type: 'success', body: 'Success!' }
-        };
-      }
-      return state;
+    case AppAction.LAYOUT_SAVED: {
+      return {
+        ...state,
+        readOnly: true,
+        showPublish: false,
+        viewAction: 'show',
+        message: { type: 'success', body: 'Success!' }
+      };
     }
 
     case AppAction.UPDATE_MESSAGE: {
