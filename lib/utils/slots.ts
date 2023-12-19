@@ -38,7 +38,7 @@ export function encodeSlots(slots:object) {
 
 export function decodeSlots(query:object) {
   const {
-    s1, s, wxhb, xhb, exhb, hb
+    s1, s, wxhb, xhb, exhb, hb, l
   } = query as QueryProps;
 
   let slots;
@@ -52,7 +52,8 @@ export function decodeSlots(query:object) {
     wxhb: parseInt(wxhb, 10),
     xhb: parseInt(xhb, 10),
     exhb: parseInt(exhb, 10),
-    hb: formatHbConfig
+    hb: formatHbConfig,
+    layout: parseInt(l, 10)
   };
 }
 
