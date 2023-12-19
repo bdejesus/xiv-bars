@@ -45,15 +45,15 @@ export function decodeSlots(query:object) {
   if (s1) slots = sortIntoGroups(s1.split(','), 16);
   if (s) slots = JSON.parse(s);
 
-  const formatHbConfig: number[] = hb?.split(',').map((i) => parseInt(i, 10));
+  const formatHbConfig: string[] = hb?.split(',');
 
   return {
     slottedActions: slots,
-    wxhb: parseInt(wxhb, 10),
-    xhb: parseInt(xhb, 10),
-    exhb: parseInt(exhb, 10),
+    wxhb,
+    xhb,
+    exhb,
     hb: formatHbConfig,
-    layout: parseInt(l, 10)
+    layout: l
   };
 }
 
@@ -141,7 +141,7 @@ function setActionsByGroup({
 
 interface SetActionsToSlotsProps {
   encodedSlots: string,
-  layout: number,
+  layout: string,
   slots: object,
   actions?: ActionProps[],
   roleActions?: ActionProps[]
@@ -154,7 +154,7 @@ export function setActionsToSlots({
   actions,
   roleActions
 }:SetActionsToSlotsProps) {
-  const slottedActions = layout === 1
+  const slottedActions = layout === '1'
     ? sortIntoGroups(encodedSlots.split(','), 12)
     : sortIntoGroups(encodedSlots.split(','), 16);
 
