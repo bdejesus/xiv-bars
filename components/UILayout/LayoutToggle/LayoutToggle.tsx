@@ -7,7 +7,7 @@ import styles from './LayoutToggle.module.scss';
 export function LayoutToggle() {
   const router = useRouter();
   const { layout, readOnly, viewAction } = useAppState();
-  const [layoutKey, setLayoutKey] = useState(layouts[layout]);
+  const [layoutKey, setLayoutKey] = useState(layouts[layout as keyof typeof layouts]);
 
   function toggleHotbarLayout() {
     const key = layoutKey === 'chotbar' ? layouts[1] : layouts[0];

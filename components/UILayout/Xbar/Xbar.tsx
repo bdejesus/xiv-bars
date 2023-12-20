@@ -28,9 +28,9 @@ export function Xbar() {
             <div
               key={chotbarID}
               className={[styles.xbar, styles[chotbarID]].join(' ')}
-              data-main={chotbarID === chotbarKeys[xhb - 1]}
-              data-wxhb={chotbarID === chotbarKeys[wxhb - 1]}
-              data-exhb={chotbarID === chotbarKeys[exhb - 1]}
+              data-main={xhb ? chotbarID === chotbarKeys[xhb - 1] : false}
+              data-wxhb={wxhb ? chotbarID === chotbarKeys[wxhb - 1] : false}
+              data-exhb={exhb ? chotbarID === chotbarKeys[exhb - 1] : false}
             >
               <Bar bar={barSet} />
             </div>

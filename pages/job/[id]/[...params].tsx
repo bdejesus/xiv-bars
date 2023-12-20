@@ -73,15 +73,13 @@ export default function Index({
         wxhb={wxhb}
         exhb={exhb}
         layoutId={layoutId}
+        title={title}
+        description={description}
+        encodedSlots={encodedSlots}
       >
         <GlobalHeader />
 
-        <App
-          title={title}
-          description={description}
-          user={user}
-          encodedSlots={encodedSlots}
-        />
+        <App />
 
         <div className="container section">
           <div className={styles.description}>
@@ -118,9 +116,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const fetchOptions = {
       method: 'POST',
-      body: JSON.stringify({ id: layoutId, method: 'read' }),
+      body: JSON.stringify({ layoutId, method: 'read' }),
       headers: { 'Content-Type': 'application/json' }
     };
+
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
     const viewData = await fetchView.json();
 
@@ -142,8 +141,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         selectedJob,
         roleActions,
         ...viewData,
-        layoutId: id,
-        createdAt: viewData.createdAt.toString(),
+        layoutId: viewData.id || undefined,
+        createdAt: viewData.createdAt?.toString() || null,
         updatedAt: viewData.updatedAt?.toString() || null,
         viewAction: viewAction || 'show'
       }

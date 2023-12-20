@@ -17,23 +17,7 @@ import { AppAction } from 'components/App/actions';
 
 import styles from './App.module.scss';
 
-interface AppProps {
-  title?: string,
-  description?: string,
-  encodedSlots?: string,
-  user?: {
-    name: string,
-    id: number
-  }
-}
-
-export function App(props:AppProps) {
-  const {
-    title,
-    description,
-    encodedSlots,
-    user
-  } = props;
+export function App() {
   const [showJobMenu, setShowJobMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const appDispatch = useAppDispatch();
@@ -42,7 +26,11 @@ export function App(props:AppProps) {
     selectedJob,
     actions,
     roleActions,
-    readOnly
+    readOnly,
+    title,
+    description,
+    encodedSlots,
+    user
   } = useAppState();
 
   const router = useRouter();
@@ -67,20 +55,9 @@ export function App(props:AppProps) {
   useEffect(() => {
     // convert Slots from query param to JSON
     const slots = decodeSlots(router.query);
-
-    /*
-      Values from router.query are cast as strings
-      Values ingested into the context are converted to their natrual type
-      Reading values should use the app state
-      Pushing state changes should be pushed to the router or url query
-    */
-
     appDispatch({
       type: AppAction.SLOT_ACTIONS,
-      payload: {
-        ...slots,
-        encodedSlots: router.query.s1?.toString() || router.query.s?.toString()
-      }
+      payload: slots
     });
   }, [router.query]);
 
@@ -160,12 +137,5 @@ export function App(props:AppProps) {
     </TooltipContextProvider>
   );
 }
-
-App.defaultProps = {
-  user: undefined,
-  encodedSlots: undefined,
-  title: undefined,
-  description: undefined
-};
 
 export default App;

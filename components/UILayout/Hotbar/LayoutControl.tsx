@@ -20,7 +20,7 @@ export default function LayoutControl({ id, defaultValue }: Props) {
     const configValue = parseInt(value, 10);
     const updatedHb = configValue ? hb?.toSpliced(position, 1, configValue) : hb;
     const { query, pathname } = router;
-    const queryParams = { pathname, query: { ...query, hb: updatedHb.toString() } };
+    const queryParams = { pathname, query: { ...query, hb: updatedHb?.toString() } };
     router.push(queryParams, undefined, { shallow: true });
   }
 

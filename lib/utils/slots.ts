@@ -51,6 +51,7 @@ export function decodeSlots(query:object) {
   return {
     ...query,
     slottedActions: slots,
+    encodedSlots: s1 || s || defaultState.encodedSlots,
     wxhb: wxhb || defaultState.wxhb,
     xhb: xhb || defaultState.xhb,
     exhb: exhb || defaultState.exhb,

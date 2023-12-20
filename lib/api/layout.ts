@@ -1,8 +1,25 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
+import type { LayoutProps } from 'types/App';
 
 type LayoutID = string;
 type UserID = number | undefined;
+
+function formatData(userId: UserID, data: LayoutProps) {
+  const {
+    layout, xhb, wxhb, exhb
+  } = data;
+
+  return {
+    ...data,
+    hb: JSON.stringify(data.hb),
+    layout: layout ? parseInt(layout.toString(), 10) : 0,
+    xhb: xhb ? parseInt(xhb.toString(), 10) : 1,
+    wxhb: wxhb ? parseInt(wxhb.toString(), 10) : 0,
+    exhb: exhb ? parseInt(exhb.toString(), 10) : 0,
+    userId
+  };
+}
 
 export async function list(userId: UserID) {
   const layouts = await db.layout.findMany({
@@ -17,16 +34,19 @@ export async function list(userId: UserID) {
     },
     take: maxLayouts
   });
+
   return layouts;
 }
 
-export async function create(userId: UserID, { data }: { data: object }) {
+export async function create(userId: UserID, data: LayoutProps) {
   const userLayouts = await db.layout.findMany({ where: { userId } });
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
   } else {
+    const layoutData = formatData(userId, data);
+
     const createLayout = await db.layout.create({
-      data: { ...data, userId },
+      data: layoutData,
       include: {
         user: {
           select: { name: true }
@@ -56,16 +76,21 @@ export async function read(id: LayoutID) {
   return readLayout;
 }
 
-export async function update(userId: UserID, { id, data }: { id: LayoutID, data: object }) {
-  const layoutToUpdate = await db.layout.findFirst({ where: { id, userId } });
+export async function update(
+  userId:UserID,
+  { layoutId, data }:{ layoutId: LayoutID, data: LayoutProps }
+) {
+  const layoutToUpdate = await db.layout.findFirst({ where: { id: layoutId, userId } });
   if (!layoutToUpdate) throw new Error('Layout not found');
 
   const today = new Date().toISOString();
-  const updateLayout = await db.layout.update({
-    where: { id }, data: { ...data, updatedAt: today }
+  const layoutData = formatData(userId, { ...data, updatedAt: today });
+
+  const updatedLayout = await db.layout.update({
+    where: { id: layoutId }, data: layoutData
   });
 
-  return updateLayout;
+  return updatedLayout;
 }
 
 export async function destroy(userId: UserID, { id }: { id: LayoutID}) {

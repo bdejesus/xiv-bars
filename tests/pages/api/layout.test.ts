@@ -43,7 +43,7 @@ describe('/api/layout API Endpoint', () => {
 
   it('returns a layout', async () => {
     const { req, res } = mockRequestResponse();
-    req.body = { method: 'read', id: 1 };
+    req.body = { method: 'read', layoutId: 1 };
     await layoutHandler(req, res);
 
     expect(res.statusCode).toBe(200);
