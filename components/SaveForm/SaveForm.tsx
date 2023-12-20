@@ -29,8 +29,8 @@ function SaveForm() {
   const userDispatch = useUserDispatch();
 
   function saveLayout() {
-    const body = {
-      id: layoutId,
+    const body = JSON.stringify({
+      layoutId,
       method: layoutId ? 'update' : 'create',
       data: {
         title: titleField.current?.value,
@@ -41,34 +41,37 @@ function SaveForm() {
         xhb,
         wxhb,
         exhb,
-        hb: JSON.stringify(hb)
+        hb
       }
-    };
+    });
 
     fetch('/api/layout', {
       method: 'POST',
-      body: JSON.stringify(body),
+      body,
       headers: { 'Content-Type': 'application/json' }
     })
       .then((data) => data.json())
       .then((json) => {
         const { layoutView, layouts } = json;
+
         appDispatch({
           type: AppAction.LAYOUT_SAVED,
           payload: {
+            ...layoutView,
             message: {
               type: 'success',
               body: I18n.SaveForm.success
             }
           }
         });
+
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
-        router.push(
-          `/job/${layoutView.jobId}/${layoutView.id}`,
-          undefined,
-          { shallow: true }
-        );
+        // router.push(
+        //   `/job/${layoutView.jobId}/${layoutView.id}`,
+        //   undefined,
+        //   { shallow: true }
+        // );
       })
       .catch((error) => {
         console.error(error);

@@ -46,6 +46,7 @@ export default function Index({
         roleActions={roleActions}
         selectedJob={selectedJob}
         viewAction="new"
+        encodedSlots={undefined}
       >
         <GlobalHeader />
 

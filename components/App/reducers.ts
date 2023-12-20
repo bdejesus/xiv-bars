@@ -1,7 +1,8 @@
 import { layouts } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
 import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
-import { AppAction } from './actions';
+import { defaultState } from 'components/App/defaultState';
+import { AppAction } from 'components/App/actions';
 
 export default function AppReducer(state: AppState, action: AppDispatchActions) {
   const { layout } = state;
@@ -13,7 +14,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       if (action.payload?.encodedSlots) {
         setActionsToSlots({
           encodedSlots: action.payload.encodedSlots,
-          layout,
+          layout: layout || defaultState.layout,
           slots: slots as object,
           actions: state.actions,
           roleActions: state.roleActions
@@ -72,10 +73,10 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     case AppAction.LAYOUT_SAVED: {
       return {
         ...state,
+        ...action.payload,
         readOnly: true,
         showPublish: false,
-        viewAction: 'show',
-        message: { type: 'success', body: 'Success!' }
+        viewAction: 'show'
       };
     }
 

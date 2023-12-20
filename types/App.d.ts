@@ -2,12 +2,26 @@ import { AppAction } from 'components/App/actions';
 import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
 
-export interface AppState {
-  layout: number,
-  hb: number[],
-  xhb: number,
-  wxhb: number,
-  exhb: number,
+export interface LayoutProps {
+  layout?: number,
+  hb?: number[],
+  xhb?: number,
+  wxhb?: number,
+  exhb?: number,
+  encodedSlots?: string,
+  title?: string,
+  description?: string,
+  user?: {
+    name: string,
+    id: number
+  },
+  userId?: number,
+  jobId?: string,
+  layoutId?: number,
+  updatedAt?: string
+}
+
+export interface AppState extends LayoutProps {
   jobs?: ClassJobProps[],
   readOnly?: boolean,
   selectedJob?: ClassJobProps,
@@ -18,25 +32,15 @@ export interface AppState {
   viewAction?: string,
   roleActions?: ActionProps[],
   actions?: ActionProps[],
-  encodedSlots?: string,
   message?: {
     type: string,
     body: string
   },
   chotbar?: {[key: string]: object},
   hotbar?: {[key: string]: object},
-  title?: string,
-  description?: string,
-  user?: {
-    name: string,
-    id: number
-  },
-  userId?: number,
-  jobId?: string,
-  layoutId?: number,
 }
 
-export interface ViewDataProps extends AppState {
+export interface ViewDataProps extends LayoutProps {
   hb: string
 }
 

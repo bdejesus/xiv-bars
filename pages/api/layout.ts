@@ -21,14 +21,14 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
       }
 
       case 'create': {
-        const createLayout = await layoutApiMethods.create(userId, body);
+        const createLayout = await layoutApiMethods.create(userId, body.data);
         const layouts = await layoutApiMethods.list(userId);
         res.status(200).json({ layoutView: createLayout, layouts });
         break;
       }
 
       case 'read': {
-        const readLayout = await layoutApiMethods.read(body.id);
+        const readLayout = await layoutApiMethods.read(body.layoutId);
         res.status(200).json(readLayout);
         break;
       }
@@ -53,7 +53,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
           res.statusMessage = message;
           res.status(404).json(error);
         } else {
-          const readLayout = await layoutApiMethods.read(body.id);
+          const readLayout = await layoutApiMethods.read(body.layoutId);
           res.status(200).json(readLayout);
         }
         break;
