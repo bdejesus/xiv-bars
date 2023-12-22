@@ -9,7 +9,8 @@ export const AppAction = {
   CANCEL_LAYOUT: 'cancelPublish',
   PUBLISH_LAYOUT: 'publishLayout',
   LAYOUT_SAVED: 'layoutSaved',
-  UPDATE_MESSAGE: 'setMessage'
+  UPDATE_MESSAGE: 'setMessage',
+  RESET: 'reset'
 };
 
 export default AppAction;

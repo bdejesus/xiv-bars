@@ -21,6 +21,7 @@ export function App() {
   const [showJobMenu, setShowJobMenu] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const appDispatch = useAppDispatch();
+  const appState = useAppState();
   const {
     jobs,
     selectedJob,
@@ -29,36 +30,40 @@ export function App() {
     readOnly,
     title,
     description,
-    encodedSlots,
-    user
-  } = useAppState();
+    user,
+    // encodedSlots
+  } = appState;
+
+  // console.log(appState);
 
   const router = useRouter();
 
-  useEffect(() => {
-    // rest system messages whenever user navigates
-    function resetMessage() {
-      appDispatch({ type: AppAction.UPDATE_MESSAGE, payload: { message: undefined } });
-    }
+  // function resetMessage() {
+  //   console.log('route change!', appState);
 
-    if (encodedSlots) {
-      appDispatch({ type: AppAction.SLOT_ACTIONS, payload: { encodedSlots } });
-    } else {
-      router.events.on('routeChangeStart', resetMessage);
-    }
+  //   // appDispatch({ type: AppAction.RESET });
+  // }
 
-    return () => {
-      router.events.off('routeChangeStart', resetMessage);
-    };
-  }, []);
+  // useEffect(() => {
+  //   if (encodedSlots) {
+  //     const payload = decodeSlots(router.query);
+  //     appDispatch({ type: AppAction.SLOT_ACTIONS, payload });
+  //   }
+
+  //   // router.events.on('routeChangeStart', resetMessage);
+
+  //   // return () => {
+  //   //   router.events.off('routeChangeStart', resetMessage);
+  //   // };
+  // }, []);
 
   useEffect(() => {
     // convert Slots from query param to JSON
-    const slots = decodeSlots(router.query);
-    appDispatch({
-      type: AppAction.SLOT_ACTIONS,
-      payload: slots
-    });
+    const payload = decodeSlots(router.query);
+
+    // console.dir(payload);
+
+    appDispatch({ type: AppAction.SLOT_ACTIONS, payload });
   }, [router.query]);
 
   useEffect(() => {
@@ -137,5 +142,9 @@ export function App() {
     </TooltipContextProvider>
   );
 }
+
+App.defaultProps = {
+  encodedSlots: undefined
+};
 
 export default App;

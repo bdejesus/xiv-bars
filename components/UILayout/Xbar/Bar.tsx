@@ -12,11 +12,13 @@ export default function Bar({ bar }: Props) {
     right: bar.slice(8, bar.length + 1)
   };
 
+  // console.log('bar', bar, barGroups);
+
   return (
     <>
       {Object.keys(barGroups).map((slotGroup: string, index: number) => (
         <div className={`${styles[slotGroup]} ${slotGroup}`} key={`group-${index}`}>
-          <Group slots={barGroups[slotGroup as keyof typeof barGroups]} />
+          <Group slots={barGroups[slotGroup as keyof typeof barGroups]} areaID={`group-${index}-${slotGroup}`} />
         </div>
       ))}
     </>

@@ -5,10 +5,10 @@ import { useAppState } from 'components/App/context';
 import LayoutToggle from './LayoutToggle';
 import styles from './UILayout.module.scss';
 
-export function SlotLayout() {
+export function LayoutView() {
   const { layout } = useAppState();
 
-  switch (layouts[layout]) {
+  switch (layouts[layout as keyof typeof layouts]) {
     case 'chotbar': return <Xbar />;
     case 'hotbar': return <Hotbar />;
     default: return <Xbar />;
@@ -23,7 +23,7 @@ export function UILayout() {
       </div>
 
       <div className={styles.uiLayout}>
-        <SlotLayout />
+        <LayoutView />
       </div>
     </>
   );

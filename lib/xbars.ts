@@ -1,6 +1,8 @@
 import type { SlotProps } from 'types/Action';
 
-export const chotbarSlotNames = [
+export const layouts:string[] = ['chotbar', 'hotbar'];
+
+export const chotbarSlotNames:string[] = [
   'LDD',
   'LDL',
   'LDU',
@@ -19,7 +21,20 @@ export const chotbarSlotNames = [
   'RAR'
 ];
 
-const xBarSlots = (group: string, key: number) => {
+export const hotbarKeys:{[key:string]:number} = {
+  one: 1,
+  two: 2,
+  three: 3,
+  four: 4,
+  five: 5,
+  six: 6,
+  seven: 7,
+  eight: 8,
+  nine: 9,
+  ten: 10,
+};
+
+const buildCrossHotbarSlots = (group: string, key: number) => {
   const numSlots = 16;
   const slotsArr = [];
 
@@ -35,22 +50,18 @@ const xBarSlots = (group: string, key: number) => {
   return slotsArr;
 };
 
-export const xbars = () => (
-  {
-    one: xBarSlots('one', 1),
-    two: xBarSlots('two', 2),
-    three: xBarSlots('three', 3),
-    four: xBarSlots('four', 4),
-    five: xBarSlots('five', 5),
-    six: xBarSlots('six', 6),
-    seven: xBarSlots('seven', 7),
-    eight: xBarSlots('eight', 8)
-  }
-);
+const buildCrossHotbars = () => {
+  const numRows = 8;
+  const hotbars = Object.keys(hotbarKeys)
+    .slice(0, numRows)
+    .reduce((hotbarGroups, hbKey) => {
+      const hotbarGroup = buildCrossHotbarSlots(hbKey, hotbarKeys[hbKey]);
+      return ({ ...hotbarGroups, [hbKey]: hotbarGroup });
+    }, {});
+  return hotbars;
+};
 
-export const chotbar = xbars();
-
-const hotbarSlots = (group: string) => {
+const buildHotbarSlots = (group: string) => {
   const numSlots = 12;
   const slotsArr = [];
 
@@ -60,34 +71,32 @@ const hotbarSlots = (group: string) => {
   return slotsArr;
 };
 
-const hotbars = () => (
-  {
-    one: hotbarSlots('one'),
-    two: hotbarSlots('two'),
-    three: hotbarSlots('three'),
-    four: hotbarSlots('four'),
-    five: hotbarSlots('five'),
-    six: hotbarSlots('six'),
-    seven: hotbarSlots('seven'),
-    eight: hotbarSlots('eight'),
-    nine: hotbarSlots('nine'),
-    ten: hotbarSlots('ten')
-  }
-);
+const buildHotbars = () => {
+  const hotbars = Object.keys(hotbarKeys).reduce((hotbarGroups, hbKey) => {
+    const hotbarGroup = buildHotbarSlots(hbKey);
+    return ({ ...hotbarGroups, [hbKey]: hotbarGroup });
+  }, {});
+  return hotbars;
+};
 
-export const hotbar = hotbars();
+export const chotbar:{[key: string]: object} = buildCrossHotbars();
+export const hotbar:{[key: string]: object} = buildHotbars();
 
-export const layouts = ['chotbar', 'hotbar'];
-
-export const hotbarKeyPos = (id: string) => Object.keys(hotbar).indexOf(id);
+export const hotbarKeyPosition = (id: string) => Object.keys(hotbar).indexOf(id);
 
 export const hasActions = (barData: SlotProps[]) => {
   const slottedActions = barData.map((a) => Object.keys(a.action).length > 0);
   return slottedActions.includes(true);
 };
 
-const moduleExports = {
-  chotbar, hotbar, layouts, chotbarSlotNames, hotbarKeyPos, hasActions
+const modules = {
+  layouts,
+  chotbarSlotNames,
+  chotbar,
+  hotbar,
+  hotbarKeys,
+  hotbarKeyPosition,
+  hasActions
 };
 
-export default moduleExports;
+export default modules;

@@ -1,6 +1,6 @@
 import type { SlotProps } from 'types/Action';
 import { useAppState } from 'components/App/context';
-import { hotbarKeyPos } from 'lib/xbars';
+import { hotbarKeyPosition } from 'lib/xbars';
 import Slot from 'components/Slot';
 import LayoutControl from './LayoutControl';
 import styles from './Hotbar.module.scss';
@@ -12,7 +12,8 @@ interface Props {
 
 export default function Row({ slots, id }: Props) {
   const { readOnly, hb } = useAppState();
-  const hotbarKey = hb[hotbarKeyPos(id)];
+  if (!hb || !slots) return null;
+  const hotbarKey = hb[hotbarKeyPosition(id)];
 
   return (
     <>

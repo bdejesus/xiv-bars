@@ -9,7 +9,7 @@ import { SelectedActionAction } from 'components/SelectedAction/actions';
 import { useAppState } from 'components/App/context';
 import type { ActionProps } from 'types/Action';
 import { setActionToSlot } from 'lib/utils/slots';
-import { hotbar, chotbar } from 'lib/xbars';
+import { chotbar, hotbar } from 'lib/xbars';
 import styles from './Slot.module.scss';
 
 interface Props {
@@ -27,6 +27,7 @@ export default function Slot({ id, className, action }: Props) {
 
   const { query, pathname } = router;
   const slotLayouts = [chotbar, hotbar];
+  const slots = slotLayouts[layout ? parseInt(layout.toString(), 10) : 0];
 
   function resetSlot(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.currentTarget.setAttribute('data-state', 'inactive');
@@ -43,7 +44,7 @@ export default function Slot({ id, className, action }: Props) {
       const updatedSlots = setActionToSlot({
         action: {},
         slotID: id,
-        slots: slotLayouts[parseInt(layout, 10)]
+        slots
       });
 
       const params = { pathname, query: { ...query, s1: updatedSlots } };
@@ -58,7 +59,7 @@ export default function Slot({ id, className, action }: Props) {
   }
 
   function setSelectedAction() {
-    if (readOnly) return null;
+    if (readOnly || !id) return null;
 
     setDragging(false);
 
@@ -67,7 +68,7 @@ export default function Slot({ id, className, action }: Props) {
       const updatedSlots = setActionToSlot({
         action: selectedAction,
         slotID: id,
-        slots: slotLayouts[parseInt(layout, 10)]
+        slots
       });
 
       const params = { pathname, query: { ...query, s1: updatedSlots } };
@@ -100,7 +101,7 @@ export default function Slot({ id, className, action }: Props) {
         data-slotted={!!action?.Name}
         data-disabled={readOnly && !action.Name}
       >
-        {action.Name && <Action action={action} />}
+        {action?.Name && <Action action={action} />}
       </div>
     </>
   );
