@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';

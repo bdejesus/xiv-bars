@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
-import { hotbarKeyPos } from 'lib/xbars';
+import { hotbarKeyPosition } from 'lib/xbars';
 
 import styles from './Hotbar.module.scss';
 
@@ -16,7 +16,7 @@ export default function LayoutControl({ id, defaultValue }: Props) {
 
   function handleLayoutControl(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.currentTarget;
-    const position = hotbarKeyPos(id);
+    const position = hotbarKeyPosition(id);
     const configValue = parseInt(value, 10);
     const updatedHb = configValue ? hb?.toSpliced(position, 1, configValue) : hb;
     const { query, pathname } = router;

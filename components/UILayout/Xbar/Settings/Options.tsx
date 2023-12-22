@@ -5,7 +5,7 @@ import { useAppState } from 'components/App/context';
 interface Props {
   id: string,
   onChange: React.ChangeEventHandler<HTMLSelectElement>,
-  value?: string,
+  value?: number,
   children: ReactNode,
   required?: boolean
 }

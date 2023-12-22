@@ -1,4 +1,4 @@
-import { layouts } from 'lib/xbars';
+import { layouts, chotbar, hotbar } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
 import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
@@ -11,29 +11,33 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
 
   switch (action.type) {
     case AppAction.SLOT_ACTIONS: {
-      if (action.payload?.encodedSlots) {
-        setActionsToSlots({
+      const slottedActions = (action.payload?.encodedSlots)
+        ? setActionsToSlots({
           encodedSlots: action.payload.encodedSlots,
           layout: layout || defaultState.layout,
           slots: slots as object,
           actions: state.actions,
           roleActions: state.roleActions
-        });
-      }
+        })
+        : undefined;
 
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
+        ...slottedActions
       };
     }
 
     case AppAction.SLOT_ACTION: {
-      const encodedSlots = setActionToSlot({
-        action: action.payload?.action,
-        slotID: action.payload?.slotID,
-        slots: slots as object
-      });
-      return { ...state, encodedSlots };
+      if (action.payload?.action && action.payload?.slotID) {
+        const encodedSlots = setActionToSlot({
+          action: action.payload.action,
+          slotID: action.payload.slotID,
+          slots: slots as object
+        });
+        return { ...state, encodedSlots };
+      }
+      return state;
     }
 
     case AppAction.TOGGLE_TITLES: {
@@ -85,6 +89,15 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
         return { ...state, message: action.payload.message };
       }
       return state;
+    }
+
+    case AppAction.RESET: {
+      return {
+        ...state,
+        encodedSlots: undefined,
+        chotbar,
+        hotbar
+      };
     }
 
     default: {

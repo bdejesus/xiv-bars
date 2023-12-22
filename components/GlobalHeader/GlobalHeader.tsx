@@ -6,7 +6,7 @@ import { useAppState } from 'components/App/context';
 import styles from './GlobalHeader.module.scss';
 
 export function GlobalHeader() {
-  const { selectedJob, viewData } = useAppState() || null;
+  const { selectedJob, title } = useAppState();
 
   return (
     <div className={styles.container}>
@@ -36,10 +36,10 @@ export function GlobalHeader() {
               </Link>
             </li>
 
-            {viewData?.title
+            {title
               ? (
                 <li className={styles.titleSegment}>
-                  <span className={styles.title}>{viewData.title}</span>
+                  <span className={styles.title}>{title}</span>
                 </li>
               )
               : (

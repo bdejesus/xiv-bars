@@ -3,16 +3,17 @@ import type { SlotProps } from 'types/Action';
 import Set from './Set';
 
 interface Props {
-  slots: SlotProps[]
+  slots: SlotProps[],
+  areaID: string
 }
 
-function Group({ slots }: Props) {
+function Group({ slots, areaID }: Props) {
   const slotSets = sortIntoGroups(slots, 4);
 
   return (
     <>
-      {slotSets.map((groupSlots: SlotProps[], index: number) => (
-        <Set slots={groupSlots} key={`set-${index}`} />
+      {slotSets.map((slotSet: SlotProps[], index: number) => (
+        <Set slots={slotSet} key={`${areaID}-set-${index}`} setID={`${areaID}-set-${index}`} />
       ))}
     </>
   );

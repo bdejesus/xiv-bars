@@ -1,8 +1,8 @@
 import Jobs from 'apiData/Jobs.json';
+import { chotbar, hotbar } from 'lib/xbars';
 
 export const defaultState = {
   layout: 0,
-  params: undefined,
   hb: new Array(10).fill(1, 0, 10),
   xhb: 1,
   wxhb: 0,
@@ -20,8 +20,8 @@ export const defaultState = {
   actions: undefined,
   encodedSlots: undefined,
   message: undefined,
-  chotbar: undefined,
-  hotbar: undefined,
+  chotbar,
+  hotbar,
   title: undefined,
   description: undefined,
   user: undefined,
