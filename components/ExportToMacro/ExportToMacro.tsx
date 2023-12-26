@@ -34,7 +34,7 @@ export function ExportToMacros() {
             ? chotbarSlotNames[index]
             : index + 1;
           const subcommand = action.Command || 'action';
-          const strArray = [
+          const stringArray = [
             `/${currLayout}`,
             subcommand,
             `"${action.Name}"`,
@@ -42,7 +42,7 @@ export function ExportToMacros() {
             slotName
           ];
 
-          return strArray.join(' ');
+          return stringArray.join(' ');
         }
         return null;
       })
@@ -63,7 +63,7 @@ export function ExportToMacros() {
   function buildMacros() {
     if (currLayout) {
       const hotbarMacros = Object.values(appState[currLayout] as SlotProps[])
-        .map((row, index) => generateHotbarMacros(row as unknown as SlotProps[], index + 1))
+        .map((row, index) => row && generateHotbarMacros(row as unknown as SlotProps[], index + 1))
         .join('\n')
         .trim()
         .split('\n');

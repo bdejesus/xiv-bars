@@ -40,14 +40,14 @@ export function encodeSlots(slots:object) {
 
 export function decodeSlots(query:object) {
   const {
-    s1, s, wxhb, xhb, exhb, hb, l, id
+    s1, s, wxhb, xhb, exhb, hb, l, id, encodedSlots
   } = query as QueryProps;
 
   const formatHbConfig: string[] = hb?.split(',') || new Array(10).fill(1, 0, 10);
 
   const payload = {
     id,
-    encodedSlots: s1 || s || defaultState.encodedSlots,
+    encodedSlots: encodedSlots || s1 || s || defaultState.encodedSlots,
     wxhb: parseInt(wxhb, 10) || defaultState.wxhb,
     xhb: parseInt(xhb, 10) || defaultState.xhb,
     exhb: parseInt(exhb, 10) || defaultState.exhb,

@@ -129,7 +129,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // Fetch Actions
     if (selectedJob) {
       jobActions = await listJobActions(selectedJob);
-      // TODO: Refactor this is pull IDS from ClassJob object instead of ROLE_ACTION_IDS
+      // TODO: Refactor this to pull IDs from ClassJob object instead of ROLE_ACTION_IDS
       if (selectedJob.Role) {
         roleActions = await listRoleActions(selectedJob);
       }

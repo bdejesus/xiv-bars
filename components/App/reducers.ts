@@ -1,4 +1,4 @@
-import { layouts, chotbar, hotbar } from 'lib/xbars';
+import { layouts, buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
 import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
@@ -95,8 +95,9 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       return {
         ...state,
         encodedSlots: undefined,
-        chotbar,
-        hotbar
+        chotbar: buildCrossHotbars(),
+        hotbar: buildHotbars(),
+        slots: undefined
       };
     }
 
