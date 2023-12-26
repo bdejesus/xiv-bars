@@ -50,7 +50,7 @@ const buildCrossHotbarSlots = (group: string, key: number) => {
   return slotsArr;
 };
 
-const buildCrossHotbars = () => {
+export const buildCrossHotbars = () => {
   const numRows = 8;
   const hotbars = Object.keys(hotbarKeys)
     .slice(0, numRows)
@@ -71,7 +71,7 @@ const buildHotbarSlots = (group: string) => {
   return slotsArr;
 };
 
-const buildHotbars = () => {
+export const buildHotbars = () => {
   const hotbars = Object.keys(hotbarKeys).reduce((hotbarGroups, hbKey) => {
     const hotbarGroup = buildHotbarSlots(hbKey);
     return ({ ...hotbarGroups, [hbKey]: hotbarGroup });

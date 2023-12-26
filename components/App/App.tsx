@@ -31,38 +31,21 @@ export function App() {
     title,
     description,
     user,
-    // encodedSlots
+    encodedSlots
   } = appState;
-
-  // console.log(appState);
 
   const router = useRouter();
 
-  // function resetMessage() {
-  //   console.log('route change!', appState);
-
-  //   // appDispatch({ type: AppAction.RESET });
-  // }
-
-  // useEffect(() => {
-  //   if (encodedSlots) {
-  //     const payload = decodeSlots(router.query);
-  //     appDispatch({ type: AppAction.SLOT_ACTIONS, payload });
-  //   }
-
-  //   // router.events.on('routeChangeStart', resetMessage);
-
-  //   // return () => {
-  //   //   router.events.off('routeChangeStart', resetMessage);
-  //   // };
-  // }, []);
+  useEffect(() => {
+    appDispatch({ type: AppAction.RESET });
+  }, []);
 
   useEffect(() => {
     // convert Slots from query param to JSON
-    const payload = decodeSlots(router.query);
-
-    // console.dir(payload);
-
+    const payload = decodeSlots({
+      encodedSlots: readOnly ? encodedSlots : undefined,
+      ...router.query
+    });
     appDispatch({ type: AppAction.SLOT_ACTIONS, payload });
   }, [router.query]);
 

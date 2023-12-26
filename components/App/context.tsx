@@ -2,7 +2,7 @@ import React, {
   ReactNode,
   createContext,
   useContext,
-  useReducer,
+  useReducer
 } from 'react';
 import { hotbar, chotbar } from 'lib/xbars';
 import { defaultState } from 'components/App/defaultState';
