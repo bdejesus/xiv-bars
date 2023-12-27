@@ -67,11 +67,11 @@ function SaveForm() {
 
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
-        // router.push(
-        //   `/job/${layoutView.jobId}/${layoutView.id}`,
-        //   undefined,
-        //   { shallow: true }
-        // );
+        router.push(
+          `/job/${layoutView.jobId}/${layoutView.id}`,
+          undefined,
+          { shallow: true }
+        );
       })
       .catch((error) => {
         console.error(error);
