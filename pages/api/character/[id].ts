@@ -11,8 +11,8 @@ export default async function characterHandler(
   const character = await characterSearch.parse({ params: { characterId } } as never);
 
   if (character) {
-    res.status(200).json({ status: 'ok', data: character });
+    res.status(200).json(character);
   } else {
-    res.status(200).json({ status: 'error', error: 'error' });
+    res.status(404).json({ status: 'Not Found' });
   }
 }
