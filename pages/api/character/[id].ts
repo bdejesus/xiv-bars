@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Character } from '@xivapi/nodestone';
 import * as HTMLParser from 'fast-html-parser';
 
 export default async function characterHandler(
@@ -7,20 +6,31 @@ export default async function characterHandler(
   res: NextApiResponse
 ) {
   const characterId = req.query.id;
-
-  // const characterSearch = new Character();
-
-  // const character = await characterSearch.parse({ params: { characterId } } as never);
-
   const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
   fetch(lodestoneURL)
     .then((response) => response.text())
     .then((content) => {
+      // Parse HTML content
       const character = HTMLParser.parse(content).querySelector('#character');
-      const characterDetails = character.querySelector('.character__profile__data__detail');
 
+      // Get Profile
+      const profile = {
+        image: character.querySelector('.frame__chara__face img').attributes.src,
+        name: character.querySelector('.frame__chara__name').rawText,
+        title: character.querySelector('.frame__chara__title')?.rawText,
+        world: character.querySelector('.frame__chara__world').rawText,
+      };
+
+      // Get character details
       // Race/Clan/Gender
-      const [raceClanGenderNode, namedayGuardianNode, cityStateNode, grandCompanyNode, freeCompanyNode] = characterDetails.querySelectorAll('.character-block');
+      const characterDetails = character.querySelector('.character__profile__data__detail');
+      const [
+        raceClanGenderNode,
+        namedayGuardianNode,
+        cityStateNode,
+        grandCompanyNode,
+        freeCompanyNode
+      ] = characterDetails.querySelectorAll('.character-block');
       const [race, clan, gender] = raceClanGenderNode.childNodes[1].childNodes[1].childNodes
         .reduce((nodes, child) => ((child.rawText) ? [...nodes, child.rawText.replace(' / ', ',')] : nodes), [])
         .join(',').split(',');
@@ -41,6 +51,7 @@ export default async function characterHandler(
       const classJob = characterClass.querySelector('.character__classjob').attributes.src;
 
       // Gear
+      // Get Mainhand slot
       const [mainhandImageNode, , mainhandGlamourNode, mainhandItemName] = character.querySelector('.character__class__arms').childNodes[0].childNodes;
       const mainhand = {
         name: mainhandItemName.querySelector('.db-tooltip__item__name').rawText,
@@ -49,8 +60,11 @@ export default async function characterHandler(
           name: mainhandGlamourNode.querySelector('.db-tooltip__item__mirage__ic')
         }
       };
-      const gears = character.querySelectorAll('.character__detail__icon .db-tooltip__l_main');
 
+      // Get Slot Items
+      const gear = character.querySelectorAll('.character__detail__icon .db-tooltip__l_main');
+
+      // Define slot keys
       const gearSlots = [
         'head',
         'body',
@@ -64,26 +78,31 @@ export default async function characterHandler(
         'ring2',
         'soulstone'
       ];
+      // Insert offhand if it enough items are returned
+      if (gear.length > 11) gearSlots.splice(5, 0, 'offhand');
 
-      const gearSlotItems = gears.reduce((equipment, slot, index) => ({
-        ...equipment,
-        [gearSlots[index]]: {
-          name: slot.querySelector('.db-tooltip__item__name').rawText,
-          image: slot.querySelector('.db-tooltip__item__icon img').attributes.src,
-          glamour: slot.querySelector('.db-tooltip__item__mirage') ? {
+      // Format gear slot items into JSON
+      const gearSlotItems = gear.reduce((equipment:object, slot, index:number) => {
+        const gearSlotKey = gearSlots[index];
+        const glamour = slot.querySelector('.db-tooltip__item__mirage')
+          ? {
             name: slot.querySelector('.db-tooltip__item__mirage p').rawText,
             image: slot.querySelector('.db-tooltip__item__mirage__ic img')?.attributes.src
-          } : null
-        }
-      }), {});
+          }
+          : null;
+        const gearSlot = {
+          [gearSlotKey]: {
+            name: slot.querySelector('.db-tooltip__item__name').rawText,
+            image: slot.querySelector('.db-tooltip__item__icon img').attributes.src,
+            glamour
+          }
+        };
+
+        return { ...equipment, ...gearSlot };
+      }, { offhand: null });
 
       const data = {
-        profile: {
-          image: character.querySelector('.frame__chara__face img').attributes.src,
-          name: character.querySelector('.frame__chara__name').rawText,
-          title: character.querySelector('.frame__chara__title')?.rawText,
-          world: character.querySelector('.frame__chara__world').rawText,
-        },
+        profile,
         details: {
           race,
           clan,
@@ -100,7 +119,10 @@ export default async function characterHandler(
           icon: classIcon,
           textImage: classJob
         },
+        gearSlotsKeys: gearSlots,
+        gear,
         gearSlots: {
+          image: character.querySelector('.character__detail__image img').attributes.src,
           mainhand,
           ...gearSlotItems
         }
