@@ -3,10 +3,13 @@ import * as HTMLParser from 'fast-html-parser';
 import type { HTMLElement } from 'fast-html-parser';
 
 function getProfile(character:HTMLElement) {
+  const frame = character.querySelector('.frame__chara__box');
+
   return {
     image: character.querySelector('.frame__chara__face img')?.attributes.src,
     name: character.querySelector('.frame__chara__name')?.rawText,
     title: character.querySelector('.frame__chara__title')?.rawText,
+    titleTop: frame?.childNodes[1].classNames.includes('frame__chara__title'),
     world: character.querySelector('.frame__chara__world')?.rawText
   };
 }
@@ -148,7 +151,8 @@ export default async function characterHandler(req: NextApiRequest, res: NextApi
           profile: getProfile(character),
           details: getDetails(character),
           activeClassJob: getActiveClassJob(character),
-          gearSlots: getGearSlots(character)
+          gearSlots: getGearSlots(character),
+          updatedAt: new Date().toISOString()
         };
 
         res.status(200).json({ character: data });
