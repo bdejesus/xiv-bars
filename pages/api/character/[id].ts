@@ -151,7 +151,7 @@ export default async function characterHandler(req: NextApiRequest, res: NextApi
           gearSlots: getGearSlots(character)
         };
 
-        res.status(200).json(data);
+        res.status(200).json({ character: data });
       }
     })
     .catch((error) => {
