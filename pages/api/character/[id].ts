@@ -7,7 +7,7 @@ function getProfile(character:HTMLElement) {
     image: character.querySelector('.frame__chara__face img')?.attributes.src,
     name: character.querySelector('.frame__chara__name')?.rawText,
     title: character.querySelector('.frame__chara__title')?.rawText,
-    world: character.querySelector('.frame__chara__world')?.rawText,
+    world: character.querySelector('.frame__chara__world')?.rawText
   };
 }
 
