@@ -116,7 +116,7 @@ function getGearSlots(character:HTMLElement) {
     const gearSlot = {
       [gearSlotKey]: {
         name: slot.querySelector('.db-tooltip__item__name')?.rawText,
-        image: slot.querySelector('.character__item_icon__img')?.attributes.src,
+        image: slot.querySelector('.db-tooltip__item__icon__item_image')?.attributes.src,
         glamour
       }
     };
