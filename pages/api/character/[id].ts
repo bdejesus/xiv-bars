@@ -84,7 +84,7 @@ function getGearSlots(character:HTMLElement) {
   };
 
   // Get Slot Items
-  const gear = character.querySelectorAll('.character__detail__icon .db-tooltip__l_main');
+  const gear = character.querySelectorAll('.character__detail__icon');
 
   // Define slot keys
   const gearSlots = [
@@ -116,7 +116,7 @@ function getGearSlots(character:HTMLElement) {
     const gearSlot = {
       [gearSlotKey]: {
         name: slot.querySelector('.db-tooltip__item__name')?.rawText,
-        image: slot.querySelector('.db-tooltip__item__icon img')?.attributes.src,
+        image: slot.querySelector('.character__item_icon__img')?.attributes.src,
         glamour
       }
     };
