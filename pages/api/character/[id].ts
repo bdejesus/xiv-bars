@@ -172,8 +172,22 @@ async function saveCharacter(character:Character) {
   return db.character.create({ data: character });
 }
 
+function errorMessageHandler(errorCode:number) {
+  switch (errorCode) {
+    case 404: {
+      return { status: 404, message: 'Not Found' };
+    }
+    case 500: {
+      return { status: 500, message: 'Something went wrong' };
+    }
+    default: {
+      return null;
+    }
+  }
+}
+
 export default async function characterHandler(req: NextApiRequest, res: NextApiResponse) {
-  if (!req.query.id) res.status(404).json({ status: 'not found', message: 'Not Found' });
+  if (!req.query.id) res.status(404).json(errorMessageHandler(404));
 
   const characterId = parseInt(req.query.id as string, 10);
   const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
@@ -186,20 +200,20 @@ export default async function characterHandler(req: NextApiRequest, res: NextApi
         // Parse HTML content
         const character:HTMLElement | null = HTMLParser.parse(content).querySelector('#character');
         if (!character) {
-          res.status(404).json({ status: 'not found', message: 'Not Found' });
+          res.status(404).json(errorMessageHandler(404));
         } else {
           // Scrape Character html and format into JSON
           const data:Character = parseCharacterData(characterId, character);
           saveCharacter(data)
-            .catch((error) => res.status(500).json({ status: 'failed', error }))
-            .then(() => res.status(200).json({ status: 'ok', character: data }));
+            .catch(() => res.status(500).json(errorMessageHandler(500)))
+            .then(() => res.status(200).json({ status: 200, character: data }));
         }
       })
       .catch((error) => {
         console.error(error);
-        res.status(404).json({ status: 'not found', message: 'Not Found' });
+        res.status(404).json(errorMessageHandler(404));
       });
   } else {
-    res.status(200).json({ status: 'ok', character: characterData });
+    res.status(200).json({ status: 200, character: characterData });
   }
 }
