@@ -41,6 +41,27 @@ model Layout {
   hb            String?
 }
 
+model Character {
+  id                  Int     @id @default(autoincrement())
+  face                String
+  portrait            String
+  name                String
+  title               String
+  titleTop            Boolean   @default(false)
+  world               String
+  race                String
+  nameday             String
+  guardian            String
+  cityState           String
+  grandCompanyName    String
+  grandCompanyRank    String
+  freeCompany         String
+  activeClassJob      Json
+  gearSlots           Json
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @default(now())
+}
+
 enum Role {
   USER
   ADMIN
