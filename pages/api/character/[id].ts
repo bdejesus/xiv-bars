@@ -1,17 +1,24 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import * as HTMLParser from 'fast-html-parser';
 import type { HTMLElement } from 'fast-html-parser';
+import type { Character } from 'types/Character';
+import db from 'lib/db';
 
 function getProfile(character:HTMLElement) {
   const frame = character.querySelector('.frame__chara__box');
+  // Checks if the title element appears before the character name
+  const titleTop = frame?.childNodes[1].classNames.includes('frame__chara__title');
 
-  return {
-    image: character.querySelector('.frame__chara__face img')?.attributes.src,
+  const profileData = {
+    face: character.querySelector('.frame__chara__face img')?.attributes.src,
+    portrait: character.querySelector('.character__detail__image img')?.attributes.src,
     name: character.querySelector('.frame__chara__name')?.rawText,
     title: character.querySelector('.frame__chara__title')?.rawText,
-    titleTop: frame?.childNodes[1].classNames.includes('frame__chara__title'),
+    titleTop,
     world: character.querySelector('.frame__chara__world')?.rawText
   };
+
+  return profileData;
 }
 
 function getDetails(character:HTMLElement) {
@@ -26,7 +33,7 @@ function getDetails(character:HTMLElement) {
     ? characterDetails.querySelectorAll('.character-block')
     : [undefined, undefined, undefined, undefined, undefined];
 
-  const [race, clan, gender] = raceClanGenderNode?.childNodes[1].childNodes[1].childNodes
+  const [race] = raceClanGenderNode?.childNodes[1].childNodes[1].childNodes
     .reduce((nodes:string[], child) => {
       if (child.rawText) return [...nodes, child.rawText.replace(' / ', ',')];
       return nodes;
@@ -46,8 +53,6 @@ function getDetails(character:HTMLElement) {
 
   return {
     race,
-    clan,
-    gender,
     nameday,
     guardian,
     cityState,
@@ -73,9 +78,6 @@ function getActiveClassJob(character:HTMLElement) {
 }
 
 function getGearSlots(character:HTMLElement) {
-  // Gear
-  const image = character.querySelector('.character__detail__image img')?.attributes.src;
-
   // Get Mainhand slot
   const [mainhandImageNode, , mainhandGlamourNode, mainhandItemName] = character.querySelector('.character__class__arms')?.childNodes[0].childNodes || [];
   const mainhand = {
@@ -125,41 +127,79 @@ function getGearSlots(character:HTMLElement) {
     };
 
     return { ...equipment, ...gearSlot };
-  }, { offhand: null });
+  }, { mainhand, offhand: null });
+
+  return gearSlotItems;
+}
+
+function parseCharacterData(characterId:number, character:HTMLElement) {
+  const profile = getProfile(character);
+  const details = getDetails(character);
+  const activeClassJob = getActiveClassJob(character);
+  const gearSlots = getGearSlots(character);
 
   return {
-    image,
-    mainhand,
-    ...gearSlotItems
+    id: characterId,
+    ...profile,
+    ...details,
+    activeClassJob,
+    gearSlots,
+    updatedAt: new Date().toISOString()
   };
 }
 
-export default async function characterHandler(req: NextApiRequest, res: NextApiResponse) {
-  const characterId = req.query.id;
-  const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
+async function readCharacter(characterId:number) {
+  if (!characterId) throw new Error('characterId is required');
 
-  fetch(lodestoneURL)
-    .then((response) => response.text())
-    .then((content) => {
-      // Parse HTML content
-      const character = HTMLParser.parse(content).querySelector('#character');
+  const characterSheet = await db.layout.findUnique({
+    where: { id: characterId }
+  });
+  return characterSheet;
+}
 
-      if (!character) {
-        res.status(404).json({ status: '404', message: 'Not Found' });
-      } else {
-        const data = {
-          profile: getProfile(character),
-          details: getDetails(character),
-          activeClassJob: getActiveClassJob(character),
-          gearSlots: getGearSlots(character),
-          updatedAt: new Date().toISOString()
-        };
+async function saveCharacter(character:Character) {
+  const shouldUpdate = await db.character.findUnique({
+    where: { id: character.id }
+  });
 
-        res.status(200).json({ character: data });
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(404).json({ status: '404', message: 'Not Found' });
+  if (shouldUpdate) {
+    return db.character.update({
+      where: { id: character.id },
+      data: character
     });
+  }
+
+  return db.character.create({ data: character });
+}
+
+export default async function characterHandler(req: NextApiRequest, res: NextApiResponse) {
+  if (!req.query.id) res.status(404).json({ status: 'not found', message: 'Not Found' });
+
+  const characterId = parseInt(req.query.id as string, 10);
+  const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
+  const characterData = await readCharacter(characterId);
+
+  if (!characterData) {
+    fetch(lodestoneURL)
+      .then((response) => response.text())
+      .then((content) => {
+        // Parse HTML content
+        const character:HTMLElement | null = HTMLParser.parse(content).querySelector('#character');
+        if (!character) {
+          res.status(404).json({ status: 'not found', message: 'Not Found' });
+        } else {
+          // Scrape Character html and format into JSON
+          const data:Character = parseCharacterData(characterId, character);
+          saveCharacter(data)
+            .catch((error) => res.status(500).json({ status: 'failed', error }))
+            .then(() => res.status(200).json({ status: 'ok', character: data }));
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(404).json({ status: 'not found', message: 'Not Found' });
+      });
+  } else {
+    res.status(200).json({ status: 'ok', character: characterData });
+  }
 }
