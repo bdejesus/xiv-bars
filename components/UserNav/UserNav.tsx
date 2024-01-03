@@ -37,6 +37,7 @@ export function UserNav() {
               action: 'click',
               params: { method: 'donate' }
             })}
+            className={styles.donateLink}
           >
             {I18n.UserNav.donate}
           </a>
