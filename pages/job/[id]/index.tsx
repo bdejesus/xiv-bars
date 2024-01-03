@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
@@ -48,10 +49,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       <div className="container section">
         <h1 className={`mt-md ${styles.title}`}>
           <SelectedJob job={selectedJob} className={styles.job} />
-          <a href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
+          <Link href={`/job/${selectedJob.Abbr}/new`} className={styles.newLink}>
             <span className="newIcon">+</span>
             New {selectedJob.Name} Layout
-          </a>
+          </Link>
         </h1>
 
         { layoutsData.length > 0
@@ -76,7 +77,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             </div>
           ) : (
             <h2>
-              No {selectedJob.Name} Layouts yet. <a href={`/job/${selectedJob.Abbr}/new`}>Create one?</a>
+              No {selectedJob.Name} Layouts yet. <Link href={`/job/${selectedJob.Abbr}/new`}>Create one?</Link>
             </h2>
           )}
       </div>
