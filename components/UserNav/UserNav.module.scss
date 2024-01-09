@@ -36,6 +36,15 @@
     font-style: italic;
     letter-spacing: 0.04em;
   }
+
+  .signin {
+    background-color: $color-alt !important;
+    border: none;
+    color: #333;
+    font-size: inherit;
+    height: 100%;
+    text-shadow: 0 1px 2px rgb(255 255 255 / 33%);
+  }
 }
 
 .globalNav {
@@ -45,7 +54,7 @@
   flex-direction: row;
   list-style: none;
   margin: 0 $spacing-base;
-  padding: 0 $spacing-sm;
+  padding: 0 $spacing-base;
 
   > li {
     margin-left: $spacing-sm;
@@ -143,10 +152,4 @@
   a {
     color: #333;
   }
-}
-
-.signin {
-  background-color: #fff;
-  border-color: #ccc;
-  color: #333;
 }

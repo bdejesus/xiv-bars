@@ -103,7 +103,7 @@ export function UserNav() {
         <button
           type="button"
           onClick={handleSignIn}
-          className={styles.signin}
+          className={`${styles.signin} btn`}
         >
           {I18n.UserNav.signin_with_discord}
         </button>
