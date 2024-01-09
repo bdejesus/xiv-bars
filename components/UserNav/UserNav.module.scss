@@ -72,7 +72,7 @@
   display: flex;
   flex-direction: row;
   font-weight: 700;
-  margin: -$spacing-xs (-$spacing-sm);
+  margin: -$spacing-xs 0;
   padding: $spacing-xs $spacing-sm $spacing-xs $spacing-xs;
   transition-duration: 0.3s;
   transition-property: color, background-color, box-shadow;

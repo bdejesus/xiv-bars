@@ -4,6 +4,7 @@ import { createRef, useEffect, useState } from 'react';
 import { jsonToQuery } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
+import Icon from 'components/Icon';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
 import type { ClassJobProps } from 'types/ClassJob';
@@ -94,11 +95,7 @@ export function Sharing({ selectedJob }:Props) {
         className={styles.copyButton}
         onClick={copyUrl}
       >
-        <img
-          src="/images/icon-copy.svg"
-          className="btn-icon"
-          alt={I18n.Sharing.copy_icon}
-        />
+        <Icon id="link" title={I18n.Sharing.copy_icon} />
         {I18n.Sharing.copy_url}
       </button>
     </div>

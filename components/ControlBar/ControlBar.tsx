@@ -3,6 +3,7 @@ import { useAppState } from 'components/App/context';
 import Sharing from 'components/Sharing';
 import ExportToMacros from 'components/ExportToMacro';
 import SaveForm from 'components/SaveForm';
+import Icon from 'components/Icon';
 import { jsonToQuery } from 'lib/utils/url';
 import I18n from 'lib/I18n/locale/en-US';
 import type { ClassJobProps } from 'types/ClassJob';
@@ -54,6 +55,7 @@ export function ControlBar({ selectedJob }: Props) {
                   onClick={copyLayout}
                   title={I18n.ControlBar.CopyLayout.copy_layout}
                 >
+                  <Icon id="copy" />
                   { I18n.ControlBar.CopyLayout.copy_label }
                 </button>
               </div>

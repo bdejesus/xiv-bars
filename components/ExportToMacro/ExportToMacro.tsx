@@ -3,6 +3,7 @@
 import { createRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
+import Icon from 'components/Icon';
 import I18n from 'lib/I18n/locale/en-US';
 import Modal from 'components/Modal';
 import type { SlotProps } from 'types/Action';
@@ -99,7 +100,7 @@ export function ExportToMacros() {
         title="Export to Macro"
         onClick={toggleModal}
       >
-        <img src="/images/icon-macro.svg" className="btn-icon" alt="Macro Icon" />
+        <Icon id="macro" title={I18n.ExportToMacro.export_to_macro} />
         {I18n.ExportToMacro.export_to_macro}
       </button>
 

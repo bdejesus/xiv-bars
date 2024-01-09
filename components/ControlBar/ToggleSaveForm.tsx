@@ -3,6 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { AppAction } from 'components/App/actions';
 import { useUserState } from 'components/User/context';
+import Icon from 'components/Icon';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
@@ -39,11 +40,7 @@ function EditButton({ showForm }: ButtonProps) {
       title={I18n.ControlBar.ToggleSaveForm.save_this_layout}
       onClick={showForm}
     >
-      <img
-        src="/images/icon-save.svg"
-        className="btn-icon"
-        alt={I18n.ControlBar.ToggleSaveForm.details_icon}
-      />
+      <Icon id="edit" />
       { I18n.ControlBar.ToggleSaveForm.edit }
     </button>
   );

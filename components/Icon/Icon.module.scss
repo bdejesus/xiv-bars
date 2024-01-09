@@ -1,0 +1,15 @@
+@import 'styles/mixins';
+
+.iconWrapper {
+  display: inline-block;
+  height: 16px;
+  margin-right: $spacing-xs;
+  width: 16px;
+}
+
+.iconImage {
+  display: block;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
