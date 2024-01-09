@@ -6,7 +6,7 @@ import { useAppState } from 'components/App/context';
 import styles from './GlobalHeader.module.scss';
 
 export function GlobalHeader() {
-  const { selectedJob, title } = useAppState();
+  const { selectedJob, title, viewAction } = useAppState();
 
   return (
     <div className={styles.container}>
@@ -25,31 +25,55 @@ export function GlobalHeader() {
         <nav className={styles.globalNav}>
           <ol>
             <li>
-              <Link href={`/job/${selectedJob.Abbr}`}>
+              <Link
+                href={`/job/${selectedJob.Abbr}`}
+                className={[
+                  styles.selectedJob,
+                  'btn',
+                  `${viewAction === 'list' ? 'btn-alt' : ''}`
+                ].join(' ')}
+              >
                 <img
                   src={`/jobIcons${selectedJob.Icon}`}
                   alt=""
-                  height={24}
-                  width={24}
+                  height={20}
+                  width={20}
                 />
-                {selectedJob.Name}
+                {selectedJob.Abbr}
               </Link>
+
+              { /* Layout Index Nav Item
+                <Link
+                  href={`/job/${selectedJob.Abbr}`}
+                  className={[
+                    styles.selectedJob,
+                    'btn',
+                    `${viewAction === 'list' ? styles.active : ''}`
+                  ].join(' ')}
+                >
+                  Layouts
+                </Link>
+              */ }
+
             </li>
 
-            {title
-              ? (
-                <li className={styles.titleSegment}>
-                  <span className={styles.title}>{title}</span>
-                </li>
-              )
-              : (
-                <li>
-                  <Link href={`/job/${selectedJob.Abbr}/new`}>
-                    <span className="newIcon">+</span> NEW LAYOUT
-                  </Link>
-                </li>
-              )}
+            {title && (
+              <li className={[styles.titleSegment, styles.active].join(' ')}>
+                <span className={styles.title}>{title}</span>
+              </li>
+            )}
 
+            <li className={viewAction !== 'new' ? styles.action : ''}>
+              <Link
+                href={`/job/${selectedJob.Abbr}/new`}
+                className={`btn ${viewAction === 'new' ? styles.active : ''}`}
+              >
+                { viewAction !== 'new' && (
+                  <span className="newIcon">+</span>
+                )}
+                New Layout
+              </Link>
+            </li>
           </ol>
         </nav>
       )}

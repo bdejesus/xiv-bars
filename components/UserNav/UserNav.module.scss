@@ -1,32 +1,39 @@
 @import "styles/mixins";
 
+.userNav,
+.globalNav,
+.navItem,
+.navItem a {
+  height: 100%;
+}
+
 .userNav {
   align-items: center;
   color: #333;
   display: flex;
   flex-direction: row;
-  font-size: $font-size-base;
-  padding-right: $spacing-base;
   position: relative;
 
   a {
-    border-radius: 6px;
+    align-items: center;
+    border-radius: 4px;
     color: #333;
-    display: block;
-    padding: $spacing-xs $spacing-sm;
+    display: flex;
+    justify-content: center;
+    padding: $spacing-xs $spacing-base;
     transition-duration: 0.3s;
     transition-property: color, background-color, box-shadow;
     transition-timing-function: ease;
 
     &:hover {
       background-color: $color-alt;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
       text-decoration: none;
     }
   }
 
   a.donateLink {
     font-style: italic;
-    font-weight: 300;
     letter-spacing: 0.04em;
   }
 }
@@ -51,12 +58,13 @@
 
 .profile {
   align-items: center;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   display: flex;
   flex-direction: row;
+  font-weight: 700;
   margin: -$spacing-xs (-$spacing-sm);
-  padding: $spacing-xs $spacing-sm;
+  padding: $spacing-xs $spacing-sm $spacing-xs $spacing-xs;
   transition-duration: 0.3s;
   transition-property: color, background-color, box-shadow;
   transition-timing-function: ease;
@@ -64,18 +72,18 @@
 
   &:hover,
   &[data-active="true"] {
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgb(0 0 0 / 20%);
+    background-color: $color-alt;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
   }
 
   &[data-active="true"] {
-    border-radius: 6px 6px 0 0;
+    border-radius: 4px 4px 0 0;
   }
 }
 
 .profileImage {
   background-color: #333;
-  border-radius: 8px;
+  border-radius: 4px;
   color: rgb(0 0 0 / 0%);
   font-size: 10px;
   height: 30px;
@@ -92,13 +100,12 @@
 
 .menu {
   background-color: #fff;
-  border-radius: 0 0 6px 6px;
+  border-radius: 4px 0 4px 4px;
   border-top-color: #eee;
-  box-shadow: 0 4px 6px rgb(0 0 0 / 20%);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
   list-style: none;
-  margin: 0;
-  padding: 0;
-  padding: $spacing-sm 2px;
+  margin: 5px 0 0;
+  padding: 4px;
   position: absolute;
   right: -$spacing-sm;
   text-align: right;
@@ -111,6 +118,11 @@
 
   &[data-active="false"] {
     display: none;
+  }
+
+  a {
+    border-radius: 2px;
+    justify-content: flex-end;
   }
 }
 

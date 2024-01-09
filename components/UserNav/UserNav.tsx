@@ -37,7 +37,7 @@ export function UserNav() {
               action: 'click',
               params: { method: 'donate' }
             })}
-            className={styles.donateLink}
+            className={[styles.donateLink, 'btn'].join(' ')}
           >
             {I18n.UserNav.donate}
           </a>

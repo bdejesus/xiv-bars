@@ -42,7 +42,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
       </Head>
 
-      <AppContextProvider selectedJob={selectedJob}>
+      <AppContextProvider selectedJob={selectedJob} viewAction="list">
         <GlobalHeader />
       </AppContextProvider>
 
