@@ -18,10 +18,11 @@ $button-inset: 10px;
   list-style: none;
   margin-bottom: $spacing-base;
   padding: 0;
+  justify-content: start;
 
   > li {
-    border-radius: 4px;
-    display: flex;
+    border-radius: 0 4px 4px 0;
+    display: inline-block;
     flex-direction: row;
     position: relative;
 
@@ -42,7 +43,6 @@ $button-inset: 10px;
     border-radius: 4px;
     color: #fff;
     display: flex;
-    margin: 1px;
     padding: 4px $button-inset 4px 4px;
     position: relative;
     transition: background-color 0.33s ease;
@@ -63,52 +63,36 @@ $button-inset: 10px;
   }
 
   .addBtn {
-    background-color: rgb(0 0 0 / 33%);
+    background-color: rgb(0 0 0 / 80%);
     bottom: 0;
     justify-content: center;
+    height: 40px;
     min-width: 40px;
     opacity: 0;
     position: absolute;
-    right: 0;
+    left: -40px;
     top: 0;
     transition: opacity 0.1s ease 0;
     z-index: 2;
-
-    &::before {
-      content: '';
-      display: block;
-      height: 100%;
-      position: absolute;
-      right: 100%;
-      top: 0;
-      transition: width 0.3s ease;
-      transition-delay: 0.1s;
-      width: 26px;
-    }
+    display: flex;
+    padding: 0 $spacing-sm;
 
     .addLabel {
       display: block;
       font-size: $font-size-base;
       line-height: 1;
-      opacity: 0;
+      opacity: 1;
       overflow: hidden;
       text-align: right;
       transition-duration: 0.3s;
       transition-property: opacity, width;
       transition-timing-function: ease;
-      width: 0;;
+      width: 0;
     }
 
-    .addIcon {
-      display: block;
-      font-size: $font-size-xl-2;
-      font-weight: 500;
-      line-height: 1;
-      opacity: 0.6;
-      position: relative;
-      right: -2px;
-      text-align: center;
-      top: -3px;
+    .addIcon img {
+      filter: invert(100%);
+      transform: none;
     }
 
     &:hover {
@@ -120,7 +104,7 @@ $button-inset: 10px;
 
       .addLabel {
         opacity: 1;
-        width: 36px;
+        width: 32px;
       }
 
       .addIcon {
@@ -128,6 +112,4 @@ $button-inset: 10px;
       }
     }
   }
-
-
 }
