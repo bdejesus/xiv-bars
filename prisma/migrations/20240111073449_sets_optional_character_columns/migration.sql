@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Character" ALTER COLUMN "title" DROP NOT NULL,
+ALTER COLUMN "titleTop" DROP NOT NULL,
+ALTER COLUMN "grandCompanyName" DROP NOT NULL,
+ALTER COLUMN "grandCompanyRank" DROP NOT NULL,
+ALTER COLUMN "freeCompany" DROP NOT NULL,
+ALTER COLUMN "activeClassJob" DROP NOT NULL;
