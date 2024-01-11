@@ -151,7 +151,7 @@ function parseCharacterData(characterId:number, character:HTMLElement) {
 async function readCharacter(characterId:number) {
   if (!characterId) throw new Error('characterId is required');
 
-  const characterSheet = await db.layout.findUnique({
+  const characterSheet = await db.character.findUnique({
     where: { id: characterId }
   });
   return characterSheet;
