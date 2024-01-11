@@ -80,11 +80,12 @@ function getActiveClassJob(character:HTMLElement) {
 function getGearSlots(character:HTMLElement) {
   // Get Mainhand slot
   const [mainhandImageNode, , mainhandGlamourNode, mainhandItemName] = character.querySelector('.character__class__arms')?.childNodes[0].childNodes || [];
+
   const mainhand = {
-    name: mainhandItemName.querySelector('.db-tooltip__item__name')?.rawText,
-    image: mainhandImageNode.attributes.src,
+    name: mainhandItemName?.querySelector('.db-tooltip__item__name')?.rawText,
+    image: mainhandImageNode?.attributes.src,
     glamour: {
-      name: mainhandGlamourNode.querySelector('.db-tooltip__item__mirage__ic')
+      name: mainhandGlamourNode?.querySelector('.db-tooltip__item__mirage__ic')
     }
   };
 
@@ -158,27 +159,22 @@ async function readCharacter(characterId:number) {
 }
 
 async function saveCharacter(character:Character) {
-  const shouldUpdate = await db.character.findUnique({
-    where: { id: character.id }
-  });
+  const shouldUpdate = await db.character.findUnique({ where: { id: character.id } });
 
   if (shouldUpdate) {
-    return db.character.update({
-      where: { id: character.id },
-      data: character
-    });
+    return db.character.update({ where: { id: character.id }, data: character });
   }
 
   return db.character.create({ data: character });
 }
 
-function errorMessageHandler(errorCode:number) {
+function errorMessageHandler(errorCode:number, error:object|null) {
   switch (errorCode) {
     case 404: {
       return { status: 404, message: 'Not Found' };
     }
     case 500: {
-      return { status: 500, message: 'Something went wrong' };
+      return { status: 500, message: 'Something went wrong', error };
     }
     default: {
       return null;
@@ -187,7 +183,7 @@ function errorMessageHandler(errorCode:number) {
 }
 
 export default async function characterHandler(req: NextApiRequest, res: NextApiResponse) {
-  if (!req.query.id) res.status(404).json(errorMessageHandler(404));
+  if (!req.query.id) res.status(404).json(errorMessageHandler(404, null));
 
   const characterId = parseInt(req.query.id as string, 10);
   const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
@@ -200,18 +196,18 @@ export default async function characterHandler(req: NextApiRequest, res: NextApi
         // Parse HTML content
         const character:HTMLElement | null = HTMLParser.parse(content).querySelector('#character');
         if (!character) {
-          res.status(404).json(errorMessageHandler(404));
+          res.status(404).json(errorMessageHandler(404, null));
         } else {
           // Scrape Character html and format into JSON
           const data:Character = parseCharacterData(characterId, character);
           saveCharacter(data)
-            .catch(() => res.status(500).json(errorMessageHandler(500)))
+            .catch((error) => res.status(500).json(errorMessageHandler(500, error)))
             .then(() => res.status(200).json({ status: 200, character: data }));
         }
       })
       .catch((error) => {
         console.error(error);
-        res.status(404).json(errorMessageHandler(404));
+        res.status(404).json(errorMessageHandler(404, null));
       });
   } else {
     res.status(200).json({ status: 200, character: characterData });
