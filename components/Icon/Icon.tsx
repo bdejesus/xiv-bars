@@ -2,13 +2,19 @@ import styles from './Icon.module.scss';
 
 interface Props {
   id: string,
-  title?: string,
-  className?: string
+  title: string,
+  className?: string,
+  type?: 'white' | 'active' | undefined
 }
 
-export default function Icon({ id, title, className }: Props) {
+export default function Icon({
+  id,
+  title,
+  className,
+  type
+}:Props) {
   return (
-    <span className={`${styles.iconWrapper} ${className} icon-wrapper`}>
+    <span className={`${styles.iconWrapper} ${className} ${type && styles[type]} icon-wrapper`}>
       <img
         src={`/images/icon-${id}.svg`}
         alt={title || ''}
@@ -19,6 +25,6 @@ export default function Icon({ id, title, className }: Props) {
 }
 
 Icon.defaultProps = {
-  title: undefined,
-  className: ''
+  className: '',
+  type: ''
 };

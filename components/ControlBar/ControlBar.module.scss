@@ -19,7 +19,8 @@
   }
 
   :global(.icon-image) {
-    filter: invert(100%);
+    filter: saturate(0) invert(100%);
+    opacity: 1;
     margin-left: -2px;
   }
 }
@@ -72,6 +73,12 @@
 
     &[data-active="true"] {
       box-shadow: inset 0 0 1px 1px $color-alt;
+    }
+  }
+
+  &:hover {
+    :global(.icon-image) {
+      filter: invert(90%) sepia(100%) hue-rotate(10deg) saturate(200%);
     }
   }
 }

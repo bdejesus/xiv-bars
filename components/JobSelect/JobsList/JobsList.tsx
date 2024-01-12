@@ -23,7 +23,12 @@ export function JobsList({ title, jobs }: Props) {
             </Link>
 
             <Link href={`/job/${job.Abbr}/new`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
-              <Icon id="add" className={styles.addIcon} />
+              <Icon
+                id="add"
+                className={styles.addIcon}
+                type='white'
+                title="New Layout Icon"
+              />
               <span className={styles.addLabel}>New</span>
             </Link>
           </li>

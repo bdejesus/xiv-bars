@@ -1,7 +1,7 @@
 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="9" y="9" width="3" height="3" rx="1" fill="black"/>
-<rect x="4" y="4" width="3" height="3" rx="1" fill="black"/>
-<rect x="7" y="9" width="3" height="3" rx="1" transform="rotate(90 7 9)" fill="black"/>
-<rect x="12" y="4" width="3" height="3" rx="1" transform="rotate(90 12 4)" fill="black"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M3 1H1V3V13V15H3H13H15V13V3V1H13H3ZM13 3H3V13H13V3Z" fill="black"/>
+<rect x="9" y="9" width="3" height="3" rx="1" fill="#FF0000"/>
+<rect x="4" y="4" width="3" height="3" rx="1" fill="#FF0000"/>
+<rect x="7" y="9" width="3" height="3" rx="1" transform="rotate(90 7 9)" fill="#FF0000"/>
+<rect x="12" y="4" width="3" height="3" rx="1" transform="rotate(90 12 4)" fill="#FF0000"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M3 1H1V3V13V15H3H13H15V13V3V1H13H3ZM13 3H3V13H13V3Z" fill="#FF0000"/>
 </svg>

@@ -72,9 +72,6 @@ export default function Me() {
       <div className="container section">
         <h1 className="mt-md">
           {I18n.Pages.Me.my_layouts} ({layouts.length ? layouts.length : '-'}/{maxLayouts})
-          <Link href="/" className={styles.newLink}>
-            New Layout
-          </Link>
         </h1>
 
         { layouts.length <= 0 && (

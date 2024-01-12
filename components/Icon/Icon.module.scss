@@ -5,11 +5,16 @@
   height: 16px;
   margin-right: $spacing-xs;
   width: 16px;
-}
 
-.iconImage {
-  display: block;
-  height: 100%;
-  object-fit: contain;
-  width: 100%;
+  .iconImage {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+    filter: saturate(0);
+  }
+
+  &.white {
+    filter: saturate(0) invert(100%);
+  }
 }
