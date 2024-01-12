@@ -38,6 +38,7 @@ function EditButton({ showForm }: ButtonProps) {
       type="button"
       title={I18n.ControlBar.ToggleSaveForm.save_this_layout}
       onClick={showForm}
+      disabled
     >
       <img
         src="/images/icon-save.svg"
