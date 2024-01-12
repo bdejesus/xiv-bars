@@ -8,10 +8,10 @@
 
   .iconImage {
     display: block;
+    filter: saturate(0);
     height: 100%;
     object-fit: contain;
     width: 100%;
-    filter: saturate(0);
   }
 
   &.white {

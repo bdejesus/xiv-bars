@@ -26,7 +26,7 @@ export function JobsList({ title, jobs }: Props) {
               <Icon
                 id="add"
                 className={styles.addIcon}
-                type='white'
+                type="white"
                 title="New Layout Icon"
               />
               <span className={styles.addLabel}>New</span>

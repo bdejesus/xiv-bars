@@ -15,10 +15,10 @@ $button-inset: 10px;
   grid-column-gap: 10px;
   grid-template-columns: auto;
   grid-template-rows: 1fr 1fr 1fr 1fr;
+  justify-content: start;
   list-style: none;
   margin-bottom: $spacing-base;
   padding: 0;
-  justify-content: start;
 
   > li {
     border-radius: 0 4px 4px 0;
@@ -65,17 +65,17 @@ $button-inset: 10px;
   .addBtn {
     background-color: rgb(0 0 0 / 80%);
     bottom: 0;
-    justify-content: center;
+    display: flex;
     height: 40px;
+    justify-content: center;
+    left: -40px;
     min-width: 40px;
     opacity: 0;
+    padding: 0 $spacing-sm;
     position: absolute;
-    left: -40px;
     top: 0;
     transition: opacity 0.1s ease 0;
     z-index: 2;
-    display: flex;
-    padding: 0 $spacing-sm;
 
     .addLabel {
       display: block;
