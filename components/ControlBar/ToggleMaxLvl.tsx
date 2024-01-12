@@ -17,7 +17,10 @@ function ToggleMaxLvl() {
       data-active={showAllLvl}
       className={styles.toggleTitlesBtn}
     >
-      <Icon id="levels" title={I18n.ControlBar.ToggleMaxLvl.all_levels_icon} />
+      <Icon
+        id="levels"
+        title={I18n.ControlBar.ToggleMaxLvl.all_levels_icon}
+      />
       {I18n.ControlBar.ToggleMaxLvl.all_levels}
     </button>
   );

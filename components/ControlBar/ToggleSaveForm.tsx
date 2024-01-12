@@ -40,7 +40,10 @@ function EditButton({ showForm }: ButtonProps) {
       title={I18n.ControlBar.ToggleSaveForm.save_this_layout}
       onClick={showForm}
     >
-      <Icon id="edit" />
+      <Icon
+        id="edit"
+        title={I18n.ControlBar.ToggleSaveForm.save_icon}
+      />
       { I18n.ControlBar.ToggleSaveForm.edit }
     </button>
   );

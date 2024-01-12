@@ -17,12 +17,6 @@
     background-color: #000;
     box-shadow: none;
   }
-
-  :global(.icon-image) {
-    filter: saturate(0) invert(100%);
-    margin-left: -2px;
-    opacity: 1;
-  }
 }
 
 .controlContent {
@@ -74,13 +68,18 @@
     &[data-active="true"] {
       box-shadow: inset 0 0 1px 1px $color-alt;
     }
-  }
 
-  &:hover {
     :global(.icon-image) {
-      filter: invert(90%) sepia(100%) hue-rotate(10deg) saturate(200%);
+      filter: $icon-filter-white;
+      margin-left: -2px;
+      opacity: 1;
+    }
+
+    &:hover :global(.icon-image) {
+      filter: $icon-filter-active;
     }
   }
+
 }
 
 .upsell {

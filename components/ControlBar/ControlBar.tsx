@@ -55,7 +55,10 @@ export function ControlBar({ selectedJob }: Props) {
                   onClick={copyLayout}
                   title={I18n.ControlBar.CopyLayout.copy_layout}
                 >
-                  <Icon id="copy" />
+                  <Icon
+                    id="copy"
+                    title={I18n.ControlBar.CopyLayout.copy_icon}
+                  />
                   { I18n.ControlBar.CopyLayout.copy_label }
                 </button>
               </div>
