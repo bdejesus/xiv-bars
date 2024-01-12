@@ -63,7 +63,8 @@ $button-inset: 10px;
   }
 
   .addBtn {
-    background-color: rgb(0 0 0 / 80%);
+    align-items: center;
+    background-color: rgb(0 0 0 / 33%);
     bottom: 0;
     display: flex;
     height: 40px;
@@ -71,7 +72,7 @@ $button-inset: 10px;
     left: -40px;
     min-width: 40px;
     opacity: 0;
-    padding: 0 $spacing-sm;
+    padding: 0 10px 0 11px;
     position: absolute;
     top: 0;
     transition: opacity 0.1s ease 0;
@@ -83,7 +84,7 @@ $button-inset: 10px;
       line-height: 1;
       opacity: 1;
       overflow: hidden;
-      text-align: right;
+      text-align: left;
       transition-duration: 0.3s;
       transition-property: opacity, width;
       transition-timing-function: ease;
@@ -91,7 +92,6 @@ $button-inset: 10px;
     }
 
     .addIcon img {
-      filter: invert(100%);
       transform: none;
     }
 
@@ -103,11 +103,13 @@ $button-inset: 10px;
       }
 
       .addLabel {
+        color: $color-alt;
         opacity: 1;
         width: 32px;
       }
 
       .addIcon {
+        filter: $icon-filter-active;
         opacity: 1;
       }
     }
