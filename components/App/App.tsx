@@ -37,10 +37,11 @@ export function App() {
   const router = useRouter();
 
   useEffect(() => {
-    appDispatch({ type: AppAction.RESET });
+    appDispatch({ type: AppAction.INITIALIZE });
   }, []);
 
   useEffect(() => {
+    // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
     const payload = decodeSlots({
       encodedSlots: readOnly ? encodedSlots : undefined,

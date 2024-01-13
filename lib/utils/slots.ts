@@ -9,10 +9,15 @@ import PET_ACTION from 'apiData/PetAction.json';
 import type { SlotProps, ActionProps } from 'types/Action';
 import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
-import { layouts } from 'lib/xbars';
+import { layouts, chotbar, hotbar } from 'lib/xbars';
 
-export function assignActionIds(slotActions: SlotProps[]) {
-  return Object.values(slotActions).map((slot) => {
+function assignLayoutTemplate(layoutID:number) {
+  const templates = [chotbar, hotbar];
+  return templates[layoutID ? parseInt(layoutID.toString(), 10) : 0];
+}
+
+export function assignActionIds(slottedActions: SlotProps[]) {
+  return Object.values(slottedActions).map((slot) => {
     if (slot.action?.ID) {
       return (typeof slot.action.Prefix !== 'undefined')
         ? `${slot.action.Prefix}${slot.action.ID}`
@@ -27,15 +32,12 @@ type QueryProps = {
 }
 
 export function encodeSlots(slots:object) {
-  if (slots) {
-    const slotIDs = Object.values(slots);
-    const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
-    const queryString = slotsQuery
-      .reduce((flat, next) => flat.concat(next), [])
-      .join(',');
-    return queryString;
-  }
-  return null;
+  const slotIDs = Object.values(slots);
+  const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
+  const queryString = slotsQuery
+    .reduce((flat, next) => flat.concat(next), [])
+    .join(',');
+  return queryString;
 }
 
 export function decodeSlots(query:object) {
@@ -58,41 +60,6 @@ export function decodeSlots(query:object) {
   return payload;
 }
 
-interface SlotObject {
-  action: ActionProps | undefined
-}
-
-interface SetActionToSlotProps {
-  action: ActionProps | undefined,
-  slotID: string,
-  slots: object
-}
-
-// Sets a single action to a specified slot ID
-export function setActionToSlot({
-  action,
-  slotID,
-  slots
-}:SetActionToSlotProps) {
-  // update slotted actions
-  // Parse the slot ID string and build a slot object
-  const [parent, id] = slotID.split('-');
-  const slotIdentifier = { parent, id: parseInt(id, 10) - 1 };
-
-  const slotObject:SlotObject = slots
-    // Get the target slot
-    ? slots[slotIdentifier.parent as keyof typeof slots][slotIdentifier.id]
-    : { action: undefined };
-
-  // Update the target slot's action
-  if (slotObject) slotObject.action = action;
-
-  // update slots string query
-  const updatedSlots = encodeSlots(slots as object);
-
-  return updatedSlots;
-}
-
 interface GetActionKeyProps {
   actionCategory?: string | null,
   actions?: ActionProps[],
@@ -113,7 +80,7 @@ function getActionKey({ actionCategory, actions, roleActions }:GetActionKeyProps
 }
 
 interface SetActionsByGroupProps {
-  slotGroup: { action: ActionProps }[],
+  slotRow: SlotProps[],
   actionID: string,
   slotIndex: number,
   actions?: ActionProps[],
@@ -121,10 +88,10 @@ interface SetActionsByGroupProps {
 }
 
 function setActionsByGroup({
-  slotGroup,
   actionID,
-  slotIndex,
   actions,
+  slotIndex,
+  slotRow,
   roleActions
 }:SetActionsByGroupProps) {
   const actionPrefixes = Object.values(ACTION_CAT).map((type) => type.prefix);
@@ -133,60 +100,134 @@ function setActionsByGroup({
   const IDString = actionID.toString();
   const typeMatch = IDString.match(actionRegex);
   const actionType = typeMatch ? typeMatch[0] : null;
-
   const parsedID = actionType
     ? parseInt(IDString.replace(actionType, ''), 10)
     : parseInt(IDString, 10);
   const slottedAction = getActionKey({ actionCategory: actionType, actions, roleActions })?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
+  // eslint-disable-next-line no-param-reassign
+  slotRow[slotIndex].action = slottedAction || {};
 
-  if (slottedAction && slotGroup && slotGroup[slotIndex]) {
-    // eslint-disable-next-line no-param-reassign
-    slotGroup[slotIndex].action = slottedAction;
+  return slotRow;
+}
+
+interface SlotActionsProps {
+  encodedSlots?: string,
+  layout: number,
+  actions?: ActionProps[],
+  roleActions?: ActionProps[],
+}
+
+function groupSlotsIntoLayout({
+  encodedSlots,
+  layout,
+  actions,
+  roleActions
+}:SlotActionsProps) {
+  const slotsString = encodedSlots || encodeSlots([chotbar, hotbar][layout]);
+  const numRows = layout?.toString() === '1' ? 12 : 16;
+  const slotRows = sortIntoGroups(slotsString?.split(','), numRows);
+  const layoutTemplate = assignLayoutTemplate(layout);
+
+  // Take each action group and assign actions to them
+  const slottedRows = slotRows.reduce((slotted, rowActionIds, groupIndex) => {
+    const rowKey = Object.keys(layoutTemplate)[groupIndex];
+
+    const rowSlots = rowActionIds.map((actionID:string, slotIndex:number) => {
+      const slotRow = layoutTemplate[rowKey] as SlotProps[];
+      const slottedRow = setActionsByGroup({
+        actionID,
+        actions,
+        slotIndex,
+        slotRow,
+        roleActions
+      });
+
+      return slottedRow;
+    });
+
+    return { ...slotted, [rowKey]: rowSlots[groupIndex] };
+  }, {});
+
+  return slottedRows;
+}
+
+function slotActions({
+  encodedSlots,
+  layout,
+  actions,
+  roleActions
+}:SlotActionsProps) {
+  const layoutTemplate = assignLayoutTemplate(layout);
+  const slotsString = encodedSlots || encodeSlots(layoutTemplate);
+
+  // Split action IDs from encodedSlots string into groups depending on the layout
+  const groupedActions = groupSlotsIntoLayout({
+    encodedSlots: slotsString, layout, actions, roleActions
+  });
+
+  return groupedActions;
+}
+
+interface SlotObject {
+  action: ActionProps | undefined
+}
+
+interface SetActionToSlotProps {
+  action: ActionProps | undefined,
+  slotID: string,
+  encodedSlots?: string,
+  layout?: number
+  actions?: ActionProps[],
+  roleActions?: ActionProps[]
+}
+
+// Sets a single action to a specified slot ID
+export function setActionToSlot({
+  action,
+  slotID,
+  encodedSlots,
+  layout,
+  actions,
+  roleActions
+}:SetActionToSlotProps) {
+  // Parse the slot ID string and build a slot object
+  const [parent, id] = slotID.split('-');
+  const slotIdentifier = { parent, id: parseInt(id, 10) - 1 };
+  const groupedSlots = slotActions({
+    encodedSlots,
+    layout: layout || defaultState.layout,
+    actions,
+    roleActions
+  });
+
+  function getTargetSlot() {
+    const slotGroup = groupedSlots[slotIdentifier.parent as keyof typeof groupedSlots];
+    return slotGroup[slotIdentifier.id];
   }
 
-  return slotGroup;
+  // Get the target slot
+  const slotObject:SlotObject = groupedSlots ? getTargetSlot() : { action: undefined };
+
+  // Update the target slot's action
+  if (slotObject) slotObject.action = action;
+
+  // update slots string query
+  const updatedSlots = encodeSlots(groupedSlots as object);
+
+  return updatedSlots;
 }
 
 interface SetActionsToSlotsProps {
   encodedSlots: string,
-  layout: string | number,
-  slots: object,
+  layout: number,
   actions?: ActionProps[],
   roleActions?: ActionProps[]
 }
 // Sets an array of actios to their respective slots
-export function setActionsToSlots({
-  encodedSlots,
-  layout,
-  slots,
-  actions,
-  roleActions
-}:SetActionsToSlotsProps) {
-  // Split action IDs from encodedSlots string into groups depending on the layout
-  const groupedActions = layout?.toString() === '1'
-    ? sortIntoGroups(encodedSlots.split(','), 12)
-    : sortIntoGroups(encodedSlots.split(','), 16);
-
-  // Take each action group and assign actions to them
-  const slotActions = groupedActions.reduce((groups, actionGroup, groupIndex) => {
-    const groupName = Object.keys(slots)[groupIndex] as keyof typeof slots;
-
-    const actionsGroup = actionGroup.map((actionID:string, slotIndex:number) => setActionsByGroup({
-      slotGroup: slots[groupName],
-      actions,
-      roleActions,
-      actionID,
-      slotIndex
-    }));
-
-    return { ...groups, [groupName]: actionsGroup[groupIndex] };
-  }, {});
-
-  const layoutKey = layouts[layout as keyof typeof layouts];
-
-  return {
-    [layoutKey as string]: slotActions
-  };
+export function setActionsToSlots(props:SetActionsToSlotsProps) {
+  const slottedActions = slotActions(props);
+  const layoutKey = layouts[props.layout as keyof typeof layouts];
+  return { [layoutKey as string]: slottedActions };
 }
 
 const modules = {

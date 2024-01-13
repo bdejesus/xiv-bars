@@ -1,4 +1,4 @@
-import { layouts, buildHotbars, buildCrossHotbars } from 'lib/xbars';
+import { buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
 import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
@@ -6,16 +6,12 @@ import { AppAction } from 'components/App/actions';
 
 export default function AppReducer(state: AppState, action: AppDispatchActions) {
   const { layout } = state;
-  const layoutKey = layouts[layout as keyof typeof layouts];
-  const slots = state[layoutKey as keyof typeof state];
-
   switch (action.type) {
     case AppAction.SLOT_ACTIONS: {
       const slottedActions = (action.payload?.encodedSlots)
         ? setActionsToSlots({
           encodedSlots: action.payload.encodedSlots,
           layout: layout || defaultState.layout,
-          slots: slots as object,
           actions: state.actions,
           roleActions: state.roleActions
         })
@@ -33,7 +29,8 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
         const encodedSlots = setActionToSlot({
           action: action.payload.action,
           slotID: action.payload.slotID,
-          slots: slots as object
+          encodedSlots: state.encodedSlots,
+          layout
         });
         return { ...state, encodedSlots };
       }
@@ -91,13 +88,12 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       return state;
     }
 
-    case AppAction.RESET: {
+    case AppAction.INITIALIZE: {
       return {
         ...state,
-        encodedSlots: undefined,
+        encodedSlots: defaultState.encodedSlots,
         chotbar: buildCrossHotbars(),
-        hotbar: buildHotbars(),
-        slots: undefined
+        hotbar: buildHotbars()
       };
     }
 
