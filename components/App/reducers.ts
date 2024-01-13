@@ -89,14 +89,12 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     }
 
     case AppAction.INITIALIZE: {
-      const newState = {
+      return {
         ...state,
         encodedSlots: defaultState.encodedSlots,
         chotbar: buildCrossHotbars(),
         hotbar: buildHotbars()
       };
-
-      return newState;
     }
 
     default: {
