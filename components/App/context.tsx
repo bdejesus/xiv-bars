@@ -30,7 +30,7 @@ export function useAppDispatch() {
 
 interface ContextProps extends AppState {
   children: ReactNode,
-  viewAction?: string,
+  viewAction?: string
 }
 
 export function AppContextProvider({
