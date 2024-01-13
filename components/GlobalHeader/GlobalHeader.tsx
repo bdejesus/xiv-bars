@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import UserNav from 'components/UserNav';
 import { useAppState } from 'components/App/context';
+import Icon from 'components/Icon';
 import styles from './GlobalHeader.module.scss';
 
 export function GlobalHeader() {
@@ -50,6 +51,7 @@ export function GlobalHeader() {
                     'btn',
                     `${viewAction === 'list' ? styles.active : ''}`
                   ].join(' ')}
+                  data-active={viewAction === 'list'}
                 >
                   Layouts
                 </Link>
@@ -66,11 +68,10 @@ export function GlobalHeader() {
             <li className={viewAction !== 'new' ? styles.action : ''}>
               <a
                 href={`/job/${selectedJob.Abbr}/new`}
-                className={`btn ${viewAction === 'new' ? styles.active : ''}`}
+                className="btn"
+                data-active={viewAction === 'new'}
               >
-                { viewAction !== 'new' && (
-                  <span className="newIcon">+</span>
-                )}
+                { viewAction !== 'new' && <Icon id="add" title="New Layout Icon" />}
                 New Layout
               </a>
             </li>

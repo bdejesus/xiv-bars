@@ -12,6 +12,7 @@ import LayoutCard from 'components/LayoutCard';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
+import Icon from 'components/Icon';
 import Jobs from 'apiData/Jobs.json';
 import { maxLayouts } from 'lib/user';
 import { UserActions } from 'components/User/actions';
@@ -72,9 +73,6 @@ export default function Me() {
       <div className="container section">
         <h1 className="mt-md">
           {I18n.Pages.Me.my_layouts} ({layouts.length ? layouts.length : '-'}/{maxLayouts})
-          <Link href="/" className={styles.newLink}>
-            New Layout
-          </Link>
         </h1>
 
         { layouts.length <= 0 && (
@@ -109,7 +107,8 @@ export default function Me() {
                   <Link href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
-                        + New Layout
+                        <Icon id="add" type="white" title="New Layout Icon" />
+                        New Layout
                       </h4>
                     </Card>
                   </Link>

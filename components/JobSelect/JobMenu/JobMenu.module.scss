@@ -9,7 +9,11 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   list-style: none;
   margin: 0;
-  padding: $spacing-base;
+  padding: $spacing-xl $spacing-base;
+
+  > li {
+    padding-left: $spacing-lg;
+  }
 }
 
 .warning {

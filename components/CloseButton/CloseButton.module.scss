@@ -9,4 +9,8 @@
   text-transform: uppercase;
   top: -1px;
   transform: translateY(-100%);
+
+  &:hover :global(.icon) {
+    filter: $icon-filter-active;
+  }
 }

@@ -1,0 +1,23 @@
+@import 'styles/mixins';
+
+.icon {
+  display: inline-block;
+  height: 16px;
+  margin-right: $spacing-xs;
+  width: 16px;
+
+  .iconImage {
+    display: block;
+    height: 100%;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  &.black {
+    filter: $icon-filter-black;
+  }
+
+  &.white {
+    filter: $icon-filter-white;
+  }
+}

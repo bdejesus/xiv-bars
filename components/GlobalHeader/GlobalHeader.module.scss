@@ -5,7 +5,7 @@
   background-image: linear-gradient(#fff, #f0f0f0);
   display: flex;
   font-size: $font-size-base;
-  font-weight: 300;
+  font-weight: 400;
   height: 60px;
   justify-content: space-between;
   letter-spacing: 0.015em;
@@ -23,11 +23,12 @@
     box-shadow: inset 1px 1px 0 rgb(255 255 255 / 66%), inset -1px -1px 0 rgb(0 0 0 / 15%), 0 1px 3px rgb(0 0 0 / 10%);
     padding: 0 $spacing-base;
 
+    &[data-active='true'],
     &.active {
       box-shadow:
         inset 1px 1px 0 rgb(255 255 255 / 66%),
         inset -1px -1px 0 rgb(0 0 0 / 15%),
-        inset 0 -3px 0 $color-alt,
+        inset 0 -4px 0 $color-alt,
         0 1px 3px rgb(0 0 0 / 10%);
       pointer-events: none;
     }
@@ -111,7 +112,7 @@
     position: relative;
 
     &::before {
-      border-top: 2px solid $color-alt;
+      border-top: 3px solid $color-alt;
       content: '';
       display: block;
       position: absolute;

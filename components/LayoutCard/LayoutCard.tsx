@@ -3,6 +3,7 @@ import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import Card from 'components/Card';
 import Job from 'components/JobSelect/Job';
+import Icon from 'components/Icon';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
@@ -51,7 +52,7 @@ export default function LayoutCard({
             className={styles.deleteButton}
             title={I18n.LayoutCard.delete_layout}
           >
-            <div className={styles.deleteIcon}>&times;</div>
+            <Icon id="remove" className={styles.deleteIcon} title={I18n.LayoutCard.delete_layout} />
           </button>
         </div>
       )}

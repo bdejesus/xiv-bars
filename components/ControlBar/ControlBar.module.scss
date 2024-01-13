@@ -65,14 +65,21 @@
   :global(.button) {
     padding: 0 10px;
 
-    img {
-      margin-left: -2px;
-    }
-
     &[data-active="true"] {
       box-shadow: inset 0 0 1px 1px $color-alt;
     }
+
+    :global(.icon) {
+      filter: $icon-filter-white;
+      margin-left: -2px;
+      opacity: 1;
+    }
+
+    &:hover :global(.icon) {
+      filter: $icon-filter-active;
+    }
   }
+
 }
 
 .upsell {

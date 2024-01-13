@@ -13,6 +13,12 @@
     transition-delay: 0.15s;
   }
 
+  .deleteIcon {
+    height: 16px;
+    margin: 0;
+    width: 16px;
+  }
+
   .deleteButton {
     font-size: $font-size-xs;
     height: 32px;
@@ -20,14 +26,17 @@
     min-height: unset;
     padding: $spacing-xs;
     width: 32px;
+
+    &:hover {
+      background-color: $color-danger;
+
+      :global(.icon) {
+        filter: $icon-filter-white;
+      }
+    }
   }
 
-  .deleteIcon {
-    font-size: 20px;
-    font-weight: 400;
-    position: relative;
-    top: -1px;
-  }
+
 
   &:hover {
     .cardActions {

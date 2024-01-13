@@ -7,11 +7,19 @@
   height: 24px;
   left: -12px;
   line-height: 18px;
-  padding: 0 0 3px;
+  padding: 0;
   position: absolute;
   top: -12px;
   width: 24px;
   z-index: 1;
+
+  :global(.icon) {
+    margin-right: 0;
+  }
+
+  &:hover :global(.icon) {
+    filter: $icon-filter-active;
+  }
 }
 
 .container {
