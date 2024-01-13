@@ -69,13 +69,13 @@
       box-shadow: inset 0 0 1px 1px $color-alt;
     }
 
-    :global(.icon-image) {
+    :global(.icon) {
       filter: $icon-filter-white;
       margin-left: -2px;
       opacity: 1;
     }
 
-    &:hover :global(.icon-image) {
+    &:hover :global(.icon) {
       filter: $icon-filter-active;
     }
   }

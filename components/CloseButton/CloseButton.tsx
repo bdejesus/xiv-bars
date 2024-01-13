@@ -15,7 +15,7 @@ export default function CloseButton({ onClick, className }: Props) {
       className={`${styles.button} ${className}`}
       onClick={onClick}
     >
-      <Icon id="remove" />
+      <Icon id="remove" title={I18n.Global.close} type="white" />
       {I18n.Global.close}
     </button>
   );

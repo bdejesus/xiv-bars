@@ -14,7 +14,7 @@ export default function Icon({
   type
 }:Props) {
   return (
-    <span className={`${styles.iconWrapper} ${className} ${type && styles[type]} icon-wrapper`}>
+    <span className={`${styles.icon} ${className} ${type && styles[type]} icon`}>
       <img
         src={`/images/icon-${id}.svg`}
         alt={title || ''}
@@ -26,5 +26,5 @@ export default function Icon({
 
 Icon.defaultProps = {
   className: '',
-  type: ''
+  type: 'black'
 };

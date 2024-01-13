@@ -32,6 +32,10 @@
 
 .newCard {
   background-color: rgb(0 0 0 / 33%);
+
+  &:hover :global(.icon) {
+    filter: $icon-filter-active;
+  }
 }
 
 .placeholder {

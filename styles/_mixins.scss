@@ -68,6 +68,6 @@ $font-size-xl: 20px;
 $font-size-xl-2: 24px;
 $font-size-xl-3: 28px;
 
-$icon-filter-default: saturate(0);
-$icon-filter-white: saturate(0) invert(100%);
-$icon-filter-active: invert(80%) sepia(100%) hue-rotate(10deg) saturate(150%) brightness(90%);
+$icon-filter-white: saturate(0);
+$icon-filter-black: saturate(0) brightness(20%);
+$icon-filter-active: none;

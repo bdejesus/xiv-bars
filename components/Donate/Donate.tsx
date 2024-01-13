@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
+import Icon from 'components/Icon';
 import styles from './Donate.module.scss';
 
 export function Donate() {
@@ -13,7 +14,7 @@ export function Donate() {
         type="button"
         onClick={() => setCollapsed(true)}
       >
-        &times;
+        <Icon id="remove" type="white" title="Close" />
       </button>
       <a
         className={styles.button}

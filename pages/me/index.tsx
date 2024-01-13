@@ -12,6 +12,7 @@ import LayoutCard from 'components/LayoutCard';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
+import Icon from 'components/Icon';
 import Jobs from 'apiData/Jobs.json';
 import { maxLayouts } from 'lib/user';
 import { UserActions } from 'components/User/actions';
@@ -106,7 +107,8 @@ export default function Me() {
                   <Link href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
-                        + New Layout
+                        <Icon id="add" type="white" title="New Layout Icon" />
+                        New Layout
                       </h4>
                     </Card>
                   </Link>

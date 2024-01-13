@@ -71,7 +71,7 @@ export function GlobalHeader() {
                 className="btn"
                 data-active={viewAction === 'new'}
               >
-                { viewAction !== 'new' && <Icon id="add" />}
+                { viewAction !== 'new' && <Icon id="add" title="New Layout Icon" />}
                 New Layout
               </a>
             </li>

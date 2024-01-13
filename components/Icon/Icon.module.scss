@@ -1,6 +1,6 @@
 @import 'styles/mixins';
 
-.iconWrapper {
+.icon {
   display: inline-block;
   height: 16px;
   margin-right: $spacing-xs;
@@ -8,13 +8,16 @@
 
   .iconImage {
     display: block;
-    filter: saturate(0);
     height: 100%;
     object-fit: contain;
     width: 100%;
   }
 
+  &.black {
+    filter: $icon-filter-black;
+  }
+
   &.white {
-    filter: saturate(0) invert(100%);
+    filter: $icon-filter-white;
   }
 }

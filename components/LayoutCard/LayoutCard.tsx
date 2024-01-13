@@ -52,7 +52,7 @@ export default function LayoutCard({
             className={styles.deleteButton}
             title={I18n.LayoutCard.delete_layout}
           >
-            <Icon id="remove" className={styles.deleteIcon} />
+            <Icon id="remove" className={styles.deleteIcon} title={I18n.LayoutCard.delete_layout} />
           </button>
         </div>
       )}
