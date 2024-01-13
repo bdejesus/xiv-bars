@@ -8,9 +8,9 @@ import Bar from './Bar';
 import Settings from './Settings';
 import styles from './Xbar.module.scss';
 
-export function Xbar({ chotbar }:{ chotbar: {[key:string]:object}}) {
+export function Xbar() {
   const {
-    layoutId, readOnly, xhb, wxhb, exhb
+    chotbar, layoutId, readOnly, xhb, wxhb, exhb
   } = useAppState();
 
   if (!chotbar) return null;

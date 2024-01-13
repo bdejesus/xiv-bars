@@ -5,15 +5,13 @@ import LayoutToggle from './LayoutToggle';
 import styles from './UILayout.module.scss';
 
 interface Props {
-  layout: number,
-  chotbar: {[key: string]: object},
-  // hotbar?: {[key: string]: object}
+  layout: number
 }
 
-export function LayoutView({ layout, chotbar }:Props) {
+export function LayoutView({ layout }:Props) {
   switch (layouts[layout as keyof typeof layouts]) {
     case 'hotbar': return <Hotbar />;
-    default: return <Xbar chotbar={chotbar} />;
+    default: return <Xbar />;
   }
 }
 
