@@ -176,7 +176,7 @@ interface SetActionToSlotProps {
   action: ActionProps | undefined,
   slotID: string,
   encodedSlots?: string,
-  layout: number
+  layout?: number
   actions?: ActionProps[],
   roleActions?: ActionProps[]
 }
@@ -195,7 +195,7 @@ export function setActionToSlot({
   const slotIdentifier = { parent, id: parseInt(id, 10) - 1 };
   const groupedSlots = slotActions({
     encodedSlots,
-    layout,
+    layout: layout || defaultState.layout,
     actions,
     roleActions
   });

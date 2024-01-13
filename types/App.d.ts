@@ -3,7 +3,7 @@ import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
 
 export interface LayoutProps {
-  layout: number,
+  layout?: number,
   hb?: number[],
   xhb?: number,
   wxhb?: number,

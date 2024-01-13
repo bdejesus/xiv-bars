@@ -31,10 +31,7 @@ export function App() {
     title,
     description,
     user,
-    encodedSlots,
-    layout,
-    chotbar,
-    hotbar
+    encodedSlots
   } = appState;
 
   const router = useRouter();
@@ -51,10 +48,6 @@ export function App() {
       ...router.query
     });
     appDispatch({ type: AppAction.SLOT_ACTIONS, payload });
-
-    return () => {
-      appDispatch({ type: AppAction.INITIALIZE });
-    };
   }, [router.query]);
 
   useEffect(() => {
@@ -112,7 +105,7 @@ export function App() {
                 </div>
 
                 <div className={styles.main}>
-                  <UILayout layout={layout || 0} chotbar={chotbar} hotbar={hotbar} />
+                  <UILayout />
                 </div>
               </div>
 

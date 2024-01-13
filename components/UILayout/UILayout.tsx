@@ -1,21 +1,21 @@
 import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
 import { layouts } from 'lib/xbars';
+import { useAppState } from 'components/App/context';
 import LayoutToggle from './LayoutToggle';
 import styles from './UILayout.module.scss';
 
-interface Props {
-  layout: number
-}
+export function LayoutView() {
+  const { layout } = useAppState();
 
-export function LayoutView({ layout }:Props) {
   switch (layouts[layout as keyof typeof layouts]) {
+    case 'chotbar': return <Xbar />;
     case 'hotbar': return <Hotbar />;
     default: return <Xbar />;
   }
 }
 
-export function UILayout(props:Props) {
+export function UILayout() {
   return (
     <>
       <div className={styles.controls}>
@@ -23,18 +23,10 @@ export function UILayout(props:Props) {
       </div>
 
       <div className={styles.uiLayout}>
-        <LayoutView {...props} />
+        <LayoutView />
       </div>
     </>
   );
 }
-
-LayoutView.defaultProps = {
-  // hotbar: buildHotbars()
-};
-
-UILayout.defaultProps = {
-  // hotbar: buildHotbars()
-};
 
 export default UILayout;
