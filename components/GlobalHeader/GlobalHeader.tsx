@@ -64,7 +64,7 @@ export function GlobalHeader() {
             )}
 
             <li className={viewAction !== 'new' ? styles.action : ''}>
-              <Link
+              <a
                 href={`/job/${selectedJob.Abbr}/new`}
                 className={`btn ${viewAction === 'new' ? styles.active : ''}`}
               >
@@ -72,7 +72,7 @@ export function GlobalHeader() {
                   <span className="newIcon">+</span>
                 )}
                 New Layout
-              </Link>
+              </a>
             </li>
           </ol>
         </nav>

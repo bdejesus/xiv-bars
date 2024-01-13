@@ -10,7 +10,7 @@ export const AppAction = {
   PUBLISH_LAYOUT: 'publishLayout',
   LAYOUT_SAVED: 'layoutSaved',
   UPDATE_MESSAGE: 'setMessage',
-  RESET: 'reset'
+  INITIALIZE: 'initialize'
 };
 
 export default AppAction;

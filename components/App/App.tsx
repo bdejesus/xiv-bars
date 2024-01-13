@@ -31,22 +31,30 @@ export function App() {
     title,
     description,
     user,
-    encodedSlots
+    encodedSlots,
+    layout,
+    chotbar,
+    hotbar
   } = appState;
 
   const router = useRouter();
 
   useEffect(() => {
-    appDispatch({ type: AppAction.RESET });
+    appDispatch({ type: AppAction.INITIALIZE });
   }, []);
 
   useEffect(() => {
+    // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
     const payload = decodeSlots({
       encodedSlots: readOnly ? encodedSlots : undefined,
       ...router.query
     });
     appDispatch({ type: AppAction.SLOT_ACTIONS, payload });
+
+    return () => {
+      appDispatch({ type: AppAction.INITIALIZE });
+    };
   }, [router.query]);
 
   useEffect(() => {
@@ -104,7 +112,7 @@ export function App() {
                 </div>
 
                 <div className={styles.main}>
-                  <UILayout />
+                  <UILayout layout={layout || 0} chotbar={chotbar} hotbar={hotbar} />
                 </div>
               </div>
 
