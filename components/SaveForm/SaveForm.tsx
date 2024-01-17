@@ -5,7 +5,6 @@ import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import { AppAction } from 'components/App/actions';
 import I18n from 'lib/I18n/locale/en-US';
-
 import styles from './SaveForm.module.scss';
 
 function SaveForm() {
@@ -87,9 +86,8 @@ function SaveForm() {
       });
   }
 
-  function closeForm() {
-    router.reload();
-    appDispatch({ type: AppAction.CANCEL_LAYOUT });
+  function cancelEdit() {
+    appDispatch({ type: AppAction.CANCEL_EDITS });
   }
 
   return (
@@ -126,18 +124,20 @@ function SaveForm() {
           <button
             type="button"
             onClick={saveLayout}
-            className={styles.submitButton}
+            className={`${styles.submitButton} button btn-primary`}
           >
             {I18n.SaveForm.save_layout}
           </button>
 
-          <button
-            type="button"
-            onClick={closeForm}
-            className={styles.cancelButton}
-          >
-            {I18n.SaveForm.cancel}
-          </button>
+          { layoutId && (
+            <button
+              onClick={cancelEdit}
+              type="button"
+              className={`${styles.cancelButton} button btn-clear`}
+            >
+              {I18n.SaveForm.cancel}
+            </button>
+          )}
         </div>
       </form>
     </div>

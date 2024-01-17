@@ -1,7 +1,14 @@
 @import "styles/mixins";
 
 .saveForm {
-  background-color: $panel-bg;
+  // background-color: $panel-bg;
+
+  input,
+  textarea {
+    background-color: #fff;
+    box-shadow: inset 1px 1px 0 #ccc, inset -1px -1px 0 #eee;
+    color: #333;
+  }
 }
 
 .form {

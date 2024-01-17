@@ -16,7 +16,7 @@ function assignLayoutTemplate(layoutID:number) {
   return templates[layoutID ? parseInt(layoutID.toString(), 10) : 0];
 }
 
-export function assignActionIds(slottedActions: SlotProps[]) {
+function assignActionIds(slottedActions: SlotProps[]) {
   return Object.values(slottedActions).map((slot) => {
     if (slot.action?.ID) {
       return (typeof slot.action.Prefix !== 'undefined')
@@ -31,7 +31,7 @@ type QueryProps = {
   [key: string]: string
 }
 
-export function encodeSlots(slots:object) {
+function encodeSlots(slots:object) {
   const slotIDs = Object.values(slots);
   const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
   const queryString = slotsQuery
@@ -105,7 +105,7 @@ function setActionsByGroup({
     : parseInt(IDString, 10);
   const slottedAction = getActionKey({ actionCategory: actionType, actions, roleActions })?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
   // eslint-disable-next-line no-param-reassign
-  slotRow[slotIndex].action = slottedAction || {};
+  if (slotRow) slotRow[slotIndex].action = slottedAction || {};
 
   return slotRow;
 }

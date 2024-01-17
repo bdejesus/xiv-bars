@@ -7,25 +7,20 @@ import { useAppState } from 'components/App/context';
 import Icon from 'components/Icon';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
-import type { ClassJobProps } from 'types/ClassJob';
 
 import styles from './Sharing.module.scss';
 
-interface Props {
-  selectedJob: ClassJobProps
-}
-
-export function Sharing({ selectedJob }:Props) {
+export function Sharing() {
   const router = useRouter();
 
   const {
     readOnly,
     viewAction,
-    hb
+    hb,
+    selectedJob
   } = useAppState();
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
-
   const urlInput = createRef<HTMLInputElement>();
 
   function buildShareUrl() {
@@ -74,7 +69,7 @@ export function Sharing({ selectedJob }:Props) {
 
   return (
     <div className={`${styles.container}`} data-copied={copied}>
-      <div className="controlGroup">
+      {/* <div className="controlGroup">
         <label htmlFor="shareUrl">
           {I18n.Sharing.share_url}
         </label>
@@ -88,15 +83,15 @@ export function Sharing({ selectedJob }:Props) {
           value={shareURL}
           readOnly
         />
-      </div>
+      </div> */}
 
       <button
         type="button"
-        className={[styles.copyButton, 'button btn-alt'].join(' ')}
+        className={`${styles.copyButton} button btn-icon`}
         onClick={copyUrl}
+        title={I18n.Sharing.share_url}
       >
-        <Icon id="link" title={I18n.Sharing.copy_icon} />
-        {I18n.Sharing.copy_url}
+        <Icon id="link" title={I18n.Sharing.share_url} />
       </button>
     </div>
   );

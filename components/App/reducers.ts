@@ -34,6 +34,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
         });
         return { ...state, encodedSlots };
       }
+
       return state;
     }
 
@@ -46,7 +47,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     }
 
     case AppAction.TOGGLE_MODAL: {
-      return { ...state, showModal: !state.showModal };
+      return { ...state, showModal: !state.showModal || false };
     }
 
     case AppAction.EDIT_LAYOUT: {
@@ -62,11 +63,11 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       return { ...state, showPublish: true, message: undefined };
     }
 
-    case AppAction.CANCEL_LAYOUT: {
+    case AppAction.CANCEL_EDITS: {
       return {
         ...state,
-        showPublish: false,
-        readOnly: state.viewAction === 'show',
+        readOnly: true,
+        showPublish: true,
         message: undefined
       };
     }

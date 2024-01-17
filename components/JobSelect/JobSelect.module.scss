@@ -1,19 +1,9 @@
 @import "styles/mixins";
 
 .button {
-  color: #fff;
   display: block;
-  font-size: 24px;
-  height: auto;
-  margin-bottom: $spacing-sm;
-  padding: $spacing-xs $spacing-base $spacing-xs $spacing-xs;
+  padding: 0 $spacing-sm;
   transition: background-color 0.33s ease;
-  width: 100%;
-
-  img {
-    height: 36px;
-    width: 36px;
-  }
 
   &:hover {
     color: #fff;

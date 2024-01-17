@@ -77,7 +77,7 @@ export default function Index({
         description={description}
         encodedSlots={encodedSlots}
       >
-        <GlobalHeader />
+        <GlobalHeader selectedJob={selectedJob} />
 
         <App />
 

@@ -86,6 +86,7 @@ $icon-size: 6px;
   align-items: flex-start;
   display: flex;
   max-width: 100%;
+  padding: $spacing-base;
 }
 
 .main {
@@ -99,9 +100,9 @@ $icon-size: 6px;
 
 .sidebar {
   flex: 0 0;
-  min-width: 320px;
+  min-width: 240px;
   position: sticky;
-  top: 95px + $spacing-xl;
+  top: $spacing-xl;
   z-index: 5;
 
   .section {
@@ -119,4 +120,56 @@ $icon-size: 6px;
     font-weight: 400;
     margin-bottom: $spacing-base;
   }
+}
+
+.view {
+  display: flex;
+  flex-direction: row;
+  min-height: 85vh;
+  padding: 0;
+}
+
+.detailPanel {
+  background-color: #f9f9f9;
+
+  min-width: 320px;
+  width: 320px;
+
+  .actions {
+    padding: 8px $spacing-base 0;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-xs;
+
+    :global(.button) {
+      overflow: hidden;
+    }
+  }
+
+  .detailPanelBody {
+    color: $color-gray;
+    padding: $spacing-base;
+
+    h3 {
+      color: $color-gray-dark;
+      text-transform: none;
+    }
+
+    .owner {
+      margin: $spacing-base 0;
+      opacity: 0.5;
+    }
+
+    p {
+      font-size: $font-size-base;
+      line-height: 1.45em;
+    }
+  }
+}
+
+
+.mainPanel {
+  flex: 1 1 auto;
+  padding-bottom: $spacing-xl;
+  position: relative;
 }

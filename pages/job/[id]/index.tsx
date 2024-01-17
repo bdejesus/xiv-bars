@@ -43,7 +43,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       </Head>
 
       <AppContextProvider selectedJob={selectedJob} viewAction="list">
-        <GlobalHeader />
+        <GlobalHeader selectedJob={selectedJob} />
       </AppContextProvider>
 
       <div className="container section">

@@ -1,96 +1,34 @@
-import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
-import Sharing from 'components/Sharing';
-import ExportToMacros from 'components/ExportToMacro';
-import SaveForm from 'components/SaveForm';
-import Icon from 'components/Icon';
-import { jsonToQuery } from 'lib/utils/url';
-import I18n from 'lib/I18n/locale/en-US';
-import type { ClassJobProps } from 'types/ClassJob';
+import LayoutToggle from 'components/UILayout/LayoutToggle';
 import ToggleTitles from './ToggleTitles';
 import ToggleMaxLvl from './ToggleMaxLvl';
-import ToggleSaveForm from './ToggleSaveForm';
 import styles from './ControlBar.module.scss';
 
-interface Props {
-  selectedJob: ClassJobProps
-}
-
-export function ControlBar({ selectedJob }: Props) {
-  const router = useRouter();
-
-  const {
-    readOnly,
-    showPublish,
-    showModal,
-    encodedSlots,
-    layout,
-    xhb,
-    wxhb,
-    exhb,
-    hb,
-    layoutId
-  } = useAppState();
-
-  function copyLayout() {
-    const query = jsonToQuery({
-      l: layout, s1: encodedSlots, xhb, wxhb, exhb, hb
-    });
-    router.push(`/job/${selectedJob.Abbr}/new?${query}`);
-  }
+export function ControlBar() {
+  const { readOnly, showModal } = useAppState();
 
   return (
-    <>
-      <div className={styles.controlBar} data-active-modal={showModal}>
-        <div className={styles.container}>
-          <div className={styles.groupLeft}>
-            <div className={styles.control}>
-              <ToggleSaveForm />
-            </div>
-
-            { layoutId && (
-              <div className={styles.control}>
-                <button
-                  type="button"
-                  onClick={copyLayout}
-                  title={I18n.ControlBar.CopyLayout.copy_layout}
-                >
-                  <Icon
-                    id="copy"
-                    title={I18n.ControlBar.CopyLayout.copy_icon}
-                  />
-                  { I18n.ControlBar.CopyLayout.copy_label }
-                </button>
-              </div>
-            )}
+    <div className={styles.controlBar} data-active-modal={showModal}>
+      <div className={styles.container}>
+        <div className={styles.groupLeft}>
+          <div className={styles.control}>
+            <ToggleTitles />
           </div>
 
-          <div className={styles.groupRight}>
-            { !readOnly && (
-              <div className={styles.control}>
-                <ToggleMaxLvl />
-              </div>
-            )}
-
+          { !readOnly && (
             <div className={styles.control}>
-              <ToggleTitles />
+              <ToggleMaxLvl />
             </div>
+          )}
 
-            <div className={styles.control}>
-              <ExportToMacros />
+          { !readOnly && (
+            <div className={styles.controls}>
+              <LayoutToggle />
             </div>
-
-            <div className={styles.control}>
-              <Sharing selectedJob={selectedJob} />
-            </div>
-          </div>
+          )}
         </div>
       </div>
-
-      <div className={styles.controlContent}>
-        { showPublish && <SaveForm /> }
-      </div>
-    </>
+    </div>
   );
 }
 

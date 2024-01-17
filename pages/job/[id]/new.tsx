@@ -48,7 +48,7 @@ export default function Index({
         viewAction="new"
         encodedSlots={undefined}
       >
-        <GlobalHeader />
+        <GlobalHeader selectedJob={selectedJob} />
 
         <App />
 
