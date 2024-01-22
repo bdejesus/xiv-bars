@@ -31,6 +31,7 @@ export function Xbar() {
               data-main={xhb ? chotbarID === chotbarKeys[xhb - 1] : false}
               data-wxhb={wxhb ? chotbarID === chotbarKeys[wxhb - 1] : false}
               data-exhb={exhb ? chotbarID === chotbarKeys[exhb - 1] : false}
+              data-visible={hasActions(barSet)}
             >
               <Bar bar={barSet} />
             </div>
