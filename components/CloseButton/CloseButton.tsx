@@ -12,7 +12,7 @@ export default function CloseButton({ onClick, className }: Props) {
   return (
     <button
       type="button"
-      className={`${styles.button} ${className}`}
+      className={`${styles.button} ${className} button btn-alt`}
       onClick={onClick}
     >
       <Icon id="remove" title={I18n.Global.close} type="white" />

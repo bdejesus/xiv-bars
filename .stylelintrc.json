@@ -11,7 +11,7 @@
     ],
     "comment-empty-line-before": "always",
     "function-no-unknown": [
-      true, { "ignoreFunctions": [ "math.div" ] }
+      true, { "ignoreFunctions": [ "math.div", "darken" ] }
     ],
     "import-notation": "string",
     "keyframes-name-pattern": "^[a-z][a-zA-Z0-9]+$",

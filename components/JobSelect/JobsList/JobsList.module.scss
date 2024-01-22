@@ -73,7 +73,7 @@ $button-inset: 10px;
     padding: 0 10px 0 11px;
     position: absolute;
     top: 0;
-    transition: opacity 0.1s ease 0;
+    transition: opacity $timing-fast ease 0;
     z-index: 2;
 
     .addLabel {
@@ -83,7 +83,7 @@ $button-inset: 10px;
       opacity: 1;
       overflow: hidden;
       text-align: left;
-      transition-duration: 0.3s;
+      transition-duration: $timing-default;
       transition-property: opacity, width;
       transition-timing-function: ease;
       width: 0;
@@ -107,7 +107,7 @@ $button-inset: 10px;
       }
 
       .addIcon {
-        filter: $icon-filter-active;
+        filter: $icon-filter-yellow;
         opacity: 1;
       }
     }

@@ -4,6 +4,8 @@
   background-color: $panel-bg;
   border-radius: $border-radius $border-radius 0 0;
   font-size: $font-size-xs;
+  height: 30px;
+  padding: 0 $spacing-sm;
   position: absolute;
   right: $spacing-sm;
   text-transform: uppercase;
@@ -11,6 +13,6 @@
   transform: translateY(-100%);
 
   &:hover :global(.icon) {
-    filter: $icon-filter-active;
+    filter: $icon-filter-yellow;
   }
 }

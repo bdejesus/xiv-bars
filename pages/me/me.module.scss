@@ -12,12 +12,12 @@
 .card {
   box-shadow: 0 0 0 rgb(0 0 0 / 33%);
   height: 100%;
-  transition-duration: 0.3s;
+  transition-duration: $timing-default;
   transition-property: transform, box-shadow, border;
   transition-timing-function: ease;
 
   h4 {
-    transition: color 0.3s ease;
+    transition: color $timing-default ease;
   }
 
   &:hover {
@@ -34,7 +34,7 @@
   background-color: rgb(0 0 0 / 33%);
 
   &:hover :global(.icon) {
-    filter: $icon-filter-active;
+    filter: $icon-filter-yellow;
   }
 }
 

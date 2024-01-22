@@ -22,12 +22,9 @@ function PublishButton({ showForm }: ButtonProps) {
         : I18n.ControlBar.ToggleSaveForm.too_many_layouts}
       onClick={showForm}
       disabled={(canPublish === false)}
+      className="button btn-alt"
     >
-      <img
-        src="/images/icon-save.svg"
-        className="btn-icon"
-        alt={I18n.ControlBar.ToggleSaveForm.details_icon}
-      />
+      <Icon id="save" title={I18n.ControlBar.ToggleSaveForm.details_icon} />
       { I18n.ControlBar.ToggleSaveForm.publish }
     </button>
   );

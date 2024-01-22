@@ -14,7 +14,7 @@ export function Tabs({ activeTab, onTabClick }: Props) {
         <li>
           <button
             type="button"
-            className={styles.tabButton}
+            className={`${styles.tabButton} button btn-alt`}
             data-target="panel-actions"
             data-active={activeTab === 'panel-actions'}
             onClick={onTabClick}
@@ -26,7 +26,7 @@ export function Tabs({ activeTab, onTabClick }: Props) {
         <li>
           <button
             type="button"
-            className={styles.tabButton}
+            className={`${styles.tabButton} button btn-alt`}
             data-target="panel-general"
             data-active={activeTab === 'panel-general'}
             onClick={(e) => onTabClick(e)}
@@ -38,7 +38,7 @@ export function Tabs({ activeTab, onTabClick }: Props) {
         <li>
           <button
             type="button"
-            className={styles.tabButton}
+            className={`${styles.tabButton} button btn-alt`}
             data-target="panel-menu"
             data-active={activeTab === 'panel-menu'}
             onClick={(e) => onTabClick(e)}
@@ -49,23 +49,12 @@ export function Tabs({ activeTab, onTabClick }: Props) {
         <li>
           <button
             type="button"
-            className={styles.tabButton}
+            className={`${styles.tabButton} button btn-alt`}
             data-target="panel-macros"
             data-active={activeTab === 'panel-macros'}
             onClick={(e) => onTabClick(e)}
           >
             Macros
-          </button>
-        </li>
-        <li>
-          <button
-            type="button"
-            className={styles.tabButton}
-            data-target="panel-company"
-            data-active={activeTab === 'panel-company'}
-            onClick={(e) => onTabClick(e)}
-          >
-            Company
           </button>
         </li>
       </ul>

@@ -28,34 +28,17 @@ export function GlobalHeader() {
             <li>
               <Link
                 href={`/job/${selectedJob.Abbr}`}
-                className={[
-                  styles.selectedJob,
-                  'btn',
-                  `${viewAction === 'list' ? 'btn-alt' : ''}`
-                ].join(' ')}
+                className={`${styles.selectedJob} button btn-alt`}
               >
                 <img
                   src={`/jobIcons${selectedJob.Icon}`}
                   alt=""
                   height={20}
                   width={20}
+                  className="icon"
                 />
                 {selectedJob.Abbr}
               </Link>
-
-              { /* Layout Index Nav Item
-                <Link
-                  href={`/job/${selectedJob.Abbr}`}
-                  className={[
-                    styles.selectedJob,
-                    'btn',
-                    `${viewAction === 'list' ? styles.active : ''}`
-                  ].join(' ')}
-                  data-active={viewAction === 'list'}
-                >
-                  Layouts
-                </Link>
-              */ }
 
             </li>
 
@@ -68,7 +51,7 @@ export function GlobalHeader() {
             <li className={viewAction !== 'new' ? styles.action : ''}>
               <a
                 href={`/job/${selectedJob.Abbr}/new`}
-                className="btn"
+                className="button"
                 data-active={viewAction === 'new'}
               >
                 { viewAction !== 'new' && <Icon id="add" title="New Layout Icon" />}

@@ -4,13 +4,14 @@ $color-gray: #303030;
 $color-gray-dark: #212121;
 $color-gray-dark-2: #111;
 $color-alt: #F4D66B;
+$color-alt-dark: darken($color-alt, 22%);
 $link-color: #6cf;
 
 $color-red: #900;
 $color-danger: $color-red;
 
 $slot-border-size: 1px;
-$slot-size: 38px;
+$slot-size: 32px;
 $slot-spacing: 0;
 $outer-slot-size: $slot-size + $slot-border-size * 2;
 
@@ -35,6 +36,10 @@ $panel-bg-dark: $color-gray-dark;
 $panel-bg-dark-2: $color-gray-dark-2;
 $border-radius: 4px;
 $box-shadow: 0 6px 10px rgb(0 0 0 / 66%);
+$button-shadow:
+  inset 1px 1px 0 rgb(255 255 255 / 66%),
+  inset -1px -1px 0 rgb(0 0 0 / 15%),
+  0 1px 2px rgb(0 0 0 / 10%);
 
 $spacing-xs: 4px;
 $spacing-sm: 8px;
@@ -68,6 +73,11 @@ $font-size-xl: 20px;
 $font-size-xl-2: 24px;
 $font-size-xl-3: 28px;
 
-$icon-filter-white: saturate(0);
+$icon-filter-white: saturate(0) brightness(200%);
 $icon-filter-black: saturate(0) brightness(20%);
-$icon-filter-active: none;
+$icon-filter-yellow: none;
+$icon-filter-active: $icon-filter-yellow;
+
+$timing-fast: 0.1s;
+$timing-default: 0.2s;
+$timing-slow: 0.6s;

@@ -37,7 +37,7 @@ export function UserNav() {
               action: 'click',
               params: { method: 'donate' }
             })}
-            className={[styles.donateLink, 'btn'].join(' ')}
+            className={[styles.donateLink, 'button btn-primary'].join(' ')}
           >
             {I18n.UserNav.donate}
           </a>
@@ -45,7 +45,11 @@ export function UserNav() {
 
         { session && (
           <li className={styles.navItem}>
-            <Link href="/me" data-active={router.pathname === '/me'}>
+            <Link
+              href="/me"
+              data-active={router.pathname === '/me'}
+              className="button btn-clear"
+            >
               {I18n.UserNav.my_layouts}
             </Link>
           </li>
@@ -56,7 +60,7 @@ export function UserNav() {
         <div className={styles.profileNav}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <div
-            className={styles.profile}
+            className={`${styles.profile} button`}
             onClick={toggleMenu}
             role="button"
             tabIndex={0}
@@ -103,7 +107,7 @@ export function UserNav() {
         <button
           type="button"
           onClick={handleSignIn}
-          className={`${styles.signin} btn`}
+          className={`${styles.signin} button btn-alt`}
         >
           {I18n.UserNav.signin_with_discord}
         </button>

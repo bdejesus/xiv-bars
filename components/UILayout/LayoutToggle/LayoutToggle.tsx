@@ -29,7 +29,7 @@ export function LayoutToggle() {
       <div className="controlGroup">
         <button
           id="layoutToggle"
-          className={styles.buttonToggle}
+          className={[styles.buttonToggle, 'button btn-alt'].join(' ')}
           type="button"
           onClick={toggleHotbarLayout}
           disabled={readOnly}

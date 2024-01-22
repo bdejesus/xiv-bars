@@ -9,7 +9,7 @@
     position: absolute;
     right: $spacing-sm;
     top: $spacing-sm;
-    transition: opacity 0.3s ease;
+    transition: opacity $timing-default ease;
     transition-delay: 0.15s;
   }
 
@@ -61,7 +61,7 @@
   h4 {
     color: #fff;
     margin: $spacing-sm 0 $spacing-base;
-    transition: color 0.3s ease;
+    transition: color $timing-default ease;
   }
 
   p {
@@ -69,7 +69,7 @@
     font-size: $font-size-base;
     height: 64px;
     line-height: 1.45;
-    transition: color 0.3s ease;
+    transition: color $timing-default ease;
   }
 
   .description {
@@ -92,7 +92,7 @@
   .job {
     color: #666;
     filter: grayscale(1);
-    transition: filter 0.3s ease;
+    transition: filter $timing-default ease;
 
     :global(.job-icon) {
       height: 24px;
