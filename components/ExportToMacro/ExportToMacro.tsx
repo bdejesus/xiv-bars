@@ -96,7 +96,7 @@ export function ExportToMacros() {
     <div className={styles.container}>
       <button
         type="button"
-        className={styles.macroBtn}
+        className={[styles.macroBtn, 'button btn-alt'].join(' ')}
         title="Export to Macro"
         onClick={toggleModal}
       >

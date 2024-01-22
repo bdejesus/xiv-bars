@@ -21,13 +21,12 @@
     display: flex;
     justify-content: center;
     padding: $spacing-xs $spacing-base;
-    transition-duration: 0.3s;
+    transition-duration: $timing-default;
     transition-property: color, background-color, box-shadow;
     transition-timing-function: ease;
 
     &:hover {
       background-color: $color-alt;
-      box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
       text-decoration: none;
     }
   }
@@ -38,12 +37,7 @@
   }
 
   .signin {
-    background-color: $color-alt !important;
-    border: none;
-    color: #333;
-    font-size: inherit;
-    height: 100%;
-    text-shadow: 0 1px 2px rgb(255 255 255 / 33%);
+    color: $color-alt;
   }
 }
 
@@ -66,27 +60,15 @@
 }
 
 .profile {
-  align-items: center;
-  border-radius: 4px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
   font-weight: 700;
-  margin: -$spacing-xs 0;
   padding: $spacing-xs $spacing-sm $spacing-xs $spacing-xs;
-  transition-duration: 0.3s;
-  transition-property: color, background-color, box-shadow;
-  transition-timing-function: ease;
-  user-select: none;
 
-  &:hover,
+  &:focus,
+  &:active,
   &[data-active="true"] {
-    background-color: $color-alt;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
-  }
-
-  &[data-active="true"] {
+    background-color: $color-alt-dark;
     border-radius: 4px 4px 0 0;
+    box-shadow: $button-shadow;
   }
 }
 
@@ -116,7 +98,7 @@
   margin: 5px 0 0;
   padding: 4px;
   position: absolute;
-  right: -$spacing-sm;
+  right: 0;
   text-align: right;
   top: 100%;
   z-index: 10;

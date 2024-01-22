@@ -14,7 +14,7 @@ export function JobSelect({ selectedJob, toOpen, disabled }: Props) {
     <button
       type="button"
       id="jobSelectTitle"
-      className={styles.button}
+      className={[styles.button, 'button btn-alt'].join(' ')}
       onClick={toOpen}
       disabled={disabled}
     >

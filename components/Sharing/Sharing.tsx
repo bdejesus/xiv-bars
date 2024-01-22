@@ -92,7 +92,7 @@ export function Sharing({ selectedJob }:Props) {
 
       <button
         type="button"
-        className={styles.copyButton}
+        className={[styles.copyButton, 'button btn-alt'].join(' ')}
         onClick={copyUrl}
       >
         <Icon id="link" title={I18n.Sharing.copy_icon} />

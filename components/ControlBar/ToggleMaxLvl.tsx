@@ -15,7 +15,7 @@ function ToggleMaxLvl() {
       type="button"
       onClick={() => handleMaxLvlToggle()}
       data-active={showAllLvl}
-      className={styles.toggleTitlesBtn}
+      className={`${styles.toggleTitlesBtn} button btn-alt`}
     >
       <Icon
         id="levels"

@@ -10,7 +10,7 @@ export function Donate() {
   return (
     <div className={styles.container} data-collapsed={collapsed}>
       <button
-        className={styles.collapseBtn}
+        className={`${styles.collapseBtn} button btn-alt`}
         type="button"
         onClick={() => setCollapsed(true)}
       >

@@ -96,7 +96,7 @@
     padding: 4px 6px;
     position: absolute;
     transform: translateY(15px);
-    transition-duration: 0.3s;
+    transition-duration: $timing-default;
     transition-property: opacity, transform;
     transition-timing-function: ease;
   }

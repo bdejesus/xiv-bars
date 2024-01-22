@@ -5,49 +5,47 @@
   display: flex;
   justify-content: space-between;
   padding: 0 $spacing-sm;
-}
 
-.buttonToggle {
-  align-items: stretch;
-  border: none;
-  border-radius: $border-radius $border-radius 0 0;
-  display: flex;
-  flex-direction: row;
-  font-weight: 400;
-  height: 32px;
-  overflow: hidden;
-  padding: 0;
-  position: relative;
-  z-index: 2;
-
-  .label {
-    align-items: center;
-    color: #ddd;
+  .buttonToggle {
+    align-items: stretch;
     display: flex;
+    flex-direction: row;
     height: 32px;
-    padding: 0 16px;
-    transition: background 0.33s ease, box-shadow 0.33s ease, color 0.33s ease;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    z-index: 2;
 
-    &[data-disabled="true"] {
-      display: none;
+    .label {
+      align-items: center;
+      color: #ddd;
+      display: flex;
+      height: 32px;
+      padding: 0 16px;
+      transition: background 0.33s ease, box-shadow 0.33s ease, color 0.33s ease;
+
+      &[data-disabled="true"] {
+        display: none;
+      }
+
+      &[data-selected="true"] {
+        background-color: $panel-bg;
+        color: $color-alt;
+      }
     }
 
-    &[data-selected="true"] {
-      background-color: $panel-bg;
+    &:hover,
+    &:active {
+      background-color: $color-gray-dark-2;
       color: $color-alt;
-      font-weight: 700;
+
+      .label[data-selected="false"] {
+        color: $color-alt;
+      }
     }
-  }
 
-  &:hover {
-    border-bottom: none;
-
-    .label[data-selected="false"] {
-      color: $color-alt;
+    &[disabled] {
+      pointer-events: none;
     }
-  }
-
-  &[disabled] {
-    pointer-events: none;
   }
 }

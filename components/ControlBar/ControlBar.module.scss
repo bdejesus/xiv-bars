@@ -63,6 +63,7 @@
 
   button,
   :global(.button) {
+    height: 32px;
     padding: 0 10px;
 
     &[data-active="true"] {
