@@ -84,20 +84,6 @@ button,
   .icon {
     filter: $icon-filter-white;
   }
-}
-
-.btn-alt.button {
-  background-color: $color-gray-dark;
-  box-shadow:
-      inset 1px 1px 0 rgb(255 255 255 / 15%),
-      inset -1px -1px 0 rgb(0 0 0 / 15%),
-      0 1px 3px rgb(0 0 0 / 10%);
-  color: #fff;
-  font-weight: 500;
-
-  .icon {
-    filter: $icon-filter-white;
-  }
 
   &:hover {
     background-color: $color-gray-dark-2;

@@ -131,15 +131,14 @@ $icon-size: 6px;
 
 .detailPanel {
   background-color: #f9f9f9;
-
   min-width: 320px;
   width: 320px;
 
   .actions {
-    padding: 8px $spacing-base 0;
     display: flex;
     flex-direction: row;
     gap: $spacing-xs;
+    padding: 8px $spacing-base 0;
 
     :global(.button) {
       overflow: hidden;
