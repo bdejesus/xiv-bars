@@ -50,9 +50,9 @@ export function GlobalHeader({ selectedJob }:Props) {
             </li>
 
             {title && (
-            <li className={[styles.titleSegment, styles.active].join(' ')}>
-              <span className={styles.title}>{title}</span>
-            </li>
+              <li className={[styles.titleSegment, styles.active].join(' ')}>
+                <span className={styles.title}>{title}</span>
+              </li>
             )}
 
             <li className={viewAction !== 'new' ? styles.action : ''}>

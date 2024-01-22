@@ -105,7 +105,7 @@ function setActionsByGroup({
     : parseInt(IDString, 10);
   const slottedAction = getActionKey({ actionCategory: actionType, actions, roleActions })?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
   // eslint-disable-next-line no-param-reassign
-  if (slotRow) slotRow[slotIndex].action = slottedAction || {};
+  slotRow[slotIndex].action = slottedAction || {};
 
   return slotRow;
 }
