@@ -60,11 +60,7 @@ export function UserNav() {
         <div className={styles.profileNav}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <div
-<<<<<<< HEAD
             className={`${styles.profile} button`}
-=======
-            className={`${styles.profile} button btn-clear`}
->>>>>>> 088046f (Fixing buttons; fixing modal behavior)
             onClick={toggleMenu}
             role="button"
             tabIndex={0}
