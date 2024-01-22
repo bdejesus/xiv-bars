@@ -17,7 +17,6 @@
   z-index: 10;
 
   .titleSegment {
-    font-size: $font-size-sm;
     background-color: #fff;
     border-radius: 4px;
     box-shadow:
@@ -25,6 +24,7 @@
       inset 1px 1px 0 rgb(255 255 255 / 66%),
       inset -1px -1px 0 rgb(0 0 0 / 15%),
       0 1px 3px rgb(0 0 0 / 10%);
+    font-size: $font-size-sm;
     max-width: 240px;
     padding: 0 $spacing-base;
   }
