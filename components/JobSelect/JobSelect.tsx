@@ -26,6 +26,7 @@ export function JobSelect({ disabled, className }: Props) {
         disabled={disabled}
       >
         <Icon id="options" title="Options" />
+        <span className="btn-label-hidden">Job Select</span>
       </button>
 
       <Modal showModal={showJobsModal} onClose={() => setShowJobsModal(false)}>

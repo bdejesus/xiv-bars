@@ -1,12 +1,15 @@
+import { useSession } from 'next-auth/react';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { AppAction } from 'components/App/actions';
 import Icon from 'components/Icon';
 
 export default function EditLayoutButton() {
-  const { layoutId, readOnly } = useAppState();
+  const { data: session } = useSession();
+  const { layoutId, readOnly, user } = useAppState();
   const appDispatch = useAppDispatch();
+  const canEdit = session?.user.id === user?.id;
 
-  if (!layoutId) return null;
+  if (!layoutId || !session || !canEdit) return null;
 
   function handleEditLayout() {
     appDispatch({ type: AppAction.EDIT_LAYOUT });
@@ -21,6 +24,7 @@ export default function EditLayoutButton() {
       disabled={!readOnly}
     >
       <Icon id="edit" title="Edit" />
+      <span className="btn-label-hidden">Edit</span>
     </button>
   );
 }

@@ -1,5 +1,6 @@
 import { createRef } from 'react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
@@ -9,9 +10,11 @@ import SignInPrompt from './SignInPrompt';
 import styles from './SaveForm.module.scss';
 
 function SaveForm() {
+  const { data: session } = useSession();
   const router = useRouter();
   const titleField = createRef<HTMLInputElement>();
   const descriptionField = createRef<HTMLTextAreaElement>();
+
   const {
     layout,
     encodedSlots,
@@ -23,8 +26,7 @@ function SaveForm() {
     layoutId,
     title,
     description,
-    jobId,
-    user
+    jobId
   } = useAppState();
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
@@ -92,7 +94,7 @@ function SaveForm() {
     appDispatch({ type: AppAction.CANCEL_EDITS });
   }
 
-  if (!user) return <SignInPrompt />;
+  if (!session) return <SignInPrompt />;
 
   return (
     <div className={styles.saveForm}>

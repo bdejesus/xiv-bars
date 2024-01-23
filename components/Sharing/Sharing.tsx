@@ -92,6 +92,7 @@ export function Sharing() {
         title={I18n.Sharing.share_url}
       >
         <Icon id="link" title={I18n.Sharing.share_url} />
+        <span className="btn-label-hidden">{I18n.Sharing.share_url}</span>
       </button>
     </div>
   );
