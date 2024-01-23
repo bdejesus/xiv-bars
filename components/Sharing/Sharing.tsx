@@ -69,7 +69,7 @@ export function Sharing() {
 
   return (
     <div className={`${styles.container}`} data-copied={copied}>
-      {/* <div className="controlGroup">
+      <div className="controlGroup">
         <label htmlFor="shareUrl">
           {I18n.Sharing.share_url}
         </label>
@@ -83,7 +83,7 @@ export function Sharing() {
           value={shareURL}
           readOnly
         />
-      </div> */}
+      </div>
 
       <button
         type="button"

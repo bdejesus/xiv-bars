@@ -67,11 +67,11 @@ $group-padding: 10px;
 
   &[data-wxhb="true"] {
     border-bottom: none;
+    gap: $spacing-xl * 3;
     margin: 0;
     order: 0;
     padding-bottom: 0;
     padding-top: $spacing-base;
-    gap: $spacing-xl * 3;
     transform: scale(1.1);
 
     :global(.right) {

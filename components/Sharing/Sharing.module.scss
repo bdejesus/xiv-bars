@@ -66,4 +66,12 @@
       outline: none;
     }
   }
+
+  :global(.controlGroup) {
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    z-index: -1;
+  }
 }
