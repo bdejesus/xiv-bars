@@ -3,15 +3,11 @@ import { useRouter } from 'next/router';
 import { decodeSlots } from 'lib/utils/slots';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
+import DetailPanel from 'components/DetailPanel';
 import ControlBar from 'components/ControlBar';
-import ExportToMacros from 'components/ExportToMacro';
-import Sharing from 'components/Sharing';
 import UILayout from 'components/UILayout';
 import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
-import ReactMarkdown from 'react-markdown';
-import SaveForm from 'components/SaveForm';
-import EditLayoutButton from 'components/EditLayoutButton';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { AppAction } from 'components/App/actions';
 
@@ -26,9 +22,6 @@ export function App() {
     actions,
     roleActions,
     readOnly,
-    title,
-    description,
-    user,
     encodedSlots
   } = appState;
   const router = useRouter();
@@ -54,34 +47,7 @@ export function App() {
       <SelectedActionContextProvider>
         <div className={`${styles.view} app-view`}>
           <div className={styles.detailPanel}>
-            <div className={styles.actions}>
-              <Sharing />
-              <ExportToMacros />
-              <EditLayoutButton />
-            </div>
-
-            { (readOnly && title && user)
-              ? (
-                <>
-                  <div className={styles.detailPanelHead}>
-                    <h3 className="mt-0 mb-0">{title}</h3>
-                    <div className={styles.owner}>by {user.name}</div>
-                  </div>
-
-                  <div className={styles.detailPanelBody}>
-                    { description && (
-                      <ReactMarkdown components={{
-                        h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
-                      }}
-                      >
-                        {description}
-                      </ReactMarkdown>
-                    )}
-                  </div>
-                </>
-              )
-              : <div className={styles.detailPanelBody}><SaveForm /></div> }
-
+            <DetailPanel />
           </div>
 
           <div className={styles.mainPanel}>

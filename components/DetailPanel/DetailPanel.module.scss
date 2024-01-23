@@ -1,0 +1,42 @@
+@import 'styles/mixins';
+
+.container {
+  .actions {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-xs;
+    padding: 8px $spacing-base 0;
+
+    :global(.button) {
+      overflow: hidden;
+    }
+  }
+
+  .detailPanelHead,
+  .detailPanelBody {
+    color: $color-gray;
+    padding: 0 $spacing-base;
+
+    h3 {
+      color: $color-gray-dark;
+      text-transform: none;
+    }
+  }
+
+  .detailPanelHead {
+    margin-top: $spacing-lg;
+
+    .owner {
+      opacity: 0.5;
+    }
+  }
+
+  .detailPanelBody {
+    margin-top: $spacing-base;
+
+    p {
+      font-size: $font-size-base;
+      line-height: 1.45em;
+    }
+  }
+}
