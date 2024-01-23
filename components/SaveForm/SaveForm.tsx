@@ -1,12 +1,11 @@
 import { createRef } from 'react';
 import { useRouter } from 'next/router';
-import { signIn } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import { AppAction } from 'components/App/actions';
-import analytics from 'lib/analytics';
 import I18n from 'lib/I18n/locale/en-US';
+import SignInPrompt from './SignInPrompt';
 import styles from './SaveForm.module.scss';
 
 function SaveForm() {
@@ -93,32 +92,7 @@ function SaveForm() {
     appDispatch({ type: AppAction.CANCEL_EDITS });
   }
 
-  function handleSignIn() {
-    analytics.event({ action: 'login', params: { method: 'discord' } });
-    signIn('discord', { callbackUrl: '/' });
-  }
-
-  if (!user) {
-    return (
-      <div className={styles.upsell}>
-        <h3>Sign in to save this layout</h3>
-        <button
-          type="button"
-          onClick={handleSignIn}
-          className={`${styles.signin} button btn-primary btn-block`}
-        >
-          {I18n.UserNav.signin_with_discord}
-        </button>
-
-        <ul>
-          <li>Save Layouts to your profile.</li>
-          <li>Add notes and descriptions.</li>
-          <li>Shorter URLs.</li>
-        </ul>
-      </div>
-    );
-  }
-
+  if (!user) return <SignInPrompt />;
   return (
     <div className={styles.saveForm}>
       <form className={`${styles.form} container`}>
