@@ -24,8 +24,8 @@ function PublishButton({ showForm }: ButtonProps) {
       disabled={(canPublish === false)}
       className="button btn-alt"
     >
-      <Icon id="save" title={I18n.ControlBar.ToggleSaveForm.details_icon} />
-      { I18n.ControlBar.ToggleSaveForm.publish }
+      <Icon id="save" alt={I18n.ControlBar.ToggleSaveForm.details_icon} />
+      <span className="btn-label">{I18n.ControlBar.ToggleSaveForm.publish}</span>
     </button>
   );
 }
@@ -37,11 +37,8 @@ function EditButton({ showForm }: ButtonProps) {
       title={I18n.ControlBar.ToggleSaveForm.save_this_layout}
       onClick={showForm}
     >
-      <Icon
-        id="edit"
-        title={I18n.ControlBar.ToggleSaveForm.save_icon}
-      />
-      { I18n.ControlBar.ToggleSaveForm.edit }
+      <Icon id="edit" alt={I18n.ControlBar.ToggleSaveForm.save_icon} />
+      <span className="btn-label">{ I18n.ControlBar.ToggleSaveForm.edit }</span>
     </button>
   );
 }

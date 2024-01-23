@@ -23,7 +23,7 @@ export default function EditLayoutButton() {
       title="Edit Layout"
       disabled={!readOnly}
     >
-      <Icon id="edit" title="Edit" />
+      <Icon id="edit" alt="Edit" />
       <span className="btn-label-hidden">Edit</span>
     </button>
   );

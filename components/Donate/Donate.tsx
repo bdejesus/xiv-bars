@@ -14,7 +14,7 @@ export function Donate() {
         type="button"
         onClick={() => setCollapsed(true)}
       >
-        <Icon id="remove" type="white" title="Close" />
+        <Icon id="remove" type="white" alt="Close" />
         <span className="btn-label-hidden">Close</span>
       </button>
       <a

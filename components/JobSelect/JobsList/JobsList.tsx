@@ -27,9 +27,9 @@ export function JobsList({ title, jobs }: Props) {
                 id="add"
                 className={styles.addIcon}
                 type="white"
-                title="New Layout Icon"
+                alt="New Layout Icon"
               />
-              <span className={styles.addLabel}>New</span>
+              <span className={`${styles.addLabel} btn-label`}>New</span>
             </Link>
           </li>
         ))}

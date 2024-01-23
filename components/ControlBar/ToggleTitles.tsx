@@ -17,8 +17,8 @@ function ToggleTitles() {
       data-active={showTitles}
       className={`${styles.toggleTitlesBtn} button btn-alt`}
     >
-      <Icon id="titles" title={I18n.ControlBar.ToggleTitles.titles_icon} />
-      {I18n.ControlBar.ToggleTitles.titles}
+      <Icon id="titles" alt={I18n.ControlBar.ToggleTitles.titles_icon} />
+      <span className="btn-label">{I18n.ControlBar.ToggleTitles.titles}</span>
     </button>
   );
 }

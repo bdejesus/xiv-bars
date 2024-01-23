@@ -107,8 +107,8 @@ export default function Me() {
                   <Link href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
-                        <Icon id="add" type="white" title="New Layout Icon" />
-                        New Layout
+                        <Icon id="add" type="white" alt="New Layout Icon" />
+                        <span className="btn-layout">New Layout</span>
                       </h4>
                     </Card>
                   </Link>

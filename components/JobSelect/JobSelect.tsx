@@ -25,7 +25,7 @@ export function JobSelect({ disabled, className }: Props) {
         onClick={handleShowJobs}
         disabled={disabled}
       >
-        <Icon id="options" title="Options" />
+        <Icon id="options" alt="Options" />
         <span className="btn-label-hidden">Job Select</span>
       </button>
 

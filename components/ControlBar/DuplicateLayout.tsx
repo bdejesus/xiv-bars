@@ -35,11 +35,8 @@ export default function DuplicateLayout() {
       title={I18n.ControlBar.CopyLayout.copy_layout}
       className="button"
     >
-      <Icon
-        id="copy"
-        title={I18n.ControlBar.CopyLayout.copy_icon}
-      />
-      { I18n.ControlBar.CopyLayout.copy_label }
+      <Icon id="copy" alt={I18n.ControlBar.CopyLayout.copy_icon} />
+      <span className="btn-label">{ I18n.ControlBar.CopyLayout.copy_label }</span>
     </button>
   );
 }

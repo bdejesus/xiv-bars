@@ -61,8 +61,8 @@ export function GlobalHeader({ selectedJob }:Props) {
                 className="button"
                 data-active={viewAction === 'new'}
               >
-                { viewAction !== 'new' && <Icon id="add" title="New Layout Icon" />}
-                New Layout
+                { viewAction !== 'new' && <Icon id="add" alt="New Layout Icon" />}
+                <span className="btn-label">New Layout</span>
               </a>
 
               { layoutId && <DuplicateLayout /> }
