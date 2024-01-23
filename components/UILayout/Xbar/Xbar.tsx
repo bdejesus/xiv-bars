@@ -24,14 +24,14 @@ export function Xbar() {
       <div className={styles.container}>
         {chotbarKeys.map((chotbarID) => {
           const barSet = chotbar[chotbarID] as SlotProps[];
-          return (!readOnly || hasActions(barSet)) && (
+          return (
             <div
               key={chotbarID}
               className={[styles.xbar, styles[chotbarID]].join(' ')}
               data-main={xhb ? chotbarID === chotbarKeys[xhb - 1] : false}
               data-wxhb={wxhb ? chotbarID === chotbarKeys[wxhb - 1] : false}
               data-exhb={exhb ? chotbarID === chotbarKeys[exhb - 1] : false}
-              data-visible={hasActions(barSet)}
+              data-visible={hasActions(barSet) || !readOnly}
             >
               <Bar bar={barSet} />
             </div>

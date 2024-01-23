@@ -54,6 +54,7 @@ $group-padding: 10px;
     margin-bottom: $spacing-lg;
     order: 2;
     padding-bottom: $spacing-xl;
+    transform: scale(1.1);
 
     .left::before {
       content: "LT → RT";
@@ -70,7 +71,8 @@ $group-padding: 10px;
     order: 0;
     padding-bottom: 0;
     padding-top: $spacing-base;
-    gap: $spacing-lg * 5;
+    gap: $spacing-xl * 3;
+    transform: scale(1.1);
 
     :global(.right) {
       border-left: none;
@@ -107,6 +109,10 @@ $group-padding: 10px;
       content: "RT";
       display: block;
     }
+  }
+
+  &[data-visible="false"] {
+    display: none;
   }
 }
 
