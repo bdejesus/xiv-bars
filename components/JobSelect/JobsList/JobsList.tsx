@@ -1,7 +1,7 @@
 import I18n from 'lib/I18n/locale/en-US';
 import type { ClassJobProps } from 'types/ClassJob';
 import Link from 'next/link';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import Job from '../Job';
 
 import styles from './JobsList.module.scss';
@@ -24,7 +24,7 @@ export function JobsList({ title, jobs }: Props) {
 
             <Link href={`/job/${job.Abbr}/new`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
               <Icon
-                id="add"
+                id={Icons.ADD}
                 className={styles.addIcon}
                 type="white"
                 alt="New Layout Icon"

@@ -4,7 +4,7 @@ import { createRef, useEffect, useState } from 'react';
 import { jsonToQuery } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
 
@@ -24,17 +24,13 @@ export function Sharing() {
   const urlInput = createRef<HTMLInputElement>();
 
   function buildShareUrl() {
-    const {
-      s1, xhb, wxhb, exhb, l
-    } = router.query;
-
     const query = {
-      s1,
-      xhb: xhb || 1,
-      wxhb: wxhb || 0,
-      exhb: exhb || 0,
+      s1: router.query.s1,
+      xhb: router.query.xhb || 1,
+      wxhb: router.query.wxhb || 0,
+      exhb: router.query.exhb || 0,
       hb,
-      l: l || 0
+      l: router.query.l || 0
     };
 
     const queryString = jsonToQuery(query);
@@ -91,7 +87,7 @@ export function Sharing() {
         onClick={copyUrl}
         title={I18n.Sharing.share_url}
       >
-        <Icon id="link" alt={I18n.Sharing.share_url} />
+        <Icon id={Icons.ADD} alt={I18n.Sharing.share_url} />
         <span className="btn-label-hidden">{I18n.Sharing.share_url}</span>
       </button>
     </div>

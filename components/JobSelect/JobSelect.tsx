@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import JobMenu from 'components/JobSelect/JobMenu';
 import Modal from 'components/Modal';
 import styles from './JobSelect.module.scss';
@@ -25,7 +25,7 @@ export function JobSelect({ disabled, className }: Props) {
         onClick={handleShowJobs}
         disabled={disabled}
       >
-        <Icon id="options" alt="Options" />
+        <Icon id={Icons.OPTIONS} alt="Options" />
         <span className="btn-label-hidden">Job Select</span>
       </button>
 

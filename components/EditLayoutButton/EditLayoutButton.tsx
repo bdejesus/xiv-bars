@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { AppAction } from 'components/App/actions';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 
 export default function EditLayoutButton() {
   const { data: session } = useSession();
@@ -23,7 +23,7 @@ export default function EditLayoutButton() {
       title="Edit Layout"
       disabled={!readOnly}
     >
-      <Icon id="edit" alt="Edit" />
+      <Icon id={Icons.EDIT} alt="Edit" />
       <span className="btn-label-hidden">Edit</span>
     </button>
   );

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import type { ClassJobProps } from 'types/ClassJob';
 import UserNav from 'components/UserNav';
 import { useAppState } from 'components/App/context';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
 import DuplicateLayout from 'components/ControlBar/DuplicateLayout';
 import styles from './GlobalHeader.module.scss';
@@ -61,7 +61,7 @@ export function GlobalHeader({ selectedJob }:Props) {
                 className="button"
                 data-active={viewAction === 'new'}
               >
-                { viewAction !== 'new' && <Icon id="add" alt="New Layout Icon" />}
+                { viewAction !== 'new' && <Icon id={Icons.ADD} alt="New Layout Icon" />}
                 <span className="btn-label">New Layout</span>
               </a>
 

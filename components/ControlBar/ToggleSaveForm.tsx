@@ -3,7 +3,7 @@ import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { AppAction } from 'components/App/actions';
 import { useUserState } from 'components/User/context';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
@@ -24,7 +24,7 @@ function PublishButton({ showForm }: ButtonProps) {
       disabled={(canPublish === false)}
       className="button btn-alt"
     >
-      <Icon id="save" alt={I18n.ControlBar.ToggleSaveForm.details_icon} />
+      <Icon id={Icons.SAVE} alt={I18n.ControlBar.ToggleSaveForm.details_icon} />
       <span className="btn-label">{I18n.ControlBar.ToggleSaveForm.publish}</span>
     </button>
   );
@@ -37,7 +37,7 @@ function EditButton({ showForm }: ButtonProps) {
       title={I18n.ControlBar.ToggleSaveForm.save_this_layout}
       onClick={showForm}
     >
-      <Icon id="edit" alt={I18n.ControlBar.ToggleSaveForm.save_icon} />
+      <Icon id={Icons.EDIT} alt={I18n.ControlBar.ToggleSaveForm.save_icon} />
       <span className="btn-label">{ I18n.ControlBar.ToggleSaveForm.edit }</span>
     </button>
   );
