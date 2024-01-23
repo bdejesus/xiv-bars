@@ -13,7 +13,6 @@
       outline: 3px solid $color-alt-dark;
     }
   }
-
 }
 
 .form {
@@ -38,4 +37,15 @@
 .actions {
   display: flex;
   flex-direction: row;
+}
+
+.upsell {
+  text-align: center;
+  margin-top: 20vh;
+
+  ul {
+    text-align: left;
+    font-size: $font-size-base;
+    color: #666;
+  }
 }

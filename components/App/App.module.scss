@@ -108,8 +108,6 @@ $icon-size: 6px;
   .section {
     padding-right: $spacing-lg;
   }
-
-
 }
 
 .view {
@@ -123,6 +121,9 @@ $icon-size: 6px;
   background-color: #f9f9f9;
   min-width: 320px;
   width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 
   .actions {
     display: flex;
@@ -139,15 +140,15 @@ $icon-size: 6px;
   .detailPanelBody {
     color: $color-gray;
     padding: 0 $spacing-base;
-  }
-
-  .detailPanelHead {
-    margin-top: $spacing-lg;
 
     h3 {
       color: $color-gray-dark;
       text-transform: none;
     }
+  }
+
+  .detailPanelHead {
+    margin-top: $spacing-lg;
 
     .owner {
       opacity: 0.5;
