@@ -40,12 +40,12 @@
 }
 
 .upsell {
-  text-align: center;
   margin-top: 20vh;
+  text-align: center;
 
   ul {
-    text-align: left;
-    font-size: $font-size-base;
     color: #666;
+    font-size: $font-size-base;
+    text-align: left;
   }
 }

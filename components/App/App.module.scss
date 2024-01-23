@@ -119,11 +119,11 @@ $icon-size: 6px;
 
 .detailPanel {
   background-color: #f9f9f9;
-  min-width: 320px;
-  width: 320px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  min-width: 320px;
+  width: 320px;
 
   .actions {
     display: flex;
