@@ -8,37 +8,7 @@
 }
 
 .uiLayout {
-  background-color: $panel-bg;
-  border-radius: $border-radius;
-  box-shadow: 0 6px 20px 4px #00000080;
   flex: 1 1 auto;
-  padding: $spacing-lg;
   text-align: center;
   width: 100%;
-}
-
-.expandButton {
-  background-color: transparent;
-  display: block;
-  font-size: 32px;
-  font-weight: 400;
-  height: 42px;
-  line-height: 32px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0;
-  width: 42px;
-
-  &:hover {
-    border: 1px solid rgb(0 0 0 / 75%);
-    border-bottom-color: rgb(255 255 255 / 20%);
-    border-right-color: rgb(255 255 255 / 20%);
-  }
-}
-
-.expandLabel {
-  display: block;
-  position: relative;
-  text-shadow: -1px -1px 0 rgb(0 0 0 / 100%), 1px 1px 0 rgb(255 255 255 / 20%);
-  top: -3px;
 }

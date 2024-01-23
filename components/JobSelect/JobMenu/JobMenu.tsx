@@ -1,12 +1,12 @@
-import type { ClassJobProps } from 'types/ClassJob';
+import { useAppState } from 'components/App/context';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 
-interface Props {
-  jobs: ClassJobProps[]
-}
+export function JobMenu() {
+  const { jobs } = useAppState();
 
-export function JobMenu({ jobs }: Props) {
+  if (!jobs) return null;
+
   const DoW = jobs.filter((job) => job.Discipline === 'DOW');
   const DoM = jobs.filter((job) => job.Discipline === 'DOM');
   const DoH = jobs.filter((job) => job.Discipline === 'DOH');

@@ -2,19 +2,40 @@
 
 .container {
   align-items: center;
-  background-image: linear-gradient(#fff, #f0f0f0);
+  background-image: linear-gradient(#fff, #f9f9f9);
+  border-bottom: 1px solid #ddd;
   display: flex;
   font-size: $font-size-base;
   font-weight: 400;
   height: 60px;
   justify-content: space-between;
   letter-spacing: 0.015em;
-  padding: 10px 20px;
+  padding: 10px $spacing-base;
   position: fixed;
   top: 0;
   white-space: nowrap;
   width: 100%;
   z-index: 10;
+
+  .jobSelect {
+    border-radius: $border-radius 0 0 $border-radius;
+    width: 40px;
+
+    :global(.icon) {
+      margin: 0 auto;
+    }
+  }
+
+  .selectedJob {
+    border-radius: 0 $border-radius $border-radius 0;
+    color: $color-alt;
+    margin-left: 0;
+
+    :global(.icon) {
+      filter: $icon-filter-yellow;
+      margin-left: -6px;
+    }
+  }
 
   .titleSegment {
     background-color: #fff;
@@ -67,7 +88,7 @@
   margin-left: $spacing-lg;
   position: relative;
 
-  ol {
+  > ol {
     display: flex;
     flex-direction: row;
     gap: $spacing-base;
@@ -76,7 +97,7 @@
     padding: 0;
   }
 
-  li {
+  > ol > li {
     align-items: center;
     color: #999;
     display: flex;
@@ -95,36 +116,9 @@
     }
 
     &.action::before,
-    &:first-child::before {
+    &:first-child::before,
+    &:empty {
       display: none;
-    }
-
-    a {
-      align-items: center;
-      color: #333;
-      display: flex;
-      flex-direction: row;
-      height: 100%;
-      min-height: 30px;
-      padding: 0 $spacing-base;
-      transition-duration: $timing-default;
-      transition-property: color, background-color;
-      transition-timing-function: ease;
-
-      &:hover, &:focus, &:active {
-        background-color: $color-alt;
-        text-decoration: none;
-      }
-
-      &:active {
-        background-color: $color-gray;
-        color: #fff;
-      }
-
-    }
-
-    img {
-      margin-right: $spacing-xs;
     }
 
     .title {
@@ -140,12 +134,5 @@
     margin-right: $spacing-xs;
     position: relative;
     top: -3px;
-  }
-}
-
-
-.selectedJob {
-  img {
-    margin-left: -6px;
   }
 }

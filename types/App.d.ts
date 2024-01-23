@@ -49,6 +49,8 @@ interface DispatchPayload {
   slotID?: string,
   action?: ActionProps,
   hbId?: string,
+  showModal?: boolean,
+  viewAction?: string,
   message?: {
     type: string,
     body: string
@@ -87,7 +89,7 @@ export interface EditLayout {
 }
 
 export interface CancelLayout {
-  type: AppAction.CANCEL_LAYOUT,
+  type: AppAction.CANCEL_EDITS,
   payload?: DispatchPayload
 }
 

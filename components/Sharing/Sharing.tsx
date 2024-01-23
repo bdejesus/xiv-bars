@@ -7,25 +7,20 @@ import { useAppState } from 'components/App/context';
 import Icon from 'components/Icon';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
-import type { ClassJobProps } from 'types/ClassJob';
 
 import styles from './Sharing.module.scss';
 
-interface Props {
-  selectedJob: ClassJobProps
-}
-
-export function Sharing({ selectedJob }:Props) {
+export function Sharing() {
   const router = useRouter();
 
   const {
     readOnly,
     viewAction,
-    hb
+    hb,
+    selectedJob
   } = useAppState();
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
-
   const urlInput = createRef<HTMLInputElement>();
 
   function buildShareUrl() {
@@ -43,12 +38,12 @@ export function Sharing({ selectedJob }:Props) {
     };
 
     const queryString = jsonToQuery(query);
-    return `${domain}/job/${selectedJob.Abbr}/new?${queryString}`;
+    return `${domain}/job/${selectedJob?.Abbr}/new?${queryString}`;
   }
 
   function getLayoutUrl() {
     const layoutId: string | string[] | undefined = router.query.params;
-    return `${domain}/job/${selectedJob.Abbr}/${layoutId}`;
+    return `${domain}/job/${selectedJob?.Abbr}/${layoutId}`;
   }
 
   function selectInput() {
@@ -68,7 +63,7 @@ export function Sharing({ selectedJob }:Props) {
   }
 
   useEffect(() => {
-    const urlString = readOnly ? getLayoutUrl() : buildShareUrl();
+    const urlString = (readOnly && selectedJob) ? getLayoutUrl() : buildShareUrl();
     setShareURL(urlString);
   }, [router.query]);
 
@@ -92,11 +87,12 @@ export function Sharing({ selectedJob }:Props) {
 
       <button
         type="button"
-        className={[styles.copyButton, 'button btn-alt'].join(' ')}
+        className={`${styles.copyButton} button btn-icon`}
         onClick={copyUrl}
+        title={I18n.Sharing.share_url}
       >
-        <Icon id="link" title={I18n.Sharing.copy_icon} />
-        {I18n.Sharing.copy_url}
+        <Icon id="link" title={I18n.Sharing.share_url} />
+        <span className="btn-label-hidden">{I18n.Sharing.share_url}</span>
       </button>
     </div>
   );

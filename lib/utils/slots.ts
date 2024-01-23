@@ -6,6 +6,7 @@ import MAIN_COMMAND from 'apiData/MainCommand.json';
 import MACRO_ICON from 'apiData/MacroIcon.json';
 import PET_ACTION from 'apiData/PetAction.json';
 
+import type { AppState } from 'types/App';
 import type { SlotProps, ActionProps } from 'types/Action';
 import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
@@ -16,7 +17,7 @@ function assignLayoutTemplate(layoutID:number) {
   return templates[layoutID ? parseInt(layoutID.toString(), 10) : 0];
 }
 
-export function assignActionIds(slottedActions: SlotProps[]) {
+function assignActionIds(slottedActions: SlotProps[]) {
   return Object.values(slottedActions).map((slot) => {
     if (slot.action?.ID) {
       return (typeof slot.action.Prefix !== 'undefined')
@@ -27,11 +28,7 @@ export function assignActionIds(slottedActions: SlotProps[]) {
   });
 }
 
-type QueryProps = {
-  [key: string]: string
-}
-
-export function encodeSlots(slots:object) {
+function encodeSlots(slots:object) {
   const slotIDs = Object.values(slots);
   const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
   const queryString = slotsQuery
@@ -40,21 +37,32 @@ export function encodeSlots(slots:object) {
   return queryString;
 }
 
-export function decodeSlots(query:object) {
-  const {
-    s1, s, wxhb, xhb, exhb, hb, l, id, encodedSlots
-  } = query as QueryProps;
+interface DecodeSlotsProps {
+  appState: AppState
+  id?: number,
+  encodedSlots?: string,
+  s1?: string,
+  s?: string,
+  wxhb?: string,
+  xhb?: string,
+  exhb?: string,
+  hb?: string,
+  l?: string
+}
 
-  const formatHbConfig: string[] = hb?.split(',') || new Array(10).fill(1, 0, 10);
+export function decodeSlots(props:DecodeSlotsProps) {
+  const { appState } = props;
+
+  const formatHbConfig: string[] = props.hb?.split(',') || new Array(10).fill(1, 0, 10);
 
   const payload = {
-    id,
-    encodedSlots: encodedSlots || s1 || s || defaultState.encodedSlots,
-    wxhb: parseInt(wxhb, 10) || defaultState.wxhb,
-    xhb: parseInt(xhb, 10) || defaultState.xhb,
-    exhb: parseInt(exhb, 10) || defaultState.exhb,
-    hb: formatHbConfig || defaultState.hb,
-    layout: parseInt(l, 10) || defaultState.layout
+    id: props.id,
+    encodedSlots: props.encodedSlots || props.s1 || props.s || appState.encodedSlots || defaultState.encodedSlots,
+    wxhb: props.wxhb ? parseInt(props.wxhb, 10) : appState.wxhb || defaultState.wxhb,
+    xhb: props.xhb ? parseInt(props.xhb, 10) : appState.xhb || defaultState.xhb,
+    exhb: props.exhb ? parseInt(props.exhb, 10) : appState.exhb || defaultState.exhb,
+    hb: formatHbConfig || appState.hb || defaultState.hb,
+    layout: props.l ? parseInt(props.l, 10) : appState.layout || defaultState.layout
   };
 
   return payload;

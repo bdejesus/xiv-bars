@@ -6,7 +6,7 @@ import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
   const router = useRouter();
-  const { layout, readOnly, viewAction } = useAppState();
+  const { layoutId, layout, readOnly } = useAppState();
   const [layoutKey, setLayoutKey] = useState(layouts[layout as keyof typeof layouts]);
 
   useEffect(() => {
@@ -16,12 +16,9 @@ export function LayoutToggle() {
   function toggleHotbarLayout() {
     const key = layoutKey === 'chotbar' ? layouts[1] : layouts[0];
     const layoutIndex = layouts.indexOf(key).toString();
-
-    if (viewAction === 'new') {
-      const { query, pathname } = router;
-      const queryParams = { pathname, query: { ...query, l: layoutIndex } };
-      router.push(queryParams, undefined, { shallow: true });
-    }
+    const { query, pathname } = router;
+    const queryParams = { pathname, query: { ...query, l: layoutIndex, s1: undefined } };
+    router.push(queryParams, undefined, { shallow: true });
   }
 
   return (
@@ -29,10 +26,10 @@ export function LayoutToggle() {
       <div className="controlGroup">
         <button
           id="layoutToggle"
-          className={[styles.buttonToggle, 'button btn-alt'].join(' ')}
+          className={`${styles.buttonToggle} button btn-alt`}
           type="button"
           onClick={toggleHotbarLayout}
-          disabled={readOnly}
+          disabled={!readOnly && !!layoutId}
         >
           <span
             className={styles.label}

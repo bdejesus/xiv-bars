@@ -3,7 +3,6 @@ export interface ActionProps {
   PreIcon?: string,
   Icon?: string,
   Name?: string,
-  Abbr?: string,
   Discipline?: string,
   Description?: string,
   Role?: string,

@@ -2,7 +2,7 @@ import Xbar from 'components/UILayout/Xbar';
 import Hotbar from 'components/UILayout/Hotbar';
 import { layouts } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
-import LayoutToggle from './LayoutToggle';
+
 import styles from './UILayout.module.scss';
 
 export function LayoutView() {
@@ -17,15 +17,9 @@ export function LayoutView() {
 
 export function UILayout() {
   return (
-    <>
-      <div className={styles.controls}>
-        <LayoutToggle />
-      </div>
-
-      <div className={styles.uiLayout}>
-        <LayoutView />
-      </div>
-    </>
+    <div className={styles.uiLayout}>
+      <LayoutView />
+    </div>
   );
 }
 

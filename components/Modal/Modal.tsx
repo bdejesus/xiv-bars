@@ -1,30 +1,43 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import CloseButton from 'components/CloseButton';
-import { useAppDispatch } from 'components/App/context';
-import { AppAction } from 'components/App/actions';
 import styles from './Modal.module.scss';
 
 interface Props {
   children: ReactNode,
-  hidden: boolean,
-  toClose: React.MouseEventHandler
+  showModal: boolean,
+  onClose: () => void
 }
 
-export function Modal({ children, hidden, toClose }: Props) {
-  const appDispatch = useAppDispatch();
+export function Modal({ children, showModal, onClose }: Props) {
+  const router = useRouter();
+  const [isVisible, setIsVisible] = useState(showModal);
 
   useEffect(() => {
-    appDispatch({ type: AppAction.TOGGLE_MODAL });
-  }, [hidden]);
+    function closeModal() {
+      if (onClose) onClose();
+      setIsVisible(false);
+    }
+
+    router.events.on('routeChangeComplete', closeModal);
+
+    return () => {
+      router.events.off('routeChangeComplete', closeModal);
+    };
+  }, []);
+
+  useEffect(() => {
+    setIsVisible(showModal);
+  }, [showModal]);
 
   return (
     <div
       className={styles.modal}
-      aria-hidden={hidden}
+      aria-hidden={!isVisible}
       tabIndex={-1}
     >
       <div className={styles.container}>
-        { toClose && <CloseButton onClick={toClose} /> }
+        <CloseButton onClick={onClose} />
         <div className={styles.content}>
           {children}
         </div>

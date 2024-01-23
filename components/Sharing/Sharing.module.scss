@@ -54,19 +54,24 @@
     font-family: Verdana, sans-serif;
     font-size: 12px;
     font-weight: 400;
-    height: 32px;
-    margin: 0;
+    height: 30px;
+    margin: 0 -1px 0 0;
     padding: 10px;
     transition: background-color 0.33s ease;
     width: 200px;
 
     &:focus {
-      background-color: rgb(255 255 255 / 20%);
-      color: #ccc;
+      background-color: $color-gray-dark-2;
+      color: #fff;
+      outline: none;
     }
   }
 
-  .copyButton {
-    border-radius: 0 $border-radius $border-radius 0;
+  :global(.controlGroup) {
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    z-index: -1;
   }
 }

@@ -6,7 +6,7 @@ export const AppAction = {
   TOGGLE_LVLS: 'toggleAllLvl',
   TOGGLE_MODAL: 'toggleModal',
   EDIT_LAYOUT: 'editLayout',
-  CANCEL_LAYOUT: 'cancelPublish',
+  CANCEL_EDITS: 'cancelEdits',
   PUBLISH_LAYOUT: 'publishLayout',
   LAYOUT_SAVED: 'layoutSaved',
   UPDATE_MESSAGE: 'setMessage',

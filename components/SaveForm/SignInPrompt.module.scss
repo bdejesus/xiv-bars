@@ -1,0 +1,12 @@
+@import 'styles/mixins';
+
+.prompt {
+  margin-top: 10vh;
+  text-align: center;
+
+  ul {
+    color: #666;
+    font-size: $font-size-base;
+    text-align: left;
+  }
+}

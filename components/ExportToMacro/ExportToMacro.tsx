@@ -10,7 +10,7 @@ import type { SlotProps } from 'types/Action';
 import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {
-  const [showModal, setShowModal] = useState(false);
+  const [showMacrosModal, setShowMacrosModal] = useState(false);
   const [macroText, setMacroText] = useState([] as string[]);
   // const [copied, setCopied] = useState(false);
   const textarea = createRef<HTMLTextAreaElement>();
@@ -74,15 +74,15 @@ export function ExportToMacros() {
     }
   }
 
+  function handleShowMacros() {
+    buildMacros();
+    setShowMacrosModal(true);
+  }
+
   // function selectTextarea() {
   //   textarea.current?.focus();
   //   textarea.current?.select();
   // }
-
-  function toggleModal() {
-    buildMacros();
-    setShowModal(!showModal);
-  }
 
   // function copyText() {
   //   selectTextarea();
@@ -96,15 +96,18 @@ export function ExportToMacros() {
     <div className={styles.container}>
       <button
         type="button"
-        className={[styles.macroBtn, 'button btn-alt'].join(' ')}
         title="Export to Macro"
-        onClick={toggleModal}
+        className={`${styles.macroBtn} button btn-icon`}
+        onClick={handleShowMacros}
       >
         <Icon id="macro" title={I18n.ExportToMacro.export_to_macro} />
-        {I18n.ExportToMacro.export_to_macro}
+        {/* {I18n.ExportToMacro.export_to_macro} */}
       </button>
 
-      <Modal toClose={() => toggleModal()} hidden={!showModal}>
+      <Modal
+        showModal={showMacrosModal}
+        onClose={() => setShowMacrosModal(false)}
+      >
         <div
           className={styles.exportPrompt}
           // data-copied={copied}
