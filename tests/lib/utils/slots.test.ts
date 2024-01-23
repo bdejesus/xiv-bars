@@ -1,5 +1,13 @@
 import { decodeSlots, setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState.ts';
+import type { ActionProps } from 'types/Action.d.ts';
+
+const stubAction:ActionProps = {
+  ID: 99,
+  Icon: 'iconURL',
+  Name: 'Stub Action',
+  Description: 'Nullam quis risus eget urna mollis ornare vel eu leo.'
+};
 
 describe('decodeSlots', () => {
   it('returns default values', () => {
@@ -39,25 +47,44 @@ describe('decodeSlots', () => {
 
 describe('setActionToSlot', () => {
   const props = {
-    action: { ID: '100' },
+    action: stubAction,
     slotID: 'one-1',
     layout: 0
   };
 
   it('returns an updated slots string', () => {
     const results = setActionToSlot(props);
-    expect(results).toBe('100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0');
+    expect(results).toBe('99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0');
     expect(results.split(',').length).toEqual(128);
   });
 });
 
-// describe('setActionsToSlots', () => {
-//   it('returns an updated slots string', () => {
-//     const props = {
-//       encodedSlots: '',
-//       layout: 0
-//     };
-//     const results = setActionsToSlots(props);
-//     expect(results).toBe(false);
-//   });
-// });
+describe('setActionsToSlots', () => {
+  it('returns a chotbar layout object', () => {
+    const props = {
+      encodedSlots: '',
+      layout: 0
+    };
+    const results = setActionsToSlots(props);
+    expect(results.chotbar).toBeDefined();
+  });
+
+  it('returns a hotbar layout object', () => {
+    const props = {
+      encodedSlots: '',
+      layout: 1
+    };
+    const results = setActionsToSlots(props);
+    expect(results.hotbar).toBeDefined();
+  });
+
+  it('returns a layout object with actions', () => {
+    const props = {
+      encodedSlots: `${stubAction.ID}`,
+      layout: 0,
+      actions: [stubAction]
+    };
+    const results = setActionsToSlots(props);
+    expect(results.chotbar.one[0].action).toBe(stubAction);
+  });
+});
