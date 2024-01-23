@@ -40,12 +40,10 @@ export function App() {
   useEffect(() => {
     // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
-    const [, viewAction] = router.query?.params || [];
-
     const payload = decodeSlots({
       ...router.query,
       encodedSlots: readOnly ? encodedSlots : undefined,
-      viewAction
+      appState
     });
 
     appDispatch({ type: AppAction.SLOT_ACTIONS, payload });

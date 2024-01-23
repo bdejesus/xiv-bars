@@ -137,10 +137,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
       props: {
+        ...viewData,
         actions: jobActions,
         selectedJob,
         roleActions,
-        ...viewData,
         layoutId: viewData.id || undefined,
         createdAt: viewData.createdAt?.toString() || null,
         updatedAt: viewData.updatedAt?.toString() || null,

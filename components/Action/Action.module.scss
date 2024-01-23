@@ -50,6 +50,7 @@
 
   &:active {
     cursor: grabbing;
+    transform: scale(0.9);
   }
 
   &::after {

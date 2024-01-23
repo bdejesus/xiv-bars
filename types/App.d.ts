@@ -24,7 +24,7 @@ export interface LayoutProps {
 export interface AppState extends LayoutProps {
   jobs?: ClassJobProps[],
   readOnly?: boolean,
-  selectedJob: ClassJobProps,
+  selectedJob?: ClassJobProps,
   showTitles?: boolean,
   showAllLvl?: boolean,
   showModal?: boolean,
