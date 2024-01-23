@@ -119,7 +119,7 @@ export default function Me() {
         ) : (
           <div className="app-view">
             <div className="container">
-              <JobMenu jobs={Jobs} />
+              <JobMenu />
             </div>
           </div>
         )}

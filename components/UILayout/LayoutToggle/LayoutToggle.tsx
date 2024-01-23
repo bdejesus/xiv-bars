@@ -29,7 +29,7 @@ export function LayoutToggle() {
           className={`${styles.buttonToggle} button btn-alt`}
           type="button"
           onClick={toggleHotbarLayout}
-          disabled={!readOnly && layoutId}
+          disabled={!readOnly && !!layoutId}
         >
           <span
             className={styles.label}

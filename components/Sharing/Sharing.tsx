@@ -38,12 +38,12 @@ export function Sharing() {
     };
 
     const queryString = jsonToQuery(query);
-    return `${domain}/job/${selectedJob.Abbr}/new?${queryString}`;
+    return `${domain}/job/${selectedJob?.Abbr}/new?${queryString}`;
   }
 
   function getLayoutUrl() {
     const layoutId: string | string[] | undefined = router.query.params;
-    return `${domain}/job/${selectedJob.Abbr}/${layoutId}`;
+    return `${domain}/job/${selectedJob?.Abbr}/${layoutId}`;
   }
 
   function selectInput() {
@@ -63,7 +63,7 @@ export function Sharing() {
   }
 
   useEffect(() => {
-    const urlString = readOnly ? getLayoutUrl() : buildShareUrl();
+    const urlString = (readOnly && selectedJob) ? getLayoutUrl() : buildShareUrl();
     setShareURL(urlString);
   }, [router.query]);
 

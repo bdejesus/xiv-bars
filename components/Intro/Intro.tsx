@@ -23,7 +23,7 @@ export default function Intro({ jobs, className }: Props) {
               <h2 className={styles.title} id="jobSelectTitle">
                 { I18n.Intro.select_a_job }
               </h2>
-              <JobMenu jobs={jobs} />
+              <JobMenu />
             </>
           ) : (
             <div className="system-message error">
