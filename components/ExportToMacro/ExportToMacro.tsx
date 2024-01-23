@@ -96,7 +96,7 @@ export function ExportToMacros() {
     <div className={styles.container}>
       <button
         type="button"
-        title="Export to Macro"
+        data-title="Export to Macro"
         className={`${styles.macroBtn} button btn-icon`}
         onClick={handleShowMacros}
       >

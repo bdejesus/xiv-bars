@@ -17,9 +17,13 @@ export default function DetailPanel() {
   return (
     <div className={styles.container}>
       <div className={styles.actions}>
-        <Sharing />
-        <ExportToMacros />
-        <EditLayoutButton />
+        <div className={styles.actionGroup}>
+          <Sharing />
+          <ExportToMacros />
+        </div>
+        <div className={styles.actionGroup}>
+          <EditLayoutButton />
+        </div>
       </div>
 
       { (readOnly && title && user)

@@ -20,7 +20,8 @@ export default function EditLayoutButton() {
       type="button"
       className="button btn-icon"
       onClick={handleEditLayout}
-      title="Edit Layout"
+      data-title="Edit Layout"
+      data-title-anchor="right"
       disabled={!readOnly}
     >
       <Icon id={Icons.EDIT} alt="Edit" />

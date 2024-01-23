@@ -19,6 +19,7 @@ button,
   justify-content: center;
   outline: none;
   padding: 0 $spacing-base;
+  position: relative;
   transition:
     background-image $timing-default ease,
     background-color $timing-default ease,
@@ -28,6 +29,57 @@ button,
   + button,
   + .button {
     margin-left: 1em;
+  }
+
+  &[data-title] {
+    &::before, &::after {
+      display: flex;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      transition-duration: $timing-default;
+      transition-property: opacity;
+      transition-timing-function: ease;
+    }
+
+    &::before {
+      border-bottom: 8px solid #333;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: none;
+      bottom: -4px;
+      content: '';
+      height: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 0;
+    }
+
+    &::after {
+      background-color: #333;
+      border-radius: $border-radius;
+      box-shadow: 0 3px 6px rgb(0 0 0 / 33%);
+      color: #fff;
+      content: attr(data-title);
+      font-size: $font-size-xs;
+      left: 50%;
+      margin-top: 4px;
+      padding: $spacing-xs $spacing-sm;
+      top: 100%;
+      transform: translate(-50%, 0);
+      white-space: nowrap;
+    }
+  }
+
+  &[data-title-anchor='left']::after {
+    left: 0;
+    transform: translate(0, 0);
+  }
+
+  &[data-title-anchor='right']::after {
+    left: unset;
+    right: 0;
+    transform: translate(0, 0);
   }
 
   .icon {
@@ -44,6 +96,13 @@ button,
 
     .icon {
       filter: $icon-filter-white drop-shadow($button-label-shadow);
+    }
+
+    &[data-title] {
+      &::before,
+      &::after {
+        opacity: 1;
+      }
     }
   }
 
