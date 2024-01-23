@@ -93,6 +93,7 @@ function SaveForm() {
   }
 
   if (!user) return <SignInPrompt />;
+
   return (
     <div className={styles.saveForm}>
       <form className={`${styles.form} container`}>
