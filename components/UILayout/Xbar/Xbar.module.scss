@@ -70,6 +70,7 @@ $group-padding: 10px;
     order: 0;
     padding-bottom: 0;
     padding-top: $spacing-base;
+    gap: $spacing-lg * 5;
 
     :global(.right) {
       border-left: none;
