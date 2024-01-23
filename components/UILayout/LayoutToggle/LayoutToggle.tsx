@@ -6,7 +6,7 @@ import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
   const router = useRouter();
-  const { layout, readOnly } = useAppState();
+  const { layoutId, layout, readOnly } = useAppState();
   const [layoutKey, setLayoutKey] = useState(layouts[layout as keyof typeof layouts]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function LayoutToggle() {
           className={`${styles.buttonToggle} button btn-alt`}
           type="button"
           onClick={toggleHotbarLayout}
-          disabled={readOnly}
+          disabled={!readOnly && layoutId}
         >
           <span
             className={styles.label}

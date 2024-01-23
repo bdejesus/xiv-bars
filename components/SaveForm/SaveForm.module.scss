@@ -1,17 +1,22 @@
 @import "styles/mixins";
 
 .saveForm {
+  padding-top: $spacing-sm;
+
   input,
   textarea {
     background-color: #fff;
     box-shadow: inset 1px 1px 0 #ccc, inset -1px -1px 0 #eee;
     color: #333;
+
+    &:focus {
+      outline: 3px solid $color-alt-dark;
+    }
   }
+
 }
 
 .form {
-  padding: $spacing-base;
-
   :global(.control) {
     margin-bottom: $spacing-xs;
   }
@@ -24,9 +29,9 @@
 
 .descriptionField {
   font-size: $font-size-base;
-  height: 74px;
-  max-height: 218px;
-  min-height: 74px;
+  height: 380px;
+  max-height: 60vh;
+  min-height: 120px;
   resize: vertical;
 }
 

@@ -60,14 +60,15 @@ export function App() {
               <EditLayoutButton />
             </div>
 
-            <div className={styles.detailPanelBody}>
-              { (readOnly && title && user)
-                ? (
-                  <>
-                    <h3>{title}</h3>
-
+            { (readOnly && title && user)
+              ? (
+                <>
+                  <div className={styles.detailPanelHead}>
+                    <h3 className="mt-0 mb-0">{title}</h3>
                     <div className={styles.owner}>by {user.name}</div>
+                  </div>
 
+                  <div className={styles.detailPanelBody}>
                     { description && (
                       <ReactMarkdown components={{
                         h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
@@ -76,10 +77,11 @@ export function App() {
                         {description}
                       </ReactMarkdown>
                     )}
-                  </>
-                )
-                : <SaveForm />}
-            </div>
+                  </div>
+                </>
+              )
+              : <div className={styles.detailPanelBody}><SaveForm /></div> }
+
           </div>
 
           <div className={styles.mainPanel}>
