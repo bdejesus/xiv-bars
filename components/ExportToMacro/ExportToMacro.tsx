@@ -3,7 +3,7 @@
 import { createRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import I18n from 'lib/I18n/locale/en-US';
 import Modal from 'components/Modal';
 import type { SlotProps } from 'types/Action';
@@ -96,12 +96,12 @@ export function ExportToMacros() {
     <div className={styles.container}>
       <button
         type="button"
-        title="Export to Macro"
+        data-title="Export to Macro"
         className={`${styles.macroBtn} button btn-icon`}
         onClick={handleShowMacros}
       >
-        <Icon id="macro" title={I18n.ExportToMacro.export_to_macro} />
-        {/* {I18n.ExportToMacro.export_to_macro} */}
+        <Icon id={Icons.MACRO} alt={I18n.ExportToMacro.export_to_macro} />
+        <span className="btn-label-hidden">{I18n.ExportToMacro.export_to_macro}</span>
       </button>
 
       <Modal

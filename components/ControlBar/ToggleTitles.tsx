@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { AppAction } from 'components/App/actions';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
@@ -17,8 +17,8 @@ function ToggleTitles() {
       data-active={showTitles}
       className={`${styles.toggleTitlesBtn} button btn-alt`}
     >
-      <Icon id="titles" title={I18n.ControlBar.ToggleTitles.titles_icon} />
-      {I18n.ControlBar.ToggleTitles.titles}
+      <Icon id={Icons.TITLES} alt={I18n.ControlBar.ToggleTitles.titles_icon} />
+      <span className="btn-label">{I18n.ControlBar.ToggleTitles.titles}</span>
     </button>
   );
 }

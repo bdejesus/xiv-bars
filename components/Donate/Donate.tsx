@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import styles from './Donate.module.scss';
 
 export function Donate() {
@@ -14,7 +14,7 @@ export function Donate() {
         type="button"
         onClick={() => setCollapsed(true)}
       >
-        <Icon id="remove" type="white" title="Close" />
+        <Icon id={Icons.REMOVE} type="white" alt="Close" />
         <span className="btn-label-hidden">Close</span>
       </button>
       <a

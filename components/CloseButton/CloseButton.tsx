@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from 'components/Icon';
+import Icon, { Icons } from 'components/Icon';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './CloseButton.module.scss';
 
@@ -15,7 +15,7 @@ export default function CloseButton({ onClick, className }: Props) {
       className={`${styles.button} ${className} button btn-alt`}
       onClick={onClick}
     >
-      <Icon id="remove" title={I18n.Global.close} type="white" />
+      <Icon id={Icons.REMOVE} alt={I18n.Global.close} type="white" />
       {I18n.Global.close}
     </button>
   );
