@@ -37,10 +37,7 @@ button,
       opacity: 0;
       pointer-events: none;
       position: absolute;
-      transition-duration: $timing-default;
-      transition-property: opacity;
-      transition-timing-function: ease;
-      transition-delay: $timing-fast;
+      transition: opacity $timing-default ease $timing-fast;
     }
 
     &::before {
