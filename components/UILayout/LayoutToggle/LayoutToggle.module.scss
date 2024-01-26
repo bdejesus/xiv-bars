@@ -4,48 +4,5 @@
   align-self: flex-start;
   display: flex;
   justify-content: space-between;
-  padding: 0 $spacing-sm;
-
-  .buttonToggle {
-    align-items: stretch;
-    display: flex;
-    flex-direction: row;
-    height: 32px;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-    z-index: 2;
-
-    .label {
-      align-items: center;
-      color: #ddd;
-      display: flex;
-      height: 32px;
-      padding: 0 16px;
-      transition: background 0.33s ease, box-shadow 0.33s ease, color 0.33s ease;
-
-      &[data-disabled="true"] {
-        display: none;
-      }
-
-      &[data-selected="true"] {
-        background-color: $panel-bg;
-        color: $color-alt;
-      }
-    }
-
-    &:hover,
-    &:active {
-      background-color: $color-gray-dark-2;
-      color: $color-alt;
-
-      .label[data-selected="false"] {
-        color: $color-alt;
-      }
-    }
-
-    &[disabled] {
-      pointer-events: none;
-    }
-  }
+  margin: 0 $spacing-base;
 }

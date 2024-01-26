@@ -1,5 +1,6 @@
 import { useAppState } from 'components/App/context';
 import LayoutToggle from 'components/UILayout/LayoutToggle';
+import ActionsToggle from 'components/ActionsToggle';
 import ToggleTitles from './ToggleTitles';
 import ToggleMaxLvl from './ToggleMaxLvl';
 import styles from './ControlBar.module.scss';
@@ -22,9 +23,10 @@ export function ControlBar() {
           )}
 
           { !readOnly && (
-            <div className={styles.controls}>
+            <>
               <LayoutToggle />
-            </div>
+              <ActionsToggle />
+            </>
           )}
         </div>
       </div>

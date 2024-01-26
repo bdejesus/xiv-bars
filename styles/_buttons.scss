@@ -196,7 +196,7 @@ button,
   }
 }
 
-.button.btn-icon {
+.btn-icon.button {
   font-size: $font-size-sm;
   height: 30px;
   padding: 0;
@@ -207,10 +207,47 @@ button,
   }
 }
 
-.button.btn-block {
+.btn-block.button {
   width: 100%;
 }
 
 .btn-label-hidden {
   display: none;
+}
+
+.btn-switch.button {
+  align-items: stretch;
+  height: 30px;
+  overflow: hidden;
+  padding: 0;
+
+  .label {
+    align-items: center;
+    color: #ddd;
+    display: flex;
+    padding: 0 16px;
+
+    &[data-disabled="true"] {
+      display: none;
+    }
+
+    &[data-selected="true"] {
+      background-color: $color-alt;
+      color: #fff;
+      text-shadow: 0 1px 2px darken($color-alt, 50%);
+    }
+  }
+
+  &:hover,
+  &:active {
+    color: $color-alt;
+
+    .label[data-selected="false"] {
+      color: $color-alt;
+    }
+  }
+
+  &[disabled] {
+    pointer-events: none;
+  }
 }

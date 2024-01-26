@@ -17,7 +17,8 @@ export function LayoutToggle() {
     const key = layoutKey === 'chotbar' ? layouts[1] : layouts[0];
     const layoutIndex = layouts.indexOf(key).toString();
     const { query, pathname } = router;
-    const queryParams = { pathname, query: { ...query, l: layoutIndex, s1: undefined } };
+    const queryParams = { pathname, query: { ...query, l: layoutIndex } };
+
     router.push(queryParams, undefined, { shallow: true });
   }
 
@@ -26,13 +27,13 @@ export function LayoutToggle() {
       <div className="controlGroup">
         <button
           id="layoutToggle"
-          className={`${styles.buttonToggle} button btn-alt`}
+          className="button btn-alt btn-switch"
           type="button"
           onClick={toggleHotbarLayout}
           disabled={!readOnly && !!layoutId}
         >
           <span
-            className={styles.label}
+            className="label"
             data-selected={layout === 0}
             data-disabled={readOnly && layoutKey !== 'chotbar'}
           >
@@ -40,7 +41,7 @@ export function LayoutToggle() {
           </span>
 
           <span
-            className={styles.label}
+            className="label"
             data-selected={layout === 1}
             data-disabled={readOnly && layoutKey !== 'hotbar'}
           >

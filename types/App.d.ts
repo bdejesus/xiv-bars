@@ -8,6 +8,7 @@ export interface LayoutProps {
   xhb?: number,
   wxhb?: number,
   exhb?: number,
+  pvp?: boolean,
   encodedSlots?: string,
   title?: string,
   description?: string,

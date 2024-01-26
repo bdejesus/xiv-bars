@@ -47,7 +47,8 @@ interface DecodeSlotsProps {
   xhb?: string,
   exhb?: string,
   hb?: string,
-  l?: string
+  l?: string,
+  pvp?: string
 }
 
 export function decodeSlots(props:DecodeSlotsProps) {
@@ -62,7 +63,8 @@ export function decodeSlots(props:DecodeSlotsProps) {
     xhb: props.xhb ? parseInt(props.xhb, 10) : appState.xhb || defaultState.xhb,
     exhb: props.exhb ? parseInt(props.exhb, 10) : appState.exhb || defaultState.exhb,
     hb: formatHbConfig || appState.hb || defaultState.hb,
-    layout: props.l ? parseInt(props.l, 10) : appState.layout || defaultState.layout
+    layout: props.l ? parseInt(props.l, 10) : appState.layout || defaultState.layout,
+    pvp: props.pvp ? props.pvp === '1' : defaultState.layout
   };
 
   return payload;
