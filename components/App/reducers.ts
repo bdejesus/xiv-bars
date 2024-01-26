@@ -98,6 +98,13 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       };
     }
 
+    case AppAction.LOAD_JOBACTIONS: {
+      return {
+        ...state,
+        actions: action.payload?.actions
+      };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

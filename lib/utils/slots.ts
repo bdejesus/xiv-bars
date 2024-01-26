@@ -64,7 +64,7 @@ export function decodeSlots(props:DecodeSlotsProps) {
     exhb: props.exhb ? parseInt(props.exhb, 10) : appState.exhb || defaultState.exhb,
     hb: formatHbConfig || appState.hb || defaultState.hb,
     layout: props.l ? parseInt(props.l, 10) : appState.layout || defaultState.layout,
-    pvp: props.pvp ? props.pvp === '1' : defaultState.layout
+    pvp: props.pvp ? parseInt(props.pvp, 10) : defaultState.layout
   };
 
   return payload;

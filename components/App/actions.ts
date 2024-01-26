@@ -1,5 +1,6 @@
 export const AppAction = {
   UPDATE_LAYOUT: 'updateLayout',
+  LOAD_JOBACTIONS: 'loadJobActions',
   SLOT_ACTIONS: 'bulkLoadActionsToSlots',
   SLOT_ACTION: 'setActionToSlot',
   TOGGLE_TITLES: 'toggleTitles',

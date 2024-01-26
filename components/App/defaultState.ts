@@ -7,7 +7,7 @@ export const defaultState = {
   xhb: 1,
   wxhb: 0,
   exhb: 0,
-  pvp: false,
+  pvp: 0,
   jobs: Jobs,
   readOnly: false,
   selectedJob: undefined,

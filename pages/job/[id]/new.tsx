@@ -76,7 +76,9 @@ export default function Index({
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  type pvpProp = 0 | 1 | undefined;
   const id = context.params?.id;
+  const pvp = context.params?.pvp ? parseInt(context.params.pvp as string, 10) : 0;
 
   // Get Selected Job
   const selectedJob = id
@@ -94,7 +96,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // Fetch Actions
   if (selectedJob) {
-    jobActions = await listJobActions(selectedJob);
+    jobActions = await listJobActions(selectedJob, pvp as pvpProp);
     // TODO: Refactor this is pull IDS from ClassJob object instead of ROLE_ACTION_IDS
     if (selectedJob.Role) {
       roleActions = await listRoleActions(selectedJob);
