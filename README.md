@@ -33,12 +33,13 @@ Submit feature requests from the [Issues section](https://github.com/bdejesus/xi
 
 - [View Open Feature Requests](https://github.com/bdejesus/xiv-bars/issues?q=is%3Aopen+is%3Aissue+label%3A%22feature+request%22)
 
-### Contribute Code
+### Find an Issue to Work On
 
 If you're interested in contributing some code, take a look at [open issues](https://github.com/bdejesus/xiv-bars/issues) and create a pull request that addresses it. I'll review when I get the chance, but please be patient.
 
 - [View Open Issues](https://github.com/bdejesus/xiv-bars/issues)
-- [Set up the dev environment](#dev-environment)
+- [View the Web Project](https://github.com/users/bdejesus/projects/2/views/2)
+- [Setting up a Dev Environment](#setting-up-a-dev-environment)
 
 ### Donate
 
@@ -46,9 +47,9 @@ If you find this tool helpful, [please consider donating](https://www.buymeacoff
 
 - [Donate](https://www.buymeacoffee.com/bejezus)
 
-## Dev Environment
+## Setting up a Dev Environment
 
-### Setting up
+### Install Node
 
 You'll need to install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) (or [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm))
 
@@ -60,16 +61,22 @@ Install dependencies
 yarn install
 ```
 
-Fetch and compile data from XIVAPI
+Fetch and compile static data from XIVAPI
 
 ```bash
 yarn build:data
 ```
 
-Run the app
+Running the app locally
 
 ```bash
 yarn dev
 ```
 
 Once the app is running in development mode, open [http://localhost:3000](http://localhost:5000) to view it in the browser.
+
+### Running Tests
+
+```bash
+yarn test
+```
