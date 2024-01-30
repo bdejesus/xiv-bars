@@ -1,6 +1,6 @@
 import { useSession } from 'next-auth/react';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
 import Icon, { Icons } from 'components/Icon';
 
 export default function EditLayoutButton() {
@@ -12,7 +12,7 @@ export default function EditLayoutButton() {
   if (!layoutId || !session || !canEdit) return null;
 
   function handleEditLayout() {
-    appDispatch({ type: AppAction.EDIT_LAYOUT });
+    appDispatch({ type: AppActions.EDIT_LAYOUT });
   }
 
   return (

@@ -9,7 +9,7 @@ import UILayout from 'components/UILayout';
 import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
 
 import styles from './App.module.scss';
 
@@ -27,7 +27,7 @@ export function App() {
   const router = useRouter();
 
   useEffect(() => {
-    appDispatch({ type: AppAction.INITIALIZE });
+    appDispatch({ type: AppActions.INITIALIZE });
   }, []);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export function App() {
       appState
     });
 
-    appDispatch({ type: AppAction.SLOT_ACTIONS, payload });
+    appDispatch({ type: AppActions.SLOT_ACTIONS, payload });
   }, [router.query]);
 
   return (

@@ -2,12 +2,12 @@ import { buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
 import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
 
 export default function AppReducer(state: AppState, action: AppDispatchActions) {
   const { layout } = state;
   switch (action.type) {
-    case AppAction.SLOT_ACTIONS: {
+    case AppActions.SLOT_ACTIONS: {
       const slottedActions = (action.payload?.encodedSlots)
         ? setActionsToSlots({
           encodedSlots: action.payload.encodedSlots,
@@ -24,7 +24,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       };
     }
 
-    case AppAction.SLOT_ACTION: {
+    case AppActions.SLOT_ACTION: {
       if (action.payload?.action && action.payload?.slotID) {
         const encodedSlots = setActionToSlot({
           action: action.payload.action,
@@ -38,19 +38,15 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       return state;
     }
 
-    case AppAction.TOGGLE_TITLES: {
+    case AppActions.TOGGLE_TITLES: {
       return { ...state, showTitles: !state.showTitles };
     }
 
-    case AppAction.TOGGLE_LVLS: {
+    case AppActions.TOGGLE_LVLS: {
       return { ...state, showAllLvl: !state.showAllLvl };
     }
 
-    case AppAction.TOGGLE_MODAL: {
-      return { ...state, showModal: !state.showModal || false };
-    }
-
-    case AppAction.EDIT_LAYOUT: {
+    case AppActions.EDIT_LAYOUT: {
       return {
         ...state,
         readOnly: false,
@@ -59,11 +55,11 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       };
     }
 
-    case AppAction.PUBLISH_LAYOUT: {
+    case AppActions.PUBLISH_LAYOUT: {
       return { ...state, showPublish: true, message: undefined };
     }
 
-    case AppAction.CANCEL_EDITS: {
+    case AppActions.CANCEL_EDITS: {
       return {
         ...state,
         readOnly: true,
@@ -72,7 +68,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       };
     }
 
-    case AppAction.LAYOUT_SAVED: {
+    case AppActions.LAYOUT_SAVED: {
       return {
         ...state,
         ...action.payload,
@@ -82,14 +78,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       };
     }
 
-    case AppAction.UPDATE_MESSAGE: {
-      if (action.payload?.message) {
-        return { ...state, message: action.payload.message };
-      }
-      return state;
-    }
-
-    case AppAction.INITIALIZE: {
+    case AppActions.INITIALIZE: {
       return {
         ...state,
         encodedSlots: defaultState.encodedSlots,
@@ -98,7 +87,7 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       };
     }
 
-    case AppAction.LOAD_JOBACTIONS: {
+    case AppActions.LOAD_JOBACTIONS: {
       return {
         ...state,
         actions: action.payload?.actions

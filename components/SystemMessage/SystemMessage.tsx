@@ -1,13 +1,13 @@
-import { useAppState } from 'components/App/context';
+import { useSystemState } from 'components/System';
 
 export function SystemMessage() {
-  const { message } = useAppState();
+  const { message } = useSystemState();
 
   if (!message) return null;
 
   return (
-    <div className={`system-message ${message.type}`}>
-      { message.body }
+    <div className={`system-message ${message.status}`}>
+      { message.text }
     </div>
   );
 }

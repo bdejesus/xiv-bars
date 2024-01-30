@@ -1,4 +1,4 @@
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
 import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
 
@@ -8,7 +8,7 @@ export interface LayoutProps {
   xhb?: number,
   wxhb?: number,
   exhb?: number,
-  pvp?: 0 | 1,
+  pvp?: number,
   encodedSlots?: string,
   title?: string,
   description?: string,
@@ -28,15 +28,10 @@ export interface AppState extends LayoutProps {
   selectedJob?: ClassJobProps,
   showTitles?: boolean,
   showAllLvl?: boolean,
-  showModal?: boolean,
   showPublish?: boolean,
   viewAction?: string,
   roleActions?: ActionProps[],
-  actions?: ActionProps[],
-  message?: {
-    type: string,
-    body: string
-  },
+  actions: ActionProps[],
   chotbar?: {[key: string]: object},
   hotbar?: {[key: string]: object},
 }
@@ -51,63 +46,48 @@ interface DispatchPayload {
   action?: ActionProps,
   actions?: ActionProps[],
   hbId?: string,
-  showModal?: boolean,
   viewAction?: string,
-  message?: {
-    type: string,
-    body: string
-  },
   encodedSlots?: string
 }
 
 export interface SlotActions {
-  type: AppAction.SLOT_ACTIONS,
+  type: AppActions.SLOT_ACTIONS,
   payload?: DispatchPayload
 }
 
 export interface SlotAction {
-  type: AppAction.SLOT_ACTION,
+  type: AppActions.SLOT_ACTION,
   payload?: DispatchPayload
 }
 
 export interface ToggleTitles {
-  type: AppAction.TOGGLE_TITLES,
+  type: AppActions.TOGGLE_TITLES,
   payload?: DispatchPayload
 }
 
 export interface ToggleLvls {
-  type: AppAction.TOGGLE_LVLS,
-  payload?: DispatchPayload
-}
-
-export interface ToggleModal {
-  type: AppAction.TOGGLE_MODAL,
+  type: AppActions.TOGGLE_LVLS,
   payload?: DispatchPayload
 }
 
 export interface EditLayout {
-  type: AppAction.EDIT_LAYOUT,
+  type: AppActions.EDIT_LAYOUT,
   payload?: DispatchPayload
 }
 
 export interface CancelLayout {
-  type: AppAction.CANCEL_EDITS,
+  type: AppActions.CANCEL_EDITS,
   payload?: DispatchPayload
 }
 
 export interface PublishLayout {
-  type: AppAction.PUBLISH_LAYOUT,
+  type: AppActions.PUBLISH_LAYOUT,
   payload?: DispatchPayload
 }
 
 export interface LayoutSaved {
-  type: AppAction.LAYOUT_SAVED,
+  type: AppActions.LAYOUT_SAVED,
   payload?: DispatchPayload
 }
 
-export interface UpdateMessage {
-  type: AppAction.UPDATE_MESSAGE,
-  payload?: DispatchPayload
-}
-
-export type AppDispatchActions = SlotActions | SlotAction | ToggleTitles | ToggleLvls | ToggleModal | EditLayout | CancelLayout | PublishLayout | LayoutSaved | UpdateMessage;
+export type AppDispatchActions = SlotActions | SlotAction | ToggleTitles | ToggleLvls | EditLayout | CancelLayout | PublishLayout | LayoutSaved;

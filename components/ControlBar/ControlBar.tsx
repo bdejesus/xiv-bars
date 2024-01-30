@@ -1,4 +1,5 @@
 import { useAppState } from 'components/App/context';
+import { useSystemState } from 'components/System';
 import LayoutToggle from 'components/UILayout/LayoutToggle';
 import ActionsToggle from 'components/ActionsToggle';
 import ToggleTitles from './ToggleTitles';
@@ -6,7 +7,8 @@ import ToggleMaxLvl from './ToggleMaxLvl';
 import styles from './ControlBar.module.scss';
 
 export function ControlBar() {
-  const { readOnly, showModal } = useAppState();
+  const { readOnly } = useAppState();
+  const { showModal } = useSystemState();
 
   return (
     <div className={styles.controlBar} data-active-modal={showModal}>

@@ -7,7 +7,7 @@ import {
 } from 'lib/api';
 import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
-import { AppContextProvider } from 'components/App/context';
+import { AppContextProvider, useAppState } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import Hero from 'components/Hero';
 import Lore from 'components/Lore';

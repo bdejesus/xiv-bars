@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { listJobActions } from 'lib/api';
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
 import type { ClassJobProps } from 'types/ClassJob';
 
 export default function ActionsToggle() {
@@ -30,7 +30,7 @@ export default function ActionsToggle() {
     async function getActions(job:ClassJobProps) {
       const actionsToLoad = await listJobActions(job, pvp);
       appDispatch({
-        type: AppAction.LOAD_JOBACTIONS,
+        type: AppActions.LOAD_JOBACTIONS,
         payload: { actions: actionsToLoad }
       });
     }

@@ -4,7 +4,8 @@ import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
+import { SystemActions, useSystemDispatch } from 'components/System';
 import I18n from 'lib/I18n/locale/en-US';
 import SignInPrompt from './SignInPrompt';
 import styles from './SaveForm.module.scss';
@@ -30,6 +31,7 @@ function SaveForm() {
   } = useAppState();
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
+  const systemDispatch = useSystemDispatch();
 
   function saveLayout() {
     const body = JSON.stringify({
@@ -57,41 +59,34 @@ function SaveForm() {
       .then((json) => {
         const { layoutView, layouts } = json;
 
-        appDispatch({
-          type: AppAction.LAYOUT_SAVED,
+        appDispatch({ type: AppActions.LAYOUT_SAVED, payload: layoutView });
+
+        systemDispatch({
+          type: SystemActions.SET_MESSAGE,
           payload: {
-            ...layoutView,
-            message: {
-              type: 'success',
-              body: I18n.SaveForm.success
-            }
+            status: 'SUCCESS',
+            text: I18n.SaveForm.success
           }
         });
 
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
-        router.push(
-          `/job/${layoutView.jobId}/${layoutView.id}`,
-          undefined,
-          { shallow: true }
-        );
+        router.push(`/job/${layoutView.jobId}/${layoutView.id}`, undefined, { shallow: true });
       })
       .catch((error) => {
         console.error(error);
-        appDispatch({
-          type: AppAction.UPDATE_MESSAGE,
+        systemDispatch({
+          type: SystemActions.SET_MESSAGE,
           payload: {
-            message: {
-              type: 'error',
-              body: I18n.SaveForm.failed
-            }
+            status: 'FAIL',
+            text: I18n.SaveForm.failed
           }
         });
       });
   }
 
   function cancelEdit() {
-    appDispatch({ type: AppAction.CANCEL_EDITS });
+    appDispatch({ type: AppActions.CANCEL_EDITS });
   }
 
   if (!session) return <SignInPrompt />;
