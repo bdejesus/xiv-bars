@@ -2,6 +2,7 @@ import { AppActions } from 'components/App/actions';
 import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutProps } from 'types/Layout';
+import type { URLParams } from 'types/Page';
 
 export interface AppState {
   viewData: LayoutProps,
@@ -30,7 +31,7 @@ interface DispatchPayload {
   selectedJob?: ClassJobProps,
   slotID?: string,
   slottedActions?: SlotProps[],
-  urlParams?: object,
+  urlParams?: URLParams,
 }
 
 type AppActionTypes =

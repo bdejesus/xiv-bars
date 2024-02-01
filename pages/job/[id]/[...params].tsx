@@ -28,7 +28,6 @@ export default function Index(props:PageProps) {
     roleActions,
     viewAction
   } = props;
-
   const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${viewData?.id}`;
   const pageTitle = `${viewData?.title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;

@@ -1,6 +1,6 @@
 import { buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
-import { setActionToSlot, setActionsToSlots, decodeSlots } from 'lib/utils/slots';
+import { setActionToSlot, setActionsToSlots, mergeParamsToView } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
 import { AppActions } from 'components/App/actions';
 
@@ -11,15 +11,11 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     case AppActions.LOAD_VIEW_DATA: {
       if (payload?.viewData) {
         const readOnly = payload.viewAction === 'show';
-        const layoutParams = decodeSlots({
-          ...payload.urlParams,
-          encodedSlots: payload.viewData.encodedSlots,
-          appState: {
-            ...state,
-            viewData: {
-              ...state.viewData,
-              ...payload.viewData
-            }
+        const layoutParams = mergeParamsToView({
+          params: payload.urlParams,
+          viewData: {
+            ...state.viewData,
+            ...payload.viewData
           }
         });
 

@@ -17,9 +17,8 @@ export default function LayoutControl({ id, defaultValue }: Props) {
   function handleLayoutControl(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.currentTarget;
     const position:number = hotbarKeyPosition(id);
-    const configValue:number = parseInt(value, 10);
-    const updatedHb = configValue
-      ? viewData.hb.split(',')?.toSpliced(position, 1, value)
+    const updatedHb = value
+      ? viewData.hb?.toSpliced(position, 1, parseInt(value, 10))
       : viewData.hb;
     const { query, pathname } = router;
     const queryParams = { pathname, query: { ...query, hb: updatedHb?.toString() } };

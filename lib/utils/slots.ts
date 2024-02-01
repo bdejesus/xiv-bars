@@ -10,9 +10,9 @@ import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
 import { layouts, chotbar, hotbar } from 'lib/xbars';
 
-import type { AppState } from 'types/App';
-import type { SlotProps, ActionProps } from 'types/Action';
+import type { URLParams } from 'types/Page';
 import type { LayoutParamsProps } from 'types/Layout';
+import type { SlotProps, ActionProps } from 'types/Action';
 
 function assignLayoutTemplate(layoutID:number) {
   const templates = [chotbar, hotbar];
@@ -39,43 +39,49 @@ function encodeSlots(slots:object) {
   return queryString;
 }
 
-interface DecodeSlotsProps {
-  appState: AppState
-  id?: number,
-  encodedSlots?: string,
-  s1?: string,
-  s?: string,
-  wxhb?: string,
-  xhb?: string,
-  exhb?: string,
-  hb?: string,
-  l?: string,
-  pvp?: string
-}
-
-export function decodeSlots(props:DecodeSlotsProps) {
-  const { appState } = props;
-  const { viewData } = appState;
-  const defaultLayout = defaultState.viewData;
-  const encodedSlots = props.encodedSlots
-    || props.s1
-    || props.s
-    || viewData.encodedSlots
-    || defaultLayout.encodedSlots;
-  const wxhb = props.wxhb ? parseInt(props.wxhb, 10) : viewData.wxhb || defaultLayout.wxhb;
-
-  const viewPayload:LayoutParamsProps = {
-    ...viewData,
-    encodedSlots,
-    wxhb,
-    xhb: props.xhb ? parseInt(props.xhb, 10) : viewData.xhb || defaultLayout.xhb,
-    exhb: props.exhb ? parseInt(props.exhb, 10) : viewData.exhb || defaultLayout.exhb,
-    hb: props.hb || viewData.hb || defaultLayout.hb,
-    layout: props.l ? parseInt(props.l, 10) : viewData.layout || defaultLayout.layout,
-    isPvp: props?.pvp ? parseInt(props.pvp, 10) === 1 : defaultLayout.isPvp
+export function parseParams(params:URLParams) {
+  const encodedSlots = params.s1 || params.s;
+  const wxhb = params.wxhb ? parseInt(params.wxhb, 10) : undefined;
+  const isPvp = () => {
+    if (params.isPvp === '0') return false;
+    if (params.isPvp === '1') return true;
+    return undefined;
   };
 
-  return viewPayload;
+  const formatProps = {
+    encodedSlots,
+    wxhb,
+    xhb: params.xhb ? parseInt(params.xhb, 10) : null,
+    exhb: params.exhb ? parseInt(params.exhb, 10) : null,
+    hb: params.hb ? params.hb.split(',').map((v:string) => parseInt(v, 10)) : null,
+    layout: params.l ? parseInt(params.l, 10) : null,
+    isPvp: isPvp()
+  };
+
+  const props = Object.entries(formatProps)
+    .reduce((newProps, [key, value]) => {
+      if (value) return { ...newProps, [key]: value };
+      return newProps;
+    }, {});
+
+  return props;
+}
+
+interface MergeParamsToViewProps {
+  params?: URLParams,
+  viewData: LayoutParamsProps
+}
+
+export function mergeParamsToView(props?:MergeParamsToViewProps) {
+  const { params, viewData } = props || {};
+  const parsedParams = params ? parseParams(params) : undefined;
+  const mergeData = {
+    ...defaultState.viewData,
+    ...viewData,
+    ...parsedParams
+  };
+
+  return mergeData;
 }
 
 interface GetActionKeyProps {
@@ -250,7 +256,7 @@ export function setActionsToSlots(props:SetActionsToSlotsProps) {
 
 const modules = {
   encodeSlots,
-  decodeSlots,
+  mergeParamsToView,
   assignActionIds,
   setActionToSlot,
   setActionsToSlots

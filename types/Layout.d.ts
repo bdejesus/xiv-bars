@@ -5,7 +5,7 @@ export interface LayoutParamsProps {
   wxhb: number,
   xhb: number,
   exhb: number,
-  hb: string,
+  hb: number[],
   isPvp: boolean,
   layout: number
 }

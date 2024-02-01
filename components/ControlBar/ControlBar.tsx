@@ -1,7 +1,7 @@
 import { useAppState } from 'components/App/context';
 import { useSystemState } from 'components/System';
 import LayoutToggle from 'components/UILayout/LayoutToggle';
-import ActionsToggle from 'components/ActionsToggle';
+import PvPToggle from 'components/PvPToggle';
 import ToggleTitles from './ToggleTitles';
 import ToggleMaxLvl from './ToggleMaxLvl';
 import styles from './ControlBar.module.scss';
@@ -27,7 +27,7 @@ export function ControlBar() {
           { !readOnly && (
             <>
               <LayoutToggle />
-              <ActionsToggle />
+              <PvPToggle />
             </>
           )}
         </div>

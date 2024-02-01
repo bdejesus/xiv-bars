@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { decodeSlots } from 'lib/utils/slots';
+import { mergeParamsToView } from 'lib/utils/slots';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import DetailPanel from 'components/DetailPanel';
@@ -22,17 +22,16 @@ export function App() {
     actions,
     roleActions,
     readOnly,
-    viewData
+    viewData,
   } = appState;
   const router = useRouter();
 
   useEffect(() => {
     // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
-    const viewPayload = decodeSlots({
-      ...router.query,
-      encodedSlots: readOnly ? viewData.encodedSlots : undefined,
-      appState
+    const viewPayload = mergeParamsToView({
+      params: router.query,
+      viewData
     });
 
     appDispatch({
