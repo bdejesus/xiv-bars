@@ -32,7 +32,7 @@ export function LayoutToggle() {
           className="button btn-alt btn-switch"
           type="button"
           onClick={toggleHotbarLayout}
-          disabled={!readOnly && !!viewData.id}
+          disabled={readOnly ? true : undefined}
         >
           <span
             className="label"

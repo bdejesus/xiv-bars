@@ -14,7 +14,6 @@ import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
 import App, { AppActions, useAppDispatch } from 'components/App';
-import { defaultState as defaultAppState } from 'components/App/defaultState';
 import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from 'apiData/Jobs.json';
 
@@ -24,6 +23,7 @@ import styles from '../../Index.module.scss';
 
 export default function Index(props:PageProps) {
   const {
+    viewData,
     selectedJob,
     actions,
     roleActions,
@@ -38,7 +38,7 @@ export default function Index(props:PageProps) {
     appDispatch({
       type: AppActions.LOAD_VIEW_DATA,
       payload: {
-        viewData: defaultAppState.viewData,
+        viewData,
         selectedJob,
         actions,
         roleActions,
@@ -81,17 +81,17 @@ export default function Index(props:PageProps) {
   );
 }
 
-type ContextParam = string | string[] | undefined;
+type ContextQuery = {
+  [key:string]: string | undefined
+};
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
-    const id:ContextParam = context.query?.id;
-    const pvp = context.query?.pvp === '1';
+    const { id, isPvp } = context.query as ContextQuery;
+    const pvp:boolean|undefined = !isPvp ? undefined : isPvp === '1';
 
     // Get Selected Job
-    const selectedJob = id
-      ? Jobs.find((job) => job.Abbr === id)
-      : null;
+    const selectedJob = id ? Jobs.find((job) => job.Abbr === id) : null;
     if (!selectedJob) return { notFound: true };
 
     const jobActions = selectedJob ? await listJobActions(selectedJob, pvp) : [];
@@ -99,7 +99,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const roleActions = selectedJob?.Role ? await listRoleActions(selectedJob) : [];
 
     const props = {
-      viewData: null,
+      viewData: context.query,
       selectedJob,
       actions: jobActions,
       roleActions,

@@ -10,7 +10,8 @@ export interface URLParams {
   exhb?: string,
   hb?: string,
   l?: string,
-  isPvp?: string
+  isPvp?: string,
+  id: string
 }
 
 export interface PageProps {

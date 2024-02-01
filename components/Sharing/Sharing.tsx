@@ -1,10 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 import { createRef, useEffect, useState } from 'react';
-import { jsonToQuery } from 'lib/utils/url';
+import { buildShareUrl } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
-import { defaultState } from 'components/App/defaultState';
 import Icon, { Icons } from 'components/Icon';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
@@ -16,27 +15,11 @@ export function Sharing() {
   const {
     readOnly,
     viewAction,
-    viewData,
     selectedJob
   } = useAppState();
-  const { hb } = viewData;
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
   const urlInput = createRef<HTMLInputElement>();
-
-  function buildShareUrl() {
-    const query = {
-      s1: router.query.s1,
-      xhb: router.query.xhb || defaultState.viewData.xhb,
-      wxhb: router.query.wxhb || defaultState.viewData.wxhb,
-      exhb: router.query.exhb || defaultState.viewData.exhb,
-      hb,
-      l: router.query.l || 0
-    };
-
-    const queryString = jsonToQuery(query);
-    return `${domain}/job/${selectedJob?.Abbr}/new?${queryString}`;
-  }
 
   function getLayoutUrl() {
     const layoutId: string | string[] | undefined = router.query.params;
@@ -60,8 +43,10 @@ export function Sharing() {
   }
 
   useEffect(() => {
-    const urlString = (readOnly && selectedJob) ? getLayoutUrl() : buildShareUrl();
-    setShareURL(urlString);
+    if (selectedJob) {
+      const urlString = readOnly ? getLayoutUrl() : buildShareUrl(selectedJob.Abbr, router.query);
+      setShareURL(urlString);
+    }
   }, [router.query]);
 
   return (

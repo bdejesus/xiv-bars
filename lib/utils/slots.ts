@@ -41,7 +41,6 @@ function encodeSlots(slots:object) {
 
 export function parseParams(params:URLParams) {
   const encodedSlots = params.s1 || params.s;
-  const wxhb = params.wxhb ? parseInt(params.wxhb, 10) : undefined;
   const isPvp = () => {
     if (params.isPvp === '0') return false;
     if (params.isPvp === '1') return true;
@@ -50,21 +49,23 @@ export function parseParams(params:URLParams) {
 
   const formatProps = {
     encodedSlots,
-    wxhb,
-    xhb: params.xhb ? parseInt(params.xhb, 10) : null,
-    exhb: params.exhb ? parseInt(params.exhb, 10) : null,
-    hb: params.hb ? params.hb.split(',').map((v:string) => parseInt(v, 10)) : null,
-    layout: params.l ? parseInt(params.l, 10) : null,
-    isPvp: isPvp()
+    wxhb: params.wxhb && parseInt(params.wxhb, 10),
+    xhb: params.xhb && parseInt(params.xhb, 10),
+    exhb: params.exhb && parseInt(params.exhb, 10),
+    hb: params.hb && params.hb.split(',').map((v:string) => parseInt(v, 10)),
+    layout: params.l && parseInt(params.l, 10),
+    isPvp: isPvp(),
+    jobId: params?.id
   };
 
-  const props = Object.entries(formatProps)
+  const filterUndefined = Object.entries(formatProps)
     .reduce((newProps, [key, value]) => {
-      if (value) return { ...newProps, [key]: value };
+      const hasValue:boolean = value !== undefined;
+      if (hasValue) return { ...newProps, [key]: value };
       return newProps;
     }, {});
 
-  return props;
+  return filterUndefined;
 }
 
 interface MergeParamsToViewProps {
@@ -74,7 +75,8 @@ interface MergeParamsToViewProps {
 
 export function mergeParamsToView(props?:MergeParamsToViewProps) {
   const { params, viewData } = props || {};
-  const parsedParams = params ? parseParams(params) : undefined;
+  const parsedParams = params && parseParams(params);
+
   const mergeData = {
     ...defaultState.viewData,
     ...viewData,

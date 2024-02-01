@@ -16,7 +16,7 @@ function SaveForm() {
   const titleField = createRef<HTMLInputElement>();
   const descriptionField = createRef<HTMLTextAreaElement>();
 
-  const { viewData, selectedJob } = useAppState();
+  const { viewData, viewAction, selectedJob } = useAppState();
   const {
     layout,
     encodedSlots,
@@ -130,7 +130,7 @@ function SaveForm() {
             {I18n.SaveForm.save_layout}
           </button>
 
-          { id && (
+          { viewAction !== 'new' && (
             <button
               onClick={cancelEdit}
               type="button"

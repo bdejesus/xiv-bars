@@ -13,7 +13,7 @@ export default function PvPToggle() {
     selectedJob,
     readOnly
   } = useAppState();
-  const isDisabled = (!readOnly && !!viewData.id);
+  const isDisabled = (readOnly && !!viewData.id);
 
   function handleTogglePvP() {
     const { query, pathname } = router;
@@ -43,7 +43,7 @@ export default function PvPToggle() {
         type="button"
         className="button btn-alt btn-switch"
         onClick={handleTogglePvP}
-        disabled={isDisabled}
+        disabled={isDisabled ? true : undefined}
       >
         <abbr
           className="label"

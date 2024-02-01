@@ -16,16 +16,14 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
           viewData: payload.viewData
         });
 
-        const slottedActions = payload.viewData.encodedSlots
-          ? setActionsToSlots({
-            encodedSlots: payload.viewData.encodedSlots as string,
-            layout: payload.viewData.layout as number,
-            actions: payload.actions,
-            roleActions: payload.roleActions,
-          })
-          : undefined;
+        const slottedActions = setActionsToSlots({
+          encodedSlots: viewData.encodedSlots as string,
+          layout: viewData.layout as number,
+          actions: payload.actions,
+          roleActions: payload.roleActions,
+        });
 
-        const newState = {
+        const newState:AppState = {
           ...state,
           ...payload,
           ...slottedActions,

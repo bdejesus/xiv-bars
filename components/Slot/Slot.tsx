@@ -9,6 +9,7 @@ import { SelectedActionAction } from 'components/SelectedAction/actions';
 import { useAppState } from 'components/App/context';
 import type { ActionProps } from 'types/Action';
 import { setActionToSlot } from 'lib/utils/slots';
+import { buildShareUrl } from 'lib/utils/url';
 import styles from './Slot.module.scss';
 
 interface Props {
@@ -22,7 +23,8 @@ export default function Slot({ id, className, action }: Props) {
     viewData,
     readOnly,
     actions,
-    roleActions
+    roleActions,
+    selectedJob
   } = useAppState();
   const {
     layout,
@@ -33,10 +35,26 @@ export default function Slot({ id, className, action }: Props) {
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
   const router = useRouter();
-  const { query, pathname } = router;
+  const { query } = router;
 
   function resetSlot(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.currentTarget.setAttribute('data-state', 'inactive');
+  }
+
+  function handleSlotUpdate(withAction?:ActionProps) {
+    const updatedSlots = setActionToSlot({
+      action: withAction || {},
+      slotID: id,
+      encodedSlots,
+      layout,
+      actions,
+      roleActions
+    });
+
+    if (selectedJob) {
+      const url = buildShareUrl(selectedJob.Abbr, { ...query, s1: updatedSlots });
+      router.push(url, undefined, { shallow: true });
+    }
   }
 
   function handleDragStart() {
@@ -45,20 +63,7 @@ export default function Slot({ id, className, action }: Props) {
 
   function handleDragLeave(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.preventDefault();
-    if (dragging) {
-      // Update URL route
-      const updatedSlots = setActionToSlot({
-        action: {},
-        slotID: id,
-        encodedSlots,
-        layout,
-        actions,
-        roleActions
-      });
-
-      const params = { pathname, query: { ...query, s1: updatedSlots } };
-      router.push(params, undefined, { shallow: true });
-    }
+    if (dragging) handleSlotUpdate();
     resetSlot(event);
   }
 
@@ -69,24 +74,8 @@ export default function Slot({ id, className, action }: Props) {
 
   function setSelectedAction() {
     if (readOnly || !id) return null;
-
     setDragging(false);
-
-    if (selectedAction) {
-      // Update URL route
-      const updatedSlots = setActionToSlot({
-        action: selectedAction,
-        slotID: id,
-        encodedSlots,
-        layout,
-        actions,
-        roleActions
-      });
-
-      const params = { pathname, query: { ...query, s1: updatedSlots } };
-      router.push(params, undefined, { shallow: true });
-    }
-
+    if (selectedAction) handleSlotUpdate(selectedAction);
     selectedActionDispatch({ type: SelectedActionAction.DESELECT });
     return null;
   }

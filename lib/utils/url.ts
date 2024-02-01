@@ -1,3 +1,6 @@
+import { domain } from 'lib/host';
+import type { URLParams } from 'types/Page';
+
 export function getUrlParams(url: string) {
   const search = url.split('?')[1];
   if (search) {
@@ -8,14 +11,12 @@ export function getUrlParams(url: string) {
   return {};
 }
 
-export function jsonToQuery(json: object) {
+export function jsonToQuery(json:object) {
   return Object.entries(json)
     .reduce((items:string[], [key, value]) => {
       const encodedKey = encodeURI(key);
       const encodedValue = encodeURI(value);
-      if (encodedValue !== 'undefined') {
-        return [...items, `${encodedKey}=${encodedValue}`];
-      }
+      if (encodedValue !== 'undefined') items.push(`${encodedKey}=${encodedValue}`);
       return items;
     }, [])
     .join('&');
@@ -25,9 +26,15 @@ export function queryToJson(hash: string) {
   return Object.fromEntries(new URLSearchParams(hash.slice(1)));
 }
 
+export function buildShareUrl(jobId:string, query:URLParams) {
+  const queryString = jsonToQuery(query);
+  return `${domain}/job/${jobId}/new?${queryString}`;
+}
+
 const exportFunctions = {
   getUrlParams,
   jsonToQuery,
-  queryToJson
+  queryToJson,
+  buildShareUrl,
 };
 export default exportFunctions;
