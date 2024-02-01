@@ -1,7 +1,6 @@
-export interface LayoutParamsProps {
+export interface ViewParamsProps {
   id: number | undefined,
   encodedSlots: string | undefined,
-  wxhb: number,
   wxhb: number,
   xhb: number,
   exhb: number,
@@ -10,7 +9,7 @@ export interface LayoutParamsProps {
   layout: number
 }
 
-export interface LayoutProps extends LayoutParamsProps {
+export interface ViewDataProps extends ViewParamsProps {
   createdAt?: string | null,
   deletedAt?: string | null,
   description?: string,

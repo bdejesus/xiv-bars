@@ -9,7 +9,7 @@ import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
 
 import type { ClassJobProps } from 'types/ClassJob';
-import type { LayoutProps } from 'types/Layout';
+import type { ViewDataProps } from 'types/View';
 import type { GetServerSideProps } from 'next';
 
 import styles from './index.module.scss';
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export default function Layouts({ selectedJob, layouts }: Props) {
-  const layoutsData: LayoutProps[] = JSON.parse(layouts);
+  const layoutsData: ViewDataProps[] = JSON.parse(layouts);
   const router = useRouter();
 
   useEffect(() => {

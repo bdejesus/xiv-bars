@@ -29,17 +29,19 @@ export function App() {
   useEffect(() => {
     // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
-    const viewPayload = mergeParamsToView({
-      params: router.query,
-      viewData
-    });
+    if (router.query.id) {
+      const viewPayload = mergeParamsToView({
+        params: router.query,
+        viewData
+      });
 
-    appDispatch({
-      type: AppActions.SLOT_ACTIONS,
-      payload: {
-        viewData: viewPayload
-      }
-    });
+      appDispatch({
+        type: AppActions.SLOT_ACTIONS,
+        payload: {
+          viewData: viewPayload
+        }
+      });
+    }
   }, [router.query]);
 
   return (
