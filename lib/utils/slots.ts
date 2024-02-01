@@ -256,6 +256,7 @@ export function setActionsToSlots(props:SetActionsToSlotsProps) {
 
 const modules = {
   encodeSlots,
+  parseParams,
   mergeParamsToView,
   assignActionIds,
   setActionToSlot,

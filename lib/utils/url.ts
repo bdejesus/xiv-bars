@@ -10,11 +10,14 @@ export function getUrlParams(url: string) {
 
 export function jsonToQuery(json: object) {
   return Object.entries(json)
-    .map(([key, value]) => {
+    .reduce((items:string[], [key, value]) => {
       const encodedKey = encodeURI(key);
       const encodedValue = encodeURI(value);
-      return `${encodedKey}=${encodedValue}`;
-    })
+      if (encodedValue !== 'undefined') {
+        return [...items, `${encodedKey}=${encodedValue}`];
+      }
+      return items;
+    }, [])
     .join('&');
 }
 

@@ -11,12 +11,9 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     case AppActions.LOAD_VIEW_DATA: {
       if (payload?.viewData) {
         const readOnly = payload.viewAction === 'show';
-        const layoutParams = mergeParamsToView({
+        const viewData = mergeParamsToView({
           params: payload.urlParams,
-          viewData: {
-            ...state.viewData,
-            ...payload.viewData
-          }
+          viewData: payload.viewData
         });
 
         const slottedActions = payload.viewData.encodedSlots
@@ -31,11 +28,8 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
         const newState = {
           ...state,
           ...payload,
-          viewData: {
-            ...payload.viewData,
-            ...layoutParams,
-          },
           ...slottedActions,
+          viewData,
           readOnly,
         };
 
