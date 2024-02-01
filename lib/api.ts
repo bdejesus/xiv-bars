@@ -8,8 +8,8 @@ import type { ActionProps } from 'types/Action';
 
 const baseUrl = 'https://xivapi.com';
 
-export async function listJobActions(job: ClassJobProps, pvp?:0|1) {
-  const isPvP = pvp || 0;
+export async function listJobActions(job: ClassJobProps, pvp?:boolean) {
+  const isPvP = pvp ? 1 : 0;
   const filters = ['DOM', 'DOW'].includes(job.Discipline) ? `IsPvP=${isPvP},` : '';
   const endpoint = `search?indexes=Action,CraftAction&filters=${filters}ClassJobTargetID`;
   const actions = await fetch(`${baseUrl}/${endpoint}=${job.ID}`)

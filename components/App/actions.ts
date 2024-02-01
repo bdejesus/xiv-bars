@@ -1,4 +1,5 @@
 export const AppActions = {
+  LOAD_VIEW_DATA: 'loadViewData',
   UPDATE_LAYOUT: 'updateLayout',
   LOAD_JOBACTIONS: 'loadJobActions',
   SLOT_ACTIONS: 'bulkLoadActionsToSlots',

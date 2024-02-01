@@ -15,7 +15,7 @@ export function ExportToMacros() {
   // const [copied, setCopied] = useState(false);
   const textarea = createRef<HTMLTextAreaElement>();
   const appState = useAppState();
-  const { layout } = appState;
+  const { layout } = appState.viewData;
   const layoutIndex = layout || 0;
   const currLayout = layouts[layoutIndex] as keyof typeof appState;
 

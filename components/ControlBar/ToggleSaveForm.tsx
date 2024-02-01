@@ -45,9 +45,10 @@ function EditButton({ showForm }: ButtonProps) {
 
 function ToggleSaveForm() {
   const session = useSession();
-  const { layoutId, user } = useAppState();
+  const { viewData } = useAppState();
+  const { id, user } = viewData;
   const appDispatch = useAppDispatch();
-  const canSaveNew = (session.status === 'authenticated' && !layoutId);
+  const canSaveNew = (session.status === 'authenticated' && !id);
   const canEdit = session.status === 'authenticated' && (session.data.user?.id === user?.id);
   function showForm() { appDispatch({ type: AppActions.EDIT_LAYOUT }); }
 

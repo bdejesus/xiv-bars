@@ -7,7 +7,8 @@ import styles from './Settings.module.scss';
 
 function Settings() {
   const router = useRouter();
-  const { xhb, wxhb, exhb } = useAppState();
+  const { viewData } = useAppState();
+  const { xhb, wxhb, exhb } = viewData;
 
   function handleSelect(id: string, event: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = event.currentTarget;

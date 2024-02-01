@@ -6,9 +6,9 @@ import { useAppState } from 'components/App/context';
 import styles from './UILayout.module.scss';
 
 export function LayoutView() {
-  const { layout } = useAppState();
+  const { viewData } = useAppState();
 
-  switch (layouts[layout as keyof typeof layouts]) {
+  switch (layouts[viewData.layout as keyof typeof layouts]) {
     case 'chotbar': return <Xbar />;
     case 'hotbar': return <Hotbar />;
     default: return <Xbar />;

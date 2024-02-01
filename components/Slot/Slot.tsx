@@ -19,8 +19,15 @@ interface Props {
 
 export default function Slot({ id, className, action }: Props) {
   const {
-    readOnly, layout, encodedSlots, actions, roleActions
+    viewData,
+    readOnly,
+    actions,
+    roleActions
   } = useAppState();
+  const {
+    layout,
+    encodedSlots
+  } = viewData;
 
   const selectedActionDispatch = useSelectedActionDispatch();
   const { selectedAction } = useSelectedActionState();

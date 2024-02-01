@@ -3,7 +3,6 @@ import db from 'lib/db';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutCard from 'components/LayoutCard';
 import Jobs from 'apiData/Jobs.json';
@@ -42,9 +41,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
       </Head>
 
-      <AppContextProvider selectedJob={selectedJob} viewAction="list">
-        <GlobalHeader selectedJob={selectedJob} />
-      </AppContextProvider>
+      <GlobalHeader selectedJob={selectedJob} />
 
       <div className="container section">
         <h1 className={`mt-md ${styles.title}`}>

@@ -1,93 +1,50 @@
 import { AppActions } from 'components/App/actions';
 import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
+import type { LayoutProps } from 'types/Layout';
 
-export interface LayoutProps {
-  layout?: number,
-  hb?: number[],
-  xhb?: number,
-  wxhb?: number,
-  exhb?: number,
-  pvp?: number,
-  encodedSlots?: string,
-  title?: string,
-  description?: string,
-  user?: {
-    name: string,
-    id: number
-  },
-  userId?: number,
-  jobId?: string,
-  layoutId?: number,
-  updatedAt?: string
-}
-
-export interface AppState extends LayoutProps {
-  jobs?: ClassJobProps[],
-  readOnly?: boolean,
+export interface AppState {
+  viewData: LayoutProps,
+  jobs: ClassJobProps[],
+  readOnly: boolean,
   selectedJob?: ClassJobProps,
   showTitles?: boolean,
   showAllLvl?: boolean,
   showPublish?: boolean,
-  viewAction?: string,
+  viewAction: string,
   roleActions?: ActionProps[],
-  actions: ActionProps[],
-  chotbar?: {[key: string]: object},
-  hotbar?: {[key: string]: object},
-}
-
-export interface ViewDataProps extends LayoutProps {
-  hb: string
+  actions?: ActionProps[],
+  chotbar: {[key: string]: object},
+  hotbar: {[key: string]: object}
 }
 
 interface DispatchPayload {
-  slottedActions?: SlotProps[],
-  slotID?: string,
   action?: ActionProps,
   actions?: ActionProps[],
+  encodedSlots?: string,
   hbId?: string,
+  viewData?: LayoutProps,
+  roleActions?: ActionProps[],
   viewAction?: string,
-  encodedSlots?: string
+  readOnly?: boolean,
+  selectedJob?: ClassJobProps,
+  slotID?: string,
+  slottedActions?: SlotProps[],
+  urlParams?: object,
 }
 
-export interface SlotActions {
-  type: AppActions.SLOT_ACTIONS,
-  payload?: DispatchPayload
-}
+type AppActionTypes =
+  AppActions.SLOT_ACTIONS
+  | AppActions.SLOT_ACTION
+  | AppActions.TOGGLE_TITLES
+  | AppActions.TOGGLE_LVLS
+  | AppActions.EDIT_LAYOUT
+  | AppActions.CANCEL_EDITS
+  | AppActions.PUBLISH_LAYOUT
+  | AppActions.LAYOUT_SAVED
+  | AppActions.LOAD_VIEW_DATA;
 
-export interface SlotAction {
-  type: AppActions.SLOT_ACTION,
-  payload?: DispatchPayload
+export type AppDispatchActions = {
+  type: AppActionTypes,
+  payload?: DispatchPayload;
 }
-
-export interface ToggleTitles {
-  type: AppActions.TOGGLE_TITLES,
-  payload?: DispatchPayload
-}
-
-export interface ToggleLvls {
-  type: AppActions.TOGGLE_LVLS,
-  payload?: DispatchPayload
-}
-
-export interface EditLayout {
-  type: AppActions.EDIT_LAYOUT,
-  payload?: DispatchPayload
-}
-
-export interface CancelLayout {
-  type: AppActions.CANCEL_EDITS,
-  payload?: DispatchPayload
-}
-
-export interface PublishLayout {
-  type: AppActions.PUBLISH_LAYOUT,
-  payload?: DispatchPayload
-}
-
-export interface LayoutSaved {
-  type: AppActions.LAYOUT_SAVED,
-  payload?: DispatchPayload
-}
-
-export type AppDispatchActions = SlotActions | SlotAction | ToggleTitles | ToggleLvls | EditLayout | CancelLayout | PublishLayout | LayoutSaved;

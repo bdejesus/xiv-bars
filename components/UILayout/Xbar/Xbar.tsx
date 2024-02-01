@@ -9,9 +9,10 @@ import Settings from './Settings';
 import styles from './Xbar.module.scss';
 
 export function Xbar() {
+  const { viewData, chotbar, readOnly } = useAppState();
   const {
-    chotbar, layoutId, readOnly, xhb, wxhb, exhb
-  } = useAppState();
+    id, xhb, wxhb, exhb
+  } = viewData;
 
   if (!chotbar) return null;
 
@@ -19,7 +20,7 @@ export function Xbar() {
 
   return (
     <>
-      { !(layoutId && readOnly) && <Settings />}
+      { !(id && readOnly) && <Settings />}
 
       <div className={styles.container}>
         {chotbarKeys.map((chotbarID) => {

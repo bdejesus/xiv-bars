@@ -10,6 +10,7 @@ import renderFavicon from 'components/Favicon';
 import { SessionProvider } from 'next-auth/react';
 import { UserProvider } from 'components/User/context';
 import { SystemContextProvider } from 'components/System';
+import { AppContextProvider } from 'components/App/context';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import 'styles/global.scss';
@@ -62,7 +63,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <SystemContextProvider>
           <SessionProvider session={session}>
             <UserProvider>
-              <Component {...pageProps} />
+              <AppContextProvider>
+                <Component {...pageProps} />
+              </AppContextProvider>
             </UserProvider>
           </SessionProvider>
         </SystemContextProvider>

@@ -22,24 +22,25 @@ export function App() {
     actions,
     roleActions,
     readOnly,
-    encodedSlots
+    viewData
   } = appState;
   const router = useRouter();
 
   useEffect(() => {
-    appDispatch({ type: AppActions.INITIALIZE });
-  }, []);
-
-  useEffect(() => {
     // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
-    const payload = decodeSlots({
+    const viewPayload = decodeSlots({
       ...router.query,
-      encodedSlots: readOnly ? encodedSlots : undefined,
+      encodedSlots: readOnly ? viewData.encodedSlots : undefined,
       appState
     });
 
-    appDispatch({ type: AppActions.SLOT_ACTIONS, payload });
+    appDispatch({
+      type: AppActions.SLOT_ACTIONS,
+      payload: {
+        viewData: viewPayload
+      }
+    });
   }, [router.query]);
 
   return (

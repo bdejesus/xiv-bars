@@ -16,27 +16,27 @@ function SaveForm() {
   const titleField = createRef<HTMLInputElement>();
   const descriptionField = createRef<HTMLTextAreaElement>();
 
+  const { viewData, selectedJob } = useAppState();
   const {
     layout,
     encodedSlots,
-    selectedJob,
     xhb,
     wxhb,
     exhb,
     hb,
-    layoutId,
+    id,
     title,
     description,
     jobId
-  } = useAppState();
+  } = viewData;
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
   const systemDispatch = useSystemDispatch();
 
   function saveLayout() {
     const body = JSON.stringify({
-      layoutId,
-      method: layoutId ? 'update' : 'create',
+      layoutId: id,
+      method: id ? 'update' : 'create',
       data: {
         title: titleField.current?.value,
         description: descriptionField.current?.value,
@@ -64,7 +64,7 @@ function SaveForm() {
         systemDispatch({
           type: SystemActions.SET_MESSAGE,
           payload: {
-            status: 'SUCCESS',
+            status: 'success',
             text: I18n.SaveForm.success
           }
         });
@@ -78,7 +78,7 @@ function SaveForm() {
         systemDispatch({
           type: SystemActions.SET_MESSAGE,
           payload: {
-            status: 'FAIL',
+            status: 'fail',
             text: I18n.SaveForm.failed
           }
         });
@@ -130,7 +130,7 @@ function SaveForm() {
             {I18n.SaveForm.save_layout}
           </button>
 
-          { layoutId && (
+          { id && (
             <button
               onClick={cancelEdit}
               type="button"

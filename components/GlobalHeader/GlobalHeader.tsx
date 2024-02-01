@@ -13,7 +13,8 @@ interface Props {
 }
 
 export function GlobalHeader({ selectedJob }:Props) {
-  const { title, viewAction, layoutId } = useAppState();
+  const { viewData, viewAction } = useAppState();
+  const { title, id } = viewData;
 
   return (
     <div className={styles.container}>
@@ -65,7 +66,7 @@ export function GlobalHeader({ selectedJob }:Props) {
                 <span className="btn-label">New Layout</span>
               </a>
 
-              { layoutId && <DuplicateLayout /> }
+              { id && <DuplicateLayout /> }
             </li>
           </ol>
         </nav>

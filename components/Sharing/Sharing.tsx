@@ -4,6 +4,7 @@ import { createRef, useEffect, useState } from 'react';
 import { jsonToQuery } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
+import { defaultState } from 'components/App/defaultState';
 import Icon, { Icons } from 'components/Icon';
 import { domain } from 'lib/host';
 import I18n from 'lib/I18n/locale/en-US';
@@ -12,13 +13,13 @@ import styles from './Sharing.module.scss';
 
 export function Sharing() {
   const router = useRouter();
-
   const {
     readOnly,
     viewAction,
-    hb,
+    viewData,
     selectedJob
   } = useAppState();
+  const { hb } = viewData;
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
   const urlInput = createRef<HTMLInputElement>();
@@ -26,9 +27,9 @@ export function Sharing() {
   function buildShareUrl() {
     const query = {
       s1: router.query.s1,
-      xhb: router.query.xhb || 1,
-      wxhb: router.query.wxhb || 0,
-      exhb: router.query.exhb || 0,
+      xhb: router.query.xhb || defaultState.viewData.xhb,
+      wxhb: router.query.wxhb || defaultState.viewData.wxhb,
+      exhb: router.query.exhb || defaultState.viewData.exhb,
       hb,
       l: router.query.l || 0
     };

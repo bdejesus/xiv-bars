@@ -6,6 +6,7 @@ import Icon, { Icons } from 'components/Icon';
 
 export default function DuplicateLayout() {
   const router = useRouter();
+  const { viewData, selectedJob } = useAppState();
   const {
     encodedSlots,
     layout,
@@ -13,11 +14,10 @@ export default function DuplicateLayout() {
     wxhb,
     exhb,
     hb,
-    layoutId,
-    selectedJob
-  } = useAppState();
+    id,
+  } = viewData;
 
-  if (!layoutId) return null;
+  if (!id) return null;
 
   function copyLayout() {
     if (selectedJob) {

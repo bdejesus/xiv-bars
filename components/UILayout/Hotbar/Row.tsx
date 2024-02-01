@@ -11,9 +11,9 @@ interface Props {
 }
 
 export default function Row({ slots, id }: Props) {
-  const { readOnly, hb } = useAppState();
-  if (!hb || !slots) return null;
-  const hotbarKey = hb[hotbarKeyPosition(id)];
+  const { readOnly, viewData } = useAppState();
+  if (!viewData.hb || !slots) return null;
+  const hotbarKey = viewData.hb[hotbarKeyPosition(id)].toString();
 
   return (
     <>

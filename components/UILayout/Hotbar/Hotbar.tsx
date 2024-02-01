@@ -5,11 +5,11 @@ import Row from './Row';
 import styles from './Hotbar.module.scss';
 
 export function Hotbar() {
-  const { hotbar, readOnly, hb } = useAppState();
+  const { viewData, hotbar, readOnly } = useAppState();
 
   return (
     <ol className={styles.container}>
-      {hb && hotbar && Object.keys(hotbar).map((barKey) => {
+      {viewData.hb && hotbar && Object.keys(hotbar).map((barKey) => {
         const hotbarRow = hotbar[barKey] as SlotProps[];
         return (
           <li key={barKey} className={styles.rowWrapper}>

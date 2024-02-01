@@ -1,17 +1,59 @@
 import { buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
-import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
+import { setActionToSlot, setActionsToSlots, decodeSlots } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
 import { AppActions } from 'components/App/actions';
 
-export default function AppReducer(state: AppState, action: AppDispatchActions) {
-  const { layout } = state;
-  switch (action.type) {
+export function AppReducer(state:AppState, action: AppDispatchActions) {
+  const { layout } = state.viewData || {};
+  const { type, payload } = action;
+  switch (type) {
+    case AppActions.LOAD_VIEW_DATA: {
+      if (payload?.viewData) {
+        const readOnly = payload.viewAction === 'show';
+        const layoutParams = decodeSlots({
+          ...payload.urlParams,
+          encodedSlots: payload.viewData.encodedSlots,
+          appState: {
+            ...state,
+            viewData: {
+              ...state.viewData,
+              ...payload.viewData
+            }
+          }
+        });
+
+        const slottedActions = payload.viewData.encodedSlots
+          ? setActionsToSlots({
+            encodedSlots: payload.viewData.encodedSlots as string,
+            layout: payload.viewData.layout as number,
+            actions: payload.actions,
+            roleActions: payload.roleActions,
+          })
+          : undefined;
+
+        const newState = {
+          ...state,
+          ...payload,
+          viewData: {
+            ...payload.viewData,
+            ...layoutParams,
+          },
+          ...slottedActions,
+          readOnly,
+        };
+
+        return newState;
+      }
+
+      return state;
+    }
+
     case AppActions.SLOT_ACTIONS: {
-      const slottedActions = (action.payload?.encodedSlots)
+      const slottedActions = (payload?.viewData?.encodedSlots)
         ? setActionsToSlots({
-          encodedSlots: action.payload.encodedSlots,
-          layout: layout || defaultState.layout,
+          encodedSlots: payload.viewData.encodedSlots,
+          layout: payload.viewData.layout || defaultState.viewData.layout,
           actions: state.actions,
           roleActions: state.roleActions
         })
@@ -19,17 +61,17 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
 
       return {
         ...state,
-        ...action.payload,
+        ...payload,
         ...slottedActions
       };
     }
 
     case AppActions.SLOT_ACTION: {
-      if (action.payload?.action && action.payload?.slotID) {
+      if (payload?.action && payload?.slotID) {
         const encodedSlots = setActionToSlot({
-          action: action.payload.action,
-          slotID: action.payload.slotID,
-          encodedSlots: state.encodedSlots,
+          action: payload.action,
+          slotID: payload.slotID,
+          encodedSlots: state.viewData?.encodedSlots,
           layout
         });
         return { ...state, encodedSlots };
@@ -81,7 +123,8 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     case AppActions.INITIALIZE: {
       return {
         ...state,
-        encodedSlots: defaultState.encodedSlots,
+        ...payload,
+        encodedSlots: defaultState.viewData?.encodedSlots,
         chotbar: buildCrossHotbars(),
         hotbar: buildHotbars()
       };
@@ -99,3 +142,5 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     }
   }
 }
+
+export default AppReducer;

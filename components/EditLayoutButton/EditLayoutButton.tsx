@@ -5,11 +5,12 @@ import Icon, { Icons } from 'components/Icon';
 
 export default function EditLayoutButton() {
   const { data: session } = useSession();
-  const { layoutId, readOnly, user } = useAppState();
+  const { viewData, readOnly } = useAppState();
+  const { id, user } = viewData;
   const appDispatch = useAppDispatch();
   const canEdit = session?.user.id === user?.id;
 
-  if (!layoutId || !session || !canEdit) return null;
+  if (!id || !session || !canEdit) return null;
 
   function handleEditLayout() {
     appDispatch({ type: AppActions.EDIT_LAYOUT });

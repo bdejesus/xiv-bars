@@ -6,12 +6,14 @@ import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
   const router = useRouter();
-  const { layoutId, layout, readOnly } = useAppState();
-  const [layoutKey, setLayoutKey] = useState(layouts[layout as keyof typeof layouts]);
+  const { viewData, readOnly } = useAppState();
+  const defaultLayout = layouts[viewData.layout as keyof typeof layouts];
+  const [layoutKey, setLayoutKey] = useState(defaultLayout);
 
   useEffect(() => {
-    setLayoutKey(layouts[layout as keyof typeof layouts]);
-  }, [layout]);
+    const updatedLayout = layouts[viewData.layout as keyof typeof layouts];
+    setLayoutKey(updatedLayout);
+  }, [viewData.layout]);
 
   function toggleHotbarLayout() {
     const key = layoutKey === 'chotbar' ? layouts[1] : layouts[0];
@@ -30,11 +32,11 @@ export function LayoutToggle() {
           className="button btn-alt btn-switch"
           type="button"
           onClick={toggleHotbarLayout}
-          disabled={!readOnly && !!layoutId}
+          disabled={!readOnly && !!viewData.id}
         >
           <span
             className="label"
-            data-selected={layout === 0}
+            data-selected={viewData.layout === 0}
             data-disabled={readOnly && layoutKey !== 'chotbar'}
           >
             <abbr title="Cross Hotbar">XHB</abbr>
@@ -42,7 +44,7 @@ export function LayoutToggle() {
 
           <span
             className="label"
-            data-selected={layout === 1}
+            data-selected={viewData.layout === 1}
             data-disabled={readOnly && layoutKey !== 'hotbar'}
           >
             Hotbars

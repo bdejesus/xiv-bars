@@ -1,6 +1,6 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
-import type { LayoutProps } from 'types/App';
+import type { LayoutProps } from 'types/Layout';
 
 type LayoutID = string;
 type UserID = number | undefined;
@@ -43,10 +43,10 @@ export async function create(userId: UserID, data: LayoutProps) {
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
   } else {
-    const layoutData = formatData(userId, data);
+    const viewData = formatData(userId, data);
 
     const createLayout = await db.layout.create({
-      data: layoutData,
+      data: viewData,
       include: {
         user: {
           select: { name: true }
@@ -60,7 +60,7 @@ export async function create(userId: UserID, data: LayoutProps) {
 export async function read(id: LayoutID) {
   if (!id) throw new Error('Layout not found');
 
-  const readLayout = await db.layout.findUnique({
+  const viewData = await db.layout.findUnique({
     where: {
       id: parseInt(id, 10)
     },
@@ -74,7 +74,7 @@ export async function read(id: LayoutID) {
     }
   });
 
-  return readLayout;
+  return viewData;
 }
 
 export async function update(
@@ -85,10 +85,10 @@ export async function update(
   if (!layoutToUpdate) throw new Error('Layout not found');
 
   const today = new Date().toISOString();
-  const layoutData = formatData(userId, { ...data, updatedAt: today });
+  const viewData = formatData(userId, { ...data, updatedAt: today });
 
   const updatedLayout = await db.layout.update({
-    where: { id: layoutId }, data: layoutData
+    where: { id: layoutId }, data: viewData
   });
 
   return updatedLayout;

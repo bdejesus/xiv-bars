@@ -7,18 +7,20 @@ import styles from './Hotbar.module.scss';
 
 interface Props {
   id: string,
-  defaultValue: number
+  defaultValue: string
 }
 
 export default function LayoutControl({ id, defaultValue }: Props) {
   const router = useRouter();
-  const { hb } = useAppState();
+  const { viewData } = useAppState();
 
   function handleLayoutControl(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.currentTarget;
-    const position = hotbarKeyPosition(id);
-    const configValue = parseInt(value, 10);
-    const updatedHb = configValue ? hb?.toSpliced(position, 1, configValue) : hb;
+    const position:number = hotbarKeyPosition(id);
+    const configValue:number = parseInt(value, 10);
+    const updatedHb = configValue
+      ? viewData.hb.split(',')?.toSpliced(position, 1, value)
+      : viewData.hb;
     const { query, pathname } = router;
     const queryParams = { pathname, query: { ...query, hb: updatedHb?.toString() } };
     router.push(queryParams, undefined, { shallow: true });

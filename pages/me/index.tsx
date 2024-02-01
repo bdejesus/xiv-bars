@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { useUserDispatch } from 'components/User/context';
 import Head from 'next/head';
 import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
@@ -15,14 +14,12 @@ import LoadScreen from 'components/LoadScreen';
 import Icon, { Icons } from 'components/Icon';
 import Jobs from 'apiData/Jobs.json';
 import { maxLayouts } from 'lib/user';
-import { UserActions } from 'components/User/actions';
 import type { LayoutProps } from 'types/Layout';
 import styles from './me.module.scss';
 
 export default function Me() {
   const initialLayouts: LayoutProps[] = [];
   const [layouts, setLayouts] = useState(initialLayouts);
-  const userDispatch = useUserDispatch();
   const { status } = useSession({ required: true });
 
   function getLayouts() {
@@ -37,22 +34,8 @@ export default function Me() {
       .then((json) => setLayouts(json));
   }
 
-  function destroyLayout(layoutId: number) {
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({ id: layoutId, method: 'destroy' }),
-      headers: { 'Content-Type': 'application/json' }
-    };
-    fetch('/api/layout', options)
-      .then((data) => data.json())
-      .then((json) => {
-        setLayouts(json);
-        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: json.length } });
-      });
-  }
-
-  function deleteLayout(layoutId: number) {
-    destroyLayout(layoutId);
+  function updateLayouts(updatedList:LayoutProps[]) {
+    setLayouts(updatedList);
   }
 
   useEffect(() => { getLayouts(); }, []);
@@ -94,7 +77,7 @@ export default function Me() {
                     <LayoutCard
                       layout={layout}
                       job={job}
-                      onDelete={() => deleteLayout(layout.id)}
+                      afterDelete={(updatedList:LayoutProps[]) => updateLayouts(updatedList)}
                       className={styles.card}
                       hideName={false}
                     />

@@ -7,12 +7,12 @@ import { useAppState } from 'components/App/context';
 import styles from './DetailPanel.module.scss';
 
 export default function DetailPanel() {
+  const { viewData, readOnly } = useAppState();
   const {
     title,
     description,
-    user,
-    readOnly
-  } = useAppState();
+    user
+  } = viewData;
 
   return (
     <div className={styles.container}>

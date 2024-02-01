@@ -3,7 +3,7 @@ import { SystemActions } from 'components/System/actions';
 export interface SystemProps {
   message?: {
     text: string,
-    status: 'INFO' | 'SUCCESS' | 'WARN' | 'FAIL' | undefined
+    status: 'info' | 'success' | 'warn' | 'fail' | undefined
   },
   showModal?: boolean,
 }

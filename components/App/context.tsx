@@ -4,7 +4,6 @@ import React, {
   useContext,
   useReducer
 } from 'react';
-import { hotbar, chotbar } from 'lib/xbars';
 import { defaultState } from 'components/App/defaultState';
 import type { AppState, AppDispatchActions } from 'types/App';
 import AppReducer from './reducers';
@@ -28,53 +27,12 @@ export function useAppDispatch() {
   return context;
 }
 
-interface ContextProps extends AppState {
+interface ContextProps {
   children: ReactNode,
-  viewAction?: string
 }
 
-export function AppContextProvider({
-  children,
-  selectedJob,
-  layout,
-  encodedSlots,
-  actions,
-  roleActions,
-  readOnly,
-  user,
-  xhb,
-  wxhb,
-  exhb,
-  hb,
-  pvp,
-  layoutId,
-  title,
-  description,
-  viewAction
-}:ContextProps) {
-  const initialState = {
-    ...defaultState,
-    layout: layout || defaultState.layout,
-    hb: hb || defaultState.hb,
-    xhb: xhb || defaultState.xhb,
-    wxhb: wxhb || defaultState.wxhb,
-    exhb: exhb || defaultState.exhb,
-    pvp: pvp || defaultState.pvp,
-    readOnly,
-    selectedJob,
-    encodedSlots,
-    user,
-    viewAction,
-    roleActions,
-    actions,
-    chotbar,
-    hotbar,
-    layoutId,
-    title,
-    description
-  };
-
-  const [state, dispatch] = useReducer(AppReducer as React.ReducerWithoutAction<AppState>, initialState);
+export function AppContextProvider({ children }: ContextProps) {
+  const [state, dispatch] = useReducer(AppReducer as React.ReducerWithoutAction<AppState>, defaultState);
 
   return (
     <AppContext.Provider value={state}>
@@ -86,7 +44,3 @@ export function AppContextProvider({
 }
 
 export default AppContextProvider;
-
-AppContextProvider.defaultProps = {
-  viewAction: undefined
-};

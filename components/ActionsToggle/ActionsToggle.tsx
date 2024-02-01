@@ -9,18 +9,17 @@ export default function ActionsToggle() {
   const router = useRouter();
   const appDispatch = useAppDispatch();
   const {
+    viewData,
     selectedJob,
-    layoutId,
-    readOnly,
-    pvp
+    readOnly
   } = useAppState();
-  const isDisabled = (!readOnly && !!layoutId);
+  const isDisabled = (!readOnly && !!viewData.id);
 
   function handleActionsToggle() {
     const { query, pathname } = router;
     const queryParams = {
       pathname,
-      query: { ...query, pvp: pvp === 0 ? 1 : 0 }
+      query: { ...query, isPvp: viewData.isPvp ? 1 : 0 }
     };
 
     router.push(queryParams, undefined, { shallow: true });
@@ -28,7 +27,7 @@ export default function ActionsToggle() {
 
   useEffect(() => {
     async function getActions(job:ClassJobProps) {
-      const actionsToLoad = await listJobActions(job, pvp);
+      const actionsToLoad = await listJobActions(job, viewData.isPvp);
       appDispatch({
         type: AppActions.LOAD_JOBACTIONS,
         payload: { actions: actionsToLoad }
@@ -36,7 +35,7 @@ export default function ActionsToggle() {
     }
 
     if (selectedJob) getActions(selectedJob);
-  }, [pvp]);
+  }, [viewData.isPvp]);
 
   return (
     <div>
@@ -48,14 +47,14 @@ export default function ActionsToggle() {
       >
         <abbr
           className="label"
-          data-selected={pvp === 0}
+          data-selected={viewData.isPvp}
           title="Player Versus Environment"
         >
           PvE
         </abbr>
         <abbr
           className="label"
-          data-selected={pvp === 1}
+          data-selected={!viewData.isPvp}
           title="Player Versus Player"
         >
           PvP
