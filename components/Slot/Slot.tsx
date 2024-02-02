@@ -9,7 +9,7 @@ import { SelectedActionAction } from 'components/SelectedAction/actions';
 import { useAppState } from 'components/App/context';
 import type { ActionProps } from 'types/Action';
 import { setActionToSlot } from 'lib/utils/slots';
-import { buildShareUrl } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 import styles from './Slot.module.scss';
 
 interface Props {
@@ -52,7 +52,7 @@ export default function Slot({ id, className, action }: Props) {
     });
 
     if (selectedJob) {
-      const url = buildShareUrl({ ...query, s1: updatedSlots });
+      const url = buildUrl({ ...query, s1: updatedSlots });
       router.push(url, undefined, { shallow: true });
     }
   }

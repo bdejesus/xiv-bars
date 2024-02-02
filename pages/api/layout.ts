@@ -13,6 +13,8 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
     const userId: UserID = session?.user.id;
     const { body } = req;
 
+    console.log(body);
+
     switch (body.method) {
       case 'list': {
         const listLayouts = await layoutApiMethods.list(userId);

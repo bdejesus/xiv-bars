@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { listJobActions } from 'lib/api';
-import { buildShareUrl } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 
 import { AppActions } from 'components/App/actions';
 import type { ClassJobProps } from 'types/ClassJob';
@@ -20,7 +20,7 @@ export default function PvPToggle() {
   function handleTogglePvP() {
     if (selectedJob) {
       const params = { ...router.query, isPvp: viewData.isPvp ? '0' : '1' };
-      const url = buildShareUrl(params);
+      const url = buildUrl(params);
       router.push(url, undefined, { shallow: true });
     }
   }

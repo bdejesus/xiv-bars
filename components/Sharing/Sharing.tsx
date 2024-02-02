@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 import { createRef, useEffect, useState } from 'react';
-import { buildShareUrl } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
@@ -38,7 +38,7 @@ export function Sharing() {
   useEffect(() => {
     const urlString = (viewAction === 'show' && router.query.id)
       ? getLayoutUrl(router.query.id as string, router.query.params as string[])
-      : buildShareUrl(router.query);
+      : buildUrl(router.query);
     setShareURL(urlString);
   }, [viewAction, router.query]);
 

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React from 'react';
 import { useRouter } from 'next/router';
-import { buildShareUrl } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import Options from './Options';
 import styles from './Settings.module.scss';
@@ -14,7 +14,7 @@ function Settings() {
   function handleSelect(id: string, event: React.ChangeEvent<HTMLSelectElement>) {
     if (selectedJob) {
       const { value } = event.currentTarget;
-      const url = buildShareUrl({ ...router.query, [id]: value });
+      const url = buildUrl({ ...router.query, [id]: value });
       router.push(url, undefined, { shallow: true });
     }
   }

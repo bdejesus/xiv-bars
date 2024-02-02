@@ -26,7 +26,7 @@ export function queryToJson(hash: string) {
   return Object.fromEntries(new URLSearchParams(hash.slice(1)));
 }
 
-export function buildShareUrl(query:URLParams) {
+export function buildUrl(query:URLParams) {
   const jobId = query.id;
   const filterQuery = Object.entries(query).reduce((items, [key, value]) => {
     if (key !== 'id') return { ...items, [key]: value };
@@ -40,6 +40,6 @@ const exportFunctions = {
   getUrlParams,
   jsonToQuery,
   queryToJson,
-  buildShareUrl,
+  buildUrl,
 };
 export default exportFunctions;

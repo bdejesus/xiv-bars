@@ -34,7 +34,7 @@ function SaveForm() {
   const systemDispatch = useSystemDispatch();
 
   function saveLayout() {
-    const body = JSON.stringify({
+    const body = {
       layoutId: id,
       method: id ? 'update' : 'create',
       data: {
@@ -48,11 +48,13 @@ function SaveForm() {
         exhb,
         hb
       }
-    });
+    };
+
+    console.log(body);
 
     fetch('/api/layout', {
       method: 'POST',
-      body,
+      body: JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' }
     })
       .then((data) => data.json())

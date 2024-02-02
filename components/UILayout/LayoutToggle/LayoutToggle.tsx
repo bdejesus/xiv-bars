@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { layouts } from 'lib/xbars';
-import { buildShareUrl } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import styles from './LayoutToggle.module.scss';
 
@@ -21,7 +21,7 @@ export function LayoutToggle() {
     const layoutIndex = layouts.indexOf(key).toString();
 
     if (selectedJob) {
-      const url = buildShareUrl({ ...router.query, l: layoutIndex });
+      const url = buildUrl({ ...router.query, l: layoutIndex });
       router.push(url, undefined, { shallow: true });
     }
   }
