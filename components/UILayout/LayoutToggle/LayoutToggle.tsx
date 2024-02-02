@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { layouts } from 'lib/xbars';
+import { buildShareUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
   const router = useRouter();
-  const { viewData, readOnly } = useAppState();
+  const { viewData, readOnly, selectedJob } = useAppState();
   const defaultLayout = layouts[viewData.layout as keyof typeof layouts];
   const [layoutKey, setLayoutKey] = useState(defaultLayout);
 
@@ -18,10 +19,11 @@ export function LayoutToggle() {
   function toggleHotbarLayout() {
     const key = layoutKey === 'chotbar' ? layouts[1] : layouts[0];
     const layoutIndex = layouts.indexOf(key).toString();
-    const { query, pathname } = router;
-    const queryParams = { pathname, query: { ...query, l: layoutIndex } };
 
-    router.push(queryParams, undefined, { shallow: true });
+    if (selectedJob) {
+      const url = buildShareUrl(selectedJob.Abbr, { ...router.query, l: layoutIndex });
+      router.push(url, undefined, { shallow: true });
+    }
   }
 
   return (

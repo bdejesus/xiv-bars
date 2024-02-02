@@ -27,7 +27,11 @@ export function queryToJson(hash: string) {
 }
 
 export function buildShareUrl(jobId:string, query:URLParams) {
-  const queryString = jsonToQuery(query);
+  const filterQuery = Object.entries(query).reduce((items, [key, value]) => {
+    if (key !== 'id') return { ...items, [key]: value };
+    return items;
+  }, {});
+  const queryString = jsonToQuery(filterQuery);
   return `${domain}/job/${jobId}/new?${queryString}`;
 }
 
