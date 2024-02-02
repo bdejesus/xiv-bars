@@ -6,33 +6,13 @@ type LayoutID = string;
 type UserID = number | undefined;
 
 function formatData(data:ViewDataProps) {
-  const {
-    title,
-    description,
-    jobId,
-    isPvp,
-    layout,
-    encodedSlots,
-    xhb,
-    wxhb,
-    exhb,
-    hb,
-    userId
-  } = data;
+  const viewData = Object.entries(data).reduce((collection, [key, value]) => {
+    if (key === 'hb') return { ...collection, hb: JSON.stringify(data.hb) };
+    if (value !== undefined && value !== null) return { ...collection, [key]: value };
+    return collection;
+  }, {});
 
-  return {
-    title,
-    description,
-    jobId,
-    isPvp,
-    layout,
-    encodedSlots,
-    xhb,
-    wxhb,
-    exhb,
-    hb: hb.toString(),
-    userId
-  };
+  return viewData;
 }
 
 export async function list(userId:UserID) {

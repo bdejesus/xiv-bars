@@ -11,10 +11,7 @@ export function SystemMessage() {
     function resetMessage() {
       systemDispatch({
         type: SystemActions.SET_MESSAGE,
-        payload: {
-          status: undefined,
-          text: undefined
-        }
+        payload: undefined
       });
     }
 
