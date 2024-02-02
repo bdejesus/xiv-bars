@@ -51,8 +51,10 @@ export default function Slot({ id, className, action }: Props) {
       roleActions
     });
 
+    console.log(updatedSlots);
+
     if (selectedJob) {
-      const url = buildUrl({ ...query, s1: updatedSlots });
+      const url = buildUrl({ ...query, s: updatedSlots });
       router.push(url, undefined, { shallow: true });
     }
   }

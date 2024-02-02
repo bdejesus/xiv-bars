@@ -87,6 +87,11 @@
   height: 100%;
   padding: $spacing-base 0 0;
 
+  &:first-child {
+    border-top: none;
+    margin-top: $spacing-base;
+  }
+
   .layoutControl {
     background-color: #222;
     border: none;
