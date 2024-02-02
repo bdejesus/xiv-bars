@@ -65,11 +65,11 @@
     counter-increment: slots;
     font-weight: 400;
     left: -1.5em;
+    min-width: 1em;
     opacity: 0.66;
     position: absolute;
-    top: 25px;
     text-align: right;
-    min-width: 1em;
+    top: 25px;
   }
 
   > li:empty {

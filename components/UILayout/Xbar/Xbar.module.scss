@@ -24,9 +24,9 @@
     font-size: $font-size-lg;
     font-weight: 400;
     left: $spacing-base;
-    text-align: right;
     opacity: 0.66;
     position: absolute;
+    text-align: right;
   }
 
   &:last-child {
@@ -87,8 +87,8 @@
     background-color: rgb(255 255 255 / 3.3%);
     border-radius: 10px;
     order: 1;
-    padding-top: $spacing-sm;
     padding-bottom: $spacing-sm;
+    padding-top: $spacing-sm;
 
     .left::before {
       content: "LT";
@@ -109,6 +109,7 @@
 .left {
   padding-right: $spacing-xs;
 }
+
 .right {
   border-left: 1px solid rgb(0 0 0 / 20%);
   padding-left: $spacing-xs;
