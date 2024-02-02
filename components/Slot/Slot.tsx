@@ -52,7 +52,7 @@ export default function Slot({ id, className, action }: Props) {
     });
 
     if (selectedJob) {
-      const url = buildShareUrl(selectedJob.Abbr, { ...query, s1: updatedSlots });
+      const url = buildShareUrl({ ...query, s1: updatedSlots });
       router.push(url, undefined, { shallow: true });
     }
   }

@@ -27,7 +27,7 @@ export const defaultState:AppState = {
   showTitles: false,
   showAllLvl: false,
   showPublish: false,
-  viewAction: 'show',
+  viewAction: 'new',
   roleActions: undefined,
   actions: undefined,
   chotbar,

@@ -86,7 +86,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
     const id:ContextParam = context.params?.id;
     const params:ContextParam = context.params?.params;
-    const [layoutId, viewAction] = params as ContextParam[];
+    const [layoutId] = params as ContextParam[];
 
     // Get Selected Job
     const selectedJob = Jobs.find((job: ClassJobProps) => job.Abbr === id);
@@ -109,7 +109,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       selectedJob,
       actions: jobActions,
       roleActions,
-      viewAction: viewAction as string || 'show'
+      viewAction: 'show'
     };
 
     return { props };

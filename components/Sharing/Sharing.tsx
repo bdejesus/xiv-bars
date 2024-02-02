@@ -12,18 +12,14 @@ import styles from './Sharing.module.scss';
 
 export function Sharing() {
   const router = useRouter();
-  const {
-    readOnly,
-    viewAction,
-    selectedJob
-  } = useAppState();
+  const { viewAction } = useAppState();
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
   const urlInput = createRef<HTMLInputElement>();
 
-  function getLayoutUrl() {
-    const layoutId: string | string[] | undefined = router.query.params;
-    return `${domain}/job/${selectedJob?.Abbr}/${layoutId}`;
+  function getLayoutUrl(jobId?:string, params?:string[]) {
+    const [layoutId] = params || [];
+    return `${domain}/job/${jobId}/${layoutId}`;
   }
 
   function selectInput() {
@@ -37,17 +33,14 @@ export function Sharing() {
     urlInput.current?.blur();
     setCopied(true);
     setTimeout(() => { setCopied(false); }, 3000);
-    if (viewAction === 'new') {
-      router.push(shareURL, undefined, { shallow: true });
-    }
   }
 
   useEffect(() => {
-    if (selectedJob) {
-      const urlString = readOnly ? getLayoutUrl() : buildShareUrl(selectedJob.Abbr, router.query);
-      setShareURL(urlString);
-    }
-  }, [router.query]);
+    const urlString = (viewAction === 'show' && router.query.id)
+      ? getLayoutUrl(router.query.id as string, router.query.params as string[])
+      : buildShareUrl(router.query);
+    setShareURL(urlString);
+  }, [viewAction, router.query]);
 
   return (
     <div className={`${styles.container}`} data-copied={copied}>

@@ -14,7 +14,7 @@ function Settings() {
   function handleSelect(id: string, event: React.ChangeEvent<HTMLSelectElement>) {
     if (selectedJob) {
       const { value } = event.currentTarget;
-      const url = buildShareUrl(selectedJob.Abbr, { ...router.query, [id]: value });
+      const url = buildShareUrl({ ...router.query, [id]: value });
       router.push(url, undefined, { shallow: true });
     }
   }
