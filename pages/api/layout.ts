@@ -3,7 +3,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
-import layoutApiMethods from 'lib/api/layout';
+import layoutsApi from 'lib/api/layout';
 
 type UserID = number | undefined;
 
@@ -13,37 +13,36 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
     const userId: UserID = session?.user.id;
     const { body } = req;
 
-    console.log(body);
-
     switch (body.method) {
       case 'list': {
-        const listLayouts = await layoutApiMethods.list(userId);
+        const listLayouts = await layoutsApi.list(userId);
         res.status(200).json(listLayouts);
         break;
       }
 
       case 'create': {
-        const createLayout = await layoutApiMethods.create(userId, body.data);
-        const layouts = await layoutApiMethods.list(userId);
+        const createLayout = await layoutsApi.create({ ...body.data, userId });
+        const layouts = await layoutsApi.list(userId);
+
         res.status(200).json({ layoutView: createLayout, layouts });
         break;
       }
 
       case 'read': {
-        const readLayout = await layoutApiMethods.read(body.layoutId);
+        const readLayout = await layoutsApi.read(body.layoutId);
         res.status(200).json(readLayout);
         break;
       }
 
       case 'update': {
-        const updateLayout = await layoutApiMethods.update(userId, body);
-        const layouts = await layoutApiMethods.list(userId);
+        const updateLayout = await layoutsApi.update(userId, body);
+        const layouts = await layoutsApi.list(userId);
         res.status(200).json({ layoutView: updateLayout, layouts });
         break;
       }
 
       case 'destroy': {
-        const newList = await layoutApiMethods.destroy(userId, body);
+        const newList = await layoutsApi.destroy(userId, body);
         res.status(200).json(newList);
         break;
       }
@@ -55,7 +54,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
           res.statusMessage = message;
           res.status(404).json(error);
         } else {
-          const readLayout = await layoutApiMethods.read(body.layoutId);
+          const readLayout = await layoutsApi.read(body.layoutId);
           res.status(200).json(readLayout);
         }
         break;

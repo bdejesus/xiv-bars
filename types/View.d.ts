@@ -6,7 +6,8 @@ export interface ViewParamsProps {
   exhb: number,
   hb: number[],
   isPvp: boolean,
-  layout: number
+  layout: number,
+  isPvp: boolean
 }
 
 export interface ViewDataProps extends ViewParamsProps {

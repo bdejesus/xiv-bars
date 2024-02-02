@@ -5,18 +5,32 @@ import type { ViewDataProps } from 'types/View';
 type LayoutID = string;
 type UserID = number | undefined;
 
-function formatData(userId:UserID, data:ViewDataProps) {
+function formatData(data:ViewDataProps) {
   const {
-    layout, xhb, wxhb, exhb
+    title,
+    description,
+    jobId,
+    isPvp,
+    layout,
+    encodedSlots,
+    xhb,
+    wxhb,
+    exhb,
+    hb,
+    userId
   } = data;
 
   return {
-    ...data,
-    hb: JSON.stringify(data.hb),
-    layout: layout ? parseInt(layout.toString(), 10) : 0,
-    xhb: xhb ? parseInt(xhb.toString(), 10) : 1,
-    wxhb: wxhb ? parseInt(wxhb.toString(), 10) : 0,
-    exhb: exhb ? parseInt(exhb.toString(), 10) : 0,
+    title,
+    description,
+    jobId,
+    isPvp,
+    layout,
+    encodedSlots,
+    xhb,
+    wxhb,
+    exhb,
+    hb: hb.toString(),
     userId
   };
 }
@@ -38,15 +52,13 @@ export async function list(userId:UserID) {
   return layouts;
 }
 
-export async function create(userId:UserID, data:ViewDataProps) {
-  const userLayouts = await db.layout.findMany({ where: { userId } });
+export async function create(data:ViewDataProps) {
+  const userLayouts = await db.layout.findMany({ where: { userId: data.userId } });
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
   } else {
-    const viewData = formatData(userId, data);
-
     const createLayout = await db.layout.create({
-      data: viewData,
+      data: formatData(data),
       include: {
         user: {
           select: { name: true }
@@ -101,8 +113,8 @@ export async function destroy(userId: UserID, { id }: { id:LayoutID }) {
   return newList;
 }
 
-const layoutApiMethods = {
+const layoutsApi = {
   list, create, read, update, destroy
 };
 
-export default layoutApiMethods;
+export default layoutsApi;

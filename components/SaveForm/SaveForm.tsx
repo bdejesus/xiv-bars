@@ -16,18 +16,11 @@ function SaveForm() {
   const titleField = createRef<HTMLInputElement>();
   const descriptionField = createRef<HTMLTextAreaElement>();
 
-  const { viewData, viewAction, selectedJob } = useAppState();
+  const { viewData, viewAction } = useAppState();
   const {
-    layout,
-    encodedSlots,
-    xhb,
-    wxhb,
-    exhb,
-    hb,
     id,
     title,
     description,
-    jobId
   } = viewData;
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
@@ -36,21 +29,13 @@ function SaveForm() {
   function saveLayout() {
     const body = {
       layoutId: id,
-      method: id ? 'update' : 'create',
+      method: viewAction === 'new' ? 'create' : 'update',
       data: {
+        ...viewData,
         title: titleField.current?.value,
         description: descriptionField.current?.value,
-        layout,
-        encodedSlots,
-        jobId: jobId || selectedJob?.Abbr,
-        xhb,
-        wxhb,
-        exhb,
-        hb
       }
     };
-
-    console.log(body);
 
     fetch('/api/layout', {
       method: 'POST',

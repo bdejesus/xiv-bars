@@ -47,6 +47,7 @@ $group-padding: 10px;
     text-align: center;
     text-shadow: -1px -1px 0 #000, 1px 1px 0 rgb(255 255 255 / 33%);
     user-select: none;
+    pointer-events: none;
   }
 
   &[data-exhb="true"] {

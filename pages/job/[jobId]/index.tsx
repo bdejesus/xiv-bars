@@ -79,9 +79,9 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id: string | string[] | undefined = context.params?.id;
-  const selectedJob = id
-    ? Jobs.find((job) => job.Abbr === id)
+  const jobId: string | string[] | undefined = context.params?.jobId;
+  const selectedJob = jobId
+    ? Jobs.find((job) => job.Abbr === jobId)
     : null;
 
   const layouts = await db.layout.findMany({
