@@ -3,7 +3,7 @@ import type { ClassJobProps } from './ClassJob';
 import type { ActionProps } from './Action';
 
 export interface URLParams {
-  id?: string,
+  jobId?: string,
   s?: string,
   s1?: string,
   wxhb?: string,

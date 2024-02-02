@@ -27,9 +27,9 @@ export function queryToJson(hash: string) {
 }
 
 export function buildUrl(query:URLParams) {
-  const jobId = query.id;
+  const jobId = query.jobId;
   const filterQuery = Object.entries(query).reduce((items, [key, value]) => {
-    if (key !== 'id') return { ...items, [key]: value };
+    if (key !== 'jobId') return { ...items, [key]: value };
     return items;
   }, {});
   const url = [`${domain}/job/${jobId}/new`];

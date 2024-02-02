@@ -55,7 +55,7 @@ export function parseParams(params:URLParams) {
     hb: params.hb && params.hb.split(',').map((v:string) => parseInt(v, 10)),
     layout: params.l && parseInt(params.l, 10),
     isPvp: isPvp(),
-    jobId: params?.id
+    jobId: params?.jobId
   };
 
   const filterUndefined = Object.entries(formatProps)
