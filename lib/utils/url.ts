@@ -32,8 +32,9 @@ export function buildUrl(query:URLParams) {
     if (key !== 'id') return { ...items, [key]: value };
     return items;
   }, {});
-  const queryString = jsonToQuery(filterQuery);
-  return `${domain}/job/${jobId}/new?${queryString}`;
+  const url = [`${domain}/job/${jobId}/new`];
+  if (Object.keys(filterQuery).length > 0) url.push(jsonToQuery(filterQuery));
+  return url.join('?');
 }
 
 const exportFunctions = {
