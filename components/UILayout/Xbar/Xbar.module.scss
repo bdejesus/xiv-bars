@@ -1,5 +1,4 @@
 @import "styles/mixins";
-$group-padding: 10px;
 
 .container {
   align-items: center;
@@ -16,7 +15,7 @@ $group-padding: 10px;
   justify-content: space-between;
   margin: 0 auto;
   order: 3;
-  padding: 28px 10px;
+  padding: 28px 0 28px 28px;
   position: relative;
 
   &::before {
@@ -24,7 +23,8 @@ $group-padding: 10px;
     counter-increment: xbarCount;
     font-size: $font-size-lg;
     font-weight: 400;
-    left: -$spacing-sm;
+    left: $spacing-base;
+    text-align: right;
     opacity: 0.66;
     position: absolute;
   }
@@ -55,7 +55,6 @@ $group-padding: 10px;
     margin-bottom: $spacing-lg;
     order: 2;
     padding-bottom: $spacing-xl;
-    transform: scale(1.1);
 
     .left::before {
       content: "LT → RT";
@@ -68,12 +67,8 @@ $group-padding: 10px;
 
   &[data-wxhb="true"] {
     border-bottom: none;
-    gap: $spacing-xl * 3;
     margin: 0;
     order: 0;
-    padding-bottom: 0;
-    padding-top: $spacing-base;
-    transform: scale(1.1);
 
     :global(.right) {
       border-left: none;
@@ -89,17 +84,11 @@ $group-padding: 10px;
   }
 
   &[data-main="true"] {
-    &::before {
-      left: -$spacing-base;
-    }
-
     background-color: rgb(255 255 255 / 3.3%);
     border-radius: 10px;
-    margin-bottom: $spacing-base;
-    margin-top: $spacing-lg;
     order: 1;
-    padding: $spacing-sm;
-    transform: scale(1.1);
+    padding-top: $spacing-sm;
+    padding-bottom: $spacing-sm;
 
     .left::before {
       content: "LT";
@@ -117,22 +106,24 @@ $group-padding: 10px;
   }
 }
 
+.left {
+  padding-right: $spacing-xs;
+}
 .right {
   border-left: 1px solid rgb(0 0 0 / 20%);
+  padding-left: $spacing-xs;
 }
 
 .left,
 .right {
   display: flex;
   flex-direction: row;
-  padding-left: 6px;
-  padding-right: 6px;
   position: relative;
 }
 
 .set {
   display: grid;
-  grid-gap: $spacing-sm;
+  grid-gap: $spacing-xs;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   margin: 0 $spacing-sm;

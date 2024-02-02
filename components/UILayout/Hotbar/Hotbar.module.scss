@@ -64,10 +64,12 @@
     content: counter(slots);
     counter-increment: slots;
     font-weight: 400;
-    left: -20px;
+    left: -1.5em;
     opacity: 0.66;
     position: absolute;
     top: 25px;
+    text-align: right;
+    min-width: 1em;
   }
 
   > li:empty {
