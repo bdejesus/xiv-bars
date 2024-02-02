@@ -1,13 +1,16 @@
 import { createRef } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import I18n from 'lib/I18n/locale/en-US';
+
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import { AppActions } from 'components/App/actions';
 import { SystemActions, useSystemDispatch } from 'components/System';
-import I18n from 'lib/I18n/locale/en-US';
+import { filterUndefined } from 'lib/utils/filters';
 import SignInPrompt from './SignInPrompt';
+
 import styles from './SaveForm.module.scss';
 
 function SaveForm() {
@@ -18,7 +21,6 @@ function SaveForm() {
 
   const { viewData, viewAction } = useAppState();
   const {
-    id,
     title,
     description,
   } = viewData;
@@ -28,13 +30,18 @@ function SaveForm() {
 
   function saveLayout() {
     const body = {
-      layoutId: id,
       method: viewAction === 'new' ? 'create' : 'update',
-      data: {
-        ...viewData,
-        title: titleField.current?.value,
-        description: descriptionField.current?.value,
-      }
+      data: filterUndefined(
+        {
+          ...viewData,
+          title: titleField.current?.value,
+          description: descriptionField.current?.value,
+          hb: JSON.stringify(viewData.hb)
+        },
+        {
+          filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt']
+        }
+      )
     };
 
     fetch('/api/layout', {

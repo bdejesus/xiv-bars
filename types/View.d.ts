@@ -7,7 +7,6 @@ export interface ViewParamsProps {
   hb: number[],
   isPvp: boolean,
   layout: number,
-  isPvp: boolean
 }
 
 export interface ViewDataProps extends ViewParamsProps {
@@ -22,4 +21,15 @@ export interface ViewDataProps extends ViewParamsProps {
     id: number
   },
   userId?: number
+}
+
+export interface LayoutDataProps extends ViewDataProps {
+  id: number | undefined,
+  encodedSlots: string | undefined,
+  wxhb: number,
+  xhb: number,
+  exhb: number,
+  hb: string,
+  isPvp: boolean,
+  layout: number,
 }

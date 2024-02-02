@@ -11,7 +11,7 @@ import { defaultState } from 'components/App/defaultState';
 import { layouts, chotbar, hotbar } from 'lib/xbars';
 
 import type { URLParams } from 'types/Page';
-import type { ViewParamsProps } from 'types/View';
+import type { ViewDataProps, ViewParamsProps } from 'types/View';
 import type { SlotProps, ActionProps } from 'types/Action';
 
 function assignLayoutTemplate(layoutID:number) {
@@ -77,13 +77,47 @@ export function mergeParamsToView(props?:MergeParamsToViewProps) {
   const { params, viewData } = props || {};
   const parsedParams = params && parseParams(params);
 
-  const mergeData = {
+  const {
+    createdAt,
+    deletedAt,
+    description,
+    jobId,
+    title,
+    updatedAt,
+    user,
+    userId,
+    id,
+    encodedSlots,
+    wxhb,
+    xhb,
+    exhb,
+    hb,
+    isPvp,
+    layout
+  }:ViewDataProps = {
     ...defaultState.viewData,
     ...viewData,
     ...parsedParams
   };
 
-  return mergeData;
+  return {
+    createdAt,
+    deletedAt,
+    description,
+    jobId,
+    title,
+    updatedAt,
+    user,
+    userId,
+    id,
+    encodedSlots,
+    wxhb,
+    xhb,
+    exhb,
+    hb,
+    isPvp,
+    layout
+  };
 }
 
 interface GetActionKeyProps {

@@ -29,7 +29,7 @@ export function App() {
   useEffect(() => {
     // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
-    if (router.query.id) {
+    if (router.query.jobId) {
       const viewPayload = mergeParamsToView({
         params: router.query,
         viewData

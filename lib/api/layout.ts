@@ -1,19 +1,9 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
-import type { ViewDataProps } from 'types/View';
+import type { LayoutDataProps } from 'types/View';
 
 type LayoutID = string;
 type UserID = number | undefined;
-
-function formatData(data:ViewDataProps) {
-  const viewData = Object.entries(data).reduce((collection, [key, value]) => {
-    if (key === 'hb') return { ...collection, hb: JSON.stringify(data.hb) };
-    if (value !== undefined && value !== null) return { ...collection, [key]: value };
-    return collection;
-  }, {});
-
-  return viewData;
-}
 
 export async function list(userId:UserID) {
   const layouts = await db.layout.findMany({
@@ -32,19 +22,20 @@ export async function list(userId:UserID) {
   return layouts;
 }
 
-export async function create(data:ViewDataProps) {
-  const userLayouts = await db.layout.findMany({ where: { userId: data.userId } });
+export async function create(userId:UserID, data:LayoutDataProps) {
+  const userLayouts = await db.layout
+    .findMany({ where: { userId } })
+    .catch((error:Error) => console.error(error));
+
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
   } else {
-    const createLayout = await db.layout.create({
-      data: formatData(data),
-      include: {
-        user: {
-          select: { name: true }
-        }
-      }
-    });
+    const createLayout = await db.layout
+      .create({
+        data: { ...data, userId },
+        include: { user: { select: { name: true } } }
+      })
+      .catch((error:Error) => console.error(error));
     return createLayout;
   }
 }
@@ -52,43 +43,40 @@ export async function create(data:ViewDataProps) {
 export async function read(id: LayoutID) {
   if (!id) throw new Error('Layout not found');
 
-  const viewData = await db.layout.findUnique({
-    where: {
-      id: parseInt(id, 10)
-    },
-    include: {
-      user: {
-        select: {
-          name: true,
-          id: true
-        }
-      }
-    }
-  });
+  const viewData = await db.layout
+    .findUnique({
+      where: { id: parseInt(id, 10) },
+      include: { user: { select: { name: true, id: true } } }
+    })
+    .catch((error:Error) => console.error(error));
 
   return viewData;
 }
 
-export async function update(
-  userId:UserID,
-  { layoutId, data }:{ layoutId:LayoutID, data:ViewDataProps }
-) {
-  const layoutToUpdate = await db.layout.findFirst({ where: { id: layoutId, userId } });
+export async function update(userId:UserID, data:LayoutDataProps) {
+  const { id } = data;
+  const layoutToUpdate = await db.layout
+    .findFirst({ where: { id, userId } })
+    .catch((error:Error) => console.error(error));
+
   if (!layoutToUpdate) throw new Error('Layout not found');
 
   const today = new Date().toISOString();
-  const viewData = formatData({ ...data, updatedAt: today, userId });
+  const viewData = { ...data, updatedAt: today };
 
-  const updatedLayout = await db.layout.update({
-    where: { id: layoutId }, data: viewData
-  });
+  const updatedLayout = await db.layout
+    .update({ where: { id }, data: viewData })
+    .catch((error:Error) => console.error(error));
 
   return updatedLayout;
 }
 
 export async function destroy(userId: UserID, { id }: { id:LayoutID }) {
   if (!userId || !id) throw new Error('Layout not found');
-  await db.layout.deleteMany({ where: { id, userId } });
+  await db.layout
+    .deleteMany({ where: { id, userId } })
+    .catch((error:Error) => console.error(error));
+
   const newList = await list(userId);
   return newList;
 }

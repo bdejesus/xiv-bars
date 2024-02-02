@@ -16,7 +16,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
           viewData: payload.viewData
         });
 
-        const slottedActions = setActionsToSlots({
+        const layoutTemplates = setActionsToSlots({
           encodedSlots: viewData.encodedSlots as string,
           layout: viewData.layout as number,
           actions: payload.actions,
@@ -26,7 +26,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
         const newState:AppState = {
           ...state,
           ...payload,
-          ...slottedActions,
+          ...layoutTemplates,
           viewData,
           readOnly,
         };

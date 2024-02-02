@@ -21,7 +21,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
       }
 
       case 'create': {
-        const createLayout = await layoutsApi.create({ ...body.data, userId });
+        const createLayout = await layoutsApi.create(userId, body.data);
         const layouts = await layoutsApi.list(userId);
 
         res.status(200).json({ layoutView: createLayout, layouts });
@@ -35,7 +35,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
       }
 
       case 'update': {
-        const updateLayout = await layoutsApi.update(userId, body);
+        const updateLayout = await layoutsApi.update(userId, body.data);
         const layouts = await layoutsApi.list(userId);
         res.status(200).json({ layoutView: updateLayout, layouts });
         break;
