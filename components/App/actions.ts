@@ -1,16 +1,15 @@
 export const AppActions = {
-  LOAD_VIEW_DATA: 'loadViewData',
-  UPDATE_LAYOUT: 'updateLayout',
-  LOAD_JOBACTIONS: 'loadJobActions',
-  SLOT_ACTIONS: 'bulkLoadActionsToSlots',
-  SLOT_ACTION: 'setActionToSlot',
-  TOGGLE_TITLES: 'toggleTitles',
-  TOGGLE_LVLS: 'toggleAllLvl',
-  EDIT_LAYOUT: 'editLayout',
-  CANCEL_EDITS: 'cancelEdits',
-  PUBLISH_LAYOUT: 'publishLayout',
-  LAYOUT_SAVED: 'layoutSaved',
-  INITIALIZE: 'initialize'
+  LOAD_VIEW_DATA: 'LOAD_VIEW_DATA',
+  LOAD_JOBACTIONS: 'LOAD_JOBACTIONS',
+  SLOT_ACTIONS: 'SLOT_ACTIONS',
+  SLOT_ACTION: 'SLOT_ACTION',
+  TOGGLE_TITLES: 'TOGGLE_TITLES',
+  TOGGLE_LVLS: 'TOGGLE_LVLS',
+  EDIT_LAYOUT: 'EDIT_LAYOUT',
+  CANCEL_EDITS: 'CANCEL_EDITS',
+  PUBLISH_LAYOUT: 'PUBLISH_LAYOUT',
+  UPDATE_VIEW: 'UPDATE_VIEW',
+  INITIALIZE: 'INITIALIZE'
 };
 
 export default AppActions;

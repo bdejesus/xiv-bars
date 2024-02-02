@@ -53,7 +53,9 @@ function SaveForm() {
       .then((json) => {
         const { layoutView, layouts } = json;
 
-        appDispatch({ type: AppActions.LAYOUT_SAVED, payload: layoutView });
+        console.log(json);
+
+        appDispatch({ type: AppActions.UPDATE_VIEW, payload: layoutView });
 
         systemDispatch({
           type: SystemActions.SET_MESSAGE,

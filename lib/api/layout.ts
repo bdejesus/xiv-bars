@@ -65,7 +65,11 @@ export async function update(userId:UserID, data:LayoutDataProps) {
   const viewData = { ...data, updatedAt: today };
 
   const updatedLayout = await db.layout
-    .update({ where: { id }, data: viewData })
+    .update({
+      where: { id },
+      data: viewData,
+      include: { user: { select: { name: true, id: true } } }
+    })
     .catch((error:Error) => console.error(error));
 
   return updatedLayout;

@@ -52,6 +52,7 @@ export default function LayoutCard(props:Props) {
         <Card className={[styles.card, className].join(' ')}>
           <>
             { job && <Job job={job} className={styles.job} /> }
+            <small>{ layout.isPvp ? 'PvP' : 'PvE' }</small>
             <h4>{layout.title}</h4>
             <p className={styles.description}>{layout.description}</p>
 

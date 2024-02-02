@@ -100,14 +100,14 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
     const viewData = await fetchView.json();
-    const jobActions = await listJobActions(selectedJob, viewData.isPvP);
+    const actions = await listJobActions(selectedJob, viewData.isPvp);
     // TODO: Refactor this to pull IDs from ClassJob object instead of ROLE_ACTION_IDS
     const roleActions = selectedJob?.Role ? await listRoleActions(selectedJob) : [];
 
     const props = {
       viewData,
       selectedJob,
-      actions: jobActions,
+      actions,
       roleActions,
       viewAction: 'show'
     };

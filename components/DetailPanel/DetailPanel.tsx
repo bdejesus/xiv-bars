@@ -11,7 +11,9 @@ export default function DetailPanel() {
   const {
     title,
     description,
-    user
+    userId,
+    user,
+    isPvp
   } = viewData;
 
   return (
@@ -26,15 +28,18 @@ export default function DetailPanel() {
         </div>
       </div>
 
-      { (readOnly && title && user)
+      { (readOnly && title && userId)
         ? (
           <>
             <div className={styles.detailPanelHead}>
               <h3 className="mt-0 mb-0">{title}</h3>
-              <div className={styles.owner}>by {user.name}</div>
+              <div className={styles.owner}>by {user?.name}</div>
             </div>
 
             <div className={styles.detailPanelBody}>
+              <div className={styles.tags}>
+                { isPvp ? 'PvP' : 'PvE' }
+              </div>
               { description && (
                 <ReactMarkdown components={{
                   h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'

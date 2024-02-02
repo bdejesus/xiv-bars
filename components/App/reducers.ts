@@ -80,8 +80,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       return {
         ...state,
         readOnly: false,
-        showPublish: true,
-        message: undefined
+        showPublish: true
       };
     }
 
@@ -93,17 +92,16 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       return {
         ...state,
         readOnly: true,
-        showPublish: true,
-        message: undefined
+        showPublish: true
       };
     }
 
-    case AppActions.LAYOUT_SAVED: {
+    case AppActions.UPDATE_VIEW: {
       return {
         ...state,
-        ...action.payload,
         readOnly: true,
         showPublish: false,
+        viewData: action.payload,
         viewAction: 'show'
       };
     }
