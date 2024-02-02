@@ -42,12 +42,12 @@ $group-padding: 10px;
     font-weight: 700;
     left: 0;
     opacity: 0.33;
+    pointer-events: none;
     position: absolute;
     right: 0;
     text-align: center;
     text-shadow: -1px -1px 0 #000, 1px 1px 0 rgb(255 255 255 / 33%);
     user-select: none;
-    pointer-events: none;
   }
 
   &[data-exhb="true"] {

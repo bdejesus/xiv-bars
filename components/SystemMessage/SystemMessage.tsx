@@ -18,7 +18,7 @@ export function SystemMessage() {
       });
     }
 
-    router.events.on('routeChangeComplete', resetMessage)
+    router.events.on('routeChangeComplete', resetMessage);
 
     return () => {
       router.events.off('routeChangeComplete', resetMessage);

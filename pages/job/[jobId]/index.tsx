@@ -70,7 +70,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             </div>
           ) : (
             <h2>
-              No {selectedJob.Name} Layouts yet. <Link href={`/job/${selectedJob.Abbr}/new`}>Create one?</Link>
+              No {selectedJob.Name} Layouts yet. <a href={`/job/${selectedJob.Abbr}/new`}>Create one?</a>
             </h2>
           )}
       </div>

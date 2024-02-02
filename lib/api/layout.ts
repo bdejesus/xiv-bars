@@ -97,7 +97,7 @@ export async function update(
   if (!layoutToUpdate) throw new Error('Layout not found');
 
   const today = new Date().toISOString();
-  const viewData = formatData(userId, { ...data, updatedAt: today });
+  const viewData = formatData({ ...data, updatedAt: today, userId });
 
   const updatedLayout = await db.layout.update({
     where: { id: layoutId }, data: viewData
