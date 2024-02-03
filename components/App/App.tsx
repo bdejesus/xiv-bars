@@ -29,6 +29,7 @@ export function App() {
     // convert Slots from query param to JSON
 
     if (router.query.jobId) {
+      console.log(router.query);
       appDispatch({
         type: AppActions.SLOT_ACTIONS,
         payload: {
@@ -36,10 +37,6 @@ export function App() {
         }
       });
     }
-
-    return () => {
-      appDispatch({ type: AppActions.INITIALIZE });
-    };
   }, [router.query]);
 
   return (
