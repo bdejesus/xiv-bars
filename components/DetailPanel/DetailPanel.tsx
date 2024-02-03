@@ -10,7 +10,9 @@ import { useAppState } from 'components/App/context';
 import styles from './DetailPanel.module.scss';
 
 export default function DetailPanel() {
-  const { viewData, readOnly, selectedJob, viewAction } = useAppState();
+  const {
+    viewData, readOnly, selectedJob, viewAction
+  } = useAppState();
   const {
     title,
     description,

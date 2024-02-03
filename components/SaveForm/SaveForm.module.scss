@@ -38,9 +38,9 @@
 }
 
 .info {
-  padding: $spacing-base;
   background-color: $color-alt-light;
-  margin-top: $spacing-base;
+  font-size: $font-size-sm;
   font-style: italic;
-  font-size: $font-size-sm
+  margin-top: $spacing-base;
+  padding: $spacing-base
 }

@@ -9,7 +9,6 @@ import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { AppActions } from 'components/App/actions';
-import { defaultState } from 'components/App/defaultState';
 
 import styles from './App.module.scss';
 

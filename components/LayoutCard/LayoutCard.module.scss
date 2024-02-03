@@ -67,9 +67,9 @@
 
   h4 {
     color: #fff;
+    flex: 1 1 auto;
     margin: $spacing-sm 0 $spacing-base;
     transition: color $timing-default ease;
-    flex: 1 1 auto;
   }
 
   p {
@@ -109,8 +109,8 @@
 
   .timestamp {
     font-size: $font-size-sm;
-    opacity: 0.5;
     font-style: italic;
+    opacity: 0.5;
   }
 }
 
