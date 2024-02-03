@@ -1,4 +1,4 @@
-import { createRef } from 'react';
+import { createRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import I18n from 'lib/I18n/locale/en-US';
@@ -27,6 +27,7 @@ function SaveForm() {
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
   const systemDispatch = useSystemDispatch();
+  const [shouldPublish, setShouldPublish] = useState(false);
 
   function saveLayout() {
     const body = {
@@ -79,8 +80,18 @@ function SaveForm() {
       });
   }
 
+  useEffect(() => {
+
+  }, [descriptionField.current]);
+
   function cancelEdit() {
     appDispatch({ type: AppActions.CANCEL_EDITS });
+  }
+
+  function handleDescriptionUpdate() {
+    const value = descriptionField.current?.value;
+    const readyToPub = value ? value.length > 0 : false;
+    setShouldPublish(readyToPub);
   }
 
   if (!session) return <SignInPrompt />;
@@ -111,6 +122,7 @@ function SaveForm() {
               ref={descriptionField}
               className={styles.descriptionField}
               defaultValue={description}
+              onChange={handleDescriptionUpdate}
             />
           </label>
         </div>
@@ -119,9 +131,9 @@ function SaveForm() {
           <button
             type="button"
             onClick={saveLayout}
-            className={`${styles.submitButton} button btn-primary`}
+            className={`${styles.submitButton} button ${shouldPublish && 'btn-primary'}`}
           >
-            {I18n.SaveForm.save_layout}
+            { shouldPublish ? I18n.SaveForm.publish_layout : I18n.SaveForm.save_draft }
           </button>
 
           { viewAction !== 'new' && (
@@ -134,6 +146,10 @@ function SaveForm() {
             </button>
           )}
         </div>
+
+        <p className={styles.info}>
+          <b>Layouts</b> with no descriptions are treated as drafts and are hidden from public listings. They are still accessible via the <b>Layout</b> url.
+        </p>
       </form>
     </div>
   );

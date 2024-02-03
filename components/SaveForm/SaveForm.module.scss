@@ -36,3 +36,11 @@
   display: flex;
   flex-direction: row;
 }
+
+.info {
+  padding: $spacing-base;
+  background-color: $color-alt-light;
+  margin-top: $spacing-base;
+  font-style: italic;
+  font-size: $font-size-sm
+}
