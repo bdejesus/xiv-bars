@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
+import { formatDateString } from 'lib/utils/time';
 import Card from 'components/Card';
-import Job from 'components/JobSelect/Job';
 import Icon, { Icons } from 'components/Icon';
+import Tags from 'components/Tags';
 import { useUserDispatch, UserActions } from 'components/User';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/View';
@@ -24,11 +25,6 @@ export default function LayoutCard(props:Props) {
     layout, job, afterDelete, className, hideName
   } = props;
   const [showPrompt, setShowPrompt] = useState(false);
-
-  function formatDate(date: string) {
-    const formattedDate = new Date(date);
-    return formattedDate.toDateString();
-  }
 
   function destroyLayout() {
     const options = {
@@ -51,16 +47,13 @@ export default function LayoutCard(props:Props) {
       <Link href={`/job/${layout.jobId}/${layout.id}`}>
         <Card className={[styles.card, className].join(' ')}>
           <>
-            { job && <Job job={job} className={styles.job} /> }
-            <small>{ layout.isPvp ? 'PvP' : 'PvE' }</small>
+            <Tags layoutView={layout} job={job} />
             <h4>{layout.title}</h4>
-            <p className={styles.description}>{layout.description}</p>
-
             { !hideName && <div className={styles.owner}>{layout.user.name}</div> }
 
             { layout.updatedAt && (
               <div className={styles.timestamp}>
-                {I18n.LayoutCard.last_updated}: {formatDate(layout.updatedAt as string)}
+                {I18n.LayoutCard.last_updated}: {formatDateString(layout.updatedAt as string)}
               </div>
             )}
           </>

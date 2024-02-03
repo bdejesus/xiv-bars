@@ -11,7 +11,6 @@ export interface AppState {
   selectedJob?: ClassJobProps,
   showTitles?: boolean,
   showAllLvl?: boolean,
-  showPublish?: boolean,
   viewAction: string,
   roleActions?: ActionProps[],
   actions?: ActionProps[],

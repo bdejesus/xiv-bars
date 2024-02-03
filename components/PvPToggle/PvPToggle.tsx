@@ -19,7 +19,11 @@ export default function PvPToggle() {
 
   function handleTogglePvP() {
     if (selectedJob) {
-      const params = { ...router.query, isPvp: viewData.isPvp ? '0' : '1' };
+      const params = {
+        ...router.query,
+        isPvp: viewData.isPvp ? '0' : '1',
+        s: undefined
+      };
       const url = buildUrl(params);
       router.push(url, undefined, { shallow: true });
     }

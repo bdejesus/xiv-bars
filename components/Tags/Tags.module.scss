@@ -1,0 +1,39 @@
+@import 'styles/mixins';
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: $spacing-sm;
+}
+
+.tag {
+  align-items: center;
+  background-color: $color-gray-light-2;
+  border-radius: 2px;
+  color: $color-gray;
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 900;
+  height: 24px;
+  justify-content: center;
+  line-height: 1;
+  margin-right: $spacing-xs;
+  padding: 0 $spacing-sm;
+  text-shadow: 0 0 4px #fff;
+
+  :global(.job-abbr) {
+    font-family: inherit;
+    font-weight: inherit;
+    margin-right: 0;
+  }
+
+  :global(.job-icon) {
+    display: block;
+    filter: $icon-filter-black;
+    height: 75%;
+    margin-left: -2px;
+    margin-right: 2px;
+    object-fit: contain;
+    width: 75%;
+  }
+}

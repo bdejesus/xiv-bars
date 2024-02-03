@@ -38,6 +38,11 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     }
 
     case AppActions.SLOT_ACTIONS: {
+      const viewData = mergeParamsToView({
+        params: payload?.urlParams,
+        viewData: state.viewData
+      });
+
       const slottedActions = (payload?.viewData?.encodedSlots)
         ? setActionsToSlots({
           encodedSlots: payload.viewData.encodedSlots,
@@ -49,8 +54,8 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
 
       return {
         ...state,
-        ...payload,
-        ...slottedActions
+        ...slottedActions,
+        viewData,
       };
     }
 
@@ -79,20 +84,18 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     case AppActions.EDIT_LAYOUT: {
       return {
         ...state,
-        readOnly: false,
-        showPublish: true
+        readOnly: false
       };
     }
 
     case AppActions.PUBLISH_LAYOUT: {
-      return { ...state, showPublish: true, message: undefined };
+      return { ...state, message: undefined };
     }
 
     case AppActions.CANCEL_EDITS: {
       return {
         ...state,
-        readOnly: true,
-        showPublish: true
+        readOnly: true
       };
     }
 
@@ -100,7 +103,6 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       return {
         ...state,
         readOnly: true,
-        showPublish: false,
         viewData: action.payload,
         viewAction: 'show'
       };

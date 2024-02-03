@@ -7,7 +7,7 @@ import ToggleMaxLvl from './ToggleMaxLvl';
 import styles from './ControlBar.module.scss';
 
 export function ControlBar() {
-  const { readOnly } = useAppState();
+  const { readOnly, viewData } = useAppState();
   const { showModal } = useSystemState();
 
   return (
@@ -24,7 +24,7 @@ export function ControlBar() {
             </div>
           )}
 
-          { !readOnly && (
+          { !readOnly && !viewData.id && (
             <>
               <LayoutToggle />
               <PvPToggle />

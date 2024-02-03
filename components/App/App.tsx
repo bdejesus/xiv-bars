@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { mergeParamsToView } from 'lib/utils/slots';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import DetailPanel from 'components/DetailPanel';
@@ -10,6 +9,7 @@ import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { AppActions } from 'components/App/actions';
+import { defaultState } from 'components/App/defaultState';
 
 import styles from './App.module.scss';
 
@@ -21,27 +21,26 @@ export function App() {
     selectedJob,
     actions,
     roleActions,
-    readOnly,
-    viewData,
+    readOnly
   } = appState;
   const router = useRouter();
 
   useEffect(() => {
     // Push UI changes to state whenever routes params changes
     // convert Slots from query param to JSON
-    if (router.query.jobId) {
-      const viewPayload = mergeParamsToView({
-        params: router.query,
-        viewData
-      });
 
+    if (router.query.jobId) {
       appDispatch({
         type: AppActions.SLOT_ACTIONS,
         payload: {
-          viewData: viewPayload
+          urlParams: router.query
         }
       });
     }
+
+    return () => {
+      appDispatch({ type: AppActions.INITIALIZE });
+    };
   }, [router.query]);
 
   return (

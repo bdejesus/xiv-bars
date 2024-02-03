@@ -26,7 +26,6 @@ export const defaultState:AppState = {
   selectedJob: undefined,
   showTitles: false,
   showAllLvl: false,
-  showPublish: false,
   viewAction: 'new',
   roleActions: undefined,
   actions: undefined,
