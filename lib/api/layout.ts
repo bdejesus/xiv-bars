@@ -47,8 +47,7 @@ export async function read(id: LayoutID) {
     .findUnique({
       where: { id: parseInt(id, 10) },
       include: { user: { select: { name: true, id: true } } }
-    })
-    .catch((error:Error) => console.error(error));
+    });
 
   return viewData;
 }
