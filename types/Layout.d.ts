@@ -1,4 +1,4 @@
-export interface ViewParamsProps {
+export interface LayoutParamsProps {
   id: number | undefined,
   encodedSlots: string | undefined,
   wxhb: number,
@@ -9,7 +9,7 @@ export interface ViewParamsProps {
   layout: number,
 }
 
-export interface ViewDataProps extends ViewParamsProps {
+export interface LayoutProps extends LayoutParamsProps {
   createdAt?: string | null,
   deletedAt?: string | null,
   description?: string,
@@ -20,16 +20,6 @@ export interface ViewDataProps extends ViewParamsProps {
     name: string,
     id: number
   },
-  userId?: number
-}
-
-export interface LayoutDataProps extends ViewDataProps {
-  id: number | undefined,
-  encodedSlots: string | undefined,
-  wxhb: number,
-  xhb: number,
-  exhb: number,
-  hb: string,
-  isPvp: boolean,
-  layout: number,
+  userId?: number,
+  hb: string
 }

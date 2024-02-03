@@ -1,4 +1,4 @@
-import type { ViewDataProps } from './View';
+import type { ViewDataProps } from './Layout';
 import type { ClassJobProps } from './ClassJob';
 import type { ActionProps } from './Action';
 

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { PrismaClient } from '@prisma/client';
 import { DeepMockProxy } from 'jest-mock-extended';
-import type { ViewDataProps } from 'types/View';
+import type { ViewDataProps } from 'types/Layout';
 import db from 'lib/db';
 
 const today = new Date();

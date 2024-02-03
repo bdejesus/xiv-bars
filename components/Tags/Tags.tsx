@@ -1,10 +1,10 @@
 import Job from 'components/JobSelect/Job';
-import type { ViewDataProps } from 'types/View';
+import type { LayoutProps } from 'types/Layout';
 import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Tags.module.scss';
 
 interface Props {
-  layoutView: ViewDataProps,
+  layoutView: LayoutProps,
   job: ClassJobProps
 }
 

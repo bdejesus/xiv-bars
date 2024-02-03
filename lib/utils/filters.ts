@@ -1,10 +1,10 @@
-import type { LayoutDataProps } from 'types/View';
+import type { LayoutProps } from 'types/Layout';
 
 interface FilterOptions {
   filterKeys?: string[]
 }
 
-export function filterUndefined(data:LayoutDataProps, opts?:FilterOptions) {
+export function filterUndefined(data:LayoutProps, opts?:FilterOptions) {
   const filteredData = Object.entries(data).reduce((collection, [key, value]) => {
     const shouldFilter = (
       (value === undefined && value === null)

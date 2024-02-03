@@ -11,7 +11,7 @@ import { defaultState } from 'components/App/defaultState';
 import { layouts, chotbar, hotbar } from 'lib/xbars';
 
 import type { URLParams } from 'types/Page';
-import type { ViewDataProps, ViewParamsProps } from 'types/View';
+import type { LayoutProps, LayoutParamsProps } from 'types/Layout';
 import type { SlotProps, ActionProps } from 'types/Action';
 
 function assignLayoutTemplate(layoutID:number) {
@@ -70,7 +70,7 @@ export function parseParams(params:URLParams) {
 
 interface MergeParamsToViewProps {
   params?: URLParams,
-  viewData: ViewParamsProps
+  viewData: LayoutParamsProps
 }
 
 export function mergeParamsToView(props?:MergeParamsToViewProps) {
@@ -94,7 +94,7 @@ export function mergeParamsToView(props?:MergeParamsToViewProps) {
     hb,
     isPvp,
     layout
-  }:ViewDataProps = {
+  }:LayoutProps = {
     ...defaultState.viewData,
     ...viewData,
     ...parsedParams

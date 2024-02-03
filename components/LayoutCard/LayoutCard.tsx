@@ -7,14 +7,14 @@ import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import { useUserDispatch, UserActions } from 'components/User';
 import type { ClassJobProps } from 'types/ClassJob';
-import type { ViewDataProps } from 'types/View';
+import type { LayoutProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
-  layout: ViewDataProps,
+  layout: LayoutProps,
   job: ClassJobProps,
   // eslint-disable-next-line no-unused-vars
-  afterDelete?: (updatedList:ViewDataProps[]) => void,
+  afterDelete?: (updatedList:LayoutProps[]) => void,
   className?: string,
   hideName: boolean
 }

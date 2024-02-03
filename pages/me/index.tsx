@@ -14,11 +14,11 @@ import LoadScreen from 'components/LoadScreen';
 import Icon, { Icons } from 'components/Icon';
 import Jobs from 'apiData/Jobs.json';
 import { maxLayouts } from 'lib/user';
-import type { ViewDataProps } from 'types/View';
+import type { LayoutProps } from 'types/Layout';
 import styles from './me.module.scss';
 
 export default function Me() {
-  const initialLayouts:ViewDataProps[] = [];
+  const initialLayouts:LayoutProps[] = [];
   const [layouts, setLayouts] = useState(initialLayouts);
   const { status } = useSession({ required: true });
 
@@ -34,7 +34,7 @@ export default function Me() {
       .then((json) => setLayouts(json));
   }
 
-  function updateLayouts(updatedList:ViewDataProps[]) {
+  function updateLayouts(updatedList:LayoutProps[]) {
     setLayouts(updatedList);
   }
 
@@ -77,7 +77,7 @@ export default function Me() {
                     <LayoutCard
                       layout={layout}
                       job={job}
-                      afterDelete={(updatedList:ViewDataProps[]) => updateLayouts(updatedList)}
+                      afterDelete={(updatedList:LayoutProps[]) => updateLayouts(updatedList)}
                       className={styles.card}
                       hideName={false}
                     />

@@ -1,6 +1,6 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
-import type { LayoutDataProps } from 'types/View';
+import type { LayoutProps } from 'types/Layout';
 
 type LayoutID = string;
 type UserID = number | undefined;
@@ -22,7 +22,7 @@ export async function list(userId:UserID) {
   return layouts;
 }
 
-export async function create(userId:UserID, data:LayoutDataProps) {
+export async function create(userId:UserID, data:LayoutProps) {
   const userLayouts = await db.layout
     .findMany({ where: { userId } })
     .catch((error:Error) => console.error(error));
@@ -52,7 +52,7 @@ export async function read(id: LayoutID) {
   return viewData;
 }
 
-export async function update(userId:UserID, data:LayoutDataProps) {
+export async function update(userId:UserID, data:LayoutProps) {
   const { id } = data;
   const layoutToUpdate = await db.layout
     .findFirst({ where: { id, userId } })
