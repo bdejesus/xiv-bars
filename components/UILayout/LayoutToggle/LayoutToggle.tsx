@@ -21,7 +21,8 @@ export function LayoutToggle() {
     const layoutIndex = layouts.indexOf(key).toString();
 
     if (selectedJob) {
-      const url = buildUrl({ ...router.query, l: layoutIndex });
+      const params = { ...router.query, l: layoutIndex };
+      const url = buildUrl({ params });
       router.push(url, undefined, { shallow: true });
     }
   }

@@ -35,7 +35,6 @@ export default function Slot({ id, className, action }: Props) {
   const { selectedAction } = useSelectedActionState();
   const [dragging, setDragging] = useState(false);
   const router = useRouter();
-  const { query } = router;
 
   function resetSlot(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     event.currentTarget.setAttribute('data-state', 'inactive');
@@ -50,9 +49,10 @@ export default function Slot({ id, className, action }: Props) {
       actions,
       roleActions
     });
+    const params = { ...router.query, s: updatedSlots };
 
     if (selectedJob) {
-      const url = buildUrl({ ...query, s: updatedSlots });
+      const url = buildUrl({ params });
       router.push(url, undefined, { shallow: true });
     }
   }

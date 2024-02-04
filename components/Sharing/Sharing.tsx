@@ -38,7 +38,7 @@ export function Sharing() {
   useEffect(() => {
     const urlString = (viewAction === 'show' && router.query.id)
       ? getLayoutUrl(router.query.id as string, router.query.params as string[])
-      : buildUrl(router.query);
+      : buildUrl({ params: router.query });
     setShareURL(urlString);
   }, [viewAction, router.query]);
 

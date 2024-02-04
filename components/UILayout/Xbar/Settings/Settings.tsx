@@ -14,7 +14,8 @@ function Settings() {
   function handleSelect(id: string, event: React.ChangeEvent<HTMLSelectElement>) {
     if (selectedJob) {
       const { value } = event.currentTarget;
-      const url = buildUrl({ ...router.query, [id]: value });
+      const params = { ...router.query, [id]: value };
+      const url = buildUrl({ params });
       router.push(url, undefined, { shallow: true });
     }
   }

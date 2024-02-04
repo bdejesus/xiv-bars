@@ -21,7 +21,8 @@ export default function LayoutControl({ id, defaultValue }: Props) {
     const updatedHb = value
       ? viewData.hb?.toSpliced(position, 1, parseInt(value, 10))
       : viewData.hb;
-    const url = buildUrl({ ...router.query, hb: updatedHb?.toString() });
+    const params = { ...router.query, hb: updatedHb?.toString() };
+    const url = buildUrl({ params });
     router.push(url, undefined, { shallow: true });
   }
 

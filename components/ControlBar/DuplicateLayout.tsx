@@ -23,10 +23,10 @@ export default function DuplicateLayout() {
 
   function copyLayout() {
     if (selectedJob) {
-      const query = {
-        l: layout, s: encodedSlots, xhb, wxhb, exhb, hb, isPvp, jobId
+      const params = {
+        l: layout, xhb, wxhb, exhb, hb, isPvp, s: encodedSlots, jobId
       };
-      const url = buildUrl(query);
+      const url = buildUrl({ params });
       router.push(url);
     }
   }

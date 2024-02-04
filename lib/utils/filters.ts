@@ -18,6 +18,15 @@ export function filterUndefined(data:LayoutProps, opts?:FilterOptions) {
   return filteredData;
 }
 
+export function intToBoolean(int:number|string) {
+  const value = parseInt(`${int}`, 10);
+  switch (value) {
+    case 0: return false;
+    case 1: return true;
+    default: return undefined;
+  }
+}
+
 const methods = { filterUndefined };
 
 export default methods;

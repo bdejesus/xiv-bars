@@ -31,12 +31,11 @@ function assignActionIds(slottedActions: SlotProps[]) {
 }
 
 function encodeSlots(slots:object) {
-  const slotIDs = Object.values(slots);
-  const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
-  const queryString = slotsQuery
-    .reduce((flat, next) => flat.concat(next), [])
-    .join(',');
-  return queryString;
+  const slotActionObject = Object.values(slots);
+  const actionIdGroups = slotActionObject.map((arr) => assignActionIds(arr as SlotProps[]));
+  const actionIds = actionIdGroups.flat();
+  const slotsString = actionIds.join(',');
+  return slotsString;
 }
 
 export function parseParams(params:URLParams) {

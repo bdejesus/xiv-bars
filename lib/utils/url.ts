@@ -1,5 +1,5 @@
 import { domain } from 'lib/host';
-import type { URLParams } from 'types/Page';
+import type { URLProps, URLParams } from 'types/Page';
 
 export function getUrlParams(url: string) {
   const search = url.split('?')[1];
@@ -26,10 +26,15 @@ export function queryToJson(hash: string) {
   return Object.fromEntries(new URLSearchParams(hash.slice(1)));
 }
 
-export function buildUrl(query:URLParams) {
-  const jobId = query.jobId;
-  const filterQuery = Object.entries(query).reduce((items, [key, value]) => {
-    if (key === 'isPvp') return { ...items, [key]: value ? '1' : '0' };
+interface BuildURLProps {
+  params: URLParams,
+  viewData?: URLProps
+}
+
+export function buildUrl({ params, viewData }:BuildURLProps) {
+  const jobId = params.jobId;
+  const filterQuery = Object.entries(params).reduce((items, [key, value]) => {
+    if (key === 'hb') return { ...items, [key]: value?.toString() };
     if (key !== 'jobId') return { ...items, [key]: value };
     return items;
   }, {});

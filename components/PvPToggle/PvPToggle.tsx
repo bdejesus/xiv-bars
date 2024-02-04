@@ -21,10 +21,10 @@ export default function PvPToggle() {
     if (selectedJob) {
       const params = {
         ...router.query,
-        isPvp: viewData.isPvp ? '0' : '1',
-        s: undefined
+        isPvp: !viewData.isPvp ? '1' : '0'
       };
-      const url = buildUrl(params);
+
+      const url = buildUrl({ viewData, params });
       router.push(url, undefined, { shallow: true });
     }
   }

@@ -27,6 +27,7 @@ function SaveForm() {
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
   const systemDispatch = useSystemDispatch();
+  const [canPublish, setCanPublish] = useState(false);
   const [shouldPublish, setShouldPublish] = useState(false);
 
   function saveLayout() {
@@ -80,19 +81,20 @@ function SaveForm() {
       });
   }
 
-  useEffect(() => {
-
-  }, [descriptionField.current]);
-
   function cancelEdit() {
     appDispatch({ type: AppActions.CANCEL_EDITS });
   }
 
-  function handleDescriptionUpdate() {
+  function validateLayout() {
     const value = descriptionField.current?.value;
-    const readyToPub = value ? value.length > 0 : false;
+    const readyToPub = (value ? value.length > 0 : false);
     setShouldPublish(readyToPub);
   }
+
+  useEffect(() => {
+    const publishable = viewData.encodedSlots?.length > 0;
+    setCanPublish(publishable);
+  }, [router.query]);
 
   if (!session) return <SignInPrompt />;
 
@@ -122,7 +124,7 @@ function SaveForm() {
               ref={descriptionField}
               className={styles.descriptionField}
               defaultValue={description}
-              onChange={handleDescriptionUpdate}
+              onChange={validateLayout}
             />
           </label>
         </div>
@@ -131,7 +133,8 @@ function SaveForm() {
           <button
             type="button"
             onClick={saveLayout}
-            className={`${styles.submitButton} button ${shouldPublish && 'btn-primary'}`}
+            className={`button ${shouldPublish && 'btn-primary'}`}
+            disabled={!canPublish || undefined}
           >
             { shouldPublish ? I18n.SaveForm.publish_layout : I18n.SaveForm.save_draft }
           </button>

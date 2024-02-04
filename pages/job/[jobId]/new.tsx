@@ -46,7 +46,7 @@ export default function Index(props:PageProps) {
         urlParams: router.query
       }
     });
-  }, [props]);
+  }, [viewData]);
 
   return (
     <>

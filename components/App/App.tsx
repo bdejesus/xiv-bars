@@ -20,18 +20,36 @@ export function App() {
     selectedJob,
     actions,
     roleActions,
-    readOnly
+    readOnly,
+    viewData,
+    viewAction
   } = appState;
   const router = useRouter();
 
-  useEffect(() => {
-    // Push UI changes to state whenever routes params changes
-    // convert Slots from query param to JSON
+  // useEffect(() => {
+  //   // Push UI changes to state whenever routes params changes
+  //   // convert Slots from query param to JSON
 
+  //   if (router.query.jobId) {
+  //     appDispatch({
+  //       type: AppActions.SLOT_ACTIONS,
+  //       payload: {
+  //         urlParams: router.query
+  //       }
+  //     });
+  //   }
+  // }, [router.query]);
+
+  useEffect(() => {
     if (router.query.jobId) {
       appDispatch({
-        type: AppActions.SLOT_ACTIONS,
+        type: AppActions.LOAD_VIEW_DATA,
         payload: {
+          viewData,
+          selectedJob,
+          actions,
+          roleActions,
+          viewAction,
           urlParams: router.query
         }
       });
