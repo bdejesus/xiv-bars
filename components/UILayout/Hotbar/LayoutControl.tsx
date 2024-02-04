@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import { hotbarKeyPosition } from 'lib/xbars';
+import { buildUrl } from 'lib/utils/url';
 
 import styles from './Hotbar.module.scss';
 
@@ -20,9 +21,8 @@ export default function LayoutControl({ id, defaultValue }: Props) {
     const updatedHb = value
       ? viewData.hb?.toSpliced(position, 1, parseInt(value, 10))
       : viewData.hb;
-    const { query, pathname } = router;
-    const queryParams = { pathname, query: { ...query, hb: updatedHb?.toString() } };
-    router.push(queryParams, undefined, { shallow: true });
+    const url = buildUrl({ ...router.query, hb: updatedHb?.toString() });
+    router.push(url, undefined, { shallow: true });
   }
 
   return (

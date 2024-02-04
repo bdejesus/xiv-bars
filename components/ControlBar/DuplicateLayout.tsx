@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import I18n from 'lib/I18n/locale/en-US';
-import { jsonToQuery } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 
@@ -15,16 +15,19 @@ export default function DuplicateLayout() {
     exhb,
     hb,
     id,
+    jobId,
+    isPvp
   } = viewData;
 
   if (!id) return null;
 
   function copyLayout() {
     if (selectedJob) {
-      const query = jsonToQuery({
-        l: layout, s1: encodedSlots, xhb, wxhb, exhb, hb
-      });
-      router.push(`/job/${selectedJob.Abbr}/new?${query}`);
+      const query = {
+        l: layout, s: encodedSlots, xhb, wxhb, exhb, hb, isPvp, jobId
+      };
+      const url = buildUrl(query);
+      router.push(url);
     }
   }
 

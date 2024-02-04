@@ -54,6 +54,7 @@
   gap: $spacing-base $spacing-xl;
   justify-content: center;
   margin-bottom: $spacing-sm;
+  margin-top: $spacing-lg;
   max-width: 838px;
 
   > li {
@@ -86,11 +87,6 @@
   border-top: 1px solid rgb(255 255 255 / 10%);
   height: 100%;
   padding: $spacing-base 0 0;
-
-  &:first-child {
-    border-top: none;
-    margin-top: $spacing-base;
-  }
 
   .layoutControl {
     background-color: #222;

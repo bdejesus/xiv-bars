@@ -7,15 +7,20 @@ import { AppActions } from 'components/App/actions';
 export function AppReducer(state:AppState, action: AppDispatchActions) {
   const { layout } = state.viewData || {};
   const { type, payload } = action;
+
   switch (type) {
     case AppActions.LOAD_VIEW_DATA: {
+      // Load data from getServerSideProps and initialize the app state
       if (payload?.viewData) {
         const readOnly = payload.viewAction === 'show';
+        // Merge url params if any into the viewData state prop
         const viewData = mergeParamsToView({
           params: payload.urlParams,
           viewData: payload.viewData
         });
 
+        // Build XHB/HB template, this generates a JSON to represtent the
+        // hotbar slots states and their associated actions
         const layoutTemplates = setActionsToSlots({
           encodedSlots: viewData.encodedSlots as string,
           layout: viewData.layout as number,
@@ -23,6 +28,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
           roleActions: payload.roleActions,
         });
 
+        // Construct the updated state
         const newState:AppState = {
           ...state,
           ...payload,
@@ -38,11 +44,13 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     }
 
     case AppActions.SLOT_ACTIONS: {
+      // Merge url params if any into the viewData state prop
       const viewData = mergeParamsToView({
         params: payload?.urlParams,
         viewData: state.viewData
       });
 
+      // Generate an updated JSON template from the encodedSlots payload
       const slottedActions = (payload?.viewData?.encodedSlots)
         ? setActionsToSlots({
           encodedSlots: payload.viewData.encodedSlots,
@@ -52,15 +60,12 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
         })
         : undefined;
 
-      return {
-        ...state,
-        ...slottedActions,
-        viewData,
-      };
+      return { ...state, ...slottedActions, viewData };
     }
 
     case AppActions.SLOT_ACTION: {
       if (payload?.action && payload?.slotID) {
+        // Updated the encoded slots string with the given actionID
         const encodedSlots = setActionToSlot({
           action: payload.action,
           slotID: payload.slotID,
@@ -82,29 +87,20 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     }
 
     case AppActions.EDIT_LAYOUT: {
-      return {
-        ...state,
-        readOnly: false
-      };
+      return { ...state, readOnly: false, viewAction: 'edit' };
     }
 
     case AppActions.PUBLISH_LAYOUT: {
-      return { ...state, message: undefined };
+      return { ...state, readOnly: true, viewAction: 'show' };
     }
 
     case AppActions.CANCEL_EDITS: {
-      return {
-        ...state,
-        readOnly: true
-      };
+      return { ...state, readOnly: true, viewAction: 'show' };
     }
 
     case AppActions.UPDATE_VIEW: {
       return {
-        ...state,
-        readOnly: true,
-        viewData: action.payload,
-        viewAction: 'show'
+        ...state, readOnly: true, viewData: action.payload, viewAction: 'show'
       };
     }
 
@@ -112,17 +108,14 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       return {
         ...state,
         ...payload,
-        encodedSlots: defaultState.viewData?.encodedSlots,
+        viewData: defaultState.viewData,
         chotbar: buildCrossHotbars(),
         hotbar: buildHotbars()
       };
     }
 
     case AppActions.LOAD_JOBACTIONS: {
-      return {
-        ...state,
-        actions: action.payload?.actions
-      };
+      return { ...state, actions: action.payload?.actions };
     }
 
     default: {

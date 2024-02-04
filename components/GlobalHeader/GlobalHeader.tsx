@@ -14,7 +14,7 @@ interface Props {
 
 export function GlobalHeader({ selectedJob }:Props) {
   const { viewData, viewAction } = useAppState();
-  const { title, id } = viewData;
+  const { title, id } = viewData || {};
 
   return (
     <div className={styles.container}>

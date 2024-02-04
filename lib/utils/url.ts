@@ -29,6 +29,7 @@ export function queryToJson(hash: string) {
 export function buildUrl(query:URLParams) {
   const jobId = query.jobId;
   const filterQuery = Object.entries(query).reduce((items, [key, value]) => {
+    if (key === 'isPvp') return { ...items, [key]: value ? '1' : '0' };
     if (key !== 'jobId') return { ...items, [key]: value };
     return items;
   }, {});
