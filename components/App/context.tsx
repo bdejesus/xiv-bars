@@ -32,7 +32,10 @@ interface ContextProps {
 }
 
 export function AppContextProvider({ children }: ContextProps) {
-  const [state, dispatch] = useReducer(AppReducer as React.ReducerWithoutAction<AppState>, defaultState);
+  const [state, dispatch] = useReducer(
+    AppReducer as React.ReducerWithoutAction<AppState>,
+    defaultState
+  );
 
   return (
     <AppContext.Provider value={state}>

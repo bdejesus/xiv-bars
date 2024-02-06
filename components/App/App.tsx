@@ -41,6 +41,8 @@ export function App() {
   // }, [router.query]);
 
   useEffect(() => {
+    console.log('>>', router.query);
+
     if (router.query.jobId) {
       appDispatch({
         type: AppActions.LOAD_VIEW_DATA,

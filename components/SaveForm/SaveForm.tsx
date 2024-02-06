@@ -37,8 +37,7 @@ function SaveForm() {
         {
           ...viewData,
           title: titleField.current?.value,
-          description: descriptionField.current?.value,
-          hb: JSON.stringify(viewData.hb)
+          description: descriptionField.current?.value
         },
         {
           filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt']
@@ -92,7 +91,7 @@ function SaveForm() {
   }
 
   useEffect(() => {
-    const publishable = viewData.encodedSlots?.length > 0;
+    const publishable = !!viewData.encodedSlots && viewData.encodedSlots.length > 0;
     setCanPublish(publishable);
   }, [router.query]);
 

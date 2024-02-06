@@ -7,26 +7,13 @@ import Icon, { Icons } from 'components/Icon';
 export default function DuplicateLayout() {
   const router = useRouter();
   const { viewData, selectedJob } = useAppState();
-  const {
-    encodedSlots,
-    layout,
-    xhb,
-    wxhb,
-    exhb,
-    hb,
-    id,
-    jobId,
-    isPvp
-  } = viewData;
+  const { id } = viewData;
 
   if (!id) return null;
 
   function copyLayout() {
     if (selectedJob) {
-      const params = {
-        l: layout, xhb, wxhb, exhb, hb, isPvp, s: encodedSlots, jobId
-      };
-      const url = buildUrl({ params });
+      const url = buildUrl({ mergeData: viewData });
       router.push(url);
     }
   }

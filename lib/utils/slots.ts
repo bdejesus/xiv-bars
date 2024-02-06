@@ -9,10 +9,11 @@ import PET_ACTION from 'apiData/PetAction.json';
 import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
 import { layouts, chotbar, hotbar } from 'lib/xbars';
+import { decorateRouterQuery } from 'lib/utils/url';
 
-import type { URLParams } from 'types/Page';
-import type { LayoutProps, LayoutParamsProps } from 'types/Layout';
+import type { ViewDataProps } from 'types/Layout';
 import type { SlotProps, ActionProps } from 'types/Action';
+import type { ParsedUrlQuery } from 'querystring';
 
 function assignLayoutTemplate(layoutID:number) {
   const templates = [chotbar, hotbar];
@@ -38,43 +39,14 @@ function encodeSlots(slots:object) {
   return slotsString;
 }
 
-export function parseParams(params:URLParams) {
-  const encodedSlots = params.s1 || params.s;
-  const isPvp = () => {
-    if (params.isPvp === '0') return false;
-    if (params.isPvp === '1') return true;
-    return undefined;
-  };
-
-  const formatProps = {
-    encodedSlots,
-    wxhb: params.wxhb && parseInt(params.wxhb, 10),
-    xhb: params.xhb && parseInt(params.xhb, 10),
-    exhb: params.exhb && parseInt(params.exhb, 10),
-    hb: params.hb && params.hb.split(',').map((v:string) => parseInt(v, 10)),
-    layout: params.l && parseInt(params.l, 10),
-    isPvp: isPvp(),
-    jobId: params?.jobId
-  };
-
-  const filterUndefined = Object.entries(formatProps)
-    .reduce((newProps, [key, value]) => {
-      const hasValue:boolean = value !== undefined;
-      if (hasValue) return { ...newProps, [key]: value };
-      return newProps;
-    }, {});
-
-  return filterUndefined;
-}
-
 interface MergeParamsToViewProps {
-  params?: URLParams,
-  viewData: LayoutParamsProps
+  params?: ParsedUrlQuery,
+  viewData: ViewDataProps
 }
 
 export function mergeParamsToView(props?:MergeParamsToViewProps) {
   const { params, viewData } = props || {};
-  const parsedParams = params && parseParams(params);
+  const parsedParams = params && decorateRouterQuery(params);
 
   const {
     createdAt,
@@ -93,7 +65,7 @@ export function mergeParamsToView(props?:MergeParamsToViewProps) {
     hb,
     isPvp,
     layout
-  }:LayoutProps = {
+  }:ViewDataProps = {
     ...defaultState.viewData,
     ...viewData,
     ...parsedParams
@@ -291,7 +263,6 @@ export function setActionsToSlots(props:SetActionsToSlotsProps) {
 
 const modules = {
   encodeSlots,
-  parseParams,
   mergeParamsToView,
   assignActionIds,
   setActionToSlot,

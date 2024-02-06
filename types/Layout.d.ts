@@ -1,4 +1,4 @@
-export interface LayoutParamsProps {
+export interface LayoutProps {
   id: number | undefined,
   encodedSlots: string | undefined,
   wxhb: number,
@@ -9,7 +9,7 @@ export interface LayoutParamsProps {
   layout: number,
 }
 
-export interface LayoutProps extends LayoutParamsProps {
+export interface ViewDataProps extends LayoutProps {
   createdAt?: string | null,
   deletedAt?: string | null,
   description?: string,
@@ -21,5 +21,16 @@ export interface LayoutProps extends LayoutParamsProps {
     id: number
   },
   userId?: number,
-  hb: string
+}
+
+export interface MergeDataProps {
+  id?: number | undefined,
+  encodedSlots?: string | undefined,
+  s?: string | undefined,
+  wxhb?: number,
+  xhb?: number,
+  exhb?: number,
+  hb?: number[],
+  isPvp?: boolean,
+  layout?: number,
 }

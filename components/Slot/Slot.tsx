@@ -49,10 +49,12 @@ export default function Slot({ id, className, action }: Props) {
       actions,
       roleActions
     });
-    const params = { ...router.query, s: updatedSlots };
 
     if (selectedJob) {
-      const url = buildUrl({ params });
+      const url = buildUrl({
+        query: router.query,
+        mergeData: { s: updatedSlots }
+      });
       router.push(url, undefined, { shallow: true });
     }
   }
