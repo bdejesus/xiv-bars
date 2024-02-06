@@ -31,7 +31,7 @@ function assignActionIds(slottedActions: SlotProps[]) {
   });
 }
 
-function encodeSlots(slots:object) {
+function encodeSlots(slots:object):string {
   const slotActionObject = Object.values(slots);
   const actionIdGroups = slotActionObject.map((arr) => assignActionIds(arr as SlotProps[]));
   const actionIds = actionIdGroups.flat();
@@ -44,7 +44,7 @@ interface MergeParamsToViewProps {
   viewData: ViewDataProps
 }
 
-export function mergeParamsToView(props?:MergeParamsToViewProps) {
+export function mergeParamsToView(props?:MergeParamsToViewProps):ViewDataProps {
   const { params, viewData } = props || {};
   const parsedParams = params && decorateRouterQuery(params);
 

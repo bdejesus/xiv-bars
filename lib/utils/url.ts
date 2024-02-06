@@ -2,16 +2,6 @@ import { domain } from 'lib/host';
 import type { ViewDataProps, MergeDataProps } from 'types/Layout';
 import { QueryProps } from 'types/Page';
 
-export function getUrlParams(url: string) {
-  const search = url.split('?')[1];
-  if (search) {
-    const searchString = decodeURI(search);
-    return JSON
-      .parse(`{"${searchString.replaceAll('"', '\\"').replaceAll('&', '","').replaceAll('=', '":"')}"}`);
-  }
-  return {};
-}
-
 export function jsonToQuery(json:object) {
   return Object.entries(json)
     .reduce((items:string[], [key, value]) => {
@@ -21,10 +11,6 @@ export function jsonToQuery(json:object) {
       return items;
     }, [])
     .join('&');
-}
-
-export function queryToJson(hash: string) {
-  return Object.fromEntries(new URLSearchParams(hash.slice(1)));
 }
 
 interface BuildURLProps {
@@ -37,7 +23,15 @@ type hbValue = string|string[]|number[];
 
 export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   const params = { ...viewData, ...query, ...mergeData };
-  const excludeKeys = ['user', 'createdAt', 'deletedAt', 'updatedAt', 'title', 'description', 'layout', 'encodedSlots'];
+  const inlcudeKeys = [
+    's',
+    'l',
+    'hb',
+    'isPvp',
+    'xhb',
+    'wxhb',
+    'exhb'
+  ];
   const jobId = params.jobId;
 
   function formatPvp(value:boolean|number|string) {
@@ -49,13 +43,15 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   function formatHb(value:hbValue) {
     const isArray = Array.isArray(value);
     if (isArray) return value.toString();
-    return value.replaceAll(/\[|\]/gi, '');
+    return value.replaceAll(/\[|\]|"/gi, '');
   }
 
   const filterQuery = Object.entries(params).reduce((items, [key, value]) => {
+    if (['s', 's1', 'encodedSlots'].includes(key)) return { ...items, s: value };
     if (key === 'isPvp') return { ...items, [key]: formatPvp(value as string) };
     if (key === 'hb') return { ...items, [key]: value && formatHb(value as hbValue) };
-    if (!excludeKeys.includes(key)) return { ...items, [key]: value };
+    if (['l', 'layout'].includes(key)) return { ...items, l: value?.toString() };
+    if (inlcudeKeys.includes(key)) return { ...items, [key]: value };
     return items;
   }, {});
 
@@ -106,9 +102,7 @@ export function decorateRouterQuery(query:QueryProps) {
 }
 
 const exportFunctions = {
-  getUrlParams,
   jsonToQuery,
-  queryToJson,
   buildUrl,
   decorateRouterQuery
 };
