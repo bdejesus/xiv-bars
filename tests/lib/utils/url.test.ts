@@ -1,3 +1,4 @@
+import { domain } from 'lib/host';
 import * as UrlUtils from 'lib/utils/url';
 
 describe('jsonToQuery', () => {
@@ -16,13 +17,13 @@ describe('buildUrl', () => {
 
   it('returns a url from query', () => {
     const result = UrlUtils.buildUrl({ query });
-    expect(result).toBe('http://localhost:3000/job/SAM/new?l=0&isPvp=0');
+    expect(result).toBe(`${domain}/job/SAM/new?l=0&isPvp=0`);
   });
 
   it('returns a url from mergeData', () => {
     const mergeData = { xhb: 4, isPvp: true };
     const result = UrlUtils.buildUrl({ query, mergeData });
-    expect(result).toBe('http://localhost:3000/job/SAM/new?l=0&isPvp=1&xhb=4');
+    expect(result).toBe(`${domain}/job/SAM/new?l=0&isPvp=1&xhb=4`);
   });
 
   it('returns a url with viewData', () => {
@@ -41,7 +42,7 @@ describe('buildUrl', () => {
     };
 
     const result = UrlUtils.buildUrl({ query, viewData });
-    expect(result).toBe('http://localhost:3000/job/SAM/new?wxhb=2&xhb=4&exhb=6&l=0&isPvp=0&hb=1,1,1,1,1,1,1,1,1,1');
+    expect(result).toBe(`${domain}/job/SAM/new?wxhb=2&xhb=4&exhb=6&l=0&isPvp=0&hb=1,1,1,1,1,1,1,1,1,1`);
   });
 });
 
