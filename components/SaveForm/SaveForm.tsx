@@ -8,7 +8,7 @@ import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import { AppActions } from 'components/App/actions';
 import { SystemActions, useSystemDispatch } from 'components/System';
-import { filterUndefined } from 'lib/utils/filters';
+import type { ViewDataProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
 
 import styles from './SaveForm.module.scss';
@@ -30,10 +30,27 @@ function SaveForm() {
   const [canPublish, setCanPublish] = useState(false);
   const [shouldPublish, setShouldPublish] = useState(false);
 
+  interface FilterOptions {
+    filterKeys?: string[]
+  }
+
   function saveLayout() {
+    const prepareData = (
+      data:ViewDataProps,
+      opts?:FilterOptions
+    ) => Object.entries(data).reduce((collection, [key, value]) => {
+      const noValue = (value === undefined && value === null);
+      const shouldFilter = (noValue || opts?.filterKeys?.includes(key));
+      if (!shouldFilter) {
+        const formatVal = (key === 'hb') ? value.toString() : value;
+        return { ...collection, [key]: formatVal };
+      }
+      return collection;
+    }, {});
+
     const body = {
       method: viewAction === 'new' ? 'create' : 'update',
-      data: filterUndefined(
+      data: prepareData(
         {
           ...viewData,
           title: titleField.current?.value,
