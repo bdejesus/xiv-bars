@@ -22,7 +22,7 @@ interface BuildURLProps {
 type hbValue = string|string[]|number[];
 
 export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
-  const params = { ...viewData, ...query, ...mergeData };
+  const params = { ...viewData, ...query, ...mergeData } || {};
   const inlcudeKeys = [
     's',
     'l',
@@ -33,6 +33,8 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     'exhb'
   ];
   const jobId = params.jobId;
+
+  if (!jobId) throw new Error('jobId param is undefined');
 
   function formatPvp(value:boolean|number|string) {
     const valStr = value.toString();
