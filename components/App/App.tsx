@@ -26,20 +26,6 @@ export function App() {
   } = appState;
   const router = useRouter();
 
-  // useEffect(() => {
-  //   // Push UI changes to state whenever routes params changes
-  //   // convert Slots from query param to JSON
-
-  //   if (router.query.jobId) {
-  //     appDispatch({
-  //       type: AppActions.SLOT_ACTIONS,
-  //       payload: {
-  //         urlParams: router.query
-  //       }
-  //     });
-  //   }
-  // }, [router.query]);
-
   useEffect(() => {
     if (router.query.jobId) {
       appDispatch({

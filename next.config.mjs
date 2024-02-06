@@ -8,7 +8,15 @@ const options = {
   poweredByHeader: false,
   sentry: {
     hideSourceMaps: true
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'xivapi.com'
+      },
+    ],
+  },
 };
 
 const SentryWebpackPluginOptions = {

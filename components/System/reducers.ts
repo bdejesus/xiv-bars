@@ -10,10 +10,7 @@ export function SystemReducer(state:SystemProps, action:SystemDispatchActions) {
       return { ...state, showModal };
     }
     case SystemActions.SET_MESSAGE: {
-      return {
-        ...state,
-        message: payload
-      };
+      return { ...state, message: payload };
     }
     default: {
       throw new Error(`${type} is an unhandled SystemAction`);
