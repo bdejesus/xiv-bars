@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Job.module.scss';
 
@@ -21,13 +22,13 @@ export default function Job({
   return (
     <div className={[styles.wrapper, className].join(' ')}>
       { icon && (
-        <img
+        <Image
           className={`${styles.icon} job-icon`}
           src={job.PreIcon || `/jobIcons${job.Icon}`}
           alt={`${job.Name} Icon`}
           draggable={false}
-          height={28}
-          width={28}
+          height={32}
+          width={32}
         />
       )}
 

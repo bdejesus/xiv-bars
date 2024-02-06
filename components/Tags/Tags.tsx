@@ -1,4 +1,5 @@
 import Job from 'components/JobSelect/Job';
+import Icon from 'components/Icon';
 import type { LayoutProps } from 'types/Layout';
 import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Tags.module.scss';
@@ -12,9 +13,22 @@ export default function Tags({ layoutView, job }:Props) {
   return (
     <div className={styles.tags}>
       { job && <Job job={job} className={styles.tag} name={false} /> }
-      <span className={styles.tag}>{ layoutView.isPvp ? 'PvP' : 'PvE' }</span>
-      { (layoutView.layout === 0) && <span className={styles.tag}>XHB</span> }
-      { (layoutView.layout === 1) && <span className={styles.tag}>HB</span> }
+      <span className={styles.tag}>
+        <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'PvP' : 'PvE'} Icon`} />
+        { layoutView.isPvp ? 'PvP' : 'PvE' }
+      </span>
+      { (layoutView.layout === 0) && (
+        <span className={styles.tag}>
+          <Icon id="xhb" alt="Cross Hotbar Icon" />
+          XHB
+        </span>
+      )}
+      { (layoutView.layout === 1) && (
+        <span className={styles.tag}>
+          <Icon id="hb" alt="Hotbar Icon" />
+          HB
+        </span>
+      )}
     </div>
   );
 }

@@ -42,7 +42,7 @@ function SaveForm() {
       const noValue = (value === undefined && value === null);
       const shouldFilter = (noValue || opts?.filterKeys?.includes(key));
       if (!shouldFilter) {
-        const formatVal = (key === 'hb') ? value.toString() : value;
+        const formatVal = (key === 'hb') ? value?.toString() : value;
         return { ...collection, [key]: formatVal };
       }
       return collection;
@@ -83,7 +83,9 @@ function SaveForm() {
 
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
-        router.push(`/job/${layoutView.jobId}/${layoutView.id}`, undefined, { shallow: true });
+        if (viewAction === 'new') {
+          router.push(`/job/${layoutView.jobId}/${layoutView.id}`, undefined, { shallow: true });
+        }
       })
       .catch((error) => {
         console.error(error);

@@ -53,13 +53,15 @@ export default function DetailPanel() {
             </div>
 
             <div className={styles.body}>
-              { description && (
+              { description ? (
                 <ReactMarkdown components={{
                   h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
                 }}
                 >
                   {description}
                 </ReactMarkdown>
+              ) : (
+                <p className="inline-message warn">This <b>Layout</b> is saved as a draft. Add a description by editing this Layout to make this publicly available.</p>
               )}
             </div>
           </>
