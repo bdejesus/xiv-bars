@@ -30,7 +30,7 @@ export default function Index(props:PageProps) {
   } = props;
   const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${viewData?.id}`;
-  const pageTitle = `${viewData?.title} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
+  const pageTitle = `${viewData?.title} by ${viewData.user?.name} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
