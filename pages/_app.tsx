@@ -51,7 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </a>
 
           <div className="text-center">
-            <Avatar img="av30.png" alt="" height={64} width={64} />
+            <Avatar img="av30.png" />
           </div>
         </div>
       </div>
