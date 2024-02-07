@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { listJobActions } from 'lib/api';
 import { buildUrl } from 'lib/utils/url';
-
+import Icon from 'components/Icon';
 import { AppActions } from 'components/App/actions';
 import type { ClassJobProps } from 'types/ClassJob';
 
@@ -52,6 +52,7 @@ export default function PvPToggle() {
           data-selected={!viewData.isPvp}
           title="Player Versus Environment"
         >
+          <Icon id="pve" alt="" />
           PvE
         </abbr>
         <abbr
@@ -59,6 +60,7 @@ export default function PvPToggle() {
           data-selected={viewData.isPvp}
           title="Player Versus Player"
         >
+          <Icon id="pvp" alt="" />
           PvP
         </abbr>
       </button>
