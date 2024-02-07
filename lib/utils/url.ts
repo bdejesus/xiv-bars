@@ -1,5 +1,6 @@
 import { domain } from 'lib/host';
 import type { ViewDataProps, MergeDataProps } from 'types/Layout';
+import { defaultState } from 'components/App/defaultState';
 import { QueryProps } from 'types/Page';
 
 export function jsonToQuery(json:object) {
@@ -24,13 +25,13 @@ type hbValue = string|string[]|number[];
 export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   const params = { ...viewData, ...query, ...mergeData } || {};
   const inlcudeKeys = [
-    's',
     'l',
     'hb',
     'isPvp',
     'xhb',
     'wxhb',
-    'exhb'
+    'exhb',
+    's',
   ];
   const jobId = params.jobId;
 
@@ -48,7 +49,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     return value.replaceAll(/\[|\]|"/gi, '');
   }
 
-  const filterQuery = Object.entries(params).reduce((items, [key, value]) => {
+  const decorateEntries = Object.entries(params).reduce((items, [key, value]) => {
     if (['s', 's1', 'encodedSlots'].includes(key)) return { ...items, s: value };
     if (key === 'isPvp') return { ...items, [key]: formatPvp(value as string) };
     if (key === 'hb') return { ...items, [key]: value && formatHb(value as hbValue) };
@@ -57,10 +58,15 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     return items;
   }, {});
 
+  const filterEntries = Object.entries(decorateEntries).reduce((entries, [key, value]) => {
+    if (!value || ['undefined', 'null'].includes(value.toString())) return entries;
+    return { ...entries, [key]: value };
+  }, {});
+
   const url = `${domain}/job/${jobId}/new`;
 
-  if (Object.keys(filterQuery).length > 0) {
-    return [url, jsonToQuery(filterQuery)].join('?');
+  if (Object.keys(filterEntries).length > 0) {
+    return [url, jsonToQuery(filterEntries)].join('?');
   }
 
   return url;
@@ -76,7 +82,8 @@ export function decorateRouterQuery(query:QueryProps) {
   };
 
   // convert hb url param to string[]
-  const parseHb = (hbVal:string):number[] => {
+  const parseHb = (hbVal:string):number[]|undefined => {
+    if (hbVal === 'undefined' || hbVal === 'null') return defaultState.viewData.hb;
     const sanitizeVal = hbVal.replaceAll(/\[|\]/gi, '');
     const hb = sanitizeVal.split(',').map((v) => parseInt(v, 10));
     return hb;
