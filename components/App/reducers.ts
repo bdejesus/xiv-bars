@@ -1,35 +1,75 @@
 import { buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
-import { setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
+import { setActionToSlot, setActionsToSlots, mergeParamsToView } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
 
-export default function AppReducer(state: AppState, action: AppDispatchActions) {
-  const { layout } = state;
-  switch (action.type) {
-    case AppAction.SLOT_ACTIONS: {
-      const slottedActions = (action.payload?.encodedSlots)
+export function AppReducer(state:AppState, action: AppDispatchActions) {
+  const { layout } = state.viewData || {};
+  const { type, payload } = action;
+
+  switch (type) {
+    case AppActions.LOAD_VIEW_DATA: {
+      // Load data from getServerSideProps and initialize the app state
+      if (payload?.viewData) {
+        const readOnly = payload.viewAction === 'show';
+        // Merge url params if any into the viewData state prop
+        const viewData = mergeParamsToView({
+          params: payload.urlParams,
+          viewData: payload.viewData
+        });
+
+        // Build XHB/HB template, this generates a JSON to represtent the
+        // hotbar slots states and their associated actions
+        const layoutTemplates = setActionsToSlots({
+          encodedSlots: viewData.encodedSlots as string,
+          layout: viewData.layout as number,
+          actions: payload.actions,
+          roleActions: payload.roleActions,
+        });
+
+        // Construct the updated state
+        const newState:AppState = {
+          ...state,
+          ...payload,
+          ...layoutTemplates,
+          viewData,
+          readOnly,
+        };
+
+        return newState;
+      }
+
+      return state;
+    }
+
+    case AppActions.SLOT_ACTIONS: {
+      // Merge url params if any into the viewData state prop
+      const viewData = mergeParamsToView({
+        params: payload?.urlParams,
+        viewData: state.viewData
+      });
+
+      // Generate an updated JSON template from the encodedSlots payload
+      const slottedActions = (payload?.viewData?.encodedSlots)
         ? setActionsToSlots({
-          encodedSlots: action.payload.encodedSlots,
-          layout: layout || defaultState.layout,
+          encodedSlots: payload.viewData.encodedSlots,
+          layout: payload.viewData.layout || defaultState.viewData.layout,
           actions: state.actions,
           roleActions: state.roleActions
         })
         : undefined;
 
-      return {
-        ...state,
-        ...action.payload,
-        ...slottedActions
-      };
+      return { ...state, ...slottedActions, viewData };
     }
 
-    case AppAction.SLOT_ACTION: {
-      if (action.payload?.action && action.payload?.slotID) {
+    case AppActions.SLOT_ACTION: {
+      if (payload?.action && payload?.slotID) {
+        // Updated the encoded slots string with the given actionID
         const encodedSlots = setActionToSlot({
-          action: action.payload.action,
-          slotID: action.payload.slotID,
-          encodedSlots: state.encodedSlots,
+          action: payload.action,
+          slotID: payload.slotID,
+          encodedSlots: state.viewData?.encodedSlots,
           layout
         });
         return { ...state, encodedSlots };
@@ -38,64 +78,44 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
       return state;
     }
 
-    case AppAction.TOGGLE_TITLES: {
+    case AppActions.TOGGLE_TITLES: {
       return { ...state, showTitles: !state.showTitles };
     }
 
-    case AppAction.TOGGLE_LVLS: {
+    case AppActions.TOGGLE_LVLS: {
       return { ...state, showAllLvl: !state.showAllLvl };
     }
 
-    case AppAction.TOGGLE_MODAL: {
-      return { ...state, showModal: !state.showModal || false };
+    case AppActions.EDIT_LAYOUT: {
+      return { ...state, readOnly: false, viewAction: 'edit' };
     }
 
-    case AppAction.EDIT_LAYOUT: {
+    case AppActions.PUBLISH_LAYOUT: {
+      return { ...state, readOnly: true, viewAction: 'show' };
+    }
+
+    case AppActions.CANCEL_EDITS: {
+      return { ...state, readOnly: true, viewAction: 'show' };
+    }
+
+    case AppActions.UPDATE_VIEW: {
       return {
-        ...state,
-        readOnly: false,
-        showPublish: true,
-        message: undefined
+        ...state, readOnly: true, viewData: action.payload, viewAction: 'show'
       };
     }
 
-    case AppAction.PUBLISH_LAYOUT: {
-      return { ...state, showPublish: true, message: undefined };
-    }
-
-    case AppAction.CANCEL_EDITS: {
+    case AppActions.INITIALIZE: {
       return {
         ...state,
-        readOnly: true,
-        showPublish: true,
-        message: undefined
-      };
-    }
-
-    case AppAction.LAYOUT_SAVED: {
-      return {
-        ...state,
-        ...action.payload,
-        readOnly: true,
-        showPublish: false,
-        viewAction: 'show'
-      };
-    }
-
-    case AppAction.UPDATE_MESSAGE: {
-      if (action.payload?.message) {
-        return { ...state, message: action.payload.message };
-      }
-      return state;
-    }
-
-    case AppAction.INITIALIZE: {
-      return {
-        ...state,
-        encodedSlots: defaultState.encodedSlots,
+        ...payload,
+        viewData: defaultState.viewData,
         chotbar: buildCrossHotbars(),
         hotbar: buildHotbars()
       };
+    }
+
+    case AppActions.LOAD_JOBACTIONS: {
+      return { ...state, actions: action.payload?.actions };
     }
 
     default: {
@@ -103,3 +123,5 @@ export default function AppReducer(state: AppState, action: AppDispatchActions) 
     }
   }
 }
+
+export default AppReducer;

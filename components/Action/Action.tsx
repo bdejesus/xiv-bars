@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { createRef, useState } from 'react';
+import Image from 'next/image';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
@@ -101,9 +102,11 @@ export default function Action({ action, remote }: Props) {
         data-show-title={showTitles}
       >
         <div className={styles.iconWrapper}>
-          <img
-            src={action.customIcon ? action.Icon : `//xivapi.com/${action.Icon}`}
+          <Image
+            src={action.customIcon ? action.Icon as string : `https://xivapi.com/${action.Icon}`}
             alt={`${action.Name} Action`}
+            height={40}
+            width={40}
           />
         </div>
       </div>

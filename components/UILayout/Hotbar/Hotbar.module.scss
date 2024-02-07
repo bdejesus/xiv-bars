@@ -54,6 +54,7 @@
   gap: $spacing-base $spacing-xl;
   justify-content: center;
   margin-bottom: $spacing-sm;
+  margin-top: $spacing-lg;
   max-width: 838px;
 
   > li {
@@ -64,9 +65,11 @@
     content: counter(slots);
     counter-increment: slots;
     font-weight: 400;
-    left: -20px;
+    left: -1.5em;
+    min-width: 1em;
     opacity: 0.66;
     position: absolute;
+    text-align: right;
     top: 25px;
   }
 

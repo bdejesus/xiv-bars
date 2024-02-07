@@ -44,6 +44,13 @@
     }
 
     .card {
+      border-color: $color-alt;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 33%);
+
+      h4 {
+        color: $color-alt;
+      }
+
       p {
         color: #ccc;
       }
@@ -60,6 +67,7 @@
 
   h4 {
     color: #fff;
+    flex: 1 1 auto;
     margin: $spacing-sm 0 $spacing-base;
     transition: color $timing-default ease;
   }
@@ -70,23 +78,6 @@
     height: 64px;
     line-height: 1.45;
     transition: color $timing-default ease;
-  }
-
-  .description {
-    flex: 1 1 auto;
-    overflow: hidden;
-    position: relative;
-
-    &::after {
-      background: linear-gradient(to bottom, rgb(0 0 0 / 0%), #111);
-      bottom: 0;
-      content: "";
-      display: block;
-      height: 60px;
-      left: 0;
-      position: absolute;
-      right: 0;
-    }
   }
 
   .job {
@@ -112,14 +103,14 @@
   }
 
   .owner {
-    color: #666;
-    font-style: italic;
-    line-height: 1;
+    font-size: $font-size-base;
+    opacity: 0.75;
   }
 
   .timestamp {
     font-size: $font-size-sm;
-    opacity: 0.33;
+    font-style: italic;
+    opacity: 0.5;
   }
 }
 

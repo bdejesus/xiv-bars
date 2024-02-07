@@ -2,7 +2,7 @@ import type { UserState, UserDispatchActions } from 'types/User';
 import { maxLayouts } from 'lib/user';
 import { UserActions } from './actions';
 
-export default function UserReducer(state: UserState, action: UserDispatchActions) {
+export function UserReducer(state: UserState, action: UserDispatchActions) {
   switch (action.type) {
     case UserActions.UPDATE_USER: {
       return { ...state, ...action.payload?.user };
@@ -19,3 +19,5 @@ export default function UserReducer(state: UserState, action: UserDispatchAction
     }
   }
 }
+
+export default UserReducer;

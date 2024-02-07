@@ -18,8 +18,9 @@
     flex-direction: row;
   }
 
-  .detailPanelHead,
-  .detailPanelBody {
+  .header,
+  .body,
+  .meta {
     color: $color-gray;
     padding: 0 $spacing-base;
 
@@ -29,20 +30,31 @@
     }
   }
 
-  .detailPanelHead {
-    margin-top: $spacing-lg;
+  .header {
+    margin-top: $spacing-base;
 
     .owner {
-      opacity: 0.5;
+      font-size: $font-size-base;
+      opacity: 0.75;
     }
   }
 
-  .detailPanelBody {
+  .body {
     margin-top: $spacing-base;
 
     p {
       font-size: $font-size-base;
       line-height: 1.45em;
     }
+  }
+
+  .meta {
+    margin-top: $spacing-base;
+  }
+
+  .timestamp {
+    font-size: $font-size-sm;
+    font-style: italic;
+    opacity: 0.5;
   }
 }

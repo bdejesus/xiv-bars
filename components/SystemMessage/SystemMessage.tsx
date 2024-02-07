@@ -1,13 +1,32 @@
-import { useAppState } from 'components/App/context';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useSystemDispatch, useSystemState, SystemActions } from 'components/System';
 
 export function SystemMessage() {
-  const { message } = useAppState();
+  const router = useRouter();
+  const systemDispatch = useSystemDispatch();
+  const { message } = useSystemState();
+
+  useEffect(() => {
+    function resetMessage() {
+      systemDispatch({
+        type: SystemActions.SET_MESSAGE,
+        payload: undefined
+      });
+    }
+
+    router.events.on('routeChangeComplete', resetMessage);
+
+    return () => {
+      router.events.off('routeChangeComplete', resetMessage);
+    };
+  }, []);
 
   if (!message) return null;
 
   return (
-    <div className={`system-message ${message.type}`}>
-      { message.body }
+    <div className={`system-message ${message.status}`}>
+      { message.text }
     </div>
   );
 }

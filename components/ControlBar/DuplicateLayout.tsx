@@ -1,30 +1,20 @@
 import { useRouter } from 'next/router';
 import I18n from 'lib/I18n/locale/en-US';
-import { jsonToQuery } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 
 export default function DuplicateLayout() {
   const router = useRouter();
-  const {
-    encodedSlots,
-    layout,
-    xhb,
-    wxhb,
-    exhb,
-    hb,
-    layoutId,
-    selectedJob
-  } = useAppState();
+  const { viewData, selectedJob } = useAppState();
+  const { id } = viewData;
 
-  if (!layoutId) return null;
+  if (!id) return null;
 
   function copyLayout() {
     if (selectedJob) {
-      const query = jsonToQuery({
-        l: layout, s1: encodedSlots, xhb, wxhb, exhb, hb
-      });
-      router.push(`/job/${selectedJob.Abbr}/new?${query}`);
+      const url = buildUrl({ mergeData: viewData });
+      router.push(url);
     }
   }
 

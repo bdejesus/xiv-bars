@@ -1,27 +1,11 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
-import type { LayoutProps } from 'types/App';
+import type { LayoutProps } from 'types/Layout';
 
 type LayoutID = string;
 type UserID = number | undefined;
 
-function formatData(userId: UserID, data: LayoutProps) {
-  const {
-    layout, xhb, wxhb, exhb
-  } = data;
-
-  return {
-    ...data,
-    hb: JSON.stringify(data.hb),
-    layout: layout ? parseInt(layout.toString(), 10) : 0,
-    xhb: xhb ? parseInt(xhb.toString(), 10) : 1,
-    wxhb: wxhb ? parseInt(wxhb.toString(), 10) : 0,
-    exhb: exhb ? parseInt(exhb.toString(), 10) : 0,
-    userId
-  };
-}
-
-export async function list(userId: UserID) {
+export async function list(userId:UserID) {
   const layouts = await db.layout.findMany({
     where: { userId },
     include: {
@@ -38,21 +22,20 @@ export async function list(userId: UserID) {
   return layouts;
 }
 
-export async function create(userId: UserID, data: LayoutProps) {
-  const userLayouts = await db.layout.findMany({ where: { userId } });
+export async function create(userId:UserID, data:LayoutProps) {
+  const userLayouts = await db.layout
+    .findMany({ where: { userId } })
+    .catch((error:Error) => console.error(error));
+
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
   } else {
-    const layoutData = formatData(userId, data);
-
-    const createLayout = await db.layout.create({
-      data: layoutData,
-      include: {
-        user: {
-          select: { name: true }
-        }
-      }
-    });
+    const createLayout = await db.layout
+      .create({
+        data: { ...data, userId },
+        include: { user: { select: { name: true } } }
+      })
+      .catch((error:Error) => console.error(error));
     return createLayout;
   }
 }
@@ -60,49 +43,49 @@ export async function create(userId: UserID, data: LayoutProps) {
 export async function read(id: LayoutID) {
   if (!id) throw new Error('Layout not found');
 
-  const readLayout = await db.layout.findUnique({
-    where: {
-      id: parseInt(id, 10)
-    },
-    include: {
-      user: {
-        select: {
-          name: true,
-          id: true
-        }
-      }
-    }
-  });
+  const viewData = await db.layout
+    .findUnique({
+      where: { id: parseInt(id, 10) },
+      include: { user: { select: { name: true, id: true } } }
+    });
 
-  return readLayout;
+  return viewData;
 }
 
-export async function update(
-  userId:UserID,
-  { layoutId, data }:{ layoutId: LayoutID, data: LayoutProps }
-) {
-  const layoutToUpdate = await db.layout.findFirst({ where: { id: layoutId, userId } });
+export async function update(userId:UserID, data:LayoutProps) {
+  const { id } = data;
+  const layoutToUpdate = await db.layout
+    .findFirst({ where: { id, userId } })
+    .catch((error:Error) => console.error(error));
+
   if (!layoutToUpdate) throw new Error('Layout not found');
 
   const today = new Date().toISOString();
-  const layoutData = formatData(userId, { ...data, updatedAt: today });
+  const viewData = { ...data, updatedAt: today };
 
-  const updatedLayout = await db.layout.update({
-    where: { id: layoutId }, data: layoutData
-  });
+  const updatedLayout = await db.layout
+    .update({
+      where: { id },
+      data: viewData,
+      include: { user: { select: { name: true, id: true } } }
+    })
+    .catch((error:Error) => console.error(error));
 
   return updatedLayout;
 }
 
-export async function destroy(userId: UserID, { id }: { id: LayoutID}) {
+export async function destroy(userId: UserID, { id }: { id:LayoutID }) {
   if (!userId || !id) throw new Error('Layout not found');
-  await db.layout.deleteMany({ where: { id, userId } });
+  await db.layout
+    .deleteMany({ where: { id, userId } })
+    .catch((error:Error) => console.error(error));
+
   const newList = await list(userId);
   return newList;
 }
 
-const layoutApiMethods = {
+const layoutsApi = {
   list, create, read, update, destroy
 };
 
-export default layoutApiMethods;
+export default layoutsApi;

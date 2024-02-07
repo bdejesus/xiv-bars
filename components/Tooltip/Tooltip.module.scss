@@ -12,8 +12,7 @@ $tooltip-width: 320px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 66%);
   color: #fff;
   font-weight: 400;
-  left: 0;
-  max-width: $tooltip-width;
+  left: -$tooltip-width;
   opacity: 1;
   padding: 10px 16px;
   pointer-events: none;
@@ -24,6 +23,7 @@ $tooltip-width: 320px;
   transition: opacity 0.33s ease, transform 0.33s ease;
   transition-delay: 0s;
   white-space: pre-wrap;
+  width: $tooltip-width;
   z-index: 10;
 
   &[aria-hidden="true"] {

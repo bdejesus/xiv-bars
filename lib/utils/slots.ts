@@ -6,11 +6,14 @@ import MAIN_COMMAND from 'apiData/MainCommand.json';
 import MACRO_ICON from 'apiData/MacroIcon.json';
 import PET_ACTION from 'apiData/PetAction.json';
 
-import type { AppState } from 'types/App';
-import type { SlotProps, ActionProps } from 'types/Action';
 import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
 import { layouts, chotbar, hotbar } from 'lib/xbars';
+import { decorateRouterQuery } from 'lib/utils/url';
+
+import type { ViewDataProps } from 'types/Layout';
+import type { SlotProps, ActionProps } from 'types/Action';
+import type { ParsedUrlQuery } from 'querystring';
 
 function assignLayoutTemplate(layoutID:number) {
   const templates = [chotbar, hotbar];
@@ -28,44 +31,64 @@ function assignActionIds(slottedActions: SlotProps[]) {
   });
 }
 
-function encodeSlots(slots:object) {
-  const slotIDs = Object.values(slots);
-  const slotsQuery = slotIDs.map((arr) => assignActionIds(arr as SlotProps[]));
-  const queryString = slotsQuery
-    .reduce((flat, next) => flat.concat(next), [])
-    .join(',');
-  return queryString;
+function encodeSlots(slots:object):string {
+  const slotActionObject = Object.values(slots);
+  const actionIdGroups = slotActionObject.map((arr) => assignActionIds(arr as SlotProps[]));
+  const actionIds = actionIdGroups.flat();
+  const slotsString = actionIds.join(',');
+  return slotsString;
 }
 
-interface DecodeSlotsProps {
-  appState: AppState
-  id?: number,
-  encodedSlots?: string,
-  s1?: string,
-  s?: string,
-  wxhb?: string,
-  xhb?: string,
-  exhb?: string,
-  hb?: string,
-  l?: string
+interface MergeParamsToViewProps {
+  params?: ParsedUrlQuery,
+  viewData: ViewDataProps
 }
 
-export function decodeSlots(props:DecodeSlotsProps) {
-  const { appState } = props;
+export function mergeParamsToView(props?:MergeParamsToViewProps):ViewDataProps {
+  const { params, viewData } = props || {};
+  const parsedParams = params && decorateRouterQuery(params);
 
-  const formatHbConfig: string[] = props.hb?.split(',') || new Array(10).fill(1, 0, 10);
-
-  const payload = {
-    id: props.id,
-    encodedSlots: props.encodedSlots || props.s1 || props.s || appState.encodedSlots || defaultState.encodedSlots,
-    wxhb: props.wxhb ? parseInt(props.wxhb, 10) : appState.wxhb || defaultState.wxhb,
-    xhb: props.xhb ? parseInt(props.xhb, 10) : appState.xhb || defaultState.xhb,
-    exhb: props.exhb ? parseInt(props.exhb, 10) : appState.exhb || defaultState.exhb,
-    hb: formatHbConfig || appState.hb || defaultState.hb,
-    layout: props.l ? parseInt(props.l, 10) : appState.layout || defaultState.layout
+  const {
+    createdAt,
+    deletedAt,
+    description,
+    jobId,
+    title,
+    updatedAt,
+    user,
+    userId,
+    id,
+    encodedSlots,
+    wxhb,
+    xhb,
+    exhb,
+    hb,
+    isPvp,
+    layout
+  }:ViewDataProps = {
+    ...defaultState.viewData,
+    ...viewData,
+    ...parsedParams
   };
 
-  return payload;
+  return {
+    createdAt,
+    deletedAt,
+    description,
+    jobId,
+    title,
+    updatedAt,
+    user,
+    userId,
+    id,
+    encodedSlots,
+    wxhb,
+    xhb,
+    exhb,
+    hb,
+    isPvp,
+    layout
+  };
 }
 
 interface GetActionKeyProps {
@@ -203,7 +226,7 @@ export function setActionToSlot({
   const slotIdentifier = { parent, id: parseInt(id, 10) - 1 };
   const groupedSlots = slotActions({
     encodedSlots,
-    layout: layout || defaultState.layout,
+    layout: layout || defaultState.viewData.layout,
     actions,
     roleActions
   });
@@ -240,7 +263,7 @@ export function setActionsToSlots(props:SetActionsToSlotsProps) {
 
 const modules = {
   encodeSlots,
-  decodeSlots,
+  mergeParamsToView,
   assignActionIds,
   setActionToSlot,
   setActionsToSlots

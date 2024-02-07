@@ -1,11 +1,13 @@
 import { useAppState } from 'components/App/context';
 import { hasActions } from 'lib/xbars';
+import { defaultState } from 'components/App/defaultState';
 import type { SlotProps } from 'types/Action';
 import Row from './Row';
 import styles from './Hotbar.module.scss';
 
 export function Hotbar() {
-  const { hotbar, readOnly, hb } = useAppState();
+  const { viewData, hotbar, readOnly } = useAppState();
+  const hb = viewData?.hb || defaultState.viewData.hb;
 
   return (
     <ol className={styles.container}>
@@ -14,7 +16,7 @@ export function Hotbar() {
         return (
           <li key={barKey} className={styles.rowWrapper}>
             { (!readOnly || hasActions(hotbarRow)) && (
-              <Row slots={hotbarRow} id={barKey} />
+              <Row slots={hotbarRow} id={barKey} hb={hb} />
             ) }
           </li>
         );

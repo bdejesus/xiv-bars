@@ -1,8 +1,6 @@
 @import "styles/mixins";
 
 .saveForm {
-  padding-top: $spacing-sm;
-
   input,
   textarea {
     background-color: #fff;
@@ -37,4 +35,12 @@
 .actions {
   display: flex;
   flex-direction: row;
+}
+
+.info {
+  background-color: $color-alt-light;
+  font-size: $font-size-sm;
+  font-style: italic;
+  margin-top: $spacing-base;
+  padding: $spacing-base
 }

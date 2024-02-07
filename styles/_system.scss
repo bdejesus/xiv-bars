@@ -4,12 +4,23 @@
   padding: $spacing-base $spacing-lg;
   text-align: center;
 
-  &.error {
-    background-color: rgb(180 0 0);
-    color: #fff;
-  }
+}
 
-  &.success {
-    background-color: rgb(0 140 0 / 80%);
-  }
+.inline-message {
+  display: block;
+  padding: $spacing-base;
+}
+
+.fail {
+  background-color: rgb(180 0 0);
+  color: #fff;
+}
+
+.success {
+  background-color: rgb(0 140 0 / 80%);
+}
+
+.warn {
+  background-color: $color-alt-light;
+  text-align: left;
 }

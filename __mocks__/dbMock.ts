@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { PrismaClient } from '@prisma/client';
 import { DeepMockProxy } from 'jest-mock-extended';
-import type { LayoutProps } from 'types/Layout';
+import type { ViewDataProps } from 'types/Layout';
 import db from 'lib/db';
 
 const today = new Date();
-const layout:LayoutProps = {
+const layout = {
   id: 14,
   userId: 1,
   title: 'Just a test',
@@ -22,11 +22,12 @@ const layout:LayoutProps = {
   exhb: 0,
   hb: '[1,1,1,1,1,1,1,1,1,1]',
   user: {
-    name: 'bejezus'
+    name: 'bejezus',
+    id: 1
   }
 };
 
-const layouts:LayoutProps[] = [layout];
+const layouts:ViewDataProps[] = [layout];
 
 jest.mock('../lib/db', () => ({
   __esModule: true,

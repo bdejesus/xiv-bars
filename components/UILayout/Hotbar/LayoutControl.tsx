@@ -2,26 +2,28 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import { hotbarKeyPosition } from 'lib/xbars';
+import { buildUrl } from 'lib/utils/url';
 
 import styles from './Hotbar.module.scss';
 
 interface Props {
   id: string,
-  defaultValue: number
+  defaultValue: string
 }
 
 export default function LayoutControl({ id, defaultValue }: Props) {
   const router = useRouter();
-  const { hb } = useAppState();
+  const { viewData } = useAppState();
 
   function handleLayoutControl(e: React.ChangeEvent<HTMLSelectElement>) {
     const { value } = e.currentTarget;
-    const position = hotbarKeyPosition(id);
-    const configValue = parseInt(value, 10);
-    const updatedHb = configValue ? hb?.toSpliced(position, 1, configValue) : hb;
-    const { query, pathname } = router;
-    const queryParams = { pathname, query: { ...query, hb: updatedHb?.toString() } };
-    router.push(queryParams, undefined, { shallow: true });
+    const position:number = hotbarKeyPosition(id);
+    const updatedHb = value
+      ? viewData.hb?.toSpliced(position, 1, parseInt(value, 10))
+      : viewData.hb;
+
+    const url = buildUrl({ query: router.query, mergeData: { hb: updatedHb } });
+    router.push(url, undefined, { shallow: true });
   }
 
   return (

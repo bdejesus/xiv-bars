@@ -1,22 +1,22 @@
 /* eslint-disable jsx-a11y/no-onchange */
 import React from 'react';
 import { useRouter } from 'next/router';
+import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import Options from './Options';
 import styles from './Settings.module.scss';
 
 function Settings() {
   const router = useRouter();
-  const { xhb, wxhb, exhb } = useAppState();
+  const { viewData, selectedJob } = useAppState();
+  const { xhb, wxhb, exhb } = viewData;
 
   function handleSelect(id: string, event: React.ChangeEvent<HTMLSelectElement>) {
-    const { value } = event.currentTarget;
-    const params = {
-      pathname: router.pathname,
-      query: { ...router.query, [id]: value }
-    };
-
-    router.push(params, undefined, { shallow: true });
+    if (selectedJob) {
+      const { value } = event.currentTarget;
+      const url = buildUrl({ query: router.query, mergeData: { [id]: value } });
+      router.push(url, undefined, { shallow: true });
+    }
   }
 
   return (

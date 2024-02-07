@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
 import { createRef, useEffect, useState } from 'react';
-import { jsonToQuery } from 'lib/utils/url';
+import { buildUrl } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
@@ -12,34 +12,14 @@ import styles from './Sharing.module.scss';
 
 export function Sharing() {
   const router = useRouter();
-
-  const {
-    readOnly,
-    viewAction,
-    hb,
-    selectedJob
-  } = useAppState();
+  const { viewAction } = useAppState();
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
   const urlInput = createRef<HTMLInputElement>();
 
-  function buildShareUrl() {
-    const query = {
-      s1: router.query.s1,
-      xhb: router.query.xhb || 1,
-      wxhb: router.query.wxhb || 0,
-      exhb: router.query.exhb || 0,
-      hb,
-      l: router.query.l || 0
-    };
-
-    const queryString = jsonToQuery(query);
-    return `${domain}/job/${selectedJob?.Abbr}/new?${queryString}`;
-  }
-
-  function getLayoutUrl() {
-    const layoutId: string | string[] | undefined = router.query.params;
-    return `${domain}/job/${selectedJob?.Abbr}/${layoutId}`;
+  function getLayoutUrl(jobId?:string, params?:string[]) {
+    const [layoutId] = params || [];
+    return `${domain}/job/${jobId}/${layoutId}`;
   }
 
   function selectInput() {
@@ -53,15 +33,15 @@ export function Sharing() {
     urlInput.current?.blur();
     setCopied(true);
     setTimeout(() => { setCopied(false); }, 3000);
-    if (viewAction === 'new') {
-      router.push(shareURL, undefined, { shallow: true });
-    }
   }
 
   useEffect(() => {
-    const urlString = (readOnly && selectedJob) ? getLayoutUrl() : buildShareUrl();
+    const [layoutId] = router.query.params || [];
+    const urlString = (viewAction === 'show' && layoutId)
+      ? getLayoutUrl(router.query.jobId as string, router.query.params as string[])
+      : buildUrl({ query: router.query });
     setShareURL(urlString);
-  }, [router.query]);
+  }, [viewAction, router.query]);
 
   return (
     <div className={`${styles.container}`} data-copied={copied}>

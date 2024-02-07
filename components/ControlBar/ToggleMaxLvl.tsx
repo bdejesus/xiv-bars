@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppState } from 'components/App/context';
-import { AppAction } from 'components/App/actions';
+import { AppActions } from 'components/App/actions';
 import Icon, { Icons } from 'components/Icon';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
@@ -8,7 +8,7 @@ function ToggleMaxLvl() {
   const appDispatch = useAppDispatch();
   const { showAllLvl } = useAppState();
 
-  function handleMaxLvlToggle() { appDispatch({ type: AppAction.TOGGLE_LVLS }); }
+  function handleMaxLvlToggle() { appDispatch({ type: AppActions.TOGGLE_LVLS }); }
 
   return (
     <button

@@ -3,15 +3,18 @@
 $color-gray: #303030;
 $color-gray-dark: #212121;
 $color-gray-dark-2: #111;
+$color-gray-light: #c0c0c0;
+$color-gray-light-2: #d0d0d0;
 $color-alt: #F4D66B;
 $color-alt-dark: darken($color-alt, 22%);
-$link-color: #6cf;
+$color-alt-light: lighten($color-alt, 15%);
+$color-link: #6cf;
 
 $color-red: #900;
 $color-danger: $color-red;
 
 $slot-border-size: 1px;
-$slot-size: 32px;
+$slot-size: 40px;
 $slot-spacing: 0;
 $outer-slot-size: $slot-size + $slot-border-size * 2;
 
@@ -29,6 +32,8 @@ $primary-xbar-group-height: $outer-primary-slot-size * 2 + math.div($slot-spacin
 $primary-xbar-group-width: $outer-primary-slot-size * 3;
 $primary-xbar-width: $primary-xbar-group-width * 3;
 
+$header-height: 60px;
+$controlbar-height: 46px;
 $sidebar-width: 400px;
 
 $panel-bg: $color-gray;

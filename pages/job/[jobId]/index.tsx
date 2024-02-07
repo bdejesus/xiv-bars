@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutCard from 'components/LayoutCard';
 import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
 
 import type { ClassJobProps } from 'types/ClassJob';
-import type { LayoutProps } from 'types/Layout';
+import type { ViewDataProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
 
 import styles from './index.module.scss';
@@ -21,7 +19,7 @@ interface Props {
 }
 
 export default function Layouts({ selectedJob, layouts }: Props) {
-  const layoutsData: LayoutProps[] = JSON.parse(layouts);
+  const layoutsData: ViewDataProps[] = JSON.parse(layouts);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,14 +35,14 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
   return (
     <>
-      <Head>
-        <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Layouts • XIVBARS`}</title>
-        <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
-      </Head>
+      { selectedJob.Name && selectedJob.Abbr && (
+        <Head>
+          <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Layouts • XIVBARS`}</title>
+          <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
+        </Head>
+      )}
 
-      <AppContextProvider selectedJob={selectedJob} viewAction="list">
-        <GlobalHeader selectedJob={selectedJob} />
-      </AppContextProvider>
+      <GlobalHeader selectedJob={selectedJob} />
 
       <div className="container section">
         <h1 className={`mt-md ${styles.title}`}>
@@ -73,7 +71,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             </div>
           ) : (
             <h2>
-              No {selectedJob.Name} Layouts yet. <Link href={`/job/${selectedJob.Abbr}/new`}>Create one?</Link>
+              No {selectedJob.Name} Layouts yet. <a href={`/job/${selectedJob.Abbr}/new`}>Create one?</a>
             </h2>
           )}
       </div>
@@ -82,9 +80,9 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id: string | string[] | undefined = context.params?.id;
-  const selectedJob = id
-    ? Jobs.find((job) => job.Abbr === id)
+  const jobId: string | string[] | undefined = context.params?.jobId;
+  const selectedJob = jobId
+    ? Jobs.find((job) => job.Abbr === jobId)
     : null;
 
   const layouts = await db.layout.findMany({

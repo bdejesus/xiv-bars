@@ -7,13 +7,16 @@ import styles from './Hotbar.module.scss';
 
 interface Props {
   slots: SlotProps[],
-  id: string
+  id: string,
+  hb: number[]
 }
 
-export default function Row({ slots, id }: Props) {
-  const { readOnly, hb } = useAppState();
+export default function Row({ slots, id, hb }: Props) {
+  const { readOnly } = useAppState();
   if (!hb || !slots) return null;
-  const hotbarKey = hb[hotbarKeyPosition(id)];
+
+  // console.log(hb, id);
+  const hotbarKey = hb[hotbarKeyPosition(id)].toString();
 
   return (
     <>

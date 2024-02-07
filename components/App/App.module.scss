@@ -100,9 +100,9 @@ $icon-size: 6px;
 
 .sidebar {
   flex: 0 0;
-  min-width: 240px;
+  min-width: 250px;
   position: sticky;
-  top: $spacing-xl;
+  top: $header-height + $controlbar-height + $spacing-base;
   z-index: 5;
 
   .section {
@@ -128,6 +128,6 @@ $icon-size: 6px;
 
 .mainPanel {
   flex: 1 1 auto;
-  padding-bottom: $spacing-xl;
+  padding-bottom: $spacing-base;
   position: relative;
 }

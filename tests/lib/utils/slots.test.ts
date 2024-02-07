@@ -1,4 +1,4 @@
-import { decodeSlots, setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
+import { mergeParamsToView, setActionToSlot, setActionsToSlots } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState.ts';
 import type { ActionProps } from 'types/Action.d.ts';
 
@@ -9,18 +9,10 @@ const stubAction:ActionProps = {
   Description: 'Nullam quis risus eget urna mollis ornare vel eu leo.'
 };
 
-describe('decodeSlots', () => {
+describe('mergeParamsToView', () => {
   it('returns default values', () => {
-    const results = decodeSlots({ appState: defaultState });
-    expect(results).toEqual({
-      encodedSlots: undefined,
-      exhb: 0,
-      hb: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      id: undefined,
-      layout: 0,
-      wxhb: 0,
-      xhb: 1
-    });
+    const results = mergeParamsToView();
+    expect(results).toEqual(defaultState.viewData);
   });
 
   it('returns formatted values', () => {
@@ -29,18 +21,18 @@ describe('decodeSlots', () => {
       wxhb: '1',
       xhb: '2',
       exhb: '3',
-      l: '0',
-      appState: defaultState
+      hb: '1,1,1,1,1,1,1,1,1,1,2,2,2,2,2,2',
+      l: '0'
     };
-    const results = decodeSlots(queryParams);
+    const results = mergeParamsToView({ params: queryParams, viewData: defaultState.viewData });
     expect(results).toEqual({
+      ...defaultState.viewData,
       encodedSlots: '1,1,1,1,1',
       wxhb: 1,
       xhb: 2,
       exhb: 3,
-      hb: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-      id: undefined,
-      layout: 0
+      layout: 0,
+      hb: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2]
     });
   });
 });
