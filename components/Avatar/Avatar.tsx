@@ -1,24 +1,17 @@
-import Image from 'next/image';
 import styles from './Avatar.module.scss';
 
 interface AvatarProps {
   img: string,
-  alt: string,
   className?: string,
-  height?: number
-  width?: number
 }
 
 export default function Avatar({
   img,
-  alt,
-  className,
-  height,
-  width
+  className
 }:AvatarProps) {
   const avatarStyles = {
     backgroundImage: `url('/avatars/${img}')`
-  }
+  };
 
   return (
     <div
@@ -29,7 +22,5 @@ export default function Avatar({
 }
 
 Avatar.defaultProps = {
-  className: '',
-  height: undefined,
-  width: undefined
-}
+  className: ''
+};
