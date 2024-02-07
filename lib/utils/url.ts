@@ -59,7 +59,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   }, {});
 
   const filterEntries = Object.entries(decorateEntries).reduce((entries, [key, value]) => {
-    if (!value || ['undefined', 'null'].includes(value.toString())) return entries;
+    if (value && ['undefined', 'null'].includes(value.toString())) return entries;
     return { ...entries, [key]: value };
   }, {});
 
