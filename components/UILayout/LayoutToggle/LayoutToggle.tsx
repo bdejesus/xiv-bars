@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { layouts } from 'lib/xbars';
 import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
+import Icon from 'components/Icon';
 import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
@@ -42,6 +43,7 @@ export function LayoutToggle() {
             data-selected={viewData.layout === 0}
             data-disabled={readOnly && layoutKey !== 'chotbar'}
           >
+            <Icon id="xhb" alt="" />
             <abbr title="Cross Hotbar">XHB</abbr>
           </span>
 
@@ -50,6 +52,7 @@ export function LayoutToggle() {
             data-selected={viewData.layout === 1}
             data-disabled={readOnly && layoutKey !== 'hotbar'}
           >
+            <Icon id="hb" alt="" />
             Hotbars
           </span>
         </button>
