@@ -35,7 +35,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
   return (
     <>
-      { selectedJob.Name && selectedJob.Abbr && (
+      { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
           <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Layouts • XIVBARS`}</title>
           <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
