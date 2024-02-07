@@ -32,6 +32,10 @@ main {
   padding: 0 $spacing-lg;
 }
 
+.container-sm {
+  max-width: $screen-sm;
+}
+
 .section {
   padding-bottom: $spacing-base;
   padding-top: $spacing-base;

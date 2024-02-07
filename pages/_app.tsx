@@ -36,7 +36,22 @@ export default function App({ Component, pageProps }: AppProps) {
   const description = generateDescription();
 
   return (
-    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
+    <ErrorBoundary fallback={(
+      <div className="container container-sm panel mt-xl">
+        <div className="system-message fail text-md">
+          Uh oh! Something went wrong...
+        </div>
+
+        <div className="section mt-md mb-md text-center pad-lg">
+          <p className="text-xl">We seem to have hit a fail state. The error has been logged but unfortunately you’ll need to start over.</p>
+
+          <a className="button btn-alt btn-inline" href="/">
+            Go back to XIVBARS
+          </a>
+        </div>
+      </div>
+    )}
+    >
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
