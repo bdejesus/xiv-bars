@@ -21,6 +21,9 @@ function assignLayoutTemplate(layoutID:number) {
 }
 
 function assignActionIds(slottedActions: SlotProps[]) {
+  console.log(slottedActions);
+  if (!slottedActions) return null;
+
   return Object.values(slottedActions).map((slot) => {
     if (slot.action?.ID) {
       return (typeof slot.action.Prefix !== 'undefined')
@@ -134,10 +137,11 @@ function setActionsByGroup({
   const parsedID = actionType
     ? parseInt(IDString.replace(actionType, ''), 10)
     : parseInt(IDString, 10);
-  const slottedAction = getActionKey({ actionCategory: actionType, actions, roleActions })?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
-  // eslint-disable-next-line no-param-reassign
-  slotRow[slotIndex].action = slottedAction || {};
+  const actionKey = getActionKey({ actionCategory: actionType, actions, roleActions });
+  const slottedAction = actionKey?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
 
+  // eslint-disable-next-line no-param-reassign
+  if (slotRow && slotIndex !== undefined) slotRow[slotIndex].action = slottedAction || {};
   return slotRow;
 }
 
@@ -155,8 +159,8 @@ function groupSlotsIntoLayout({
   roleActions
 }:SlotActionsProps) {
   const slotsString = encodedSlots || encodeSlots([chotbar, hotbar][layout]);
-  const numRows = layout?.toString() === '1' ? 12 : 16;
-  const slotRows = sortIntoGroups(slotsString?.split(','), numRows);
+  const numSlots = layout?.toString() === '1' ? 12 : 16;
+  const slotRows = sortIntoGroups(slotsString?.split(','), numSlots);
   const layoutTemplate = assignLayoutTemplate(layout);
 
   // Take each action group and assign actions to them
@@ -165,6 +169,9 @@ function groupSlotsIntoLayout({
 
     const rowSlots = rowActionIds.map((actionID:string, slotIndex:number) => {
       const slotRow = layoutTemplate[rowKey] as SlotProps[];
+
+      if (actionID !== '0') console.log('>> id', actionID);
+
       const slottedRow = setActionsByGroup({
         actionID,
         actions,
@@ -175,6 +182,8 @@ function groupSlotsIntoLayout({
 
       return slottedRow;
     });
+
+    // console.log(rowActionIds);
 
     return { ...slotted, [rowKey]: rowSlots[groupIndex] };
   }, {});
