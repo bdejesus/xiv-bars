@@ -5,7 +5,7 @@ import Head from 'next/head';
 import {
   listJobActions,
   listRoleActions
-} from 'lib/api';
+} from 'lib/api/actions';
 import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';

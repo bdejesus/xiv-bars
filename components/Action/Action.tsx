@@ -5,7 +5,7 @@ import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
 import type { ActionProps } from 'types/Action';
-import { getContent } from 'lib/api';
+import { getContent } from 'lib/api/actions';
 
 import styles from './Action.module.scss';
 

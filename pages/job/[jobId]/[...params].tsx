@@ -5,7 +5,7 @@ import { domain } from 'lib/host';
 import {
   listJobActions,
   listRoleActions
-} from 'lib/api';
+} from 'lib/api/actions';
 import I18n from 'lib/I18n/locale/en-US';
 import shortDesc from 'lib/shortDesc';
 import Head from 'next/head';
