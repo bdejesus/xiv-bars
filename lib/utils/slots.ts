@@ -21,7 +21,6 @@ function assignLayoutTemplate(layoutID:number) {
 }
 
 function assignActionIds(slottedActions: SlotProps[]) {
-  console.log(slottedActions);
   if (!slottedActions) return null;
 
   return Object.values(slottedActions).map((slot) => {
@@ -169,9 +168,6 @@ function groupSlotsIntoLayout({
 
     const rowSlots = rowActionIds.map((actionID:string, slotIndex:number) => {
       const slotRow = layoutTemplate[rowKey] as SlotProps[];
-
-      if (actionID !== '0') console.log('>> id', actionID);
-
       const slottedRow = setActionsByGroup({
         actionID,
         actions,
@@ -182,8 +178,6 @@ function groupSlotsIntoLayout({
 
       return slottedRow;
     });
-
-    // console.log(rowActionIds);
 
     return { ...slotted, [rowKey]: rowSlots[groupIndex] };
   }, {});
