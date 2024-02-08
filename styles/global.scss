@@ -32,6 +32,10 @@ main {
   padding: 0 $spacing-lg;
 }
 
+.container-sm {
+  max-width: $screen-sm;
+}
+
 .section {
   padding-bottom: $spacing-base;
   padding-top: $spacing-base;
@@ -57,6 +61,11 @@ main {
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   padding: $spacing-sm;
+}
+
+.panel-white {
+  background-color: #EBE5D0;
+  color: #333;
 }
 
 .branding {

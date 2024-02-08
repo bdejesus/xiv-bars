@@ -11,6 +11,7 @@ import { SessionProvider } from 'next-auth/react';
 import { UserProvider } from 'components/User/context';
 import { SystemContextProvider } from 'components/System';
 import { AppContextProvider } from 'components/App/context';
+import Avatar from 'components/Avatar';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import 'styles/global.scss';
@@ -36,7 +37,26 @@ export default function App({ Component, pageProps }: AppProps) {
   const description = generateDescription();
 
   return (
-    <ErrorBoundary fallback={<div>Something went wrong!</div>}>
+    <ErrorBoundary fallback={(
+      <div className="container container-sm panel panel-white mt-xl">
+        <div className="system-message fail text-md">
+          Uh oh! Something went wrong...
+        </div>
+
+        <div className="section mt-md mb-md text-center pad-lg mb-0">
+          <p className="text-xl">We seem to have hit a fail state. The error has been logged but unfortunately you’ll need to start over.</p>
+
+          <a className="button btn-alt btn-inline mb-lg" href="/">
+            Go back to XIVBARS
+          </a>
+
+          <div className="text-center">
+            <Avatar img="av30.png" />
+          </div>
+        </div>
+      </div>
+    )}
+    >
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}

@@ -1,3 +1,11 @@
+.mt-xl {
+  margin-top: $spacing-xl;
+}
+
+.mt-lg {
+  margin-top: $spacing-lg;
+}
+
 .mt-md {
   margin-top: $spacing-base;
 }
@@ -6,6 +14,18 @@
   margin-top: 0;
 }
 
+.mb-md {
+  margin-bottom: $spacing-base;
+}
+
+.mb-lg {
+  margin-bottom: $spacing-lg;
+}
+
 .mb-0 {
   margin-bottom: 0;
+}
+
+.pad-lg {
+  padding: $spacing-lg;
 }
