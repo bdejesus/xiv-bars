@@ -3,10 +3,9 @@ import db from 'lib/db';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
-import LayoutCard from 'components/LayoutCard';
 import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
-
+import LayoutsList from 'components/LayoutsList';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
@@ -15,11 +14,10 @@ import styles from './index.module.scss';
 
 interface Props {
   selectedJob: ClassJobProps,
-  layouts: string
+  layouts: ViewDataProps[]
 }
 
 export default function Layouts({ selectedJob, layouts }: Props) {
-  const layoutsData: ViewDataProps[] = JSON.parse(layouts);
   const router = useRouter();
 
   useEffect(() => {
@@ -49,25 +47,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           <SelectedJob job={selectedJob} className={styles.job} />
         </h1>
 
-        { layoutsData.length > 0
+        { layouts.length > 0
           ? (
             <div>
-              <ul className={styles.layoutsList}>
-                {layoutsData.map((layout) => {
-                  const job = Jobs.find((j) => j.Abbr === layout.jobId);
-                  if (!job) return null;
-                  return (
-                    <li key={layout.id}>
-                      <LayoutCard
-                        layout={layout}
-                        job={job}
-                        className={styles.card}
-                        hideName={false}
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
+              <LayoutsList layouts={layouts} />
             </div>
           ) : (
             <h2>
@@ -100,10 +83,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   });
 
+  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+    ...layout,
+    createdAt: layout?.createdAt?.toString(),
+    updatedAt: layout?.updatedAt?.toString()
+  }));
+
   return {
     props: {
       selectedJob,
-      layouts: JSON.stringify(layouts)
+      layouts: serializableLayouts
     }
   };
 };

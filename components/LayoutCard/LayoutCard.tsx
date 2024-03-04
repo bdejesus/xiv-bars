@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import { formatDateString } from 'lib/utils/time';
@@ -14,17 +15,18 @@ interface Props {
   layout: ViewDataProps,
   job: ClassJobProps,
   // eslint-disable-next-line no-unused-vars
-  afterDelete?: (updatedList:ViewDataProps[]) => void,
   className?: string,
   hideName: boolean
 }
 
 export default function LayoutCard(props:Props) {
+  const { data: session } = useSession();
   const userDispatch = useUserDispatch();
   const {
-    layout, job, afterDelete, className, hideName
+    layout, job, className, hideName
   } = props;
   const [showPrompt, setShowPrompt] = useState(false);
+  const isOwner = session?.user.id === layout.userId;
 
   function destroyLayout() {
     const options = {
@@ -35,8 +37,8 @@ export default function LayoutCard(props:Props) {
     fetch('/api/layout', options)
       .then((data) => data.json())
       .then((json) => {
-        if (afterDelete) afterDelete(json);
-        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: json.length } });
+        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: json } });
+        setShowPrompt(false);
       });
   }
 
@@ -49,9 +51,7 @@ export default function LayoutCard(props:Props) {
           <>
             <h4>{layout.title}</h4>
 
-            { layout.description && (
-              <p className={styles.description}>{layout.description}</p>
-            )}
+            <p className={styles.description}>{layout.description && layout.description}</p>
 
             { !hideName && (
               <div className={styles.owner}>{layout.user.name}</div>
@@ -67,7 +67,7 @@ export default function LayoutCard(props:Props) {
         </Card>
       </Link>
 
-      { !!afterDelete && (
+      { !!isOwner && (
         <div className={styles.cardActions}>
           <button
             type="button"
@@ -102,6 +102,5 @@ export default function LayoutCard(props:Props) {
 }
 
 LayoutCard.defaultProps = {
-  afterDelete: undefined,
   className: ''
 };

@@ -9,9 +9,9 @@ export function UserReducer(state: UserState, action: UserDispatchActions) {
     }
 
     case UserActions.UPDATE_LAYOUTS: {
-      const layoutsCount = action.payload?.layouts;
+      const layoutsCount = action.payload?.layouts?.length;
       const canPublish = layoutsCount ? layoutsCount > maxLayouts : false;
-      return { ...state, canPublish };
+      return { ...state, layouts: action.payload.layouts, canPublish };
     }
 
     default: {

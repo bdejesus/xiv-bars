@@ -1,13 +1,15 @@
+import type { ViewDataProps } from 'types/Layout';
 import { UserActions } from 'components/User/actions';
 
 export interface UserState {
   loggedIn: boolean,
   canPublish: boolean,
+  layouts?: ViewDataProps[]
 }
 
 type UserDispatchPayload = {
   user?: object,
-  layouts?: number
+  layouts?: ViewDataProps[]
 }
 
 export interface UpdateUser {

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import db from 'lib/db';
 import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
@@ -8,7 +9,10 @@ import Intro from 'components/Intro';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import EorzeaProfile from 'components/EorzeaProfile';
+import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
+import type { GetServerSideProps } from 'next';
+import type { ViewDataProps } from 'types/Layout';
 
 import styles from './Index.module.scss';
 
@@ -18,7 +22,11 @@ interface QueryProps {
   s?: string
 }
 
-function Index() {
+interface IndexProps {
+  layouts: ViewDataProps[]
+}
+
+export default function Index({ layouts }:IndexProps) {
   const router = useRouter();
 
   useEffect(() => {
@@ -41,7 +49,12 @@ function Index() {
         <GlobalHeader />
       </AppContextProvider>
 
-      <Intro jobs={Jobs} />
+      <Intro />
+
+      <div className="container mt-lg">
+        <h2>Recent Layouts</h2>
+        <LayoutsList layouts={layouts} />
+      </div>
 
       <div className={styles.articles}>
         <HowTo />
@@ -54,4 +67,28 @@ function Index() {
   );
 }
 
-export default Index;
+export const getServerSideProps: GetServerSideProps = async () => {
+  const layouts = await db.layout.findMany({
+    orderBy: {
+      updatedAt: 'desc'
+    },
+    take: 9,
+    include: {
+      user: {
+        select: { name: true }
+      }
+    }
+  });
+
+  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+    ...layout,
+    createdAt: layout?.createdAt?.toString(),
+    updatedAt: layout?.updatedAt?.toString()
+  }));
+
+  return {
+    props: {
+      layouts: serializableLayouts
+    }
+  };
+};

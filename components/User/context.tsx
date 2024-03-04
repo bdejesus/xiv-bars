@@ -10,7 +10,8 @@ import UserReducer from './reducers';
 
 const initialState = {
   loggedIn: false,
-  canPublish: false
+  canPublish: false,
+  layouts: []
 };
 
 const UserContext = createContext<UserState>(initialState);
