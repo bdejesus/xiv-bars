@@ -30,6 +30,10 @@ main {
   margin: 0 auto;
   max-width: $screen-lg;
   padding: 0 $spacing-lg;
+
+  @media (max-width: $screen-sm) {
+    padding: 0 $spacing-base;
+  }
 }
 
 .container-sm {
@@ -48,6 +52,10 @@ main {
   margin-right: auto;
   padding: $spacing-xl $spacing-base;
   position: relative;
+
+  @media (max-width: $screen-sm) {
+    padding: $spacing-lg 0;
+  }
 }
 
 .panel {

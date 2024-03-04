@@ -69,3 +69,13 @@
     margin-bottom: $spacing-xl;
   }
 }
+
+@media (max-width: $screen-sm) {
+  .modal {
+    padding: $spacing-xl $spacing-base $spacing-base;
+  }
+
+  .container {
+    width: 100%;
+  }
+}

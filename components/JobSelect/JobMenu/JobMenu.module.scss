@@ -38,6 +38,13 @@
 
 @media (max-width: $screen-md) {
   .jobGroupList {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .jobGroupList {
+    padding-bottom: $spacing-lg;
+    padding-top: $spacing-lg;
   }
 }

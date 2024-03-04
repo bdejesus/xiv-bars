@@ -59,7 +59,7 @@ button,
       box-shadow: 0 3px 6px rgb(0 0 0 / 33%);
       color: #fff;
       content: attr(data-title);
-      font-size: $font-size-xs;
+      font-size: $font-size-sm;
       left: 50%;
       margin-top: 4px;
       padding: $spacing-xs $spacing-sm;
@@ -78,6 +78,25 @@ button,
     left: unset;
     right: 0;
     transform: translate(0, 0);
+  }
+
+  &[data-title][data-title-anchor='left-left'] {
+    &::before {
+      border-bottom-color: #111;
+      left: 100%;
+      top: 50%;
+      transform: translate(-2px,-50%) rotate(-90deg);
+    }
+
+    &::after {
+      background-color: #111;
+      font-size: $font-size-base;
+      left: 100%;
+      margin-left: $spacing-sm;
+      margin-top: 0;
+      top: 50%;
+      transform: translate(0,-50%);
+    }
   }
 
   .icon {

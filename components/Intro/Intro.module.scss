@@ -9,3 +9,9 @@
   margin-bottom: $spacing-base;
   margin-top: 0;
 }
+
+@media (max-width: $screen-sm) {
+  .header {
+    padding: $spacing-lg 0;
+  }
+}
