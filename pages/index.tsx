@@ -12,6 +12,7 @@ import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import type { GetServerSideProps } from 'next';
+import type { ViewDataProps } from 'types/Layout';
 
 import styles from './Index.module.scss';
 
@@ -22,7 +23,7 @@ interface QueryProps {
 }
 
 interface IndexProps {
-  layouts: string
+  layouts: ViewDataProps[]
 }
 
 export default function Index({ layouts }:IndexProps) {
@@ -52,7 +53,7 @@ export default function Index({ layouts }:IndexProps) {
 
       <div className="container mt-lg">
         <h2>Recent Layouts</h2>
-        <LayoutsList layouts={JSON.parse(layouts)} />
+        <LayoutsList layouts={layouts} />
       </div>
 
       <div className={styles.articles}>
@@ -79,9 +80,15 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
   });
 
+  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+    ...layout,
+    createdAt: layout?.createdAt?.toString(),
+    updatedAt: layout?.updatedAt?.toString()
+  }));
+
   return {
     props: {
-      layouts: JSON.stringify(layouts)
+      layouts: serializableLayouts
     }
   };
 };

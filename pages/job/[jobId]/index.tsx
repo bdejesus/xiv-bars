@@ -14,11 +14,10 @@ import styles from './index.module.scss';
 
 interface Props {
   selectedJob: ClassJobProps,
-  layouts: string
+  layouts: ViewDataProps[]
 }
 
 export default function Layouts({ selectedJob, layouts }: Props) {
-  const layoutsData: ViewDataProps[] = JSON.parse(layouts);
   const router = useRouter();
 
   useEffect(() => {
@@ -48,10 +47,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           <SelectedJob job={selectedJob} className={styles.job} />
         </h1>
 
-        { layoutsData.length > 0
+        { layouts.length > 0
           ? (
             <div>
-              <LayoutsList layouts={layoutsData} />
+              <LayoutsList layouts={layouts} />
             </div>
           ) : (
             <h2>
@@ -84,10 +83,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   });
 
+  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+    ...layout,
+    createdAt: layout?.createdAt?.toString(),
+    updatedAt: layout?.updatedAt?.toString()
+  }));
+
   return {
     props: {
       selectedJob,
-      layouts: JSON.stringify(layouts)
+      layouts: serializableLayouts
     }
   };
 };

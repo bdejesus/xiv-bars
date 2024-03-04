@@ -17,11 +17,12 @@ import LoadScreen from 'components/LoadScreen';
 import Icon, { Icons } from 'components/Icon';
 import { maxLayouts } from 'lib/user';
 import type { GetServerSideProps } from 'next';
+import type { ViewDataProps } from 'types/Layout';
 
 import styles from './user.module.scss';
 
 interface UserProps {
-  layouts: string
+  layouts: ViewDataProps[]
 }
 
 export default function User(props:UserProps) {
@@ -32,7 +33,7 @@ export default function User(props:UserProps) {
   useEffect(() => {
     userDispatch({
       type: UserActions.UPDATE_LAYOUTS,
-      payload: { layouts: JSON.parse(props.layouts) }
+      payload: { layouts: props.layouts }
     });
   }, []);
 
@@ -109,9 +110,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   });
 
+  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+    ...layout,
+    createdAt: layout?.createdAt?.toString(),
+    updatedAt: layout?.updatedAt?.toString()
+  }));
+
   return {
     props: {
-      layouts: JSON.stringify(layouts)
+      layouts: serializableLayouts
     }
   };
 };

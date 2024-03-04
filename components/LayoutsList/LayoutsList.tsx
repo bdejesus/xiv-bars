@@ -12,6 +12,8 @@ interface LayoutsListProps {
 export default function LayoutsList({ layouts, children }:LayoutsListProps) {
   const { jobs } = useAppState();
 
+  if (!layouts) return null;
+
   return (
     <ul className={styles.layoutsList}>
       {layouts.map((layout:ViewDataProps) => {
