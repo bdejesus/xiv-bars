@@ -6,6 +6,9 @@ import Head from 'next/head';
 import I18n from 'lib/I18n/locale/en-US';
 import LoadScreen from 'components/LoadScreen';
 
+// This page is deprecated
+// The /me view now redirects to user/[userId]
+
 export default function Me() {
   const { data: session, status } = useSession({ required: true });
   const router = useRouter();

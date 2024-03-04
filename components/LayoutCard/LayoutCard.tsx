@@ -51,9 +51,7 @@ export default function LayoutCard(props:Props) {
           <>
             <h4>{layout.title}</h4>
 
-            { layout.description && (
-              <p className={styles.description}>{layout.description}</p>
-            )}
+            <p className={styles.description}>{layout.description && layout.description}</p>
 
             { !hideName && (
               <div className={styles.owner}>{layout.user.name}</div>
