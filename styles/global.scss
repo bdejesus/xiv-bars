@@ -48,12 +48,6 @@ main {
   margin-right: auto;
   padding: $spacing-xl $spacing-base;
   position: relative;
-
-  .container {
-    max-width: $screen-lg;
-    padding-left: 0;
-    padding-right: 0;
-  }
 }
 
 .panel {

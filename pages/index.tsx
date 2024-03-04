@@ -51,7 +51,7 @@ export default function Index({ layouts }:IndexProps) {
 
       <Intro />
 
-      <div className="container mt-lg">
+      <div className="container mt-xl">
         <h2>Recent Layouts</h2>
         <LayoutsList layouts={layouts} />
       </div>

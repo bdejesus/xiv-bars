@@ -13,8 +13,8 @@ $button-inset: 10px;
 .jobList {
   display: grid;
   grid-column-gap: 10px;
-  grid-template-columns: auto;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-xs $spacing-base;
   list-style: none;
   margin-bottom: $spacing-base;
   padding: 0;
@@ -41,7 +41,8 @@ $button-inset: 10px;
     border-radius: 4px;
     color: #fff;
     display: flex;
-    padding: 4px $button-inset 4px 4px;
+    padding: 0 $button-inset 0 4px;
+    height: $spacing-xl;
     position: relative;
     transition: background-color 0.33s ease;
 
@@ -64,8 +65,9 @@ $button-inset: 10px;
     align-items: center;
     background-color: rgb(0 0 0 / 33%);
     bottom: 0;
+    border-radius: $border-radius 0 0 $border-radius;
     display: flex;
-    height: 40px;
+    height: $spacing-xl;
     justify-content: center;
     left: -40px;
     min-width: 40px;
@@ -73,7 +75,10 @@ $button-inset: 10px;
     padding: 0 10px 0 11px;
     position: absolute;
     top: 0;
-    transition: opacity $timing-fast ease 0;
+    transition:
+      opacity $timing-fast ease 0,
+      background-color $timing-fast ease 0,
+      border-radius $timing-fast 0;
     z-index: 2;
 
     .addLabel {
@@ -84,7 +89,7 @@ $button-inset: 10px;
       overflow: hidden;
       text-align: left;
       transition-duration: $timing-default;
-      transition-property: opacity, width;
+      transition-property: opacity, width, color;
       transition-timing-function: ease;
       width: 0;
     }
@@ -94,7 +99,8 @@ $button-inset: 10px;
     }
 
     &:hover {
-      background-color: rgb(0 0 0 / 66%);
+      background-color: rgb(0 0 0 / 99%);
+      border-radius: $border-radius;
 
       &::before {
         width: 0;
