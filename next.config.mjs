@@ -16,7 +16,7 @@ const options = {
         hostname: 'xivapi.com'
       },
     ],
-  },
+  }
 };
 
 const SentryWebpackPluginOptions = {

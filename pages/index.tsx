@@ -43,6 +43,10 @@ function Index() {
 
       <Intro />
 
+      <div className="container">
+        <h2>Recent Layouts</h2>
+      </div>
+
       <div className={styles.articles}>
         <HowTo />
         <EorzeaProfile />

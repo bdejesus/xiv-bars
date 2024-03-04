@@ -7,8 +7,8 @@
   .cardActions {
     opacity: 0;
     position: absolute;
-    right: $spacing-sm;
-    top: $spacing-sm;
+    right: $spacing-xs;
+    top: $spacing-xs;
     transition: opacity $timing-default ease;
     transition-delay: 0.15s;
   }
@@ -21,11 +21,11 @@
 
   .deleteButton {
     font-size: $font-size-xs;
-    height: 32px;
+    height: 24px;
     line-height: 1;
     min-height: unset;
     padding: $spacing-xs;
-    width: 32px;
+    width: 24px;
 
     &:hover {
       background-color: $color-danger;
@@ -66,13 +66,13 @@
 
   h4 {
     color: #fff;
-    flex: 1 1 auto;
     margin: 0;
     transition: color $timing-default ease;
   }
 
   p {
     color: #999;
+    flex: 1 1 auto;
     font-size: $font-size-base;
     height: 64px;
     line-height: 1.45;

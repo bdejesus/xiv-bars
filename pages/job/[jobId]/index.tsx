@@ -3,10 +3,9 @@ import db from 'lib/db';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
-import LayoutCard from 'components/LayoutCard';
 import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
-
+import LayoutsList from 'components/LayoutsList';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
@@ -52,22 +51,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         { layoutsData.length > 0
           ? (
             <div>
-              <ul className={styles.layoutsList}>
-                {layoutsData.map((layout) => {
-                  const job = Jobs.find((j) => j.Abbr === layout.jobId);
-                  if (!job) return null;
-                  return (
-                    <li key={layout.id}>
-                      <LayoutCard
-                        layout={layout}
-                        job={job}
-                        className={styles.card}
-                        hideName={false}
-                      />
-                    </li>
-                  );
-                })}
-              </ul>
+              <LayoutsList layouts={layoutsData} />
             </div>
           ) : (
             <h2>

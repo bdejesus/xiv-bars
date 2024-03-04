@@ -46,7 +46,7 @@ export function UserNav() {
         { session && (
           <li className={styles.navItem}>
             <Link
-              href="/me"
+              href={`/user/${session.user.id}`}
               data-active={router.pathname === '/me'}
               className="button btn-clear"
             >
