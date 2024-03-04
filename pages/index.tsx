@@ -41,7 +41,7 @@ function Index() {
         <GlobalHeader />
       </AppContextProvider>
 
-      <Intro jobs={Jobs} />
+      <Intro />
 
       <div className={styles.articles}>
         <HowTo />
