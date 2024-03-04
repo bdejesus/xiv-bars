@@ -47,15 +47,22 @@ export default function LayoutCard(props:Props) {
       <Link href={`/job/${layout.jobId}/${layout.id}`}>
         <Card className={[styles.card, className].join(' ')}>
           <>
-            <Tags layoutView={layout} job={job} />
             <h4>{layout.title}</h4>
-            { !hideName && <div className={styles.owner}>{layout.user.name}</div> }
+
+            { layout.description && (
+              <p className={styles.description}>{layout.description}</p>
+            )}
+
+            { !hideName && (
+              <div className={styles.owner}>{layout.user.name}</div>
+            )}
 
             { layout.updatedAt && (
               <div className={styles.timestamp}>
                 {I18n.LayoutCard.last_updated}: {formatDateString(layout.updatedAt as string)}
               </div>
             )}
+            <Tags layoutView={layout} job={job} />
           </>
         </Card>
       </Link>

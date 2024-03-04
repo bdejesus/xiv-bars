@@ -3,12 +3,12 @@
 .tags {
   display: flex;
   flex-direction: row;
-  margin-bottom: $spacing-sm;
+  margin-top: $spacing-sm;
 }
 
 .tag {
   align-items: center;
-  background-color: $color-gray-light-2;
+  background-image: linear-gradient($color-gray-light-2, $color-gray-light);
   border-radius: 2px;
   color: $color-gray;
   display: inline-flex;
@@ -19,7 +19,6 @@
   line-height: 1;
   margin-right: $spacing-xs;
   padding: 0 $spacing-sm;
-  text-shadow: 0 0 4px #fff;
 
   :global(.job-abbr) {
     font-family: inherit;
