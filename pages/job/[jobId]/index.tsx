@@ -50,7 +50,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         </h1>
 
         { selectedJob.Description && (
-          <Lore selectedJob={selectedJob} className={styles.lore} />
+          <Lore selectedJob={selectedJob} />
         ) }
 
         { layouts.length > 0
