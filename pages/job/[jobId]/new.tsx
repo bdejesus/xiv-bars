@@ -2,14 +2,10 @@ import React, { useEffect } from 'react';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import {
-  listJobActions,
-  listRoleActions
-} from 'lib/api/actions';
+import { listJobActions, listRoleActions } from 'lib/api/actions';
 import shortDesc from 'lib/shortDesc';
 import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';
-import Hero from 'components/Hero';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
@@ -31,7 +27,7 @@ export default function Index(props:PageProps) {
   } = props;
   const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
-  const pageDescription = shortDesc(selectedJob, actions);
+  const pageDescription = shortDesc(selectedJob);
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
@@ -63,19 +59,14 @@ export default function Index(props:PageProps) {
         <div className={styles.description}>
           <h2>{selectedJob.Name} {I18n.Global.title}</h2>
           <p className={styles.jobDesc}>
-            {shortDesc(selectedJob, actions)}
+            {shortDesc(selectedJob)}
           </p>
-
           { selectedJob.Description && <Lore selectedJob={selectedJob} /> }
         </div>
       </div>
 
-      <div className={styles.articles}>
-        {(selectedJob) && <Hero primary={(!selectedJob)} />}
-        <HowTo />
-        <EorzeaProfile />
-      </div>
-
+      <HowTo />
+      <EorzeaProfile />
       <Footer />
     </>
   );

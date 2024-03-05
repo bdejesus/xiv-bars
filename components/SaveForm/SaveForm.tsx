@@ -118,7 +118,7 @@ function SaveForm() {
 
   return (
     <div className={styles.saveForm}>
-      <form className={`${styles.form} container`}>
+      <form className={styles.form}>
         <div className="control">
           <label htmlFor="title">
             <div>{I18n.SaveForm.title}</div>

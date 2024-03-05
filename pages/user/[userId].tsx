@@ -51,9 +51,15 @@ export default function User(props:UserProps) {
       </AppContextProvider>
 
       <div className="container section">
-        <h1 className="mt-md">
-          {I18n.Pages.Me.my_layouts} ({layouts.length ? layouts.length : '-'}/{maxLayouts})
-        </h1>
+        <div className={styles.hgroup}>
+          <h1 className="mt-md">
+            {I18n.Pages.Me.my_layouts}
+          </h1>
+          <div className={styles.layoutsCount}>
+            {layouts.length ? layouts.length : '-'}/{maxLayouts}
+            <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
+          </div>
+        </div>
 
         { layouts.length <= 0 && (
           <h2 id="jobSelectTitle">
