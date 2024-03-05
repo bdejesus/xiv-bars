@@ -23,10 +23,10 @@ interface QueryProps {
 }
 
 interface IndexProps {
-  layouts: ViewDataProps[]
+  recentLayouts: ViewDataProps[]
 }
 
-export default function Index({ layouts }:IndexProps) {
+export default function Index({ recentLayouts }:IndexProps) {
   const router = useRouter();
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function Index({ layouts }:IndexProps) {
 
       <div className="container mt-xl">
         <h2>Recent Layouts</h2>
-        <LayoutsList layouts={layouts} />
+        <LayoutsList layouts={recentLayouts} />
       </div>
 
       <div className={styles.articles}>
@@ -72,6 +72,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
     orderBy: {
       updatedAt: 'desc'
     },
+    where: {
+      title: {
+        not: ''
+      }
+    },
     take: 9,
     include: {
       user: {
@@ -88,7 +93,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
-      layouts: serializableLayouts
+      recentLayouts: serializableLayouts
     }
   };
 };
