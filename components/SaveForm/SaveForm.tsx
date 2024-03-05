@@ -2,12 +2,12 @@ import { createRef, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import I18n from 'lib/I18n/locale/en-US';
-
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import { AppActions } from 'components/App/actions';
 import { SystemActions, useSystemDispatch } from 'components/System';
+import analytics from 'lib/analytics';
 import type { ViewDataProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
 
@@ -84,6 +84,7 @@ function SaveForm() {
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
         if (viewAction === 'new') {
+          analytics.event({ action: 'click', params: { method: 'create' } });
           router.push(`/job/${layoutView.jobId}/${layoutView.id}`, undefined, { shallow: true });
         }
       })
