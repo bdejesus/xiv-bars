@@ -84,7 +84,7 @@ function SaveForm() {
         userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
         if (viewAction === 'new') {
-          analytics.event({ action: 'click', params: { method: 'create' } });
+          analytics.event({ action: 'form_submit', params: { form_id: 'layout', form_name: 'new_layout' } });
           router.push(`/job/${layoutView.jobId}/${layoutView.id}`, undefined, { shallow: true });
         }
       })
