@@ -6,19 +6,14 @@ import {
   listJobActions,
   listRoleActions
 } from 'lib/api/actions';
-import I18n from 'lib/I18n/locale/en-US';
-import shortDesc from 'lib/shortDesc';
 import Head from 'next/head';
 import App, { useAppDispatch, AppActions } from 'components/App';
 import GlobalHeader from 'components/GlobalHeader';
-import Lore from 'components/Lore';
 import Footer from 'components/Footer';
-import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from 'apiData/Jobs.json';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { PageProps } from 'types/Page';
-import styles from './params.module.scss';
 
 export default function Index(props:PageProps) {
   const {
@@ -58,22 +53,6 @@ export default function Index(props:PageProps) {
       <GlobalHeader selectedJob={selectedJob} />
 
       <App />
-
-      <div className="container section">
-        <div className={styles.description}>
-          <h2>{selectedJob.Name} {I18n.Global.title}</h2>
-
-          <p className={styles.jobDesc}>
-            {shortDesc(selectedJob, actions)}
-          </p>
-
-          { selectedJob.Description && <Lore selectedJob={selectedJob} /> }
-        </div>
-      </div>
-
-      <div className="section">
-        <EorzeaProfile />
-      </div>
 
       <Footer />
     </>

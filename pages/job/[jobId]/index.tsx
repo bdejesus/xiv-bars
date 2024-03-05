@@ -6,6 +6,11 @@ import GlobalHeader from 'components/GlobalHeader';
 import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
 import LayoutsList from 'components/LayoutsList';
+import Lore from 'components/Lore';
+import Footer from 'components/Footer';
+import I18n from 'lib/I18n/locale/en-US';
+import shortDesc from 'lib/shortDesc';
+
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
@@ -35,7 +40,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
     <>
       { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
-          <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Layouts • XIVBARS`}</title>
+          <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Cross Hotbar Layouts • XIVBARS`}</title>
           <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
         </Head>
       )}
@@ -46,6 +51,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         <h1 className={`mt-md ${styles.title}`}>
           <SelectedJob job={selectedJob} className={styles.job} />
         </h1>
+
+        { selectedJob.Description && (
+          <Lore selectedJob={selectedJob} className={styles.lore} />
+        ) }
 
         { layouts.length > 0
           ? (
@@ -58,6 +67,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             </h2>
           )}
       </div>
+
+      <Footer />
     </>
   );
 }

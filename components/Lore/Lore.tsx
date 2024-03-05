@@ -6,16 +6,13 @@ interface Props {
   selectedJob: ClassJobProps
 }
 
-export function Lore({ selectedJob }: Props) {
+export default function Lore({ selectedJob }: Props) {
   if (!selectedJob.Description) return null;
 
   return (
     <div
       className={styles.lore}
     >
-      <h3 className={styles.loreTitle}>
-        {I18n.Lore.lore}
-      </h3>
       <div
         className={styles.loreBody}
         // eslint-disable-next-line react/no-danger
@@ -24,5 +21,3 @@ export function Lore({ selectedJob }: Props) {
     </div>
   );
 }
-
-export default Lore;
