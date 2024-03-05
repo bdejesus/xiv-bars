@@ -1,4 +1,3 @@
-import I18n from 'lib/I18n/locale/en-US';
 import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Lore.module.scss';
 

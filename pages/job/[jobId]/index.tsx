@@ -8,9 +8,6 @@ import SelectedJob from 'components/JobSelect/SelectedJob';
 import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
-import I18n from 'lib/I18n/locale/en-US';
-import shortDesc from 'lib/shortDesc';
-
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
