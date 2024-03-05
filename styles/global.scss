@@ -19,7 +19,11 @@ body {
 }
 
 main {
-  padding-top: 60px;
+  padding-top: $header-height;
+
+  @media (max-width: $screen-md) {
+    padding-top: $header-height-lg;
+  }
 }
 
 [aria-hidden="true"] {

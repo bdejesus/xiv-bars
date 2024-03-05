@@ -70,3 +70,15 @@
     }
   }
 }
+
+@media (max-width: $screen-sm) {
+  .panel {
+    flex-direction: column;
+
+    .image {
+      margin-bottom: $spacing-base;
+      margin-right: 0;
+      width: 100%;
+    }
+  }
+}

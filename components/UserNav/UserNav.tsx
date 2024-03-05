@@ -6,7 +6,7 @@ import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
 import styles from './UserNav.module.scss';
 
-export function UserNav() {
+export default function UserNav({ className }:{ className?: string}) {
   const { data: session } = useSession();
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
@@ -26,7 +26,7 @@ export function UserNav() {
   }
 
   return (
-    <div className={styles.userNav}>
+    <div className={`${styles.userNav} ${className}`}>
       <ul className={styles.globalNav}>
         <li className={styles.navItem}>
           <a
@@ -116,4 +116,6 @@ export function UserNav() {
   );
 }
 
-export default UserNav;
+UserNav.defaultProps = {
+  className: ''
+};

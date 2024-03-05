@@ -7,7 +7,7 @@
   display: flex;
   font-size: $font-size-base;
   font-weight: 400;
-  height: 60px;
+  height: $header-height;
   justify-content: space-between;
   letter-spacing: 0.015em;
   padding: 10px $spacing-base;
@@ -134,5 +134,33 @@
     margin-right: $spacing-xs;
     position: relative;
     top: -3px;
+  }
+}
+
+@media (max-width: $screen-md) {
+  .container {
+    display: grid;
+    grid-template-areas:
+      "branding usernav usernav"
+      "appnav appnav appnav";
+    grid-template-rows: 1fr 1fr;
+    height: $header-height-lg;
+    row-gap: $spacing-sm;
+  }
+
+  .branding {
+    grid-area: branding;
+  }
+
+  .globalNav {
+    border-top: 1px solid $color-gray-light;
+    grid-area: appnav;
+    margin-left: 0;
+    padding-top: $spacing-sm;
+  }
+
+  .userNav {
+    grid-area: usernav;
+    justify-content: end;
   }
 }
