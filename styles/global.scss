@@ -19,7 +19,11 @@ body {
 }
 
 main {
-  padding-top: 60px;
+  padding-top: $header-height;
+
+  @media (max-width: $screen-md) {
+    padding-top: $header-height-lg;
+  }
 }
 
 [aria-hidden="true"] {
@@ -30,6 +34,10 @@ main {
   margin: 0 auto;
   max-width: $screen-lg;
   padding: 0 $spacing-lg;
+
+  @media (max-width: $screen-sm) {
+    padding: 0 $spacing-base;
+  }
 }
 
 .container-sm {
@@ -49,10 +57,8 @@ main {
   padding: $spacing-xl $spacing-base;
   position: relative;
 
-  .container {
-    max-width: $screen-lg;
-    padding-left: 0;
-    padding-right: 0;
+  @media (max-width: $screen-sm) {
+    padding: $spacing-lg 0;
   }
 }
 

@@ -72,7 +72,7 @@ export function GlobalHeader({ selectedJob }:Props) {
         </nav>
       )}
 
-      <UserNav />
+      <UserNav className={styles.userNav} />
 
     </div>
   );

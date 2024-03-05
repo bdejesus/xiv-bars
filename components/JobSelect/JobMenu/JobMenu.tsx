@@ -20,10 +20,10 @@ export function JobMenu() {
       <li>
         <JobsList title="DoM" jobs={DoM} />
       </li>
-      <li>
+      <li className={styles.crafterJobs}>
         <JobsList title="DoH" jobs={DoH} />
       </li>
-      <li>
+      <li className={styles.crafterJobs}>
         <JobsList title="DoL" jobs={DoL} />
       </li>
     </ul>

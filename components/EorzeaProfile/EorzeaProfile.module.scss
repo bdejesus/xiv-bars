@@ -3,7 +3,6 @@
 .container {
   margin-bottom: $spacing-xl;
   margin-top: $spacing-base;
-  padding: 0 120px;
 }
 
 .cta {
@@ -48,7 +47,7 @@
 
   .image {
     margin-right: 32px;
-    width: 40%;
+    width: 33.33%;
   }
 
   img {
@@ -68,6 +67,18 @@
 
     .cta:hover {
       background-color: #fff;
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .panel {
+    flex-direction: column;
+
+    .image {
+      margin-bottom: $spacing-base;
+      margin-right: 0;
+      width: 100%;
     }
   }
 }

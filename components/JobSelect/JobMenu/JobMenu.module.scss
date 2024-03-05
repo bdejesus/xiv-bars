@@ -6,7 +6,7 @@
   box-shadow: $box-shadow;
   display: grid;
   grid-gap: $spacing-base;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   list-style: none;
   margin: 0;
   padding: $spacing-xl $spacing-base;
@@ -15,6 +15,12 @@
     padding-left: $spacing-lg;
   }
 }
+
+.crafterJobs {
+  border-top: 1px solid $color-gray-dark;
+  padding-top: $spacing-lg;
+}
+
 
 .warning {
   background-color: rgb(255 245 0 / 10%);
@@ -32,6 +38,13 @@
 
 @media (max-width: $screen-md) {
   .jobGroupList {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .jobGroupList {
+    padding-bottom: $spacing-lg;
+    padding-top: $spacing-lg;
   }
 }

@@ -1,4 +1,3 @@
-import I18n from 'lib/I18n/locale/en-US';
 import type { ClassJobProps } from 'types/ClassJob';
 import Link from 'next/link';
 import Icon, { Icons } from 'components/Icon';
@@ -18,18 +17,22 @@ export function JobsList({ title, jobs }: Props) {
       <ul className={styles.jobList}>
         {jobs.map((job) => (
           <li key={job.Name} value={job.ID}>
-            <Link href={`/job/${job.Abbr}`} draggable={false}>
+            <Link href={`/job/${job.Abbr}`} className={styles.jobLink} draggable={false}>
               <Job job={job} />
             </Link>
 
-            <Link href={`/job/${job.Abbr}/new`} className={styles.addBtn} title={I18n.JobsList.new_layout}>
+            <Link
+              href={`/job/${job.Abbr}/new`}
+              className={`button btn-icon ${styles.addBtn}`}
+              data-title={`New ${job.Name} Layout`}
+              data-title-anchor="left-left"
+            >
               <Icon
                 id={Icons.ADD}
                 className={styles.addIcon}
                 type="white"
                 alt="New Layout Icon"
               />
-              <span className={`${styles.addLabel} btn-label`}>New</span>
             </Link>
           </li>
         ))}
