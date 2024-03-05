@@ -55,7 +55,7 @@
   justify-content: center;
   margin-bottom: $spacing-sm;
   margin-top: $spacing-lg;
-  max-width: 838px;
+  max-width: $screen-sm;
 
   > li {
     position: relative;
