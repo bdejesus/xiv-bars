@@ -23,6 +23,7 @@ export default function Index(props:PageProps) {
     roleActions,
     viewAction
   } = props;
+
   const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${viewData?.id}`;
   const pageTitle = `${viewData?.title} by ${viewData.user?.name} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
@@ -84,7 +85,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const roleActions = selectedJob?.Role ? await listRoleActions(selectedJob) : [];
 
     const props = {
-      viewData,
+      // Hotfix for parsing the hb column from string to number[]
+      viewData: { ...viewData, hb: viewData.hb?.split(',') || null },
       selectedJob,
       actions,
       roleActions,

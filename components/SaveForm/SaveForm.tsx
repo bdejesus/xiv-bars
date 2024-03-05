@@ -136,7 +136,7 @@ function SaveForm() {
 
         <div className="control">
           <label htmlFor="description">
-            <div>{I18n.SaveForm.description}</div>
+            <div>{I18n.SaveForm.description} (You can use markdown)</div>
             <textarea
               id="description"
               ref={descriptionField}
