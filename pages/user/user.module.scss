@@ -24,3 +24,24 @@
   min-height: 160px;
   opacity: 0.66;
 }
+
+.hgroup {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.layoutsCount {
+  color: #fff;
+  font-size: $font-size-xl;
+  opacity: 0.8;
+
+  :global(.icon) {
+    margin-left: $spacing-sm;
+  }
+}

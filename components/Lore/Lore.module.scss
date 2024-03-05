@@ -1,22 +1,14 @@
 @import "styles/mixins";
 
 .lore {
-  background-color: rgb(255 255 255 / 10%);
   font-style: italic;
-  margin-top: $spacing-lg;
-  opacity: 0.66;
-  padding: $spacing-lg;
-  transition: padding 0.33s ease, background-color 0.33s ease;
-}
-
-.loreTitle {
-  font-size: $font-size-xl;
-  margin: 0;
+  margin-bottom: $spacing-lg;
 }
 
 .loreBody {
-  font-size: $font-size-base;
-  padding-top: $spacing-base;
+  color: #666;
+  font-size: $font-size-lg;
+  font-weight: 300;
 
   br {
     display: block;

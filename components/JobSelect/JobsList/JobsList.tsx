@@ -6,14 +6,15 @@ import Job from '../Job';
 import styles from './JobsList.module.scss';
 
 interface Props {
+  abbr: string,
   title: string,
   jobs: ClassJobProps[]
 }
 
-export function JobsList({ title, jobs }: Props) {
+export function JobsList({ abbr, title, jobs }: Props) {
   return (
     <div className={styles.group}>
-      <h4 className={styles.title}>{title}</h4>
+      <h4 className={styles.title}><abbr title={title}>{abbr}</abbr></h4>
       <ul className={styles.jobList}>
         {jobs.map((job) => (
           <li key={job.Name} value={job.ID}>

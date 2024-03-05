@@ -73,9 +73,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
       updatedAt: 'desc'
     },
     where: {
-      title: {
-        not: ''
-      }
+      title: { not: '' },
+      description: { not: '' }
     },
     take: 9,
     include: {

@@ -74,22 +74,23 @@
     color: #999;
     flex: 1 1 auto;
     font-size: $font-size-base;
-    height: 64px;
     line-height: 1.45;
     margin: $spacing-sm 0;
+    max-height: 64px;
     overflow: hidden;
     position: relative;
     transition: color $timing-default ease;
 
     &::after {
       background-image: linear-gradient(rgb(0 0 0 / 0%) 0, #111 95%);
-      bottom: 0;
       content: '';
       display: block;
       height: 66.6%;
       left: 0;
+      min-height: 64px;
       position: absolute;
       right: 0;
+      top: 0;
     }
   }
 

@@ -15,16 +15,16 @@ export function JobMenu() {
   return (
     <ul className={styles.jobGroupList}>
       <li>
-        <JobsList title="DoW" jobs={DoW} />
+        <JobsList abbr="DoW" title="Disciple of War" jobs={DoW} />
       </li>
       <li>
-        <JobsList title="DoM" jobs={DoM} />
+        <JobsList abbr="DoM" title="Disciple of Magic" jobs={DoM} />
       </li>
       <li className={styles.crafterJobs}>
-        <JobsList title="DoH" jobs={DoH} />
+        <JobsList abbr="DoH" title="Disciple of the Hand" jobs={DoH} />
       </li>
       <li className={styles.crafterJobs}>
-        <JobsList title="DoL" jobs={DoL} />
+        <JobsList abbr="DoL" title="Disciple of the Land" jobs={DoL} />
       </li>
     </ul>
   );
