@@ -11,5 +11,5 @@ Sentry.init({
   dsn: SENTRY_DSN,
   environment: ENV,
   enabled: ENV === 'production',
-  tracesSampleRate: 0.01
+  tracesSampleRate: 0.1
 });
