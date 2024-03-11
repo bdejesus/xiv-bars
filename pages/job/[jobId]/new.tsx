@@ -61,7 +61,7 @@ export default function Index(props:PageProps) {
           <p className={styles.jobDesc}>
             {shortDesc(selectedJob)}
           </p>
-          { selectedJob.Description && <Lore selectedJob={selectedJob} /> }
+          { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
         </div>
       </div>
 
