@@ -1,13 +1,10 @@
-import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Lore.module.scss';
 
 interface Props {
-  selectedJob: ClassJobProps
+  description: string
 }
 
-export default function Lore({ selectedJob }: Props) {
-  if (!selectedJob.Description) return null;
-
+export default function Lore({ description }: Props) {
   return (
     <div
       className={styles.lore}
@@ -15,7 +12,7 @@ export default function Lore({ selectedJob }: Props) {
       <div
         className={styles.loreBody}
         // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: selectedJob.Description }}
+        dangerouslySetInnerHTML={{ __html: description }}
       />
     </div>
   );
