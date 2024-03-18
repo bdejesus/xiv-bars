@@ -29,7 +29,7 @@ interface UserViewProps {
 export default function User({ user }:UserViewProps) {
   const userDispatch = useUserDispatch();
   const { layouts } = useUserState();
-  const canonicalUrl = `${domain}/user/${user.id}`;
+  const canonicalUrl = `${domain}/user/${user.name}`;
 
   useEffect(() => {
     userDispatch({
