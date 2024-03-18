@@ -26,25 +26,25 @@ interface UserViewProps {
   user: UserProps
 }
 
-export default function User(props:UserViewProps) {
+export default function User({ user }:UserViewProps) {
   const userDispatch = useUserDispatch();
   const { layouts } = useUserState();
-  const canonicalUrl = `${domain}/user/${props.user.id}`;
+  const canonicalUrl = `${domain}/user/${user.id}`;
 
   useEffect(() => {
     userDispatch({
       type: UserActions.UPDATE_LAYOUTS,
-      payload: { layouts: props.user.layouts }
+      payload: { layouts: user.layouts }
     });
   }, []);
 
-  if (!props.user) return null;
+  if (!user) return null;
 
   return (
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`${props.user.name} Layouts • XIVBARS`}</title>
+        <title>{`${user.name} Layouts • XIVBARS`}</title>
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
@@ -56,8 +56,8 @@ export default function User(props:UserViewProps) {
         <div className={styles.hgroup}>
           <h1 className="mt-md">
             <div className={styles.profile}>
-              { props.user.image && <img src={props.user.image} alt="" className={styles.image} /> }
-              {props.user.name}
+              { user.image && <img src={user.image} alt="" className={styles.image} /> }
+              {user.name}
             </div>
           </h1>
           <div className={styles.layoutsCount}>
