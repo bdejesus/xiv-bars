@@ -2,7 +2,9 @@ import type { ViewDataProps } from 'types/Layout';
 import { UserActions } from 'components/User/actions';
 
 export interface UserProps {
-  name: string
+  name: string,
+  email: string,
+  image: string
 }
 
 export interface UserState {

@@ -56,6 +56,7 @@ export default function User(props:UserViewProps) {
         <div className={styles.hgroup}>
           <h1 className="mt-md">
             <div className={styles.profile}>
+              { props.user.image && <img src={props.user.image} alt="" className={styles.image} /> }
               {props.user.name}
             </div>
           </h1>
@@ -116,6 +117,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     select: {
       name: true,
       id: true,
+      image: true,
       layouts: {
         where: {
           deletedAt: null
@@ -138,6 +140,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   }) : null;
 
+  if (!user) return { notFound: true };
+
   const serializedLayouts = user.layouts.map((layout:ViewDataProps) => ({
     ...layout,
     createdAt: layout.createdAt?.toString(),
@@ -147,7 +151,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const serializedUser = {
     name: user.name,
-    id: user.id
+    id: user.id,
+    image: user.image
   };
 
   return {

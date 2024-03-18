@@ -45,3 +45,16 @@
     margin-left: $spacing-sm;
   }
 }
+
+.profile {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-base;
+
+  .image {
+    border-radius: $spacing-sm;
+    height: $spacing-xl-2;
+    width: $spacing-xl-2;
+  }
+}
