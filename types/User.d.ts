@@ -1,6 +1,13 @@
 import type { ViewDataProps } from 'types/Layout';
 import { UserActions } from 'components/User/actions';
 
+export interface UserProps {
+  name: string,
+  id: number,
+  image: string,
+  layouts: ViewDataProps[]
+}
+
 export interface UserState {
   loggedIn: boolean,
   canPublish: boolean,

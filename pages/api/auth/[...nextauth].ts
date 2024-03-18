@@ -16,7 +16,17 @@ async function signinUser(session: Session) {
     user = await db.user.create({
       data: {
         name: session.user.name,
-        email: session.user.email
+        email: session.user.email,
+        image: session.user.image
+      }
+    });
+  } else if (session.user.image && !user.image) {
+    user = await db.user.update({
+      where: {
+        id: user.id
+      },
+      data: {
+        image: session.user.image
       }
     });
   }

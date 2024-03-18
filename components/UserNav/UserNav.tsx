@@ -69,11 +69,11 @@ export default function UserNav({ className }:{ className?: string}) {
             <div className={styles.profileImage}>
               <img
                 src={session.user.image}
-                alt={session.user.name || session.user.email}
+                alt={session.user.name}
               />
             </div>
             <div className={styles.title}>
-              {session.user.name || session.user.email}
+              {session.user.name}
             </div>
           </div>
 

@@ -26,7 +26,7 @@
 }
 
 .hgroup {
-  align-items: flex-end;
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -43,5 +43,18 @@
 
   :global(.icon) {
     margin-left: $spacing-sm;
+  }
+}
+
+.profile {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-base;
+
+  .image {
+    border-radius: $spacing-sm;
+    height: $spacing-xl-2;
+    width: $spacing-xl-2;
   }
 }

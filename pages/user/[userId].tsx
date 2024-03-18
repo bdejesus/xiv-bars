@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
 import db from 'lib/db';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -16,34 +15,37 @@ import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import Icon, { Icons } from 'components/Icon';
 import { maxLayouts } from 'lib/user';
+import { domain } from 'lib/host';
 import type { GetServerSideProps } from 'next';
+import type { UserProps } from 'types/User';
 import type { ViewDataProps } from 'types/Layout';
 
 import styles from './user.module.scss';
 
-interface UserProps {
-  layouts: ViewDataProps[]
+interface UserViewProps {
+  user: UserProps
 }
 
-export default function User(props:UserProps) {
+export default function User({ user }:UserViewProps) {
   const userDispatch = useUserDispatch();
-  const { status } = useSession({ required: true });
   const { layouts } = useUserState();
+  const canonicalUrl = `${domain}/user/${user.id}`;
 
   useEffect(() => {
     userDispatch({
       type: UserActions.UPDATE_LAYOUTS,
-      payload: { layouts: props.layouts }
+      payload: { layouts: user.layouts }
     });
   }, []);
 
-  if (!layouts || status !== 'authenticated') return null;
+  if (!user) return null;
 
   return (
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`${I18n.Pages.Me.my_layouts} • XIVBARS`}</title>
+        <title>{`${user.name} Layouts • XIVBARS`}</title>
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
 
       <AppContextProvider>
@@ -53,22 +55,25 @@ export default function User(props:UserProps) {
       <div className="container section">
         <div className={styles.hgroup}>
           <h1 className="mt-md">
-            {I18n.Pages.Me.my_layouts}
+            <div className={styles.profile}>
+              { user.image && <img src={user.image} alt="" className={styles.image} /> }
+              {user.name}
+            </div>
           </h1>
           <div className={styles.layoutsCount}>
-            {layouts.length ? layouts.length : '-'}/{maxLayouts}
+            {layouts?.length ? layouts.length : '-'}/{maxLayouts}
             <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
           </div>
         </div>
 
-        { layouts.length <= 0 && (
+        { (!layouts || layouts.length <= 0) && (
           <h2 id="jobSelectTitle">
             {I18n.Pages.Me.no_layouts}
           </h2>
         ) }
       </div>
 
-      { layouts.length > 0
+      { layouts && layouts.length > 0
         ? (
           <div className="container section">
             <LayoutsList layouts={layouts}>
@@ -102,29 +107,59 @@ export default function User(props:UserProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context?.params?.userId as string;
-  const layouts = await db.layout.findMany({
+  const id = parseInt(userId, 10);
+  const userQuery = id ? { id } : { name: userId };
+
+  const user = await db.user.findFirst({
     where: {
-      userId: parseInt(userId, 10)
+      ...userQuery,
+      deletedAt: null
     },
-    include: {
-      user: {
-        select: { name: true }
+    select: {
+      name: true,
+      id: true,
+      image: true,
+      layouts: {
+        where: {
+          deletedAt: null
+        },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          jobId: true,
+          isPvp: true,
+          layout: true,
+          createdAt: true,
+          updatedAt: true,
+          userId: true
+        },
+        orderBy: {
+          updatedAt: 'desc'
+        }
       }
-    },
-    orderBy: {
-      updatedAt: 'desc'
     }
   });
 
-  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+  if (!user) return { notFound: true };
+
+  const serializedLayouts = user.layouts.map((layout:ViewDataProps) => ({
     ...layout,
-    createdAt: layout?.createdAt?.toString(),
-    updatedAt: layout?.updatedAt?.toString()
+    createdAt: layout.createdAt?.toString(),
+    updatedAt: layout.updatedAt?.toString(),
+    user: { name: user.name }
   }));
+
+  const serializedUser:UserProps = {
+    name: user.name,
+    id: user.id,
+    image: user.image,
+    layouts: serializedLayouts
+  };
 
   return {
     props: {
-      layouts: serializableLayouts
+      user: serializedUser
     }
   };
 };
