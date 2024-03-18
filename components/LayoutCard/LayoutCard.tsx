@@ -7,7 +7,6 @@ import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import { useUserDispatch, UserActions } from 'components/User';
-import { domain } from 'lib/host';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';

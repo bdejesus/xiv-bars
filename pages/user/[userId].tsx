@@ -23,8 +23,7 @@ import type { ViewDataProps } from 'types/Layout';
 import styles from './user.module.scss';
 
 interface UserViewProps {
-  user: UserProps,
-  layouts: ViewDataProps[]
+  user: UserProps
 }
 
 export default function User(props:UserViewProps) {
@@ -35,7 +34,7 @@ export default function User(props:UserViewProps) {
   useEffect(() => {
     userDispatch({
       type: UserActions.UPDATE_LAYOUTS,
-      payload: { layouts: props.layouts }
+      payload: { layouts: props.user.layouts }
     });
   }, []);
 
@@ -147,20 +146,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const serializedLayouts = user.layouts.map((layout:ViewDataProps) => ({
     ...layout,
     createdAt: layout.createdAt?.toString(),
-    updatedAt: null,
+    updatedAt: layout.updatedAt?.toString(),
     user: { name: user.name }
   }));
 
-  const serializedUser = {
+  const serializedUser:UserProps = {
     name: user.name,
     id: user.id,
-    image: user.image
+    image: user.image,
+    layouts: serializedLayouts
   };
 
   return {
     props: {
-      user: serializedUser,
-      layouts: serializedLayouts
+      user: serializedUser
     }
   };
 };
