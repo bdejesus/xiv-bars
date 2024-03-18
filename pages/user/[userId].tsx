@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import db from 'lib/db';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -17,17 +17,19 @@ import LoadScreen from 'components/LoadScreen';
 import Icon, { Icons } from 'components/Icon';
 import { maxLayouts } from 'lib/user';
 import type { GetServerSideProps } from 'next';
+import type { UserProps } from 'types/User';
 import type { ViewDataProps } from 'types/Layout';
 
 import styles from './user.module.scss';
 
-interface UserProps {
+interface UserViewProps {
+  user: UserProps,
   layouts: ViewDataProps[]
 }
 
-export default function User(props:UserProps) {
+export default function User(props:UserViewProps) {
   const userDispatch = useUserDispatch();
-  const { status } = useSession({ required: true });
+  // const { data: session, status } = useSession({ required: true });
   const { layouts } = useUserState();
 
   useEffect(() => {
@@ -37,13 +39,13 @@ export default function User(props:UserProps) {
     });
   }, []);
 
-  if (!layouts || status !== 'authenticated') return null;
+  if (!props.user) return null;
 
   return (
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`${I18n.Pages.Me.my_layouts} • XIVBARS`}</title>
+        <title>{`${props.user.name} Layouts • XIVBARS`}</title>
       </Head>
 
       <AppContextProvider>
@@ -53,22 +55,24 @@ export default function User(props:UserProps) {
       <div className="container section">
         <div className={styles.hgroup}>
           <h1 className="mt-md">
-            {I18n.Pages.Me.my_layouts}
+            <div className={styles.profile}>
+              {props.user.name}
+            </div>
           </h1>
           <div className={styles.layoutsCount}>
-            {layouts.length ? layouts.length : '-'}/{maxLayouts}
+            {layouts?.length ? layouts.length : '-'}/{maxLayouts}
             <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
           </div>
         </div>
 
-        { layouts.length <= 0 && (
+        { (!layouts || layouts.length <= 0) && (
           <h2 id="jobSelectTitle">
             {I18n.Pages.Me.no_layouts}
           </h2>
         ) }
       </div>
 
-      { layouts.length > 0
+      { layouts && layouts.length > 0
         ? (
           <div className="container section">
             <LayoutsList layouts={layouts}>
@@ -102,29 +106,54 @@ export default function User(props:UserProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context?.params?.userId as string;
-  const layouts = await db.layout.findMany({
-    where: {
-      userId: parseInt(userId, 10)
-    },
-    include: {
-      user: {
-        select: { name: true }
-      }
-    },
-    orderBy: {
-      updatedAt: 'desc'
-    }
-  });
+  const id = parseInt(userId, 10);
 
-  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+  const user = id ? await db.user.findUnique({
+    where: {
+      id,
+      deletedAt: null
+    },
+    select: {
+      name: true,
+      id: true,
+      layouts: {
+        where: {
+          deletedAt: null
+        },
+        select: {
+          id: true,
+          title: true,
+          description: true,
+          jobId: true,
+          isPvp: true,
+          layout: true,
+          createdAt: true,
+          updatedAt: true,
+          userId: true
+        },
+        orderBy: {
+          updatedAt: 'desc'
+        }
+      }
+    }
+  }) : null;
+
+  const serializedLayouts = user.layouts.map((layout:ViewDataProps) => ({
     ...layout,
-    createdAt: layout?.createdAt?.toString(),
-    updatedAt: layout?.updatedAt?.toString()
+    createdAt: layout.createdAt?.toString(),
+    updatedAt: null,
+    user: { name: user.name }
   }));
+
+  const serializedUser = {
+    name: user.name,
+    id: user.id
+  };
 
   return {
     props: {
-      layouts: serializableLayouts
+      user: serializedUser,
+      layouts: serializedLayouts
     }
   };
 };
