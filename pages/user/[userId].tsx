@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
-// import { useSession } from 'next-auth/react';
 import db from 'lib/db';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -16,6 +15,7 @@ import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
 import Icon, { Icons } from 'components/Icon';
 import { maxLayouts } from 'lib/user';
+import { domain } from 'lib/host';
 import type { GetServerSideProps } from 'next';
 import type { UserProps } from 'types/User';
 import type { ViewDataProps } from 'types/Layout';
@@ -29,8 +29,8 @@ interface UserViewProps {
 
 export default function User(props:UserViewProps) {
   const userDispatch = useUserDispatch();
-  // const { data: session, status } = useSession({ required: true });
   const { layouts } = useUserState();
+  const canonicalUrl = `${domain}/user/${props.user.id}`;
 
   useEffect(() => {
     userDispatch({
@@ -46,6 +46,7 @@ export default function User(props:UserViewProps) {
       <Head>
         <meta name="robots" content="noindex" />
         <title>{`${props.user.name} Layouts • XIVBARS`}</title>
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
 
       <AppContextProvider>
@@ -108,10 +109,11 @@ export default function User(props:UserViewProps) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const userId = context?.params?.userId as string;
   const id = parseInt(userId, 10);
+  const userQuery = id ? { id } : { name: userId };
 
-  const user = id ? await db.user.findUnique({
+  const user = await db.user.findFirst({
     where: {
-      id,
+      ...userQuery,
       deletedAt: null
     },
     select: {
@@ -138,7 +140,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         }
       }
     }
-  }) : null;
+  });
 
   if (!user) return { notFound: true };
 

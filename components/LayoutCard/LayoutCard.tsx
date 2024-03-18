@@ -7,6 +7,7 @@ import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import { useUserDispatch, UserActions } from 'components/User';
+import { domain } from 'lib/host';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
@@ -46,26 +47,30 @@ export default function LayoutCard(props:Props) {
 
   return (
     <div className={styles.layoutCard}>
-      <Link href={`/job/${layout.jobId}/${layout.id}`}>
-        <Card className={[styles.card, className].join(' ')}>
-          <>
-            <h4>{layout.title}</h4>
+      <Card className={[styles.card, className].join(' ')}>
+        <Link href={`/job/${layout.jobId}/${layout.id}`}>
+          <h4>{layout.title}</h4>
 
-            <p className={styles.description}>{layout.description && layout.description}</p>
+          <p className={styles.description}>
+            {layout.description && layout.description}
+          </p>
+        </Link>
 
-            { !hideName && (
-              <div className={styles.owner}>{layout.user.name}</div>
-            )}
+        { !hideName && (
+          <div className={styles.owner}>
+            <Link href={`/user/${layout.userId}`}>
+              {layout.user.name}
+            </Link>
+          </div>
+        )}
 
-            { layout.updatedAt && (
-              <div className={styles.timestamp}>
-                {I18n.LayoutCard.last_updated}: {formatDateString(layout.updatedAt as string)}
-              </div>
-            )}
-            <Tags layoutView={layout} job={job} />
-          </>
-        </Card>
-      </Link>
+        { layout.updatedAt && (
+          <div className={styles.timestamp}>
+            {I18n.LayoutCard.last_updated}: {formatDateString(layout.updatedAt as string)}
+          </div>
+        )}
+        <Tags layoutView={layout} job={job} />
+      </Card>
 
       { !!isOwner && (
         <div className={styles.cardActions}>

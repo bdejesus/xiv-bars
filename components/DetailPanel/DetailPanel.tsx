@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import { formatDateString } from 'lib/utils/time';
 import ExportToMacros from 'components/ExportToMacro';
@@ -44,7 +45,11 @@ export default function DetailPanel() {
           <>
             <div className={styles.header}>
               <h3 className="mt-0 mb-0">{title}</h3>
-              <div className={styles.owner}>by {user?.name}</div>
+
+              <div className={styles.owner}>
+                by <Link href={`/user/${userId}`}>{user?.name}</Link>
+              </div>
+
               { updatedAt && (
                 <div className={styles.timestamp}>
                   {I18n.LayoutCard.last_updated}: {formatDateString(updatedAt as string)}

@@ -36,6 +36,10 @@
     .owner {
       font-size: $font-size-base;
       opacity: 0.75;
+
+      a {
+        color: $color-alt-dark;
+      }
     }
   }
 

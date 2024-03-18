@@ -4,6 +4,7 @@ import { UserActions } from 'components/User/actions';
 export interface UserProps {
   name: string,
   email: string,
+  id: number,
   image: string
 }
 
