@@ -47,7 +47,7 @@ export default function LayoutCard(props:Props) {
   return (
     <div className={styles.layoutCard}>
       <Card className={[styles.card, className].join(' ')}>
-        <Link href={`/job/${layout.jobId}/${layout.id}`}>
+        <Link href={`/job/${layout.jobId}/${layout.id}`} className={styles.main}>
           <h4>{layout.title}</h4>
 
           <p className={styles.description}>

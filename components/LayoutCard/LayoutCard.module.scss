@@ -94,6 +94,10 @@
     }
   }
 
+  .main {
+    flex: 1 1 auto;
+  }
+
   .job {
     color: #666;
     filter: grayscale(1);

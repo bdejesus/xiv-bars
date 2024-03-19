@@ -76,7 +76,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       title: { not: '' },
       description: { not: '' }
     },
-    take: 9,
+    take: 12,
     include: {
       user: {
         select: { name: true }
