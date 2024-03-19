@@ -137,7 +137,9 @@ function SaveForm() {
 
         <div className="control">
           <label htmlFor="description">
-            <div>{I18n.SaveForm.description} (You can use markdown)</div>
+            <div>
+              {I18n.SaveForm.description} (<a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown is Supported</a>)
+            </div>
             <textarea
               id="description"
               ref={descriptionField}
