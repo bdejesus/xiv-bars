@@ -7,10 +7,13 @@ import ReactMarkdown from 'react-markdown';
 import SaveForm from 'components/SaveForm';
 import EditLayoutButton from 'components/EditLayoutButton';
 import Tags from 'components/Tags';
+import Hearts from 'components/Hearts';
 import { useAppState } from 'components/App/context';
+import { useSession } from 'next-auth/react';
 import styles from './DetailPanel.module.scss';
 
 export default function DetailPanel() {
+  const { data: session } = useSession();
   const {
     viewData, readOnly, selectedJob, viewAction
   } = useAppState();
@@ -19,7 +22,10 @@ export default function DetailPanel() {
     description,
     userId,
     user,
-    updatedAt
+    updatedAt,
+    id,
+    heartsCount,
+    hearted
   } = viewData;
 
   return (
@@ -28,6 +34,14 @@ export default function DetailPanel() {
         <div className={styles.actionGroup}>
           <Sharing />
           <ExportToMacros />
+          { id && (
+            <Hearts
+              layoutId={id}
+              count={heartsCount}
+              disabled={!session}
+              hearted={hearted}
+            />
+          )}
         </div>
         <div className={styles.actionGroup}>
           <EditLayoutButton />

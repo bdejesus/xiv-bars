@@ -66,7 +66,9 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):ViewDataProps {
     exhb,
     hb,
     isPvp,
-    layout
+    layout,
+    heartsCount,
+    hearted
   }:ViewDataProps = {
     ...defaultState.viewData,
     ...viewData,
@@ -89,7 +91,9 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):ViewDataProps {
     exhb,
     hb,
     isPvp,
-    layout
+    layout,
+    heartsCount,
+    hearted
   };
 }
 

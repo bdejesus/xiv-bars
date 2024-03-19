@@ -1,0 +1,15 @@
+@import 'styles/mixins';
+
+.heartBtn {
+  &[data-disabled='true'] {
+    background-color: transparent;
+    box-shadow: none;
+    pointer-events: none;
+  }
+}
+
+.count {
+  display: inline-block;
+  font-size: $font-size-sm;
+  font-weight: 500;
+}

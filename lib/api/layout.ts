@@ -40,16 +40,24 @@ export async function create(userId:UserID, data:LayoutProps) {
   }
 }
 
-export async function read(id: LayoutID) {
+export async function read(id: LayoutID, userId: UserID | undefined) {
   if (!id) throw new Error('Layout not found');
 
+  const heartsCount = await db.heart.count({
+    where: { layoutId: parseInt(id, 10) }
+  });
+  const hearted = await db.heart.findFirst({ where: { userId } });
   const viewData = await db.layout
     .findUnique({
       where: { id: parseInt(id, 10) },
-      include: { user: { select: { name: true, id: true } } }
+      include: {
+        user: {
+          select: { name: true, id: true }
+        }
+      }
     });
 
-  return viewData;
+  return { ...viewData, heartsCount, hearted: !!hearted };
 }
 
 export async function update(userId:UserID, data:LayoutProps) {

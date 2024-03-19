@@ -31,6 +31,8 @@ interface DispatchPayload {
   slotID?: string,
   slottedActions?: SlotProps[],
   urlParams?: URLParams,
+  heartsCount?: number,
+  hearted?: boolean
 }
 
 type AppActionTypes =

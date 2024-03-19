@@ -7,6 +7,8 @@ export interface LayoutProps {
   hb: number[],
   isPvp: boolean,
   layout: number,
+  heartsCount: number,
+  hearted: boolean
 }
 
 export interface ViewDataProps extends LayoutProps {
