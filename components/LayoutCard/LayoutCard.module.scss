@@ -137,6 +137,8 @@
   .timestamp {
     font-size: $font-size-sm;
     font-style: italic;
+    line-height: 1.2;
+    margin-bottom: $spacing-base;
     opacity: 0.5;
   }
 }

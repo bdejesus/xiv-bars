@@ -52,15 +52,24 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
       <Intro />
 
-      <div className="container mt-xl">
-        <h2>Recent Layouts</h2>
-        <LayoutsList layouts={recentLayouts} />
-      </div>
+      { popularLayouts.length >= 5 ? (
+        <div className={`container mt-xl ${styles.lists}`}>
+          <div>
+            <h2>Recent Layouts</h2>
+            <LayoutsList layouts={recentLayouts} />
+          </div>
 
-      <div className="container mt-xl">
-        <h2>Popular Layouts</h2>
-        <LayoutsList layouts={popularLayouts} />
-      </div>
+          <div>
+            <h2>Popular Layouts</h2>
+            <LayoutsList layouts={popularLayouts} />
+          </div>
+        </div>
+      ) : (
+        <div className="container mt-xl">
+          <h2>Recent Layouts</h2>
+          <LayoutsList layouts={recentLayouts} />
+        </div>
+      ) }
 
       <div className={styles.articles}>
         <HowTo />
@@ -75,7 +84,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const layoutsQuery = {
-    take: 9,
+    take: 5,
     include: {
       user: {
         select: { name: true }

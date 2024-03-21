@@ -17,14 +17,15 @@ export default function DetailPanel() {
   const {
     viewData, readOnly, selectedJob
   } = useAppState();
+
   const {
     title,
     description,
     userId,
     user,
     updatedAt,
-    id,
     _count,
+    id,
     hearted
   } = viewData;
 

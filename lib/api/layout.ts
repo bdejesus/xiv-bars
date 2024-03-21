@@ -47,7 +47,6 @@ export async function read(id: LayoutID, userId: UserID | undefined) {
   if (!id) throw new Error('Layout not found');
 
   const layoutId = parseInt(id, 10);
-  const heartsCount = await db.heart.count({ where: { layoutId } });
   const hearted = await db.heart.findFirst({ where: { userId, layoutId } });
   const viewData = await db.layout
     .findUnique({
@@ -55,11 +54,14 @@ export async function read(id: LayoutID, userId: UserID | undefined) {
       include: {
         user: {
           select: { name: true, id: true }
+        },
+        _count: {
+          select: { hearts: true }
         }
       }
-    });
+    }).catch((error:object) => console.error(error));
 
-  return { ...viewData, heartsCount, hearted: hearted || undefined };
+  return { ...viewData, hearted: hearted || undefined };
 }
 
 export async function update(userId:UserID, data:LayoutDataProps) {

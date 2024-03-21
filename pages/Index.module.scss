@@ -28,3 +28,17 @@
     margin: $spacing-sm 0;
   }
 }
+
+.lists {
+  display: grid;
+  gap: $spacing-xl;
+  grid-template-columns: 1fr 1fr;
+
+  ul {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: $screen-sm) {
+    grid-template-columns: 1fr;
+  }
+}

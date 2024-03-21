@@ -80,6 +80,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
     const viewData = await fetchView.json();
+
     const actions = await listJobActions(selectedJob, viewData.isPvp);
     const roleActions = await listRoleActions(selectedJob, viewData.isPvp);
 
