@@ -8,10 +8,13 @@ export interface LayoutProps {
   isPvp: boolean,
   layout: number,
   heartsCount: number,
-  hearted: boolean
+  hearted?: number
 }
 
 export interface ViewDataProps extends LayoutProps {
+  _count?: {
+    hearts: number
+  },
   createdAt?: string | null,
   deletedAt?: string | null,
   description?: string,

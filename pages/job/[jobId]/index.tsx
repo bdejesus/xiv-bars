@@ -84,6 +84,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     include: {
       user: {
         select: { name: true }
+      },
+      _count: {
+        select: { hearts: true }
       }
     },
     orderBy: {

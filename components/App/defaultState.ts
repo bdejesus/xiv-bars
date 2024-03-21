@@ -21,7 +21,7 @@ export const defaultState:AppState = {
     wxhb: 0,
     xhb: 1,
     heartsCount: 0,
-    hearted: false
+    hearted: undefined
   },
   jobs: Jobs,
   readOnly: false,

@@ -6,23 +6,25 @@ import styles from './Hearts.module.scss';
 interface HeartsProps {
   layoutId: number,
   count: number,
-  hearted: boolean,
-  disabled?: boolean
+  hearted?: boolean,
+  disabled?: boolean,
+  className?: string
 }
 
 export default function Hearts({
   layoutId,
   count,
   hearted,
-  disabled
+  disabled,
+  className
 }:HeartsProps) {
   const appDispatch = useAppDispatch();
 
   function handleHeart() {
-    if (!disabled && !hearted) {
+    if (!disabled) {
       const options = {
         method: 'POST',
-        body: JSON.stringify({ layoutId, method: 'heart' }),
+        body: JSON.stringify({ layoutId, method: hearted ? 'unheart' : 'heart', heartId: hearted.id }),
         headers: { 'Content-Type': 'application/json' }
       };
 
@@ -34,7 +36,7 @@ export default function Hearts({
           } else {
             appDispatch({
               type: AppActions.UPDATE_VIEW,
-              payload: { heartsCount: json, hearted: true }
+              payload: { heartsCount: json.count, hearted: json.hearted }
             });
           }
         });
@@ -44,11 +46,11 @@ export default function Hearts({
   return (
     <button
       type="button"
-      className={`button btn-sm ${styles.heartBtn}`}
+      className={`button btn-sm ${styles.heartBtn} ${className}`}
       data-title={hearted ? 'Un-heart this layout' : 'Heart this layout'}
       onClick={handleHeart}
       data-disabled={disabled}
-      data-hearted={hearted}
+      data-hearted={hearted?.id}
     >
       <Icon id={hearted ? 'hearted' : 'heart'} alt="Heart" />
       <span className={styles.count}>{count || 0}</span>
@@ -57,5 +59,7 @@ export default function Hearts({
 }
 
 Hearts.defaultProps = {
-  disabled: true
+  disabled: true,
+  hearted: false,
+  className: ''
 };

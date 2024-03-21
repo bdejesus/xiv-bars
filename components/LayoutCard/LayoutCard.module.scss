@@ -163,3 +163,19 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-sm;
+
+  .hearts {
+    color: #fff;
+    height: 24px;
+    min-height: unset;
+
+    :global(.icon) {
+      filter: $icon-filter-white;
+    }
+  }
+}

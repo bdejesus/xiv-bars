@@ -49,17 +49,31 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
 
       case 'heart': {
         if (userId && body.layoutId) {
-          await db.heart.create({ data: { userId, layoutId: body.layoutId } });
+          const hearted = await db.heart.create({ data: { userId, layoutId: body.layoutId } });
           const count = await db.heart.count({ where: { layoutId: body.layoutId } });
-          res.status(200).json(count);
+          res.status(200).json({ count, hearted });
         } else {
           res.status(401).json({ error: 'Unauthorized' });
         }
         break;
       }
 
-      // case 'unheart': {
-      // }
+      case 'unheart': {
+        if (body.heartId) {
+          await db.heart
+            .delete({ where: { id: body.heartId } })
+            .catch((error) => console.error(error));
+
+          const count = await db.heart
+            .count({ where: { layoutId: body.layoutId } })
+            .catch((error) => console.error(error));
+
+          res.status(200).json({ count, hearted: undefined });
+        } else {
+          res.status(401).json({ error: 'Unauthorized' });
+        }
+        break;
+      }
 
       default: {
         if (!body.id) {

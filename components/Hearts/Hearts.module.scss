@@ -9,7 +9,9 @@
 }
 
 .count {
-  display: inline-block;
+  align-items: center;
+  display: flex;
   font-size: $font-size-sm;
-  font-weight: 500;
+  font-weight: 700;
+  height: 90%;
 }

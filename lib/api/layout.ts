@@ -11,6 +11,9 @@ export async function list(userId:UserID) {
     include: {
       user: {
         select: { name: true }
+      },
+      _count: {
+        select: { hearts: true }
       }
     },
     orderBy: {
@@ -42,11 +45,9 @@ export async function create(userId:UserID, data:LayoutProps) {
 
 export async function read(id: LayoutID, userId: UserID | undefined) {
   if (!id) throw new Error('Layout not found');
-
-  const heartsCount = await db.heart.count({
-    where: { layoutId: parseInt(id, 10) }
-  });
-  const hearted = await db.heart.findFirst({ where: { userId } });
+  const layoutId = parseInt(id, 10);
+  const heartsCount = await db.heart.count({ where: { layoutId } });
+  const hearted = await db.heart.findFirst({ where: { userId, layoutId } });
   const viewData = await db.layout
     .findUnique({
       where: { id: parseInt(id, 10) },
@@ -57,7 +58,7 @@ export async function read(id: LayoutID, userId: UserID | undefined) {
       }
     });
 
-  return { ...viewData, heartsCount, hearted: !!hearted };
+  return { ...viewData, heartsCount, hearted: hearted?.id || undefined };
 }
 
 export async function update(userId:UserID, data:LayoutProps) {

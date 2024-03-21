@@ -15,12 +15,6 @@ export async function list(layoutId:number) {
   return layoutHearts;
 }
 
-// export async function listByUser(userId) {
-// }
-
-// export async function create(layoutId:number, userId:number) {
-// }
-
 const heartMethods = { list };
 
 export default heartMethods;

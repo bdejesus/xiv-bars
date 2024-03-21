@@ -80,6 +80,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
     include: {
       user: {
         select: { name: true }
+      },
+      _count: {
+        select: { hearts: true }
       }
     }
   });

@@ -3,6 +3,7 @@ import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ViewDataProps } from 'types/Layout';
 import type { URLParams } from 'types/Page';
+import type { Heart } from 'types/Heart';
 
 export interface AppState {
   viewData: ViewDataProps,
@@ -32,7 +33,7 @@ interface DispatchPayload {
   slottedActions?: SlotProps[],
   urlParams?: URLParams,
   heartsCount?: number,
-  hearted?: boolean
+  hearted?: Heart
 }
 
 type AppActionTypes =
