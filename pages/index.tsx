@@ -52,7 +52,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
       <Intro />
 
-      { popularLayouts.length >= 5 ? (
+      { popularLayouts?.length >= 5 ? (
         <div className={`container mt-xl ${styles.lists}`}>
           <div>
             <h2>Recent Layouts</h2>
