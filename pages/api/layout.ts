@@ -53,7 +53,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
           const count = await db.heart.count({ where: { layoutId: body.layoutId } });
           res.status(200).json({ count, hearted });
         } else {
-          res.status(401).json({ error: 'Unauthorized' });
+          res.status(401).json({ error: 'Heart Unauthorized', body });
         }
         break;
       }
@@ -62,15 +62,15 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
         if (body.heartId) {
           await db.heart
             .delete({ where: { id: body.heartId } })
-            .catch((error) => console.error(error));
+            .catch((error:object) => console.error(error));
 
           const count = await db.heart
             .count({ where: { layoutId: body.layoutId } })
-            .catch((error) => console.error(error));
+            .catch((error:object) => console.error(error));
 
           res.status(200).json({ count, hearted: undefined });
         } else {
-          res.status(401).json({ error: 'Unauthorized' });
+          res.status(401).json({ error: 'Unheart Unauthorized', body });
         }
         break;
       }

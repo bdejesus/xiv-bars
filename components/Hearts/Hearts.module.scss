@@ -1,6 +1,9 @@
 @import 'styles/mixins';
 
 .heartBtn {
+  height: 24px;
+  padding: 0 $spacing-sm;
+
   &[data-disabled='true'] {
     background-color: transparent;
     box-shadow: none;
@@ -12,6 +15,6 @@
   align-items: center;
   display: flex;
   font-size: $font-size-sm;
-  font-weight: 700;
+  font-weight: 400;
   height: 90%;
 }

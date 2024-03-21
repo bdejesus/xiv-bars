@@ -1,12 +1,13 @@
 import { useAppDispatch } from 'components/App/context';
 import { AppActions } from 'components/App/actions';
 import Icon from 'components/Icon';
+import type { Heart } from 'types/Heart';
 import styles from './Hearts.module.scss';
 
-interface HeartsProps {
+interface Props {
   layoutId: number,
   count: number,
-  hearted?: boolean,
+  hearted?: Heart,
   disabled?: boolean,
   className?: string
 }
@@ -17,14 +18,14 @@ export default function Hearts({
   hearted,
   disabled,
   className
-}:HeartsProps) {
+}:Props) {
   const appDispatch = useAppDispatch();
 
   function handleHeart() {
     if (!disabled) {
       const options = {
         method: 'POST',
-        body: JSON.stringify({ layoutId, method: hearted ? 'unheart' : 'heart', heartId: hearted.id }),
+        body: JSON.stringify({ layoutId, method: hearted ? 'unheart' : 'heart', heartId: hearted?.id }),
         headers: { 'Content-Type': 'application/json' }
       };
 
@@ -46,7 +47,7 @@ export default function Hearts({
   return (
     <button
       type="button"
-      className={`button btn-sm ${styles.heartBtn} ${className}`}
+      className={`button ${styles.heartBtn} ${className}`}
       data-title={hearted ? 'Un-heart this layout' : 'Heart this layout'}
       onClick={handleHeart}
       data-disabled={disabled}

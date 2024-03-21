@@ -19,8 +19,7 @@
   }
 
   .header,
-  .body,
-  .meta {
+  .body {
     color: $color-gray;
     padding: 0 $spacing-base;
 
@@ -49,12 +48,22 @@
   }
 
   .meta {
-    margin-top: $spacing-base;
+    line-height: 1.4;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   .timestamp {
     font-size: $font-size-sm;
     font-style: italic;
     opacity: 0.5;
+    margin-bottom: $spacing-base;
   }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: $spacing-sm;
 }

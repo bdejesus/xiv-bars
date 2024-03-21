@@ -69,9 +69,6 @@ export default function Index({ recentLayouts }:IndexProps) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const layouts = await db.layout.findMany({
-    orderBy: {
-      updatedAt: 'desc'
-    },
     where: {
       title: { not: '' },
       description: { not: '' }
@@ -84,6 +81,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
       _count: {
         select: { hearts: true }
       }
+    },
+    orderBy: {
+      updatedAt: 'desc'
     }
   });
 
