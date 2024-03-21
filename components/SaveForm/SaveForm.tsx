@@ -8,7 +8,7 @@ import { UserActions } from 'components/User/actions';
 import { AppActions } from 'components/App/actions';
 import { SystemActions, useSystemDispatch } from 'components/System';
 import analytics from 'lib/analytics';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
 
 import styles from './SaveForm.module.scss';
@@ -36,7 +36,7 @@ function SaveForm() {
 
   function saveLayout() {
     const prepareData = (
-      data:ViewDataProps,
+      data:LayoutViewProps,
       opts?:FilterOptions
     ) => Object.entries(data).reduce((collection, [key, value]) => {
       const noValue = (value === undefined && value === null);

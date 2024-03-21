@@ -38,7 +38,8 @@ describe('buildUrl', () => {
       updatedAt: new Date().toISOString(),
       layout: 1,
       isPvp: true,
-      hb: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      hb: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      _count: { hearts: 0 }
     };
 
     const result = UrlUtils.buildUrl({ query, viewData });

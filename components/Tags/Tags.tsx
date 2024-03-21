@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Job from 'components/JobSelect/Job';
 import Icon from 'components/Icon';
-import type { LayoutProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Tags.module.scss';
 
 interface Props {
-  layoutView: LayoutProps,
+  layoutView: LayoutViewProps,
   job: ClassJobProps
 }
 

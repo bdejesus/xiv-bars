@@ -9,14 +9,14 @@ import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
 import type { ClassJobProps } from 'types/ClassJob';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
 
 import styles from './index.module.scss';
 
 interface Props {
   selectedJob: ClassJobProps,
-  layouts: ViewDataProps[]
+  layouts: LayoutViewProps[]
 }
 
 export default function Layouts({ selectedJob, layouts }: Props) {
@@ -94,7 +94,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   });
 
-  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
+  const serializableLayouts = layouts.map((layout:LayoutViewProps) => ({
     ...layout,
     createdAt: layout?.createdAt?.toString(),
     updatedAt: layout?.updatedAt?.toString()

@@ -1,12 +1,12 @@
 import { AppActions } from 'components/App/actions';
 import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import type { URLParams } from 'types/Page';
 import type { Heart } from 'types/Heart';
 
 export interface AppState {
-  viewData: ViewDataProps,
+  viewData: LayoutViewProps,
   jobs: ClassJobProps[],
   readOnly: boolean,
   selectedJob?: ClassJobProps,
@@ -24,7 +24,7 @@ interface DispatchPayload {
   actions?: ActionProps[],
   encodedSlots?: string,
   hbId?: string,
-  viewData?: ViewDataProps,
+  viewData?: LayoutViewProps,
   roleActions?: ActionProps[],
   viewAction?: string,
   readOnly?: boolean,

@@ -1,6 +1,6 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
-import type { LayoutProps } from 'types/Layout';
+import type { LayoutDataProps } from 'types/Layout';
 
 type LayoutID = string;
 type UserID = number | undefined;
@@ -25,7 +25,7 @@ export async function list(userId:UserID) {
   return layouts;
 }
 
-export async function create(userId:UserID, data:LayoutProps) {
+export async function create(userId:UserID, data:LayoutDataProps) {
   const userLayouts = await db.layout
     .findMany({ where: { userId } })
     .catch((error:Error) => console.error(error));
@@ -45,6 +45,7 @@ export async function create(userId:UserID, data:LayoutProps) {
 
 export async function read(id: LayoutID, userId: UserID | undefined) {
   if (!id) throw new Error('Layout not found');
+
   const layoutId = parseInt(id, 10);
   const heartsCount = await db.heart.count({ where: { layoutId } });
   const hearted = await db.heart.findFirst({ where: { userId, layoutId } });
@@ -61,7 +62,7 @@ export async function read(id: LayoutID, userId: UserID | undefined) {
   return { ...viewData, heartsCount, hearted: hearted || undefined };
 }
 
-export async function update(userId:UserID, data:LayoutProps) {
+export async function update(userId:UserID, data:LayoutDataProps) {
   const { id } = data;
   const layoutToUpdate = await db.layout
     .findFirst({ where: { id, userId } })

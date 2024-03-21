@@ -24,7 +24,7 @@ export default function DetailPanel() {
     user,
     updatedAt,
     id,
-    heartsCount,
+    _count,
     hearted
   } = viewData;
 
@@ -61,7 +61,7 @@ export default function DetailPanel() {
                   { id && (
                     <Hearts
                       layoutId={id}
-                      count={heartsCount}
+                      count={_count.hearts}
                       disabled={!session}
                       hearted={hearted}
                     />

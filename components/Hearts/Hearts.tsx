@@ -41,7 +41,7 @@ export default function Hearts({
           } else {
             appDispatch({
               type: AppActions.UPDATE_VIEW,
-              payload: { heartsCount: json.count, hearted: json.hearted }
+              payload: { _count: { hearts: json.count }, hearted: json.hearted }
             });
           }
         });

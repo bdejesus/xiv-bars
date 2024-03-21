@@ -1,6 +1,6 @@
 import type { Heart } from 'types/Heart';
 
-export interface LayoutProps {
+export interface LayoutDataProps {
   id: number | undefined,
   encodedSlots: string | undefined,
   wxhb: number,
@@ -9,12 +9,11 @@ export interface LayoutProps {
   hb: number[],
   isPvp: boolean,
   layout: number,
-  heartsCount: number,
   hearted?: Heart
 }
 
-export interface ViewDataProps extends LayoutProps {
-  _count?: {
+export interface LayoutViewProps extends LayoutDataProps {
+  _count: {
     hearts: number
   },
   createdAt?: string | null,

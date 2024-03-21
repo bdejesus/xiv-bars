@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { PrismaClient } from '@prisma/client';
 import { DeepMockProxy } from 'jest-mock-extended';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import db from 'lib/db';
 
 const today = new Date();
@@ -27,7 +27,7 @@ const layout = {
   }
 };
 
-const layouts:ViewDataProps[] = [layout];
+const layouts:LayoutViewProps[] = [layout];
 
 jest.mock('../lib/db', () => ({
   __esModule: true,

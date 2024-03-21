@@ -1,22 +1,23 @@
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import { UserActions } from 'components/User/actions';
 
 export interface UserProps {
   name: string,
   id: number,
   image: string,
-  layouts: ViewDataProps[]
+  layouts: LayoutViewProps[]
+  hearts: LayoutViewProps[]
 }
 
 export interface UserState {
   loggedIn: boolean,
   canPublish: boolean,
-  layouts?: ViewDataProps[]
+  layouts?: LayoutViewProps[]
 }
 
 type UserDispatchPayload = {
   user?: object,
-  layouts?: ViewDataProps[]
+  layouts?: LayoutViewProps[]
 }
 
 export interface UpdateUser {

@@ -9,11 +9,11 @@ import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
 import { useUserDispatch, UserActions } from 'components/User';
 import type { ClassJobProps } from 'types/ClassJob';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
-  layout: ViewDataProps,
+  layout: LayoutViewProps,
   job: ClassJobProps,
   // eslint-disable-next-line no-unused-vars
   className?: string,
