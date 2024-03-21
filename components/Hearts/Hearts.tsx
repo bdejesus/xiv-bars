@@ -25,7 +25,11 @@ export default function Hearts({
     if (!disabled) {
       const options = {
         method: 'POST',
-        body: JSON.stringify({ layoutId, method: hearted ? 'unheart' : 'heart', heartId: hearted?.id }),
+        body: JSON.stringify({
+          layoutId,
+          heartId: hearted?.id,
+          method: hearted ? 'unheart' : 'heart',
+        }),
         headers: { 'Content-Type': 'application/json' }
       };
 

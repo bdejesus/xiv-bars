@@ -49,21 +49,21 @@
 
   .meta {
     line-height: 1.4;
-    margin-top: 10px;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   .timestamp {
     font-size: $font-size-sm;
     font-style: italic;
-    opacity: 0.5;
     margin-bottom: $spacing-base;
+    opacity: 0.5;
   }
 }
 
 .row {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   gap: $spacing-sm;
 }

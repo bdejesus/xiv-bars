@@ -58,7 +58,7 @@ export async function read(id: LayoutID, userId: UserID | undefined) {
       }
     });
 
-  return { ...viewData, heartsCount, hearted: hearted?.id || undefined };
+  return { ...viewData, heartsCount, hearted: hearted || undefined };
 }
 
 export async function update(userId:UserID, data:LayoutProps) {
