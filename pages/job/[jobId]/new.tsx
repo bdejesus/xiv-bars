@@ -86,8 +86,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     if (!selectedJob) return { notFound: true };
 
     const jobActions = selectedJob ? await listJobActions(selectedJob, pvp) : [];
-    // TODO: Refactor this is pull IDS from ClassJob object instead of ROLE_ACTION_IDS
-    const roleActions = selectedJob?.Role ? await listRoleActions(selectedJob) : [];
+    const roleActions = selectedJob ? await listRoleActions(selectedJob, pvp) : [];
 
     const props = {
       viewData: context.query,

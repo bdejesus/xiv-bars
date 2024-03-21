@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 
 import UpgradableActions from 'data/UpgradableActions.json';
-import RoleActionIDs from 'data/RoleActionIDs.json';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ActionProps } from 'types/Action';
@@ -54,25 +53,24 @@ export async function listJobActions(job: ClassJobProps, pvp?:boolean) {
   return actions;
 }
 
-export async function listRoleActions(job: ClassJobProps) {
-  try {
-    if (!job.Role) return [];
-    const actionKey = job.Role as keyof typeof RoleActionIDs;
-    const request = await fetch(
-      `${baseUrl}/Action?ids=${RoleActionIDs[actionKey].toString()}`
-    );
-    const roleActions = await request.json();
+export async function listRoleActions(job: ClassJobProps, pvp?: boolean) {
+  const filters = pvp
+    ? 'ClassJobCategoryTargetID=85,IsPlayerAction=1'
+    : `ClassJobCategory.${job.Abbr}=1,IsRoleAction=1`;
 
-    if (roleActions) {
-      return roleActions.Results.map((action: ActionProps) => ({
-        ...action, Prefix: 'r', UrlType: 'Action'
-      }));
-    }
-    return [];
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+  const endpoint = `search?indexes=Action,CraftAction&filters=${filters}`;
+
+  const roleActions = await fetch(`${baseUrl}/${endpoint}`)
+    .then((res) => res.json())
+    .then((roleActionsRes) => roleActionsRes.Results.map((action: ActionProps) => ({
+      ...action, Prefix: 'r', UrlType: 'Action',
+    })))
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+
+  return roleActions;
 }
 
 export async function getContent(type: string, id: string | number) {

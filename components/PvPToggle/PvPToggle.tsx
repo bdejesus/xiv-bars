@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { listJobActions } from 'lib/api/actions';
+import { listJobActions, listRoleActions } from 'lib/api/actions';
 import { buildUrl } from 'lib/utils/url';
 import Icon from 'components/Icon';
 import { AppActions } from 'components/App/actions';
@@ -30,9 +30,10 @@ export default function PvPToggle() {
   useEffect(() => {
     async function getActions(job:ClassJobProps) {
       const actionsToLoad = await listJobActions(job, viewData.isPvp);
+      const roleActionsToLoad = await listRoleActions(job, viewData.isPvp);
       appDispatch({
         type: AppActions.LOAD_JOBACTIONS,
-        payload: { actions: actionsToLoad }
+        payload: { actions: actionsToLoad, roleActions: roleActionsToLoad }
       });
     }
 

@@ -115,7 +115,11 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     }
 
     case AppActions.LOAD_JOBACTIONS: {
-      return { ...state, actions: action.payload?.actions };
+      return {
+        ...state,
+        actions: action.payload?.actions,
+        roleActions: action.payload?.roleActions
+      };
     }
 
     default: {
