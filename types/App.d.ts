@@ -33,7 +33,8 @@ interface DispatchPayload {
   slottedActions?: SlotProps[],
   urlParams?: URLParams,
   heartsCount?: number,
-  hearted?: Heart
+  hearted?: Heart,
+  _count?: { hearts: number }
 }
 
 type AppActionTypes =

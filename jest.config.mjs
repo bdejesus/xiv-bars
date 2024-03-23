@@ -13,6 +13,10 @@ const config = {
   testEnvironment: 'jsdom',
   clearMocks: true,
   setupFilesAfterEnv: ['<rootDir>/__mocks__/dbMock.ts'],
+  moduleNameMapper: {
+    '^lib/(.*)$': '<rootDir>/lib/$1',
+    // Add more alias paths as needed
+  },
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

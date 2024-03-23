@@ -1,11 +1,11 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
-import type { LayoutDataProps } from 'types/Layout';
+import type { LayoutDataProps, LayoutViewProps } from 'types/Layout';
 
 type LayoutID = string;
 type UserID = number | undefined;
 
-export async function list(userId:UserID) {
+export async function list(userId:UserID):Promise<LayoutViewProps[]> {
   const layouts = await db.layout.findMany({
     where: { userId },
     include: {
@@ -25,7 +25,10 @@ export async function list(userId:UserID) {
   return layouts;
 }
 
-export async function create(userId:UserID, data:LayoutDataProps) {
+export async function create(
+  userId:UserID,
+  data:LayoutDataProps
+):Promise<LayoutDataProps> {
   const userLayouts = await db.layout
     .findMany({ where: { userId } })
     .catch((error:Error) => console.error(error));
@@ -43,7 +46,10 @@ export async function create(userId:UserID, data:LayoutDataProps) {
   }
 }
 
-export async function read(id: LayoutID, userId: UserID | undefined) {
+export async function read(
+  id: LayoutID,
+  userId: UserID | undefined
+):Promise<LayoutViewProps> {
   if (!id) throw new Error('Layout not found');
 
   const layoutId = parseInt(id, 10);
@@ -64,7 +70,10 @@ export async function read(id: LayoutID, userId: UserID | undefined) {
   return { ...viewData, hearted: hearted || undefined };
 }
 
-export async function update(userId:UserID, data:LayoutDataProps) {
+export async function update(
+  userId:UserID,
+  data:LayoutDataProps
+):Promise<LayoutDataProps> {
   const { id } = data;
   const layoutToUpdate = await db.layout
     .findFirst({ where: { id, userId } })
