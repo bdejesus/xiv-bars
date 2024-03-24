@@ -44,18 +44,6 @@
     .card {
       border-color: $color-alt;
       box-shadow: 0 8px 20px rgb(0 0 0 / 33%);
-
-      h4 {
-        color: $color-alt;
-      }
-
-      p {
-        color: #ccc;
-      }
-
-      .job {
-        filter: grayscale(0);
-      }
     }
   }
 }
@@ -96,6 +84,16 @@
 
   .main {
     flex: 1 1 auto;
+
+    &:hover {
+      h4 {
+        color: $color-alt;
+      }
+
+      p {
+        color: #ccc;
+      }
+    }
   }
 
   .job {

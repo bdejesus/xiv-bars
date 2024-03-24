@@ -3,6 +3,10 @@
 .tags {
   display: flex;
   flex-direction: row;
+
+  a:hover .tag {
+    background-image: linear-gradient(#fff, #ddd);
+  }
 }
 
 .tag {
