@@ -71,13 +71,13 @@ $screen-sm-max: $screen-md - 1;
 $screen-md-max: $screen-lg - 1;
 $screen-lg-max: $screen-xl - 1;
 
-$font-size-xs: 10px;
-$font-size-sm: 12px;
-$font-size-base: 14px;
-$font-size-lg: 16px;
-$font-size-xl: 20px;
-$font-size-xl-2: 24px;
-$font-size-xl-3: 28px;
+$font-size-xs: 11px; // 0
+$font-size-sm: 12px; // +1
+$font-size-base: 14px; // +2
+$font-size-lg: 17px; // +3
+$font-size-xl: 22px; // 5
+$font-size-xl-2: 30px; // 8
+$font-size-xl-3: 43px; // 13
 
 $icon-filter-white: saturate(0) brightness(200%);
 $icon-filter-black: saturate(0) brightness(20%);

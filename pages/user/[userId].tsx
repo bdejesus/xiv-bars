@@ -82,8 +82,8 @@ export default function User({ user }:UserViewProps) {
                   <Link href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
-                        <Icon id={Icons.ADD} type="white" alt="New Layout Icon" />
-                        <span className="btn-layout">New Layout</span>
+                        <Icon id={Icons.ADD} type="white" alt={I18n.Pages.User.new_layout_icon} />
+                        <span className="btn-layout">{I18n.Pages.User.new_layout}</span>
                       </h4>
                     </Card>
                   </Link>
@@ -101,7 +101,7 @@ export default function User({ user }:UserViewProps) {
 
       { user.hearts && user.hearts.length > 0 && (
         <div className="container section">
-          <h2>Saved Layouts</h2>
+          <h2>{I18n.Pages.User.saved_layouts}</h2>
           <LayoutsList layouts={user.hearts} />
         </div>
       )}

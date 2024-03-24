@@ -2,6 +2,7 @@ import { useAppDispatch } from 'components/App/context';
 import { AppActions } from 'components/App/actions';
 import Icon from 'components/Icon';
 import type { Heart } from 'types/Heart';
+import I18n from 'lib/I18n/locale/en-US';
 import styles from './Hearts.module.scss';
 
 interface Props {
@@ -21,7 +22,7 @@ export default function Hearts({
 }:Props) {
   const appDispatch = useAppDispatch();
 
-  function handleHeart() {
+  function handleHeartClick() {
     if (!disabled) {
       const options = {
         method: 'POST',
@@ -52,12 +53,13 @@ export default function Hearts({
     <button
       type="button"
       className={`button ${styles.heartBtn} ${className}`}
-      data-title={hearted ? 'Un-heart this layout' : 'Heart this layout'}
-      onClick={handleHeart}
+      data-title={hearted ? I18n.Hearts.unheartTitle : I18n.Hearts.heartTitle}
+      onClick={handleHeartClick}
       data-disabled={disabled}
       data-hearted={hearted?.id}
+      data-title-anchor="left"
     >
-      <Icon id={hearted ? 'hearted' : 'heart'} alt="Heart" />
+      <Icon id={hearted ? 'hearted' : 'heart'} alt={I18n.Hearts.heart} />
       <span className={styles.count}>{count || 0}</span>
     </button>
   );

@@ -38,7 +38,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
           <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Cross Hotbar Layouts • XIVBARS`}</title>
-          <meta name="description" content={`List of hotbar layouts others have created for the ${selectedJob.Name} Class.`} />
+          <meta name="description" content={`List of hotbar layouts players have created for the ${selectedJob.Name} Class.`} />
         </Head>
       )}
 

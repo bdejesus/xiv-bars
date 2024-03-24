@@ -49,7 +49,7 @@ export default function DetailPanel() {
 
               <div className={styles.meta}>
                 <div className={styles.owner}>
-                  by <Link href={`/user/${userId}`}>{user?.name}</Link>
+                  {I18n.LayoutCard.by} <Link href={`/user/${userId}`}>{user?.name}</Link>
                 </div>
 
                 { updatedAt && (
@@ -84,7 +84,9 @@ export default function DetailPanel() {
                   {description}
                 </ReactMarkdown>
               ) : (
-                <p className="inline-message warn">This <b>Layout</b> is saved as a draft. Add a description by editing this Layout to make this publicly available.</p>
+                <ReactMarkdown className="inline-message warn">
+                  {I18n.DetailPanel.draft}
+                </ReactMarkdown>
               )}
             </div>
           </>
