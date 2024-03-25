@@ -8,7 +8,7 @@ import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
-import EorzeaProfile from 'components/EorzeaProfile';
+// import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import type { GetServerSideProps } from 'next';
@@ -73,7 +73,9 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
       <div className={styles.articles}>
         <HowTo />
-        <EorzeaProfile />
+        {/* TODO: Uncomment this onece the twitch extension is working again */}
+        {/* https://github.com/bdejesus/twitch-xiv-profile/issues/13 */}
+        {/* <EorzeaProfile /> */}
       </div>
 
       <Footer />

@@ -45,7 +45,7 @@ export default function DetailPanel() {
         ? (
           <>
             <div className={styles.header}>
-              <h3 className="mt-0 mb-0">{title}</h3>
+              <h1 className="mt-0 mb-0">{title}</h1>
 
               <div className={styles.meta}>
                 <div className={styles.owner}>

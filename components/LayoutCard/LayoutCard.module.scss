@@ -48,7 +48,7 @@
 }
 
 .card {
-  h4 {
+  h3 {
     color: #fff;
     margin: 0;
     transition: color $timing-default ease;
@@ -82,7 +82,7 @@
     flex: 1 1 auto;
 
     &:hover {
-      h4 {
+      h3 {
         color: $color-alt;
       }
 

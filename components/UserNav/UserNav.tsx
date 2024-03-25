@@ -35,7 +35,7 @@ export default function UserNav({ className }:{ className?: string}) {
               action: 'click',
               params: { method: 'donate' }
             })}
-            className={styles.donateLink}
+            className={`${styles.donateLink} button btn-primary`}
           >
             {I18n.UserNav.donate}
           </a>
@@ -70,13 +70,13 @@ export default function UserNav({ className }:{ className?: string}) {
           >
             <li className={styles.navItem}>
               <Link href={`/user/${session.user.id}`}>
-                {I18n.UserNav.my_profile}
+                {I18n.UserNav.my_layouts}
               </Link>
             </li>
 
             <li className={styles.navItem}>
               <a
-                href="https://github.com/bdejesus/xiv-bars/issues"
+                href="https://github.com/bdejesus/xiv-bars/issues/new/choose"
                 target="_blank"
                 rel="noreferrer"
               >
