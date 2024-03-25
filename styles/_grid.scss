@@ -1,10 +1,5 @@
 @import "styles/mixins";
 
-@mixin newLink {
-  float: right;
-  font-size: $font-size-lg;
-}
-
 @mixin grid {
   display: grid;
   gap: $spacing-base;

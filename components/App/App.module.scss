@@ -133,3 +133,36 @@ $icon-size: 6px;
   padding-bottom: $spacing-base;
   position: relative;
 }
+
+@media (max-width: $screen-md) {
+  .view {
+    width: 100vw;
+  }
+
+  .mainPanel {
+    overflow: hidden;
+  }
+
+  .container {
+    overflow: auto;
+
+  }
+
+  .main {
+    padding-right: $spacing-base;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .view {
+    flex-direction: column;
+  }
+
+  .detailPanel {
+    width: 100%;
+  }
+
+  .sidebar {
+    top: 0;
+  }
+}

@@ -3,6 +3,7 @@
 .controlBar {
   background-color: $panel-bg;
   box-shadow: 0 2px 0 $color-gray-dark-2;
+  overflow: auto;
   padding: $spacing-sm $spacing-base;
   position: sticky;
   top: 60px;
@@ -52,5 +53,10 @@
     height: 30px;
     padding: 0 10px;
   }
+}
 
+@media (max-width: $screen-md) {
+  .controlBar {
+    top: 0;
+  }
 }

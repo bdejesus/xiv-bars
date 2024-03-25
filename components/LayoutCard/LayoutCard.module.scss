@@ -8,8 +8,8 @@
   .cardActions {
     opacity: 0;
     position: absolute;
-    right: $spacing-xs;
-    top: $spacing-xs;
+    right: $spacing-sm;
+    top: $spacing-sm;
     transition: opacity $timing-default ease;
     transition-delay: 0.15s;
   }
@@ -21,6 +21,8 @@
   }
 
   .deleteButton {
+    background-color: transparent;
+    box-shadow: none;
     font-size: $font-size-xs;
     height: 24px;
     line-height: 1;
@@ -28,12 +30,12 @@
     padding: $spacing-xs;
     width: 24px;
 
+    :global(.icon) {
+      filter: $icon-filter-white;
+    }
+
     &:hover {
       background-color: $color-danger;
-
-      :global(.icon) {
-        filter: $icon-filter-white;
-      }
     }
   }
 
@@ -182,8 +184,8 @@
   background-position: right top;
   background-repeat: no-repeat;
   background-size: 170px;
-  inset: 0 -55px 0 0;
   filter: grayscale(1);
+  inset: 0 -55px 0 0;
   opacity: 0.025;
   pointer-events: none;
   position: absolute;

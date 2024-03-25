@@ -1,4 +1,4 @@
-export interface Heart {
+export interface HeartProps {
   id: number,
   userId: number,
   layoutId: number

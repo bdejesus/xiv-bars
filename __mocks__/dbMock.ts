@@ -20,10 +20,14 @@ const layout = {
   xhb: 1,
   wxhb: 0,
   exhb: 0,
-  hb: '[1,1,1,1,1,1,1,1,1,1]',
+  hb: new Array(10).fill(1, 0, 10),
   user: {
     name: 'bejezus',
     id: 1
+  },
+  hearted: undefined,
+  _count: {
+    hearts: 0
   }
 };
 

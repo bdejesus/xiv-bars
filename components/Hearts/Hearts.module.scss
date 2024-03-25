@@ -4,9 +4,11 @@
   height: 24px;
   padding: 0 $spacing-sm;
 
+  &[disabled],
   &[data-disabled='true'] {
     background-color: transparent;
     box-shadow: none;
+    opacity: 1;
     pointer-events: none;
   }
 }

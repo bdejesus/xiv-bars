@@ -19,11 +19,6 @@ export default function Tags({ layoutView, job }:Props) {
         </Link>
       )}
 
-      <span className={styles.tag}>
-        <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'PvP' : 'PvE'} Icon`} />
-        { layoutView.isPvp ? 'PvP' : 'PvE' }
-      </span>
-
       { (layoutView.layout === 0) && (
         <span className={styles.tag}>
           <Icon id="xhb" alt="Cross Hotbar Icon" />
@@ -37,6 +32,11 @@ export default function Tags({ layoutView, job }:Props) {
           HB
         </span>
       )}
+
+      <span className={styles.tag}>
+        <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'PvP' : 'PvE'} Icon`} />
+        { layoutView.isPvp ? 'PvP' : 'PvE' }
+      </span>
     </div>
   );
 }

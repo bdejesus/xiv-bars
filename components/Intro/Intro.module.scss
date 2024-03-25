@@ -10,17 +10,8 @@
   margin-top: 0;
 }
 
-@media (max-width: $screen-md) {
-  .header {
-    background-color: #111;
-    margin-top: -$header-height + $spacing-xs;
-    position: relative;
-    z-index: 11;
-  }
-}
-
 @media (max-width: $screen-sm) {
   .header {
-    padding: $spacing-lg 0;
+    padding: $spacing-xl 0;
   }
 }

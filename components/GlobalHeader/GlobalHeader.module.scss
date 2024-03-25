@@ -49,7 +49,14 @@
     max-width: 240px;
     padding: 0 $spacing-base;
   }
+
+  @media (max-width: $screen-sm) {
+    .titleSegment {
+      display: none;
+    }
+  }
 }
+
 
 .branding {
   align-items: center;
@@ -137,7 +144,7 @@
   }
 }
 
-@media (max-width: $screen-md) {
+@media (max-width: $screen-sm) {
   .container {
     display: grid;
     grid-template-areas:
@@ -162,5 +169,17 @@
   .userNav {
     grid-area: usernav;
     justify-content: end;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .globalNav {
+    ol {
+      gap: $spacing-sm;
+    }
+
+    :global(.button) {
+      font-size: $font-size-sm;
+    }
   }
 }

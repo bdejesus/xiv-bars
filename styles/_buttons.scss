@@ -25,10 +25,15 @@ button,
     background-color $timing-default ease,
     box-shadow $timing-default ease,
     color $timing-default ease;
+  white-space: nowrap;
 
   + button,
   + .button {
     margin-left: 1em;
+
+    @media (max-width: $screen-sm) {
+      margin-left: $spacing-sm;
+    }
   }
 
   &[data-title] {
