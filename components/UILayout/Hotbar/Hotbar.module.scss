@@ -53,8 +53,7 @@
   flex-flow: row wrap;
   gap: $spacing-base $spacing-xl;
   justify-content: center;
-  margin-bottom: $spacing-sm;
-  margin-top: $spacing-lg;
+  margin: 0;
   max-width: $screen-sm;
 
   > li {
@@ -93,6 +92,7 @@
     border: none;
     border-radius: 6px;
     bottom: 100%;
+    box-shadow: $box-shadow;
     color: #fff;
     left: 3px;
     opacity: 0;

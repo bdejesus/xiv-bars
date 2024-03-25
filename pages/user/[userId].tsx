@@ -68,7 +68,7 @@ export default function User({ user }:UserViewProps) {
 
         { (!layouts || layouts.length <= 0) && (
           <h2 id="jobSelectTitle">
-            {I18n.Pages.Me.no_layouts}
+            {I18n.Pages.User.no_layouts}
           </h2>
         ) }
       </div>

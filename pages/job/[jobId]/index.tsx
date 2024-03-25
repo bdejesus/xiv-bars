@@ -45,9 +45,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       <GlobalHeader selectedJob={selectedJob} />
 
       <div className="container section">
-        <h1 className={`mt-md ${styles.title}`}>
-          <SelectedJob job={selectedJob} className={styles.job} />
-        </h1>
+        <SelectedJob
+          job={selectedJob}
+          className={`mt-md ${styles.title}`}
+        />
 
         { selectedJob?.Description && (
           <Lore description={selectedJob.Description} />

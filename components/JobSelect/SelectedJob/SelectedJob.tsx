@@ -26,10 +26,10 @@ export default function SelectedJob({ job, className }: Props) {
         />
       </div>
       <div className={styles.textWrapper}>
-        <h2 className={styles.title}>
+        <h1 className={styles.title}>
           <abbr className={styles.abbr}>{job.Abbr}</abbr>
           <span className={styles.name}>{job.Name}</span>
-        </h2>
+        </h1>
         <div className={styles.role}>
           {job.Discipline} {job.Role && (`• ${roleNames[job.Role]}`)}
         </div>

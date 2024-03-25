@@ -11,7 +11,7 @@
   justify-content: space-between;
   letter-spacing: 0.015em;
   padding: 10px $spacing-base;
-  position: fixed;
+  position: sticky;
   top: 0;
   white-space: nowrap;
   width: 100%;
@@ -143,8 +143,8 @@
     grid-template-areas:
       "branding usernav usernav"
       "appnav appnav appnav";
-    grid-template-rows: 1fr 1fr;
-    height: $header-height-lg;
+    grid-template-rows: 40px auto;
+    height: auto;
     row-gap: $spacing-sm;
   }
 

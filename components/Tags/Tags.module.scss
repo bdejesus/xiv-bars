@@ -11,7 +11,7 @@
 
 .tag {
   align-items: center;
-  background-image: linear-gradient($color-gray-light-2, $color-gray-light);
+  background-image: linear-gradient(#ddd, #ccc);
   border-radius: 2px;
   box-shadow: inset 0 2px 3px rgb(0 0 0 / 25%);
   color: $color-gray;
@@ -23,6 +23,7 @@
   line-height: 1;
   margin-right: $spacing-xs;
   padding: 0 $spacing-sm;
+  transition: background-image 0.3s ease;
 
   :global(.job-abbr) {
     font-family: inherit;
