@@ -2,6 +2,7 @@
 
 .layoutCard {
   height: 100%;
+  overflow: hidden;
   position: relative;
 
   .cardActions {
@@ -175,4 +176,15 @@
       filter: $icon-filter-white;
     }
   }
+}
+
+.jobBackdrop {
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 170px;
+  inset: 0 -55px 0 0;
+  filter: grayscale(1);
+  opacity: 0.025;
+  pointer-events: none;
+  position: absolute;
 }

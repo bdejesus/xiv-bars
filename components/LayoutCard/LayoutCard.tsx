@@ -79,6 +79,11 @@ export default function LayoutCard(props:Props) {
           />
           <Tags layoutView={layout} job={job} />
         </div>
+
+        <div
+          className={styles.jobBackdrop}
+          style={{ backgroundImage: `url('/jobIcons${job.Icon}')` }}
+        />
       </Card>
 
       { !!isOwner && (

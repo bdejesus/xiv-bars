@@ -19,7 +19,7 @@ export default function SelectedJob({ job, className }: Props) {
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>
         <img
-          src={job.PreIcon || `/jobIcons${job.Icon}`}
+          src={`/jobIcons${job.Icon}`}
           alt=""
           height={36}
           width={36}

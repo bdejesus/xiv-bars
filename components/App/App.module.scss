@@ -119,12 +119,12 @@ $icon-size: 6px;
 }
 
 .detailPanel {
-  position: relative;
   background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-width: 320px;
+  position: relative;
   width: 320px;
 }
 

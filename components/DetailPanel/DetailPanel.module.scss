@@ -1,11 +1,11 @@
 @import 'styles/mixins';
 
 .container {
+  bottom: 0;
+  overflow: auto;
   position: absolute;
   top: 0;
-  bottom: 0;
   width: 100%;
-  overflow: auto;
 
   .actions,
   .actionGroup {
@@ -30,8 +30,8 @@
     padding: 0 $spacing-base;
 
     h1 {
-      font-size: $font-size-xl-2;
       color: $color-gray-dark;
+      font-size: $font-size-xl-2;
     }
   }
 
@@ -47,8 +47,8 @@
   .body {
     border-top: 1px solid #ddd;
     margin-top: $spacing-base;
-    padding-top: $spacing-base;
     padding-bottom: $spacing-lg;
+    padding-top: $spacing-base;
 
     p {
       font-size: $font-size-base;
