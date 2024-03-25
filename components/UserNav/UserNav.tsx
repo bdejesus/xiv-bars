@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
@@ -9,7 +8,6 @@ import styles from './UserNav.module.scss';
 export default function UserNav({ className }:{ className?: string}) {
   const { data: session } = useSession();
   const [showMenu, setShowMenu] = useState(false);
-  const router = useRouter();
 
   function handleSignIn() {
     analytics.event({ action: 'login', params: { method: 'discord' } });
@@ -37,23 +35,11 @@ export default function UserNav({ className }:{ className?: string}) {
               action: 'click',
               params: { method: 'donate' }
             })}
-            className={[styles.donateLink, 'button btn-primary'].join(' ')}
+            className={styles.donateLink}
           >
             {I18n.UserNav.donate}
           </a>
         </li>
-
-        { session && (
-          <li className={styles.navItem}>
-            <Link
-              href={`/user/${session.user.id}`}
-              data-active={router.pathname === '/me'}
-              className="button btn-clear"
-            >
-              {I18n.UserNav.my_layouts}
-            </Link>
-          </li>
-        )}
       </ul>
 
       { session ? (
@@ -83,8 +69,14 @@ export default function UserNav({ className }:{ className?: string}) {
             onMouseLeave={toggleMenu}
           >
             <li className={styles.navItem}>
+              <Link href={`/user/${session.user.id}`}>
+                {I18n.UserNav.my_profile}
+              </Link>
+            </li>
+
+            <li className={styles.navItem}>
               <a
-                href="https://github.com/bdejesus/xiv-bars/issues/new"
+                href="https://github.com/bdejesus/xiv-bars/issues"
                 target="_blank"
                 rel="noreferrer"
               >

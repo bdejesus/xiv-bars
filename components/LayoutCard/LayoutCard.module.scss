@@ -118,10 +118,9 @@
     font-size: $font-size-base;
     line-height: 1.2;
     margin-top: $spacing-xs;
-    opacity: 0.75;
 
     a {
-      color: #fff;
+      color: #ccc;
 
       &:hover {
         color: $color-alt;
@@ -130,6 +129,7 @@
   }
 
   .timestamp {
+    color: #ccc;
     font-size: $font-size-xs;
     font-style: italic;
     line-height: 1.4;
