@@ -162,7 +162,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   };
 
-  const user = await db.user.findUnique({
+  const user = await db.user.findFirst({
     where: { ...userQuery, deletedAt: null },
     select: {
       name: true,
