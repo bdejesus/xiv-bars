@@ -135,6 +135,26 @@ $icon-size: 6px;
 }
 
 @media (max-width: $screen-md-max) {
+  .view[data-action='new'],
+  .view[data-action='edit'] {
+    flex-direction: column;
+
+    .sidebar {
+      top: 0;
+    }
+
+    .detailPanel {
+      height: auto;
+      width: 100%;
+
+      textarea {
+        height: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-md) {
   .view {
     flex-direction: column;
   }

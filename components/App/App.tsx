@@ -45,7 +45,7 @@ export function App() {
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
-        <div className={`${styles.view} app-view`}>
+        <div className={`${styles.view} app-view`} data-action={viewAction}>
           <div className={styles.detailPanel}>
             <DetailPanel />
           </div>

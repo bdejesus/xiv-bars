@@ -56,7 +56,7 @@ export function GlobalHeader({ selectedJob }:Props) {
               </li>
             )}
 
-            <li className={viewAction !== 'new' ? styles.action : styles.titleSegment}>
+            <li className={viewAction !== 'new' ? styles.action : ''}>
               <a
                 href={`/job/${selectedJob.Abbr}/new`}
                 className="button"
