@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import db from 'lib/db';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
 import { useUserState, useUserDispatch } from 'components/User/context';
@@ -27,6 +28,8 @@ interface UserViewProps {
 }
 
 export default function User({ user }:UserViewProps) {
+  const { data: session } = useSession();
+  const isCurrentUser = user.id === session?.user.id;
   const userDispatch = useUserDispatch();
   const { layouts } = useUserState();
   const canonicalUrl = `${domain}/user/${user.name}`;
@@ -77,7 +80,7 @@ export default function User({ user }:UserViewProps) {
         ? (
           <div className="container section">
             <LayoutsList layouts={layouts}>
-              { layouts.length < maxLayouts && (
+              { (layouts.length < maxLayouts && isCurrentUser) && (
                 <li>
                   <Link href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
