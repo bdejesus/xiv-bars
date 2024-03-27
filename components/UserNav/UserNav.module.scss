@@ -32,7 +32,27 @@
   }
 
   a.donateLink {
-    font-weight: 700;
+    font-weight: 400;
+
+    .donateLabel {
+      align-items: center;
+      display: inline-flex;
+
+      &::before {
+        color: #fff;
+        content: "🍺";
+        display: inline-block;
+        font-size: 20px;
+        margin-left: -$spacing-xs;
+        margin-right: $spacing-xs;
+        transition: font-size 0.3s ease;
+      }
+    }
+
+    &:hover .donateLabel::before {
+      content: "🍻";
+      font-size: 26px;
+    }
   }
 
   .signin {
@@ -42,12 +62,10 @@
 
 .globalNav {
   align-items: center;
-  border-right: 1px solid #eee;
   display: flex;
   flex-direction: row;
   list-style: none;
   margin: 0 $spacing-base;
-  padding: 0 $spacing-base;
 
   > li {
     margin-left: $spacing-sm;
