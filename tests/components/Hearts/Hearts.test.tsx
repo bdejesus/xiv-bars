@@ -9,6 +9,10 @@ jest.mock('lib/api/hearts', () => ({
   destroyHeart: jest.fn(() => Promise.resolve('Mocked destroyHeart response')),
 }));
 
+jest.mock('lib/analytics', () => ({
+  event: jest.fn()
+}));
+
 describe('Hearts', () => {
   it('renders a Heart button', () => {
     render(<Hearts layoutId={1} count={0} />);
