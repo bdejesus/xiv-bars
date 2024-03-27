@@ -134,13 +134,28 @@ $icon-size: 6px;
   position: relative;
 }
 
+@media (max-width: $screen-md-max) {
+  .view {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    top: 0;
+  }
+
+  .detailPanel {
+    height: auto;
+    width: 100%;
+
+    textarea {
+      height: 100px;
+    }
+  }
+}
+
 @media (max-width: $screen-md) {
   .view {
     width: 100vw;
-  }
-
-  .mainPanel {
-    overflow: hidden;
   }
 
   .container {
@@ -156,6 +171,10 @@ $icon-size: 6px;
 @media (max-width: $screen-sm) {
   .view {
     flex-direction: column;
+  }
+
+  .main {
+    padding-left: $spacing-lg;
   }
 
   .detailPanel {

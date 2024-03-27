@@ -76,6 +76,13 @@
   gap: $spacing-sm;
 }
 
+@media (max-width: $screen-md-max) {
+  .container {
+    overflow: visible;
+    position: relative;
+  }
+}
+
 @media (max-width: $screen-sm) {
   .container {
     position: relative;
