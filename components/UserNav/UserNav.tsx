@@ -32,8 +32,8 @@ export default function UserNav({ className }:{ className?: string}) {
             target="_blank"
             rel="noreferrer"
             onClick={() => analytics.event({
-              action: 'click',
-              params: { method: 'donate' }
+              action: 'button_click',
+              params: { button_id: 'donate' }
             })}
             className={`${styles.donateLink} button btn-clear`}
             data-title={I18n.UserNav.donate_title}
