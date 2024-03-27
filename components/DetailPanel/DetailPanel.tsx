@@ -7,19 +7,26 @@ import ReactMarkdown from 'react-markdown';
 import SaveForm from 'components/SaveForm';
 import EditLayoutButton from 'components/EditLayoutButton';
 import Tags from 'components/Tags';
+import Hearts from 'components/Hearts';
 import { useAppState } from 'components/App/context';
+import { useSession } from 'next-auth/react';
 import styles from './DetailPanel.module.scss';
 
 export default function DetailPanel() {
+  const { data: session } = useSession();
   const {
-    viewData, readOnly, selectedJob, viewAction
+    viewData, readOnly, selectedJob
   } = useAppState();
+
   const {
     title,
     description,
     userId,
     user,
-    updatedAt
+    updatedAt,
+    _count,
+    id,
+    hearted
   } = viewData;
 
   return (
@@ -34,27 +41,38 @@ export default function DetailPanel() {
         </div>
       </div>
 
-      { (viewData && selectedJob && viewAction !== 'new') && (
-        <div className={styles.meta}>
-          <Tags layoutView={viewData} job={selectedJob} />
-        </div>
-      )}
-
       { (readOnly && title && userId)
         ? (
           <>
             <div className={styles.header}>
-              <h3 className="mt-0 mb-0">{title}</h3>
+              <h1 className="mt-0 mb-0">{title}</h1>
 
-              <div className={styles.owner}>
-                by <Link href={`/user/${userId}`}>{user?.name}</Link>
-              </div>
-
-              { updatedAt && (
-                <div className={styles.timestamp}>
-                  {I18n.LayoutCard.last_updated}: {formatDateString(updatedAt as string)}
+              <div className={styles.meta}>
+                <div className={styles.owner}>
+                  {I18n.LayoutCard.by} <Link href={`/user/${userId}`}>{user?.name}</Link>
                 </div>
-              )}
+
+                { updatedAt && (
+                  <div className={styles.timestamp}>
+                    {I18n.LayoutCard.last_updated}: {formatDateString(updatedAt as string)}
+                  </div>
+                )}
+
+                <div className={styles.row}>
+                  { id && (
+                    <Hearts
+                      layoutId={id}
+                      count={_count.hearts}
+                      disabled={!session}
+                      hearted={hearted}
+                    />
+                  )}
+
+                  { (viewData && selectedJob) && (
+                    <Tags layoutView={viewData} job={selectedJob} />
+                  )}
+                </div>
+              </div>
             </div>
 
             <div className={styles.body}>
@@ -66,7 +84,9 @@ export default function DetailPanel() {
                   {description}
                 </ReactMarkdown>
               ) : (
-                <p className="inline-message warn">This <b>Layout</b> is saved as a draft. Add a description by editing this Layout to make this publicly available.</p>
+                <ReactMarkdown className="inline-message warn">
+                  {I18n.DetailPanel.draft}
+                </ReactMarkdown>
               )}
             </div>
           </>

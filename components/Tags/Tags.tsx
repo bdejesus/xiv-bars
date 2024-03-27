@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Job from 'components/JobSelect/Job';
 import Icon from 'components/Icon';
-import type { LayoutProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Tags.module.scss';
 
 interface Props {
-  layoutView: LayoutProps,
+  layoutView: LayoutViewProps,
   job: ClassJobProps
 }
 
@@ -18,11 +18,6 @@ export default function Tags({ layoutView, job }:Props) {
           <Job job={job} className={styles.tag} name={false} />
         </Link>
       )}
-
-      <span className={styles.tag}>
-        <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'PvP' : 'PvE'} Icon`} />
-        { layoutView.isPvp ? 'PvP' : 'PvE' }
-      </span>
 
       { (layoutView.layout === 0) && (
         <span className={styles.tag}>
@@ -37,6 +32,11 @@ export default function Tags({ layoutView, job }:Props) {
           HB
         </span>
       )}
+
+      <span className={styles.tag}>
+        <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'PvP' : 'PvE'} Icon`} />
+        { layoutView.isPvp ? 'PvP' : 'PvE' }
+      </span>
     </div>
   );
 }

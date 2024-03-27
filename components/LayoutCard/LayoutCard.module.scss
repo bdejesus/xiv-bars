@@ -2,13 +2,14 @@
 
 .layoutCard {
   height: 100%;
+  overflow: hidden;
   position: relative;
 
   .cardActions {
     opacity: 0;
     position: absolute;
-    right: $spacing-xs;
-    top: $spacing-xs;
+    right: $spacing-sm;
+    top: $spacing-sm;
     transition: opacity $timing-default ease;
     transition-delay: 0.15s;
   }
@@ -20,6 +21,8 @@
   }
 
   .deleteButton {
+    background-color: transparent;
+    box-shadow: none;
     font-size: $font-size-xs;
     height: 24px;
     line-height: 1;
@@ -27,12 +30,12 @@
     padding: $spacing-xs;
     width: 24px;
 
+    :global(.icon) {
+      filter: $icon-filter-white;
+    }
+
     &:hover {
       background-color: $color-danger;
-
-      :global(.icon) {
-        filter: $icon-filter-white;
-      }
     }
   }
 
@@ -42,29 +45,13 @@
     }
 
     .card {
-      border-color: $color-alt;
-      box-shadow: 0 8px 20px rgb(0 0 0 / 33%);
-
-      h4 {
-        color: $color-alt;
-      }
-
-      p {
-        color: #ccc;
-      }
-
-      .job {
-        filter: grayscale(0);
-      }
+      box-shadow: inset 0 0 1px 3px #333, 0 8px 16px rgb(0 0 0 / 33%);
     }
   }
 }
 
 .card {
-  border: 1px solid #333;
-  transition: border-color $timing-default ease;
-
-  h4 {
+  h3 {
     color: #fff;
     margin: 0;
     transition: color $timing-default ease;
@@ -96,6 +83,16 @@
 
   .main {
     flex: 1 1 auto;
+
+    &:hover {
+      h3 {
+        color: $color-alt;
+      }
+
+      p {
+        color: #ccc;
+      }
+    }
   }
 
   .job {
@@ -122,10 +119,11 @@
 
   .owner {
     font-size: $font-size-base;
-    opacity: 0.75;
+    line-height: 1.2;
+    margin-top: $spacing-xs;
 
     a {
-      color: #fff;
+      color: #ccc;
 
       &:hover {
         color: $color-alt;
@@ -134,8 +132,11 @@
   }
 
   .timestamp {
-    font-size: $font-size-sm;
+    color: #ccc;
+    font-size: $font-size-xs;
     font-style: italic;
+    line-height: 1.4;
+    margin-bottom: $spacing-base;
     opacity: 0.5;
   }
 }
@@ -161,4 +162,31 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-sm;
+
+  .hearts {
+    color: #fff;
+    height: 24px;
+    min-height: unset;
+
+    :global(.icon) {
+      filter: $icon-filter-white;
+    }
+  }
+}
+
+.jobBackdrop {
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 170px;
+  filter: grayscale(1);
+  inset: 0 -55px 0 0;
+  opacity: 0.025;
+  pointer-events: none;
+  position: absolute;
 }

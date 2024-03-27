@@ -1,4 +1,6 @@
-export interface LayoutProps {
+import type { HeartProps } from 'types/Heart';
+
+export interface LayoutDataProps {
   id: number | undefined,
   encodedSlots: string | undefined,
   wxhb: number,
@@ -7,9 +9,13 @@ export interface LayoutProps {
   hb: number[],
   isPvp: boolean,
   layout: number,
+  hearted?: HeartProps
 }
 
-export interface ViewDataProps extends LayoutProps {
+export interface LayoutViewProps extends LayoutDataProps {
+  _count: {
+    hearts: number
+  },
   createdAt?: string | null,
   deletedAt?: string | null,
   description?: string,

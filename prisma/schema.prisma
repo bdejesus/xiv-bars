@@ -17,6 +17,7 @@ model User {
   image           String?
   characterId     Int?      @unique
   layouts         Layout[]
+  hearts          Heart[]
   role            Role      @default(USER)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime? @updatedAt
@@ -40,6 +41,16 @@ model Layout {
   wxhb          Int?
   exhb          Int?
   hb            String?
+  hearts        Heart[]
+}
+
+model Heart {
+  id            Int         @id @default(autoincrement())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        Int
+  layout        Layout      @relation(fields: [layoutId], references: [id])
+  layoutId      Int
+  createdAt     DateTime    @default(now())
 }
 
 model Character {

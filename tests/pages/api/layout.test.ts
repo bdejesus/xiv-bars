@@ -14,6 +14,13 @@ import { PrismaClient } from '@prisma/client';
 
 jest.mock('next-auth/next');
 jest.mock('@prisma/client');
+jest.mock('lib/api/layout', () => ({
+  list: jest.fn(() => Promise.resolve('Mocked Data')),
+  create: jest.fn(() => Promise.resolve('Mocked Data')),
+  read: jest.fn(() => Promise.resolve('Mocked Data')),
+  update: jest.fn(() => Promise.resolve('Mocked Data')),
+  destroy: jest.fn(() => Promise.resolve('Mocked Data'))
+}));
 
 describe('/api/layout API Endpoint', () => {
   jest.mock(`${process.cwd()}/lib/db`, () => ({

@@ -1,17 +1,22 @@
 @import "styles/mixins";
 
 .xhbControls {
+  background-color: $panel-bg;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
   display: flex;
   flex-direction: row;
+  gap: $spacing-lg;
   justify-content: center;
-  margin-bottom: $spacing-base;
+  margin: -$spacing-lg auto $spacing-lg;
+  max-width: 660px;
+  padding: $spacing-sm;
 }
 
 .xhbControl {
   align-items: center;
   display: flex;
   flex-direction: row;
-  margin-right: $spacing-lg;
 
   .controlLabel {
     margin-right: $spacing-sm;

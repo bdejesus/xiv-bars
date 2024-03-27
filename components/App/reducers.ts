@@ -100,7 +100,10 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
 
     case AppActions.UPDATE_VIEW: {
       return {
-        ...state, readOnly: true, viewData: action.payload, viewAction: 'show'
+        ...state,
+        readOnly: true,
+        viewData: { ...state.viewData, ...action.payload },
+        viewAction: 'show'
       };
     }
 

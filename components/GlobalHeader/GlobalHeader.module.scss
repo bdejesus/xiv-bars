@@ -11,7 +11,7 @@
   justify-content: space-between;
   letter-spacing: 0.015em;
   padding: 10px $spacing-base;
-  position: fixed;
+  position: sticky;
   top: 0;
   white-space: nowrap;
   width: 100%;
@@ -49,7 +49,14 @@
     max-width: 240px;
     padding: 0 $spacing-base;
   }
+
+  @media (max-width: $screen-sm) {
+    .titleSegment {
+      display: none;
+    }
+  }
 }
+
 
 .branding {
   align-items: center;
@@ -137,14 +144,14 @@
   }
 }
 
-@media (max-width: $screen-md) {
+@media (max-width: $screen-sm) {
   .container {
     display: grid;
     grid-template-areas:
       "branding usernav usernav"
       "appnav appnav appnav";
-    grid-template-rows: 1fr 1fr;
-    height: $header-height-lg;
+    grid-template-rows: 40px auto;
+    height: auto;
     row-gap: $spacing-sm;
   }
 
@@ -162,5 +169,17 @@
   .userNav {
     grid-area: usernav;
     justify-content: end;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .globalNav {
+    ol {
+      gap: $spacing-sm;
+    }
+
+    :global(.button) {
+      font-size: $font-size-sm;
+    }
   }
 }

@@ -1,3 +1,5 @@
+@import 'styles/mixins';
+
 .container {
   align-items: center;
   display: flex;
@@ -22,7 +24,7 @@
 
 .title {
   color: #fff;
-  font-size: 20px;
+  font-size: $font-size-xl-2;
   letter-spacing: 0;
   margin: 0;
   text-transform: none;

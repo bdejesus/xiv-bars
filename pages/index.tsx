@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import db from 'lib/db';
+import db, { serialize } from 'lib/db';
 import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
@@ -8,11 +8,11 @@ import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
-import EorzeaProfile from 'components/EorzeaProfile';
+// import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import type { GetServerSideProps } from 'next';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './Index.module.scss';
 
@@ -23,10 +23,11 @@ interface QueryProps {
 }
 
 interface IndexProps {
-  recentLayouts: ViewDataProps[]
+  recentLayouts: LayoutViewProps[],
+  popularLayouts: LayoutViewProps[]
 }
 
-export default function Index({ recentLayouts }:IndexProps) {
+export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
   const router = useRouter();
 
   useEffect(() => {
@@ -51,14 +52,30 @@ export default function Index({ recentLayouts }:IndexProps) {
 
       <Intro />
 
-      <div className="container mt-xl">
-        <h2>Recent Layouts</h2>
-        <LayoutsList layouts={recentLayouts} />
-      </div>
+      { popularLayouts?.length >= 5 ? (
+        <div className={`container mt-xl ${styles.lists}`}>
+          <div>
+            <h2>Recent Layouts</h2>
+            <LayoutsList layouts={recentLayouts} />
+          </div>
+
+          <div>
+            <h2>Popular Layouts</h2>
+            <LayoutsList layouts={popularLayouts} />
+          </div>
+        </div>
+      ) : (
+        <div className="container mt-xl">
+          <h2>Recent Layouts</h2>
+          <LayoutsList layouts={recentLayouts} />
+        </div>
+      ) }
 
       <div className={styles.articles}>
         <HowTo />
-        <EorzeaProfile />
+        {/* TODO: Uncomment this onece the twitch extension is working again */}
+        {/* https://github.com/bdejesus/twitch-xiv-profile/issues/13 */}
+        {/* <EorzeaProfile /> */}
       </div>
 
       <Footer />
@@ -68,31 +85,48 @@ export default function Index({ recentLayouts }:IndexProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
+  const layoutsQuery = {
+    take: 5,
+    include: {
+      user: {
+        select: { name: true }
+      },
+      _count: {
+        select: { hearts: true }
+      }
+    }
+  };
+
   const layouts = await db.layout.findMany({
-    orderBy: {
-      updatedAt: 'desc'
-    },
+    ...layoutsQuery,
     where: {
       title: { not: '' },
       description: { not: '' }
     },
-    take: 12,
-    include: {
-      user: {
-        select: { name: true }
-      }
+    orderBy: {
+      updatedAt: 'desc'
     }
   });
 
-  const serializableLayouts = layouts.map((layout:ViewDataProps) => ({
-    ...layout,
-    createdAt: layout?.createdAt?.toString(),
-    updatedAt: layout?.updatedAt?.toString()
-  }));
+  const popularLayouts = await db.layout.findMany({
+    ...layoutsQuery,
+    where: {
+      title: { not: '' },
+      description: { not: '' },
+    },
+    orderBy: {
+      hearts: {
+        _count: 'desc'
+      }
+    }
+  });
+    // eslint-disable-next-line no-underscore-dangle
+  const filteredPopularLayouts = popularLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
 
   return {
     props: {
-      recentLayouts: serializableLayouts
+      recentLayouts: layouts.map(serialize),
+      popularLayouts: filteredPopularLayouts.map(serialize)
     }
   };
 };

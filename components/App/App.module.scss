@@ -96,6 +96,7 @@ $icon-size: 6px;
   flex-direction: column;
   justify-content: flex-start;
   padding-left: $spacing-base;
+  padding-top: $spacing-lg;
 }
 
 .sidebar {
@@ -123,6 +124,7 @@ $icon-size: 6px;
   flex-direction: column;
   justify-content: flex-start;
   min-width: 320px;
+  position: relative;
   width: 320px;
 }
 
@@ -130,4 +132,37 @@ $icon-size: 6px;
   flex: 1 1 auto;
   padding-bottom: $spacing-base;
   position: relative;
+}
+
+@media (max-width: $screen-md) {
+  .view {
+    width: 100vw;
+  }
+
+  .mainPanel {
+    overflow: hidden;
+  }
+
+  .container {
+    overflow: auto;
+
+  }
+
+  .main {
+    padding-right: $spacing-base;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .view {
+    flex-direction: column;
+  }
+
+  .detailPanel {
+    width: 100%;
+  }
+
+  .sidebar {
+    top: 0;
+  }
 }

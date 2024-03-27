@@ -14,7 +14,8 @@ interface Props {
 export function JobsList({ abbr, title, jobs }: Props) {
   return (
     <div className={styles.group}>
-      <h4 className={styles.title}><abbr title={title}>{abbr}</abbr></h4>
+      <h3 className={styles.title}><abbr title={title}>{abbr}</abbr></h3>
+
       <ul className={styles.jobList}>
         {jobs.map((job) => (
           <li key={job.Name} value={job.ID}>

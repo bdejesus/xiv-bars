@@ -6,13 +6,14 @@ import { formatDateString } from 'lib/utils/time';
 import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
+import Hearts from 'components/Hearts';
 import { useUserDispatch, UserActions } from 'components/User';
 import type { ClassJobProps } from 'types/ClassJob';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
-  layout: ViewDataProps,
+  layout: LayoutViewProps,
   job: ClassJobProps,
   // eslint-disable-next-line no-unused-vars
   className?: string,
@@ -48,7 +49,7 @@ export default function LayoutCard(props:Props) {
     <div className={styles.layoutCard}>
       <Card className={[styles.card, className].join(' ')}>
         <Link href={`/job/${layout.jobId}/${layout.id}`} className={styles.main}>
-          <h4>{layout.title}</h4>
+          <h3>{layout.title}</h3>
 
           <p className={styles.description}>
             {layout.description && layout.description}
@@ -68,7 +69,21 @@ export default function LayoutCard(props:Props) {
             {I18n.LayoutCard.last_updated}: {formatDateString(layout.updatedAt as string)}
           </div>
         )}
-        <Tags layoutView={layout} job={job} />
+
+        <div className={styles.footer}>
+          <Hearts
+            layoutId={layout.id as number}
+            //  eslint-disable-next-line no-underscore-dangle
+            count={layout._count?.hearts || 0}
+            className={styles.hearts}
+          />
+          <Tags layoutView={layout} job={job} />
+        </div>
+
+        <div
+          className={styles.jobBackdrop}
+          style={{ backgroundImage: `url('/jobIcons${job.Icon}')` }}
+        />
       </Card>
 
       { !!isOwner && (

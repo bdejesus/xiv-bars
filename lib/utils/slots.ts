@@ -11,7 +11,7 @@ import { defaultState } from 'components/App/defaultState';
 import { layouts, chotbar, hotbar } from 'lib/xbars';
 import { decorateRouterQuery } from 'lib/utils/url';
 
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import type { SlotProps, ActionProps } from 'types/Action';
 import type { ParsedUrlQuery } from 'querystring';
 
@@ -43,10 +43,10 @@ function encodeSlots(slots:object):string {
 
 interface MergeParamsToViewProps {
   params?: ParsedUrlQuery,
-  viewData: ViewDataProps
+  viewData: LayoutViewProps
 }
 
-export function mergeParamsToView(props?:MergeParamsToViewProps):ViewDataProps {
+export function mergeParamsToView(props?:MergeParamsToViewProps):LayoutViewProps {
   const { params, viewData } = props || {};
   const parsedParams = params && decorateRouterQuery(params);
 
@@ -66,8 +66,10 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):ViewDataProps {
     exhb,
     hb,
     isPvp,
-    layout
-  }:ViewDataProps = {
+    layout,
+    _count,
+    hearted
+  }:LayoutViewProps = {
     ...defaultState.viewData,
     ...viewData,
     ...parsedParams
@@ -89,7 +91,9 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):ViewDataProps {
     exhb,
     hb,
     isPvp,
-    layout
+    layout,
+    _count,
+    hearted
   };
 }
 

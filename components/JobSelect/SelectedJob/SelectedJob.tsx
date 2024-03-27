@@ -19,17 +19,17 @@ export default function SelectedJob({ job, className }: Props) {
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.iconWrapper}>
         <img
-          src={job.PreIcon || `/jobIcons${job.Icon}`}
+          src={`/jobIcons${job.Icon}`}
           alt=""
           height={36}
           width={36}
         />
       </div>
       <div className={styles.textWrapper}>
-        <h2 className={styles.title}>
+        <h1 className={styles.title}>
           <abbr className={styles.abbr}>{job.Abbr}</abbr>
           <span className={styles.name}>{job.Name}</span>
-        </h2>
+        </h1>
         <div className={styles.role}>
           {job.Discipline} {job.Role && (`• ${roleNames[job.Role]}`)}
         </div>

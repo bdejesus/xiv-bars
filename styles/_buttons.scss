@@ -25,10 +25,15 @@ button,
     background-color $timing-default ease,
     box-shadow $timing-default ease,
     color $timing-default ease;
+  white-space: nowrap;
 
   + button,
   + .button {
     margin-left: 1em;
+
+    @media (max-width: $screen-sm) {
+      margin-left: $spacing-sm;
+    }
   }
 
   &[data-title] {
@@ -213,6 +218,13 @@ button,
     background-color: $color-alt-dark;
     box-shadow: $button-shadow;
   }
+}
+
+.btn-sm.button {
+  font-size: $font-size-sm;
+  height: 30px;
+  padding: 0 $spacing-sm;
+
 }
 
 .btn-icon.button {

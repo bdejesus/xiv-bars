@@ -1,5 +1,5 @@
 import { ParsedUrlQuery } from 'querystring';
-import type { ViewDataProps } from './Layout';
+import type { LayoutViewProps } from './Layout';
 import type { ClassJobProps } from './ClassJob';
 import type { ActionProps } from './Action';
 
@@ -16,7 +16,7 @@ export interface QueryProps extends ParsedUrlQuery {
 }
 
 export interface PageProps {
-  viewData: ViewDataProps,
+  viewData: LayoutViewProps,
   selectedJob: ClassJobProps,
   actions: ActionProps[],
   roleActions: ActionProps[],

@@ -1,6 +1,12 @@
 @import 'styles/mixins';
 
 .container {
+  bottom: 0;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
   .actions,
   .actionGroup {
     display: flex;
@@ -19,14 +25,13 @@
   }
 
   .header,
-  .body,
-  .meta {
+  .body {
     color: $color-gray;
     padding: 0 $spacing-base;
 
-    h3 {
+    h1 {
       color: $color-gray-dark;
-      text-transform: none;
+      font-size: $font-size-xl-2;
     }
   }
 
@@ -40,7 +45,10 @@
   }
 
   .body {
+    border-top: 1px solid #ddd;
     margin-top: $spacing-base;
+    padding-bottom: $spacing-lg;
+    padding-top: $spacing-base;
 
     p {
       font-size: $font-size-base;
@@ -49,12 +57,27 @@
   }
 
   .meta {
+    line-height: 1.4;
     margin-top: $spacing-base;
   }
 
   .timestamp {
     font-size: $font-size-sm;
     font-style: italic;
+    margin-bottom: $spacing-base;
     opacity: 0.5;
+  }
+}
+
+.row {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-sm;
+}
+
+@media (max-width: $screen-sm) {
+  .container {
+    position: relative;
   }
 }

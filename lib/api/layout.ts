@@ -1,16 +1,19 @@
 import db from 'lib/db';
 import { maxLayouts } from 'lib/user';
-import type { LayoutProps } from 'types/Layout';
+import type { LayoutDataProps, LayoutViewProps } from 'types/Layout';
 
 type LayoutID = string;
 type UserID = number | undefined;
 
-export async function list(userId:UserID) {
+export async function list(userId:UserID):Promise<LayoutViewProps[]> {
   const layouts = await db.layout.findMany({
     where: { userId },
     include: {
       user: {
         select: { name: true }
+      },
+      _count: {
+        select: { hearts: true }
       }
     },
     orderBy: {
@@ -22,7 +25,10 @@ export async function list(userId:UserID) {
   return layouts;
 }
 
-export async function create(userId:UserID, data:LayoutProps) {
+export async function create(
+  userId:UserID,
+  data:LayoutDataProps
+):Promise<LayoutDataProps> {
   const userLayouts = await db.layout
     .findMany({ where: { userId } })
     .catch((error:Error) => console.error(error));
@@ -40,19 +46,34 @@ export async function create(userId:UserID, data:LayoutProps) {
   }
 }
 
-export async function read(id: LayoutID) {
+export async function read(
+  id: LayoutID,
+  userId: UserID | undefined
+):Promise<LayoutViewProps> {
   if (!id) throw new Error('Layout not found');
 
+  const layoutId = parseInt(id, 10);
+  const hearted = await db.heart.findFirst({ where: { userId, layoutId } });
   const viewData = await db.layout
     .findUnique({
       where: { id: parseInt(id, 10) },
-      include: { user: { select: { name: true, id: true } } }
-    });
+      include: {
+        user: {
+          select: { name: true, id: true }
+        },
+        _count: {
+          select: { hearts: true }
+        }
+      }
+    }).catch((error:object) => console.error(error));
 
-  return viewData;
+  return { ...viewData, hearted: hearted || undefined };
 }
 
-export async function update(userId:UserID, data:LayoutProps) {
+export async function update(
+  userId:UserID,
+  data:LayoutDataProps
+):Promise<LayoutDataProps> {
   const { id } = data;
   const layoutToUpdate = await db.layout
     .findFirst({ where: { id, userId } })

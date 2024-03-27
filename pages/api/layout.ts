@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-
+import db from 'lib/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
@@ -29,7 +29,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
       }
 
       case 'read': {
-        const readLayout = await layoutsApi.read(body.layoutId);
+        const readLayout = await layoutsApi.read(body.layoutId, userId);
         res.status(200).json(readLayout);
         break;
       }
@@ -47,6 +47,34 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
         break;
       }
 
+      case 'heart': {
+        if (userId && body.layoutId) {
+          const hearted = await db.heart.create({ data: { userId, layoutId: body.layoutId } });
+          const count = await db.heart.count({ where: { layoutId: body.layoutId } });
+          res.status(200).json({ count, hearted });
+        } else {
+          res.status(401).json({ error: 'Heart Unauthorized', body });
+        }
+        break;
+      }
+
+      case 'unheart': {
+        if (body.heartId) {
+          await db.heart
+            .delete({ where: { id: body.heartId } })
+            .catch((error:object) => console.error(error));
+
+          const count = await db.heart
+            .count({ where: { layoutId: body.layoutId } })
+            .catch((error:object) => console.error(error));
+
+          res.status(200).json({ count, hearted: undefined });
+        } else {
+          res.status(401).json({ error: 'Unheart Unauthorized', body });
+        }
+        break;
+      }
+
       default: {
         if (!body.id) {
           const message = 'Not Found';
@@ -54,7 +82,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
           res.statusMessage = message;
           res.status(404).json(error);
         } else {
-          const readLayout = await layoutsApi.read(body.layoutId);
+          const readLayout = await layoutsApi.read(body.layoutId, userId);
           res.status(200).json(readLayout);
         }
         break;

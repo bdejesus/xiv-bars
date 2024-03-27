@@ -1,5 +1,5 @@
 import { domain } from 'lib/host';
-import type { ViewDataProps, MergeDataProps } from 'types/Layout';
+import type { LayoutViewProps, MergeDataProps } from 'types/Layout';
 import { defaultState } from 'components/App/defaultState';
 import { QueryProps } from 'types/Page';
 
@@ -16,7 +16,7 @@ export function jsonToQuery(json:object) {
 
 interface BuildURLProps {
   query?: QueryProps,
-  viewData?: ViewDataProps,
+  viewData?: LayoutViewProps,
   mergeData?: MergeDataProps
 }
 

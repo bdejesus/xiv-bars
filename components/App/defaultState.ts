@@ -20,6 +20,10 @@ export const defaultState:AppState = {
     userId: undefined,
     wxhb: 0,
     xhb: 1,
+    hearted: undefined,
+    _count: {
+      hearts: 0
+    }
   },
   jobs: Jobs,
   readOnly: false,

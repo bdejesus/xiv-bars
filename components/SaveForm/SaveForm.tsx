@@ -7,8 +7,9 @@ import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import { AppActions } from 'components/App/actions';
 import { SystemActions, useSystemDispatch } from 'components/System';
+import ReactMarkdown from 'react-markdown';
 import analytics from 'lib/analytics';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
 
 import styles from './SaveForm.module.scss';
@@ -36,7 +37,7 @@ function SaveForm() {
 
   function saveLayout() {
     const prepareData = (
-      data:ViewDataProps,
+      data:LayoutViewProps,
       opts?:FilterOptions
     ) => Object.entries(data).reduce((collection, [key, value]) => {
       const noValue = (value === undefined && value === null);
@@ -138,7 +139,7 @@ function SaveForm() {
         <div className="control">
           <label htmlFor="description">
             <div>
-              {I18n.SaveForm.description} (<a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown is Supported</a>)
+              {I18n.SaveForm.description} (<a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{I18n.SaveForm.markdown_support}</a>)
             </div>
             <textarea
               id="description"
@@ -171,9 +172,9 @@ function SaveForm() {
           )}
         </div>
 
-        <p className={styles.info}>
-          <b>Layouts</b> with no descriptions are treated as drafts and are hidden from public listings. They are still accessible via the <b>Layout</b> url.
-        </p>
+        <ReactMarkdown className={styles.info}>
+          {I18n.SaveForm.draft}
+        </ReactMarkdown>
       </form>
     </div>
   );

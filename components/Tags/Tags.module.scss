@@ -3,14 +3,16 @@
 .tags {
   display: flex;
   flex-direction: row;
-  margin-top: $spacing-sm;
+
+  a:hover .tag {
+    background-image: linear-gradient(#fff, #ddd);
+  }
 }
 
 .tag {
   align-items: center;
-  background-image: linear-gradient($color-gray-light-2, $color-gray-light);
+  background-color: #ddd;
   border-radius: 2px;
-  box-shadow: inset 0 2px 3px rgb(0 0 0 / 25%);
   color: $color-gray;
   display: inline-flex;
   font-size: 11px;
@@ -20,6 +22,7 @@
   line-height: 1;
   margin-right: $spacing-xs;
   padding: 0 $spacing-sm;
+  transition: background-image 0.3s ease;
 
   :global(.job-abbr) {
     font-family: inherit;

@@ -18,7 +18,7 @@ import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
 import type { GetServerSideProps } from 'next';
 import type { UserProps } from 'types/User';
-import type { ViewDataProps } from 'types/Layout';
+import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './user.module.scss';
 
@@ -68,7 +68,7 @@ export default function User({ user }:UserViewProps) {
 
         { (!layouts || layouts.length <= 0) && (
           <h2 id="jobSelectTitle">
-            {I18n.Pages.Me.no_layouts}
+            {I18n.Pages.User.no_layouts}
           </h2>
         ) }
       </div>
@@ -82,8 +82,8 @@ export default function User({ user }:UserViewProps) {
                   <Link href="/">
                     <Card className={[styles.card, styles.newCard].join(' ')}>
                       <h4 className={styles.placeholder}>
-                        <Icon id={Icons.ADD} type="white" alt="New Layout Icon" />
-                        <span className="btn-layout">New Layout</span>
+                        <Icon id={Icons.ADD} type="white" alt={I18n.Pages.User.new_layout_icon} />
+                        <span className="btn-layout">{I18n.Pages.User.new_layout}</span>
                       </h4>
                     </Card>
                   </Link>
@@ -99,6 +99,13 @@ export default function User({ user }:UserViewProps) {
           </div>
         )}
 
+      { user.hearts && user.hearts.length > 0 && (
+        <div className="container section">
+          <h2>{I18n.Pages.User.saved_layouts}</h2>
+          <LayoutsList layouts={user.hearts} />
+        </div>
+      )}
+
       <Footer />
       <LoadScreen />
     </>
@@ -110,50 +117,79 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = parseInt(userId, 10);
   const userQuery = id ? { id } : { name: userId };
 
-  const user = await db.user.findFirst({
+  const layoutColumns = {
+    id: true,
+    title: true,
+    description: true,
+    jobId: true,
+    isPvp: true,
+    layout: true,
+    createdAt: true,
+    updatedAt: true,
+    deletedAt: false,
+    userId: true,
+    _count: {
+      select: { hearts: true }
+    }
+  };
+
+  const layoutQuery = {
     where: {
-      ...userQuery,
       deletedAt: null
     },
+    select: layoutColumns,
+    orderBy: {
+      updatedAt: 'desc'
+    }
+  };
+
+  const heartsQuery = {
+    select: {
+      layout: {
+        select: {
+          ...layoutColumns,
+          user: {
+            select: {
+              name: true,
+              id: true
+            }
+          }
+        }
+      }
+    }
+  };
+
+  const user = await db.user.findUnique({
+    where: { ...userQuery, deletedAt: null },
     select: {
       name: true,
       id: true,
       image: true,
-      layouts: {
-        where: {
-          deletedAt: null
-        },
-        select: {
-          id: true,
-          title: true,
-          description: true,
-          jobId: true,
-          isPvp: true,
-          layout: true,
-          createdAt: true,
-          updatedAt: true,
-          userId: true
-        },
-        orderBy: {
-          updatedAt: 'desc'
-        }
-      }
+      layouts: layoutQuery,
+      hearts: heartsQuery
     }
   });
 
   if (!user) return { notFound: true };
 
-  const serializedLayouts = user.layouts.map((layout:ViewDataProps) => ({
+  const serializedLayouts = user.layouts.map((layout:LayoutViewProps) => ({
     ...layout,
     createdAt: layout.createdAt?.toString(),
     updatedAt: layout.updatedAt?.toString(),
     user: { name: user.name }
   }));
 
+  const serializedHearts = user.hearts.map(({ layout }:{layout:LayoutViewProps}) => ({
+    ...layout,
+    createdAt: layout.createdAt?.toString(),
+    updatedAt: layout.updatedAt?.toString()
+  }));
+
   const serializedUser:UserProps = {
     name: user.name,
     id: user.id,
     image: user.image,
+    hearts: serializedHearts,
     layouts: serializedLayouts
   };
 
