@@ -35,9 +35,12 @@ export default function UserNav({ className }:{ className?: string}) {
               action: 'click',
               params: { method: 'donate' }
             })}
-            className={`${styles.donateLink} button btn-primary`}
+            className={`${styles.donateLink} button btn-clear`}
+            data-title={I18n.UserNav.donate_title}
           >
-            {I18n.UserNav.donate}
+            <span className={styles.donateLabel}>
+              {I18n.UserNav.donate}
+            </span>
           </a>
         </li>
       </ul>

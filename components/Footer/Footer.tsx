@@ -1,5 +1,4 @@
 import I18n from 'lib/I18n/locale/en-US';
-import Donate from 'components/Donate';
 import styles from './Footer.module.scss';
 
 export function Footer() {
@@ -21,8 +20,6 @@ export function Footer() {
 
         <p>{I18n.Footer.property_of_squenix}</p>
       </div>
-
-      <Donate />
     </footer>
   );
 }
