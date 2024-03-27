@@ -2,6 +2,7 @@ import { useAppDispatch } from 'components/App/context';
 import { AppActions } from 'components/App/actions';
 import Icon from 'components/Icon';
 import { createHeart, destroyHeart } from 'lib/api/hearts';
+import analytics from 'lib/analytics';
 import type { HeartProps } from 'types/Heart';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './Hearts.module.scss';
@@ -37,6 +38,10 @@ export default function Hearts({
             type: AppActions.UPDATE_VIEW,
             payload: { _count: { hearts: json.count }, hearted: json.hearted }
           });
+        }
+
+        if (!hearted) {
+          analytics.event({ action: 'click', params: { method: 'heart' } });
         }
       });
     }
