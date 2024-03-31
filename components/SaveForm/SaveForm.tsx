@@ -58,7 +58,7 @@ function SaveForm() {
           description: descriptionField.current?.value
         },
         {
-          filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt']
+          filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt', 'hearted', '_count', 'userId']
         }
       )
     };
