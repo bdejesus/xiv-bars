@@ -45,6 +45,7 @@
     "no-debugger": "warn",
     "no-restricted-exports": "off",
     "no-undef": "error",
+    "no-underscore-dangle": "off",
     "no-unused-vars": "warn",
     "prefer-destructuring": "off",
     "react/destructuring-assignment": "off",

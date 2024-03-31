@@ -73,7 +73,6 @@ export default function LayoutCard(props:Props) {
         <div className={styles.footer}>
           <Hearts
             layoutId={layout.id as number}
-            //  eslint-disable-next-line no-underscore-dangle
             count={layout._count?.hearts || 0}
             className={styles.hearts}
           />

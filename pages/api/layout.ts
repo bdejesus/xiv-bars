@@ -35,7 +35,7 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
       }
 
       case 'update': {
-        const updateLayout = await layoutsApi.update(userId, body.data);
+        const updateLayout = await layoutsApi.update(body.data);
         const layouts = await layoutsApi.list(userId);
         res.status(200).json({ layoutView: updateLayout, layouts });
         break;

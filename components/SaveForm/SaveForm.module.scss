@@ -11,6 +11,11 @@
       outline: 3px solid $color-alt-dark;
     }
   }
+
+  small {
+    float: right;
+    font-style: italic;
+  }
 }
 
 .form {
