@@ -31,7 +31,10 @@ export async function create(
 ):Promise<LayoutDataProps> {
   const userLayouts = await db.layout
     .findMany({ where: { userId } })
-    .catch((error:Error) => console.error(error));
+    .catch((error:Error) => {
+      console.error(error)
+      throw new Error('Could not create new layout.');
+    });
 
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
@@ -65,22 +68,16 @@ export async function read(
           select: { hearts: true }
         }
       }
-    }).catch((error:object) => console.error(error));
+    }).catch((error:object) => {
+      console.error(error);
+      throw new Error('Could not read layout.');
+    });
 
   return { ...viewData, hearted: hearted || undefined };
 }
 
-export async function update(
-  userId:UserID,
-  data:LayoutDataProps
-):Promise<LayoutDataProps> {
+export async function update(data:LayoutDataProps):Promise<LayoutDataProps> {
   const { id } = data;
-  const layoutToUpdate = await db.layout
-    .findFirst({ where: { id, userId } })
-    .catch((error:Error) => console.error(error));
-
-  if (!layoutToUpdate) throw new Error('Layout not found');
-
   const today = new Date().toISOString();
   const viewData = { ...data, updatedAt: today };
 
@@ -90,7 +87,10 @@ export async function update(
       data: viewData,
       include: { user: { select: { name: true, id: true } } }
     })
-    .catch((error:Error) => console.error(error));
+    .catch((error:Error) => {
+      console.error(error);
+      throw new Error('Could not update layout.');
+    });
 
   return updatedLayout;
 }
@@ -99,7 +99,10 @@ export async function destroy(userId: UserID, { id }: { id:LayoutID }) {
   if (!userId || !id) throw new Error('Layout not found');
   await db.layout
     .deleteMany({ where: { id, userId } })
-    .catch((error:Error) => console.error(error));
+    .catch((error:Error) => {
+      console.error(error);
+      throw new Error('Could not delete layout.');
+    });
 
   const newList = await list(userId);
   return newList;
