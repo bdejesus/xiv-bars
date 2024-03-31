@@ -28,6 +28,7 @@ function SaveForm() {
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
   const systemDispatch = useSystemDispatch();
+  const [validTitle, setValidTitle] = useState(false);
   const [canPublish, setCanPublish] = useState(false);
   const [shouldPublish, setShouldPublish] = useState(false);
 
@@ -106,15 +107,19 @@ function SaveForm() {
   }
 
   function validateLayout() {
-    const value = descriptionField.current?.value;
-    const readyToPub = (value ? value.length > 0 : false);
+    const text = descriptionField.current?.value;
+    const readyToPub = (text ? text.length > 0 : false);
     setShouldPublish(readyToPub);
   }
 
+  function validateTitle() {
+    setValidTitle(!!titleField?.current?.value);
+  }
+
   useEffect(() => {
-    const publishable = !!viewData.encodedSlots && viewData.encodedSlots.length > 0;
+    const publishable = validTitle && !!viewData.encodedSlots && viewData.encodedSlots.length > 0;
     setCanPublish(publishable);
-  }, [router.query]);
+  }, [viewData, validTitle]);
 
   if (!session) return <SignInPrompt />;
 
@@ -123,7 +128,7 @@ function SaveForm() {
       <form className={styles.form}>
         <div className="control">
           <label htmlFor="title">
-            <div>{I18n.SaveForm.title}</div>
+            <div>{I18n.SaveForm.title} <small>required</small></div>
             <input
               type="text"
               id="title"
@@ -132,6 +137,7 @@ function SaveForm() {
               className={styles.titleField}
               defaultValue={title}
               required
+              onKeyUp={validateTitle}
             />
           </label>
         </div>
@@ -139,7 +145,7 @@ function SaveForm() {
         <div className="control">
           <label htmlFor="description">
             <div>
-              {I18n.SaveForm.description} (<a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{I18n.SaveForm.markdown_support}</a>)
+              {I18n.SaveForm.description} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{I18n.SaveForm.markdown_support}</a></small>
             </div>
             <textarea
               id="description"
@@ -156,7 +162,7 @@ function SaveForm() {
             type="button"
             onClick={saveLayout}
             className={`button ${shouldPublish && 'btn-primary'}`}
-            disabled={!canPublish || undefined}
+            disabled={!canPublish}
           >
             { shouldPublish ? I18n.SaveForm.publish_layout : I18n.SaveForm.save_draft }
           </button>

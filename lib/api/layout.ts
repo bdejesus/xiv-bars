@@ -32,7 +32,7 @@ export async function create(
   const userLayouts = await db.layout
     .findMany({ where: { userId } })
     .catch((error:Error) => {
-      console.error(error)
+      console.error(error);
       throw new Error('Could not create new layout.');
     });
 
