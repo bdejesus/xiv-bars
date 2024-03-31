@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React, {
   createContext, useContext, useReducer, useEffect, ReactNode
 } from 'react';

@@ -120,7 +120,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
       }
     }
   });
-    // eslint-disable-next-line no-underscore-dangle
   const filteredPopularLayouts = popularLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
 
   return {

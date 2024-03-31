@@ -46,9 +46,9 @@ model Layout {
 
 model Heart {
   id            Int         @id @default(autoincrement())
-  user          User        @relation(fields: [userId], references: [id])
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId        Int
-  layout        Layout      @relation(fields: [layoutId], references: [id])
+  layout        Layout      @relation(fields: [layoutId], references: [id], onDelete: Cascade)
   layoutId      Int
   createdAt     DateTime    @default(now())
 }
