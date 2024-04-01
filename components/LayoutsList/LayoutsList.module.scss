@@ -2,4 +2,6 @@
 
 .layoutsList {
   @include grid;
+
+  max-width: 100%;
 }

@@ -152,7 +152,6 @@
       "appnav appnav appnav";
     grid-template-rows: 40px auto;
     height: auto;
-    row-gap: $spacing-sm;
   }
 
   .branding {
@@ -163,7 +162,8 @@
     border-top: 1px solid $color-gray-light;
     grid-area: appnav;
     margin-left: 0;
-    padding-top: $spacing-sm;
+    padding-top: 0;
+    margin-top: $spacing-base;
   }
 
   .userNav {
@@ -174,8 +174,13 @@
 
 @media (max-width: $screen-sm) {
   .globalNav {
+
     ol {
       gap: $spacing-sm;
+
+      > li::before {
+        display: none;
+      }
     }
 
     :global(.button) {

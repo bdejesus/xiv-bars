@@ -10,3 +10,9 @@
     text-align: left;
   }
 }
+
+@media (max-width: $screen-sm) {
+  .prompt {
+    margin-top: $spacing-lg;
+  }
+}

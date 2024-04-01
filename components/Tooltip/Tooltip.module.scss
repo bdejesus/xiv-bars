@@ -60,3 +60,18 @@ $tooltip-width: 320px;
     opacity: 1;
   }
 }
+
+@media (max-width: $screen-sm) {
+  .tooltip {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: unset;
+    transform: none !important;
+    width: 100%;
+    pointer-events: auto !important;
+    height: 20vh;
+    overflow: auto;
+  }
+}
