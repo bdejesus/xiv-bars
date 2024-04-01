@@ -63,15 +63,15 @@ $tooltip-width: 320px;
 
 @media (max-width: $screen-sm) {
   .tooltip {
-    position: fixed;
     bottom: 0;
+    height: 20vh;
     left: 0;
+    overflow: auto;
+    pointer-events: auto !important;
+    position: fixed;
     right: 0;
     top: unset;
     transform: none !important;
     width: 100%;
-    pointer-events: auto !important;
-    height: 20vh;
-    overflow: auto;
   }
 }
