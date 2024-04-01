@@ -9,7 +9,6 @@ import { AppContextProvider } from 'components/App/context';
 import { useUserState, useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import GlobalHeader from 'components/GlobalHeader';
-import JobMenu from 'components/JobSelect/JobMenu';
 import LayoutsList from 'components/LayoutsList';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
