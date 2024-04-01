@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
@@ -8,10 +9,11 @@ import styles from './UserNav.module.scss';
 export default function UserNav({ className }:{ className?: string}) {
   const { data: session } = useSession();
   const [showMenu, setShowMenu] = useState(false);
+  const router = useRouter();
 
   function handleSignIn() {
     analytics.event({ action: 'login', params: { method: 'discord' } });
-    signIn('discord', { callbackUrl: '/' });
+    signIn('discord', { callbackUrl: router.asPath });
   }
 
   function handleSignOut(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
