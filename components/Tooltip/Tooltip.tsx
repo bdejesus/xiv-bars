@@ -22,15 +22,17 @@ export function Tooltip() {
 
   useEffect(() => {
     if (position) {
-      if (tooltipRef.current && contentRef.current) {
+      const anchorStyle = [];
+      if (contentRef.current) {
         const {
           offsetHeight: boxHeight,
           offsetWidth: boxWidth
         } = contentRef.current as HTMLDivElement;
-
-        const anchorStyle = [];
         if (position.x > (viewport.width - boxWidth)) anchorStyle.push('right');
         if (position.y > (viewport.height - boxHeight)) anchorStyle.push('bottom');
+      }
+
+      if (tooltipRef.current) {
         tooltipRef.current.dataset.anchor = anchorStyle.join(' ');
       }
 
@@ -47,18 +49,22 @@ export function Tooltip() {
       className={[styles.tooltip, anchor].join(' ')}
       style={positionStyle}
     >
-      { content?.Name && (
-        <div
-          className={styles.content}
-          ref={contentRef}
-          aria-hidden={!content?.Name && !content?.Description}
-        >
-          <h4 className={styles.title}>{content.Name}</h4>
-          { content.Description && (
-            <Description content={content.Description} />
-          )}
-        </div>
-      )}
+      <div
+        className={styles.content}
+        ref={contentRef}
+        aria-hidden={!content?.Name && !content?.Description}
+      >
+        { content?.Name ? (
+          <>
+            <h4 className={styles.title}>{content.Name}</h4>
+            { content.Description && (
+              <Description content={content.Description} />
+            )}
+          </>
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
     </div>
   );
 }
