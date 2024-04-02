@@ -8,14 +8,16 @@ Welcome to XIV Bars! This is the source code for the Final Fantasy XIV (FFXIV) C
 
 ## Table of Contents
 
-- [Contrubuting](#contributing)
-  - [Report Bugs](#report-bugs)
-  - [Request Features](#request-features)
-  - [Contribute Code](#contribute-code)
+- [How to Contribute](#how-to-contribute)
+  - [Reporting Issues](#reporting-issues)
+  - [Requesting Features](#requesting-features)
+  - [Contributing Code](#contributing-code)
   - [Donate](#donate)
-- [Dev Environment](#dev-environment)
-  - [Setting up](#setting-up)
+- [Dev Environment](#setting-up-a-dev-environment)
+  - [Requirements](#requirements)
+  - [Configuration](#configuration)
   - [Running the app](#running-the-app)
+  - [Running Tests](#running-tests)
 
 ## How to Contribute
 
@@ -53,7 +55,7 @@ If you find this tool helpful, [please donate](https://www.buymeacoffee.com/beje
 
 ### Requirements
 
-* Node – You'll need to install [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) (or [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm))
+* [Node.js](https://nodejs.org/) and [Yarn](https://yarnpkg.com/) (or [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm))
 * [PostgreSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
 
 ### Configuration
@@ -81,7 +83,7 @@ The postgresql database url.
 DB_URL=
 ```
 
-### Running the app (using Yarn)
+### Running the app
 
 Install dependencies
 
