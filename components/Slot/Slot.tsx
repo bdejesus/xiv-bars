@@ -7,6 +7,7 @@ import {
 } from 'components/SelectedAction';
 import { SelectedActionAction } from 'components/SelectedAction/actions';
 import { useAppState } from 'components/App/context';
+import Icon, { Icons } from 'components/Icon';
 import type { ActionProps } from 'types/Action';
 import { setActionToSlot } from 'lib/utils/slots';
 import { buildUrl } from 'lib/utils/url';
@@ -17,6 +18,8 @@ interface Props {
   className?: string,
   action: ActionProps
 }
+
+type ButtonEventProps = React.MouseEvent<HTMLDivElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
 export default function Slot({ id, className, action }: Props) {
   const {
@@ -36,7 +39,7 @@ export default function Slot({ id, className, action }: Props) {
   const [dragging, setDragging] = useState(false);
   const router = useRouter();
 
-  function resetSlot(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function resetSlot(event:ButtonEventProps) {
     event.currentTarget.setAttribute('data-state', 'inactive');
   }
 
@@ -74,12 +77,16 @@ export default function Slot({ id, className, action }: Props) {
     event.currentTarget.setAttribute('data-state', 'active');
   }
 
-  function setSelectedAction() {
-    if (readOnly || !id) return null;
+  function setSelectedAction(withAction:boolean|void = true) {
     setDragging(false);
-    if (selectedAction) handleSlotUpdate(selectedAction);
-    selectedActionDispatch({ type: SelectedActionAction.DESELECT });
-    return null;
+    if (!readOnly || !!id) {
+      if (selectedAction && withAction) {
+        handleSlotUpdate(selectedAction);
+      } else {
+        handleSlotUpdate();
+      }
+      selectedActionDispatch({ type: SelectedActionAction.DESELECT });
+    }
   }
 
   function handleDrop(event: React.MouseEvent<HTMLDivElement, DragEvent>) {
@@ -98,13 +105,24 @@ export default function Slot({ id, className, action }: Props) {
         onDragStart={handleDragStart}
         onDragOver={(event) => handleDragOver(event)}
         onDragLeave={(event) => handleDragLeave(event)}
-        onClick={setSelectedAction}
+        onClick={() => setSelectedAction()}
         role="button"
         tabIndex={0}
         data-slotted={!!action?.Name}
         data-disabled={readOnly && !action.Name}
       >
-        {action?.Name && <Action action={action} />}
+        { action?.Name && <Action action={action} /> }
+
+        { !readOnly && action?.Name && (
+          <button
+            type="button"
+            className={[styles.removeBtn, 'button btn-sm btn-icon'].join(' ')}
+            onClick={(e) => resetSlot(e)}
+          >
+            <Icon id={Icons.REMOVE} alt="Remove" />
+            <span className="btn-label-hidden">Remove</span>
+          </button>
+        )}
       </div>
     </>
   );

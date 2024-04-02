@@ -1,13 +1,16 @@
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import analytics from 'lib/analytics';
 import I18n from 'lib/I18n/locale/en-US';
 import styles from './SignInPrompt.module.scss';
 
 export default function SignInPrompt() {
+  const router = useRouter();
+
   function handleSignIn() {
     analytics.event({ action: 'login', params: { method: 'discord' } });
-    signIn('discord', { callbackUrl: '/' });
+    signIn('discord', { callbackUrl: router.asPath });
   }
 
   return (

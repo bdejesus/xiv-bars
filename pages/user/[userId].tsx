@@ -9,7 +9,6 @@ import { AppContextProvider } from 'components/App/context';
 import { useUserState, useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import GlobalHeader from 'components/GlobalHeader';
-import JobMenu from 'components/JobSelect/JobMenu';
 import LayoutsList from 'components/LayoutsList';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
@@ -77,33 +76,26 @@ export default function User({ user }:UserViewProps) {
         ) }
       </div>
 
-      { layouts && layouts.length > 0
-        ? (
-          <div className="container section">
-            <LayoutsList layouts={layouts}>
-              { (layouts.length < maxLayouts && isCurrentUser) && (
-                <li>
-                  <Link href="/">
-                    <Card className={[styles.card, styles.newCard].join(' ')}>
-                      <h4 className={styles.placeholder}>
-                        <Icon id={Icons.ADD} type="white" alt={I18n.Pages.User.new_layout_icon} />
-                        <span className="btn-layout">{I18n.Pages.User.new_layout}</span>
-                      </h4>
-                    </Card>
-                  </Link>
-                </li>
-              )}
-            </LayoutsList>
-          </div>
-        ) : (
-          <div className="app-view">
-            <div className="container">
-              <JobMenu />
-            </div>
-          </div>
-        )}
+      { layouts && layouts.length > 0 && (
+        <div className="container section">
+          <LayoutsList layouts={layouts}>
+            { (layouts.length < maxLayouts && isCurrentUser) && (
+              <li>
+                <Link href="/">
+                  <Card className={[styles.card, styles.newCard].join(' ')}>
+                    <h4 className={styles.placeholder}>
+                      <Icon id={Icons.ADD} type="white" alt={I18n.Pages.User.new_layout_icon} />
+                      <span className="btn-layout">{I18n.Pages.User.new_layout}</span>
+                    </h4>
+                  </Card>
+                </Link>
+              </li>
+            )}
+          </LayoutsList>
+        </div>
+      )}
 
-      { user.hearts && user.hearts.length > 0 && (
+      { isCurrentUser && user.hearts && user.hearts.length > 0 && (
         <div className="container section">
           <h2>{I18n.Pages.User.saved_layouts}</h2>
           <LayoutsList layouts={user.hearts} />

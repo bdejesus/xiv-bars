@@ -288,3 +288,12 @@ button,
 .btn-inline {
   display: inline-flex;
 }
+
+@media (max-width: $screen-sm) {
+  button,
+  .button {
+    font-size: $font-size-sm;
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+  }
+}

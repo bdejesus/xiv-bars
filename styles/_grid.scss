@@ -3,7 +3,7 @@
 @mixin grid {
   display: grid;
   gap: $spacing-base;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 33.33% 33.33% 33.33%;
   list-style: none;
   margin: 0 0 $spacing-lg;
   padding: 0;
@@ -17,10 +17,11 @@
   }
 
   @media (max-width: $screen-md) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
   }
 
   @media (max-width: $screen-sm) {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 }

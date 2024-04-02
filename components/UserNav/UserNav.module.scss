@@ -152,3 +152,9 @@
     color: #333;
   }
 }
+
+@media (max-width: $screen-sm) {
+  .userNav a.donateLink {
+    display: none;
+  }
+}

@@ -45,3 +45,10 @@
   opacity: 1;
   pointer-events: auto;
 }
+
+@media (max-width: $screen-sm) {
+  .textareaContainer {
+    display: flex;
+    flex-direction: column;
+  }
+}

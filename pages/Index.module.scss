@@ -35,10 +35,11 @@
   grid-template-columns: 1fr 1fr;
 
   ul {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
   }
 
   @media (max-width: $screen-sm) {
-    grid-template-columns: 1fr;
+    display: block;
   }
 }

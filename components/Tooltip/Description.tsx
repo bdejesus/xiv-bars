@@ -13,7 +13,7 @@ export default function Description({ content }: Props) {
   const descHtml = { __html: cleanDesc() };
 
   return (
-    <p
+    <div
       className={styles.description}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={descHtml}

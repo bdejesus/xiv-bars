@@ -5,6 +5,11 @@ export function renderMeta(title: string, description: string) {
     <>
       <meta name="description" content={description} />
       <meta name="keywords" content="hotbar cross ffxiv endwalker simulator xhb wxhb controller xiv fantasy final tool hotbars simulate planner interface configurations pc ps4 ps5 layouts" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="theme-color" content="#000000" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="msapplication-TileImage" content="icons/favicon-144x144.png" />
+      <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
 
       <link rel="preconnect" href="https://xivapi.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -38,17 +43,6 @@ export function renderMeta(title: string, description: string) {
         }}
       />
 
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      />
-      <meta name="theme-color" content="#000000" />
-      <meta name="msapplication-TileColor" content="#ffffff" />
-      <meta
-        name="msapplication-TileImage"
-        content="icons/favicon-144x144.png"
-      />
-      <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
       <Script data-ad-client="ca-pub-3274093949320222" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
     </>
   );

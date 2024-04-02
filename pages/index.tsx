@@ -54,12 +54,12 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
       { popularLayouts?.length >= 5 ? (
         <div className={`container mt-xl ${styles.lists}`}>
-          <div>
+          <div className={styles.listColumn}>
             <h2>Recent Layouts</h2>
             <LayoutsList layouts={recentLayouts} />
           </div>
 
-          <div>
+          <div className={styles.listColumn}>
             <h2>Popular Layouts</h2>
             <LayoutsList layouts={popularLayouts} />
           </div>
@@ -86,7 +86,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const layoutsQuery = {
-    take: 5,
+    take: 6,
     include: {
       user: {
         select: { name: true }
