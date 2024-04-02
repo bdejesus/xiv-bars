@@ -24,6 +24,7 @@ export default function Action({ action, remote }: Props) {
   const [dragging, setDragging] = useState(false);
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
+  const hoverDelay = 160;
 
   async function fetchActionContent(mousePosition: { x: number, y: number}) {
     try {
@@ -64,18 +65,16 @@ export default function Action({ action, remote }: Props) {
           });
         }
       }
-    }, 160);
+    }, hoverDelay);
   }
 
-  function selectAction(event:React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function selectAction() {
     tooltipDispatch({ type: 'hide' });
     selectedActionDispatch({
       type: 'selectAction',
       payload: { selectedAction: action }
     });
     setDragging(true);
-
-    event.stopPropagation();
   }
 
   function handleDragEnd() {
