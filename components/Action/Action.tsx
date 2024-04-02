@@ -24,6 +24,7 @@ export default function Action({ action, remote }: Props) {
   const [dragging, setDragging] = useState(false);
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
+  const hoverDelay = 160;
 
   async function fetchActionContent(mousePosition: { x: number, y: number}) {
     try {
@@ -64,7 +65,7 @@ export default function Action({ action, remote }: Props) {
           });
         }
       }
-    }, 160);
+    }, hoverDelay);
   }
 
   function selectAction() {
