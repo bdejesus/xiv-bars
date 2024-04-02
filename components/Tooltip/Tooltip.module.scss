@@ -3,27 +3,10 @@
 $tooltip-width: 320px;
 
 .tooltip {
-  animation: tooltipEnter 0.33s ease;
-  animation-fill-mode: forwards;
-  background-color: rgb(0 0 0 / 90%);
-  border: 1px solid #666;
-  border-color: #999 #555 #444 #888;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 66%);
-  color: #fff;
-  font-weight: 400;
-  left: -$tooltip-width;
-  opacity: 1;
-  padding: 10px 16px;
+  left: 0;
   pointer-events: none;
   position: fixed;
-  text-align: left;
   top: 0;
-  transform-origin: left top;
-  transition: opacity 0.33s ease, transform 0.33s ease;
-  transition-delay: 0s;
-  white-space: pre-wrap;
-  width: $tooltip-width;
   z-index: 10;
 
   &[aria-hidden="true"] {
@@ -38,6 +21,39 @@ $tooltip-width: 320px;
     display: block;
     height: 1px;
   }
+
+  &[data-anchor*='right'] .content {
+    left: unset;
+    right: 0;
+  }
+
+  &[data-anchor*='bottom']  .content{
+    bottom: 0;
+    top: unset;
+  }
+}
+
+.tooltip .content {
+  animation: tooltipEnter 0.33s ease;
+  animation-fill-mode: forwards;
+  background-color: rgb(0 0 0 / 90%);
+  border: 1px solid #666;
+  border-color: #999 #555 #444 #888;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 66%);
+  color: #fff;
+  font-weight: 400;
+  left: 0;
+  margin: 0;
+  opacity: 1;
+  padding: 10px 16px;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  transform-origin: left top;
+  transition: opacity 0.33s ease 0s;
+  white-space: pre-wrap;
+  width: $tooltip-width;
 }
 
 .title {
@@ -61,17 +77,49 @@ $tooltip-width: 320px;
   }
 }
 
+@media (max-height: $screen-sm) {
+  .tooltip {
+    bottom: unset;
+    height: 98vh;
+    left: 0;
+    right: unset;
+    top: 0;
+    transform: none !important;
+    width: 98vw;
+
+    .content {
+      bottom: $spacing-base;
+      left: unset;
+      right: $spacing-base;
+      top: unset;
+    }
+
+    &[data-anchor*='right'] .content {
+      left: $spacing-base;
+      right: unset;
+    }
+  }
+}
+
 @media (max-width: $screen-sm) {
   .tooltip {
-    bottom: 0;
-    height: 20vh;
+    height: 100vh;
     left: 0;
-    overflow: auto;
-    pointer-events: auto !important;
-    position: fixed;
-    right: 0;
-    top: unset;
+    pointer-events: none;
+    top: 0;
     transform: none !important;
-    width: 100%;
+    width: 100vw;
+
+    .content {
+      bottom: 0 !important;
+      height: 20vh;
+      left: 0 !important;
+      overflow: auto;
+      pointer-events: auto;
+      position: absolute;
+      right: 0 !important;
+      top: unset !important;
+      width: 100%;
+    }
   }
 }
