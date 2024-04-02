@@ -67,15 +67,13 @@ export default function Action({ action, remote }: Props) {
     }, 160);
   }
 
-  function selectAction(event:React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  function selectAction() {
     tooltipDispatch({ type: 'hide' });
     selectedActionDispatch({
       type: 'selectAction',
       payload: { selectedAction: action }
     });
     setDragging(true);
-
-    event.stopPropagation();
   }
 
   function handleDragEnd() {

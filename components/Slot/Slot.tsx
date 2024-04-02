@@ -77,7 +77,7 @@ export default function Slot({ id, className, action }: Props) {
     event.currentTarget.setAttribute('data-state', 'active');
   }
 
-  function setSelectedAction(withAction:boolean|void = true) {
+  function setSelectedAction(withAction:boolean = true) {
     setDragging(false);
     if (!readOnly || !!id) {
       if (selectedAction && withAction) {
