@@ -10,6 +10,7 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({
     query: {},
     push: pushMock,
+    locale: 'en',
     events: {
       on: jest.fn(() => ({})),
       off: jest.fn(() => ({}))

@@ -30,7 +30,7 @@ describe('Hearts', () => {
     const layoutId = 12;
     render(<Hearts layoutId={layoutId} count={0} disabled={false} />);
     const heartBtn = screen.getByRole('button', { name: /Heart/i });
-    expect(heartBtn.dataset.title).toBe('Heart this layout');
+    expect(heartBtn.dataset.title).toBe('Hearts.heartTitle');
     userEvent.click(heartBtn);
     await waitFor(() => expect(createHeart).toHaveBeenCalledWith(layoutId));
   });
@@ -40,7 +40,7 @@ describe('Hearts', () => {
     const hearted = { id: 11, userId: 1, layoutId };
     render(<Hearts layoutId={layoutId} count={1} disabled={false} hearted={hearted} />);
     const heartBtn = screen.getByRole('button', { name: /Heart/i });
-    expect(heartBtn.dataset.title).toBe('Un-heart this layout');
+    expect(heartBtn.dataset.title).toBe('Hearts.unheartTitle');
     userEvent.click(heartBtn);
     await waitFor(() => {
       expect(destroyHeart).toHaveBeenCalledWith(layoutId, hearted.id);
