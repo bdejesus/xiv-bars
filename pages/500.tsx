@@ -64,7 +64,6 @@ export default function Error500() {
   );
 }
 
-
 export const getStaticProps:GetStaticProps = async (context) => ({
   props: {
     ...(await serverSideTranslations(context.locale as string, ['common'])),
