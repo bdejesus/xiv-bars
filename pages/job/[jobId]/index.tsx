@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
@@ -8,6 +9,7 @@ import SelectedJob from 'components/JobSelect/SelectedJob';
 import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
+
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
@@ -103,6 +105,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       selectedJob,
       layouts: serializableLayouts
     }

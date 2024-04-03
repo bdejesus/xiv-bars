@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
@@ -85,6 +86,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const roleActions = await listRoleActions(selectedJob, viewData.isPvp);
 
     const props = {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       // Hotfix for parsing the hb column from string to number[]
       viewData: { ...viewData, hb: viewData.hb?.split(',') || null },
       selectedJob,

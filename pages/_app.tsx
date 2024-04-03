@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import analytics from 'lib/analytics';
 import { AppProps } from 'next/app';
@@ -16,7 +17,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import 'styles/global.scss';
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const { selectedJob, session } = pageProps;
   const router = useRouter();
 
@@ -93,3 +94,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </ErrorBoundary>
   );
 }
+
+export default appWithTranslation(App);
