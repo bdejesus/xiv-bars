@@ -127,6 +127,10 @@
   },
 
   "Pages": {
+    "Index": {
+      "popular_layouts": "Popular Layouts",
+      "recent_layouts": "Recent Layouts"
+    },
     "User": {
       "new_layout": "New Layout",
       "new_layout_icon": "New Layout Icon",

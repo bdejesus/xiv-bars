@@ -1,8 +1,10 @@
-import I18n from 'lib/I18n/locale/en-US';
+import { useTranslation } from 'next-i18next';
 
 import styles from './EorzeaProfile.module.scss';
 
 export function EorzeaProfile() {
+  const { t } = useTranslation();
+
   return (
     <div className={`${styles.container} container`}>
       <a
@@ -17,15 +19,15 @@ export function EorzeaProfile() {
 
         <div className={styles.body}>
           <h2>
-            {I18n.EorzeaProfile.title}
+            {t('EorzeaProfile.title')}
           </h2>
 
           <p className={styles.subtitle}>
-            {I18n.EorzeaProfile.body}
+            {t('EorzeaProfile.body')}
           </p>
 
           <div className={styles.cta}>
-            {I18n.EorzeaProfile.cta}
+            {t('EorzeaProfile.cta')}
           </div>
         </div>
       </a>

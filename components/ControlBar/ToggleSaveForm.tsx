@@ -1,10 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { AppActions } from 'components/App/actions';
 import { useUserState } from 'components/User/context';
 import Icon, { Icons } from 'components/Icon';
-import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
 interface ButtonProps {
@@ -12,33 +12,36 @@ interface ButtonProps {
 }
 
 function PublishButton({ showForm }: ButtonProps) {
+  const { t } = useTranslation();
   const { canPublish } = useUserState();
 
   return (
     <button
       type="button"
       title={canPublish
-        ? I18n.ControlBar.ToggleSaveForm.save_this_layout
-        : I18n.ControlBar.ToggleSaveForm.too_many_layouts}
+        ? t('ControlBar.ToggleSaveForm.save_this_layout')
+        : t('ControlBar.ToggleSaveForm.too_many_layouts')}
       onClick={showForm}
       disabled={(canPublish === false)}
       className="button btn-alt"
     >
-      <Icon id={Icons.SAVE} alt={I18n.ControlBar.ToggleSaveForm.details_icon} />
-      <span className="btn-label">{I18n.ControlBar.ToggleSaveForm.publish}</span>
+      <Icon id={Icons.SAVE} alt={t('ControlBar.ToggleSaveForm.details_icon')} />
+      <span className="btn-label">{t('ControlBar.ToggleSaveForm.publish')}</span>
     </button>
   );
 }
 
 function EditButton({ showForm }: ButtonProps) {
+  const { t } = useTranslation();
+
   return (
     <button
       type="button"
-      title={I18n.ControlBar.ToggleSaveForm.save_this_layout}
+      title={t('ControlBar.ToggleSaveForm.save_this_layout')}
       onClick={showForm}
     >
-      <Icon id={Icons.EDIT} alt={I18n.ControlBar.ToggleSaveForm.save_icon} />
-      <span className="btn-label">{ I18n.ControlBar.ToggleSaveForm.edit }</span>
+      <Icon id={Icons.EDIT} alt={t('ControlBar.ToggleSaveForm.save_icon')} />
+      <span className="btn-label">{t('ControlBar.ToggleSaveForm.edit') }</span>
     </button>
   );
 }

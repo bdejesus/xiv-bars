@@ -4,12 +4,13 @@ import { createRef, useState } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
-import I18n from 'lib/I18n/locale/en-US';
+import { useTranslation } from 'next-i18next';
 import Modal from 'components/Modal';
 import type { SlotProps } from 'types/Action';
 import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {
+  const { t } = useTranslation();
   const [showMacrosModal, setShowMacrosModal] = useState(false);
   const [macroText, setMacroText] = useState([] as string[]);
   // const [copied, setCopied] = useState(false);
@@ -100,8 +101,8 @@ export function ExportToMacros() {
         className={`${styles.macroBtn} button btn-icon`}
         onClick={handleShowMacros}
       >
-        <Icon id={Icons.MACRO} alt={I18n.ExportToMacro.export_to_macro} />
-        <span className="btn-label-hidden">{I18n.ExportToMacro.export_to_macro}</span>
+        <Icon id={Icons.MACRO} alt={t('ExportToMacro.export_to_macro')} />
+        <span className="btn-label-hidden">{t('ExportToMacro.export_to_macro')}</span>
       </button>
 
       <Modal
@@ -117,8 +118,8 @@ export function ExportToMacros() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="modal-header">
-              <h3>{I18n.ExportToMacro.export_to_macro}</h3>
-              <p>{I18n.ExportToMacro.limitations}</p>
+              <h3>{t('ExportToMacro.export_to_macro')}</h3>
+              <p>{t('ExportToMacro.limitations')}</p>
             </div>
 
             <div className={styles.textareaContainer}>

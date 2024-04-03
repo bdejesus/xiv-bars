@@ -1,15 +1,16 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import Head from 'next/head';
-import I18n from 'lib/I18n/locale/en-US';
 import LoadScreen from 'components/LoadScreen';
 
 // This page is deprecated
 // The /me view now redirects to user/[userId]
 
 export default function Me() {
+  const { t } = useTranslation();
   const { data: session, status } = useSession({ required: true });
   const router = useRouter();
 
@@ -23,7 +24,7 @@ export default function Me() {
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`${I18n.Pages.User.my_layouts} • XIVBARS`}</title>
+        <title>{`${t('Pages.User.my_layouts')} • XIVBARS`}</title>
       </Head>
 
       <LoadScreen />

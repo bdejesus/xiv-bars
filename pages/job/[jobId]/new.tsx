@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { listJobActions, listRoleActions } from 'lib/api/actions';
 import shortDesc from 'lib/shortDesc';
-import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
@@ -18,6 +19,7 @@ import type { PageProps } from 'types/Page';
 import styles from '../../Index.module.scss';
 
 export default function Index(props:PageProps) {
+  const { t } = useTranslation();
   const {
     viewData,
     selectedJob,
@@ -57,7 +59,7 @@ export default function Index(props:PageProps) {
 
       <div className="container section">
         <div className={styles.description}>
-          <h2>{selectedJob.Name} {I18n.Global.title}</h2>
+          <h2>{selectedJob.Name} {t('Global.title')}</h2>
           <p className={styles.jobDesc}>
             {shortDesc(selectedJob)}
           </p>
@@ -89,6 +91,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const roleActions = selectedJob ? await listRoleActions(selectedJob, pvp) : [];
 
     const props = {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: context.query,
       selectedJob,
       actions: jobActions,

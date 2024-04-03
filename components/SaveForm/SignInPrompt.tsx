@@ -1,11 +1,12 @@
+import { useTranslation } from 'next-i18next';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import analytics from 'lib/analytics';
-import I18n from 'lib/I18n/locale/en-US';
 import styles from './SignInPrompt.module.scss';
 
 export default function SignInPrompt() {
+  const { t } = useTranslation();
   const router = useRouter();
 
   function handleSignIn() {
@@ -22,7 +23,7 @@ export default function SignInPrompt() {
         onClick={handleSignIn}
         className={`${styles.signin} button btn-primary btn-block`}
       >
-        {I18n.UserNav.signin_with_discord}
+        {t('UserNav.signin_with_discord')}
       </button>
 
       <ul>

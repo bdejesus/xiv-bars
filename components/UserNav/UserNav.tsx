@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import I18n from 'lib/I18n/locale/en-US';
 import analytics from 'lib/analytics';
 import styles from './UserNav.module.scss';
 
 export default function UserNav({ className }:{ className?: string}) {
+  const { t } = useTranslation();
   const { data: session } = useSession();
   const [showMenu, setShowMenu] = useState(false);
   const router = useRouter();
@@ -38,10 +39,10 @@ export default function UserNav({ className }:{ className?: string}) {
               params: { button_id: 'donate' }
             })}
             className={`${styles.donateLink} button btn-clear`}
-            data-title={I18n.UserNav.donate_title}
+            data-title={t('UserNav.donate_title')}
           >
             <span className={styles.donateLabel}>
-              {I18n.UserNav.donate}
+              {t('UserNav.donate')}
             </span>
           </a>
         </li>
@@ -75,7 +76,7 @@ export default function UserNav({ className }:{ className?: string}) {
           >
             <li className={styles.navItem}>
               <Link href={`/user/${session.user.id}`}>
-                {I18n.UserNav.my_layouts}
+                {t('UserNav.my_layouts')}
               </Link>
             </li>
 
@@ -85,7 +86,7 @@ export default function UserNav({ className }:{ className?: string}) {
                 target="_blank"
                 rel="noreferrer"
               >
-                {I18n.UserNav.report_an_issue}
+                {t('UserNav.report_an_issue')}
               </a>
             </li>
 
@@ -95,7 +96,7 @@ export default function UserNav({ className }:{ className?: string}) {
                 href="/api/auth/signout"
                 onClick={handleSignOut}
               >
-                {I18n.UserNav.logout}
+                {t('UserNav.logout')}
               </a>
             </li>
           </ul>
@@ -106,7 +107,7 @@ export default function UserNav({ className }:{ className?: string}) {
           onClick={handleSignIn}
           className={`${styles.signin} button btn-alt`}
         >
-          {I18n.UserNav.signin_with_discord}
+          {t('UserNav.signin_with_discord')}
         </button>
       )}
     </div>

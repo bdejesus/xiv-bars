@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import I18n from 'lib/I18n/locale/en-US';
+import { useTranslation } from 'next-i18next';
 import styles from './Hero.module.scss';
 
 interface Props {
@@ -7,6 +7,8 @@ interface Props {
 }
 
 export default function Hero({ primary }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div className="container">
       { primary
@@ -14,8 +16,8 @@ export default function Hero({ primary }: Props) {
         : <h2 className="branding">XIV<b>BARS</b></h2>}
 
       <div className={styles.description}>
-        <p>{I18n.Global.subtitle}</p>
-        <p>{I18n.Global.description}</p>
+        <p>{t('Global.subtitle')}</p>
+        <p>{t('Global.description')}</p>
       </div>
     </div>
 

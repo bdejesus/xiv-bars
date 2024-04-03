@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
-import I18n from 'lib/I18n/locale/en-US';
 import { formatDateString } from 'lib/utils/time';
 import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
@@ -21,6 +21,7 @@ interface Props {
 }
 
 export default function LayoutCard(props:Props) {
+  const { t } = useTranslation();
   const { data: session } = useSession();
   const userDispatch = useUserDispatch();
   const {
@@ -66,7 +67,7 @@ export default function LayoutCard(props:Props) {
 
         { layout.updatedAt && (
           <div className={styles.timestamp}>
-            {I18n.LayoutCard.last_updated}: {formatDateString(layout.updatedAt as string)}
+            {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string)}
           </div>
         )}
 
@@ -91,10 +92,10 @@ export default function LayoutCard(props:Props) {
             type="button"
             onClick={() => setShowPrompt(true)}
             className={styles.deleteButton}
-            title={I18n.LayoutCard.delete_layout}
+            title={t('LayoutCard.delete_layout')}
           >
-            <Icon id={Icons.REMOVE} className={styles.deleteIcon} alt={I18n.LayoutCard.delete_layout} />
-            <span className="btn-label-hidden">{I18n.LayoutCard.delete_layout}</span>
+            <Icon id={Icons.REMOVE} className={styles.deleteIcon} alt={t('LayoutCard.delete_layout')} />
+            <span className="btn-label-hidden">{t('LayoutCard.delete_layout')}</span>
           </button>
         </div>
       )}
@@ -106,10 +107,10 @@ export default function LayoutCard(props:Props) {
 
             <div className={styles.promptActions}>
               <button type="button" onClick={destroyLayout}>
-                {I18n.LayoutCard.delete}
+                {t('LayoutCard.delete')}
               </button>
               <button type="button" onClick={() => setShowPrompt(false)}>
-                {I18n.LayoutCard.cancel}
+                {t('LayoutCard.cancel')}
               </button>
             </div>
           </div>

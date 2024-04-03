@@ -1,10 +1,11 @@
+import { useTranslation } from 'next-i18next';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { AppActions } from 'components/App/actions';
 import Icon, { Icons } from 'components/Icon';
-import I18n from 'lib/I18n/locale/en-US';
 import styles from './ControlBar.module.scss';
 
 function ToggleMaxLvl() {
+  const { t } = useTranslation();
   const appDispatch = useAppDispatch();
   const { showAllLvl } = useAppState();
 
@@ -17,8 +18,8 @@ function ToggleMaxLvl() {
       data-active={showAllLvl}
       className={`${styles.toggleTitlesBtn} button btn-alt`}
     >
-      <Icon id={Icons.LEVELS} alt={I18n.ControlBar.ToggleMaxLvl.all_levels_icon} />
-      <span className="btn-label">{I18n.ControlBar.ToggleMaxLvl.all_levels}</span>
+      <Icon id={Icons.LEVELS} alt={t('ControlBar.ToggleMaxLvl.all_levels_icon')} />
+      <span className="btn-label">{t('ControlBar.ToggleMaxLvl.all_levels')}</span>
     </button>
   );
 }

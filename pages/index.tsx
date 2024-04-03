@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import db, { serialize } from 'lib/db';
 import Head from 'next/head';
@@ -29,6 +31,7 @@ interface IndexProps {
 
 export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const jobAbbrs = Jobs.map(({ Abbr }) => Abbr);
@@ -55,18 +58,18 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       { popularLayouts?.length >= 5 ? (
         <div className={`container mt-xl ${styles.lists}`}>
           <div className={styles.listColumn}>
-            <h2>Recent Layouts</h2>
+            <h2>{t('Pages.Index.recent_layouts')}</h2>
             <LayoutsList layouts={recentLayouts} />
           </div>
 
           <div className={styles.listColumn}>
-            <h2>Popular Layouts</h2>
+            <h2>{t('Pages.Index.popular_layouts')}</h2>
             <LayoutsList layouts={popularLayouts} />
           </div>
         </div>
       ) : (
         <div className="container mt-xl">
-          <h2>Recent Layouts</h2>
+          <h2>{t('Pages.Index.recent_layouts')}</h2>
           <LayoutsList layouts={recentLayouts} />
         </div>
       ) }
@@ -84,7 +87,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const layoutsQuery = {
     take: 6,
     include: {
@@ -124,6 +127,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
   return {
     props: {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       recentLayouts: layouts.map(serialize),
       popularLayouts: filteredPopularLayouts.map(serialize)
     }

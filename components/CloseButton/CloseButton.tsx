@@ -1,6 +1,6 @@
 import React from 'react';
+import { useTranslation } from 'next-i18next';
 import Icon, { Icons } from 'components/Icon';
-import I18n from 'lib/I18n/locale/en-US';
 import styles from './CloseButton.module.scss';
 
 interface Props {
@@ -9,14 +9,16 @@ interface Props {
 }
 
 export default function CloseButton({ onClick, className }: Props) {
+  const { t } = useTranslation();
+
   return (
     <button
       type="button"
       className={`${styles.button} ${className} button btn-alt`}
       onClick={onClick}
     >
-      <Icon id={Icons.REMOVE} alt={I18n.Global.close} type="white" />
-      {I18n.Global.close}
+      <Icon id={Icons.REMOVE} alt={t('Global.close')} type="white" />
+      {t('Global.close')}
     </button>
   );
 }
