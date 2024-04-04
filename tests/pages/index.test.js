@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
+import 'tests/setupTests';
 import { render, screen } from '@testing-library/react';
 import Home from 'pages/index';
 import { fetchMock } from 'mocks/fetchMock';
