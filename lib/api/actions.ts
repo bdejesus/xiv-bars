@@ -54,6 +54,7 @@ export async function listJobActions(job: ClassJobProps, pvp?:boolean) {
 }
 
 export async function listRoleActions(job: ClassJobProps, pvp?: boolean) {
+  // Construct filters params if PvP or PvE
   const filters = pvp
     ? 'ClassJobCategoryTargetID=85,IsPlayerAction=1'
     : `ClassJobCategory.${job.Abbr}=1,IsRoleAction=1`;
@@ -62,6 +63,7 @@ export async function listRoleActions(job: ClassJobProps, pvp?: boolean) {
 
   const roleActions = await fetch(`${baseUrl}/${endpoint}`)
     .then((res) => res.json())
+    // Add prefix and additional params to the resulting actions
     .then((roleActionsRes) => roleActionsRes.Results.map((action: ActionProps) => ({
       ...action, Prefix: 'r', UrlType: 'Action',
     })))

@@ -10,24 +10,22 @@ dotenv.config();
 
 const dest = './.apiData';
 const apiURL = 'https://xivapi.com';
-const apiOptions = `private_key=${process.env.XIV_API_KEY}`;
-const requestDelay = 300;
 
-async function getJobData(job) {
-  console.log(`Fetching ${job.Name}...`);
-  const requestURL = `${apiURL}/ClassJob/${job.ID}?${apiOptions}`;
-  const request = await fetch(requestURL);
-  const json = await request.json();
-  const selectKeys = ['ID', 'Abbreviation', 'Abbreviation_ja', 'ClassJobParent', 'Name', 'Name_ja'];
-  const jobData = Object.fromEntries(
-    Object.entries(json).filter(([key]) => selectKeys.includes(key))
-  );
-
-  return jobData;
+function jsonToQuery(json) {
+  return Object.entries(json)
+    .reduce((items, [key, value]) => {
+      const encodedKey = encodeURI(key);
+      const encodedValue = encodeURI(value);
+      if (encodedValue !== 'undefined') items.push(`${encodedKey}=${encodedValue}`);
+      return items;
+    }, [])
+    .join('&');
 }
 
 async function getJobs() {
-  const request = await fetch(`${apiURL}/ClassJob?${apiOptions}`);
+  const columns = ['ID', 'Name', 'Name_ja', 'Abbreviation', 'Abbreviation_ja', 'Icon', 'Url'].join(',');
+  const options = jsonToQuery({ private_key: process.env.XIV_API_KEY, columns });
+  const request = await fetch(`${apiURL}/ClassJob?${options}`);
   const json = await request.json();
   const jobs = json.Results.sort(array.byKey('Name'));
   const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
@@ -35,35 +33,15 @@ async function getJobs() {
     const jobData = jobs.find((job) => job.ID === advancedJob.ID);
     return { ...jobData, ...advancedJob };
   });
-  const jobDetails = [];
 
-  await decoratedJobs.reduce(async (collectPromise, job) => {
-    await collectPromise;
-
-    try {
-      const jobData = await getJobData(job);
-      jobDetails.push(jobData);
-    } catch (error) {
-      console.error(error);
-      return collectPromise;
-    }
-
-    return new Promise((resolve) => { setTimeout(resolve, requestDelay); });
-  }, Promise.resolve([]));
-
-  const detailedJobs = decoratedJobs.map((job) => {
-    const jobData = jobDetails.find(({ ID }) => ID === job.ID);
-    return { ...jobData, ...job };
-  });
-
-  writeFile(`${dest}/Jobs.json`, JSON.stringify(detailedJobs), () => null);
+  writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
 }
 
 async function getActions() {
   const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionSet) => {
-    const actions = await fetch(`${apiURL}/${actionSet}?${apiOptions}`)
+    const actions = await fetch(`${apiURL}/${actionSet}?private_key=${process.env.XIV_API_KEY}`)
       .then((res) => res.json())
       .then(async (json) => {
         console.log(`Building ${actionSet} actions...`);
