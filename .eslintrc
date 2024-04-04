@@ -91,7 +91,7 @@
     "jsx-a11y/scope": "warn",
     "jsx-a11y/tabindex-no-positive": "warn",
     "jsx-quotes": ["warn", "prefer-double"],
-    "quotes": "warn"
+    "quotes": ["warn", "single"]
   },
   "settings": {
     "import/resolver": {
