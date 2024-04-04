@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { createRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
+import { localizeKey } from 'lib/utils/i18n';
 import type { ActionProps } from 'types/Action';
 import { getContent } from 'lib/api/actions';
 
@@ -18,6 +20,7 @@ interface Props {
 }
 
 export default function Action({ action, remote }: Props) {
+  const { locale } = useRouter();
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
@@ -68,7 +71,7 @@ export default function Action({ action, remote }: Props) {
     }, hoverDelay);
   }
 
-  function selectAction(e) {
+  function selectAction(e:React.MouseEvent) {
     tooltipDispatch({ type: 'hide' });
     selectedActionDispatch({
       type: 'selectAction',
@@ -85,6 +88,8 @@ export default function Action({ action, remote }: Props) {
 
   const actionTypeSelector = action.UrlType ? `${action.UrlType.toLowerCase()}Type` : '';
   const selectors = `action ${styles.action} ${styles[actionTypeSelector]} ${dragging ? styles.dragging : undefined}`;
+  const localeKey = localizeKey('Name', locale);
+  const displayName = action[localeKey as keyof typeof action] || action['Name' as keyof typeof action];
 
   return (
     <>
@@ -93,21 +98,21 @@ export default function Action({ action, remote }: Props) {
         ref={actionRef}
         className={selectors}
         draggable={!readOnly}
-        onDragStart={selectAction}
+        onDragStart={(e) => selectAction(e)}
         onDragEnd={handleDragEnd}
         onMouseMove={(e) => handleMouseMove(e)}
         onMouseLeave={handleMouseLeave}
         onBlur={handleMouseLeave}
         role="button"
-        onClick={selectAction}
+        onClick={(e) => selectAction(e)}
         tabIndex={0}
-        data-title={action.Name}
+        data-title={displayName}
         data-show-title={showTitles}
       >
         <div className={styles.iconWrapper}>
           <Image
             src={action.customIcon ? action.Icon as string : `https://xivapi.com/${action.Icon}`}
-            alt={`${action.Name} Action`}
+            alt={`${displayName}`}
             height={40}
             width={40}
           />

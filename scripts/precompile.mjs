@@ -22,9 +22,10 @@ function jsonToQuery(json) {
     .join('&');
 }
 
+const columns = ['ID', 'Icon', 'IconHD', 'Name', 'Name_ja', 'Description', 'Description_ja', 'Url', 'UrlType'];
+
 async function getJobs() {
-  const columns = ['ID', 'Name', 'Name_ja', 'Abbreviation', 'Abbreviation_ja', 'Icon', 'Url'].join(',');
-  const options = jsonToQuery({ private_key: process.env.XIV_API_KEY, columns });
+  const options = jsonToQuery({ private_key: process.env.XIV_API_KEY, columns: [...columns, 'Abbreviation', 'Abbreviation_ja'].join(',') });
   const request = await fetch(`${apiURL}/ClassJob?${options}`);
   const json = await request.json();
   const jobs = json.Results.sort(array.byKey('Name'));
@@ -41,7 +42,7 @@ async function getActions() {
   const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionSet) => {
-    const actions = await fetch(`${apiURL}/${actionSet}`)
+    const actions = await fetch(`${apiURL}/${actionSet}?columns=${actionSet.columns?.join(',') || columns.join(',')}`)
       .then((res) => res.json())
       .then(async (json) => {
         console.log(`Building ${actionSet} actions...`);

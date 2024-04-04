@@ -6,11 +6,12 @@ import type { ClassJobProps } from 'types/ClassJob';
 import type { ActionProps } from 'types/Action';
 
 const baseUrl = 'https://xivapi.com';
+const columns = ['ID', 'Icon', 'IconHD', 'Name', 'Name_ja', 'Description', 'Description_ja', 'Url', 'UrlType'].join(',');
 
 export async function listJobActions(job:ClassJobProps, pvp?:boolean) {
   const isPvP = pvp ? 1 : 0;
   const filters = ['DOM', 'DOW'].includes(job.Discipline) ? `IsPvP=${isPvP},` : '';
-  const endpoint = `search?indexes=Action,CraftAction&filters=${filters}ClassJobTargetID`;
+  const endpoint = `search?indexes=Action,CraftAction&columns=${columns}&filters=${filters}ClassJobTargetID`;
   const actions = await fetch(`${baseUrl}/${endpoint}=${job.ID}`)
     .then((res) => res.json())
     .then(async (actionsRes) => {
@@ -59,7 +60,7 @@ export async function listRoleActions(job: ClassJobProps, pvp?: boolean) {
     ? 'ClassJobCategoryTargetID=85,IsPlayerAction=1'
     : `ClassJobCategory.${job.Abbr}=1,IsRoleAction=1`;
 
-  const endpoint = `search?indexes=Action,CraftAction&filters=${filters}`;
+  const endpoint = `search?indexes=Action,CraftAction&columns=${columns}&filters=${filters}`;
 
   const roleActions = await fetch(`${baseUrl}/${endpoint}`)
     .then((res) => res.json())
