@@ -41,7 +41,7 @@ async function getActions() {
   const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionSet) => {
-    const actions = await fetch(`${apiURL}/${actionSet}`)
+    const actions = await fetch(`${apiURL}/${actionSet}?private_key=${process.env.XIV_API_KEY}`)
       .then((res) => res.json())
       .then(async (json) => {
         console.log(`Building ${actionSet} actions...`);
