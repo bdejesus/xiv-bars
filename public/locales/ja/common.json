@@ -7,6 +7,20 @@
     "loading": "読み込み中..."
   },
 
+  "ActionPanel": {
+    "job": "ジョブ",
+    "general": "一般",
+    "menu": "メニュー",
+    "macros": "マクロ",
+    "job_actions": "ジョブアクション",
+    "role_actions": "ロールアクション",
+    "general_actions": "一般アクション",
+    "companion_actions": "仲間アクション",
+    "pet_actions": "ペットアクション",
+    "menu_commands": "メニューコマンド",
+    "company_actions": "会社アクション"
+  },
+
   "App": {
     "hotbar_planner": "ホットバー プランナー"
   },
@@ -42,6 +56,18 @@
     "ToggleTitles": {
       "titles": "タイトル",
       "titles_icon": "タイトルアイコン"
+    },
+    "ToggleLayout": {
+      "xhb": "XHB",
+      "xhb_title": "クロスホットバー",
+      "hotbars": "ホットバー",
+      "hotbars_title": "ホットバー"
+    },
+    "PvpToggle": {
+      "pve_abbr": "PvE",
+      "pve_title": "プレイヤー対環境",
+      "pvp_abbr": "PvP",
+      "pvp_title": "プレイヤー対プレイヤー"
     }
   },
 

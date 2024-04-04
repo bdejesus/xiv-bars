@@ -32,9 +32,6 @@ export default function Index(props:PageProps) {
   const pageDescription = shortDesc(selectedJob);
   const appDispatch = useAppDispatch();
 
-  console.log(actions);
-
-
   useEffect(() => {
     appDispatch({
       type: AppActions.LOAD_VIEW_DATA,

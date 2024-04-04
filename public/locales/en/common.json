@@ -7,6 +7,20 @@
     "loading": "Loading..."
   },
 
+  "ActionPanel": {
+    "job": "Job",
+    "general": "General",
+    "menu": "Menu",
+    "macros": "Macros",
+    "job_actions": "Job Actions",
+    "role_actions": "Role Actions",
+    "general_actions": "General Actions",
+    "companion_actions": "Companion Actions",
+    "pet_actions": "Pet Actions",
+    "menu_commands": "Menu Commands",
+    "company_actions": "Company Actions"
+  },
+
   "App": {
     "hotbar_planner": "Hotbar Planner"
   },
@@ -42,6 +56,18 @@
     "ToggleTitles": {
       "titles": "Titles",
       "titles_icon": "Titles icon"
+    },
+    "ToggleLayout": {
+      "xhb": "XHB",
+      "xhb_title": "Cross Hotbars",
+      "hotbars": "Hotbars",
+      "hotbars_title": "Hotbars"
+    },
+    "PvpToggle": {
+      "pve_abbr": "PvE",
+      "pve_title": "Player versus Environment",
+      "pvp_abbr": "PvP",
+      "pvp_title": "Player versus Player"
     }
   },
 
