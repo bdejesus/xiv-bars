@@ -68,13 +68,15 @@ export default function Action({ action, remote }: Props) {
     }, hoverDelay);
   }
 
-  function selectAction() {
+  function selectAction(e) {
     tooltipDispatch({ type: 'hide' });
     selectedActionDispatch({
       type: 'selectAction',
       payload: { selectedAction: action }
     });
     setDragging(true);
+
+    if (readOnly) e.stopPropagation();
   }
 
   function handleDragEnd() {
