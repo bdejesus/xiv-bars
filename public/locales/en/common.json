@@ -110,6 +110,10 @@
     "save_and_share": "Once you’re done configuring your Final Fantasy XIV Endwalker hotbar layout, save or share your layout with the generated URL. You can also export your layout to a macro that you can use to import your layout into the game."
   },
 
+  "JobSelect": {
+    "job_select": "Job Select"
+  },
+
   "JobsList": {
     "new_layout": "Create new layout"
   },

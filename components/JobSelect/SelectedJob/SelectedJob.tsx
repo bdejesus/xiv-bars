@@ -1,5 +1,7 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import type { ClassJobProps } from 'types/ClassJob';
+import { localizeKey } from 'lib/utils/i18n';
 import RoleNames from '../../../data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 
@@ -13,6 +15,9 @@ interface RoleNamesType {
 }
 
 export default function SelectedJob({ job, className }: Props) {
+  const router = useRouter();
+  const displayAbbr = job[localizeKey('Abbreviation', router.locale) as keyof typeof job];
+  const displayName = job[localizeKey('Name', router.locale) as keyof typeof job];
   const roleNames: RoleNamesType = RoleNames;
 
   return (
@@ -27,8 +32,8 @@ export default function SelectedJob({ job, className }: Props) {
       </div>
       <div className={styles.textWrapper}>
         <h1 className={styles.title}>
-          <abbr className={styles.abbr}>{job.Abbr}</abbr>
-          <span className={styles.name}>{job.Name}</span>
+          <abbr className={styles.abbr}>{displayAbbr}</abbr>
+          <span className={styles.name}>{displayName}</span>
         </h1>
         <div className={styles.role}>
           {job.Discipline} {job.Role && (`• ${roleNames[job.Role]}`)}

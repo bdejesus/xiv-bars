@@ -1,5 +1,6 @@
 export interface ClassJobProps {
   Abbr: string,
+  Abbreviation: string,
   ClassID?: number | null,
   ClassActionAllowlist?: string[],
   Description?: string,

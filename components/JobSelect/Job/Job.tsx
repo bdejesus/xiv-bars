@@ -1,6 +1,8 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import type { ClassJobProps } from 'types/ClassJob';
+import { localizeKey } from 'lib/utils/i18n';
 import styles from './Job.module.scss';
 
 interface Props {
@@ -9,7 +11,6 @@ interface Props {
   abbr?: boolean,
   name?: boolean,
   icon?: boolean
-
 }
 
 export default function Job({
@@ -19,6 +20,10 @@ export default function Job({
   name,
   icon
 }: Props) {
+  const router = useRouter();
+  const displayAbbr = job[localizeKey('Abbreviation', router.locale) as keyof typeof job];
+  const displayName = job[localizeKey('Name', router.locale) as keyof typeof job];
+
   return (
     <div className={[styles.wrapper, className].join(' ')}>
       { icon && (
@@ -33,13 +38,13 @@ export default function Job({
       )}
 
       { abbr && (
-        <b className={`${styles.abbr} job-abbr`}>{job.Abbr}</b>
+        <b className={`${styles.abbr} job-abbr`}>{displayAbbr}</b>
       )}
 
       { name && (
         <>
           &nbsp;
-          <span className={`${styles.name} job-name`}>{job.Name}</span>
+          <span className={`${styles.name} job-name`}>{displayName}</span>
         </>
       )}
     </div>
