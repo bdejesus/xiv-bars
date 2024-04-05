@@ -26,6 +26,9 @@ export default function Action({ action }: Props) {
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const hoverDelay = 160;
+  const titleKey = localizeKey('Name', locale) as keyof typeof action;
+  const displayTtile = action[titleKey] as string || action.Name;
+  const bodyKey = localizeKey('Description', locale) as keyof typeof action;
 
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);
@@ -39,15 +42,12 @@ export default function Action({ action }: Props) {
     tooltipTimeout = setTimeout(() => {
       if (!hovering) {
         setHovering(true);
-
         const mousePosition = { x: e.clientX, y: e.clientY };
-        const titleKey = localizeKey('Name', locale) as keyof typeof action;
-        const bodyKey = localizeKey('Description', locale) as keyof typeof action;
 
         tooltipDispatch({
           type: TooltipAction.UPDATE,
           payload: {
-            title: action[titleKey] as string || action.Name,
+            title: displayTtile,
             body: action[bodyKey] as string || action.Description,
             position: mousePosition
           }
@@ -73,8 +73,6 @@ export default function Action({ action }: Props) {
 
   const actionTypeSelector = action.UrlType ? `${action.UrlType.toLowerCase()}Type` : '';
   const selectors = `action ${styles.action} ${styles[actionTypeSelector]} ${dragging ? styles.dragging : undefined}`;
-  const localeKey = localizeKey('Name', locale);
-  const displayName = action[localeKey as keyof typeof action] || action['Name' as keyof typeof action];
 
   return (
     <>
@@ -91,13 +89,13 @@ export default function Action({ action }: Props) {
         role="button"
         onClick={(e) => selectAction(e)}
         tabIndex={0}
-        data-title={displayName}
+        data-title={displayTtile}
         data-show-title={showTitles}
       >
         <div className={styles.iconWrapper}>
           <Image
             src={action.customIcon ? action.Icon as string : `https://xivapi.com/${action.Icon}`}
-            alt={`${displayName}`}
+            alt={`${displayTtile}`}
             height={40}
             width={40}
           />
