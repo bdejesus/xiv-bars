@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable no-restricted-globals */
 import React from 'react';
 import { useTranslation } from 'next-i18next';

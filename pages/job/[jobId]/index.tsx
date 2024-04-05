@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import { localizeKey } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
@@ -22,7 +24,13 @@ interface Props {
 }
 
 export default function Layouts({ selectedJob, layouts }: Props) {
+  const { t } = useTranslation();
   const router = useRouter();
+
+  const localeNameKey = localizeKey('Name', router.locale) as keyof typeof selectedJob;
+  const localeAbbrKey = localizeKey('Abbreviation', router.locale) as keyof typeof selectedJob;
+  const jobName = selectedJob[localeNameKey] || selectedJob.Name;
+  const jobAbbr = selectedJob[localeAbbrKey] || selectedJob.Abbr;
 
   useEffect(() => {
     const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
@@ -39,8 +47,13 @@ export default function Layouts({ selectedJob, layouts }: Props) {
     <>
       { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
-          <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Cross Hotbar Layouts • XIVBARS`}</title>
-          <meta name="description" content={`List of hotbar layouts players have created for the ${selectedJob.Name} Class.`} />
+          <title>
+            {t('Pages.Job.index_title', { jobName, jobAbbr })}
+          </title>
+          <meta
+            name="description"
+            content={t('Pages.Job.index_description', { jobName })}
+          />
         </Head>
       )}
 
@@ -62,9 +75,15 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               <LayoutsList layouts={layouts} />
             </div>
           ) : (
-            <h2>
-              No {selectedJob.Name} Layouts yet. <a href={`/job/${selectedJob.Abbr}/new`}>Create one?</a>
-            </h2>
+            <>
+              <h2>{t('Pages.Job.no_layouts', { jobName })}</h2>
+              <a
+                className="button btn-inline btn-primary"
+                href={`/job/${selectedJob.Abbr}/new`}
+              >
+                {t('Pages.Job.create_layout')}
+              </a>
+            </>
           )}
       </div>
 

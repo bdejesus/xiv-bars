@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
+import { localizeKey } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { listJobActions, listRoleActions } from 'lib/api/actions';
-import shortDesc from 'lib/shortDesc';
 import GlobalHeader from 'components/GlobalHeader';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
@@ -29,8 +29,9 @@ export default function Index(props:PageProps) {
   } = props;
   const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
-  const pageDescription = shortDesc(selectedJob);
   const appDispatch = useAppDispatch();
+  const jobNameKey = localizeKey('Name', router.locale) as keyof typeof selectedJob;
+  const jobName = selectedJob[jobNameKey] || selectedJob.Name;
 
   useEffect(() => {
     appDispatch({
@@ -49,7 +50,7 @@ export default function Index(props:PageProps) {
   return (
     <>
       <Head>
-        <meta name="description" content={pageDescription} />
+        <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
@@ -59,10 +60,7 @@ export default function Index(props:PageProps) {
 
       <div className="container section">
         <div className={styles.description}>
-          <h2>{selectedJob.Name} {t('Global.title')}</h2>
-          <p className={styles.jobDesc}>
-            {shortDesc(selectedJob)}
-          </p>
+          <h2>{jobName} {t('Global.title')}</h2>
           { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
         </div>
       </div>

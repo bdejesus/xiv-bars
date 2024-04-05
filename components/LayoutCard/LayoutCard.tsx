@@ -103,7 +103,7 @@ export default function LayoutCard(props:Props) {
       { showPrompt && (
         <div className={styles.prompt} data-active={!showPrompt}>
           <div className={styles.promptContent}>
-            <p>Are you sure you want to delete this Layout?<br /><b>{layout.title}</b></p>
+            <p>{t('LayoutCard.delete_confirm')}<br /><b>{layout.title}</b></p>
 
             <div className={styles.promptActions}>
               <button type="button" onClick={destroyLayout} className="btn-danger">

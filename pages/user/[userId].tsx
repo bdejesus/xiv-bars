@@ -48,8 +48,11 @@ export default function User({ user }:UserViewProps) {
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`Hotbar Layouts by ${user.name} • XIVBARS`}</title>
-        <meta name="description" content={`FFXIV hotbar and cross hotbar UI layouts by ${user.name}. Explore various configurations and setups for Final Fantasy XIV’s hotbar and cross hotbar user interfaces, optimizing your gameplay experience with different placement, size, and customization options.`} />
+        <title>{t('Pages.User.title', { userName: user.name })}</title>
+        <meta
+          name="description"
+          content={t('Pages.User.description', { userName: user.name })}
+        />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 

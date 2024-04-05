@@ -24,7 +24,7 @@ export default function Me() {
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`${t('Pages.User.my_layouts')} • XIVBARS`}</title>
+        <title>{t('Pages.User.title', { userName: session.user.name })}</title>
       </Head>
 
       <LoadScreen />

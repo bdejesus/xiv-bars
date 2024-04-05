@@ -163,11 +163,20 @@
       "recent_layouts": "最近のレイアウト"
     },
     "User": {
+      "title": "{{userName}} さんのホットバー レイアウト • XIVBARS",
+      "description": "{{userName}} さんによる FFXIV のホットバーとクロスホットバーの UI レイアウト。Final Fantasy XIV のホットバーとクロスホットバーのユーザーインターフェースのさまざまな構成やセットアップを探索し、異なる配置、サイズ、カスタマイズオプションでゲームプレイ体験を最適化します。",
       "new_layout": "新しいレイアウト",
       "new_layout_icon": "新しいレイアウトアイコン",
       "my_layouts": "マイレイアウト",
       "no_layouts": "レイアウトがありません – 新しいものを作成してください！",
       "saved_layouts": "保存されたレイアウト"
+    },
+    "Job": {
+      "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV ホットバー レイアウト • XIVBARS",
+      "index_description": "{{jobName}} ホットバー レイアウトを他のプレイヤーが作成したものを見てください。",
+      "no_layouts": "{{jobName}} のレイアウトはまだありません。",
+      "create_layout": "新しいレイアウトを作成する。",
+      "new_layout": "新しいレイアウト"
     },
     "NotFound": {
       "status": "404 ページが見つかりません",
