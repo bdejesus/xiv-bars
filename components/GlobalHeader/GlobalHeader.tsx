@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import { translateData } from 'lib/utils/i18n';
 import Link from 'next/link';
 import UserNav from 'components/UserNav';
 import { useAppState } from 'components/App/context';
@@ -16,6 +18,7 @@ interface Props {
 }
 
 export function GlobalHeader({ selectedJob }:Props) {
+  const { locale } = useRouter();
   const { t } = useTranslation();
   const { viewData, viewAction } = useAppState();
   const { title, id } = viewData || {};
@@ -45,12 +48,12 @@ export function GlobalHeader({ selectedJob }:Props) {
               >
                 <img
                   src={`/jobIcons${selectedJob.Icon}`}
-                  alt=""
+                  alt={`${translateData('Name', selectedJob, locale)}`}
                   height={20}
                   width={20}
                   className="icon"
                 />
-                {selectedJob.Abbr}
+                {translateData('Abbreviation', selectedJob, locale)}
               </Link>
             </li>
 

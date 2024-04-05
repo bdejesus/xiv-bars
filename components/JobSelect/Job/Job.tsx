@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import type { ClassJobProps } from 'types/ClassJob';
-import { localizeKey } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n';
 import styles from './Job.module.scss';
 
 interface Props {
@@ -21,8 +21,8 @@ export default function Job({
   icon
 }: Props) {
   const { locale } = useRouter();
-  const displayAbbr = job[localizeKey('Abbreviation', locale) as keyof typeof job];
-  const displayName = job[localizeKey('Name', locale) as keyof typeof job];
+  const displayAbbr = translateData('Abbreviation', job, locale);
+  const displayName = translateData('Name', job, locale);
 
   return (
     <div className={[styles.wrapper, className].join(' ')}>

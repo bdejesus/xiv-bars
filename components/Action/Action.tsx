@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
-import { localizeKey } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n';
 import type { ActionProps } from 'types/Action';
 
 import styles from './Action.module.scss';
@@ -26,9 +26,8 @@ export default function Action({ action }: Props) {
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const hoverDelay = 160;
-  const titleKey = localizeKey('Name', locale) as keyof typeof action;
-  const displayTtile = action[titleKey] as string || action.Name;
-  const bodyKey = localizeKey('Description', locale) as keyof typeof action;
+  const displayTtile = translateData('Name', action, locale) || action.Name;
+  const displayBody = translateData('Description', action, locale) || action.Description;
 
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);
@@ -48,7 +47,7 @@ export default function Action({ action }: Props) {
           type: TooltipAction.UPDATE,
           payload: {
             title: displayTtile,
-            body: action[bodyKey] as string || action.Description,
+            body: displayBody,
             position: mousePosition
           }
         });

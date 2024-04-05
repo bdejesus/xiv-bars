@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { localizeKey } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
@@ -27,10 +27,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
 
-  const localeNameKey = localizeKey('Name', router.locale) as keyof typeof selectedJob;
-  const localeAbbrKey = localizeKey('Abbreviation', router.locale) as keyof typeof selectedJob;
-  const jobName = selectedJob[localeNameKey] || selectedJob.Name;
-  const jobAbbr = selectedJob[localeAbbrKey] || selectedJob.Abbr;
+  const jobName = translateData('Name', selectedJob, router.locale);
+  const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
   useEffect(() => {
     const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
@@ -98,6 +96,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     ? Jobs.find((job) => job.Abbr === jobId)
     : null;
 
+  // Request Layouts
   const layouts = await db.layout.findMany({
     where: {
       jobId: selectedJob?.Abbr,
@@ -116,6 +115,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   });
 
+  // Convert Date Objects into strings
   const serializableLayouts = layouts.map((layout:LayoutViewProps) => ({
     ...layout,
     createdAt: layout?.createdAt?.toString(),

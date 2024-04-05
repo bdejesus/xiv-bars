@@ -5,6 +5,7 @@
   text-align: center;
 
   h3 {
+    color: $color-gray;
     margin: $spacing-lg 0 0;
   }
 
@@ -15,8 +16,13 @@
   ul {
     color: #666;
     font-size: $font-size-base;
+    font-style: italic;
     margin: 0;
     text-align: left;
+
+    li {
+      margin: $spacing-xs;
+    }
   }
 }
 
@@ -25,12 +31,42 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    gap: $spacing-lg;
+    gap: $spacing-xl;
     justify-content: center;
     margin-top: $spacing-base;
+
+    .body {
+      display: flex;
+      flex-direction: row;
+      gap: $spacing-lg;
+    }
 
     h3 {
       margin-top: 0;
     }
+
+    button {
+      margin-top: $spacing-base;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .prompt {
+    align-items: flex-start;
+    gap: $spacing-lg;
+
+    .body {
+      flex-direction: column;
+      gap: $spacing-base;
+    }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .prompt {
+    align-items: center;
+    flex-direction: column;
   }
 }

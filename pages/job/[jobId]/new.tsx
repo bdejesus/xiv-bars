@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
-import { localizeKey } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { listJobActions, listRoleActions } from 'lib/api/actions';
@@ -30,8 +30,7 @@ export default function Index(props:PageProps) {
   const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
   const appDispatch = useAppDispatch();
-  const jobNameKey = localizeKey('Name', router.locale) as keyof typeof selectedJob;
-  const jobName = selectedJob[jobNameKey] || selectedJob.Name;
+  const jobName = translateData('Name', selectedJob, router.locale);
 
   useEffect(() => {
     appDispatch({

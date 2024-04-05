@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
-import { localizeKey } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
 import {
@@ -27,10 +27,10 @@ export default function Index(props:PageProps) {
   } = props;
 
   const router = useRouter();
-  const jobNameKey = localizeKey('Name', router.locale) as keyof typeof selectedJob;
-  const jobAbbrKey = localizeKey('Abbreviation', router.locale) as keyof typeof selectedJob;
+  const displayName = translateData('Name', selectedJob, router.locale);
+  const displayAbbr = translateData('Abbreviation', selectedJob, router.locale);
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${viewData?.id}`;
-  const pageTitle = `${viewData?.title} – ${viewData.user?.name} • ${selectedJob[jobNameKey]} (${selectedJob[jobAbbrKey]}) • XIVBARS`;
+  const pageTitle = `${viewData?.title} – ${viewData.user?.name} • ${displayName} (${displayAbbr}) • XIVBARS`;
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
