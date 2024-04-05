@@ -39,14 +39,16 @@ export default function Action({ action }: Props) {
     tooltipTimeout = setTimeout(() => {
       if (!hovering) {
         setHovering(true);
+
         const mousePosition = { x: e.clientX, y: e.clientY };
         const titleKey = localizeKey('Name', locale) as keyof typeof action;
         const bodyKey = localizeKey('Description', locale) as keyof typeof action;
+
         tooltipDispatch({
           type: TooltipAction.UPDATE,
           payload: {
-            title: action[titleKey] as string,
-            body: action[bodyKey] as string,
+            title: action[titleKey] as string || action.Name,
+            body: action[bodyKey] as string || action.Description,
             position: mousePosition
           }
         });
