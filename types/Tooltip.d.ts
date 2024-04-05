@@ -1,8 +1,8 @@
 import { TooltipAction } from 'components/Tooltip/actions';
-import type { ActionProps } from 'types/Action';
 
 export interface TooltipState {
-  content?: ActionProps,
+  title?: string | null,
+  body?: string | null,
   position?: {
     x: number,
     y: number

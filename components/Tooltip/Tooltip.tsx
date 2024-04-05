@@ -9,11 +9,11 @@ export function Tooltip() {
   const [positionStyle, setPositionStyle] = useState({ transform: 'none' });
   const [anchor, setAnchor] = useState('right');
   const [viewport, setViewport] = useState({ height: 0, width: 0 });
-  const { content, position } = useTooltipState();
+  const { title, body, position } = useTooltipState();
 
   useEffect(() => {
     setAnchor(styles.right);
-  }, [content]);
+  }, [title, body]);
 
   useEffect(() => {
     const { innerHeight: height, innerWidth: width } = window;
@@ -52,13 +52,13 @@ export function Tooltip() {
       <div
         className={styles.content}
         ref={contentRef}
-        aria-hidden={!content?.Name && !content?.Description}
+        aria-hidden={!title && !body}
       >
-        { content?.Name ? (
+        { title ? (
           <>
-            <h4 className={styles.title}>{content.Name}</h4>
-            { content.Description && (
-              <Description content={content.Description} />
+            <h4 className={styles.title}>{title}</h4>
+            { body && (
+              <Description content={body} />
             )}
           </>
         ) : (

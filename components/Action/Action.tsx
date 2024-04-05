@@ -7,7 +7,6 @@ import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
 import { localizeKey } from 'lib/utils/i18n';
 import type { ActionProps } from 'types/Action';
-import { getContent } from 'lib/api/actions';
 
 import styles from './Action.module.scss';
 
@@ -15,11 +14,10 @@ import styles from './Action.module.scss';
 let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
-  action: ActionProps,
-  remote?: boolean
+  action: ActionProps
 }
 
-export default function Action({ action, remote }: Props) {
+export default function Action({ action }: Props) {
   const { locale } = useRouter();
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
@@ -28,23 +26,6 @@ export default function Action({ action, remote }: Props) {
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const hoverDelay = 160;
-
-  async function fetchActionContent(mousePosition: { x: number, y: number}) {
-    try {
-      const content:ActionProps = (action.UrlType && action.ID)
-        ? await getContent(action.UrlType, action.ID)
-        : null;
-      tooltipDispatch({
-        type: TooltipAction.UPDATE,
-        payload: {
-          content: content.Description ? content : action,
-          position: mousePosition
-        }
-      });
-    } catch (error) {
-      tooltipDispatch({ type: TooltipAction.FAIL, payload: { error: 'Something went wrong' } });
-    }
-  }
 
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);
@@ -59,14 +40,16 @@ export default function Action({ action, remote }: Props) {
       if (!hovering) {
         setHovering(true);
         const mousePosition = { x: e.clientX, y: e.clientY };
-
-        if (action.ID && remote) fetchActionContent(mousePosition);
-        else {
-          tooltipDispatch({
-            type: TooltipAction.UPDATE,
-            payload: { content: action, position: mousePosition }
-          });
-        }
+        const titleKey = localizeKey('Name', locale) as keyof typeof action;
+        const bodyKey = localizeKey('Description', locale) as keyof typeof action;
+        tooltipDispatch({
+          type: TooltipAction.UPDATE,
+          payload: {
+            title: action[titleKey] as string,
+            body: action[bodyKey] as string,
+            position: mousePosition
+          }
+        });
       }
     }, hoverDelay);
   }
@@ -121,7 +104,3 @@ export default function Action({ action, remote }: Props) {
     </>
   );
 }
-
-Action.defaultProps = {
-  remote: true
-};

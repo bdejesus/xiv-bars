@@ -6,12 +6,11 @@ import styles from './ActionGroup.module.scss';
 interface Props {
   title: string,
   actions: ActionProps[],
-  limit?: number,
-  remote?: boolean
+  limit?: number
 }
 
 export default function ActionGroup({
-  title, actions, limit, remote
+  title, actions, limit
 }: Props) {
   const { showTitles } = useAppState();
   const actionsList = limit ? actions.slice(0, limit) : actions;
@@ -21,7 +20,7 @@ export default function ActionGroup({
       <ul className={styles.listActions}>
         {actionsList.map((action, index) => (
           <li key={`action-${action.ID}-${index}`} data-title={action.Name}>
-            <Action action={action} remote={remote} />
+            <Action action={action} />
           </li>
         ))}
       </ul>
@@ -30,6 +29,5 @@ export default function ActionGroup({
 }
 
 ActionGroup.defaultProps = {
-  limit: undefined,
-  remote: true
+  limit: undefined
 };
