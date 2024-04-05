@@ -149,6 +149,7 @@
     "cancel": "キャンセル",
     "delete": "削除",
     "delete_layout": "レイアウトを削除",
+    "delete_confirm": "このレイアウトを削除してもよろしいですか？",
     "last_updated": "最終更新"
   },
 
@@ -205,6 +206,13 @@
     "copy_icon": "コピーのアイコン",
     "copy_url": "URLをコピー",
     "url_copied": "URLがコピーされました！"
+  },
+
+  "SignInPrompt": {
+    "sign_in": "このレイアウトを保存するにはサインインしてください",
+    "save_layouts": "プロフィールにレイアウトを保存します。",
+    "add_notes": "メモと説明を追加します。",
+    "short_urls": "短いURL。"
   },
 
   "UserNav": {

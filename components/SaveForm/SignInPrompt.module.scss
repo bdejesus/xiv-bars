@@ -1,18 +1,36 @@
 @import 'styles/mixins';
 
 .prompt {
-  margin-top: 10vh;
+  margin-top: 4vh;
   text-align: center;
+
+  h3 {
+    margin: $spacing-lg 0 0;
+  }
+
+  button {
+    margin: $spacing-base 0 $spacing-lg;
+  }
 
   ul {
     color: #666;
     font-size: $font-size-base;
+    margin: 0;
     text-align: left;
   }
 }
 
-@media (max-width: $screen-sm) {
+@media (max-width: $screen-md-max) {
   .prompt {
-    margin-top: $spacing-lg;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-lg;
+    justify-content: center;
+    margin-top: $spacing-base;
+
+    h3 {
+      margin-top: 0;
+    }
   }
 }

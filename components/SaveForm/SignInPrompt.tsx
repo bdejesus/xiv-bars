@@ -17,20 +17,22 @@ export default function SignInPrompt() {
   return (
     <div className={styles.prompt}>
       <Image src="/images/mog_trumpet.png" alt="" height={98} width={120} />
-      <h3>Sign in to save this layout</h3>
-      <button
-        type="button"
-        onClick={handleSignIn}
-        className={`${styles.signin} button btn-primary btn-block`}
-      >
-        {t('UserNav.signin_with_discord')}
-      </button>
+      <div className={styles.body}>
+        <h3>{t('SignInPrompt.sign_in')}</h3>
+        <button
+          type="button"
+          onClick={handleSignIn}
+          className={`${styles.signin} button btn-primary btn-block`}
+        >
+          {t('UserNav.signin_with_discord')}
+        </button>
 
-      <ul>
-        <li>Save Layouts to your profile.</li>
-        <li>Add notes and descriptions.</li>
-        <li>Shorter URLs.</li>
-      </ul>
+        <ul>
+          <li>{t('SignInPrompt.save_layouts')}</li>
+          <li>{t('SignInPrompt.add_notes')}</li>
+          <li>{t('SignInPrompt.short_urls')}</li>
+        </ul>
+      </div>
     </div>
   );
 }

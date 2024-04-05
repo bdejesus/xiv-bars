@@ -149,6 +149,7 @@
     "cancel": "Cancel",
     "delete": "Delete",
     "delete_layout": "Delete Layout",
+    "delete_confirm": "Are you sure you want to delete this Layout?",
     "last_updated": "Last updated"
   },
 
@@ -205,6 +206,13 @@
     "copy_icon": "Copy Icon",
     "copy_url": "Copy URL",
     "url_copied": "URL Copied!"
+  },
+
+  "SignInPrompt": {
+    "sign_in": "Sign in to save this layout",
+    "save_layouts": "Save Layouts to your profile.",
+    "add_notes": "Add notes and descriptions.",
+    "short_urls": "Shorter URLs."
   },
 
   "UserNav": {

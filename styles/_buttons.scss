@@ -224,7 +224,6 @@ button,
   font-size: $font-size-sm;
   height: 30px;
   padding: 0 $spacing-sm;
-
 }
 
 .btn-icon.button {
@@ -287,6 +286,15 @@ button,
 
 .btn-inline {
   display: inline-flex;
+}
+
+.btn-danger {
+  background-color: $color-red;
+  color: #fff;
+
+  &:hover {
+    background-color: darken($color-red, 10%);
+  }
 }
 
 @media (max-width: $screen-sm) {

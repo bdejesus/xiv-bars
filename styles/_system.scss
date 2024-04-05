@@ -11,7 +11,7 @@
   padding: $spacing-base;
 }
 
-.fail {
+.fail, .danger {
   background-color: rgb(180 0 0);
   color: #fff;
 }
