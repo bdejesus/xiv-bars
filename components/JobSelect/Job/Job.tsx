@@ -20,9 +20,9 @@ export default function Job({
   name,
   icon
 }: Props) {
-  const router = useRouter();
-  const displayAbbr = job[localizeKey('Abbreviation', router.locale) as keyof typeof job];
-  const displayName = job[localizeKey('Name', router.locale) as keyof typeof job];
+  const { locale } = useRouter();
+  const displayAbbr = job[localizeKey('Abbreviation', locale) as keyof typeof job];
+  const displayName = job[localizeKey('Name', locale) as keyof typeof job];
 
   return (
     <div className={[styles.wrapper, className].join(' ')}>
