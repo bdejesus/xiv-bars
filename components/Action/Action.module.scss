@@ -43,7 +43,6 @@
   box-shadow: 0 2px 4px rgb(0 0 0 / 66%);
   font-size: 10px;
   height: $slot-size;
-  width: $slot-size;
   line-height: 1.2em;
   overflow: hidden;
   position: relative;
@@ -51,6 +50,7 @@
   transition-duration: 0.33s;
   transition-property: border, box-shadow, opacity, filter, transform;
   transition-timing-function: ease;
+  width: $slot-size;
 
   &::after {
     box-shadow: inset 1px 1px 1px rgb(255 255 255 / 15%), inset -1px -1px 1px rgb(0 0 0 / 33%);
