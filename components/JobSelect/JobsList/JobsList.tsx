@@ -30,7 +30,7 @@ export function JobsList({ abbr, title, jobs }: Props) {
             </Link>
 
             <a
-              href={`${localizePath(`/job/${job.Abbr}`, locale)}/new`}
+              href={localizePath(`/job/${job.Abbr}/new`, locale)}
               className={`button btn-icon ${styles.addBtn}`}
               data-title={t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
               data-title-anchor="left-left"

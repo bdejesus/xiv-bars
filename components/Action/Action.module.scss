@@ -30,11 +30,14 @@
   color: #eee;
   content: attr(data-title);
   display: block;
+  flex: 1 1 auto;
   font-family: Verdana, Arial, sans-serif;
   font-size: 9px;
   font-weight: 400;
   line-height: 1.1;
   margin-top: $spacing-xs;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .iconWrapper {
@@ -43,15 +46,15 @@
   box-shadow: 0 2px 4px rgb(0 0 0 / 66%);
   font-size: 10px;
   height: 100%;
-  height: $slot-size;
   line-height: 1.2em;
+  min-height: $slot-size;
+  min-width: $slot-size;
   overflow: hidden;
   position: relative;
   text-align: center;
   transition-duration: 0.33s;
   transition-property: border, box-shadow, opacity, filter, transform;
   transition-timing-function: ease;
-  width: $slot-size;
 
   &::after {
     box-shadow: inset 1px 1px 1px rgb(255 255 255 / 15%), inset -1px -1px 1px rgb(0 0 0 / 33%);

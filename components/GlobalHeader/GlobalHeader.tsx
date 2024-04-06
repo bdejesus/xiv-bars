@@ -22,7 +22,6 @@ export function GlobalHeader({ selectedJob }:Props) {
   const { t } = useTranslation();
   const { viewData, viewAction } = useAppState();
   const { title, id } = viewData || {};
-  const basePath = localizePath(router.asPath, router.locale);
 
   return (
     <div className={styles.container}>
@@ -66,7 +65,7 @@ export function GlobalHeader({ selectedJob }:Props) {
 
             <li className={viewAction !== 'new' ? styles.action : ''}>
               <a
-                href={`${basePath}/new`}
+                href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
                 className="button"
                 data-active={viewAction === 'new'}
               >
