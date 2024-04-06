@@ -69,7 +69,7 @@ export function GlobalHeader({ selectedJob }:Props) {
                 className="button"
                 data-active={viewAction === 'new'}
               >
-                <Icon id={Icons.ADD} alt="New Layout Icon" />
+                <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
                 <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
               </a>
 
