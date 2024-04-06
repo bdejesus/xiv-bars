@@ -141,7 +141,8 @@
   },
 
   "JobsList": {
-    "new_layout": "新しいレイアウトを作成"
+    "new_layout": "新しいレイアウトを作成",
+    "new_job_layout": "{{jobName}} の新しいレイアウト"
   },
 
   "LayoutCard": {

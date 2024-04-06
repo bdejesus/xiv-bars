@@ -141,7 +141,8 @@
   },
 
   "JobsList": {
-    "new_layout": "Create new layout"
+    "new_layout": "Create new layout",
+    "new_job_layout": "New {{jobName}} Layout"
   },
 
   "LayoutCard": {
