@@ -42,10 +42,9 @@
   border-radius: 4px;
   box-shadow: 0 2px 4px rgb(0 0 0 / 66%);
   font-size: 10px;
-  height: 100%;
+  height: $slot-size;
+  width: $slot-size;
   line-height: 1.2em;
-  min-height: $slot-size;
-  min-width: $slot-size;
   overflow: hidden;
   position: relative;
   text-align: center;
