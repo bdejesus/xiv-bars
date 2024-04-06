@@ -84,15 +84,16 @@ $icon-size: 6px;
 
 .container {
   align-items: flex-start;
+  justify-content: center;
   display: flex;
   max-width: 100%;
   padding: $spacing-base;
 }
 
 .main {
+  width: 726px;
   align-items: flex-start;
   display: flex;
-  flex: 1 1 auto;
   flex-direction: column;
   justify-content: flex-start;
   padding-left: $spacing-base;
@@ -126,6 +127,8 @@ $icon-size: 6px;
   min-width: 320px;
   position: relative;
   width: 320px;
+  flex: 1 1 auto;
+  max-width: $screen-sm;
 }
 
 .mainPanel {
@@ -135,13 +138,13 @@ $icon-size: 6px;
 }
 
 @media (max-width: $screen-md-max) {
+  .detailPanel {
+    max-width: unset;
+  }
+
   .view[data-action='new'],
   .view[data-action='edit'] {
     flex-direction: column;
-
-    .sidebar {
-      top: 0;
-    }
 
     .detailPanel {
       height: auto;
@@ -180,7 +183,7 @@ $icon-size: 6px;
 
   .container {
     overflow: auto;
-
+    justify-content: flex-start;
   }
 
   .main {
@@ -199,9 +202,5 @@ $icon-size: 6px;
 
   .detailPanel {
     width: 100%;
-  }
-
-  .sidebar {
-    top: 0;
   }
 }

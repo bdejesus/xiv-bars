@@ -64,13 +64,10 @@ export default function Index(props:PageProps) {
   );
 }
 
-type ContextParam = string | string[] | undefined;
-
 export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
-    const jobId:ContextParam = context.params?.jobId;
-    const params:ContextParam = context.params?.params;
-    const [layoutId] = params as ContextParam[];
+    const jobId = context.params?.jobId as string;
+    const layoutId = context.params?.layoutId as string;
 
     // Get Selected Job
     const selectedJob = Jobs.find((job: ClassJobProps) => job.Abbr === jobId);

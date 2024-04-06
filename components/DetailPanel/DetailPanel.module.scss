@@ -16,7 +16,12 @@
 
   .actions {
     justify-content: space-between;
-    padding: 8px $spacing-base 0;
+    padding: 8px 0;
+    margin: 0 $spacing-base;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    position: sticky;
+    top: 0;
   }
 
   .actionGroup {
@@ -27,7 +32,7 @@
   .header,
   .body {
     color: $color-gray;
-    padding: 0 $spacing-base;
+    margin: 0 $spacing-base;
 
     h1 {
       color: $color-gray-dark;
@@ -45,15 +50,12 @@
   }
 
   .body {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #eee;
+    font-size: $font-size-base;
+    line-height: 1.45em;
     margin-top: $spacing-base;
     padding-bottom: $spacing-lg;
     padding-top: $spacing-base;
-
-    p {
-      font-size: $font-size-base;
-      line-height: 1.45em;
-    }
   }
 
   .meta {

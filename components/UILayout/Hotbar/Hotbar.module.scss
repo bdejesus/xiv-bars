@@ -55,6 +55,7 @@
   justify-content: center;
   margin: 0;
   max-width: $screen-sm;
+  padding-left: $spacing-base;
 
   > li {
     position: relative;
@@ -85,7 +86,7 @@
 .rowWrapper {
   border-top: 1px solid rgb(255 255 255 / 10%);
   height: 100%;
-  padding: $spacing-base 0 0;
+  padding-top: $spacing-base;
 
   .layoutControl {
     background-color: #222;

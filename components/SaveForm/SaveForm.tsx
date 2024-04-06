@@ -127,7 +127,7 @@ function SaveForm() {
   return (
     <div className={styles.saveForm}>
       <form className={styles.form}>
-        <div className="control">
+        <div className={`control ${styles.titleField}`}>
           <label htmlFor="title">
             <div>{t('SaveForm.title')} <small>{t('SaveForm.required')}</small></div>
             <input
@@ -143,7 +143,7 @@ function SaveForm() {
           </label>
         </div>
 
-        <div className="control">
+        <div className={`control ${styles.descriptionField}`}>
           <label htmlFor="description">
             <div>
               {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
@@ -158,7 +158,7 @@ function SaveForm() {
           </label>
         </div>
 
-        <div className={`modal-footer ${styles.actions}`}>
+        <div className={styles.actions}>
           <button
             type="button"
             onClick={saveLayout}
@@ -179,10 +179,11 @@ function SaveForm() {
           )}
         </div>
 
-        <ReactMarkdown className={styles.info}>
-          {t('SaveForm.draft')}
-        </ReactMarkdown>
       </form>
+
+      <ReactMarkdown className={styles.info}>
+        {t('SaveForm.draft')}
+      </ReactMarkdown>
     </div>
   );
 }
