@@ -15,7 +15,6 @@ export default function Row({ slots, id, hb }: Props) {
   const { readOnly } = useAppState();
   if (!hb || !slots) return null;
 
-  // console.log(hb, id);
   const hotbarKey = hb[hotbarKeyPosition(id)].toString();
 
   return (

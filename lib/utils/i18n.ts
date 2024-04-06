@@ -15,6 +15,13 @@ export function translateData(key:string, data:object, locale:string = i18n.defa
   return translation;
 }
 
-const modules = { localizeKey, translateData };
+export function localizePath(path:string, locale:string = i18n.defaultLocale) {
+  if (locale !== i18n.defaultLocale) {
+    return `/${locale}${path.split('/').slice(0, 3).join('/')}`;
+  }
+  return path;
+}
+
+const modules = { localizeKey, translateData, localizePath };
 
 export default modules;

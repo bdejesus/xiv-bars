@@ -1,0 +1,20 @@
+@import 'styles/mixins';
+
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-lg;
+  justify-content: center;
+  padding: $spacing-base 0 0;
+  width: 100%;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-base;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
