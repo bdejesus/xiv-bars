@@ -15,7 +15,6 @@ export function localizeKey(key:string, locale:string = i18n.defaultLocale) {
 }
 
 export function translateData(key:string, data:object, locale:string = i18n.defaultLocale) {
-  if (!data) return key;
   const localeKey = localizeKey(key, locale) as keyof typeof data;
   const translation = data[localeKey];
   return sanitizeName(translation);
