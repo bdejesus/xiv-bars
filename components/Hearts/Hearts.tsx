@@ -60,7 +60,7 @@ export default function Hearts({
       disabled={disabled}
     >
       <Icon id={hearted ? 'hearted' : 'heart'} alt={t('Hearts.heart')} />
-      <span className={styles.count}>{count || 0}</span>
+      { count > 0 && <span className={styles.count}>{count}</span> }
     </button>
   );
 }

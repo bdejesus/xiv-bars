@@ -18,17 +18,12 @@ export function Sharing() {
   const [copied, setCopied] = useState(false);
   const urlInput = createRef<HTMLInputElement>();
 
-  function getLayoutUrl(jobId?:string, params?:string[]) {
-    const [layoutId] = params || [];
-    return `${domain}/job/${jobId}/${layoutId}`;
-  }
-
   function selectInput() {
     urlInput.current?.focus();
     urlInput.current?.select();
   }
 
-  function copyUrl() {
+  function handleClick() {
     selectInput();
     document.execCommand('copy');
     urlInput.current?.blur();
@@ -37,9 +32,8 @@ export function Sharing() {
   }
 
   useEffect(() => {
-    const [layoutId] = router.query.params || [];
-    const urlString = (viewAction === 'show' && layoutId)
-      ? getLayoutUrl(router.query.jobId as string, router.query.params as string[])
+    const urlString = (viewAction === 'show' && router.query.layoutId)
+      ? `${domain}/job/${router.query.jobId}/${router.query.layoutId}`
       : buildUrl({ query: router.query });
     setShareURL(urlString);
   }, [viewAction, router.query]);
@@ -65,7 +59,7 @@ export function Sharing() {
       <button
         type="button"
         className={`${styles.copyButton} button btn-icon`}
-        onClick={copyUrl}
+        onClick={handleClick}
         data-title={copied ? t('Sharing.url_copied') : t('Sharing.share_url')}
         data-title-anchor="left"
       >
