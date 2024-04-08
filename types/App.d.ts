@@ -26,7 +26,7 @@ interface DispatchPayload {
   hbId?: string,
   viewData?: LayoutViewProps,
   roleActions?: ActionProps[],
-  viewAction?: string,
+  viewAction?: 'list' | 'new' | 'edit' | 'show',
   readOnly?: boolean,
   selectedJob?: ClassJobProps,
   slotID?: string,

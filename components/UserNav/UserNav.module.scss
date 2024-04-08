@@ -119,8 +119,8 @@
   right: 0;
   text-align: right;
   top: 100%;
-  z-index: 10;
-  white-space: nowrap;;
+  white-space: nowrap;
+  z-index: 10;;
 
   &[data-active="true"] {
     display: block;

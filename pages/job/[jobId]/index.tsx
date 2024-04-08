@@ -33,7 +33,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
   useEffect(() => {
-    appDispatch({ type: AppActions.VIEW_LIST })
+    appDispatch({ type: AppActions.VIEW_LIST });
     const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
     const keys = Object.keys(router.query);
 

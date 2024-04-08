@@ -23,7 +23,7 @@ export function GlobalHeader({ selectedJob }:Props) {
   const router = useRouter();
   const { t } = useTranslation();
   const { viewData, viewAction } = useAppState();
-  const { title, id } = viewData || {};
+  const { id } = viewData || {};
 
   return (
     <div className={styles.container}>
@@ -59,7 +59,7 @@ export function GlobalHeader({ selectedJob }:Props) {
               </Link>
             </li>
 
-            { ['edit', 'show', 'new'].includes(viewAction) && (
+            { ['edit', 'show', 'new'].includes(viewAction as string) && (
               <li className={styles.actionGroup}>
                 <Sharing />
                 <ExportToMacros />

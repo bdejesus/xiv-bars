@@ -1,8 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { formatDateString } from 'lib/utils/time';
-import ExportToMacros from 'components/ExportToMacro';
-import Sharing from 'components/Sharing';
 import ReactMarkdown from 'react-markdown';
 import SaveForm from 'components/SaveForm';
 import EditLayoutButton from 'components/EditLayoutButton';

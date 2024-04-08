@@ -14,15 +14,15 @@
   }
 
   .title {
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
 
     h1 {
       color: $color-gray-dark;
-      font-size: $font-size-xl-2;
       flex: 1 1 auto;
+      font-size: $font-size-xl-2;
     }
 
     button {
