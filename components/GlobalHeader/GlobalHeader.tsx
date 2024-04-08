@@ -2,6 +2,8 @@
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { translateData, localizePath } from 'lib/utils/i18n';
+import ExportToMacros from 'components/ExportToMacro';
+import Sharing from 'components/Sharing';
 import Link from 'next/link';
 import UserNav from 'components/UserNav';
 import { useAppState } from 'components/App/context';
@@ -57,11 +59,12 @@ export function GlobalHeader({ selectedJob }:Props) {
               </Link>
             </li>
 
-            {title && (
-              <li className={[styles.titleSegment, styles.active].join(' ')}>
-                <span className={styles.title}>{title}</span>
+            { ['edit', 'show', 'new'].includes(viewAction) && (
+              <li className={styles.actionGroup}>
+                <Sharing />
+                <ExportToMacros />
               </li>
-            )}
+            ) }
 
             <li className={viewAction !== 'new' ? styles.action : ''}>
               <a

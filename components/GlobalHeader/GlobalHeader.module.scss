@@ -13,7 +13,6 @@
   padding: 10px $spacing-base;
   position: sticky;
   top: 0;
-  white-space: nowrap;
   width: 100%;
   z-index: 10;
 
@@ -87,6 +86,17 @@
   height: 24px;
 }
 
+.actionGroup {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-sm;
+
+  :global(.btn-icon) {
+    height: 40px;
+    width: 40px;
+  }
+}
+
 .globalNav {
   align-items: center;
   display: flex;
@@ -113,16 +123,16 @@
     flex-direction: row;
     position: relative;
 
-    &::before {
-      border-top: 3px solid $color-alt;
-      content: '';
-      display: block;
-      position: absolute;
-      right: 100%;
-      top: 50%;
-      width: $spacing-base;
-      z-index: 10;
-    }
+    // &::before {
+    //   border-top: 3px solid $color-alt;
+    //   content: '';
+    //   display: block;
+    //   position: absolute;
+    //   right: 100%;
+    //   top: 50%;
+    //   width: $spacing-base;
+    //   z-index: 10;
+    // }
 
     &.action::before,
     &:first-child::before,

@@ -120,6 +120,7 @@
   text-align: right;
   top: 100%;
   z-index: 10;
+  white-space: nowrap;;
 
   &[data-active="true"] {
     display: block;

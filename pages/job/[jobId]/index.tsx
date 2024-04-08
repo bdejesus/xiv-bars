@@ -4,6 +4,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
+import { useAppDispatch } from 'components/App/context';
+import { AppActions } from 'components/App/actions';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
 import Jobs from 'apiData/Jobs.json';
@@ -26,13 +28,15 @@ interface Props {
 export default function Layouts({ selectedJob, layouts }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
-
+  const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
   useEffect(() => {
+    appDispatch({ type: AppActions.VIEW_LIST })
     const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
     const keys = Object.keys(router.query);
+
     if (keys.some((i) => items.includes(i))) {
       router.push({
         pathname: `/job/${selectedJob.Abbr}/new`,

@@ -91,7 +91,7 @@
   },
 
   "ExportToMacro": {
-    "export_to_macro": "Macro",
+    "export_to_macro": "Export to Macro",
     "limitations": "A limited set of actions can assigned via macro commands. Incompatible actions are ommited from the generated macro. Also note that Macros are limited to 15 lines each.",
     "copy": "Copy",
     "copied": "Copied!"

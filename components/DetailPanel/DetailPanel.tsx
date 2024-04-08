@@ -32,21 +32,16 @@ export default function DetailPanel() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.actions}>
-        <div className={styles.actionGroup}>
-          <Sharing />
-          <ExportToMacros />
-        </div>
-        <div className={styles.actionGroup}>
-          <EditLayoutButton />
-        </div>
-      </div>
-
       { (readOnly && title && userId)
         ? (
           <>
             <div className={styles.header}>
-              <h1 className="mt-0 mb-0">{title}</h1>
+              <div className={styles.title}>
+                <h1 className="mt-0 mb-0">
+                  {title}
+                </h1>
+                <EditLayoutButton />
+              </div>
 
               <div className={styles.meta}>
                 <div className={styles.owner}>

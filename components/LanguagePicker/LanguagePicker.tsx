@@ -9,10 +9,10 @@ export default function LanguagePicker() {
     <div className={styles.container}>
       <ul>
         <li>
-          <Link href={router.asPath} locale="en">English</Link>
+          <Link href={decodeURIComponent(router.asPath)} locale="en">English</Link>
         </li>
         <li>
-          <Link href={router.asPath} locale="ja">日本語</Link>
+          <Link href={decodeURIComponent(router.asPath)} locale="ja">日本語</Link>
         </li>
       </ul>
     </div>

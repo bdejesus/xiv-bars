@@ -12,7 +12,7 @@ export interface AppState {
   selectedJob?: ClassJobProps,
   showTitles?: boolean,
   showAllLvl?: boolean,
-  viewAction: string,
+  viewAction?: 'list' | 'new' | 'edit' | 'show',
   roleActions?: ActionProps[],
   actions?: ActionProps[],
   chotbar: {[key: string]: object},

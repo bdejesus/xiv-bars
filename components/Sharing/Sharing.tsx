@@ -61,7 +61,6 @@ export function Sharing() {
         className={`${styles.copyButton} button btn-icon`}
         onClick={handleClick}
         data-title={copied ? t('Sharing.url_copied') : t('Sharing.share_url')}
-        data-title-anchor="left"
       >
         <Icon id={Icons.LINK} alt={t('Sharing.share_url')} />
         <span className="btn-label-hidden">{t('Sharing.share_url')}</span>

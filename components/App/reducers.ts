@@ -29,7 +29,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
         });
 
         // Construct the updated state
-        const newState:AppState = {
+        const newState = {
           ...state,
           ...payload,
           ...layoutTemplates,
@@ -122,6 +122,14 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
         ...state,
         actions: action.payload?.actions,
         roleActions: action.payload?.roleActions
+      };
+    }
+
+    case AppActions.VIEW_LIST: {
+      return {
+        ...state,
+        viewData: {},
+        viewAction: 'list'
       };
     }
 

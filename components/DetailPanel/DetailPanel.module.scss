@@ -7,36 +7,26 @@
   top: 0;
   width: 100%;
 
-  .actions,
-  .actionGroup {
-    display: flex;
-    flex-direction: row;
-    gap: $spacing-xs;
-  }
-
-  .actions {
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ddd;
-    justify-content: space-between;
-    margin: 0 $spacing-base;
-    padding: 8px 0;
-    position: sticky;
-    top: 0;
-  }
-
-  .actionGroup {
-    display: flex;
-    flex-direction: row;
-  }
-
   .header,
   .body {
     color: $color-gray;
     margin: 0 $spacing-base;
+  }
+
+  .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
 
     h1 {
       color: $color-gray-dark;
       font-size: $font-size-xl-2;
+      flex: 1 1 auto;
+    }
+
+    button {
+      flex: none;
     }
   }
 
@@ -50,10 +40,8 @@
   }
 
   .body {
-    border-top: 1px solid #eee;
     font-size: $font-size-base;
     line-height: 1.45em;
-    margin-top: $spacing-base;
     padding-bottom: $spacing-lg;
     padding-top: $spacing-base;
   }

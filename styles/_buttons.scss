@@ -29,7 +29,7 @@ button,
 
   + button,
   + .button {
-    margin-left: 1em;
+    margin-left: $spacing-sm;
 
     @media (max-width: $screen-sm) {
       margin-left: $spacing-sm;
