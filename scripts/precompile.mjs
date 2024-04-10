@@ -5,11 +5,13 @@ import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
 import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' };
 import array from '../lib/utils/array.mjs';
+import i18nConfig from '../next-i18next.config.js';
 
 dotenv.config();
 
 const dest = './.apiData';
 const apiURL = 'https://xivapi.com';
+const { i18n } = i18nConfig;
 
 function jsonToQuery(json) {
   return Object.entries(json)
@@ -24,8 +26,18 @@ function jsonToQuery(json) {
 
 const columns = ['ID', 'Icon', 'Name', 'Url'];
 
+function getLanguageKeys() {
+  const languageKeys = i18n.locales.reduce((keys, lang) => {
+    if (lang !== 'en') return [...keys, `Name_${lang}`, `Abbreviation_${lang}`];
+    return keys;
+  }, ['Name', 'Abbreviation']);
+
+  return languageKeys;
+}
+
 async function getJobs() {
-  const jobColumns = [...columns, 'Name_ja', 'Abbreviation', 'Abbreviation_ja'];
+  const languageKeys = getLanguageKeys();
+  const jobColumns = [...columns, languageKeys];
   const options = jsonToQuery({ private_key: process.env.XIV_API_KEY, columns: jobColumns.join(',') });
   const request = await fetch(`${apiURL}/ClassJob?${options}`);
   const json = await request.json();

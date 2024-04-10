@@ -1,0 +1,238 @@
+{
+  "Global": {
+    "title": "Planificateur et simulateur de la barre de raccourcis croisée (XHB/WXHB) de Final Fantasy XIV - XIVBARS",
+    "subtitle": "Un outil de planification et de simulation de la barre de raccourcis croisée (XHB/WXHB) de Final Fantasy XIV.",
+    "description": "Planifiez et personnalisez vos barres de raccourcis croisées (XHB) de FFXIV: Endwalker. Explorez différentes configurations et installations pour les interfaces utilisateur de barre de raccourcis croisées de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de taille et de personnalisation, y compris la fonctionnalité de glisser-déposer pour une personnalisation facile.",
+    "close": "Fermer",
+    "loading": "Chargement en cours..."
+  },
+
+  "ActionPanel": {
+    "job": "Métier",
+    "general": "Général",
+    "menu": "Menu",
+    "macros": "Macros",
+    "job_actions": "Actions de métier",
+    "role_actions": "Actions de rôle",
+    "general_actions": "Actions générales",
+    "companion_actions": "Actions du compagnon",
+    "pet_actions": "Actions du familier",
+    "menu_commands": "Commandes de menu",
+    "company_actions": "Actions de compagnie"
+  },
+
+  "App": {
+    "hotbar_planner": "Planificateur de barre de raccourcis"
+  },
+
+  "Articles": {
+    "guides": "Guides FFXIV",
+    "configure_the_ui": "Configurer l'interface de la barre de raccourcis croisée pour le changement automatique en combat",
+    "how_to_configure": "Comment configurer vos paramètres d'interface de barre de raccourcis croisée en mode Contrôleur pour basculer automatiquement entre une barre de raccourcis de combat et une barre de raccourcis passive lorsque vous entrez et sortez du combat.",
+    "controller_mode": "Si vous jouez en <b>Mode Contrôleur</b>, vous pouvez configurer vos barres de raccourcis croisées pour basculer automatiquement vers une barre de raccourcis différente chaque fois que vous entrez en mode combat. Cela vous évite d'avoir à basculer manuellement vers la barre de raccourcis correcte à chaque fois que vous entrez et sortez du combat.",
+    "read_more": "En savoir plus..."
+  },
+
+  "ControlBar": {
+    "CopyLayout": {
+      "copy_label": "Dupliquer la disposition",
+      "copy_layout": "Crée une nouvelle disposition avec toutes les actions et configurations enregistrées",
+      "copy_icon": "Icône : Dupliquer la disposition"
+    },
+    "ToggleMaxLvl": {
+      "all_levels": "Tous les niveaux",
+      "all_levels_title": "Afficher tous les niveaux d'action",
+      "all_levels_icon": "Icône : Afficher tous les niveaux d'action"
+    },
+    "ToggleSaveForm": {
+      "save_this_layout": "Enregistrer cette disposition",
+      "save_icon": "Icône : Enregistrer cette disposition",
+      "details_icon": "Icône de détails",
+      "publish": "Publier",
+      "edit": "Modifier",
+      "signin": "Connectez-vous avec Discord, enregistrez vos dispositions",
+      "too_many_layouts": "Vous avez atteint le nombre maximum de dispositions autorisées. Supprimez-en d'autres pour en publier de nouvelles."
+    },
+    "ToggleTitles": {
+      "titles": "Titres",
+      "titles_icon": "Icône de titres"
+    },
+    "ToggleLayout": {
+      "xhb": "XHB",
+      "xhb_title": "Barres de raccourcis croisées",
+      "hotbars": "Barres de raccourcis",
+      "hotbars_title": "Barres de raccourcis"
+    },
+    "PvpToggle": {
+      "pve_abbr": "PvE",
+      "pve_title": "Joueur contre Environnement",
+      "pvp_abbr": "PvP",
+      "pvp_title": "Joueur contre Joueur"
+    }
+  },
+
+  "DetailPanel": {
+    "draft": "Cette **disposition** est enregistrée sous forme de brouillon. Ajoutez une description en éditant cette disposition pour la rendre publique."
+  },
+
+  "EorzeaProfile": {
+    "title": "Panneau de profil FFXIV Twitch Streamer",
+    "body": "Affichez le profil de votre personnage Final Fantasy XIV Endwalker sur votre page de diffusion en continu.",
+    "cta": "Installer sur Twitch.tv"
+  },
+
+  "Error": {
+    "no_jobs": "Quelque chose s'est mal passé et nous n'avons pas pu charger les données des métiers. Veuillez réessayer plus tard.",
+    "generic": {
+      "title": "Oups ! Quelque chose s'est mal passé...",
+      "body": "Nous semblons avoir atteint un état d'échec. L'erreur a été enregistrée mais malheureusement, vous devrez recommencer.",
+      "go_back": "Retourner à XIVBARS"
+    }
+  },
+
+  "ExportToMacro": {
+    "export_to_macro": "Exporter vers une macro",
+    "limitations": "Un ensemble limité d'actions peut être attribué via des commandes de macro. Les actions incompatibles sont omises de la macro générée. Notez également que les macros sont limitées à 15 lignes chacune.",
+    "copy": "Copier",
+    "copied": "Copié !"
+  },
+
+  "Footer": {
+    "submit_an_issue": "Demander une fonctionnalité ou soumettre un rapport de bug",
+    "built_with_xivapi": "XIVAPI",
+    "property_of_squenix": "Tout le contenu de Final Fantasy XIV est la propriété de Square Enix Co., LTD"
+  },
+
+  "GlobalHeader": {
+    "new_layout": "Nouvelle disposition"
+  },
+
+  "Intro": {
+    "select_a_job": "Sélectionnez un Métier/Classe"
+  },
+
+  "Header": {
+    "title": "Simulez et exportez les barres de raccourcis croisées FFXIV Endwalker pour PC, Playstation 4 ou Playstation 5",
+    "body": "XIVBARS est un planificateur de barre de raccourcis croisée (XHB/WXHB) FFXIV pour simuler l'interface de contrôle en jeu. Vous pouvez exporter des barres de raccourcis pour PC, PS4 ou PS5 via des macros. Partagez des configurations de disposition avec d'autres via une URL générée ou générez une commande de macro à importer dans le jeu."
+  },
+
+  "Hearts": {
+    "heart": "Cœur",
+    "hearts": "Cœurs",
+    "heartTitle": "Cœur cette disposition",
+    "unheartTitle": "Ne plus aimer cette disposition"
+  },
+
+  "HowTo": {
+    "how_to_use_this": "Comment utiliser ce planificateur",
+    "body": "Créer la configuration d'interface de barre de raccourcis parfaite dans Final Fantasy XIV Endwalker en utilisant un contrôleur est fastidieux et prend du temps. Ce simulateur vous permet de planifier vos configurations de barre de raccourcis en utilisant une interface de glisser-déposer basée sur le Web pour simuler différentes configurations avant de les appliquer à votre HUD de contrôleur dans le jeu.",
+    "select_a_class": "Sélectionnez un Métier/Classe FFXIV",
+    "plan_your_hotbars": "Choisissez parmi et planifiez vos barres de raccourcis pour n'importe quel Métier/Classe FFXIV",
+    "toggle_hotbars": "Basculer entre les configurations de barres de raccourcis FFXIV",
+    "simulate_hotbars": "Simuler une configuration de barre de raccourcis croisée (XHB/WXHB) ou des barres de raccourcis standard.",
+    "drag_and_drop": "Glisser et déposer des actions dans les emplacements",
+    "slot_actions": "Attribuez n'importe quelle action de combat et de rôle pour votre Métier/Classe sélectionné, ainsi que n'importe quelle commande de menu, macro et autre action.",
+    "export_to_macro": "Exporter vers une macro et partager avec d'autres",
+    "save_and_share": "Une fois que vous avez terminé de configurer votre disposition de barre de raccourcis FFXIV Endwalker, enregistrez ou partagez votre disposition avec l'URL générée. Vous pouvez également exporter votre disposition vers une macro que vous pouvez utiliser pour importer votre disposition dans le jeu."
+  },
+
+  "JobSelect": {
+    "job_select": "Sélection du Métier"
+  },
+
+  "JobsList": {
+    "new_layout": "Créer une nouvelle disposition",
+    "new_job_layout": "Nouvelle disposition {{jobName}}"
+  },
+
+  "LayoutCard": {
+    "by": "par",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "delete_layout": "Supprimer la disposition",
+    "delete_confirm": "Êtes-vous sûr de vouloir supprimer cette disposition ?",
+    "last_updated": "Dernière mise à jour"
+  },
+
+  "Lore": {
+    "lore": "Lore"
+  },
+
+  "Pages": {
+    "Index": {
+      "popular_layouts": "Dispositions populaires",
+      "recent_layouts": "Dispositions récentes"
+    },
+    "User": {
+      "title": "Dispositions de barre de raccourcis par {{userName}} • XIVBARS",
+      "description": "Dispositions d'interface de barre de raccourcis croisée FFXIV par {{userName}}. Explorez différentes configurations et installations pour les interfaces utilisateur de barre de raccourcis et de barre de raccourcis croisée de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de taille et de personnalisation.",
+      "new_layout": "Nouvelle disposition",
+      "new_layout_icon": "Nouvelle icône de disposition",
+      "my_layouts": "Mes dispositions",
+      "no_layouts": "Aucune disposition - créez-en une nouvelle !",
+      "saved_layouts": "Dispositions enregistrées"
+    },
+    "Job": {
+      "index_title": "Dispositions de barre de raccourcis ({{jobAbbr}}) FFXIV {{jobName}} • XIVBARS",
+      "index_description": "Explorez les dispositions de barre de raccourcis {{jobName}} que d'autres joueurs ont créées.",
+      "new_description": "Planifiez vos barres de raccourcis ou barres de raccourcis croisées (XHB) {{jobName}} à l'aide de cet outil. Glissez-déposez ou cliquez pour attribuer des actions aux emplacements de la barre de raccourcis et enregistrez dans une URL partageable.",
+      "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
+      "create_layout": "Créer une nouvelle disposition.",
+      "new_layout": "Nouvelle disposition"
+    },
+    "NotFound": {
+      "status": "404 PAGE NON TROUVÉE",
+      "title": "Ce n'est pas la page que vous recherchez",
+      "body": "Il semble que la page que vous recherchez n'existe pas à cette adresse.",
+      "option1": "Retournez à la page précédente et réessayez",
+      "option2": "Signalez un problème si vous pensez que cette page devrait être ici",
+      "option3": "Retourner à la page d'accueil"
+    },
+    "ServerError": {
+      "status": "500 ERREUR DE SERVEUR",
+      "title": "Oups ! Quelque chose s'est mal passé",
+      "body": "L'erreur a été enregistrée et nous essaierons de la corriger dès que possible.",
+      "option1": "Retournez à la page précédente et réessayez",
+      "option2": "Vérifiez l'état de ce problème ou signalez un bug",
+      "option3": "Retourner à la page d'accueil"
+    }
+  },
+
+  "SaveForm": {
+    "title": "Titre",
+    "description": "Description",
+    "save_layout": "Enregistrer la disposition",
+    "publish_layout": "Publier la disposition",
+    "save_draft": "Enregistrer le brouillon",
+    "cancel": "Annuler",
+    "failed": "Impossible d'enregistrer la disposition. Veuillez réessayer",
+    "required": "obligatoire",
+    "success": "Disposition enregistrée !",
+    "markdown_support": "Le markdown est pris en charge",
+    "draft": "**Les dispositions** sans descriptions sont traitées comme des brouillons et sont cachées des listes publiques. Elles sont toujours accessibles via l'URL de **disposition**."
+  },
+
+  "Sharing": {
+    "share_url": "URL de partage",
+    "copy_icon": "Icône de copie",
+    "copy_url": "Copier l'URL",
+    "url_copied": "URL copiée !"
+  },
+
+  "SignInPrompt": {
+    "sign_in": "Connectez-vous pour enregistrer cette disposition",
+    "save_layouts": "Enregistrez des dispositions dans votre profil.",
+    "add_notes": "Ajoutez des notes et des descriptions.",
+    "short_urls": "URL plus courtes."
+  },
+
+  "UserNav": {
+    "whats_new": "Quoi de neuf",
+    "donate": "Donner",
+    "donate_title": "Les dons aident à maintenir les serveurs !",
+    "my_layouts": "Mes dispositions",
+    "logout": "Déconnexion",
+    "signin_with_discord": "Connectez-vous avec Discord",
+    "report_an_issue": "Signaler un problème"
+  }
+}

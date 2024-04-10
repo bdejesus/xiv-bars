@@ -14,6 +14,12 @@ export default function LanguagePicker() {
         <li>
           <Link href={decodeURIComponent(router.asPath)} locale="ja">日本語</Link>
         </li>
+        <li>
+          <Link href={decodeURIComponent(router.asPath)} locale="de">Deutsch</Link>
+        </li>
+        <li>
+          <Link href={decodeURIComponent(router.asPath)} locale="fr">Français</Link>
+        </li>
       </ul>
     </div>
   );

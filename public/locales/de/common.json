@@ -1,0 +1,238 @@
+{
+  "Global": {
+    "title": "Final Fantasy XIV W Cross Hotbar (XHB/WXHB) Planer und Simulator – XIVBARS",
+    "subtitle": "Ein Planungs- und Simulationstool für das Final Fantasy XIV Cross Hotbar (XHB/WXHB).",
+    "description": "Planen und anpassen Sie Ihre FFXIV: Endwalker Cross Hotbars (XHB). Entdecken Sie verschiedene Konfigurationen und Setups für die Benutzeroberflächen von Final Fantasy XIVs Hotbar und Cross Hotbar und optimieren Sie Ihr Spielerlebnis mit unterschiedlichen Platzierungen, Größen und Anpassungsoptionen, einschließlich Drag-and-Drop-Funktionalität für eine einfache Anpassung.",
+    "close": "Schließen",
+    "loading": "Laden..."
+  },
+
+  "ActionPanel": {
+    "job": "Beruf",
+    "general": "Allgemein",
+    "menu": "Menü",
+    "macros": "Makros",
+    "job_actions": "Berufsaktionen",
+    "role_actions": "Rollenaktionen",
+    "general_actions": "Allgemeine Aktionen",
+    "companion_actions": "Begleiteraktionen",
+    "pet_actions": "Haustieraktionen",
+    "menu_commands": "Menübefehle",
+    "company_actions": "Unternehmensaktionen"
+  },
+
+  "App": {
+    "hotbar_planner": "Hotbar Planer"
+  },
+
+  "Articles": {
+    "guides": "FFXIV Anleitungen",
+    "configure_the_ui": "Konfigurieren Sie die Cross Hotbar-Benutzeroberfläche für den automatischen Wechsel im Kampf",
+    "how_to_configure": "So konfigurieren Sie Ihre Cross Hotbar-Benutzeroberflächeneinstellungen im Controller-Modus, um automatisch zwischen einer Kampf- und einer passiven Hotbar zu wechseln, wenn Sie in und aus dem Kampf treten.",
+    "controller_mode": "Wenn Sie im <b>Controller-Modus</b> spielen, können Sie Ihre Cross Hotbars so einstellen, dass sie automatisch zu einer anderen Hotbar wechseln, wenn Sie in die Kampfhaltung gehen. Dadurch sparen Sie sich das manuelle Wechseln zur richtigen Hotbar jedes Mal, wenn Sie in und aus dem Kampf gehen.",
+    "read_more": "Weiterlesen..."
+  },
+
+  "ControlBar": {
+    "CopyLayout": {
+      "copy_label": "Layout duplizieren",
+      "copy_layout": "Erstellt ein neues Layout und mit allen eingesteckten Aktionen und Konfigurationen",
+      "copy_icon": "Symbol: Layout duplizieren"
+    },
+    "ToggleMaxLvl": {
+      "all_levels": "Alle Ebenen",
+      "all_levels_title": "Alle Aktionsebenen anzeigen",
+      "all_levels_icon": "Symbol: Alle Aktionsebenen anzeigen"
+    },
+    "ToggleSaveForm": {
+      "save_this_layout": "Dieses Layout speichern",
+      "save_icon": "Symbol: Dieses Layout speichern",
+      "details_icon": "Detail-Symbol",
+      "publish": "Veröffentlichen",
+      "edit": "Bearbeiten",
+      "signin": "Mit Discord anmelden, um Ihre Layouts zu speichern",
+      "too_many_layouts": "Sie haben Ihre maximale Anzahl von Layouts erreicht. Löschen Sie andere, um neue zu veröffentlichen."
+    },
+    "ToggleTitles": {
+      "titles": "Titel",
+      "titles_icon": "Titel-Symbol"
+    },
+    "ToggleLayout": {
+      "xhb": "XHB",
+      "xhb_title": "Cross Hotbars",
+      "hotbars": "Hotbars",
+      "hotbars_title": "Hotbars"
+    },
+    "PvpToggle": {
+      "pve_abbr": "PvE",
+      "pve_title": "Spieler gegen Umgebung",
+      "pvp_abbr": "PvP",
+      "pvp_title": "Spieler gegen Spieler"
+    }
+  },
+
+  "DetailPanel": {
+    "draft": "Dieses **Layout** ist als Entwurf gespeichert. Fügen Sie eine Beschreibung hinzu, indem Sie dieses Layout bearbeiten, um es öffentlich verfügbar zu machen."
+  },
+
+  "EorzeaProfile": {
+    "title": "FFXIV Profil Twitch Streamer Panel",
+    "body": "Zeigen Sie Ihr Final Fantasy XIV Endwalker Charakterprofil auf Ihrer Streamseite an.",
+    "cta": "Auf Twitch.tv installieren"
+  },
+
+  "Error": {
+    "no_jobs": "Etwas ist schiefgelaufen und wir konnten keine Job-Daten laden. Bitte versuchen Sie es später erneut.",
+    "generic": {
+      "title": "Oh oh! Etwas ist schiefgelaufen...",
+      "body": "Es scheint, als hätten wir einen Fehlerzustand erreicht. Der Fehler wurde protokolliert, aber leider müssen Sie von vorne beginnen.",
+      "go_back": "Zurück zu XIVBARS"
+    }
+  },
+
+  "ExportToMacro": {
+    "export_to_macro": "Exportieren als Makro",
+    "limitations": "Ein begrenzter Satz von Aktionen kann über Makrobefehle zugewiesen werden. Inkompatible Aktionen werden aus dem generierten Makro ausgelassen. Beachten Sie auch, dass Makros auf 15 Zeilen begrenzt sind.",
+    "copy": "Kopieren",
+    "copied": "Kopiert!"
+  },
+
+  "Footer": {
+    "submit_an_issue": "Beantragen Sie ein Feature oder melden Sie einen Fehler",
+    "built_with_xivapi": "XIVAPI",
+    "property_of_squenix": "Alle Inhalte von Final Fantasy XIV sind Eigentum von Square Enix Co., LTD"
+  },
+
+  "GlobalHeader": {
+    "new_layout": "Neues Layout"
+  },
+
+  "Intro": {
+    "select_a_job": "Wählen Sie einen Beruf/Klasse"
+  },
+
+  "Header": {
+    "title": "Simulieren und Exportieren von FFXIV Endwalker Cross Hotbars für PC, Playstation 4 oder Playstation 5",
+    "body": "XIVBARS ist ein FFXIV Cross Hotbar (XHB/WXHB) Planer zur Simulation der Steuerungsoberfläche im Spiel. Sie können Hotbars für PC, PS4 oder PS5 über Makros exportieren. Teilen Sie Layoutkonfigurationen mit anderen über eine generierte URL oder generieren Sie einen Makrobefehl zum Importieren ins Spiel."
+  },
+
+  "Hearts": {
+    "heart": "Herz",
+    "hearts": "Herzen",
+    "heartTitle": "Dieses Layout favorisieren",
+    "unheartTitle": "Favorisierung dieses Layouts aufheben"
+  },
+
+  "HowTo": {
+    "how_to_use_this": "So verwenden Sie diesen Planer",
+    "body": "Die perfekte Einrichtung der Hotbar-Benutzeroberfläche in Final Fantasy XIV Endwalker mit einem Controller ist umständlich und zeitaufwendig. Mit diesem Simulator können Sie Ihre Hotbar-Layouts mithilfe einer webbasierten Drag-and-Drop-Benutzeroberfläche planen, um verschiedene Konfigurationen zu simulieren, bevor Sie sie in Ihrer Controller-HUD im Spiel festlegen.",
+    "select_a_class": "Wählen Sie einen FFXIV-Beruf/Klasse aus",
+    "plan_your_hotbars": "Wählen Sie aus und planen Sie Ihre Hotbars für einen beliebigen FFXIV-Beruf/Klasse",
+    "toggle_hotbars": "Umschalten zwischen FFXIV-Hotbar-Layouts",
+    "simulate_hotbars": "Simulieren Sie entweder ein Cross Hotbar (XHB/WXHB) oder ein Standard-Hotbar-Layout.",
+    "drag_and_drop": "Aktionen in Slots ziehen und ablegen",
+    "slot_actions": "Setzen Sie beliebige Kampf- und Rollenaktionen für Ihren ausgewählten Beruf/Klasse sowie beliebige Menübefehle, Makros und andere Aktionen ein.",
+    "export_to_macro": "Exportieren als Makro und mit anderen teilen",
+    "save_and_share": "Sobald Sie Ihr Final Fantasy XIV Endwalker-Hotbar-Layout konfiguriert haben, speichern oder teilen Sie Ihr Layout mit der generierten URL. Sie können Ihr Layout auch als Makro exportieren, das Sie ins Spiel importieren können."
+  },
+
+  "JobSelect": {
+    "job_select": "Beruf/Klasse auswählen"
+  },
+
+  "JobsList": {
+    "new_layout": "Neues Layout erstellen",
+    "new_job_layout": "Neues {{jobName}} Layout"
+  },
+
+  "LayoutCard": {
+    "by": "von",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "delete_layout": "Layout löschen",
+    "delete_confirm": "Sind Sie sicher, dass Sie dieses Layout löschen möchten?",
+    "last_updated": "Zuletzt aktualisiert"
+  },
+
+  "Lore": {
+    "lore": "Geschichte"
+  },
+
+  "Pages": {
+    "Index": {
+      "popular_layouts": "Beliebte Layouts",
+      "recent_layouts": "Aktuelle Layouts"
+    },
+    "User": {
+      "title": "Hotbar-Layouts von {{userName}} • XIVBARS",
+      "description": "FFXIV Hotbar- und Cross-Hotbar-Benutzeroberflächenlayouts von {{userName}}. Erforschen Sie verschiedene Konfigurationen und Setups für die Hotbar- und Cross-Hotbar-Benutzeroberflächen von Final Fantasy XIV und optimieren Sie Ihre Spielerfahrung mit unterschiedlichen Platzierungs-, Größen- und Anpassungsoptionen.",
+      "new_layout": "Neues Layout",
+      "new_layout_icon": "Neues Layout-Symbol",
+      "my_layouts": "Meine Layouts",
+      "no_layouts": "Keine Layouts vorhanden – erstellen Sie ein neues!",
+      "saved_layouts": "Gespeicherte Layouts"
+    },
+    "Job": {
+      "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV Hotbar-Layouts • XIVBARS",
+      "index_description": "Erforschen Sie Hotbar-Layouts von {{jobName}}, die von anderen Spielern erstellt wurden.",
+      "new_description": "Planen Sie Ihre {{jobName}} Hotbars oder Cross-Hotbars (XHB) mit diesem Tool. Ziehen und platzieren Sie Aktionen in Hotbar-Slots oder klicken Sie, um sie zuzuweisen, und speichern Sie sie in einer freigebaren URL.",
+      "no_layouts": "Keine {{jobName}} Layouts vorhanden.",
+      "create_layout": "Erstellen Sie ein neues Layout.",
+      "new_layout": "Neues Layout"
+    },
+    "NotFound": {
+      "status": "404 SEITE NICHT GEFUNDEN",
+      "title": "Das ist nicht die Seite, die Sie suchen",
+      "body": "Es scheint, als existiere die Seite, die Sie suchen, nicht unter dieser URL.",
+      "option1": "Gehen Sie zurück zur vorherigen Seite und versuchen Sie es erneut",
+      "option2": "Melden Sie ein Problem, wenn Sie glauben, dass diese Seite hier sein sollte",
+      "option3": "Zurück zur Startseite"
+    },
+    "ServerError": {
+      "status": "500 SERVERFEHLER",
+      "title": "Oh oh! Etwas ist schiefgelaufen",
+      "body": "Der Fehler wurde protokolliert und wir werden versuchen, ihn so schnell wie möglich zu beheben.",
+      "option1": "Gehen Sie zurück zur vorherigen Seite und versuchen Sie es erneut",
+      "option2": "Überprüfen Sie den Status dieses Problems oder melden Sie einen Fehler",
+      "option3": "Zurück zur Startseite"
+    }
+  },
+
+  "SaveForm": {
+    "title": "Titel",
+    "description": "Beschreibung",
+    "save_layout": "Layout speichern",
+    "publish_layout": "Layout veröffentlichen",
+    "save_draft": "Entwurf speichern",
+    "cancel": "Abbrechen",
+    "failed": "Layout konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+    "required": "erforderlich",
+    "success": "Layout gespeichert!",
+    "markdown_support": "Markdown wird unterstützt",
+    "draft": "**Layouts** ohne Beschreibungen werden als Entwürfe behandelt und sind vor öffentlichen Auflistungen versteckt. Sie sind immer noch über die **Layout**-URL zugänglich."
+  },
+
+  "Sharing": {
+    "share_url": "URL teilen",
+    "copy_icon": "Symbol kopieren",
+    "copy_url": "URL kopieren",
+    "url_copied": "URL kopiert!"
+  },
+
+  "SignInPrompt": {
+    "sign_in": "Melden Sie sich an, um dieses Layout zu speichern",
+    "save_layouts": "Speichern Sie Layouts in Ihrem Profil.",
+    "add_notes": "Notizen und Beschreibungen hinzufügen.",
+    "short_urls": "Kürzere URLs."
+  },
+
+  "UserNav": {
+    "whats_new": "Was ist neu",
+    "donate": "Spenden",
+    "donate_title": "Spenden helfen dabei, die Server am Laufen zu halten!",
+    "my_layouts": "Meine Layouts",
+    "logout": "Abmelden",
+    "signin_with_discord": "Mit Discord anmelden",
+    "report_an_issue": "Ein Problem melden"
+  }
+}

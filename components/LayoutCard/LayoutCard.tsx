@@ -72,11 +72,13 @@ export default function LayoutCard(props:Props) {
         )}
 
         <div className={styles.footer}>
-          <Hearts
-            layoutId={layout.id as number}
-            count={layout._count?.hearts || 0}
-            className={styles.hearts}
-          />
+          { layout._count?.hearts > 0 && (
+            <Hearts
+              layoutId={layout.id as number}
+              count={layout._count?.hearts || 0}
+              className={styles.hearts}
+            />
+          )}
           <Tags layoutView={layout} job={job} />
         </div>
 
