@@ -1,0 +1,237 @@
+{
+  "Global": {
+    "title": "ファイナルファンタジーXIV W クロスホットバー（XHB/WXHB）プランナーとシミュレーター – XIVBARS",
+    "subtitle": "ファイナルファンタジーXIV クロスホットバー（XHB/WXHB）のプランニングとシミュレーションツール。",
+    "description": "FFXIV: Endwalkerのクロスホットバー（XHB）を計画し、カスタマイズします。ファイナルファンタジーXIVのホットバーとクロスホットバーのユーザーインターフェースのさまざまな構成とセットアップを探索し、異なる配置、サイズ、およびカスタマイズオプションを使用してゲームプレイ体験を最適化します。ドラッグアンドドロップ機能を使用して、簡単にカスタマイズできます。",
+    "close": "閉じる",
+    "loading": "読み込み中..."
+  },
+
+  "ActionPanel": {
+    "job": "ジョブ",
+    "general": "一般",
+    "menu": "メニュー",
+    "macros": "マクロ",
+    "job_actions": "ジョブアクション",
+    "role_actions": "ロールアクション",
+    "general_actions": "一般アクション",
+    "companion_actions": "仲間アクション",
+    "pet_actions": "ペットアクション",
+    "menu_commands": "メニューコマンド",
+    "company_actions": "会社アクション"
+  },
+
+  "App": {
+    "hotbar_planner": "ホットバー プランナー"
+  },
+
+  "Articles": {
+    "guides": "FFXIV ガイド",
+    "configure_the_ui": "戦闘時にクロスホットバーUIを自動切り替えるように設定する",
+    "how_to_configure": "コントローラーモードでクロスホットバーUI設定を自動的に切り替えて戦闘用ホットバーとパッシブホットバーを自動的に切り替える方法。",
+    "controller_mode": "コントローラーモードでプレイしている場合、クロスホットバーを戦闘態勢に入るたびに自動的に別のホットバーに切り替えるように設定できます。これにより、戦闘に入ったり出たりするたびに正しいホットバーに手動で切り替える必要がなくなります。",
+    "read_more": "詳細を読む..."
+  },
+
+  "ControlBar": {
+    "CopyLayout": {
+      "copy_label": "レイアウトを複製",
+      "copy_layout": "すべてのスロットされたアクションと構成を備えた新しいレイアウトを作成します。",
+      "copy_icon": "アイコン：レイアウトを複製"
+    },
+    "ToggleMaxLvl": {
+      "all_levels": "すべてのレベル",
+      "all_levels_title": "すべてのアクションレベルを表示",
+      "all_levels_icon": "アイコン：すべてのアクションレベルを表示"
+    },
+    "ToggleSaveForm": {
+      "save_this_layout": "このレイアウトを保存",
+      "save_icon": "アイコン：このレイアウトを保存",
+      "details_icon": "詳細アイコン",
+      "publish": "公開",
+      "edit": "編集",
+      "signin": "Discordでサインインし、レイアウトを保存",
+      "too_many_layouts": "最大許容レイアウトに到達しました。新しいレイアウトを公開するには、他のレイアウトを削除してください。"
+    },
+    "ToggleTitles": {
+      "titles": "タイトル",
+      "titles_icon": "タイトルアイコン"
+    },
+    "ToggleLayout": {
+      "xhb": "XHB",
+      "xhb_title": "クロスホットバー",
+      "hotbars": "ホットバー",
+      "hotbars_title": "ホットバー"
+    },
+    "PvpToggle": {
+      "pve_abbr": "PvE",
+      "pve_title": "プレイヤー対環境",
+      "pvp_abbr": "PvP",
+      "pvp_title": "プレイヤー対プレイヤー"
+    }
+  },
+
+  "DetailPanel": {
+    "draft": "この **レイアウト** は下書きとして保存されています。このレイアウトを編集して説明を追加して、これを公開可能にしてください。"
+  },
+
+  "EorzeaProfile": {
+    "title": "FFXIV プロフィール Twitch ストリーマーパネル",
+    "body": "Twitch ページにファイナルファンタジーXIV Endwalkerキャラクタープロフィールを表示します。",
+    "cta": "Twitch.tv にインストール"
+  },
+
+  "Error": {
+    "no_jobs": "何かがうまくいかず、ジョブデータをロードできませんでした。後でもう一度お試しください。",
+    "generic": {
+      "title": "おっと！何かがおかしいです...",
+      "body": "失敗状態に達したようです。エラーはログに記録されましたが、残念ながら最初からやり直す必要があります。",
+      "go_back": "XIVBARS に戻る"
+    }
+  },
+
+  "ExportToMacro": {
+    "export_to_macro": "マクロ",
+    "limitations": "マクロコマンドを介して割り当てることができるアクションの一部に制限があります。互換性のないアクションは生成されたマクロから省略されます。また、マクロは各15行に制限されています。",
+    "copy": "コピー",
+    "copied": "コピーしました！"
+  },
+
+  "Footer": {
+    "submit_an_issue": "機能のリクエストやバグの報告を提出",
+    "built_with_xivapi": "XIVAPI",
+    "property_of_squenix": "すべてのファイナルファンタジーXIVコンテンツは株式会社スクウェア・エニックスの所有物です。"
+  },
+
+  "GlobalHeader": {
+    "new_layout": "新しいレイアウト"
+  },
+
+  "Intro": {
+    "select_a_job": "ジョブ/クラスを選択"
+  },
+
+  "Header": {
+    "title": "PC、Playstation 4、またはPlaystation 5向けにFFXIV Endwalkerのクロスホットバーをシミュレートしてエクスポートします",
+    "body": "XIVBARSは、ゲーム内のコントロールUIをシミュレートするFFXIVクロスホットバー（XHB/WXHB）プランナーです。マクロを使用してPC、PS4、またはPS5用のホットバーをエクスポートできます。生成されたURLを介して他の人とレイアウト構成を共有したり、ゲームにインポートするマクロコマンドを生成したりできます。"
+  },
+
+  "Hearts": {
+    "heart": "ハート",
+    "hearts": "ハート",
+    "heartTitle": "このレイアウトをハートする",
+    "unheartTitle": "このレイアウトのハートを外す"
+  },
+
+  "HowTo": {
+    "how_to_use_this": "このプランナーの使い方",
+    "body": "コントローラーを使用してファイナルファンタジーXIV Endwalkerで完璧なホットバーインターフェースを設定するのは面倒で時間がかかります。このシミュレーターを使用すると、ゲーム内のコントローラーHUDにコミットする前に、ウェブベースのドラッグアンドドロップインターフェースを使用してさまざまな構成をシミュレートしてホットバーレイアウトを計画できます。",
+    "select_a_class": "FFXIVジョブ/クラスを選択",
+    "plan_your_hotbars": "FFXIVのどのクラス/ジョブのホットバーを選択して計画します",
+    "toggle_hotbars": "FFXIVのホットバーレイアウトを切り替えます",
+    "simulate_hotbars": "クロスホットバー（XHB/WXHB）または標準のホットバーレイアウトをシミュレートします。",
+    "drag_and_drop": "アクションをスロットにドラッグ＆ドロップ",
+    "slot_actions": "選択したクラス/ジョブの戦闘アクションや役割アクション、メニューコマンド、マクロ、その他のアクションをスロットに入れます。",
+    "export_to_macro": "マクロにエクスポートして他の人と共有",
+    "save_and_share": "ファイナルファンタジーXIV Endwalkerのホットバーレイアウトの設定を完了したら、生成されたURLでレイアウトを保存または共有します。また、ゲームにレイアウトをインポートするために使用できるマクロにレイアウトをエクスポートすることもできます。"
+  },
+
+  "JobSelect": {
+    "job_select": "ジョブ選択"
+  },
+
+  "JobsList": {
+    "new_layout": "新しいレイアウトを作成",
+    "new_job_layout": "{{jobName}} の新しいレイアウト"
+  },
+
+  "LayoutCard": {
+    "by": "作成者",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "delete_layout": "レイアウトを削除",
+    "delete_confirm": "このレイアウトを削除してもよろしいですか？",
+    "last_updated": "最終更新"
+  },
+
+  "Lore": {
+    "lore": "ロア"
+  },
+
+  "Pages": {
+    "Index": {
+      "popular_layouts": "人気のレイアウト",
+      "recent_layouts": "最近のレイアウト"
+    },
+    "User": {
+      "title": "{{userName}} さんのホットバー レイアウト • XIVBARS",
+      "description": "{{userName}} さんによる FFXIV のホットバーとクロスホットバーの UI レイアウト。Final Fantasy XIV のホットバーとクロスホットバーのユーザーインターフェースのさまざまな構成やセットアップを探索し、異なる配置、サイズ、カスタマイズオプションでゲームプレイ体験を最適化します。",
+      "new_layout": "新しいレイアウト",
+      "new_layout_icon": "新しいレイアウトアイコン",
+      "my_layouts": "マイレイアウト",
+      "no_layouts": "レイアウトがありません – 新しいものを作成してください！",
+      "saved_layouts": "保存されたレイアウト"
+    },
+    "Job": {
+      "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV ホットバー レイアウト • XIVBARS",
+      "index_description": "{{jobName}} ホットバー レイアウトを他のプレイヤーが作成したものを見てください。",
+      "no_layouts": "{{jobName}} のレイアウトはまだありません。",
+      "create_layout": "新しいレイアウトを作成する。",
+      "new_layout": "新しいレイアウト"
+    },
+    "NotFound": {
+      "status": "404 ページが見つかりません",
+      "title": "これは探しているページではありません",
+      "body": "このURLに存在するページのように見えません。",
+      "option1": "前のページに戻ってもう一度試してみてください",
+      "option2": "このページが存在するべきだと思う場合は問題を報告してください",
+      "option3": "ホームページに戻る"
+    },
+    "ServerError": {
+      "status": "500 サーバーエラー",
+      "title": "うわー！何かが間違っています",
+      "body": "エラーが記録され、できるだけ早く修正します。",
+      "option1": "前のページに戻ってもう一度試してみてください",
+      "option2": "この問題の状態を確認するか、バグを報告してください",
+      "option3": "ホームページに戻る"
+    }
+  },
+
+  "SaveForm": {
+    "title": "タイトル",
+    "description": "説明",
+    "save_layout": "レイアウトを保存",
+    "publish_layout": "レイアウトを公開",
+    "save_draft": "下書きを保存",
+    "cancel": "キャンセル",
+    "failed": "レイアウトを保存できませんでした。もう一度お試しください",
+    "required": "必須",
+    "success": "レイアウトが保存されました！",
+    "markdown_support": "Markdownがサポートされています",
+    "draft": "**説明のないレイアウト** は下書きとして扱われ、一般のリストから非表示になります。しかし、**レイアウト** のURLを介してアクセスできます。"
+  },
+
+  "Sharing": {
+    "share_url": "共有URL",
+    "copy_icon": "コピーのアイコン",
+    "copy_url": "URLをコピー",
+    "url_copied": "URLがコピーされました！"
+  },
+
+  "SignInPrompt": {
+    "sign_in": "このレイアウトを保存するにはサインインしてください",
+    "save_layouts": "プロフィールにレイアウトを保存します。",
+    "add_notes": "メモと説明を追加します。",
+    "short_urls": "短いURL。"
+  },
+
+  "UserNav": {
+    "whats_new": "新着情報",
+    "donate": "寄付する",
+    "donate_title": "寄付はサーバーの維持に役立ちます！",
+    "my_layouts": "マイレイアウト",
+    "logout": "ログアウト",
+    "signin_with_discord": "Discordでサインイン",
+    "report_an_issue": "問題を報告する"
+  }
+}

@@ -1,11 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
+import { translateData, localizePath } from 'lib/utils/i18n';
+import ExportToMacros from 'components/ExportToMacro';
+import Sharing from 'components/Sharing';
 import Link from 'next/link';
-import type { ClassJobProps } from 'types/ClassJob';
 import UserNav from 'components/UserNav';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
 import DuplicateLayout from 'components/ControlBar/DuplicateLayout';
+
+import type { ClassJobProps } from 'types/ClassJob';
+
 import styles from './GlobalHeader.module.scss';
 
 interface Props {
@@ -13,8 +20,10 @@ interface Props {
 }
 
 export function GlobalHeader({ selectedJob }:Props) {
+  const router = useRouter();
+  const { t } = useTranslation();
   const { viewData, viewAction } = useAppState();
-  const { title, id } = viewData || {};
+  const { id } = viewData || {};
 
   return (
     <div className={styles.container}>
@@ -41,29 +50,30 @@ export function GlobalHeader({ selectedJob }:Props) {
               >
                 <img
                   src={`/jobIcons${selectedJob.Icon}`}
-                  alt=""
+                  alt={`${translateData('Name', selectedJob, router.locale)}`}
                   height={20}
                   width={20}
                   className="icon"
                 />
-                {selectedJob.Abbr}
+                {translateData('Abbreviation', selectedJob, router.locale)}
               </Link>
             </li>
 
-            {title && (
-              <li className={[styles.titleSegment, styles.active].join(' ')}>
-                <span className={styles.title}>{title}</span>
+            { ['edit', 'show', 'new'].includes(viewAction as string) && (
+              <li className={styles.actionGroup}>
+                <Sharing />
+                <ExportToMacros />
               </li>
-            )}
+            ) }
 
             <li className={viewAction !== 'new' ? styles.action : ''}>
               <a
-                href={`/job/${selectedJob.Abbr}/new`}
+                href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
                 className="button"
                 data-active={viewAction === 'new'}
               >
-                <Icon id={Icons.ADD} alt="New Layout Icon" />
-                <span className="btn-label">New Layout</span>
+                <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
+                <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
               </a>
 
               { id && <DuplicateLayout /> }

@@ -68,9 +68,9 @@ export async function read(
           select: { hearts: true }
         }
       }
-    }).catch((error:object) => {
+    }).catch((error:Error) => {
       console.error(error);
-      throw new Error('Could not read layout.');
+      return new Error('Could not read layout.');
     });
 
   return { ...viewData, hearted: hearted || undefined };

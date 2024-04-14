@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
+import { appWithTranslation, useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import analytics from 'lib/analytics';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
-import I18n from 'lib/I18n/locale/en-US';
 import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
 import { SessionProvider } from 'next-auth/react';
@@ -16,7 +16,8 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import 'styles/global.scss';
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
+  const { t } = useTranslation('common');
   const { selectedJob, session } = pageProps;
   const router = useRouter();
 
@@ -24,13 +25,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
   function generateTitle() {
     if (selectedJob) {
-      return `FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup Guide | ${I18n.Global.title}`;
+      return `FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Hotbar Setup Guide | ${t('Global.title')}`;
     }
-    return I18n.Global.title;
+    return t('Global.title');
   }
 
   function generateDescription() {
-    return I18n.Global.description;
+    return t('Global.description');
   }
 
   const pageTitle = generateTitle();
@@ -40,14 +41,14 @@ export default function App({ Component, pageProps }: AppProps) {
     <ErrorBoundary fallback={(
       <div className="container container-sm panel panel-white mt-xl">
         <div className="system-message fail text-md">
-          {I18n.Error.generic.title}
+          {t('Error.generic.title')}
         </div>
 
         <div className="section mt-md mb-md text-center pad-lg mb-0">
-          <p className="text-xl">{I18n.Error.generic.body}</p>
+          <p className="text-xl">{t('Error.generic.body')}</p>
 
           <a className="button btn-alt btn-inline mb-lg" href="/">
-            {I18n.Error.generic.go_back}
+            {t('Error.generic.go_back')}
           </a>
 
           <div className="text-center">
@@ -93,3 +94,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </ErrorBoundary>
   );
 }
+
+export default appWithTranslation(App);

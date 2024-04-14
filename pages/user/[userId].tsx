@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 import db from 'lib/db';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
-import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
 import { useUserState, useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
@@ -27,6 +28,7 @@ interface UserViewProps {
 }
 
 export default function User({ user }:UserViewProps) {
+  const { t } = useTranslation();
   const { data: session } = useSession();
   const isCurrentUser = user.id === session?.user.id;
   const userDispatch = useUserDispatch();
@@ -46,8 +48,11 @@ export default function User({ user }:UserViewProps) {
     <>
       <Head>
         <meta name="robots" content="noindex" />
-        <title>{`Hotbar Layouts by ${user.name} • XIVBARS`}</title>
-        <meta name="description" content={`FFXIV hotbar and cross hotbar UI layouts by ${user.name}. Explore various configurations and setups for Final Fantasy XIV’s hotbar and cross hotbar user interfaces, optimizing your gameplay experience with different placement, size, and customization options.`} />
+        <title>{t('Pages.User.title', { userName: user.name })}</title>
+        <meta
+          name="description"
+          content={t('Pages.User.description', { userName: user.name })}
+        />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
@@ -71,7 +76,7 @@ export default function User({ user }:UserViewProps) {
 
         { (!layouts || layouts.length <= 0) && (
           <h2 id="jobSelectTitle">
-            {I18n.Pages.User.no_layouts}
+            {t('Pages.User.no_layouts')}
           </h2>
         ) }
       </div>
@@ -84,8 +89,8 @@ export default function User({ user }:UserViewProps) {
                 <Link href="/">
                   <Card className={[styles.card, styles.newCard].join(' ')}>
                     <h4 className={styles.placeholder}>
-                      <Icon id={Icons.ADD} type="white" alt={I18n.Pages.User.new_layout_icon} />
-                      <span className="btn-layout">{I18n.Pages.User.new_layout}</span>
+                      <Icon id={Icons.ADD} type="white" alt={t('Pages.User.new_layout_icon')} />
+                      <span className="btn-layout">{t('Pages.User.new_layout')}</span>
                     </h4>
                   </Card>
                 </Link>
@@ -97,7 +102,7 @@ export default function User({ user }:UserViewProps) {
 
       { isCurrentUser && user.hearts && user.hearts.length > 0 && (
         <div className="container section">
-          <h2>{I18n.Pages.User.saved_layouts}</h2>
+          <h2>{t('Pages.User.saved_layouts')}</h2>
           <LayoutsList layouts={user.hearts} />
         </div>
       )}
@@ -191,6 +196,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       user: serializedUser
     }
   };

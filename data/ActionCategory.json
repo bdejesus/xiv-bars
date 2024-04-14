@@ -1,23 +1,29 @@
 {
   "BuddyAction": {
     "prefix": "b",
-    "command": "companion"
+    "command": "companion",
+    "columns": ["IconHD", "Name_ja", "UrlType", "Description", "Description_ja"]
   },
   "CompanyAction": {
-    "prefix": "o"
+    "prefix": "o",
+    "columns": ["IconHD", "Name_ja", "UrlType", "Description", "Description_ja"]
   },
   "GeneralAction": {
     "prefix": "g",
-    "command": "general"
+    "command": "general",
+    "columns": ["IconHD", "Name_ja", "UrlType", "Description", "Description_ja"]
   },
   "MacroIcon": {
-    "prefix": "m"
+    "prefix": "m",
+    "columns": ["IconHD", "UrlType"]
   },
   "MainCommand": {
-    "prefix": "c"
+    "prefix": "c",
+    "columns": ["IconHD", "Name_ja", "UrlType", "Description", "Description_ja"]
   },
   "PetAction": {
     "prefix": "e",
-    "command": "pet"
+    "command": "pet",
+    "columns": ["IconHD", "Name_ja", "UrlType", "Description", "Description_ja"]
   }
 }

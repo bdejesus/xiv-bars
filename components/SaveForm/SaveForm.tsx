@@ -1,7 +1,7 @@
 import { createRef, useState, useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import I18n from 'lib/I18n/locale/en-US';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
@@ -15,6 +15,7 @@ import SignInPrompt from './SignInPrompt';
 import styles from './SaveForm.module.scss';
 
 function SaveForm() {
+  const { t } = useTranslation();
   const { data: session } = useSession();
   const router = useRouter();
   const titleField = createRef<HTMLInputElement>();
@@ -79,7 +80,7 @@ function SaveForm() {
           type: SystemActions.SET_MESSAGE,
           payload: {
             status: 'success',
-            text: I18n.SaveForm.success
+            text: t('SaveForm.success')
           }
         });
 
@@ -96,7 +97,7 @@ function SaveForm() {
           type: SystemActions.SET_MESSAGE,
           payload: {
             status: 'fail',
-            text: I18n.SaveForm.failed
+            text: t('SaveForm.failed')
           }
         });
       });
@@ -126,9 +127,9 @@ function SaveForm() {
   return (
     <div className={styles.saveForm}>
       <form className={styles.form}>
-        <div className="control">
+        <div className={`control ${styles.titleField}`}>
           <label htmlFor="title">
-            <div>{I18n.SaveForm.title} <small>required</small></div>
+            <div>{t('SaveForm.title')} <small>{t('SaveForm.required')}</small></div>
             <input
               type="text"
               id="title"
@@ -142,10 +143,10 @@ function SaveForm() {
           </label>
         </div>
 
-        <div className="control">
+        <div className={`control ${styles.descriptionField}`}>
           <label htmlFor="description">
             <div>
-              {I18n.SaveForm.description} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{I18n.SaveForm.markdown_support}</a></small>
+              {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
             </div>
             <textarea
               id="description"
@@ -157,14 +158,14 @@ function SaveForm() {
           </label>
         </div>
 
-        <div className={`modal-footer ${styles.actions}`}>
+        <div className={styles.actions}>
           <button
             type="button"
             onClick={saveLayout}
             className={`button ${shouldPublish && 'btn-primary'}`}
             disabled={!canPublish}
           >
-            { shouldPublish ? I18n.SaveForm.publish_layout : I18n.SaveForm.save_draft }
+            { shouldPublish ? t('SaveForm.publish_layout') : t('SaveForm.save_draft') }
           </button>
 
           { viewAction !== 'new' && (
@@ -173,15 +174,16 @@ function SaveForm() {
               type="button"
               className={`${styles.cancelButton} button btn-clear`}
             >
-              {I18n.SaveForm.cancel}
+              {t('SaveForm.cancel')}
             </button>
           )}
         </div>
 
-        <ReactMarkdown className={styles.info}>
-          {I18n.SaveForm.draft}
-        </ReactMarkdown>
       </form>
+
+      <ReactMarkdown className={styles.info}>
+        {t('SaveForm.draft')}
+      </ReactMarkdown>
     </div>
   );
 }

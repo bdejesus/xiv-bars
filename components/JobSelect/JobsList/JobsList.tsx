@@ -1,4 +1,7 @@
+import { useRouter } from 'next/router';
 import type { ClassJobProps } from 'types/ClassJob';
+import { useTranslation } from 'next-i18next';
+import { translateData, localizePath } from 'lib/utils/i18n';
 import Link from 'next/link';
 import Icon, { Icons } from 'components/Icon';
 import Job from '../Job';
@@ -12,6 +15,9 @@ interface Props {
 }
 
 export function JobsList({ abbr, title, jobs }: Props) {
+  const { t } = useTranslation();
+  const { locale } = useRouter();
+
   return (
     <div className={styles.group}>
       <h3 className={styles.title}><abbr title={title}>{abbr}</abbr></h3>
@@ -23,10 +29,10 @@ export function JobsList({ abbr, title, jobs }: Props) {
               <Job job={job} />
             </Link>
 
-            <Link
-              href={`/job/${job.Abbr}/new`}
+            <a
+              href={localizePath(`/job/${job.Abbr}/new`, locale)}
               className={`button btn-icon ${styles.addBtn}`}
-              data-title={`New ${job.Name} Layout`}
+              data-title={t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
               data-title-anchor="left-left"
             >
               <Icon
@@ -35,7 +41,7 @@ export function JobsList({ abbr, title, jobs }: Props) {
                 type="white"
                 alt="New Layout Icon"
               />
-            </Link>
+            </a>
           </li>
         ))}
       </ul>

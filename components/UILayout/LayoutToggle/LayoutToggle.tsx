@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { layouts } from 'lib/xbars';
 import { buildUrl } from 'lib/utils/url';
@@ -7,6 +8,7 @@ import Icon from 'components/Icon';
 import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { viewData, readOnly, selectedJob } = useAppState();
   const defaultLayout = layouts[viewData.layout as keyof typeof layouts];
@@ -44,7 +46,9 @@ export function LayoutToggle() {
             data-disabled={readOnly && layoutKey !== 'chotbar'}
           >
             <Icon id="xhb" alt="" />
-            <abbr title="Cross Hotbar">XHB</abbr>
+            <abbr title={t('ControlBar.ToggleLayout.xhb_title')}>
+              {t('ControlBar.ToggleLayout.xhb')}
+            </abbr>
           </span>
 
           <span
@@ -53,7 +57,7 @@ export function LayoutToggle() {
             data-disabled={readOnly && layoutKey !== 'hotbar'}
           >
             <Icon id="hb" alt="" />
-            Hotbars
+            {t('ControlBar.ToggleLayout.hotbars')}
           </span>
         </button>
       </div>

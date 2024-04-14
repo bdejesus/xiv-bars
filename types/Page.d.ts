@@ -20,5 +20,5 @@ export interface PageProps {
   selectedJob: ClassJobProps,
   actions: ActionProps[],
   roleActions: ActionProps[],
-  viewAction: string
+  viewAction: 'list' | 'new' | 'edit' | 'show'
 }

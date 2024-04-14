@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
+import { useTranslation } from 'next-i18next';
+import { translateData } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { listJobActions, listRoleActions } from 'lib/api/actions';
-import shortDesc from 'lib/shortDesc';
-import I18n from 'lib/I18n/locale/en-US';
 import GlobalHeader from 'components/GlobalHeader';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
@@ -18,6 +19,7 @@ import type { PageProps } from 'types/Page';
 import styles from '../../Index.module.scss';
 
 export default function Index(props:PageProps) {
+  const { t } = useTranslation();
   const {
     viewData,
     selectedJob,
@@ -27,8 +29,8 @@ export default function Index(props:PageProps) {
   } = props;
   const router = useRouter();
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
-  const pageDescription = shortDesc(selectedJob);
   const appDispatch = useAppDispatch();
+  const jobName = translateData('Name', selectedJob, router.locale);
 
   useEffect(() => {
     appDispatch({
@@ -47,7 +49,7 @@ export default function Index(props:PageProps) {
   return (
     <>
       <Head>
-        <meta name="description" content={pageDescription} />
+        <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
 
@@ -57,10 +59,7 @@ export default function Index(props:PageProps) {
 
       <div className="container section">
         <div className={styles.description}>
-          <h2>{selectedJob.Name} {I18n.Global.title}</h2>
-          <p className={styles.jobDesc}>
-            {shortDesc(selectedJob)}
-          </p>
+          <h2>{jobName} {t('Global.title')}</h2>
           { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
         </div>
       </div>
@@ -89,6 +88,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const roleActions = selectedJob ? await listRoleActions(selectedJob, pvp) : [];
 
     const props = {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: context.query,
       selectedJob,
       actions: jobActions,

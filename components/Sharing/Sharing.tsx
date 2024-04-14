@@ -1,33 +1,29 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable jsx-a11y/label-has-for */
+import { useTranslation } from 'next-i18next';
 import { createRef, useEffect, useState } from 'react';
 import { buildUrl } from 'lib/utils/url';
 import { useRouter } from 'next/router';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import { domain } from 'lib/host';
-import I18n from 'lib/I18n/locale/en-US';
 
 import styles from './Sharing.module.scss';
 
 export function Sharing() {
+  const { t } = useTranslation();
   const router = useRouter();
   const { viewAction } = useAppState();
   const [shareURL, setShareURL] = useState(domain);
   const [copied, setCopied] = useState(false);
   const urlInput = createRef<HTMLInputElement>();
 
-  function getLayoutUrl(jobId?:string, params?:string[]) {
-    const [layoutId] = params || [];
-    return `${domain}/job/${jobId}/${layoutId}`;
-  }
-
   function selectInput() {
     urlInput.current?.focus();
     urlInput.current?.select();
   }
 
-  function copyUrl() {
+  function handleClick() {
     selectInput();
     document.execCommand('copy');
     urlInput.current?.blur();
@@ -36,9 +32,8 @@ export function Sharing() {
   }
 
   useEffect(() => {
-    const [layoutId] = router.query.params || [];
-    const urlString = (viewAction === 'show' && layoutId)
-      ? getLayoutUrl(router.query.jobId as string, router.query.params as string[])
+    const urlString = (viewAction === 'show' && router.query.layoutId)
+      ? `${domain}/job/${router.query.jobId}/${router.query.layoutId}`
       : buildUrl({ query: router.query });
     setShareURL(urlString);
   }, [viewAction, router.query]);
@@ -47,7 +42,7 @@ export function Sharing() {
     <div className={`${styles.container}`} data-copied={copied}>
       <div className="controlGroup">
         <label htmlFor="shareUrl">
-          {I18n.Sharing.share_url}
+          {t('Sharing.share_url')}
         </label>
 
         <input
@@ -64,12 +59,11 @@ export function Sharing() {
       <button
         type="button"
         className={`${styles.copyButton} button btn-icon`}
-        onClick={copyUrl}
-        data-title={copied ? I18n.Sharing.url_copied : I18n.Sharing.share_url}
-        data-title-anchor="left"
+        onClick={handleClick}
+        data-title={copied ? t('Sharing.url_copied') : t('Sharing.share_url')}
       >
-        <Icon id={Icons.LINK} alt={I18n.Sharing.share_url} />
-        <span className="btn-label-hidden">{I18n.Sharing.share_url}</span>
+        <Icon id={Icons.LINK} alt={t('Sharing.share_url')} />
+        <span className="btn-label-hidden">{t('Sharing.share_url')}</span>
       </button>
     </div>
   );

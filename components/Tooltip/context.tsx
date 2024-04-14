@@ -8,7 +8,8 @@ import type {
 import { TooltipAction } from './actions';
 
 const initialState: TooltipState = {
-  content: undefined,
+  title: null,
+  body: null,
   position: { x: 0, y: 0 },
   mouse: { x: 0, y: 0 },
   error: undefined
@@ -21,14 +22,16 @@ function tooltipReducer(_state: TooltipState, action: TooltipActions) {
   switch (action.type) {
     case TooltipAction.HIDE: {
       return {
-        content: {}
+        title: null,
+        body: null
       };
     }
 
     case TooltipAction.UPDATE: {
-      const { content, position } = action.payload;
+      const { title, body, position } = action.payload;
       return {
-        content: { Name: content?.Name, Description: content?.Description },
+        title,
+        body,
         position
       };
     }

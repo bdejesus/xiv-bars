@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { listJobActions, listRoleActions } from 'lib/api/actions';
@@ -8,6 +9,7 @@ import { AppActions } from 'components/App/actions';
 import type { ClassJobProps } from 'types/ClassJob';
 
 export default function PvPToggle() {
+  const { t } = useTranslation();
   const router = useRouter();
   const appDispatch = useAppDispatch();
   const {
@@ -51,18 +53,18 @@ export default function PvPToggle() {
         <abbr
           className="label"
           data-selected={!viewData.isPvp}
-          title="Player Versus Environment"
+          title={t('ControlBar.PvpToggle.pve_title')}
         >
           <Icon id="pve" alt="" />
-          PvE
+          {t('ControlBar.PvpToggle.pve_abbr')}
         </abbr>
         <abbr
           className="label"
           data-selected={viewData.isPvp}
-          title="Player Versus Player"
+          title={t('ControlBar.PvpToggle.pvp_title')}
         >
           <Icon id="pvp" alt="" />
-          PvP
+          {t('ControlBar.PvpToggle.pvp_abbr')}
         </abbr>
       </button>
     </div>

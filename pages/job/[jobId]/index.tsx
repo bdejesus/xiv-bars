@@ -1,6 +1,11 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
+import { translateData } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
+import { useAppDispatch } from 'components/App/context';
+import { AppActions } from 'components/App/actions';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
 import Jobs from 'apiData/Jobs.json';
@@ -8,6 +13,7 @@ import SelectedJob from 'components/JobSelect/SelectedJob';
 import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
+
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
@@ -20,11 +26,17 @@ interface Props {
 }
 
 export default function Layouts({ selectedJob, layouts }: Props) {
+  const { t } = useTranslation();
   const router = useRouter();
+  const appDispatch = useAppDispatch();
+  const jobName = translateData('Name', selectedJob, router.locale);
+  const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
   useEffect(() => {
+    appDispatch({ type: AppActions.VIEW_LIST });
     const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
     const keys = Object.keys(router.query);
+
     if (keys.some((i) => items.includes(i))) {
       router.push({
         pathname: `/job/${selectedJob.Abbr}/new`,
@@ -37,8 +49,13 @@ export default function Layouts({ selectedJob, layouts }: Props) {
     <>
       { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
-          <title>{`FFXIV ${selectedJob.Name} (${selectedJob.Abbr}) Cross Hotbar Layouts • XIVBARS`}</title>
-          <meta name="description" content={`List of hotbar layouts players have created for the ${selectedJob.Name} Class.`} />
+          <title>
+            {t('Pages.Job.index_title', { jobName, jobAbbr })}
+          </title>
+          <meta
+            name="description"
+            content={t('Pages.Job.index_description', { jobName })}
+          />
         </Head>
       )}
 
@@ -60,9 +77,15 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               <LayoutsList layouts={layouts} />
             </div>
           ) : (
-            <h2>
-              No {selectedJob.Name} Layouts yet. <a href={`/job/${selectedJob.Abbr}/new`}>Create one?</a>
-            </h2>
+            <>
+              <h2>{t('Pages.Job.no_layouts', { jobName })}</h2>
+              <a
+                className="button btn-inline btn-primary"
+                href={`/job/${selectedJob.Abbr}/new`}
+              >
+                {t('Pages.Job.create_layout')}
+              </a>
+            </>
           )}
       </div>
 
@@ -72,11 +95,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const jobId: string | string[] | undefined = context.params?.jobId;
-  const selectedJob = jobId
-    ? Jobs.find((job) => job.Abbr === jobId)
-    : null;
+  const jobId = context.params?.jobId as string;
+  const selectedJob = jobId ? Jobs.find((job) => job.Abbr === jobId) : null;
 
+  // Request Layouts
   const layouts = await db.layout.findMany({
     where: {
       jobId: selectedJob?.Abbr,
@@ -95,6 +117,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   });
 
+  // Convert Date Objects into strings
   const serializableLayouts = layouts.map((layout:LayoutViewProps) => ({
     ...layout,
     createdAt: layout?.createdAt?.toString(),
@@ -103,6 +126,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       selectedJob,
       layouts: serializableLayouts
     }

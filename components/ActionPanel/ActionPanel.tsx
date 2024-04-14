@@ -1,4 +1,5 @@
 import React, { useEffect, useState, createRef } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useAppState } from 'components/App/context';
 import MACROS from 'apiData/MacroIcon.json';
 import PET_ACTIONS from 'apiData/PetAction.json';
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export function ActionPanel({ actions, roleActions }: Props) {
+  const { t } = useTranslation();
   const actionPanelRef = createRef<HTMLDivElement>();
   const { showAllLvl } = useAppState();
   const [activeTab, setActiveTab] = useState('panel-actions');
@@ -48,10 +50,10 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-actions'}
         >
-          <ActionGroup actions={displayActions} title="Job Actions" />
+          <ActionGroup actions={displayActions} title={t('ActionPanel.job_actions')} />
 
           {(roleActions && (roleActions.length > 0)) && (
-            <ActionGroup actions={roleActions} title="Role Actions" />
+            <ActionGroup actions={roleActions} title={t('ActionPanel.role_actions')} />
           )}
         </div>
       )}
@@ -61,9 +63,9 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-general'}
         >
-          <ActionGroup actions={GENERAL_ACTIONS} title="General Actions" />
-          <ActionGroup actions={BUDDY_ACTIONS} title="Companion Actions" />
-          <ActionGroup actions={PET_ACTIONS} title="Pet Actions" limit={7} />
+          <ActionGroup actions={GENERAL_ACTIONS} title={t('ActionPanel.general_actions')} />
+          <ActionGroup actions={BUDDY_ACTIONS} title={t('ActionPanel.companion_actions')} />
+          <ActionGroup actions={PET_ACTIONS} title={t('ActionPanel.pet_actions')} limit={7} />
         </div>
       )}
 
@@ -72,7 +74,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-menu'}
         >
-          <ActionGroup actions={MAIN_COMMANDS} title="Menu Commands" />
+          <ActionGroup actions={MAIN_COMMANDS} title={t('ActionPanel.menu_commands')} />
         </div>
       )}
 
@@ -81,7 +83,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-company'}
         >
-          <ActionGroup actions={COMPANY_ACTIONS} title="Company Actions" />
+          <ActionGroup actions={COMPANY_ACTIONS} title={t('ActionPanel.company_actions')} />
         </div>
       )}
 
@@ -90,7 +92,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-macros'}
         >
-          <ActionGroup actions={MACROS} title="Macros" />
+          <ActionGroup actions={MACROS} title={t('ActionPanel.macros')} />
         </div>
       )}
     </div>

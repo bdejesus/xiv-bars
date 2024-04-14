@@ -29,7 +29,8 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
       }
 
       case 'read': {
-        const readLayout = await layoutsApi.read(body.layoutId, userId);
+        const readLayout = await layoutsApi.read(body.layoutId, userId)
+          .catch((error) => console.error(error));
         res.status(200).json(readLayout);
         break;
       }

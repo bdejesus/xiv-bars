@@ -7,31 +7,26 @@
   top: 0;
   width: 100%;
 
-  .actions,
-  .actionGroup {
-    display: flex;
-    flex-direction: row;
-    gap: $spacing-xs;
-  }
-
-  .actions {
-    justify-content: space-between;
-    padding: 8px $spacing-base 0;
-  }
-
-  .actionGroup {
-    display: flex;
-    flex-direction: row;
-  }
-
   .header,
   .body {
     color: $color-gray;
-    padding: 0 $spacing-base;
+    margin: 0 $spacing-base;
+  }
+
+  .title {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     h1 {
       color: $color-gray-dark;
+      flex: 1 1 auto;
       font-size: $font-size-xl-2;
+    }
+
+    button {
+      flex: none;
     }
   }
 
@@ -45,15 +40,10 @@
   }
 
   .body {
-    border-top: 1px solid #ddd;
-    margin-top: $spacing-base;
+    font-size: $font-size-base;
+    line-height: 1.45em;
     padding-bottom: $spacing-lg;
     padding-top: $spacing-base;
-
-    p {
-      font-size: $font-size-base;
-      line-height: 1.45em;
-    }
   }
 
   .meta {

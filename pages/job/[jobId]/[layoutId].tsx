@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
+import { translateData } from 'lib/utils/i18n';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
 import {
@@ -25,8 +27,10 @@ export default function Index(props:PageProps) {
   } = props;
 
   const router = useRouter();
+  const displayName = translateData('Name', selectedJob, router.locale);
+  const displayAbbr = translateData('Abbreviation', selectedJob, router.locale);
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}/${viewData?.id}`;
-  const pageTitle = `${viewData?.title} by ${viewData.user?.name} • ${selectedJob.Name} (${selectedJob.Abbr}) Hotbars • XIVBARS`;
+  const pageTitle = `${viewData?.title} – ${viewData.user?.name} • ${displayName} (${displayAbbr}) • XIVBARS`;
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
@@ -60,13 +64,10 @@ export default function Index(props:PageProps) {
   );
 }
 
-type ContextParam = string | string[] | undefined;
-
 export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
-    const jobId:ContextParam = context.params?.jobId;
-    const params:ContextParam = context.params?.params;
-    const [layoutId] = params as ContextParam[];
+    const jobId = context.params?.jobId as string;
+    const layoutId = context.params?.layoutId as string;
 
     // Get Selected Job
     const selectedJob = Jobs.find((job: ClassJobProps) => job.Abbr === jobId);
@@ -85,6 +86,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const roleActions = await listRoleActions(selectedJob, viewData.isPvp);
 
     const props = {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
       // Hotfix for parsing the hb column from string to number[]
       viewData: { ...viewData, hb: viewData.hb?.split(',') || null },
       selectedJob,

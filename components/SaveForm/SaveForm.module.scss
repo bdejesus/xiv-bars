@@ -31,7 +31,7 @@
 
 .descriptionField {
   font-size: $font-size-base;
-  height: 380px;
+  height: 300px;
   max-height: 60vh;
   min-height: 120px;
   resize: vertical;
@@ -40,12 +40,44 @@
 .actions {
   display: flex;
   flex-direction: row;
+  margin-top: $spacing-lg;
 }
 
 .info {
+  align-self: flex-start;
   background-color: $color-alt-light;
   font-size: $font-size-sm;
   font-style: italic;
   margin-top: $spacing-base;
-  padding: $spacing-base
+  padding: $spacing-base;
+}
+
+@media (max-width: $screen-lg) {
+  .saveForm {
+    display: grid;
+    gap: $spacing-lg;
+    grid-template-columns: 2fr 1fr;
+
+    .descriptionField {
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .saveForm {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .saveForm {
+    display: block;
+
+    .info {
+      font-size: $font-size-sm;
+      line-height: 1.45;
+    }
+  }
+
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'next-i18next';
 
 import styles from './Tabs.module.scss';
 
@@ -8,6 +9,8 @@ interface Props {
 }
 
 export function Tabs({ activeTab, onTabClick }: Props) {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.tabs}>
       <ul className={styles.tabItems}>
@@ -19,7 +22,7 @@ export function Tabs({ activeTab, onTabClick }: Props) {
             data-active={activeTab === 'panel-actions'}
             onClick={onTabClick}
           >
-            Job
+            {t('ActionPanel.job')}
           </button>
         </li>
 
@@ -31,7 +34,7 @@ export function Tabs({ activeTab, onTabClick }: Props) {
             data-active={activeTab === 'panel-general'}
             onClick={(e) => onTabClick(e)}
           >
-            General
+            {t('ActionPanel.general')}
           </button>
         </li>
 
@@ -43,7 +46,7 @@ export function Tabs({ activeTab, onTabClick }: Props) {
             data-active={activeTab === 'panel-menu'}
             onClick={(e) => onTabClick(e)}
           >
-            Menu
+            {t('ActionPanel.menu')}
           </button>
         </li>
         <li>
@@ -54,7 +57,7 @@ export function Tabs({ activeTab, onTabClick }: Props) {
             data-active={activeTab === 'panel-macros'}
             onClick={(e) => onTabClick(e)}
           >
-            Macros
+            {t('ActionPanel.macros')}
           </button>
         </li>
       </ul>

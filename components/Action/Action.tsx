@@ -1,11 +1,12 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { createRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
+import { translateData } from 'lib/utils/i18n';
 import type { ActionProps } from 'types/Action';
-import { getContent } from 'lib/api/actions';
 
 import styles from './Action.module.scss';
 
@@ -13,11 +14,11 @@ import styles from './Action.module.scss';
 let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
-  action: ActionProps,
-  remote?: boolean
+  action: ActionProps
 }
 
-export default function Action({ action, remote }: Props) {
+export default function Action({ action }: Props) {
+  const { locale } = useRouter();
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
   const [hovering, setHovering] = useState(false);
@@ -25,23 +26,8 @@ export default function Action({ action, remote }: Props) {
   const tooltipDispatch = useTooltipDispatch();
   const selectedActionDispatch = useSelectedActionDispatch();
   const hoverDelay = 160;
-
-  async function fetchActionContent(mousePosition: { x: number, y: number}) {
-    try {
-      const content:ActionProps = (action.UrlType && action.ID)
-        ? await getContent(action.UrlType, action.ID)
-        : null;
-      tooltipDispatch({
-        type: TooltipAction.UPDATE,
-        payload: {
-          content: content.Description ? content : action,
-          position: mousePosition
-        }
-      });
-    } catch (error) {
-      tooltipDispatch({ type: TooltipAction.FAIL, payload: { error: 'Something went wrong' } });
-    }
-  }
+  const displayTtile = translateData('Name', action, locale) || action.Name;
+  const displayBody = translateData('Description', action, locale) || action.Description;
 
   function handleMouseLeave() {
     clearTimeout(tooltipTimeout);
@@ -57,24 +43,27 @@ export default function Action({ action, remote }: Props) {
         setHovering(true);
         const mousePosition = { x: e.clientX, y: e.clientY };
 
-        if (action.ID && remote) fetchActionContent(mousePosition);
-        else {
-          tooltipDispatch({
-            type: TooltipAction.UPDATE,
-            payload: { content: action, position: mousePosition }
-          });
-        }
+        tooltipDispatch({
+          type: TooltipAction.UPDATE,
+          payload: {
+            title: displayTtile,
+            body: displayBody,
+            position: mousePosition
+          }
+        });
       }
     }, hoverDelay);
   }
 
-  function selectAction() {
+  function selectAction(e:React.MouseEvent) {
     tooltipDispatch({ type: 'hide' });
     selectedActionDispatch({
       type: 'selectAction',
       payload: { selectedAction: action }
     });
     setDragging(true);
+
+    if (readOnly) e.stopPropagation();
   }
 
   function handleDragEnd() {
@@ -91,21 +80,21 @@ export default function Action({ action, remote }: Props) {
         ref={actionRef}
         className={selectors}
         draggable={!readOnly}
-        onDragStart={selectAction}
+        onDragStart={(e) => selectAction(e)}
         onDragEnd={handleDragEnd}
         onMouseMove={(e) => handleMouseMove(e)}
         onMouseLeave={handleMouseLeave}
         onBlur={handleMouseLeave}
         role="button"
-        onClick={selectAction}
+        onClick={(e) => selectAction(e)}
         tabIndex={0}
-        data-title={action.Name}
+        data-title={displayTtile}
         data-show-title={showTitles}
       >
         <div className={styles.iconWrapper}>
           <Image
             src={action.customIcon ? action.Icon as string : `https://xivapi.com/${action.Icon}`}
-            alt={`${action.Name} Action`}
+            alt={`${displayTtile}`}
             height={40}
             width={40}
           />
@@ -114,7 +103,3 @@ export default function Action({ action, remote }: Props) {
     </>
   );
 }
-
-Action.defaultProps = {
-  remote: true
-};

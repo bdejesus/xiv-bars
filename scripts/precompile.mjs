@@ -1,33 +1,62 @@
 /* eslint-disable no-console */
+import dotenv from 'dotenv';
 import { writeFile, rm, mkdir } from 'fs';
-import appConfig from '../app.config.json' assert { type: "json" };
-import JobsMeta from '../data/JobsMeta.json' assert { type: "json" };
-import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: "json" };
-import ActionCategory from '../data/ActionCategory.json' assert { type: "json" };
+import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
+import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
+import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' };
 import array from '../lib/utils/array.mjs';
+import i18nConfig from '../next-i18next.config.js';
 
-const { apiData } = appConfig;
+dotenv.config();
+
+const dest = './.apiData';
 const apiURL = 'https://xivapi.com';
+const { i18n } = i18nConfig;
+
+function jsonToQuery(json) {
+  return Object.entries(json)
+    .reduce((items, [key, value]) => {
+      const encodedKey = encodeURI(key);
+      const encodedValue = encodeURI(value);
+      if (encodedValue !== 'undefined') items.push(`${encodedKey}=${encodedValue}`);
+      return items;
+    }, [])
+    .join('&');
+}
+
+const columns = ['ID', 'Icon', 'Name', 'Url'];
+
+function getLanguageKeys() {
+  const languageKeys = i18n.locales.reduce((keys, lang) => {
+    if (lang !== 'en') return [...keys, `Name_${lang}`, `Abbreviation_${lang}`];
+    return keys;
+  }, ['Name', 'Abbreviation']);
+
+  return languageKeys;
+}
 
 async function getJobs() {
-  const req = `${apiURL}/ClassJob`;
-  const request = await fetch(req);
-  const data = await request.json();
-  const jobs = data.Results.sort(array.byKey('Name'));
+  const languageKeys = getLanguageKeys();
+  const jobColumns = [...columns, languageKeys];
+  const options = jsonToQuery({ private_key: process.env.XIV_API_KEY, columns: jobColumns.join(',') });
+  const request = await fetch(`${apiURL}/ClassJob?${options}`);
+  const json = await request.json();
+  const jobs = json.Results.sort(array.byKey('Name'));
   const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
   const decoratedJobs = advJobs.map((advancedJob) => {
     const jobData = jobs.find((job) => job.ID === advancedJob.ID);
     return { ...jobData, ...advancedJob };
   });
 
-  writeFile(`${apiData}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
+  writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
 }
 
 async function getActions() {
   const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionSet) => {
-    const actions = await fetch(`${apiURL}/${actionSet}`)
+    const actionColumns = [...columns, ...ActionCategory[actionSet].columns].join(',');
+    const actions = await fetch(`${apiURL}/${actionSet}?columns=${actionColumns}`)
       .then((res) => res.json())
       .then(async (json) => {
         console.log(`Building ${actionSet} actions...`);
@@ -44,7 +73,7 @@ async function getActions() {
         // await clean();
 
         writeFile(
-          `${apiData}/${actionSet}.json`,
+          `${dest}/${actionSet}.json`,
           JSON.stringify(decoratedResults),
           () => null
         );
@@ -56,10 +85,10 @@ async function getActions() {
 
 (async () => {
   try {
-    rm(apiData, { recursive: true }, () => {
+    rm(dest, { recursive: true }, () => {
       console.log('🗑 Cleaning up old files...');
-      mkdir(apiData, () => {
-        console.log(`📂 Creating "${apiData}" directory...`);
+      mkdir(dest, () => {
+        console.log(`📂 Creating "${dest}" directory...`);
         getJobs();
         getActions();
       });

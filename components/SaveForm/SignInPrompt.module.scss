@@ -1,18 +1,72 @@
 @import 'styles/mixins';
 
 .prompt {
-  margin-top: 10vh;
+  margin-top: 4vh;
   text-align: center;
+
+  h3 {
+    color: $color-gray;
+    margin: $spacing-lg 0 0;
+  }
+
+  button {
+    margin: $spacing-base 0 $spacing-lg;
+  }
 
   ul {
     color: #666;
     font-size: $font-size-base;
+    font-style: italic;
+    margin: 0;
     text-align: left;
+
+    li {
+      margin: $spacing-xs;
+    }
+  }
+}
+
+@media (max-width: $screen-md-max) {
+  .prompt {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-xl;
+    justify-content: center;
+    margin-top: $spacing-base;
+
+    .body {
+      display: flex;
+      flex-direction: row;
+      gap: $spacing-lg;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    button {
+      margin-bottom: 0;
+      margin-top: $spacing-base;
+    }
   }
 }
 
 @media (max-width: $screen-sm) {
   .prompt {
-    margin-top: $spacing-lg;
+    align-items: flex-start;
+    gap: $spacing-lg;
+
+    .body {
+      flex-direction: column;
+      gap: $spacing-base;
+    }
+  }
+}
+
+@media (max-width: $screen-xs) {
+  .prompt {
+    align-items: center;
+    flex-direction: column;
   }
 }

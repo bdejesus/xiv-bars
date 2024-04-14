@@ -1,15 +1,22 @@
+'use client';
+
 /* eslint-disable no-restricted-globals */
 import React from 'react';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
-import I18n from 'lib/I18n/locale/en-US';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import LoadScreen from 'components/LoadScreen';
+
+import type { GetStaticProps } from 'next';
+
 import styles from './Index.module.scss';
 
-function Error500() {
-  const pageTitle = `${I18n.Pages.NotFound.title} • ${I18n.Pages.NotFound.status} • XIVBARS`;
+export default function Error404() {
+  const { t } = useTranslation();
+  const pageTitle = `${t('Pages.NotFound.title')} • ${t('Pages.NotFound.status')} • XIVBARS`;
 
   return (
     <>
@@ -25,26 +32,26 @@ function Error500() {
 
         <div className={styles.main}>
           <div className="container section">
-            <small>{I18n.Pages.NotFound.status}</small>
-            <h1>{I18n.Pages.NotFound.title}</h1>
-            <p>{I18n.Pages.NotFound.body}</p>
+            <small>{t('Pages.NotFound.status')}</small>
+            <h1>{t('Pages.NotFound.title')}</h1>
+            <p>{t('Pages.NotFound.body')}</p>
 
             <ul>
               <li>
                 <a href="/" onClick={() => history.back()}>
-                  {I18n.Pages.NotFound.option1}
+                  {t('Pages.NotFound.option1')}
                 </a>
               </li>
 
               <li>
                 <a href="https://github.com/bdejesus/xiv-bars/issues">
-                  {I18n.Pages.NotFound.option2}
+                  {t('Pages.NotFound.option2')}
                 </a>
               </li>
 
               <li>
                 <a href="/">
-                  {I18n.Pages.NotFound.option3}
+                  {t('Pages.NotFound.option3')}
                 </a>
               </li>
             </ul>
@@ -59,4 +66,8 @@ function Error500() {
   );
 }
 
-export default Error500;
+export const getStaticProps:GetStaticProps = async (context) => ({
+  props: {
+    ...(await serverSideTranslations(context.locale as string, ['common'])),
+  }
+});

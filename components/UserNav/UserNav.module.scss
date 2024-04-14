@@ -66,6 +66,7 @@
   flex-direction: row;
   list-style: none;
   margin: 0 $spacing-base;
+  padding-left: 0;
 
   > li {
     margin-left: $spacing-sm;
@@ -118,7 +119,8 @@
   right: 0;
   text-align: right;
   top: 100%;
-  z-index: 10;
+  white-space: nowrap;
+  z-index: 10;;
 
   &[data-active="true"] {
     display: block;

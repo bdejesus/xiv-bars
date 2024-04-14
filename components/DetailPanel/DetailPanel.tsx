@@ -1,8 +1,6 @@
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import I18n from 'lib/I18n/locale/en-US';
 import { formatDateString } from 'lib/utils/time';
-import ExportToMacros from 'components/ExportToMacro';
-import Sharing from 'components/Sharing';
 import ReactMarkdown from 'react-markdown';
 import SaveForm from 'components/SaveForm';
 import EditLayoutButton from 'components/EditLayoutButton';
@@ -13,6 +11,7 @@ import { useSession } from 'next-auth/react';
 import styles from './DetailPanel.module.scss';
 
 export default function DetailPanel() {
+  const { t } = useTranslation();
   const { data: session } = useSession();
   const {
     viewData, readOnly, selectedJob
@@ -31,30 +30,25 @@ export default function DetailPanel() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.actions}>
-        <div className={styles.actionGroup}>
-          <Sharing />
-          <ExportToMacros />
-        </div>
-        <div className={styles.actionGroup}>
-          <EditLayoutButton />
-        </div>
-      </div>
-
       { (readOnly && title && userId)
         ? (
           <>
             <div className={styles.header}>
-              <h1 className="mt-0 mb-0">{title}</h1>
+              <div className={styles.title}>
+                <h1 className="mt-0 mb-0">
+                  {title}
+                </h1>
+                <EditLayoutButton />
+              </div>
 
               <div className={styles.meta}>
                 <div className={styles.owner}>
-                  {I18n.LayoutCard.by} <Link href={`/user/${userId}`}>{user?.name}</Link>
+                  {t('LayoutCard.by')} <Link href={`/user/${userId}`}>{user?.name}</Link>
                 </div>
 
                 { updatedAt && (
                   <div className={styles.timestamp}>
-                    {I18n.LayoutCard.last_updated}: {formatDateString(updatedAt as string)}
+                    {t('LayoutCard.last_updated')}: {formatDateString(updatedAt as string)}
                   </div>
                 )}
 
@@ -85,7 +79,7 @@ export default function DetailPanel() {
                 </ReactMarkdown>
               ) : (
                 <ReactMarkdown className="inline-message warn">
-                  {I18n.DetailPanel.draft}
+                  {t('DetailPanel.draft')}
                 </ReactMarkdown>
               )}
             </div>

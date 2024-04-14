@@ -30,7 +30,7 @@ export const defaultState:AppState = {
   selectedJob: undefined,
   showTitles: false,
   showAllLvl: false,
-  viewAction: 'new',
+  viewAction: undefined,
   roleActions: undefined,
   actions: undefined,
   chotbar,

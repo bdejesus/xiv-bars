@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
+import 'tests/setupTests';
 import { render, screen } from '@testing-library/react';
 import Home from 'pages/index';
 import { fetchMock } from 'mocks/fetchMock';
@@ -8,8 +9,10 @@ const pushMock = jest.fn();
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(() => ({
+    asPath: '/test',
     query: {},
     push: pushMock,
+    locale: 'en',
     events: {
       on: jest.fn(() => ({})),
       off: jest.fn(() => ({}))

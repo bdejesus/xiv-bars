@@ -11,6 +11,10 @@
     opacity: 1;
     pointer-events: none;
   }
+
+  :global(.icon) {
+    margin-right: 0;
+  }
 }
 
 .count {
@@ -19,4 +23,5 @@
   font-size: $font-size-xs;
   font-weight: 400;
   height: 90%;
+  margin-left: $spacing-xs;
 }
