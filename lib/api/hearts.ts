@@ -11,7 +11,7 @@ export function createHeart(layoutId:number) {
   return fetch('/api/layout', options).then((data) => data.json());
 }
 
-export function destroyHeart(layoutId:number, heartId:number) {
+export function breakHeart(layoutId:number, heartId:number) {
   const options = {
     ...baseOptions,
     body: JSON.stringify({ method: 'unheart', layoutId, heartId })

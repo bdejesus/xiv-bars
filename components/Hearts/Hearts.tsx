@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { useAppDispatch } from 'components/App/context';
 import { AppActions } from 'components/App/actions';
 import Icon from 'components/Icon';
-import { createHeart, destroyHeart } from 'lib/api/hearts';
+import { createHeart, breakHeart } from 'lib/api/hearts';
 import analytics from 'lib/analytics';
 import type { HeartProps } from 'types/Heart';
 import styles from './Hearts.module.scss';
@@ -28,7 +28,7 @@ export default function Hearts({
   function handleHeartClick() {
     if (!disabled) {
       const heartAction = hearted
-        ? destroyHeart(layoutId, hearted.id)
+        ? breakHeart(layoutId, hearted.id)
         : createHeart(layoutId);
 
       heartAction.then((json) => {

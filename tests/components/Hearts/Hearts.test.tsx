@@ -3,11 +3,11 @@ import 'tests/setupTests';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Hearts from 'components/Hearts';
-import { createHeart, destroyHeart } from 'lib/api/hearts';
+import { createHeart, breakHeart } from 'lib/api/hearts';
 
 jest.mock('lib/api/hearts', () => ({
   createHeart: jest.fn(() => Promise.resolve('Mocked createHeart response')),
-  destroyHeart: jest.fn(() => Promise.resolve('Mocked destroyHeart response')),
+  breakHeart: jest.fn(() => Promise.resolve('Mocked breakHeart response')),
 }));
 
 jest.mock('lib/analytics', () => ({
@@ -44,7 +44,7 @@ describe('Hearts', () => {
     expect(heartBtn.dataset.title).toBe('Hearts.unheartTitle');
     userEvent.click(heartBtn);
     await waitFor(() => {
-      expect(destroyHeart).toHaveBeenCalledWith(layoutId, hearted.id);
+      expect(breakHeart).toHaveBeenCalledWith(layoutId, hearted.id);
     });
   });
 });
