@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { appWithTranslation, useTranslation } from 'next-i18next';
+import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
 import { useRouter } from 'next/router';
 import analytics from 'lib/analytics';
 import { AppProps } from 'next/app';
@@ -13,8 +13,16 @@ import { SystemContextProvider } from 'components/System';
 import { AppContextProvider } from 'components/App/context';
 import Avatar from 'components/Avatar';
 import { ErrorBoundary } from 'react-error-boundary';
+import nextI18NextConfig from '../next-i18next.config.js';
 
-import 'styles/global.scss';
+import '../styles/global.scss';
+
+const emptyInitialI18NextConfig: UserConfig = {
+  i18n: {
+    defaultLocale: nextI18NextConfig.i18n.defaultLocale,
+    locales: nextI18NextConfig.i18n.locales,
+  },
+};
 
 function App({ Component, pageProps }: AppProps) {
   const { t } = useTranslation('common');
@@ -95,4 +103,4 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
-export default appWithTranslation(App);
+export default appWithTranslation(App, emptyInitialI18NextConfig);
