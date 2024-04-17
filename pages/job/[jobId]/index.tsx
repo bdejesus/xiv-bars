@@ -29,8 +29,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
   const appDispatch = useAppDispatch();
-  const jobName = translateData('Name', selectedJob, router.locale);
-  const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
+  const jobName = selectedJob.Name && translateData('Name', selectedJob, router.locale);
+  const jobAbbr = selectedJob.Abbreviation && translateData('Abbreviation', selectedJob, router.locale);
 
   useEffect(() => {
     appDispatch({ type: AppActions.VIEW_LIST });
