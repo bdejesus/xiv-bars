@@ -246,8 +246,6 @@ export function setActionToSlot({
   // Get the target slot
   const slotObject:SlotObject = groupedSlots ? targetSlot() : { action: undefined };
 
-  console.log('action ', action);
-
   // Update the target slot's action
   if (slotObject) slotObject.action = action;
 
