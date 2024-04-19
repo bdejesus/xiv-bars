@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
-import { translateData } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
 import {

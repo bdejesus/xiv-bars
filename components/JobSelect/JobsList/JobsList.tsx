@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import type { ClassJobProps } from 'types/ClassJob';
 import { useTranslation } from 'next-i18next';
-import { translateData, localizePath } from 'lib/utils/i18n';
+import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import Link from 'next/link';
 import Icon, { Icons } from 'components/Icon';
 import Job from '../Job';

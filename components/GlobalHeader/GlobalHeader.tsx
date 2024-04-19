@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { translateData, localizePath } from 'lib/utils/i18n';
+import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import ExportToMacros from 'components/ExportToMacro';
 import Sharing from 'components/Sharing';
 import Link from 'next/link';

@@ -5,6 +5,7 @@ import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
 import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' };
 import array from '../lib/utils/array.mjs';
+import { localizeKeys } from '../lib/utils/i18n.mjs';
 import i18nConfig from '../next-i18next.config.js';
 
 dotenv.config();
@@ -26,18 +27,12 @@ function jsonToQuery(json) {
 
 const columns = ['ID', 'Icon', 'Name', 'Url'];
 
-function getLanguageKeys() {
-  const languageKeys = i18n.locales.reduce((keys, lang) => {
-    if (lang !== 'en') return [...keys, `Name_${lang}`, `Abbreviation_${lang}`];
-    return keys;
-  }, ['Name', 'Abbreviation']);
-
-  return languageKeys;
-}
-
 async function getJobs() {
-  const languageKeys = getLanguageKeys();
-  const jobColumns = [...columns, languageKeys];
+  const jobColumns = [
+    ...columns,
+    ...localizeKeys('Name'),
+    ...localizeKeys('Abbreviation')
+  ];
   const options = jsonToQuery({ private_key: process.env.XIV_API_KEY, columns: jobColumns.join(',') });
   const request = await fetch(`${apiURL}/ClassJob?${options}`);
   const json = await request.json();
@@ -55,7 +50,12 @@ async function getActions() {
   const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionSet) => {
-    const actionColumns = [...columns, ...ActionCategory[actionSet].columns].join(',');
+    const actionColumns = [
+      ...columns,
+      ...ActionCategory[actionSet].columns,
+      ...localizeKeys('Name'),
+      ...localizeKeys('Description')
+    ].join(',');
     const actions = await fetch(`${apiURL}/${actionSet}?columns=${actionColumns}`)
       .then((res) => res.json())
       .then(async (json) => {

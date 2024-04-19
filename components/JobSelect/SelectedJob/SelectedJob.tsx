@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import type { ClassJobProps } from 'types/ClassJob';
-import { translateData } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n.mjs';
 import RoleNames from '../../../data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
 

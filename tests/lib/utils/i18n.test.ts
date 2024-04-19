@@ -1,6 +1,6 @@
-import i18n from 'lib/utils/i18n';
+import i18n from 'lib/utils/i18n.mjs';
 
-describe('lib/utils/i18n', () => {
+describe('lib/utils/i18n.mjs', () => {
   describe('sanitizeName', () => {
     it('sanitizes Name strings', () => {
       const name = '<If(GreaterThan(PlayerParameter(75),0))>Action Name<Else>Not Visible</EndIf>';
@@ -21,6 +21,19 @@ describe('lib/utils/i18n', () => {
     it('handles default locale key', () => {
       const localizedKey = i18n.localizeKey(key);
       expect(localizedKey).toEqual(key);
+    });
+  });
+
+  describe('localizeKeys', () => {
+    it('returns all localized keys', () => {
+      const key = 'Description';
+      const localizedKeys = i18n.localizeKeys(key);
+      expect(localizedKeys).toEqual([
+        'Description',
+        'Description_ja',
+        'Description_de',
+        'Description_fr'
+      ]);
     });
   });
 

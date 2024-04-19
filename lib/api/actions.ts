@@ -1,12 +1,21 @@
 /* eslint-disable no-console */
 
 import UpgradableActions from 'data/UpgradableActions.json';
+import { localizeKeys } from 'lib/utils/i18n.mjs';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { ActionProps } from 'types/Action';
 
 const baseUrl = 'https://xivapi.com';
-const columns = ['ID', 'Icon', 'IconHD', 'Name', 'Name_ja', 'Description', 'Description_ja', 'Url', 'UrlType'].join(',');
+const columns = [
+  'ID',
+  'Icon',
+  'IconHD',
+  'Url',
+  'UrlType',
+  ...localizeKeys('Name'),
+  ...localizeKeys('Description')
+].join(',');
 
 export async function listJobActions(job:ClassJobProps, pvp?:boolean) {
   const isPvP = pvp ? 1 : 0;

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { translateData } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'components/App/context';
 import { AppActions } from 'components/App/actions';

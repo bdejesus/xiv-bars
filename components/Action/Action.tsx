@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useAppState } from 'components/App/context';
 import { useTooltipDispatch, TooltipAction } from 'components/Tooltip';
 import { useSelectedActionDispatch } from 'components/SelectedAction/context';
-import { translateData } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n.mjs';
 import type { ActionProps } from 'types/Action';
 
 import styles from './Action.module.scss';

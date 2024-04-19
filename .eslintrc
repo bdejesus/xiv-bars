@@ -101,6 +101,7 @@
       },
       "alias": {
         "map": [
+          ["@", "."],
           ["apiData", "./.apiData"],
           ["components", "./components"],
           ["data", "./data"],

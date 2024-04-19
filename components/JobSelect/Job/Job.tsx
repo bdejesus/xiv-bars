@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import type { ClassJobProps } from 'types/ClassJob';
-import { translateData } from 'lib/utils/i18n';
+import { translateData } from 'lib/utils/i18n.mjs';
 import styles from './Job.module.scss';
 
 interface Props {
