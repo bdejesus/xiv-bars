@@ -238,13 +238,15 @@ export function setActionToSlot({
     roleActions
   });
 
-  function getTargetSlot() {
+  const targetSlot = () => {
     const slotGroup = groupedSlots[slotIdentifier.parent as keyof typeof groupedSlots];
     return slotGroup[slotIdentifier.id];
   }
 
   // Get the target slot
-  const slotObject:SlotObject = groupedSlots ? getTargetSlot() : { action: undefined };
+  const slotObject:SlotObject = groupedSlots ? targetSlot() : { action: undefined };
+
+  console.log('action ', action);
 
   // Update the target slot's action
   if (slotObject) slotObject.action = action;

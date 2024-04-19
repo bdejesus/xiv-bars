@@ -6,7 +6,8 @@ import {
   useSelectedActionDispatch
 } from 'components/SelectedAction';
 import { SelectedActionAction } from 'components/SelectedAction/actions';
-import { useAppState } from 'components/App/context';
+import { useAppState, useAppDispatch } from 'components/App/context';
+import { AppActions } from 'components/App/actions';
 import Icon, { Icons } from 'components/Icon';
 import type { ActionProps } from 'types/Action';
 import { setActionToSlot } from 'lib/utils/slots';
@@ -29,6 +30,7 @@ export default function Slot({ id, className, action }: Props) {
     roleActions,
     selectedJob
   } = useAppState();
+  const appDispatch = useAppDispatch();
   const {
     layout,
     encodedSlots
@@ -45,7 +47,7 @@ export default function Slot({ id, className, action }: Props) {
 
   function handleSlotUpdate(withAction?:ActionProps) {
     const updatedSlots = setActionToSlot({
-      action: withAction || {},
+      action: withAction,
       slotID: id,
       encodedSlots,
       layout,
@@ -58,7 +60,11 @@ export default function Slot({ id, className, action }: Props) {
         query: router.query,
         mergeData: { s: updatedSlots }
       });
-      router.push(url, undefined, { shallow: true });
+      appDispatch({
+        type: AppActions.SLOT_ACTION,
+        payload: { action: withAction, slotID: id }
+      });
+      if (!viewData.id) router.push(url, undefined, { shallow: true });
     }
   }
 

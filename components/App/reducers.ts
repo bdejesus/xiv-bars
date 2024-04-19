@@ -64,15 +64,18 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     }
 
     case AppActions.SLOT_ACTION: {
-      if (payload?.action && payload?.slotID) {
+      if (payload?.slotID) {
         // Updated the encoded slots string with the given actionID
         const encodedSlots = setActionToSlot({
           action: payload.action,
           slotID: payload.slotID,
           encodedSlots: state.viewData?.encodedSlots,
-          layout
+          layout,
+          actions: state.actions,
+          roleActions: state.roleActions
         });
-        return { ...state, encodedSlots };
+
+        return { ...state, viewData: { ...state.viewData, encodedSlots } };
       }
 
       return state;
