@@ -203,7 +203,7 @@
     "description": "Description",
     "save_layout": "Enregistrer la disposition",
     "publish_layout": "Publier la disposition",
-    "save_draft": "Enregistrer le brouillon",
+    "save": "Sauvegarder",
     "cancel": "Annuler",
     "failed": "Impossible d'enregistrer la disposition. Veuillez réessayer",
     "required": "obligatoire",

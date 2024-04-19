@@ -203,7 +203,7 @@
     "description": "Beschreibung",
     "save_layout": "Layout speichern",
     "publish_layout": "Layout veröffentlichen",
-    "save_draft": "Entwurf speichern",
+    "save": "Speichern",
     "cancel": "Abbrechen",
     "failed": "Layout konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
     "required": "erforderlich",

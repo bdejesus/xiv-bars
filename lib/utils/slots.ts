@@ -241,7 +241,7 @@ export function setActionToSlot({
   const targetSlot = () => {
     const slotGroup = groupedSlots[slotIdentifier.parent as keyof typeof groupedSlots];
     return slotGroup[slotIdentifier.id];
-  }
+  };
 
   // Get the target slot
   const slotObject:SlotObject = groupedSlots ? targetSlot() : { action: undefined };
