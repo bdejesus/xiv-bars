@@ -202,7 +202,7 @@
     "description": "説明",
     "save_layout": "レイアウトを保存",
     "publish_layout": "レイアウトを公開",
-    "save_draft": "下書きを保存",
+    "save": "保存",
     "cancel": "キャンセル",
     "failed": "レイアウトを保存できませんでした。もう一度お試しください",
     "required": "必須",

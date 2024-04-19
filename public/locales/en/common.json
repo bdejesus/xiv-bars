@@ -203,7 +203,7 @@
     "description": "Description",
     "save_layout": "Save Layout",
     "publish_layout": "Publish Layout",
-    "save_draft": "Save Draft",
+    "save": "Save",
     "cancel": "Cancel",
     "failed": "Couldn’t save layout. Please try again",
     "required": "required",

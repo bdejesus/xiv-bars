@@ -43,13 +43,22 @@
   margin-top: $spacing-lg;
 }
 
-.info {
+.info,
+.warning {
   align-self: flex-start;
-  background-color: $color-alt-light;
   font-size: $font-size-sm;
   font-style: italic;
+  line-height: 1.33;
   margin-top: $spacing-base;
   padding: $spacing-base;
+}
+
+.info {
+  background-color: $color-gray-light-3;
+}
+
+.warning {
+  background-color: $color-alt-light;
 }
 
 @media (max-width: $screen-lg) {

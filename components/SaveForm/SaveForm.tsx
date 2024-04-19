@@ -118,7 +118,9 @@ function SaveForm() {
   }
 
   useEffect(() => {
-    const publishable = validTitle && !!viewData.encodedSlots && viewData.encodedSlots.length > 0;
+    const publishable = viewAction === 'edit' || (validTitle
+      && !!viewData.encodedSlots
+      && viewData.encodedSlots.length > 0);
     setCanPublish(publishable);
   }, [viewData, validTitle]);
 
@@ -165,7 +167,7 @@ function SaveForm() {
             className={`button ${shouldPublish && 'btn-primary'}`}
             disabled={!canPublish}
           >
-            { shouldPublish ? t('SaveForm.publish_layout') : t('SaveForm.save_draft') }
+            { t('SaveForm.save') }
           </button>
 
           { viewAction !== 'new' && (
@@ -181,7 +183,7 @@ function SaveForm() {
 
       </form>
 
-      <ReactMarkdown className={styles.info}>
+      <ReactMarkdown className={shouldPublish ? styles.info : styles.warning}>
         {t('SaveForm.draft')}
       </ReactMarkdown>
     </div>
