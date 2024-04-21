@@ -29,8 +29,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
   const appDispatch = useAppDispatch();
-  const jobName = selectedJob.Name && translateData('Name', selectedJob, router.locale);
-  const jobAbbr = selectedJob.Abbreviation && translateData('Abbreviation', selectedJob, router.locale);
+  const jobName = translateData('Name', selectedJob, router.locale);
+  const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
   useEffect(() => {
     appDispatch({ type: AppActions.VIEW_LIST });
@@ -96,7 +96,9 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const jobId = context.params?.jobId as string;
-  const selectedJob = jobId ? Jobs.find((job) => job.Abbr === jobId) : null;
+  const selectedJob = Jobs.find((job) => job.Abbr === jobId);
+
+  if (!selectedJob) return { notFound: true };
 
   // Request Layouts
   const layouts = await db.layout.findMany({
