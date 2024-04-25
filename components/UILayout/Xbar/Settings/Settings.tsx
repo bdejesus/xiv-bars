@@ -2,12 +2,14 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { buildUrl } from 'lib/utils/url';
-import { useAppState } from 'components/App/context';
+import { useAppState, useAppDispatch } from 'components/App/context';
+import { AppActions } from 'components/App/actions';
 import Options from './Options';
 import styles from './Settings.module.scss';
 
 function Settings() {
   const router = useRouter();
+  const appDispatch = useAppDispatch();
   const { viewData, selectedJob } = useAppState();
   const { xhb, wxhb, exhb } = viewData;
 
@@ -15,7 +17,16 @@ function Settings() {
     if (selectedJob) {
       const { value } = event.currentTarget;
       const url = buildUrl({ query: router.query, mergeData: { [id]: value } });
-      router.push(url, undefined, { shallow: true });
+      appDispatch({
+        type: AppActions.SET_STATE,
+        payload: {
+          viewData: {
+            ...viewData,
+            [id]: value ? parseInt(value, 10) : null
+          }
+        }
+      });
+      if (!viewData.id) router.push(url, undefined, { shallow: true });
     }
   }
 

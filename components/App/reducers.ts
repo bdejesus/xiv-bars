@@ -136,6 +136,13 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       };
     }
 
+    case AppActions.SET_STATE: {
+      return {
+        ...state,
+        ...payload
+      };
+    }
+
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }

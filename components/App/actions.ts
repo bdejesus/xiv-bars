@@ -10,7 +10,8 @@ export const AppActions = {
   PUBLISH_LAYOUT: 'PUBLISH_LAYOUT',
   UPDATE_VIEW: 'UPDATE_VIEW',
   INITIALIZE: 'INITIALIZE',
-  VIEW_LIST: 'VIEW_LIST'
+  VIEW_LIST: 'VIEW_LIST',
+  SET_STATE: 'SET_STATE'
 };
 
 export default AppActions;
