@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useAppState } from 'components/App/context';
 import { useSystemState } from 'components/System';
 import LayoutToggle from 'components/UILayout/LayoutToggle';
@@ -7,8 +8,13 @@ import ToggleMaxLvl from './ToggleMaxLvl';
 import styles from './ControlBar.module.scss';
 
 export function ControlBar() {
-  const { readOnly, viewData } = useAppState();
+  const { readOnly, viewData, selectedJob } = useAppState();
+  const [showPvpToggle, setShowPvpToggle] = useState(false);
   const { showModal } = useSystemState();
+
+  useEffect(() => {
+    if (selectedJob) setShowPvpToggle(['DOW', 'DOM'].includes(selectedJob.Discipline));
+  }, [selectedJob]);
 
   return (
     <div className={styles.controlBar} data-active-modal={showModal}>
@@ -19,16 +25,16 @@ export function ControlBar() {
           </div>
 
           { !readOnly && (
-            <div className={styles.control}>
-              <ToggleMaxLvl />
-            </div>
-          )}
+          <>
+            <div className={styles.control}><ToggleMaxLvl /></div>
 
-          { !readOnly && !viewData.id && (
-            <>
-              <LayoutToggle />
-              <PvPToggle />
-            </>
+            { !viewData.id && (
+              <>
+                <LayoutToggle />
+                { showPvpToggle && <PvPToggle /> }
+              </>
+            )}
+          </>
           )}
         </div>
       </div>
