@@ -1,3 +1,5 @@
+@import 'styles/mixins';
+
 $timing: 0.8s;
 
 .title {
@@ -8,22 +10,23 @@ $timing: 0.8s;
 .container {
   align-items: center;
   animation-fill-mode: forwards;
-  background-color: rgb(0 0 0 / 90%);
+  background-color: rgb(20 20 20 / 98%);
   display: flex;
   inset: 0;
   justify-content: center;
-  opacity: 0;
+  opacity: 1;
   position: fixed;
   z-index: 10;
 
   &[aria-hidden="false"] {
-    animation: enterLoading 0.33s ease;
+    animation: enterLoading 0.1s ease;
     opacity: 1;
   }
 
   &[aria-hidden="true"] {
     animation: exitLoading 0.66s ease;
     display: flex;
+    opacity: 0;
     pointer-events: none;
   }
 }

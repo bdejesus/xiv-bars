@@ -10,7 +10,7 @@ import SystemReducer from './reducers';
 const defaultState:SystemProps = {
   showModal: false,
   message: undefined,
-  isLoading: false
+  isLoading: true
 };
 const SystemContext = createContext<SystemProps>(defaultState);
 const SystemDispatchContext = createContext<React.Dispatch<SystemDispatchActions>>(() => undefined);
