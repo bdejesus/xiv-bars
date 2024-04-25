@@ -15,36 +15,63 @@
     margin: 0 3px 3px;
   }
 
-  &[data-columns='1'] {
+  &[data-rows='1'] {
     grid-template-columns: repeat(12, 1fr);
   }
 
-  &[data-columns='2'] {
+  &[data-rows='2'] {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr 1fr;
   }
 
-  &[data-columns='3'] {
+  &[data-rows='3'] {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
 
-  &[data-columns='4'] {
+  &[data-rows='4'] {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, 1fr);
   }
 
-  &[data-columns='6'] {
+  &[data-rows='6'] {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
   }
 
-  &[data-columns='12'] {
+  &[data-rows='12'] {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(12, 1fr);
   }
 }
 
+.rowWrapper {
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  height: 100%;
+  padding-top: $spacing-base;
+
+  .layoutControl {
+    background-color: #222;
+    border: none;
+    border-radius: 6px;
+    bottom: 100%;
+    box-shadow: 0 2px 1px rgb(255 255 255 / 25%);
+    color: #fff;
+    left: 3px;
+    opacity: 0;
+    padding: 4px 6px;
+    position: absolute;
+    transform: translateY(15px);
+    transition-duration: $timing-default;
+    transition-property: opacity, transform;
+    transition-timing-function: ease;
+  }
+
+  &:hover .layoutControl {
+    opacity: 1;
+    transform: translateY(11px);
+  }
+}
 
 .container {
   align-items: flex-start;
@@ -81,34 +108,34 @@
       opacity: 0;
     }
   }
-}
 
-.rowWrapper {
-  border-top: 1px solid rgb(255 255 255 / 10%);
-  height: 100%;
-  padding-top: $spacing-base;
-
-  .layoutControl {
-    background-color: #222;
-    border: none;
-    border-radius: 6px;
-    bottom: 100%;
-    box-shadow: $box-shadow;
-    color: #fff;
-    left: 3px;
-    opacity: 0;
-    padding: 4px 6px;
-    position: absolute;
-    transform: translateY(15px);
-    transition-duration: $timing-default;
-    transition-property: opacity, transform;
+  :global(.slot) {
+    transition-duration: 0.33s;
+    transition-property: margin;
     transition-timing-function: ease;
   }
 
-  &:hover {
-    .layoutControl {
-      opacity: 1;
-      transform: translateY(11px);
+  &[data-show-titles='true'] {
+    gap: $spacing-base 100px;
+
+    :global(.slot) {
+      margin: $spacing-xs $spacing-xs $spacing-lg;
+    }
+
+    [data-rows='12'] {
+      :global(.slot) {
+        margin-bottom: $spacing-sm;
+      }
+
+      :global(.action)::after {
+        align-items: center;
+        bottom: 0;
+        display: flex;
+        left: 100%;
+        margin: 0 0 0 $spacing-sm;
+        text-align: left;
+        top: 0;
+      }
     }
   }
 }

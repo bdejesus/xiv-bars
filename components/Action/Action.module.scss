@@ -24,17 +24,30 @@
     cursor: grabbing;
     transform: scale(0.9);
   }
-}
 
-.action[data-show-title="true"]::after {
-  color: #eee;
-  content: attr(data-title);
-  display: block;
-  font-family: Verdana, Arial, sans-serif;
-  font-size: 9px;
-  font-weight: 400;
-  line-height: 1.1;
-  margin-top: $spacing-xs;
+  &::after {
+    color: #eee;
+    content: attr(data-title);
+    display: block;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-left: -$spacing-xs;
+    margin-right: -$spacing-xs;
+    margin-top: $spacing-xs;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    transition-duration: 0.33s;
+    transition-property: opacity;
+    transition-timing-function: ease;
+  }
+
+  &[data-show-title="true"]::after {
+    opacity: 1;
+  }
 }
 
 .iconWrapper {

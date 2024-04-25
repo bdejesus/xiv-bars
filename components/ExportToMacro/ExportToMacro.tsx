@@ -21,6 +21,7 @@ export function ExportToMacros() {
   const currLayout = layouts[layoutIndex] as keyof typeof appState;
 
   const excludeTypes = [
+    'MainCommand',
     'MacroIcon',
     'CompanyAction'
   ];
@@ -30,7 +31,7 @@ export function ExportToMacros() {
       .map(({ action }, index) => {
         if (action.Name
           && action.UrlType
-          && !excludeTypes.includes(action.UrlType)
+          && !excludeTypes.includes(action.UrlType as string)
         ) {
           const slotName = (currLayout === 'chotbar')
             ? chotbarSlotNames[index]

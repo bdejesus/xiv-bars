@@ -9,7 +9,9 @@ import Settings from './Settings';
 import styles from './Xbar.module.scss';
 
 export function Xbar() {
-  const { viewData, chotbar, readOnly } = useAppState();
+  const {
+    viewData, chotbar, readOnly, showTitles
+  } = useAppState();
   const {
     id, xhb, wxhb, exhb
   } = viewData;
@@ -22,7 +24,7 @@ export function Xbar() {
     <>
       { !(id && readOnly) && <Settings />}
 
-      <div className={styles.container}>
+      <div className={styles.container} data-show-titles={showTitles}>
         {chotbarKeys.map((chotbarID) => {
           const barSet = chotbar[chotbarID] as SlotProps[];
           return (

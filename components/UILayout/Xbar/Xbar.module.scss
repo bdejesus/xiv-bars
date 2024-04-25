@@ -5,6 +5,17 @@
   counter-reset: xbarCount;
   display: flex;
   flex-direction: column;
+
+  &[data-show-titles='true'] .xbar {
+    padding-bottom: $spacing-lg;
+    padding-top: $spacing-lg;
+
+    .left::before,
+    .right::before {
+      bottom: -$spacing-base;
+    }
+  }
+
 }
 
 .xbar {
@@ -17,6 +28,9 @@
   order: 3;
   padding: 28px 0 28px 28px;
   position: relative;
+  transition-duration: 0.33s;
+  transition-property: padding;
+  transition-timing-function: ease;
 
   &::before {
     content: counter(xbarCount);
@@ -47,6 +61,9 @@
     right: 0;
     text-align: center;
     text-shadow: -1px -1px 0 #000, 1px 1px 0 rgb(255 255 255 / 33%);
+    transition-duration: 0.33s;
+    transition-property: bottom;
+    transition-timing-function: ease;
     user-select: none;
   }
 
@@ -154,7 +171,10 @@
   }
 }
 
-.set .slot:nth-child(3) :global(.action)[data-show-title="true"]::after {
+.set .slot:nth-child(3) :global(.action)::after {
+  bottom: 100%;
+  margin-bottom: 4px;
+  margin-top: 0;
   position: absolute;
-  transform: translateY(-180%);
+  top: unset;
 }

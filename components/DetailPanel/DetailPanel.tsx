@@ -72,7 +72,7 @@ export default function DetailPanel() {
             <div className={styles.body}>
               { description ? (
                 <ReactMarkdown components={{
-                  h1: 'h4', h2: 'h5', h3: 'h6', h4: 'p', h5: 'p', h6: 'p'
+                  h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
                 }}
                 >
                   {description}

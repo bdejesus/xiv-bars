@@ -6,11 +6,13 @@ import Row from './Row';
 import styles from './Hotbar.module.scss';
 
 export function Hotbar() {
-  const { viewData, hotbar, readOnly } = useAppState();
+  const {
+    viewData, hotbar, readOnly, showTitles
+  } = useAppState();
   const hb = viewData?.hb || defaultState.viewData.hb;
 
   return (
-    <ol className={styles.container}>
+    <ol className={styles.container} data-show-titles={showTitles}>
       {hb && hotbar && Object.keys(hotbar).map((barKey) => {
         const hotbarRow = hotbar[barKey] as SlotProps[];
         return (
