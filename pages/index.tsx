@@ -87,7 +87,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const layoutsQuery = {
-    take: 6,
+    take: 12,
     include: {
       user: {
         select: { name: true }
