@@ -115,7 +115,7 @@ export default function Slot({ id, className, action }: Props) {
         role="button"
         tabIndex={0}
         data-slotted={!!action?.Name}
-        data-disabled={readOnly && !action.Name}
+        data-disabled={readOnly && !action?.Name}
       >
         { action?.Name && <Action action={action} /> }
 
