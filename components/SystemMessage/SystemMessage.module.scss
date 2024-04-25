@@ -1,0 +1,18 @@
+@import 'styles/mixins';
+
+.system {
+  background-color: $color-gray;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  transform: translateY(100%);
+  transition-duration: 0.33s;
+  transition-property: transform;
+  transition-timing-function: ease;
+  z-index: 10;
+
+  &[data-active='true'] {
+    transform: translateY(0);
+  }
+}

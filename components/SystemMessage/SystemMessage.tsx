@@ -1,20 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSystemDispatch, useSystemState, SystemActions } from 'components/System';
+
+import styles from './SystemMessage.module.scss';
 
 export function SystemMessage() {
   const router = useRouter();
   const systemDispatch = useSystemDispatch();
   const { message } = useSystemState();
+  const [showMessage, setShowMessage] = useState(false);
 
-  useEffect(() => {
-    function resetMessage() {
+  function resetMessage() {
+    setShowMessage(false);
+    setTimeout(() => {
       systemDispatch({
         type: SystemActions.SET_MESSAGE,
         payload: undefined
       });
-    }
+    }, 1000);
+  }
 
+  useEffect(() => {
     router.events.on('routeChangeComplete', resetMessage);
 
     return () => {
@@ -22,11 +28,18 @@ export function SystemMessage() {
     };
   }, []);
 
-  if (!message) return null;
+  useEffect(() => {
+    if (message) {
+      setShowMessage(true);
+      setTimeout(resetMessage, 3000);
+    }
+  }, [message]);
 
   return (
-    <div className={`system-message ${message.status}`}>
-      { message.text }
+    <div className={styles.system} data-active={showMessage}>
+      <div className={`system-message ${message?.status}`}>
+        { message?.text }
+      </div>
     </div>
   );
 }
