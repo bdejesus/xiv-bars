@@ -12,6 +12,7 @@ import { UserProvider } from 'components/User/context';
 import { SystemContextProvider } from 'components/System';
 import { AppContextProvider } from 'components/App/context';
 import Avatar from 'components/Avatar';
+import LoadScreen from 'components/LoadScreen';
 import { ErrorBoundary } from 'react-error-boundary';
 import nextI18NextConfig from '../next-i18next.config.js';
 
@@ -94,6 +95,7 @@ function App({ Component, pageProps }: AppProps) {
             <UserProvider>
               <AppContextProvider>
                 <Component {...pageProps} />
+                <LoadScreen />
               </AppContextProvider>
             </UserProvider>
           </SessionProvider>

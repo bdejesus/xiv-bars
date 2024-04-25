@@ -3,11 +3,13 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { layouts } from 'lib/xbars';
 import { buildUrl } from 'lib/utils/url';
+import { useSystemState } from 'components/System/context';
 import { useAppState } from 'components/App/context';
 import Icon from 'components/Icon';
 import styles from './LayoutToggle.module.scss';
 
 export function LayoutToggle() {
+  const { isLoading } = useSystemState();
   const { t } = useTranslation();
   const router = useRouter();
   const { viewData, readOnly, selectedJob } = useAppState();
@@ -38,7 +40,7 @@ export function LayoutToggle() {
           className="button btn-alt btn-switch"
           type="button"
           onClick={toggleHotbarLayout}
-          disabled={readOnly ? true : undefined}
+          disabled={(isLoading || readOnly) ? true : undefined}
         >
           <span
             className="label"

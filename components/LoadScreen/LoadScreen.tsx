@@ -1,21 +1,25 @@
 import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-
+import { useSystemDispatch, useSystemState } from 'components/System/context';
+import { SystemActions } from 'components/System/actions';
 import styles from './LoadScreen.module.scss';
 
 export function LoadScreen() {
+  const systemDispatch = useSystemDispatch();
+  const { isLoading } = useSystemState();
   const { t } = useTranslation();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    router.events.on('routeChangeStart', () => setIsLoading(true));
-    router.events.on('routeChangeComplete', () => setIsLoading(false));
+    const loadStart = () => systemDispatch({ type: SystemActions.LOADING_START });
+    const loadEnd = () => systemDispatch({ type: SystemActions.LOADING_END });
+    router.events.on('routeChangeStart', loadStart);
+    router.events.on('routeChangeComplete', loadEnd);
 
     return () => {
-      router.events.off('routeChangeStart', setIsLoading);
-      router.events.off('routeChangeComplete', setIsLoading);
+      router.events.off('routeChangeStart', loadStart);
+      router.events.off('routeChangeComplete', loadEnd);
     };
   }, [router]);
 

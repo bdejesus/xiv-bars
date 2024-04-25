@@ -8,7 +8,6 @@ import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
-import LoadScreen from 'components/LoadScreen';
 
 import type { GetStaticProps } from 'next';
 
@@ -60,7 +59,6 @@ export default function Error404() {
         </div>
 
         <Footer />
-        <LoadScreen />
       </div>
     </>
   );

@@ -85,7 +85,7 @@ export const hotbar:{[key: string]: object} = buildHotbars();
 export const hotbarKeyPosition = (id: string) => Object.keys(hotbar).indexOf(id);
 
 export const hasActions = (barData: SlotProps[]):boolean => {
-  const slottedActions = barData.map((a) => !!a.action);
+  const slottedActions = barData.map((a) => !!a.action.Name);
   return slottedActions.includes(true);
 };
 

@@ -3,6 +3,8 @@ import type { ClassJobProps } from 'types/ClassJob';
 import { useTranslation } from 'next-i18next';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import Link from 'next/link';
+import { useSystemDispatch } from 'components/System/context';
+import { SystemActions } from 'components/System/actions';
 import Icon, { Icons } from 'components/Icon';
 import Job from '../Job';
 
@@ -15,8 +17,13 @@ interface Props {
 }
 
 export function JobsList({ abbr, title, jobs }: Props) {
+  const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
   const { locale } = useRouter();
+
+  function handleClickNew() {
+    systemDispatch({ type: SystemActions.LOADING_START });
+  }
 
   return (
     <div className={styles.group}>
@@ -34,6 +41,7 @@ export function JobsList({ abbr, title, jobs }: Props) {
               className={`button btn-icon ${styles.addBtn}`}
               data-title={t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
               data-title-anchor="left-left"
+              onClick={handleClickNew}
             >
               <Icon
                 id={Icons.ADD}
