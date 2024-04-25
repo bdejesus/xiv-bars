@@ -19,7 +19,7 @@ export default function Row({ slots, id, hb }: Props) {
 
   return (
     <>
-      <ol className={styles.row} data-columns={hotbarKey}>
+      <ol className={styles.row} data-rows={hotbarKey}>
         {Object.keys(slots).map((slot: string) => {
           const slotItem = slots[parseInt(slot, 10)];
           return (

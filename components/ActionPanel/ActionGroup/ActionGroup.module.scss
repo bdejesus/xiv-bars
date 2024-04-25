@@ -26,6 +26,10 @@
   list-style: none;
   margin: 0;
   padding: 0;
+
+  :global(.action)::after {
+    transition: none;
+  }
 }
 
 .container[data-show-titles="true"] .listActions {
@@ -47,6 +51,7 @@
       font-size: $font-size-sm;
       margin-left: $spacing-base;
       margin-top: 0;
+      position: static;
     }
   }
 }

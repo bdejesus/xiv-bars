@@ -106,7 +106,7 @@ export default function Slot({ id, className, action }: Props) {
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
       <div
         id={id}
-        className={`${styles.slot} ${className}`}
+        className={`${styles.slot} ${className} slot`}
         onDrop={(event) => handleDrop(event)}
         onDragStart={handleDragStart}
         onDragOver={(event) => handleDragOver(event)}
