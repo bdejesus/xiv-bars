@@ -13,7 +13,6 @@ import GlobalHeader from 'components/GlobalHeader';
 import LayoutsList from 'components/LayoutsList';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
-import LoadScreen from 'components/LoadScreen';
 import Icon, { Icons } from 'components/Icon';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
@@ -108,7 +107,6 @@ export default function User({ user }:UserViewProps) {
       )}
 
       <Footer />
-      <LoadScreen />
     </>
   );
 }

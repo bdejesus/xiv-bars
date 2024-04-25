@@ -9,7 +9,6 @@ import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
 import Footer from 'components/Footer';
-import LoadScreen from 'components/LoadScreen';
 // import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
@@ -82,7 +81,6 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       </div>
 
       <Footer />
-      <LoadScreen />
     </>
   );
 }

@@ -6,6 +6,7 @@ export interface SystemProps {
     status: 'info' | 'success' | 'warn' | 'fail' | undefined
   },
   showModal?: boolean,
+  isLoading?: boolean
 }
 
 export type SystemDispatchActions = {
@@ -13,6 +14,7 @@ export type SystemDispatchActions = {
   payload?: {
     showModal?: boolean,
     text?: string,
-    status?: string
+    status?: string,
+    isLoading?: boolean
   }
 };

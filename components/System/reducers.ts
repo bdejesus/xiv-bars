@@ -9,9 +9,19 @@ export function SystemReducer(state:SystemProps, action:SystemDispatchActions) {
       const showModal = payload ? payload.showModal : !state.showModal;
       return { ...state, showModal };
     }
+
     case SystemActions.SET_MESSAGE: {
       return { ...state, message: payload };
     }
+
+    case SystemActions.LOADING_START: {
+      return { ...state, isLoading: true };
+    }
+
+    case SystemActions.LOADING_END: {
+      return { ...state, isLoading: false };
+    }
+
     default: {
       throw new Error(`${type} is an unhandled SystemAction`);
     }
