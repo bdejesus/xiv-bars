@@ -30,12 +30,7 @@ export default function Row({ slots, id, hb }: Props) {
         })}
       </ol>
 
-      { !readOnly && (
-        <LayoutControl
-          id={id}
-          defaultValue={hotbarKey}
-        />
-      )}
+      { !readOnly && <LayoutControl id={id} defaultValue={hotbarKey} /> }
     </>
   );
 }
