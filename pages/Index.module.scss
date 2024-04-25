@@ -32,11 +32,22 @@
 .lists {
   display: grid;
   gap: $spacing-xl;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
 
   ul {
     display: flex;
     flex-direction: column;
+  }
+
+  .recentLayouts {
+    ul {
+      column-count: 2;
+      display: block;
+
+      > li {
+        margin-bottom: $spacing-base;
+      }
+    }
   }
 
   @media (max-width: $screen-sm) {

@@ -27,7 +27,7 @@
 
   .selectedJob {
     border-radius: 0 $border-radius $border-radius 0;
-    color: $color-alt;
+    font-weight: 500;
     margin-left: 0;
 
     :global(.icon) {
