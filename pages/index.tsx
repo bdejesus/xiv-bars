@@ -56,12 +56,12 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
       { popularLayouts?.length >= 5 ? (
         <div className={`container mt-xl ${styles.lists}`}>
-          <div className={styles.listColumn}>
+          <div className={`${styles.listColumn} ${styles.recentLayouts}`}>
             <h2>{t('Pages.Index.recent_layouts')}</h2>
             <LayoutsList layouts={recentLayouts} />
           </div>
 
-          <div className={styles.listColumn}>
+          <div className={`${styles.listColumn} ${styles.popularLayouts}`}>
             <h2>{t('Pages.Index.popular_layouts')}</h2>
             <LayoutsList layouts={popularLayouts} />
           </div>
@@ -87,7 +87,6 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const layoutsQuery = {
-    take: 12,
     include: {
       user: {
         select: { name: true }
@@ -100,6 +99,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const layouts = await db.layout.findMany({
     ...layoutsQuery,
+    take: 12,
     where: {
       title: { not: '' },
       description: { not: '' }
@@ -111,6 +111,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const popularLayouts = await db.layout.findMany({
     ...layoutsQuery,
+    take: 6,
     where: {
       title: { not: '' },
       description: { not: '' },
