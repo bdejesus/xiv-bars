@@ -5,7 +5,6 @@ import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { listJobActions, listRoleActions } from 'lib/api/actions.mjs';
 import GlobalHeader from 'components/GlobalHeader';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
@@ -78,21 +77,21 @@ type ContextQuery = {
 export const getServerSideProps:GetServerSideProps = async (context) => {
   try {
     const { jobId, isPvp } = context.query as ContextQuery;
-    const pvp:boolean|undefined = !isPvp ? undefined : isPvp === '1';
+    const pvp:boolean = !isPvp ? false : isPvp === '1';
 
     // Get Selected Job
     const selectedJob = jobId ? Jobs.find((job) => job.Abbr === jobId) : null;
     if (!selectedJob) return { notFound: true };
 
-    const jobActions = selectedJob ? await listJobActions(selectedJob, pvp) : [];
-    const roleActions = selectedJob ? await listRoleActions(selectedJob, pvp) : [];
+    const actionsRequest = await fetch(`/api/actions?job=${jobId}&isPvp=${pvp}`);
+    const jobActions = await actionsRequest.json();
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: context.query,
       selectedJob,
-      actions: jobActions,
-      roleActions,
+      actions: jobActions.actions,
+      roleActions: jobActions.roleActions,
       viewAction: 'new'
     };
 
