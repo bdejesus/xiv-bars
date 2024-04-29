@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { listJobActions, listRoleActions } from 'lib/api/actions';
+import { listJobActions, listRoleActions } from 'lib/api/actions.mjs';
 import GlobalHeader from 'components/GlobalHeader';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';

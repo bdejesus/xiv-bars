@@ -7,7 +7,7 @@ import { domain } from 'lib/host';
 import {
   listJobActions,
   listRoleActions
-} from 'lib/api/actions';
+} from 'lib/api/actions.mjs';
 import Head from 'next/head';
 import App, { useAppDispatch, AppActions } from 'components/App';
 import GlobalHeader from 'components/GlobalHeader';
