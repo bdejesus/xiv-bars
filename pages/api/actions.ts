@@ -7,6 +7,10 @@ export default async function actionsHandler(req: NextApiRequest, res: NextApiRe
     const file = `${process.cwd()}/.apiData/JobActions/${params.job}.json`;
 
     fs.readFile(file, 'utf8', (err, data) => {
+      if (err) {
+        res.status(500).json(err);
+      }
+
       const jsonData = JSON.parse(data);
       const actions = params.isPvp === 'true' ? jsonData.PvP : jsonData.PvE;
       res.status(200).json(actions);
