@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { domain } from 'lib/host';
 import GlobalHeader from 'components/GlobalHeader';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
@@ -83,15 +84,15 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const selectedJob = jobId ? Jobs.find((job) => job.Abbr === jobId) : null;
     if (!selectedJob) return { notFound: true };
 
-    const actionsRequest = await fetch(`/api/actions?job=${jobId}&isPvp=${pvp}`);
-    const jobActions = await actionsRequest.json();
+    const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${pvp}`);
+    const { actions, roleActions } = await actionsRequest.json();
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: context.query,
       selectedJob,
-      actions: jobActions.actions,
-      roleActions: jobActions.roleActions,
+      actions,
+      roleActions,
       viewAction: 'new'
     };
 

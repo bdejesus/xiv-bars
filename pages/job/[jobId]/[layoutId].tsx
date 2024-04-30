@@ -4,10 +4,6 @@ import { GetServerSideProps } from 'next';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
-import {
-  listJobActions,
-  listRoleActions
-} from 'lib/api/actions.mjs';
 import Head from 'next/head';
 import App, { useAppDispatch, AppActions } from 'components/App';
 import GlobalHeader from 'components/GlobalHeader';
@@ -82,8 +78,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
     const viewData = await fetchView.json();
 
-    const actions = await listJobActions(selectedJob, viewData.isPvp);
-    const roleActions = await listRoleActions(selectedJob, viewData.isPvp);
+    const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
+    const { actions, roleActions } = await actionsRequest.json();
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
