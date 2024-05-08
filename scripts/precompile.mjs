@@ -7,6 +7,7 @@ import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' }
 import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
 import i18nConfig from '../next-i18next.config.js';
+import { listJobActions, listRoleActions } from '../lib/api/actions.mjs';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ function jsonToQuery(json) {
     .join('&');
 }
 
+const delay = 300;
 const columns = ['ID', 'Icon', 'Name', 'Url'];
 
 async function getJobs() {
@@ -44,6 +46,37 @@ async function getJobs() {
   });
 
   writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
+  getJobActions(decoratedJobs);
+}
+
+async function getJobActions(jobs) {
+  return jobs.reduce(async (accumulatorPromise, job) => {
+    const accumulator = await accumulatorPromise;
+
+    try {
+      const jobActions = await listJobActions(job, false);
+      const roleActions = await listRoleActions(job, false);
+      const jobPvpActions = await listJobActions(job, true);
+      const rolePvPActions = await listRoleActions(job, true);
+
+      console.log(`Writing ${job.Abbr} actions...`);
+
+      const actions = {
+        PvE: {
+          actions: jobActions,
+          roleActions: roleActions
+        },
+        PvP: {
+          actions: jobPvpActions,
+          roleActions: rolePvPActions
+        }
+      }
+      writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actions), () => null);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    } catch (error) {
+      console.error('Error fetching data', error);
+    }
+  }, Promise.resolve([]));
 }
 
 async function getActions() {
@@ -89,8 +122,10 @@ async function getActions() {
       console.log('🗑 Cleaning up old files...');
       mkdir(dest, () => {
         console.log(`📂 Creating "${dest}" directory...`);
-        getJobs();
-        getActions();
+        mkdir(`${dest}/JobActions`, () =>{
+          getJobs();
+          getActions();
+        });
       });
     });
   } catch (e) {

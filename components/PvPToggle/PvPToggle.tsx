@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useSystemState, useSystemDispatch } from 'components/System/context';
 import { SystemActions } from 'components/System/actions';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { listJobActions, listRoleActions } from 'lib/api/actions';
+import { listJobActions, listRoleActions } from 'lib/api/actions.mjs';
 import { buildUrl } from 'lib/utils/url';
 import Icon from 'components/Icon';
 import { AppActions } from 'components/App/actions';
