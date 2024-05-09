@@ -10,6 +10,7 @@ import Hearts from 'components/Hearts';
 import { useUserDispatch, UserActions } from 'components/User';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
+import ReactMarkdown from 'react-markdown';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
@@ -52,9 +53,16 @@ export default function LayoutCard(props:Props) {
         <Link href={`/job/${layout.jobId}/${layout.id}`} className={styles.main}>
           <h3 title={layout.title}>{layout.title}</h3>
 
-          <p className={styles.description}>
-            {layout.description && layout.description}
-          </p>
+          <div className={styles.description}>
+            { layout.description && (
+              <ReactMarkdown components={{
+                h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
+              }}
+              >
+                {layout.description.substring(0, 255)}
+              </ReactMarkdown>
+            )}
+          </div>
         </Link>
 
         { !hideName && (
