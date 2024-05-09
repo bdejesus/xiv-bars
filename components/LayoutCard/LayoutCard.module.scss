@@ -62,7 +62,7 @@
     white-space: nowrap;
   }
 
-  p {
+  .description {
     color: #999;
     flex: 1 1 auto;
     font-size: $font-size-base;
@@ -84,18 +84,35 @@
       right: 0;
       top: 0;
     }
+
+    h2, h3, h4 ,h5, h6 {
+      font-weight: 500;
+      margin: 0 0 $spacing-sm;
+    }
+
+    h2 {
+      font-size: $font-size-base;
+    }
+
+    h3 {
+      font-size: $font-size-sm;
+    }
+
+    h4 {
+      font-size: $font-size-xs;
+    }
+
+    pre {
+      display: none;
+    }
   }
 
   .main {
     flex: 1 1 auto;
 
     &:hover {
-      h3 {
+      > h3 {
         color: $color-alt;
-      }
-
-      p {
-        color: #ccc;
       }
     }
   }

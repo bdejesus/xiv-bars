@@ -42,8 +42,6 @@ export function renderMeta(title: string, description: string) {
           })
         }}
       />
-
-      <Script data-ad-client="ca-pub-3274093949320222" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
     </>
   );
 }
