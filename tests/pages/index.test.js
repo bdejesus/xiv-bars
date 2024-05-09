@@ -24,6 +24,10 @@ jest.mock('next-auth/react', () => ({
   useSession: jest.fn(() => ({}))
 }));
 
+jest.mock('react-markdown', () => ({
+  ReactMarkdown: jest.fn()
+}));
+
 describe('Home', () => {
   window.fetch = fetchMock();
 
