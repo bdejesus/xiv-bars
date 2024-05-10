@@ -80,6 +80,7 @@ export default function LayoutCard(props:Props) {
         )}
 
         <div className={styles.footer}>
+          <Tags layoutView={layout} job={job} />
           { layout._count?.hearts > 0 && (
             <Hearts
               layoutId={layout.id as number}
@@ -87,7 +88,6 @@ export default function LayoutCard(props:Props) {
               className={styles.hearts}
             />
           )}
-          <Tags layoutView={layout} job={job} />
         </div>
 
         <div

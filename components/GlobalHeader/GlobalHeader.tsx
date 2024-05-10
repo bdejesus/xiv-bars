@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
-import { translateData, localizePath } from 'lib/utils/i18n.mjs';
+import { localizePath } from 'lib/utils/i18n.mjs';
 import ExportToMacros from 'components/ExportToMacro';
 import Sharing from 'components/Sharing';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ import { SystemActions } from 'components/System/actions';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
+import Job from 'components/JobSelect/Job';
 import DuplicateLayout from 'components/ControlBar/DuplicateLayout';
 
 import type { ClassJobProps } from 'types/ClassJob';
@@ -53,17 +54,10 @@ export function GlobalHeader({ selectedJob }:Props) {
 
               <Link
                 href={`/job/${selectedJob.Abbr}`}
-                className={`${styles.selectedJob} button ${viewAction === 'list' && 'btn-alt'}`}
-
+                className={`${styles.jobLink} ${viewAction === 'list' && 'btn-alt'}`}
+                // className={`button btn-link${viewAction === 'list' && 'btn-alt'}`}
               >
-                <img
-                  src={`/jobIcons${selectedJob.Icon}`}
-                  alt={`${translateData('Name', selectedJob, router.locale)}`}
-                  height={20}
-                  width={20}
-                  className="icon"
-                />
-                {translateData('Abbreviation', selectedJob, router.locale)}
+                <Job job={selectedJob} name={false} className={styles.selectedJob} />
               </Link>
             </li>
 
@@ -77,7 +71,7 @@ export function GlobalHeader({ selectedJob }:Props) {
             <li className={viewAction !== 'new' ? styles.action : ''}>
               <a
                 href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
-                className="button"
+                className="button btn-primary"
                 data-active={viewAction === 'new'}
                 onClick={handleClickNew}
               >

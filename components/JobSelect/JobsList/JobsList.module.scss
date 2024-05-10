@@ -7,7 +7,7 @@ $button-inset: 10px;
   display: block;
   margin-bottom: $spacing-sm;
   margin-top: 0;
-  padding-left: 10px;
+  padding-left: 4px;
 }
 
 .jobList {
@@ -41,8 +41,7 @@ $button-inset: 10px;
     border-radius: 4px;
     color: #fff;
     display: flex;
-    height: $spacing-xl;
-    padding: 0 $button-inset 0 4px;
+    padding: 4px $button-inset 4px 4px;
     position: relative;
     transition: background-color 0.33s ease;
 

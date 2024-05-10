@@ -52,7 +52,7 @@ export default function UserNav({ className }:{ className?: string}) {
         <div className={styles.profileNav}>
           {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
           <div
-            className={`${styles.profile} button`}
+            className={`${styles.profile} button btn-clear`}
             onClick={toggleMenu}
             role="button"
             tabIndex={0}

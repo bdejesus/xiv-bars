@@ -1,12 +1,10 @@
 @import "styles/mixins";
 
 .lore {
-  font-style: italic;
   margin-bottom: $spacing-lg;
 }
 
 .loreBody {
-  color: #666;
   font-size: $font-size-lg;
   font-weight: 300;
 

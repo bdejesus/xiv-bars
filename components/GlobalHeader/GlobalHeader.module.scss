@@ -25,15 +25,38 @@
     }
   }
 
+  .jobLink {
+    color: #fff;
+    display: flex;
+    height: 100%;
+
+    :global(.job-wrapper) {
+      border-radius: 0 4px 4px 0;
+      display: flex;
+      height: 100%;
+      padding-left: $spacing-sm;
+    }
+
+    :global(.job-icon) {
+      height: 24px;
+      width: 24px;
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      :global(.job-wrapper) {
+        outline: 10px solid curentcolor;
+      }
+    }
+  }
+
   .selectedJob {
     border-radius: 0 $border-radius $border-radius 0;
-    font-weight: 500;
+    height: 100%;
+    line-height: 1;
     margin-left: 0;
-
-    :global(.icon) {
-      filter: $icon-filter-yellow;
-      margin-left: -6px;
-    }
+    padding: 0;
   }
 
   .titleSegment {
