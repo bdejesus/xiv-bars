@@ -211,6 +211,11 @@
   .globalNav {
     ol {
       gap: $spacing-sm;
+      margin-left: -$spacing-base;
+      overflow: auto hidden;
+      padding-left: $spacing-base;
+      padding-right: $spacing-base;
+      width: 100vw;
 
       > li::before {
         display: none;

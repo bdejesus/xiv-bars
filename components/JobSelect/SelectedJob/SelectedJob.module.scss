@@ -38,3 +38,15 @@
   margin-bottom: $spacing-sm;
   opacity: 0.25;
 }
+
+@media (max-width: $screen-sm) {
+  .title {
+    :global(.job-abbr) {
+      font-size: $font-size-xl-2;
+    }
+
+    :global(.job-name) {
+      font-size: $font-size-xl-2;
+    }
+  }
+}

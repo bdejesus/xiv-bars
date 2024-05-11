@@ -67,10 +67,13 @@ export default function User({ user }:UserViewProps) {
               {user.name}
             </div>
           </h1>
-          <div className={styles.layoutsCount}>
-            {layouts?.length ? layouts.length : '-'}/{maxLayouts}
-            <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
-          </div>
+
+          { isCurrentUser && (
+            <div className={styles.layoutsCount}>
+              {layouts?.length ? layouts.length : '-'}/{maxLayouts}
+              <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
+            </div>
+          )}
         </div>
 
         { (!layouts || layouts.length <= 0) && (

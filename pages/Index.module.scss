@@ -34,13 +34,21 @@
   gap: $spacing-xl;
   grid-template-columns: 2fr 1fr;
 
-  ul {
-    display: flex;
-    flex-direction: column;
+  .recentLayouts,
+  .popularLayouts {
+    > ul {
+      display: flex;
+      flex-direction: column;
+
+      > li {
+        display: inline-block;
+        width: 100%;
+      }
+    }
   }
 
   .recentLayouts {
-    ul {
+    > ul {
       column-count: 2;
       display: block;
 
@@ -54,7 +62,7 @@
     gap: $spacing-lg;
     grid-template-columns: 1fr;
 
-    .popularLayouts ul {
+    .popularLayouts > ul {
       column-count: 2;
       display: block;
 
@@ -67,8 +75,8 @@
   @media (max-width: $screen-xs-max) {
     display: block;
 
-    .recentLayouts ul,
-    .popularLayouts ul {
+    .recentLayouts > ul,
+    .popularLayouts > ul {
       column-count: 1;
     }
   }
