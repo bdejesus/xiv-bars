@@ -50,6 +50,17 @@ export default function LayoutCard(props:Props) {
   return (
     <div className={styles.layoutCard}>
       <Card className={[styles.card, className].join(' ')}>
+        <div className={styles.tags}>
+          <Tags layoutView={layout} job={job} />
+          { layout._count?.hearts > 0 && (
+            <Hearts
+              layoutId={layout.id as number}
+              count={layout._count?.hearts || 0}
+              className={styles.hearts}
+            />
+          )}
+        </div>
+
         <Link href={`/job/${layout.jobId}/${layout.id}`} className={styles.main}>
           <h3 title={layout.title}>{layout.title}</h3>
 
@@ -78,17 +89,6 @@ export default function LayoutCard(props:Props) {
             {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string)}
           </div>
         )}
-
-        <div className={styles.footer}>
-          { layout._count?.hearts > 0 && (
-            <Hearts
-              layoutId={layout.id as number}
-              count={layout._count?.hearts || 0}
-              className={styles.hearts}
-            />
-          )}
-          <Tags layoutView={layout} job={job} />
-        </div>
 
         <div
           className={styles.jobBackdrop}

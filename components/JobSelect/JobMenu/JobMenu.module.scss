@@ -1,50 +1,39 @@
 @import "styles/mixins";
 
-.jobGroupList {
-  background-color: $panel-bg;
+.container {
+  background-color: #111;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  padding: $spacing-lg;
+
+  h3 {
+    margin-top: 0;
+  }
+
+  .section + .section {
+    margin-top: $spacing-base;
+  }
+}
+
+.categories {
   display: grid;
-  grid-gap: $spacing-base 0;
+  gap: $spacing-base;
   grid-template-columns: 1fr 1fr;
-  list-style: none;
-  margin: 0;
-  padding: $spacing-xl $spacing-base;
-
-  > li {
-    padding-left: $spacing-lg;
-  }
 }
 
-.crafterJobs {
-  border-top: 1px solid $color-gray-dark;
-  padding-top: $spacing-lg;
-}
-
-
-.warning {
-  background-color: rgb(255 245 0 / 10%);
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgb(0 0 0 / 33%);
-  color: rgb(255 245 150 / 100%);
-  margin: 10px auto 0;
-  max-width: 960px;
-  padding: 20px;
-
-  p {
-    margin: 0;
-  }
-}
-
-@media (max-width: $screen-md) {
-  .jobGroupList {
-    grid-template-columns: 1fr;
-  }
+.jobList ul {
+  margin-top: 0;
+  padding: 0 $spacing-base;
 }
 
 @media (max-width: $screen-sm) {
-  .jobGroupList {
-    padding-bottom: $spacing-lg;
-    padding-top: $spacing-lg;
+  .categories {
+    gap: $spacing-sm;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .categories {
+    grid-template-columns: 1fr;
   }
 }

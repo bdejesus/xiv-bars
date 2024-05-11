@@ -7,26 +7,35 @@ export function JobMenu() {
 
   if (!jobs) return null;
 
-  const DoW = jobs.filter((job) => job.Discipline === 'DOW');
-  const DoM = jobs.filter((job) => job.Discipline === 'DOM');
+  const tanks = jobs.filter((job) => job.Role === 'TANK');
+  const healers = jobs.filter((job) => job.Role === 'HEAL');
+  const mages = jobs.filter((job) => job.Role?.match(/MDPS/));
+  const melee = jobs.filter((job) => ['PDPS', 'RDPS'].includes(job.Role || ''));
+
   const DoH = jobs.filter((job) => job.Discipline === 'DOH');
   const DoL = jobs.filter((job) => job.Discipline === 'DOL');
 
   return (
-    <ul className={styles.jobGroupList}>
-      <li>
-        <JobsList abbr="DoW" title="Disciple of War" jobs={DoW} />
-      </li>
-      <li>
-        <JobsList abbr="DoM" title="Disciple of Magic" jobs={DoM} />
-      </li>
-      <li className={styles.crafterJobs}>
-        <JobsList abbr="DoH" title="Disciple of the Hand" jobs={DoH} />
-      </li>
-      <li className={styles.crafterJobs}>
-        <JobsList abbr="DoL" title="Disciple of the Land" jobs={DoL} />
-      </li>
-    </ul>
+    <div className={styles.container}>
+      <div className={styles.section}>
+        <h3>DoW/DoM</h3>
+
+        <div className={styles.categories}>
+          <JobsList abbr="Tank" title="Disciple of War" jobs={tanks} className={styles.jobList} />
+          <JobsList abbr="Healer" title="Disciple of Magic" jobs={healers} className={styles.jobList} />
+          <JobsList abbr="Melee DPS" title="Disciple of Magic" jobs={melee} className={styles.jobList} />
+          <JobsList abbr="Magic DPS" title="Disciple of Magic" jobs={mages} className={styles.jobList} />
+        </div>
+      </div>
+
+      <div className={styles.section}>
+        <h3>DoH/DoL</h3>
+        <div className={styles.categories}>
+          <JobsList abbr="DoH" title="Disciple of the Hand" jobs={DoH} className={styles.jobList} />
+          <JobsList abbr="DoL" title="Disciple of the Land" jobs={DoL} className={styles.jobList} />
+        </div>
+      </div>
+    </div>
   );
 }
 

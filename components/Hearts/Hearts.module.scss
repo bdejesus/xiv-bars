@@ -19,9 +19,10 @@
 
 .count {
   align-items: center;
-  display: flex;
+  display: inline-flex;
   font-size: $font-size-xs;
   font-weight: 400;
-  height: 90%;
+  line-height: 1;
   margin-left: $spacing-xs;
+  margin-top: -1px;
 }

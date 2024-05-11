@@ -1,27 +1,64 @@
 @import "styles/mixins";
 
-.wrapper {
+.container,
+.jobWrapper {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: row;
+}
+
+.container {
   white-space: nowrap;
 }
 
-.icon {
+.jobWrapper {
+  background-color: #333;
+  border-radius: $border-radius;
+  box-shadow:
+    0 2px 4px rgb(0 0 0 / 33%),
+    inset 1px 1px 0 rgb(255 255 255 / 15%),
+    inset -1px -1px 0 rgb(0 0 0 / 33%);
+  padding: 2px $spacing-base 2px $spacing-xs;
+
+  &[data-role='TANK'] {
+    background-color: #455BC9;
+  }
+
+  &[data-role='HEAL'] {
+    background-color: #467937;
+  }
+
+  &[data-role*='DPS'] {
+    background-color: #7F3A3A;
+  }
+}
+
+.iconWrapper {
   display: inline-block;
-  font-size: 10px;
   height: 32px;
-  margin-right: 6px;
   overflow: hidden;
   vertical-align: middle;
   width: 32px;
 }
 
+.icon {
+  display: block;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 75%));
+  font-size: 10px;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+}
+
 .abbr {
-  font-family: "Lucida Console", Consolas, monospace;
+  font-family: "Chivo Mono", "Lucida Console", Consolas, monospace;
   font-size: 1em;
-  font-weight: 400;
-  margin-right: 6px;
+  font-weight: 500;
 }
 
 .name {
   color: rgb(255 255 255 / 75%);
+  margin-left: $spacing-sm;
   text-transform: capitalize;
 }

@@ -104,6 +104,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       title: { not: '' },
       description: { not: '' }
     },
+    distinct: ['userId'],
     orderBy: {
       updatedAt: 'desc'
     }

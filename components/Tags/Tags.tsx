@@ -14,7 +14,7 @@ export default function Tags({ layoutView, job }:Props) {
   return (
     <div className={styles.tags}>
       { job && (
-        <Link href={`/job/${job.Abbr}`}>
+        <Link href={`/job/${job.Abbr}`} className={styles.jobTag} data-role={job.Role}>
           <Job job={job} className={styles.tag} name={false} />
         </Link>
       )}

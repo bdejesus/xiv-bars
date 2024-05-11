@@ -6,45 +6,47 @@
   flex-direction: row;
 }
 
-.iconWrapper {
-  align-self: flex-start;
-  background-color: #030303;
-  border-radius: 6px;
-  margin-right: 12px;
-  padding: 6px;
-
-  img {
-    display: block;
-  }
-}
-
 .textWrapper {
   text-align: left;
 }
 
 .title {
   color: #fff;
-  font-size: $font-size-xl-2;
   letter-spacing: 0;
+  line-height: 1;
   margin: 0;
-  text-transform: none;
-}
 
-.abbr {
-  font-family: "Lucida Console", Consolas, monospace;
-  font-size: 1em;
-  font-weight: 400;
-  margin-right: 6px;
-}
+  :global(.job-wrapper) {
+    border-radius: 8px;
+    padding: $spacing-sm $spacing-base $spacing-sm $spacing-sm;
+  }
 
-.name {
-  color: #ccc;
-  display: inline-block;
-  text-transform: capitalize;
+  :global(.job-abbr) {
+    font-size: 32px;
+    font-weight: 600;
+    text-shadow: -1px 1px 1px rgb(0 0 0 / 33%);
+  }
+
+  :global(.job-name) {
+    font-size: 38px;
+  }
 }
 
 .role {
   font-size: 14px;
   font-weight: 400;
-  opacity: 0.5;
+  margin-bottom: $spacing-sm;
+  opacity: 0.25;
+}
+
+@media (max-width: $screen-sm) {
+  .title {
+    :global(.job-abbr) {
+      font-size: $font-size-xl-2;
+    }
+
+    :global(.job-name) {
+      font-size: $font-size-xl-2;
+    }
+  }
 }

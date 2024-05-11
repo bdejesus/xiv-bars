@@ -13,10 +13,13 @@ import styles from './JobsList.module.scss';
 interface Props {
   abbr: string,
   title: string,
-  jobs: ClassJobProps[]
+  jobs: ClassJobProps[],
+  className?: string
 }
 
-export function JobsList({ abbr, title, jobs }: Props) {
+export function JobsList({
+  abbr, title, jobs, className
+}: Props) {
   const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
   const { locale } = useRouter();
@@ -26,8 +29,8 @@ export function JobsList({ abbr, title, jobs }: Props) {
   }
 
   return (
-    <div className={styles.group}>
-      <h3 className={styles.title}><abbr title={title}>{abbr}</abbr></h3>
+    <div className={`${styles.group} ${className}`}>
+      <h4 className={styles.title}><abbr title={title}>{abbr}</abbr></h4>
 
       <ul className={styles.jobList}>
         {jobs.map((job) => (
@@ -56,5 +59,9 @@ export function JobsList({ abbr, title, jobs }: Props) {
     </div>
   );
 }
+
+JobsList.defaultProps = {
+  className: ''
+};
 
 export default JobsList;

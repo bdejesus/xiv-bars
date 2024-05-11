@@ -117,3 +117,13 @@ label {
 .text-center {
   text-align: center;
 }
+
+@media (max-width: $screen-sm) {
+  h1 {
+    font-size: $font-size-xl-2;
+  }
+
+  h2 {
+    font-size: $font-size-xl;
+  }
+}
