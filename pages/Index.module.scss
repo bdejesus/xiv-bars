@@ -50,7 +50,26 @@
     }
   }
 
-  @media (max-width: $screen-sm) {
+  @media (max-width: $screen-md) {
+    gap: $spacing-lg;
+    grid-template-columns: 1fr;
+
+    .popularLayouts ul {
+      column-count: 2;
+      display: block;
+
+      > li {
+        margin-bottom: $spacing-base;
+      }
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
     display: block;
+
+    .recentLayouts ul,
+    .popularLayouts ul {
+      column-count: 1;
+    }
   }
 }
