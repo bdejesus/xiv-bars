@@ -21,31 +21,21 @@ h2,
 h3,
 h4,
 h5 {
-  color: #ddd;
+  color: #dedede;
   font-weight: 400;
   letter-spacing: 0.015em;
 }
 
 h1 {
-  color: #ccc;
   font-size: $font-size-xl-3;
   line-height: 1.05em;
   margin-bottom: $spacing-base;
   margin-top: 0;
-
-  b {
-    opacity: 0.75;
-  }
 }
 
 h1,
 h2 {
   font-weight: 300;
-}
-
-h2,
-h3 {
-  color: #999;
 }
 
 h2 {

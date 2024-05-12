@@ -1,8 +1,7 @@
 @import "styles/mixins";
 
 .header {
-  border-bottom: 1px solid rgb(0 0 0 / 90%);
-  padding: $spacing-xl;
+  padding: $spacing-xl 0;
 }
 
 .title {
