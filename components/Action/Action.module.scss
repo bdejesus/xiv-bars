@@ -92,7 +92,8 @@
     position: absolute;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     filter: grayscale(0);
   }
 }

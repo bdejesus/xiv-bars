@@ -25,7 +25,8 @@
     transition-property: color, background-color, box-shadow;
     transition-timing-function: ease;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $color-alt;
       text-decoration: none;
     }

@@ -57,7 +57,8 @@
     width: 100%;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: none;
 
     .cta {
@@ -65,7 +66,8 @@
       color: #333;
     }
 
-    .cta:hover {
+    .cta:hover,
+    .cta:focus {
       background-color: #fff;
     }
   }
