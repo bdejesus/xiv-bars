@@ -1,11 +1,12 @@
 @import "styles/mixins";
 
 .footer {
-  background-color: #222;
+  background-color: #111;
   color: #999;
   font-size: 12px;
   line-height: 1.45em;
-  padding: $spacing-lg 0;
+  margin-top: $spacing-xl-2;
+  padding: $spacing-xl 0;
 }
 
 .logo {

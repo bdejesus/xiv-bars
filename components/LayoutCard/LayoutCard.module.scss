@@ -51,6 +51,8 @@
 }
 
 .card {
+  padding: 0;
+
   h3 {
     color: #fff;
     margin: 0;
@@ -109,12 +111,18 @@
 
   .main {
     flex: 1 1 auto;
+    padding: 54px $spacing-base $spacing-sm $spacing-base;
 
     &:hover {
       > h3 {
         color: $color-alt;
       }
     }
+  }
+
+  .footer {
+    border-top: 1px solid rgb(255 255 255 / 5%);
+    padding: $spacing-sm $spacing-base $spacing-base;
   }
 
   .job {
@@ -140,11 +148,8 @@
   }
 
   .owner {
-    border-top: 1px solid rgb(255 255 255 / 5%);
     font-size: $font-size-base;
     line-height: 1.2;
-    margin-top: $spacing-xs;
-    padding-top: $spacing-sm;
 
     a {
       color: #ccc;
@@ -192,7 +197,11 @@
   flex-direction: row;
   gap: $spacing-sm;
   justify-content: space-between;
+  left: $spacing-base;
   margin-bottom: $spacing-base;
+  pointer-events: none;
+  position: absolute;
+  top: $spacing-base;
 
   .hearts {
     color: #fff;

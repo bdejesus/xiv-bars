@@ -76,19 +76,21 @@ export default function LayoutCard(props:Props) {
           </div>
         </Link>
 
-        { !hideName && (
-          <div className={styles.owner}>
-            <Link href={`/user/${layout.userId}`}>
-              {layout.user.name}
-            </Link>
-          </div>
-        )}
+        <div className={styles.footer}>
+          { !hideName && (
+            <div className={styles.owner}>
+              <Link href={`/user/${layout.userId}`}>
+                {layout.user.name}
+              </Link>
+            </div>
+          )}
 
-        { layout.updatedAt && (
-          <div className={styles.timestamp}>
-            {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string)}
-          </div>
-        )}
+          { layout.updatedAt && (
+            <div className={styles.timestamp}>
+              {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string)}
+            </div>
+          )}
+        </div>
 
         <div
           className={styles.jobBackdrop}
