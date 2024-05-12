@@ -34,12 +34,14 @@
       filter: $icon-filter-white;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $color-danger;
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     .cardActions {
       opacity: 1;
     }
@@ -113,7 +115,8 @@
     flex: 1 1 auto;
     padding: 54px $spacing-base $spacing-sm $spacing-base;
 
-    &:hover {
+    &:hover,
+    &:focus {
       > h3 {
         color: $color-alt;
       }
@@ -154,7 +157,8 @@
     a {
       color: #ccc;
 
-      &:hover {
+      &:hover,
+      &:focus {
         color: $color-alt;
       }
     }

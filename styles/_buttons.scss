@@ -166,7 +166,8 @@ button,
     filter: $icon-filter-white;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color-gray-dark-2;
     color: $color-alt;
 
@@ -186,7 +187,8 @@ button,
     }
   }
 
-  &[data-active='true']:hover {
+  &[data-active='true']:hover,
+  &[data-active='true']:focus {
     background-color: $color-alt-dark;
 
     .icon {
@@ -198,7 +200,8 @@ button,
 .btn-primary.button {
   background-color: $color-alt;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: $color-alt-dark;
     color: #fff;
   }
@@ -273,6 +276,7 @@ button,
   }
 
   &:hover,
+  &:focus,
   &:active {
     .label[data-selected="false"] {
       color: $color-alt;
@@ -292,7 +296,8 @@ button,
   background-color: $color-red;
   color: #fff;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: darken($color-red, 10%);
   }
 }

@@ -42,7 +42,8 @@
       width: 24px;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       text-decoration: none;
 
       :global(.job-wrapper) {
@@ -95,7 +96,8 @@
     transition-timing-function: ease;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     transform: scale(1.025);
   }
 }
