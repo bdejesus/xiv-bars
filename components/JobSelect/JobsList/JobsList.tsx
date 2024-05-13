@@ -6,19 +6,18 @@ import Link from 'next/link';
 import { useSystemDispatch } from 'components/System/context';
 import { SystemActions } from 'components/System/actions';
 import Icon, { Icons } from 'components/Icon';
-import Job from '../Job';
+import ClassJob from 'components/ClassJob';
 
 import styles from './JobsList.module.scss';
 
 interface Props {
-  abbr: string,
   title: string,
   jobs: ClassJobProps[],
   className?: string
 }
 
 export function JobsList({
-  abbr, title, jobs, className
+  title, jobs, className
 }: Props) {
   const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
@@ -30,17 +29,17 @@ export function JobsList({
 
   return (
     <div className={`${styles.group} ${className}`}>
-      <h4 className={styles.title}><abbr title={title}>{abbr}</abbr></h4>
+      <h4 className={styles.title}>{title}</h4>
 
       <ul className={styles.jobList}>
         {jobs.map((job) => (
           <li key={job.Name} value={job.ID} data-disabled={job.Disabled}>
             { job.Disabled ? (
-              <Job job={job} />
+              <ClassJob job={job} />
             ) : (
               <>
                 <Link href={`/job/${job.Abbr}`} className={styles.jobLink} draggable={false}>
-                  <Job job={job} />
+                  <ClassJob job={job} />
                 </Link>
 
                 <a

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import type { ClassJobProps } from 'types/ClassJob';
 import { translateData } from 'lib/utils/i18n.mjs';
-import styles from './Job.module.scss';
+import styles from './ClassJob.module.scss';
 
 interface Props {
   job: ClassJobProps,
@@ -13,7 +13,7 @@ interface Props {
   icon?: boolean
 }
 
-export default function Job({
+export default function ClassJob({
   job,
   className,
   abbr,
@@ -55,7 +55,7 @@ export default function Job({
   );
 }
 
-Job.defaultProps = {
+ClassJob.defaultProps = {
   className: '',
   abbr: true,
   name: true,

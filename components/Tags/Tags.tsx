@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Job from 'components/JobSelect/Job';
+import ClassJob from 'components/ClassJob';
 import Icon from 'components/Icon';
 import type { LayoutViewProps } from 'types/Layout';
 import type { ClassJobProps } from 'types/ClassJob';
@@ -15,7 +15,7 @@ export default function Tags({ layoutView, job }:Props) {
     <div className={styles.tags}>
       { job && (
         <Link href={`/job/${job.Abbr}`} className={styles.jobTag} data-role={job.Role}>
-          <Job job={job} className={styles.tag} name={false} />
+          <ClassJob job={job} className={styles.tag} name={false} />
         </Link>
       )}
 

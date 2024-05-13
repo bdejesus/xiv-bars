@@ -11,7 +11,7 @@ import { SystemActions } from 'components/System/actions';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
-import Job from 'components/JobSelect/Job';
+import ClassJob from 'components/ClassJob';
 import DuplicateLayout from 'components/ControlBar/DuplicateLayout';
 
 import type { ClassJobProps } from 'types/ClassJob';
@@ -57,7 +57,7 @@ export function GlobalHeader({ selectedJob }:Props) {
                 className={`${styles.jobLink} ${viewAction === 'list' && 'btn-alt'}`}
                 // className={`button btn-link${viewAction === 'list' && 'btn-alt'}`}
               >
-                <Job job={selectedJob} name={false} className={styles.selectedJob} />
+                <ClassJob job={selectedJob} name={false} className={styles.selectedJob} />
               </Link>
             </li>
 

@@ -83,6 +83,7 @@ $button-inset: 10px;
   transition-duration: $timing-default;
   transition-property: opacity, background-color, width, padding;
   transition-timing-function: ease;
+  transition-delay: 0.15s;
   width: 40px;
   z-index: 2;
 
@@ -99,6 +100,7 @@ $button-inset: 10px;
     font-size: $font-size-base;
     padding: 0 $spacing-base;
     text-align: left;
+    transition-delay: 0.15s;
   }
 
   .addIcon {
