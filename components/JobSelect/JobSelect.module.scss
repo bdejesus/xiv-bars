@@ -23,3 +23,16 @@
   max-width: 100%;
   position: relative;
 }
+
+.jobSelectModal {
+  :global(.modal-container) {
+    max-width: $screen-lg;
+    width: 100%;
+  }
+
+  &.new {
+    :global(.joblist-new) {
+      display: none;
+    }
+  }
+}

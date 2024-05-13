@@ -6,10 +6,13 @@ import styles from './Modal.module.scss';
 interface Props {
   children: ReactNode,
   showModal: boolean,
+  className?: string,
   onClose: () => void
 }
 
-export function Modal({ children, showModal, onClose }: Props) {
+export default function Modal({
+  children, showModal, className, onClose
+}: Props) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(showModal);
 
@@ -32,11 +35,11 @@ export function Modal({ children, showModal, onClose }: Props) {
 
   return (
     <div
-      className={styles.modal}
+      className={[styles.modal, className].join(' ')}
       aria-hidden={!isVisible}
       tabIndex={-1}
     >
-      <div className={styles.container}>
+      <div className={`${styles.container} modal-container`}>
         <CloseButton onClick={onClose} />
         <div className={styles.content}>
           {children}
@@ -46,4 +49,6 @@ export function Modal({ children, showModal, onClose }: Props) {
   );
 }
 
-export default Modal;
+Modal.defaultProps = {
+  className: undefined
+};

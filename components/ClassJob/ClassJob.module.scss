@@ -18,16 +18,32 @@
       color: rgb(0 0 0 / 0%);
     }
 
-    &::before {
+    &::before,
+    &::after {
       background-color: #fff;
       border-radius: 50%;
       content: "";
       display: block;
+      position: absolute;
+    }
+
+    &::before {
+      box-shadow: 0 3px 6px rgb(0 0 0 / 33%);
       filter: blur(3px);
       height: 10px;
-      left: 15px;
-      position: absolute;
+      left: 14px;
+      opacity: 0.8;
+      top: 10px;
       width: 10px;
+    }
+
+    &::after {
+      box-shadow: 0 -2px 4px rgb(0 0 0 / 33%);
+      filter: blur(2px);
+      height: 5px;
+      left: 22px;
+      top: 18px;
+      width: 5px;
     }
   }
 }
@@ -80,6 +96,7 @@
 
 .name {
   color: rgb(255 255 255 / 75%);
+  font-size: $font-size-base;
   margin-left: $spacing-sm;
   text-transform: capitalize;
 }

@@ -5,6 +5,7 @@
   border-radius: $border-radius;
   box-shadow: $box-shadow;
   padding: $spacing-lg;
+  width: 100%;
 
   h3 {
     margin-top: 0;
@@ -21,13 +22,37 @@
   grid-template-columns: 1fr 1fr;
 }
 
-@media (max-width: $screen-sm) {
-  .categories {
-    gap: $spacing-sm;
+.jobList > ul {
+  display: grid;
+  gap: $spacing-sm $spacing-base;
+  grid-template-columns: 1fr 1fr;
+
+  > li {
+    margin: 0;
   }
 }
 
-@media (max-width: $screen-xs-max) {
+@media (max-width: $screen-lg) {
+  .categories {
+    grid-template-columns: 1fr;
+  }
+
+  .jobList > ul {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (max-width: $screen-md) {
+  .categories {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .jobList > ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: $screen-sm) {
   .categories {
     grid-template-columns: 1fr;
   }

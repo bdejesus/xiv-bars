@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { useTranslation } from 'next-i18next';
 import Icon, { Icons } from 'components/Icon';
 import JobMenu from 'components/JobSelect/JobMenu';
@@ -7,12 +7,22 @@ import styles from './JobSelect.module.scss';
 
 interface Props {
   disabled?: boolean,
-  className?: string
+  className?: string,
+  children?: ReactNode,
+  action?: 'new'
 }
 
-export function JobSelect({ disabled, className }: Props) {
+export function JobSelect({
+  disabled, className, children, action
+}: Props) {
   const { t } = useTranslation();
   const [showJobsModal, setShowJobsModal] = useState(false);
+
+  const classNames = () => {
+    const selectors = [styles.jobSelectModal];
+    if (action) selectors.push(styles[action]);
+    return selectors.join(' ');
+  };
 
   function handleShowJobs() {
     setShowJobsModal(true);
@@ -26,22 +36,32 @@ export function JobSelect({ disabled, className }: Props) {
         className={[styles.button, className].join(' ')}
         onClick={handleShowJobs}
         disabled={disabled}
-        data-title={t('JobSelect.job_select')}
+        data-title={children ? null : t('JobSelect.job_select')}
       >
-        <Icon id={Icons.OPTIONS} alt="Options" />
-        <span className="btn-label-hidden">{t('JobSelect.job_select')}</span>
+        { children || (
+          <>
+            <Icon id={Icons.OPTIONS} alt="Options" />
+            <span className="btn-label-hidden">{t('JobSelect.job_select')}</span>
+          </>
+        )}
       </button>
 
-      <Modal showModal={showJobsModal} onClose={() => setShowJobsModal(false)}>
-        <JobMenu />
+      <Modal
+        showModal={showJobsModal}
+        onClose={() => setShowJobsModal(false)}
+        className={classNames()}
+      >
+        <JobMenu action={action} />
       </Modal>
     </>
   );
 }
 
 JobSelect.defaultProps = {
-  disabled: null,
-  className: ''
+  disabled: undefined,
+  className: '',
+  children: undefined,
+  action: undefined
 };
 
 export default JobSelect;

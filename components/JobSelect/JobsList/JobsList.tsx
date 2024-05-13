@@ -13,22 +13,24 @@ import styles from './JobsList.module.scss';
 interface Props {
   title: string,
   jobs: ClassJobProps[],
-  className?: string
+  className?: string,
+  action?: 'new'
 }
 
 export function JobsList({
-  title, jobs, className
+  title, jobs, className, action
 }: Props) {
   const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
   const { locale } = useRouter();
+  const classNames = [styles.container, className].join(' ');
 
   function handleClickNew() {
     systemDispatch({ type: SystemActions.LOADING_START });
   }
 
   return (
-    <div className={`${styles.group} ${className}`}>
+    <div className={classNames}>
       <h4 className={styles.title}>{title}</h4>
 
       <ul className={styles.jobList}>
@@ -38,13 +40,17 @@ export function JobsList({
               <ClassJob job={job} />
             ) : (
               <>
-                <Link href={`/job/${job.Abbr}`} className={styles.jobLink} draggable={false}>
+                <Link
+                  href={action === 'new' ? `/job/${job.Abbr}/new` : `/job/${job.Abbr}`}
+                  className={`${styles.jobLink} jobList-link`}
+                  draggable={false}
+                >
                   <ClassJob job={job} />
                 </Link>
 
                 <a
                   href={localizePath(`/job/${job.Abbr}/new`, locale)}
-                  className={`button btn-icon ${styles.addBtn}`}
+                  className={`button btn-icon ${styles.addBtn} joblist-new`}
                   onClick={handleClickNew}
                 >
                   <Icon
@@ -67,7 +73,8 @@ export function JobsList({
 }
 
 JobsList.defaultProps = {
-  className: ''
+  className: '',
+  action: undefined
 };
 
 export default JobsList;

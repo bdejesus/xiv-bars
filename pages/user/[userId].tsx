@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import db from 'lib/db';
 import Head from 'next/head';
-import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { AppContextProvider } from 'components/App/context';
 import { useUserState, useUserDispatch } from 'components/User/context';
@@ -14,6 +13,7 @@ import LayoutsList from 'components/LayoutsList';
 import Card from 'components/Card';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
+import JobSelect from 'components/JobSelect';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
 import type { GetServerSideProps } from 'next';
@@ -88,14 +88,14 @@ export default function User({ user }:UserViewProps) {
           <LayoutsList layouts={layouts}>
             { (layouts.length < maxLayouts && isCurrentUser) && (
               <li>
-                <Link href="/">
+                <JobSelect className={styles.jobSelectCard} action="new">
                   <Card className={[styles.card, styles.newCard].join(' ')}>
                     <h4 className={styles.placeholder}>
                       <Icon id={Icons.ADD} type="white" alt={t('Pages.User.new_layout_icon')} />
                       <span className="btn-layout">{t('Pages.User.new_layout')}</span>
                     </h4>
                   </Card>
-                </Link>
+                </JobSelect>
               </li>
             )}
           </LayoutsList>
