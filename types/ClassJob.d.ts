@@ -7,6 +7,7 @@ export interface ClassJobProps {
   ClassActionAllowlist?: string[],
   Description?: string | null,
   Discipline: string,
+  Disabled?: boolean,
   ID: number,
   Icon: string,
   Name: string,

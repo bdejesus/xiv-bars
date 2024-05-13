@@ -67,7 +67,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     // Get Selected Job
     const selectedJob = Jobs.find((job: ClassJobProps) => job.Abbr === jobId);
-    if (!selectedJob) return { notFound: true };
+    if (!selectedJob || selectedJob.Disabled) return { notFound: true };
 
     const fetchOptions = {
       method: 'POST',

@@ -108,7 +108,7 @@
   },
 
   "Intro": {
-    "select_a_job": "ジョブ/クラスを選択"
+    "select_a_job": "ジョブを選択"
   },
 
   "Header": {
@@ -228,7 +228,7 @@
   "UserNav": {
     "whats_new": "新着情報",
     "donate": "寄付する",
-    "donate_title": "寄付はサーバーの維持に役立ちます！",
+    "donate_title": "このアプリが気に入ったら寄付してください！",
     "my_layouts": "マイレイアウト",
     "logout": "ログアウト",
     "signin_with_discord": "Discordでサインイン",

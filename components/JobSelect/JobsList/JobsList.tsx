@@ -6,53 +6,65 @@ import Link from 'next/link';
 import { useSystemDispatch } from 'components/System/context';
 import { SystemActions } from 'components/System/actions';
 import Icon, { Icons } from 'components/Icon';
-import Job from '../Job';
+import ClassJob from 'components/ClassJob';
 
 import styles from './JobsList.module.scss';
 
 interface Props {
-  abbr: string,
   title: string,
   jobs: ClassJobProps[],
-  className?: string
+  className?: string,
+  action?: 'new'
 }
 
 export function JobsList({
-  abbr, title, jobs, className
+  title, jobs, className, action
 }: Props) {
   const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
   const { locale } = useRouter();
+  const classNames = [styles.container, className].join(' ');
 
   function handleClickNew() {
     systemDispatch({ type: SystemActions.LOADING_START });
   }
 
   return (
-    <div className={`${styles.group} ${className}`}>
-      <h4 className={styles.title}><abbr title={title}>{abbr}</abbr></h4>
+    <div className={classNames}>
+      <h4 className={styles.title}>{title}</h4>
 
       <ul className={styles.jobList}>
         {jobs.map((job) => (
-          <li key={job.Name} value={job.ID}>
-            <Link href={`/job/${job.Abbr}`} className={styles.jobLink} draggable={false}>
-              <Job job={job} />
-            </Link>
+          <li key={job.Name} value={job.ID} data-disabled={job.Disabled}>
+            { job.Disabled ? (
+              <ClassJob job={job} />
+            ) : (
+              <>
+                <Link
+                  href={action === 'new' ? `/job/${job.Abbr}/new` : `/job/${job.Abbr}`}
+                  className={`${styles.jobLink} jobList-link`}
+                  draggable={false}
+                >
+                  <ClassJob job={job} />
+                </Link>
 
-            <a
-              href={localizePath(`/job/${job.Abbr}/new`, locale)}
-              className={`button btn-icon ${styles.addBtn}`}
-              data-title={t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
-              data-title-anchor="left-left"
-              onClick={handleClickNew}
-            >
-              <Icon
-                id={Icons.ADD}
-                className={styles.addIcon}
-                type="white"
-                alt="New Layout Icon"
-              />
-            </a>
+                <a
+                  href={localizePath(`/job/${job.Abbr}/new`, locale)}
+                  className={`button btn-icon ${styles.addBtn} joblist-new`}
+                  onClick={handleClickNew}
+                >
+                  <Icon
+                    id={Icons.ADD}
+                    className={styles.addIcon}
+                    type="white"
+                    alt="New Layout Icon"
+                  />
+                  <span className={styles.addLabel}>
+                    {t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
+                  </span>
+                </a>
+              </>
+            )}
           </li>
         ))}
       </ul>
@@ -61,7 +73,8 @@ export function JobsList({
 }
 
 JobsList.defaultProps = {
-  className: ''
+  className: '',
+  action: undefined
 };
 
 export default JobsList;

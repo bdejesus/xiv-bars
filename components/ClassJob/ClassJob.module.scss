@@ -9,6 +9,42 @@
 
 .container {
   white-space: nowrap;
+
+  &[data-disabled='true'] {
+    opacity: 0.33;
+    pointer-events: none;
+
+    img {
+      color: rgb(0 0 0 / 0%);
+    }
+
+    &::before,
+    &::after {
+      background-color: $color-alt-light;
+      border-radius: 50%;
+      box-shadow: 0 3px 6px $color-alt-dark;
+      content: "";
+      display: block;
+      position: absolute;
+    }
+
+    &::before {
+      filter: blur(4px);
+      height: 10px;
+      left: 12px;
+      opacity: 0.8;
+      top: 10px;
+      width: 10px;
+    }
+
+    &::after {
+      filter: blur(3px);
+      height: 5px;
+      left: 22px;
+      top: 20px;
+      width: 5px;
+    }
+  }
 }
 
 .jobWrapper {
@@ -59,6 +95,7 @@
 
 .name {
   color: rgb(255 255 255 / 75%);
+  font-size: $font-size-base;
   margin-left: $spacing-sm;
   text-transform: capitalize;
 }

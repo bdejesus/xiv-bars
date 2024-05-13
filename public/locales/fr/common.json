@@ -108,7 +108,7 @@
   },
 
   "Intro": {
-    "select_a_job": "Sélectionnez un Métier/Classe"
+    "select_a_job": "Sélectionnez un Job"
   },
 
   "Header": {
@@ -229,7 +229,7 @@
   "UserNav": {
     "whats_new": "Quoi de neuf",
     "donate": "Donner",
-    "donate_title": "Les dons aident à maintenir les serveurs !",
+    "donate_title": "Faites un don si vous aimez cette application !",
     "my_layouts": "Mes dispositions",
     "logout": "Déconnexion",
     "signin_with_discord": "Connectez-vous avec Discord",

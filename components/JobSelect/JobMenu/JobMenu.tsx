@@ -2,7 +2,11 @@ import { useAppState } from 'components/App/context';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 
-export function JobMenu() {
+interface Props {
+  action?: 'new'
+}
+
+export default function JobMenu({ action }:Props) {
   const { jobs } = useAppState();
 
   if (!jobs) return null;
@@ -21,22 +25,54 @@ export function JobMenu() {
         <h3>DoW/DoM</h3>
 
         <div className={styles.categories}>
-          <JobsList abbr="Tank" title="Disciple of War" jobs={tanks} className={styles.jobList} />
-          <JobsList abbr="Healer" title="Disciple of Magic" jobs={healers} className={styles.jobList} />
-          <JobsList abbr="Melee DPS" title="Disciple of Magic" jobs={melee} className={styles.jobList} />
-          <JobsList abbr="Magic DPS" title="Disciple of Magic" jobs={mages} className={styles.jobList} />
+          <JobsList
+            title="Tank"
+            jobs={tanks}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Healer"
+            jobs={healers}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Melee DPS"
+            jobs={melee}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Magic DPS"
+            jobs={mages}
+            className={styles.jobList}
+            action={action}
+          />
         </div>
       </div>
 
       <div className={styles.section}>
         <h3>DoH/DoL</h3>
         <div className={styles.categories}>
-          <JobsList abbr="DoH" title="Disciple of the Hand" jobs={DoH} className={styles.jobList} />
-          <JobsList abbr="DoL" title="Disciple of the Land" jobs={DoL} className={styles.jobList} />
+          <JobsList
+            title="Crafter"
+            jobs={DoH}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Gatherer"
+            jobs={DoL}
+            className={styles.jobList}
+            action={action}
+          />
         </div>
       </div>
     </div>
   );
 }
 
-export default JobMenu;
+JobMenu.defaultProps = {
+  action: undefined
+};

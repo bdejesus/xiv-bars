@@ -358,5 +358,29 @@
     "ClassID": null,
     "Weapon": "Scythe",
     "Description": "The Garleans’ forebears were once humble farmers who made their home among the sun-drenched fields of southern Ilsabard. That was, until they were driven from this paradise by invaders wielding arcane magicks. Forced north into the frigid mountains, the survivors sought a means to tap into the reservoir of aether otherwise closed to them. A daring few found their answer within the void, binding themselves to its creatures to gain verboten power─power fed by the souls of the slain. Once more they took up their scythes, this time to reap a crimson harvest."
+  },
+  {
+    "Name": "Viper",
+    "Abbr": "VPR",
+    "Abbreviation": "VPR",
+    "ID": 41,
+    "Discipline": "DOW",
+    "Role": "PDPS",
+    "ClassID": null,
+    "Weapon": "Twin Blades",
+    "Description": null,
+    "Disabled": true
+  },
+  {
+    "Name": "Pictomancer",
+    "Abbr": "PCT",
+    "Abbreviation": "PCT",
+    "ID": 42,
+    "Discipline": "DOW",
+    "Role": "MDPS",
+    "ClassID": null,
+    "Weapon": "Brush",
+    "Description": null,
+    "Disabled": true
   }
 ]

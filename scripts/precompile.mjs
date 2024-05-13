@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import dotenv from 'dotenv';
 import { writeFile, rm, mkdir } from 'fs';
+import Jobs from '../.apiData/Jobs.json' assert {type: 'json' };
 import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
 import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' };
@@ -14,6 +15,10 @@ dotenv.config();
 const dest = './.apiData';
 const apiURL = 'https://xivapi.com';
 const { i18n } = i18nConfig;
+
+const separatorIndex = process.argv.indexOf("--");
+const options = process.argv.slice(separatorIndex + 1);
+const isRemote = options.includes('--remote');
 
 function jsonToQuery(json) {
   return Object.entries(json)
@@ -29,7 +34,9 @@ function jsonToQuery(json) {
 const delay = 300;
 const columns = ['ID', 'Icon', 'Name', 'Url'];
 
-async function getJobs() {
+
+
+async function fetchJobs() {
   const jobColumns = [
     ...columns,
     ...localizeKeys('Name'),
@@ -39,6 +46,11 @@ async function getJobs() {
   const request = await fetch(`${apiURL}/ClassJob?${options}`);
   const json = await request.json();
   const jobs = json.Results.sort(array.byKey('Name'));
+  return jobs;
+}
+
+async function getJobs() {
+  const jobs = isRemote ? await fetchJobs() : Jobs;
   const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
   const decoratedJobs = advJobs.map((advancedJob) => {
     const jobData = jobs.find((job) => job.ID === advancedJob.ID);

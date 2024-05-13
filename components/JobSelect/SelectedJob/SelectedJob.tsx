@@ -1,5 +1,5 @@
 import React from 'react';
-import Job from 'components/JobSelect/Job';
+import ClassJob from 'components/ClassJob';
 import type { ClassJobProps } from 'types/ClassJob';
 import RoleNames from '../../../data/RoleNames.json';
 import styles from './SelectedJob.module.scss';
@@ -23,7 +23,7 @@ export default function SelectedJob({ job, className }: Props) {
           {job.Discipline} {job.Role && (`• ${roleNames[job.Role]}`)}
         </div>
         <h1 className={styles.title}>
-          <Job job={job} />
+          <ClassJob job={job} />
         </h1>
       </div>
     </div>
