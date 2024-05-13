@@ -34,25 +34,32 @@ export function JobsList({
 
       <ul className={styles.jobList}>
         {jobs.map((job) => (
-          <li key={job.Name} value={job.ID}>
-            <Link href={`/job/${job.Abbr}`} className={styles.jobLink} draggable={false}>
+          <li key={job.Name} value={job.ID} data-disabled={job.Disabled}>
+            { job.Disabled ? (
               <Job job={job} />
-            </Link>
+            ) : (
+              <>
+                <Link href={`/job/${job.Abbr}`} className={styles.jobLink} draggable={false}>
+                  <Job job={job} />
+                </Link>
 
-            <a
-              href={localizePath(`/job/${job.Abbr}/new`, locale)}
-              className={`button btn-icon ${styles.addBtn}`}
-              data-title={t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
-              data-title-anchor="left-left"
-              onClick={handleClickNew}
-            >
-              <Icon
-                id={Icons.ADD}
-                className={styles.addIcon}
-                type="white"
-                alt="New Layout Icon"
-              />
-            </a>
+                <a
+                  href={localizePath(`/job/${job.Abbr}/new`, locale)}
+                  className={`button btn-icon ${styles.addBtn}`}
+                  onClick={handleClickNew}
+                >
+                  <Icon
+                    id={Icons.ADD}
+                    className={styles.addIcon}
+                    type="white"
+                    alt="New Layout Icon"
+                  />
+                  <span className={styles.addLabel}>
+                    {t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
+                  </span>
+                </a>
+              </>
+            )}
           </li>
         ))}
       </ul>

@@ -9,6 +9,27 @@
 
 .container {
   white-space: nowrap;
+
+  &[data-disabled='true'] {
+    opacity: 0.33;
+    pointer-events: none;
+
+    img {
+      color: rgb(0 0 0 / 0%);
+    }
+
+    &::before {
+      background-color: #fff;
+      border-radius: 50%;
+      content: "";
+      display: block;
+      filter: blur(3px);
+      height: 10px;
+      left: 15px;
+      position: absolute;
+      width: 10px;
+    }
+  }
 }
 
 .jobWrapper {

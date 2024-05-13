@@ -82,7 +82,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     // Get Selected Job
     const selectedJob = jobId ? Jobs.find((job) => job.Abbr === jobId) : null;
-    if (!selectedJob) return { notFound: true };
+    if (!selectedJob || selectedJob.Disabled) return { notFound: true };
 
     const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${pvp}`);
     const { actions, roleActions } = await actionsRequest.json();

@@ -25,7 +25,7 @@ export default function Job({
   const displayName = translateData('Name', job, locale);
 
   return (
-    <div className={[styles.container, className].join(' ')}>
+    <div className={[styles.container, className].join(' ')} data-disabled={job.Disabled}>
       <span className={`${styles.jobWrapper} job-wrapper`} data-role={job.Role}>
         { icon && (
           <span className={`${styles.iconWrapper} job-icon`}>

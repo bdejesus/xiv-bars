@@ -98,7 +98,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const jobId = context.params?.jobId as string;
   const selectedJob = Jobs.find((job) => job.Abbr === jobId);
 
-  if (!selectedJob) return { notFound: true };
+  if (!selectedJob || selectedJob.Disabled) return { notFound: true };
 
   // Request Layouts
   const layouts = await db.layout.findMany({

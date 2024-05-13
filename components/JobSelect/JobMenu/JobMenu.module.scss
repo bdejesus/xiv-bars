@@ -11,19 +11,14 @@
   }
 
   .section + .section {
-    margin-top: $spacing-base;
+    margin-top: $spacing-lg;
   }
 }
 
 .categories {
   display: grid;
-  gap: $spacing-base;
+  gap: $spacing-base $spacing-lg;
   grid-template-columns: 1fr 1fr;
-}
-
-.jobList ul {
-  margin-top: 0;
-  padding: 0 $spacing-base;
 }
 
 @media (max-width: $screen-sm) {

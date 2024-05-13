@@ -16,7 +16,7 @@
     "start": "next start -p $PORT",
     "dev": "next dev",
     "build": "next build",
-    "build:data": "node ./scripts/precompile.mjs",
+    "build:data": "node ./scripts/precompile.mjs --trace-warnings",
     "lint": "eslint ./ --fix; stylelint './**/**/*.{css,scss,sass}' --fix",
     "lint:js": "eslint ./",
     "lint:css": "stylelint './**/**/*.{css,scss,sass}'",

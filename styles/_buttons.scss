@@ -104,6 +104,27 @@ button,
     }
   }
 
+  &[data-title][data-title-anchor='right-right'] {
+    &::before {
+      border-bottom-color: #111;
+      left: unset;
+      right: 100%;
+      top: 50%;
+      transform: translate(-2px,-50%) rotate(-90deg);
+    }
+
+    &::after {
+      background-color: #111;
+      font-size: $font-size-base;
+      left: unset;
+      margin-left: $spacing-sm;
+      margin-top: 0;
+      right: 100%;
+      top: 50%;
+      transform: translate(0,-50%);
+    }
+  }
+
   .icon {
     display: block;
     margin-right: $spacing-xs;
