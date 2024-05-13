@@ -29,14 +29,16 @@ export default function ClassJob({
       <span className={`${styles.jobWrapper} job-wrapper`} data-role={job.Role}>
         { icon && (
           <span className={`${styles.iconWrapper} job-icon`}>
-            <Image
-              className={styles.icon}
-              src={job.PreIcon || `/jobIcons${job.Icon}`}
-              alt={`${job.Name} Icon`}
-              draggable={false}
-              height={32}
-              width={32}
-            />
+            { !job.Disabled && (
+              <Image
+                className={styles.icon}
+                src={job.PreIcon || `/jobIcons${job.Icon}`}
+                alt={`${job.Name} Icon`}
+                draggable={false}
+                height={32}
+                width={32}
+              />
+            )}
           </span>
         )}
 

@@ -22,27 +22,26 @@
     &::after {
       background-color: #fff;
       border-radius: 50%;
+      box-shadow: 0 3px 6px rgb(0 0 0 / 33%);
       content: "";
       display: block;
       position: absolute;
     }
 
     &::before {
-      box-shadow: 0 3px 6px rgb(0 0 0 / 33%);
-      filter: blur(3px);
+      filter: blur(4px);
       height: 10px;
-      left: 14px;
+      left: 12px;
       opacity: 0.8;
-      top: 10px;
+      top: 14px;
       width: 10px;
     }
 
     &::after {
-      box-shadow: 0 -2px 4px rgb(0 0 0 / 33%);
-      filter: blur(2px);
+      filter: blur(3px);
       height: 5px;
       left: 22px;
-      top: 18px;
+      top: 22px;
       width: 5px;
     }
   }
