@@ -80,10 +80,7 @@ $button-inset: 10px;
   position: absolute;
   right: 0;
   top: 0;
-  transition-duration: $timing-default;
-  transition-property: opacity, background-color, width, padding;
-  transition-timing-function: ease;
-  transition-delay: 0.15s;
+  transition: opacity $timing-default ease 0.15s, background-color $timing-default ease 0.15s, width $timing-default ease 0.15s, padding $timing-default ease 0.15s;
   width: 40px;
   z-index: 2;
 
