@@ -12,39 +12,16 @@
 
   &[data-disabled='true'] {
     opacity: 0.33;
+    padding: 4px;
     pointer-events: none;
 
-    img {
-      color: rgb(0 0 0 / 0%);
-    }
-
-    &::before,
-    &::after {
-      background-color: $color-alt-light;
-      border-radius: 50%;
-      box-shadow: 0 3px 6px $color-alt-dark;
-      content: "";
-      display: block;
-      position: absolute;
-    }
-
-    &::before {
-      filter: blur(4px);
-      height: 10px;
-      left: 12px;
-      opacity: 0.8;
-      top: 10px;
-      width: 10px;
-    }
-
-    &::after {
-      filter: blur(3px);
-      height: 5px;
-      left: 22px;
-      top: 20px;
-      width: 5px;
+    .iconWrapper {
+      left: -2px;
+      padding: 4px;
+      position: relative;
     }
   }
+
 }
 
 .jobWrapper {
@@ -88,9 +65,9 @@
 }
 
 .abbr {
-  font-family: "Chivo Mono", "Lucida Console", Consolas, monospace;
+  font-family: "Lucida Console", Consolas, monospace;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 900;
 }
 
 .name {

@@ -369,7 +369,8 @@
     "ClassID": null,
     "Weapon": "Twin Blades",
     "Description": null,
-    "Disabled": true
+    "Disabled": true,
+    "Icon": "/cj/1/VPR@240w.png"
   },
   {
     "Name": "Pictomancer",
@@ -381,6 +382,7 @@
     "ClassID": null,
     "Weapon": "Brush",
     "Description": null,
-    "Disabled": true
+    "Disabled": true,
+    "Icon": "/cj/1/PCT@240w.png"
   }
 ]

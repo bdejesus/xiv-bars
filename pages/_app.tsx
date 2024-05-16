@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
 import { useRouter } from 'next/router';
+import { Roboto } from 'next/font/google';
 import analytics from 'lib/analytics';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -24,6 +25,8 @@ const emptyInitialI18NextConfig: UserConfig = {
     locales: nextI18NextConfig.i18n.locales,
   },
 };
+
+const roboto = Roboto({ weight: ['100', '300', '400', '500', '900'], subsets: ['latin'] });
 
 function App({ Component, pageProps }: AppProps) {
   const { t } = useTranslation('common');
@@ -67,6 +70,13 @@ function App({ Component, pageProps }: AppProps) {
       </div>
     )}
     >
+      <style jsx global>{`
+        html {
+          font-family: ${roboto.style.fontFamily};
+        }
+      `}
+      </style>
+
       {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}

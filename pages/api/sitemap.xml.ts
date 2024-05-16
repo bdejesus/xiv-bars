@@ -19,8 +19,6 @@ async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
     // Create each URL row
     const advancedJobs = Jobs.filter((job) => (!BaseClassIDs.includes(job.ID) && !job.Disabled));
 
-    console.log(advancedJobs);
-
     advancedJobs.forEach((job) => {
       sitemap.write({
         url: `/job/${job.Abbr}`,
