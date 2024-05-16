@@ -14,7 +14,8 @@ export default function JobMenu({ action }:Props) {
   const tanks = jobs.filter((job) => job.Role === 'TANK');
   const healers = jobs.filter((job) => job.Role === 'HEAL');
   const mages = jobs.filter((job) => job.Role?.match(/MDPS/));
-  const melee = jobs.filter((job) => ['PDPS', 'RDPS'].includes(job.Role || ''));
+  const melee = jobs.filter((job) => job.Role?.match('PDPS'));
+  const range = jobs.filter((job) => job.Role?.match('RDPS'));
 
   const DoH = jobs.filter((job) => job.Discipline === 'DOH');
   const DoL = jobs.filter((job) => job.Discipline === 'DOL');
@@ -40,6 +41,12 @@ export default function JobMenu({ action }:Props) {
           <JobsList
             title="Melee DPS"
             jobs={melee}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Range DPS"
+            jobs={range}
             className={styles.jobList}
             action={action}
           />
