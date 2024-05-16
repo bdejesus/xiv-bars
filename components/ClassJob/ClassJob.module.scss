@@ -12,13 +12,13 @@
 
   &[data-disabled='true'] {
     opacity: 0.33;
-    pointer-events: none;
     padding: 4px;
+    pointer-events: none;
 
     .iconWrapper {
+      left: -2px;
       padding: 4px;
       position: relative;
-      left: -2px;
     }
   }
 
