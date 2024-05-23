@@ -33,6 +33,8 @@ $primary-xbar-group-height: $outer-primary-slot-size * 2 + math.div($slot-spacin
 $primary-xbar-group-width: $outer-primary-slot-size * 3;
 $primary-xbar-width: $primary-xbar-group-width * 3;
 
+$layout-container-width: 660px;
+
 $header-height: 60px;
 $header-height-lg: 118px;
 $controlbar-height: 46px;

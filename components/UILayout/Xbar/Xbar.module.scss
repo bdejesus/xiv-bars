@@ -5,6 +5,7 @@
   counter-reset: xbarCount;
   display: flex;
   flex-direction: column;
+  min-width: $layout-container-width;
 
   &[data-show-titles='true'] .xbar {
     padding-bottom: $spacing-lg;

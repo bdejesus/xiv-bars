@@ -79,23 +79,21 @@
   display: flex;
   flex-flow: row wrap;
   gap: $spacing-base $spacing-xl;
-  justify-content: center;
-  margin: 0;
-  max-width: $screen-sm;
-  padding-left: $spacing-base;
 
   > li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     position: relative;
+    gap: $spacing-sm;
   }
 
   > li::before {
     content: counter(slots);
     counter-increment: slots;
     font-weight: 400;
-    left: -1.5em;
     min-width: 1em;
     opacity: 0.66;
-    position: absolute;
     text-align: right;
     top: 25px;
   }

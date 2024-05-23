@@ -4,7 +4,9 @@ import { useAppDispatch, useAppState } from 'components/App/context';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import DetailPanel from 'components/DetailPanel';
 import ControlBar from 'components/ControlBar';
-import UILayout from 'components/UILayout';
+import { layouts } from 'lib/xbars';
+import Xbar from 'components/UILayout/Xbar';
+import Hotbar from 'components/UILayout/Hotbar';
 import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
@@ -25,6 +27,7 @@ export function App() {
     viewAction
   } = appState;
   const router = useRouter();
+  const layoutKey = viewData.layout as keyof typeof layouts;
 
   useEffect(() => {
     if (router.query.jobId) {
@@ -59,13 +62,16 @@ export function App() {
               <>
                 <div className={styles.container}>
                   { !readOnly && roleActions && actions && (
-                    <div className={`${styles.sidebar}`}>
+                    <div className={`${styles.actionsPanel}`}>
                       <ActionPanel roleActions={roleActions} actions={actions} />
                     </div>
                   ) }
 
                   <div className={styles.main}>
-                    <UILayout />
+                    { layouts[layoutKey] === 'chotbar'
+                      ? <Xbar />
+                      : <Hotbar />
+                    }
                   </div>
                 </div>
 

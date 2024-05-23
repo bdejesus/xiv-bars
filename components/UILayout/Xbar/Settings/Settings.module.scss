@@ -8,9 +8,10 @@
   flex-direction: row;
   gap: $spacing-lg;
   justify-content: center;
-  margin: -$spacing-lg auto $spacing-lg;
-  max-width: 660px;
-  padding: $spacing-sm;
+  margin: -$spacing-lg 0 $spacing-lg;
+  padding: $spacing-sm $spacing-base;
+  text-align: center;
+  min-width: $layout-container-width;
 }
 
 .xhbControl {
@@ -30,6 +31,7 @@
   }
 
   label {
+    font-size: $font-size-xs;
     display: flex;
     flex-direction: row;
   }

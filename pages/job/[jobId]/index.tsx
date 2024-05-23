@@ -68,7 +68,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         />
 
         { selectedJob?.Description && (
-          <Lore description={selectedJob.Description} />
+          <Lore description={selectedJob.Description} jobAbbr={selectedJob.Abbreviation}/>
         ) }
 
         { layouts.length > 0
