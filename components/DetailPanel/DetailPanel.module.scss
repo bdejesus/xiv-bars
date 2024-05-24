@@ -122,7 +122,7 @@
     color: $color-gray-dark;
     flex: 1 1 auto;
     font-size: $font-size-xl-2;
-    font-weight: 500;
+    font-weight: 300;
   }
 
   button {
@@ -145,8 +145,12 @@
   flex-direction: column;
   font-size: $font-size-base;
   line-height: 1.45em;
-  padding-bottom: $spacing-xl;
   padding-top: $spacing-lg;
+}
+
+.content {
+  flex: 1 1 auto;
+  padding-bottom: $spacing-lg;
 }
 
 .meta {
@@ -163,8 +167,13 @@
 
 .footer {
   height: 52px;
+  margin: $spacing-lg 0;
   overflow: hidden;
   text-align: center;
+
+  img {
+    border-bottom: 1px solid #666;
+  }
 }
 
 .row {

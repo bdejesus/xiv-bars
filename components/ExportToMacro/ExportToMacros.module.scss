@@ -14,7 +14,7 @@
   }
 
   :global(.modal-content) {
-    max-width: 900px;
+    max-width: $screen-md-max;
   }
 }
 
@@ -30,9 +30,11 @@
     color: #ccc;
     display: block;
     font-family: $font-monospace;
-    font-size: 10px;
-    height: 270px;
-    padding: $spacing-base;
+    font-size: 11px;
+    height: 220px;
+    line-height: 1.2em;
+    padding: $spacing-sm;
+    resize: none;
   }
 }
 

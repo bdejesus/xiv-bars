@@ -75,30 +75,41 @@ export default function DetailPanel({ className }:Props) {
             </div>
 
             <div className={styles.body}>
-              { description ? (
-                <div className={styles.content}>
+              <div className={styles.content}>
+                { description ? (
                   <ReactMarkdown components={{
                     h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
                   }}
                   >
                     {description}
                   </ReactMarkdown>
+                ) : (
+                  <ReactMarkdown className="inline-message warn">
+                    {t('DetailPanel.draft')}
+                  </ReactMarkdown>
+                )}
+              </div>
+
+              { selectedJob?.Abbreviation && (
+                <div className={styles.footer}>
+                  <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
                 </div>
-              ) : (
-                <ReactMarkdown className="inline-message warn">
-                  {t('DetailPanel.draft')}
-                </ReactMarkdown>
               )}
             </div>
           </>
         )
-        : <div className={styles.body}><SaveForm /></div> }
+        : (
+          <div className={styles.body}>
+            <SaveForm />
 
-      { selectedJob?.Abbreviation && (
-        <div className={styles.footer}>
-          <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
-        </div>
-      )}
+            { selectedJob?.Abbreviation && (
+              <div className={styles.footer}>
+                <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
+              </div>
+            )}
+          </div>
+        )}
+
     </div>
   );
 }

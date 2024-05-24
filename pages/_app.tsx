@@ -26,7 +26,7 @@ const emptyInitialI18NextConfig: UserConfig = {
   },
 };
 
-const roboto = Roboto({ weight: ['100', '400', '500', '700'], subsets: ['latin'] });
+const roboto = Roboto({ weight: ['100', '300', '400', '500', '700'], subsets: ['latin'] });
 const notoSansMono = Noto_Sans_Mono({ weight: ['700'], subsets: ['latin'] });
 
 function App({ Component, pageProps }: AppProps) {
@@ -75,8 +75,7 @@ function App({ Component, pageProps }: AppProps) {
         html {
           font-family: ${roboto.style.fontFamily};
         }
-        code, pre,
-        .tag, .job-abbr {
+        code, pre, .tag, .job-abbr {
           font-family: ${notoSansMono.style.fontFamily};
         }
       `}
