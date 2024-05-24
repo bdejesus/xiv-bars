@@ -65,7 +65,7 @@ export function App() {
                     </div>
                   ) }
 
-                  <div className={styles.main}>
+                  <div className={styles.main} data-readonly={readOnly}>
                     { layouts[layoutKey] === 'chotbar'
                       ? <Xbar />
                       : <Hotbar />}

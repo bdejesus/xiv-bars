@@ -9,6 +9,13 @@ label {
   margin: 0;
 }
 
+input,
+textarea,
+select,
+option {
+  font-family: inherit;
+}
+
 input[type="text"],
 textarea {
   background-color: $panel-bg-dark;

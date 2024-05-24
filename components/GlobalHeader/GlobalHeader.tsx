@@ -72,7 +72,6 @@ export function GlobalHeader({ selectedJob }:Props) {
               <a
                 href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
                 className="button btn-primary"
-                data-active={viewAction === 'new'}
                 onClick={handleClickNew}
               >
                 <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />

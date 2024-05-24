@@ -21,7 +21,7 @@
 
 .xbar {
   align-items: center;
-  border-bottom: 2px solid rgb(255 255 255 / 6%);
+  border-bottom: 1px solid rgb(255 255 255 / 6%);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -69,8 +69,8 @@
   }
 
   &[data-exhb="true"] {
-    border-bottom: 2px solid rgb(0 0 0 / 33%);
-    margin-bottom: $spacing-lg;
+    border-bottom-width: 4px;
+    margin-bottom: $spacing-base;
     order: 2;
     padding-bottom: $spacing-xl;
 
@@ -120,7 +120,9 @@
   }
 
   &[data-visible="false"] {
-    display: none;
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
   }
 }
 
