@@ -69,7 +69,7 @@
   }
 
   &[data-exhb="true"] {
-    border-bottom: 2px solid rgb(255 255 255 / 33%);
+    border-bottom: 2px solid rgb(0 0 0 / 33%);
     margin-bottom: $spacing-lg;
     order: 2;
     padding-bottom: $spacing-xl;
@@ -102,7 +102,7 @@
   }
 
   &[data-main="true"] {
-    background-color: rgb(255 255 255 / 3.3%);
+    background-color: rgb(45 45 45 / 66%);
     border-radius: 10px;
     order: 1;
     padding-bottom: $spacing-sm;

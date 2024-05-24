@@ -2,7 +2,7 @@
 
 .controlBar {
   background-color: $panel-bg;
-  box-shadow: 0 2px 0 $color-gray-dark-2;
+  box-shadow: $box-shadow;
   overflow: auto;
   padding: $spacing-sm $spacing-base;
   position: sticky;
@@ -47,9 +47,13 @@
   &:first-child {
     margin-left: 0;
   }
+}
 
+.control,
+.controlGroup {
   button,
   :global(.button) {
+    font-size: $font-size-sm;
     height: 30px;
     padding: 0 10px;
   }

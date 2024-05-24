@@ -1,13 +1,10 @@
 @import "styles/mixins";
 
-$font-family-primary: "Roboto", "Ubuntu", "Cantarell";
-$font-family-fallback: "Fira Sans", "Droid Sans", "Helvetica Neue";
-$font-family-system: -apple-system, "BlinkMacSystemFont", sans-serif;
-
 body,
 textarea {
   color: #ccc;
-  font-family: $font-family-primary, $font-family-fallback, $font-family-system;
+  // font-family: inherit;
+  // font-family: $font-family;
   font-optical-sizing: auto;
   font-size: 16px;
   font-variation-settings:
@@ -35,7 +32,7 @@ h1 {
 
 h1,
 h2 {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 h2 {

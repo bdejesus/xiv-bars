@@ -47,7 +47,6 @@ export function Sharing() {
 
         <input
           id="shareUrl"
-          className={styles.shareUrlInput}
           type="text"
           ref={urlInput}
           onClick={selectInput}
@@ -58,7 +57,7 @@ export function Sharing() {
 
       <button
         type="button"
-        className={`${styles.copyButton} button btn-icon`}
+        className="button btn-icon"
         onClick={handleClick}
         data-title={copied ? t('Sharing.url_copied') : t('Sharing.share_url')}
       >

@@ -13,10 +13,12 @@ button,
   cursor: pointer;
   display: flex;
   flex-direction: row;
+  font-family: inherit;
   font-size: $font-size-base;
-  font-weight: 400;
+  font-weight: 500;
   height: 40px;
   justify-content: center;
+  line-height: 1em;
   outline: none;
   padding: 0 $spacing-base;
   position: relative;

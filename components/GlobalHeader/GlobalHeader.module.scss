@@ -91,6 +91,7 @@
   transition-property: background-color, color, transform;
 
   .logo {
+    transform: translateZ(0);
     transition-duration: $timing-default;
     transition-property: filter, transform;
     transition-timing-function: ease;
@@ -98,7 +99,7 @@
 
   &:hover,
   &:focus {
-    transform: scale(1.025);
+    transform: scale(1.025) translateZ(0);
   }
 }
 
