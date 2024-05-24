@@ -69,7 +69,7 @@
   .description {
     color: #999;
     flex: 1 1 auto;
-    font-size: $font-size-base;
+    font-size: $font-size-sm;
     line-height: 1.45;
     margin: $spacing-sm 0;
     max-height: 64px;
@@ -125,7 +125,7 @@
 
   .footer {
     border-top: 1px solid rgb(255 255 255 / 5%);
-    padding: $spacing-sm $spacing-base $spacing-base;
+    padding: $spacing-base;
   }
 
   .job {

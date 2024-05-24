@@ -51,7 +51,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         <Head>
           <title>
             {t('Pages.Job.index_title', { jobName, jobAbbr })}
-          </title>
+          </title>Lore
           <meta
             name="description"
             content={t('Pages.Job.index_description', { jobName })}
@@ -68,7 +68,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         />
 
         { selectedJob?.Description && (
-          <Lore description={selectedJob.Description} jobAbbr={selectedJob.Abbreviation}/>
+          <Lore description={selectedJob.Description} />
         ) }
 
         { layouts.length > 0

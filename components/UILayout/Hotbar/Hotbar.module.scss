@@ -81,11 +81,11 @@
   gap: $spacing-base $spacing-xl;
 
   > li {
+    align-items: center;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    position: relative;
     gap: $spacing-sm;
+    position: relative;
   }
 
   > li::before {

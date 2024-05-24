@@ -1,18 +1,14 @@
-import Image from 'next/image';
-
 import styles from './Lore.module.scss';
 
 interface Props {
-  description: string,
-  jobAbbr?: string
+  description: string
 }
 
-export default function Lore({ description, jobAbbr }: Props) {
+export default function Lore({ description }: Props) {
   return (
     <div
       className={styles.lore}
     >
-      { jobAbbr && ( <Image src={`/classjob/sprite-${jobAbbr}@2x.png`} alt={jobAbbr} height={50} width={50} /> )}
 
       <div
         className={styles.loreBody}

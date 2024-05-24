@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { formatDateString } from 'lib/utils/time';
 import ReactMarkdown from 'react-markdown';
 import SaveForm from 'components/SaveForm';
@@ -10,7 +11,11 @@ import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
 import styles from './DetailPanel.module.scss';
 
-export default function DetailPanel() {
+interface Props {
+  className?: string
+}
+
+export default function DetailPanel({ className }:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const {
@@ -29,7 +34,7 @@ export default function DetailPanel() {
   } = viewData;
 
   return (
-    <div className={styles.container}>
+    <div className={[styles.container, className].join(' ')}>
       { (readOnly && title && userId)
         ? (
           <>
@@ -71,12 +76,14 @@ export default function DetailPanel() {
 
             <div className={styles.body}>
               { description ? (
-                <ReactMarkdown components={{
-                  h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
-                }}
-                >
-                  {description}
-                </ReactMarkdown>
+                <div className={styles.content}>
+                  <ReactMarkdown components={{
+                    h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
+                  }}
+                  >
+                    {description}
+                  </ReactMarkdown>
+                </div>
               ) : (
                 <ReactMarkdown className="inline-message warn">
                   {t('DetailPanel.draft')}
@@ -86,6 +93,16 @@ export default function DetailPanel() {
           </>
         )
         : <div className={styles.body}><SaveForm /></div> }
+
+      { selectedJob?.Abbreviation && (
+        <div className={styles.footer}>
+          <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
+        </div>
+      )}
     </div>
   );
 }
+
+DetailPanel.defaultProps = {
+  className: undefined
+};

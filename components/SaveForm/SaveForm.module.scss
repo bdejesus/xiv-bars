@@ -1,6 +1,17 @@
 @import "styles/mixins";
 
 .saveForm {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+
+  label {
+    align-items: baseline;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   input,
   textarea {
     background-color: #fff;
@@ -16,9 +27,7 @@
     float: right;
     font-style: italic;
   }
-}
 
-.form {
   :global(.control) {
     margin-bottom: $spacing-xs;
   }
@@ -30,15 +39,21 @@
 }
 
 .descriptionField {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
   font-size: $font-size-base;
-  min-height: 120px;
-  resize: vertical;
+
+  textarea {
+    flex: 1 1 auto;
+    min-height: 120px;
+    resize: none;
+  }
 }
 
 .actions {
   display: flex;
   flex-direction: row;
-  margin-top: $spacing-lg;
 }
 
 .info,
@@ -57,34 +72,4 @@
 
 .warning {
   background-color: $color-alt-light;
-}
-
-@media (max-width: $screen-lg) {
-  .saveForm {
-    display: grid;
-    gap: $spacing-lg;
-    grid-template-columns: 2fr 1fr;
-
-    .descriptionField {
-      height: auto;
-    }
-  }
-}
-
-@media (max-width: $screen-sm) {
-  .saveForm {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: $screen-xs) {
-  .saveForm {
-    display: block;
-
-    .info {
-      font-size: $font-size-sm;
-      line-height: 1.45;
-    }
-  }
-
 }

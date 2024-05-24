@@ -49,9 +49,7 @@ export function App() {
     <TooltipContextProvider>
       <SelectedActionContextProvider>
         <div className={`${styles.view} app-view`} data-action={viewAction}>
-          <div className={styles.detailPanel}>
-            <DetailPanel />
-          </div>
+          <DetailPanel />
 
           <div className={styles.mainPanel}>
             { jobs && selectedJob && <ControlBar /> }
@@ -70,8 +68,7 @@ export function App() {
                   <div className={styles.main}>
                     { layouts[layoutKey] === 'chotbar'
                       ? <Xbar />
-                      : <Hotbar />
-                    }
+                      : <Hotbar />}
                   </div>
                 </div>
 

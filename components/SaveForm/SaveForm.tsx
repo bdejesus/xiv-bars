@@ -127,37 +127,37 @@ function SaveForm() {
   if (!session) return <SignInPrompt />;
 
   return (
-    <div className={styles.saveForm}>
-      <form className={styles.form}>
+    <>
+      <form className={styles.saveForm}>
         <div className={`control ${styles.titleField}`}>
           <label htmlFor="title">
-            <div>{t('SaveForm.title')} <small>{t('SaveForm.required')}</small></div>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              ref={titleField}
-              className={styles.titleField}
-              defaultValue={title}
-              required
-              onKeyUp={validateTitle}
-            />
+            {t('SaveForm.title')} <small>{t('SaveForm.required')}</small>
           </label>
+
+          <input
+            id="title"
+            name="title"
+            type="text"
+            ref={titleField}
+            className={styles.titleField}
+            defaultValue={title}
+            required
+            onKeyUp={validateTitle}
+          />
         </div>
 
         <div className={`control ${styles.descriptionField}`}>
           <label htmlFor="description">
-            <div>
-              {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
-            </div>
-            <textarea
-              id="description"
-              ref={descriptionField}
-              className={styles.descriptionField}
-              defaultValue={description}
-              onChange={validateLayout}
-            />
+            {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
           </label>
+
+          <textarea
+            id="description"
+            ref={descriptionField}
+            className={styles.textarea}
+            defaultValue={description}
+            onChange={validateLayout}
+          />
         </div>
 
         <div className={styles.actions}>
@@ -186,7 +186,7 @@ function SaveForm() {
       <ReactMarkdown className={shouldPublish ? styles.info : styles.warning}>
         {t('SaveForm.draft')}
       </ReactMarkdown>
-    </div>
+    </>
   );
 }
 

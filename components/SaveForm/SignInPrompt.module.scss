@@ -3,6 +3,7 @@
 .prompt {
   margin-top: 4vh;
   text-align: center;
+  width: 100%;
 
   h3 {
     color: $color-gray;
@@ -23,50 +24,5 @@
     li {
       margin: $spacing-xs;
     }
-  }
-}
-
-@media (max-width: $screen-md-max) {
-  .prompt {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    gap: $spacing-xl;
-    justify-content: center;
-    margin-top: $spacing-base;
-
-    .body {
-      display: flex;
-      flex-direction: row;
-      gap: $spacing-lg;
-    }
-
-    h3 {
-      margin-top: 0;
-    }
-
-    button {
-      margin-bottom: 0;
-      margin-top: $spacing-base;
-    }
-  }
-}
-
-@media (max-width: $screen-sm) {
-  .prompt {
-    align-items: flex-start;
-    gap: $spacing-lg;
-
-    .body {
-      flex-direction: column;
-      gap: $spacing-base;
-    }
-  }
-}
-
-@media (max-width: $screen-xs) {
-  .prompt {
-    align-items: center;
-    flex-direction: column;
   }
 }
