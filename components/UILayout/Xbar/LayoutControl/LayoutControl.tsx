@@ -5,9 +5,9 @@ import { buildUrl } from 'lib/utils/url';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { AppActions } from 'components/App/actions';
 import Options from './Options';
-import styles from './Settings.module.scss';
+import styles from './LayoutControl.module.scss';
 
-function Settings() {
+export default function LayoutControl() {
   const router = useRouter();
   const appDispatch = useAppDispatch();
   const { viewData, selectedJob } = useAppState();
@@ -98,5 +98,3 @@ function Settings() {
     </div>
   );
 }
-
-export default Settings;

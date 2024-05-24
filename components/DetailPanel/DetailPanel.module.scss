@@ -7,10 +7,10 @@
   flex-direction: column;
   justify-content: flex-start;
   max-height: calc(100vh - $header-height);
-  width: $screen-xs;
   overflow-y: auto;
   position: sticky;
   top: $header-height;
+  width: $screen-xs;
 
   h2, h3, h4, h5, h6, p, ul, ol {
     &:first-child {
@@ -163,7 +163,8 @@
 }
 
 .footer {
-  margin-bottom: $spacing-base;
+  height: 52px;
+  overflow: hidden;
   text-align: center;
 }
 

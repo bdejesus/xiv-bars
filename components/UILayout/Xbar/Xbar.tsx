@@ -5,7 +5,7 @@ import { useAppState } from 'components/App/context';
 import { hasActions } from 'lib/xbars';
 import type { SlotProps } from 'types/Action';
 import Bar from './Bar';
-import Settings from './Settings';
+import LayoutControl from './LayoutControl';
 import styles from './Xbar.module.scss';
 
 export function Xbar() {
@@ -22,7 +22,7 @@ export function Xbar() {
 
   return (
     <>
-      { !(id && readOnly) && <Settings />}
+      { !(id && readOnly) && <LayoutControl />}
 
       <div className={styles.container} data-show-titles={showTitles}>
         {chotbarKeys.map((chotbarID) => {

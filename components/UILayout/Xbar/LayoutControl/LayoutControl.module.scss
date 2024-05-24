@@ -68,6 +68,7 @@
 
     &:hover,
     &:focus {
+      color: $color-alt;
       cursor: pointer;
       outline: 1px solid $color-alt;
     }

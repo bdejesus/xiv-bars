@@ -130,13 +130,13 @@ function SaveForm() {
     <>
       <form className={styles.saveForm}>
         <div className={`control ${styles.titleField}`}>
-          <label htmlFor="title">
+          <label htmlFor="layout-title">
             {t('SaveForm.title')} <small>{t('SaveForm.required')}</small>
           </label>
 
           <input
-            id="title"
-            name="title"
+            id="layout-title"
+            name="layout-title"
             type="text"
             ref={titleField}
             className={styles.titleField}
@@ -147,12 +147,13 @@ function SaveForm() {
         </div>
 
         <div className={`control ${styles.descriptionField}`}>
-          <label htmlFor="description">
+          <label htmlFor="layout-description">
             {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
           </label>
 
           <textarea
-            id="description"
+            id="layout-description"
+            name="layout-description"
             ref={descriptionField}
             className={styles.textarea}
             defaultValue={description}

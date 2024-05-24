@@ -51,25 +51,34 @@
   padding-top: $spacing-base;
 
   .layoutControl {
-    background-color: #222;
+    background-color: $color-gray-dark-2;
     border: none;
     border-radius: 6px;
     bottom: 100%;
     box-shadow: 0 2px 1px rgb(255 255 255 / 25%);
     color: #fff;
+    cursor: pointer;
     left: 3px;
     opacity: 0;
     padding: 4px 6px;
     position: absolute;
     transform: translateY(15px);
     transition-duration: $timing-default;
-    transition-property: opacity, transform;
+    transition-property: opacity, transform, color, outline;
     transition-timing-function: ease;
   }
 
-  &:hover .layoutControl {
+  &:hover .layoutControl,
+  &:focus .layoutControl {
     opacity: 1;
     transform: translateY(11px);
+
+    &:hover,
+    &:focus {
+      color: $color-alt;
+      outline: 1px solid $color-alt;
+      transform: translateY(9px);
+    }
   }
 }
 
@@ -81,7 +90,7 @@
   gap: $spacing-base $spacing-xl;
 
   > li {
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
     gap: $spacing-sm;
@@ -92,10 +101,11 @@
     content: counter(slots);
     counter-increment: slots;
     font-weight: 400;
+    height: $slot-size;
     min-width: 1em;
     opacity: 0.66;
+    position: relative;
     text-align: right;
-    top: 25px;
   }
 
   > li:empty {
