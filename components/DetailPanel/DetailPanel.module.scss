@@ -180,3 +180,10 @@
   flex-direction: row;
   gap: $spacing-sm;
 }
+
+.toggleButton {
+  position: absolute;
+  left: 400px;
+  top: $header-height;
+  z-index: 10;
+}

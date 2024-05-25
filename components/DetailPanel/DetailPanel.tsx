@@ -34,6 +34,11 @@ export default function DetailPanel({ className }:Props) {
   } = viewData;
 
   return (
+    <>
+    <button className={styles.toggleButton}>
+        Toggle Details
+      </button>
+
     <div className={[styles.container, className].join(' ')}>
       { (readOnly && title && userId)
         ? (
@@ -109,8 +114,8 @@ export default function DetailPanel({ className }:Props) {
             )}
           </div>
         )}
-
     </div>
+    </>
   );
 }
 
