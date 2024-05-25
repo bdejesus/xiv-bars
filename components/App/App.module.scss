@@ -94,10 +94,10 @@ $icon-size: 6px;
 .main {
   align-items: flex-start;
   display: flex;
-  flex: 1 1 auto;
   flex-direction: column;
   justify-content: flex-start;
   padding-top: $spacing-lg;
+  width: 680px;
 
   &[data-readonly='true'] {
     padding-top: 0;
@@ -105,7 +105,6 @@ $icon-size: 6px;
 }
 
 .actionsPanel {
-  flex: 0 0;
   min-width: 250px;
   position: sticky;
   top: $header-height + $controlbar-height + $spacing-base;
@@ -131,4 +130,45 @@ $icon-size: 6px;
   flex: 1 1 auto;
   padding-bottom: $spacing-base;
   position: relative;
+}
+
+
+
+@media (min-width: $screen-lg) {
+  .actionsPanel {
+    min-width: 320px;
+
+    :global(.list-actions) {
+      gap: $spacing-lg $spacing-base;
+    }
+  }
+}
+
+@media (width <= 1540px) {
+  .actionsPanel {
+    min-width: 240px;
+
+    :global(.list-actions) {
+      gap: $spacing-base;
+    }
+  }
+
+  .detailPanel {
+    flex: 1 1 320px;
+  }
+
+  .mainPanel {
+    flex: 1 0 900px;
+  }
+}
+
+@media (max-width: $screen-lg) {
+  .main {
+    flex: none;
+  }
+
+  .detailPanel {
+    margin-left: calc(-100vw + $spacing-base);
+    min-width: 100vw;
+  }
 }

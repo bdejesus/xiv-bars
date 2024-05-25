@@ -16,7 +16,6 @@
       bottom: -$spacing-base;
     }
   }
-
 }
 
 .xbar {
@@ -70,9 +69,8 @@
 
   &[data-exhb="true"] {
     border-bottom-width: 4px;
-    margin-bottom: $spacing-base;
+    margin-bottom: $spacing-lg;
     order: 2;
-    padding-bottom: $spacing-xl;
 
     .left::before {
       content: "LT → RT";
@@ -105,8 +103,6 @@
     background-color: rgb(45 45 45 / 66%);
     border-radius: 10px;
     order: 1;
-    padding-bottom: $spacing-sm;
-    padding-top: $spacing-sm;
 
     .left::before {
       content: "LT";

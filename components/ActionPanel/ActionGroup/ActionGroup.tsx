@@ -17,7 +17,7 @@ export default function ActionGroup({
   return (
     <div className={styles.container} data-show-titles={showTitles}>
       <h4 className={styles.groupTitle}>{title}</h4>
-      <ul className={styles.listActions}>
+      <ul className={`${styles.listActions} list-actions`}>
         {actionsList.map((action, index) => (
           <li key={`action-${action.ID}-${index}`} data-title={action.Name}>
             <Action action={action} />

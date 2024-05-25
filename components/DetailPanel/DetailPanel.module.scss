@@ -50,6 +50,7 @@
   }
 
   p, ul, ol {
+    font-weight: inherit;
     line-height: 1.65em;
     margin-bottom: 0;
     margin-top: $spacing-base;
@@ -131,11 +132,10 @@
 }
 
 .header {
-  margin-top: $spacing-base;
+  margin: $spacing-base;
 
   .owner {
     font-size: $font-size-base;
-    opacity: 0.75;
   }
 }
 
@@ -145,12 +145,11 @@
   flex-direction: column;
   font-size: $font-size-base;
   line-height: 1.45em;
-  padding-top: $spacing-lg;
+  padding-top: $spacing-base;
 }
 
 .content {
   flex: 1 1 auto;
-  padding-bottom: $spacing-lg;
 }
 
 .meta {
@@ -162,17 +161,16 @@
   font-size: $font-size-sm;
   font-style: italic;
   margin-bottom: $spacing-base;
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .footer {
-  height: 52px;
   margin: $spacing-lg 0;
-  overflow: hidden;
   text-align: center;
 
   img {
-    border-bottom: 1px solid #666;
+    box-shadow: 0 2px 0 #555, 0 4px 0 #ccc, 0 8px 0 #eee;
+    display: inline-block;
   }
 }
 

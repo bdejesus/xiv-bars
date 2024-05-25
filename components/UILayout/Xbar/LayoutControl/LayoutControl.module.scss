@@ -8,7 +8,7 @@
   flex-direction: row;
   gap: $spacing-lg;
   justify-content: center;
-  margin: -$spacing-lg 0 $spacing-lg;
+  margin-bottom: $spacing-base;
   min-width: $layout-container-width;
   padding: $spacing-sm $spacing-base;
   text-align: center;
@@ -31,6 +31,7 @@
   }
 
   label {
+    color: $color-gray-light;
     display: flex;
     flex-direction: row;
     font-size: $font-size-xs;
