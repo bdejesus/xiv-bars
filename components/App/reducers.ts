@@ -2,14 +2,14 @@ import { buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import type { AppState, AppDispatchActions } from 'types/App';
 import { setActionToSlot, setActionsToSlots, mergeParamsToView } from 'lib/utils/slots';
 import { defaultState } from 'components/App/defaultState';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 
 export function AppReducer(state:AppState, action: AppDispatchActions) {
   const { layout } = state.viewData || {};
   const { type, payload } = action;
 
   switch (type) {
-    case AppActions.LOAD_VIEW_DATA: {
+    case appActions.LOAD_VIEW_DATA: {
       // Load data from getServerSideProps and initialize the app state
       if (payload?.viewData) {
         const readOnly = payload.viewAction === 'show';
@@ -43,7 +43,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       return state;
     }
 
-    case AppActions.SLOT_ACTIONS: {
+    case appActions.SLOT_ACTIONS: {
       // Merge url params if any into the viewData state prop
       const viewData = mergeParamsToView({
         params: payload?.urlParams,
@@ -63,7 +63,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       return { ...state, ...slottedActions, viewData };
     }
 
-    case AppActions.SLOT_ACTION: {
+    case appActions.SLOT_ACTION: {
       if (payload?.slotID) {
         // Updated the encoded slots string with the given actionID
         const encodedSlots = setActionToSlot({
@@ -81,27 +81,31 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       return state;
     }
 
-    case AppActions.TOGGLE_TITLES: {
+    case appActions.TOGGLE_TITLES: {
       return { ...state, showTitles: !state.showTitles };
     }
 
-    case AppActions.TOGGLE_LVLS: {
+    case appActions.TOGGLE_LVLS: {
       return { ...state, showAllLvl: !state.showAllLvl };
     }
 
-    case AppActions.EDIT_LAYOUT: {
+    case appActions.TOGGLE_DETAILS: {
+      return { ...state, showDetails: !state.showDetails };
+    }
+
+    case appActions.EDIT_LAYOUT: {
       return { ...state, readOnly: false, viewAction: 'edit' };
     }
 
-    case AppActions.PUBLISH_LAYOUT: {
+    case appActions.PUBLISH_LAYOUT: {
       return { ...state, readOnly: true, viewAction: 'show' };
     }
 
-    case AppActions.CANCEL_EDITS: {
+    case appActions.CANCEL_EDITS: {
       return { ...state, readOnly: true, viewAction: 'show' };
     }
 
-    case AppActions.UPDATE_VIEW: {
+    case appActions.UPDATE_VIEW: {
       return {
         ...state,
         readOnly: true,
@@ -110,7 +114,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       };
     }
 
-    case AppActions.INITIALIZE: {
+    case appActions.INITIALIZE: {
       return {
         ...state,
         ...payload,
@@ -120,7 +124,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       };
     }
 
-    case AppActions.LOAD_JOBACTIONS: {
+    case appActions.LOAD_JOBACTIONS: {
       return {
         ...state,
         actions: action.payload?.actions,
@@ -128,7 +132,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       };
     }
 
-    case AppActions.VIEW_LIST: {
+    case appActions.VIEW_LIST: {
       return {
         ...state,
         viewData: {},
@@ -136,7 +140,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
       };
     }
 
-    case AppActions.SET_STATE: {
+    case appActions.SET_STATE: {
       return {
         ...state,
         ...payload

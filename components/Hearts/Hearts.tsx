@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { useAppDispatch } from 'components/App/context';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import Icon from 'components/Icon';
 import { createHeart, breakHeart } from 'lib/api/hearts';
 import analytics from 'lib/analytics';
@@ -36,7 +36,7 @@ export default function Hearts({
           console.error(json.error);
         } else {
           appDispatch({
-            type: AppActions.UPDATE_VIEW,
+            type: appActions.UPDATE_VIEW,
             payload: { _count: { hearts: json.count }, hearted: json.hearted }
           });
         }

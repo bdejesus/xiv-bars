@@ -1,16 +1,53 @@
 @import 'styles/mixins';
 
+$toggle-width: 20px;
+$panel-height: calc(100vh - $header-height);
+$panel-width: 320px;
+$panel-width-lg: $screen-xs;
+
 .container {
+  align-items: flex-end;
   background-color: #f9f9f9;
   display: flex;
   flex: none;
   flex-direction: column;
-  justify-content: flex-start;
-  max-height: calc(100vh - $header-height);
-  overflow-y: auto;
+  height: $panel-height;
+  overflow: hidden;
+  padding-right: $spacing-base + $spacing-xs;
   position: sticky;
   top: $header-height;
+  transform: translate3d(0);
+  transition-duration: 0.33s;
+  transition-property: width;
+  transition-timing-function: ease-out;
   width: $screen-xs;
+
+  &[data-hidden='true'] {
+    transition-timing-function: ease-in;
+    width: $toggle-width !important;
+  }
+
+  button.toggleDetailBtn {
+    background-color: $color-gray-dark-2;
+    border-radius: 0;
+    bottom: 0;
+    height: unset;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: $toggle-width;
+
+    :global(.icon) {
+      transform: rotate3d(0);
+      transition-duration: 0.3s;
+      transition-property: transform;
+      transition-timing-function: ease;
+    }
+
+    &[data-active='true'] :global(.icon) {
+      transform: rotate3d(0, 1, 0, 180deg);
+    }
+  }
 
   h2, h3, h4, h5, h6, p, ul, ol {
     &:first-child {
@@ -106,10 +143,26 @@
   }
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  height: $panel-height;
+  overflow-y: auto;
+  padding: $spacing-base;
+  transform: translate3d(0);
+  transition-duration: 0.33s;
+  transition-property: width;
+  transition-timing-function: ease-out;
+  width: $screen-xs - $toggle-width;
+}
+
 .header,
 .body {
   color: $color-gray;
-  margin: 0 $spacing-base;
+}
+
+.header {
+  margin-bottom: $spacing-lg;
 }
 
 .title {
@@ -131,12 +184,8 @@
   }
 }
 
-.header {
-  margin: $spacing-base;
-
-  .owner {
-    font-size: $font-size-base;
-  }
+.owner {
+  font-size: $font-size-base;
 }
 
 .body {
@@ -145,11 +194,6 @@
   flex-direction: column;
   font-size: $font-size-base;
   line-height: 1.45em;
-  padding-top: $spacing-base;
-}
-
-.content {
-  flex: 1 1 auto;
 }
 
 .meta {
@@ -165,7 +209,7 @@
 }
 
 .footer {
-  margin: $spacing-lg 0;
+  margin: $spacing-lg 0 0;
   text-align: center;
 
   img {
@@ -181,9 +225,40 @@
   gap: $spacing-sm;
 }
 
-.toggleButton {
-  position: absolute;
-  left: 400px;
-  top: $header-height;
-  z-index: 10;
+@media (width <= 1540px) {
+  .container {
+    width: $panel-width;
+
+    &[data-action='show'] {
+      width: $screen-xs;
+    }
+
+    .content,
+    &[data-action='show'] .content {
+      width: $panel-width - $toggle-width;
+    }
+  }
+}
+
+@media (max-width: $screen-md) {
+  .container {
+    height: calc($view-height-md);
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+
+    &[data-action='show'] {
+      width: 90vw;
+    }
+
+    .content,
+    &[data-action='show'] .content {
+      width: calc(90vw - $toggle-width);
+    }
+  }
 }

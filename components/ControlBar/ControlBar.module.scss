@@ -13,6 +13,10 @@
   &[data-active-modal="true"] {
     z-index: 11;
   }
+
+  @media (max-width: $screen-md) {
+    top: 0;
+  }
 }
 
 .container {
@@ -56,11 +60,5 @@
     font-size: $font-size-sm;
     height: 30px;
     padding: 0 10px;
-  }
-}
-
-@media (max-width: $screen-md) {
-  .controlBar {
-    top: 0;
   }
 }

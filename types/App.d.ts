@@ -1,4 +1,4 @@
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import type { ActionProps, SlotProps } from 'types/Action';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
@@ -12,6 +12,7 @@ export interface AppState {
   selectedJob?: ClassJobProps,
   showTitles?: boolean,
   showAllLvl?: boolean,
+  showDetails: boolean,
   viewAction?: 'list' | 'new' | 'edit' | 'show',
   roleActions?: ActionProps[],
   actions?: ActionProps[],
@@ -38,15 +39,15 @@ interface DispatchPayload {
 }
 
 type AppActionTypes =
-  AppActions.SLOT_ACTIONS
-  | AppActions.SLOT_ACTION
-  | AppActions.TOGGLE_TITLES
-  | AppActions.TOGGLE_LVLS
-  | AppActions.EDIT_LAYOUT
-  | AppActions.CANCEL_EDITS
-  | AppActions.PUBLISH_LAYOUT
-  | AppActions.LAYOUT_SAVED
-  | AppActions.LOAD_VIEW_DATA;
+appActions.SLOT_ACTIONS
+  | appActions.SLOT_ACTION
+  | appActions.TOGGLE_TITLES
+  | appActions.TOGGLE_LVLS
+  | appActions.EDIT_LAYOUT
+  | appActions.CANCEL_EDITS
+  | appActions.PUBLISH_LAYOUT
+  | appActions.LAYOUT_SAVED
+  | appActions.LOAD_VIEW_DATA;
 
 export type AppDispatchActions = {
   type: AppActionTypes,

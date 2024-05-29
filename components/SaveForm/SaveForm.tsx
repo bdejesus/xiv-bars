@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import { SystemActions, useSystemDispatch } from 'components/System';
 import ReactMarkdown from 'react-markdown';
 import analytics from 'lib/analytics';
@@ -74,7 +74,7 @@ function SaveForm() {
       .then((json) => {
         const { layoutView, layouts } = json;
 
-        appDispatch({ type: AppActions.UPDATE_VIEW, payload: layoutView });
+        appDispatch({ type: appActions.UPDATE_VIEW, payload: layoutView });
 
         systemDispatch({
           type: SystemActions.SET_MESSAGE,
@@ -104,7 +104,7 @@ function SaveForm() {
   }
 
   function cancelEdit() {
-    appDispatch({ type: AppActions.CANCEL_EDITS });
+    appDispatch({ type: appActions.CANCEL_EDITS });
   }
 
   function validateLayout() {

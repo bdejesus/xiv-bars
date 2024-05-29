@@ -9,17 +9,19 @@ import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
+import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
 
 interface Props {
-  className?: string
+  className?: string,
+  visible: boolean
 }
 
-export default function DetailPanel({ className }:Props) {
+export default function DetailPanel({ className, visible }:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const {
-    viewData, readOnly, selectedJob
+    viewData, readOnly, selectedJob, viewAction
   } = useAppState();
 
   const {
@@ -34,53 +36,54 @@ export default function DetailPanel({ className }:Props) {
   } = viewData;
 
   return (
-    <>
-    <button className={styles.toggleButton}>
-        Toggle Details
-      </button>
+    <div
+      className={[styles.container, className].join(' ')}
+      data-hidden={!visible}
+      data-action={viewAction}
+    >
+      <ToggleDetailPanel />
 
-    <div className={[styles.container, className].join(' ')}>
-      { (readOnly && title && userId)
-        ? (
-          <>
-            <div className={styles.header}>
-              <div className={styles.title}>
-                <h1 className="mt-0 mb-0">
-                  {title}
-                </h1>
-                <EditLayoutButton />
-              </div>
-
-              <div className={styles.meta}>
-                <div className={styles.owner}>
-                  {t('LayoutCard.by')} <Link href={`/user/${userId}`}>{user?.name}</Link>
+      <div className={styles.content}>
+        { (readOnly && title && userId)
+          ? (
+            <>
+              <div className={styles.header}>
+                <div className={styles.title}>
+                  <h1 className="mt-0 mb-0">
+                    {title}
+                  </h1>
+                  <EditLayoutButton />
                 </div>
 
-                { updatedAt && (
+                <div className={styles.meta}>
+                  <div className={styles.owner}>
+                    {t('LayoutCard.by')} <Link href={`/user/${userId}`}>{user?.name}</Link>
+                  </div>
+
+                  { updatedAt && (
                   <div className={styles.timestamp}>
                     {t('LayoutCard.last_updated')}: {formatDateString(updatedAt as string)}
                   </div>
-                )}
+                  )}
 
-                <div className={styles.row}>
-                  { id && (
+                  <div className={styles.row}>
+                    { id && (
                     <Hearts
                       layoutId={id}
                       count={_count.hearts}
                       disabled={!session}
                       hearted={hearted}
                     />
-                  )}
+                    )}
 
-                  { (viewData && selectedJob) && (
+                    { (viewData && selectedJob) && (
                     <Tags layoutView={viewData} job={selectedJob} />
-                  )}
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className={styles.body}>
-              <div className={styles.content}>
+              <div className={styles.body}>
                 { description ? (
                   <ReactMarkdown components={{
                     h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
@@ -96,26 +99,25 @@ export default function DetailPanel({ className }:Props) {
               </div>
 
               { selectedJob?.Abbreviation && (
-                <div className={styles.footer}>
-                  <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
-                </div>
-              )}
-            </div>
-          </>
-        )
-        : (
-          <div className={styles.body}>
-            <SaveForm />
-
-            { selectedJob?.Abbreviation && (
               <div className={styles.footer}>
                 <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
               </div>
-            )}
-          </div>
-        )}
+              )}
+            </>
+          )
+          : (
+            <div className={styles.body}>
+              <SaveForm />
+
+              { selectedJob?.Abbreviation && (
+              <div className={styles.footer}>
+                <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
+              </div>
+              )}
+            </div>
+          )}
+      </div>
     </div>
-    </>
   );
 }
 

@@ -202,13 +202,11 @@
 
 @media (max-width: $screen-sm) {
   .globalNav {
+    width: calc(100vw - ($spacing-base * 2));
+
     ol {
       gap: $spacing-sm;
-      margin-left: -$spacing-base;
-      overflow: auto hidden;
-      padding-left: $spacing-base;
-      padding-right: $spacing-base;
-      width: 100vw;
+      overflow: visible;
 
       > li::before {
         display: none;
@@ -217,6 +215,15 @@
 
     :global(.button) {
       font-size: $font-size-sm;
+      width: 40px;
+    }
+
+    :global(.icon) {
+      margin-right: 0;
+    }
+
+    :global(.btn-label) {
+      display: none;
     }
   }
 }

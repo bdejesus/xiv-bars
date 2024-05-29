@@ -111,15 +111,15 @@ $tooltip-width: 320px;
     width: 100vw;
 
     .content {
-      bottom: 0 !important;
+      bottom: $spacing-xs !important;
       height: 20vh;
-      left: 0 !important;
+      left: $spacing-xs !important;
       overflow: auto;
       pointer-events: auto;
       position: absolute;
-      right: 0 !important;
+      right: $spacing-xs !important;
       top: unset !important;
-      width: 100%;
+      width: unset;
     }
   }
 }

@@ -75,7 +75,7 @@ function App({ Component, pageProps }: AppProps) {
         html {
           font-family: ${roboto.style.fontFamily};
         }
-        code, pre, .tag, .job-abbr {
+        .tag, .job-abbr {
           font-family: ${notoSansMono.style.fontFamily};
         }
       `}

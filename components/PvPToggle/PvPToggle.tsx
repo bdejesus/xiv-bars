@@ -7,7 +7,7 @@ import { useAppState, useAppDispatch } from 'components/App/context';
 import { listJobActions, listRoleActions } from 'lib/api/actions.mjs';
 import { buildUrl } from 'lib/utils/url';
 import Icon from 'components/Icon';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import type { ClassJobProps } from 'types/ClassJob';
 
 export default function PvPToggle() {
@@ -39,7 +39,7 @@ export default function PvPToggle() {
       const actionsToLoad = await listJobActions(job, viewData.isPvp);
       const roleActionsToLoad = await listRoleActions(job, viewData.isPvp);
       appDispatch({
-        type: AppActions.LOAD_JOBACTIONS,
+        type: appActions.LOAD_JOBACTIONS,
         payload: { actions: actionsToLoad, roleActions: roleActionsToLoad }
       });
       systemDispatch({ type: SystemActions.LOADING_END });

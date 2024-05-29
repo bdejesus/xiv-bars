@@ -10,7 +10,7 @@ import Hotbar from 'components/UILayout/Hotbar';
 import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 
 import styles from './App.module.scss';
 
@@ -23,16 +23,18 @@ export function App() {
     actions,
     roleActions,
     readOnly,
+    showDetails,
     viewData,
     viewAction
   } = appState;
+
   const router = useRouter();
   const layoutKey = viewData.layout as keyof typeof layouts;
 
   useEffect(() => {
     if (router.query.jobId) {
       appDispatch({
-        type: AppActions.LOAD_VIEW_DATA,
+        type: appActions.LOAD_VIEW_DATA,
         payload: {
           viewData,
           selectedJob,
@@ -49,7 +51,7 @@ export function App() {
     <TooltipContextProvider>
       <SelectedActionContextProvider>
         <div className={`${styles.view} app-view`} data-action={viewAction}>
-          <DetailPanel className={styles.detailPanel} />
+          <DetailPanel className={styles.detailPanel} visible={showDetails} />
 
           <div className={styles.mainPanel}>
             { jobs && selectedJob && <ControlBar /> }

@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import { buildUrl } from 'lib/utils/url';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import Options from './Options';
 import styles from './LayoutControl.module.scss';
 
@@ -18,7 +18,7 @@ export default function LayoutControl() {
       const { value } = event.currentTarget;
       const url = buildUrl({ query: router.query, mergeData: { [id]: value } });
       appDispatch({
-        type: AppActions.SET_STATE,
+        type: appActions.SET_STATE,
         payload: {
           viewData: {
             ...viewData,

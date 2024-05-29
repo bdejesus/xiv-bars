@@ -7,7 +7,7 @@ import {
 } from 'components/SelectedAction';
 import { SelectedActionAction } from 'components/SelectedAction/actions';
 import { useAppState, useAppDispatch } from 'components/App/context';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import Icon, { Icons } from 'components/Icon';
 import type { ActionProps } from 'types/Action';
 import { setActionToSlot } from 'lib/utils/slots';
@@ -61,7 +61,7 @@ export default function Slot({ id, className, action }: Props) {
         mergeData: { s: updatedSlots }
       });
       appDispatch({
-        type: AppActions.SLOT_ACTION,
+        type: appActions.SLOT_ACTION,
         payload: { action: withAction, slotID: id }
       });
       if (!viewData.id) router.push(url, undefined, { shallow: true });
