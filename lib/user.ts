@@ -1,4 +1,4 @@
-export const maxLayouts = 30;
+export const maxLayouts = 33;
 
 const user = {
   maxLayouts
