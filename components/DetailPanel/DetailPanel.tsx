@@ -9,8 +9,27 @@ import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
+import type { ClassJobProps } from 'types/ClassJob';
 import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
+
+interface JobSpriteProps {
+  job: ClassJobProps
+}
+
+function JobSprite({ job }:JobSpriteProps) {
+  if (
+    !job?.Abbreviation
+    || !['DOW', 'DOM'].includes(job?.Discipline)
+    || job?.Abbreviation === 'BLU'
+  ) return null;
+
+  return (
+    <div className={styles.footer}>
+      <Image src={`/classjob/sprite-${job.Abbreviation}.png`} alt={job.Name} height={52} width={52} />
+    </div>
+  );
+}
 
 interface Props {
   className?: string,
@@ -98,22 +117,13 @@ export default function DetailPanel({ className, visible }:Props) {
                 )}
               </div>
 
-              { selectedJob?.Abbreviation && (
-              <div className={styles.footer}>
-                <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
-              </div>
-              )}
+              <JobSprite job={selectedJob} />
             </>
           )
           : (
             <div className={styles.body}>
               <SaveForm />
-
-              { selectedJob?.Abbreviation && (
-              <div className={styles.footer}>
-                <Image src={`/classjob/sprite-${selectedJob.Abbreviation}.png`} alt={selectedJob.Name} height={52} width={52} />
-              </div>
-              )}
+              <JobSprite job={selectedJob} />
             </div>
           )}
       </div>
