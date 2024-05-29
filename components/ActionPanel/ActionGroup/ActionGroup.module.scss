@@ -20,7 +20,7 @@
 
 .listActions {
   display: grid;
-  gap: $spacing-base $spacing-base;
+  gap: $spacing-base;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   list-style: none;
