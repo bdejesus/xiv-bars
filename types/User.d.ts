@@ -1,5 +1,5 @@
 import type { LayoutViewProps } from 'types/Layout';
-import { UserActions } from 'components/User/actions';
+import { userActions } from 'components/User';
 
 export interface UserProps {
   name: string,
@@ -21,12 +21,12 @@ type UserDispatchPayload = {
 }
 
 export interface UpdateUser {
-  type: UserActions.UPDATE_USER,
+  type: userActions.UPDATE_USER,
   payload: UserDispatchPayload
 }
 
 export interface UpdateLayouts {
-  type: UserActions.UPDATE_LAYOUTS,
+  type: userActions.UPDATE_LAYOUTS,
   payload: UserDispatchPayload
 }
 

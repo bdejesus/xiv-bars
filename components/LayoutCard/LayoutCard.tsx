@@ -7,7 +7,7 @@ import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
-import { useUserDispatch, UserActions } from 'components/User';
+import { useUserDispatch, userActions } from 'components/User';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
 import ReactMarkdown from 'react-markdown';
@@ -40,7 +40,7 @@ export default function LayoutCard(props:Props) {
     fetch('/api/layout', options)
       .then((data) => data.json())
       .then((json) => {
-        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: json } });
+        userDispatch({ type: userActions.UPDATE_LAYOUTS, payload: { layouts: json } });
         setShowPrompt(false);
       });
   }

@@ -7,7 +7,7 @@ import Head from 'next/head';
 import { useSession } from 'next-auth/react';
 import { AppContextProvider } from 'components/App/context';
 import { useUserState, useUserDispatch } from 'components/User/context';
-import { UserActions } from 'components/User/actions';
+import { userActions } from 'components/User/actions';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutsList from 'components/LayoutsList';
 import Card from 'components/Card';
@@ -36,7 +36,7 @@ export default function User({ user }:UserViewProps) {
 
   useEffect(() => {
     userDispatch({
-      type: UserActions.UPDATE_LAYOUTS,
+      type: userActions.UPDATE_LAYOUTS,
       payload: { layouts: user.layouts }
     });
   }, []);

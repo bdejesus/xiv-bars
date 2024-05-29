@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
-import { UserActions } from 'components/User/actions';
+import { userActions } from 'components/User/actions';
 import { appActions } from 'components/App/actions';
 import { systemActions, useSystemDispatch } from 'components/System';
 import ReactMarkdown from 'react-markdown';
@@ -84,7 +84,7 @@ function SaveForm() {
           }
         });
 
-        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
+        userDispatch({ type: userActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
         if (viewAction === 'new') {
           analytics.event({ action: 'form_submit', params: { form_id: 'layout', form_name: 'new_layout' } });
