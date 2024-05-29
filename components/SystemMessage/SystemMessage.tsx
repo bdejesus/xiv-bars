@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useSystemDispatch, useSystemState, SystemActions } from 'components/System';
+import { useSystemDispatch, useSystemState, systemActions } from 'components/System';
 
 import styles from './SystemMessage.module.scss';
 
@@ -14,7 +14,7 @@ export function SystemMessage() {
     setShowMessage(false);
     setTimeout(() => {
       systemDispatch({
-        type: SystemActions.SET_MESSAGE,
+        type: systemActions.SET_MESSAGE,
         payload: undefined
       });
     }, 1000);

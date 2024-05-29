@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import Link from 'next/link';
 import { useSystemDispatch } from 'components/System/context';
-import { SystemActions } from 'components/System/actions';
+import { systemActions } from 'components/System/actions';
 import Icon, { Icons } from 'components/Icon';
 import ClassJob from 'components/ClassJob';
 
@@ -26,7 +26,7 @@ export function JobsList({
   const classNames = [styles.container, className].join(' ');
 
   function handleClickNew() {
-    systemDispatch({ type: SystemActions.LOADING_START });
+    systemDispatch({ type: systemActions.LOADING_START });
   }
 
   return (

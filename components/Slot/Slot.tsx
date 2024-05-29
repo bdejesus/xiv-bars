@@ -5,7 +5,7 @@ import {
   useSelectedActionState,
   useSelectedActionDispatch
 } from 'components/SelectedAction';
-import { SelectedActionAction } from 'components/SelectedAction/actions';
+import { selectedActionActions } from 'components/SelectedAction/actions';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { appActions } from 'components/App/actions';
 import Icon, { Icons } from 'components/Icon';
@@ -91,7 +91,7 @@ export default function Slot({ id, className, action }: Props) {
       } else {
         handleSlotUpdate();
       }
-      selectedActionDispatch({ type: SelectedActionAction.DESELECT });
+      selectedActionDispatch({ type: selectedActionActions.DESELECT });
     }
   }
 

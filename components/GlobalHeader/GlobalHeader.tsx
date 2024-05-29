@@ -6,8 +6,7 @@ import ExportToMacros from 'components/ExportToMacro';
 import Sharing from 'components/Sharing';
 import Link from 'next/link';
 import UserNav from 'components/UserNav';
-import { useSystemDispatch } from 'components/System/context';
-import { SystemActions } from 'components/System/actions';
+import { useSystemDispatch, systemActions } from 'components/System';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
@@ -30,7 +29,7 @@ export function GlobalHeader({ selectedJob }:Props) {
   const { id } = viewData || {};
 
   function handleClickNew() {
-    systemDispatch({ type: SystemActions.LOADING_START });
+    systemDispatch({ type: systemActions.LOADING_START });
   }
 
   return (

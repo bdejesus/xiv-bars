@@ -1,8 +1,8 @@
-export const SelectedActionAction = {
+export const selectedActionActions = {
   SELECT: 'selectAction',
   DESELECT: 'deselectAction'
 };
 
-const moduleExports = { SelectedActionAction };
+const moduleExports = { selectedActionActions };
 
 export default moduleExports;

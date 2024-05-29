@@ -6,7 +6,7 @@ import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
 import { UserActions } from 'components/User/actions';
 import { appActions } from 'components/App/actions';
-import { SystemActions, useSystemDispatch } from 'components/System';
+import { systemActions, useSystemDispatch } from 'components/System';
 import ReactMarkdown from 'react-markdown';
 import analytics from 'lib/analytics';
 import type { LayoutViewProps } from 'types/Layout';
@@ -77,7 +77,7 @@ function SaveForm() {
         appDispatch({ type: appActions.UPDATE_VIEW, payload: layoutView });
 
         systemDispatch({
-          type: SystemActions.SET_MESSAGE,
+          type: systemActions.SET_MESSAGE,
           payload: {
             status: 'success',
             text: t('SaveForm.success')
@@ -94,7 +94,7 @@ function SaveForm() {
       .catch((error) => {
         console.error(error);
         systemDispatch({
-          type: SystemActions.SET_MESSAGE,
+          type: systemActions.SET_MESSAGE,
           payload: {
             status: 'fail',
             text: t('SaveForm.failed')
