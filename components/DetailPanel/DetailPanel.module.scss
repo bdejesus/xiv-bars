@@ -230,16 +230,19 @@ $panel-width-lg: $screen-xs;
   gap: $spacing-sm;
 }
 
-@media (width <= 1540px) {
+@media (max-width: $screen-lg-3) {
   .container {
     width: $panel-width;
 
     &[data-action='show'] {
       width: $screen-xs;
+
+      .content {
+        width: $screen-xs - $toggle-width;
+      }
     }
 
-    .content,
-    &[data-action='show'] .content {
+    .content {
       width: $panel-width - $toggle-width;
     }
   }

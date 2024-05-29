@@ -130,7 +130,7 @@ $icon-size: 6px;
   }
 }
 
-@media (min-width: $screen-lg) {
+@media (min-width: $screen-lg-3) {
   .actionsPanel {
     min-width: 320px;
 
@@ -140,7 +140,7 @@ $icon-size: 6px;
   }
 }
 
-@media (width <= 1540px) {
+@media (max-width: $screen-lg-3) {
   .actionsPanel {
     min-width: 320px;
 
