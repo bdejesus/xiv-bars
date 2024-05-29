@@ -117,13 +117,13 @@ export default function DetailPanel({ className, visible }:Props) {
                 )}
               </div>
 
-              <JobSprite job={selectedJob} />
+              { selectedJob && <JobSprite job={selectedJob} /> }
             </>
           )
           : (
             <div className={styles.body}>
               <SaveForm />
-              <JobSprite job={selectedJob} />
+              { selectedJob && <JobSprite job={selectedJob} /> }
             </div>
           )}
       </div>
