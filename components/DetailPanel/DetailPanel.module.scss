@@ -44,8 +44,13 @@ $panel-width-lg: $screen-xs;
       transition-timing-function: ease;
     }
 
-    &[data-active='true'] :global(.icon) {
-      transform: rotate3d(0, 1, 0, 180deg);
+    &[data-active='true'] {
+      background-color: $color-alt;
+
+      :global(.icon) {
+        filter: $icon-filter-black;
+        transform: rotate3d(0, 1, 0, 180deg);
+      }
     }
   }
 

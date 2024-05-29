@@ -19,7 +19,7 @@
     color: #333;
 
     &:focus {
-      outline: 3px solid $color-alt-dark;
+      outline: 3px solid $color-alt;
     }
   }
 
@@ -66,6 +66,9 @@
   font-style: italic;
   margin-top: $spacing-base;
   padding: $spacing-base;
+  transition-duration: 0.3s;
+  transition-property: background-color;
+  transition-timing-function: ease;
 }
 
 .info {

@@ -165,7 +165,7 @@ function SaveForm() {
           <button
             type="button"
             onClick={saveLayout}
-            className={`button ${shouldPublish && 'btn-primary'}`}
+            className="button btn-primary"
             disabled={!canPublish}
           >
             { t('SaveForm.save') }
