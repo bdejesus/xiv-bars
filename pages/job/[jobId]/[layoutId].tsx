@@ -5,7 +5,7 @@ import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
 import Head from 'next/head';
-import App, { useAppDispatch, AppActions } from 'components/App';
+import App, { useAppDispatch, appActions } from 'components/App';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import Jobs from 'apiData/Jobs.json';
@@ -31,7 +31,7 @@ export default function Index(props:PageProps) {
 
   useEffect(() => {
     appDispatch({
-      type: AppActions.LOAD_VIEW_DATA,
+      type: appActions.LOAD_VIEW_DATA,
       payload: {
         viewData,
         selectedJob,

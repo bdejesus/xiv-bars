@@ -5,7 +5,7 @@ import type {
   SelectedActionState,
   SelectedActionDispatchActions
 } from 'types/SelectedAction';
-import { SelectedActionAction } from 'components/SelectedAction/actions';
+import { selectedActionActions } from 'components/SelectedAction/actions';
 
 const initialState = { selectedAction: undefined };
 const SelectedActionContext = createContext<SelectedActionState>(initialState);
@@ -13,10 +13,10 @@ const SelectedActionDispatchContext = createContext<React.Dispatch<SelectedActio
 
 function selectedActionReducer(_state: SelectedActionState, action: SelectedActionDispatchActions) {
   switch (action.type) {
-    case SelectedActionAction.SELECT: {
+    case selectedActionActions.SELECT: {
       return { selectedAction: action.payload?.selectedAction };
     }
-    case SelectedActionAction.DESELECT: {
+    case selectedActionActions.DESELECT: {
       return { selectedAction: undefined };
     }
     default: {

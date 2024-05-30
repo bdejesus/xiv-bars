@@ -13,7 +13,9 @@ export const Icons = {
   REMOVE: 'remove',
   SAVE: 'save',
   SHARE: 'share',
-  TITLES: 'titles'
+  TITLES: 'titles',
+  NOTES: 'notes',
+  CARET_RIGHT: 'caret-right'
 };
 
 export default Icons;

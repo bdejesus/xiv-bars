@@ -4,7 +4,7 @@ import React, {
 import { useSession } from 'next-auth/react';
 import { maxLayouts } from 'lib/user';
 import type { UserState, UserDispatchActions } from 'types/User';
-import { UserActions } from './actions';
+import { userActions } from './actions';
 import UserReducer from './reducers';
 
 const initialState = {
@@ -44,7 +44,7 @@ export function UserProvider({ children }: Props) {
     const layoutsCount = session?.user?._count?.layouts || 0;
     const canPublish = layoutsCount < maxLayouts;
     dispatch({
-      type: UserActions.UPDATE_USER,
+      type: userActions.UPDATE_USER,
       payload: {
         user: { loggedIn: status === 'authenticated', canPublish }
       }

@@ -1,4 +1,4 @@
-import { SystemActions } from 'components/System/actions';
+import { systemActions } from 'components/System';
 
 export interface SystemProps {
   message?: {
@@ -10,7 +10,7 @@ export interface SystemProps {
 }
 
 export type SystemDispatchActions = {
-  type: SystemActions.TOGGLE_MODAL | SystemActions.SET_MESSAGE,
+  type: systemActions.TOGGLE_MODAL | systemActions.SET_MESSAGE,
   payload?: {
     showModal?: boolean,
     text?: string,

@@ -1,18 +1,12 @@
 @import "styles/mixins";
 
-$font-family-primary: "Roboto", "Ubuntu", "Cantarell";
-$font-family-fallback: "Fira Sans", "Droid Sans", "Helvetica Neue";
-$font-family-system: -apple-system, "BlinkMacSystemFont", sans-serif;
-
 body,
 textarea {
   color: #ccc;
-  font-family: $font-family-primary, $font-family-fallback, $font-family-system;
   font-optical-sizing: auto;
   font-size: 16px;
   font-variation-settings:
     "wdth" 100;
-  font-weight: 400;
   line-height: 1.45em;
 }
 
@@ -28,18 +22,15 @@ h5 {
 
 h1 {
   font-size: $font-size-xl-3;
+  font-weight: 100;
   line-height: 1.05em;
   margin-bottom: $spacing-base;
   margin-top: 0;
 }
 
-h1,
-h2 {
-  font-weight: 300;
-}
-
 h2 {
   font-size: $font-size-xl-2;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -76,6 +67,7 @@ ol {
 }
 
 p {
+  font-weight: 300;
   margin-bottom: 1.55em;
   margin-top: 0;
 
@@ -84,15 +76,19 @@ p {
   }
 }
 
+pre, code {
+  font-weight: 700;
+}
+
 abbr {
   outline: none;
   text-decoration: none;
 }
 
 label {
-  color: #999;
+  color: #666;
   font-size: $font-size-sm;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.033em;
 }
 

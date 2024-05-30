@@ -13,20 +13,27 @@ $tag-size: 24px;
   background-color: #ddd;
   border-radius: 2px;
   color: $color-gray;
-  display: inline-flex;
+  display: flex;
   font-size: $font-size-xs;
-  font-weight: 900;
   height: $tag-size;
   justify-content: center;
   margin-right: $spacing-xs;
   padding: 2px 6px 2px 4px;
+  transform: translateZ(0);
+}
+
+.name {
+  display: block;
+  font-weight: 900;
+  height: $font-size-base;
+  line-height: 12px;
+  margin-left: 0.1em;
 }
 
 .jobTag {
   .tag {
     background-color: transparent;
     color: #fff;
-    font-weight: 500;
     padding: 0;
   }
 
@@ -42,6 +49,7 @@ $tag-size: 24px;
 
   :global(.job-abbr) {
     font-family: inherit;
+    font-size: inherit;
     font-weight: inherit;
     margin-right: 0;
   }

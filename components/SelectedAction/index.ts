@@ -4,3 +4,4 @@ export {
   useSelectedActionState,
   useSelectedActionDispatch
 } from './context';
+export { selectedActionActions } from './actions';

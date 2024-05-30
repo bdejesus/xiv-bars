@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import { useAppDispatch, useAppState } from 'components/App/context';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import Icon, { Icons } from 'components/Icon';
 import styles from './ControlBar.module.scss';
 
@@ -9,7 +9,7 @@ function ToggleMaxLvl() {
   const appDispatch = useAppDispatch();
   const { showAllLvl } = useAppState();
 
-  function handleMaxLvlToggle() { appDispatch({ type: AppActions.TOGGLE_LVLS }); }
+  function handleMaxLvlToggle() { appDispatch({ type: appActions.TOGGLE_LVLS }); }
 
   return (
     <button

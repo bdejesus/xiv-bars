@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import { useUserState } from 'components/User/context';
 import Icon, { Icons } from 'components/Icon';
 import styles from './ControlBar.module.scss';
@@ -53,7 +53,7 @@ function ToggleSaveForm() {
   const appDispatch = useAppDispatch();
   const canSaveNew = (session.status === 'authenticated' && !id);
   const canEdit = session.status === 'authenticated' && (session.data.user?.id === user?.id);
-  function showForm() { appDispatch({ type: AppActions.EDIT_LAYOUT }); }
+  function showForm() { appDispatch({ type: appActions.EDIT_LAYOUT }); }
 
   return (
     <div className={styles.control}>

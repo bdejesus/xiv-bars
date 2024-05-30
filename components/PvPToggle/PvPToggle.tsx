@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useSystemState, useSystemDispatch } from 'components/System/context';
-import { SystemActions } from 'components/System/actions';
+import { systemActions } from 'components/System/actions';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { listJobActions, listRoleActions } from 'lib/api/actions.mjs';
 import { buildUrl } from 'lib/utils/url';
 import Icon from 'components/Icon';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import type { ClassJobProps } from 'types/ClassJob';
 
 export default function PvPToggle() {
@@ -35,14 +35,14 @@ export default function PvPToggle() {
 
   useEffect(() => {
     async function getActions(job:ClassJobProps) {
-      systemDispatch({ type: SystemActions.LOADING_START });
+      systemDispatch({ type: systemActions.LOADING_START });
       const actionsToLoad = await listJobActions(job, viewData.isPvp);
       const roleActionsToLoad = await listRoleActions(job, viewData.isPvp);
       appDispatch({
-        type: AppActions.LOAD_JOBACTIONS,
+        type: appActions.LOAD_JOBACTIONS,
         payload: { actions: actionsToLoad, roleActions: roleActionsToLoad }
       });
-      systemDispatch({ type: SystemActions.LOADING_END });
+      systemDispatch({ type: systemActions.LOADING_END });
     }
 
     if (selectedJob) getActions(selectedJob);

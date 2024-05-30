@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'components/App/context';
-import { AppActions } from 'components/App/actions';
+import { appActions } from 'components/App/actions';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
 import Jobs from 'apiData/Jobs.json';
@@ -33,7 +33,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
   useEffect(() => {
-    appDispatch({ type: AppActions.VIEW_LIST });
+    appDispatch({ type: appActions.VIEW_LIST });
     const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
     const keys = Object.keys(router.query);
 
@@ -51,7 +51,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         <Head>
           <title>
             {t('Pages.Job.index_title', { jobName, jobAbbr })}
-          </title>
+          </title>Lore
           <meta
             name="description"
             content={t('Pages.Job.index_description', { jobName })}

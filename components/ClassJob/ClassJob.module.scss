@@ -32,6 +32,7 @@
     inset 1px 1px 0 rgb(255 255 255 / 15%),
     inset -1px -1px 0 rgb(0 0 0 / 33%);
   padding: 2px $spacing-base 2px $spacing-xs;
+  transform: translateZ(0);
 
   &[data-role='TANK'] {
     background-color: #455BC9;
@@ -65,9 +66,12 @@
 }
 
 .abbr {
-  font-family: "Lucida Console", Consolas, monospace;
-  font-size: 1em;
+  display: block;
+  font-size: $font-size-base;
   font-weight: 900;
+  height: $font-size-base;
+  line-height: 12px;
+  margin-left: 0.1em;
 }
 
 .name {

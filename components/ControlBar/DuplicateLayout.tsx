@@ -25,6 +25,7 @@ export default function DuplicateLayout() {
       onClick={copyLayout}
       title={t('ControlBar.CopyLayout.copy_layout')}
       className="button"
+      data-title={t('ControlBar.CopyLayout.copy_label')}
     >
       <Icon id={Icons.COPY} alt={t('ControlBar.CopyLayout.copy_icon')} />
       <span className="btn-label">{t('ControlBar.CopyLayout.copy_label')}</span>

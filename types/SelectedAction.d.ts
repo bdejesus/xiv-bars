@@ -1,5 +1,5 @@
 import type { ActionProps } from 'types/Action';
-import { SelectedActionAction } from 'components/SelectedAction/actions';
+import { selectedActionActions } from 'components/SelectedAction/actions';
 
 export interface SelectedActionState {
   selectedAction?: ActionProps | undefined
@@ -12,12 +12,12 @@ export interface SelectedActionPayload {
 }
 
 export interface SelectAction {
-  type: SelectedActionAction.SELECT
+  type: selectedActionActions.SELECT
   payload: SelectedActionPayload
 }
 
 export interface DeselectAction {
-  type: SelectedActionAction.SELECT
+  type: selectedActionActions.SELECT
   payload?: SelectedActionPayload
 }
 

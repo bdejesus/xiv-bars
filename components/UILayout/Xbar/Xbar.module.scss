@@ -5,6 +5,7 @@
   counter-reset: xbarCount;
   display: flex;
   flex-direction: column;
+  min-width: $layout-container-width;
 
   &[data-show-titles='true'] .xbar {
     padding-bottom: $spacing-lg;
@@ -15,7 +16,6 @@
       bottom: -$spacing-base;
     }
   }
-
 }
 
 .xbar {
@@ -68,10 +68,9 @@
   }
 
   &[data-exhb="true"] {
-    border-bottom: 1px solid rgb(255 255 255 / 33%);
+    border-bottom-width: 4px;
     margin-bottom: $spacing-lg;
     order: 2;
-    padding-bottom: $spacing-xl;
 
     .left::before {
       content: "LT → RT";
@@ -101,11 +100,9 @@
   }
 
   &[data-main="true"] {
-    background-color: rgb(255 255 255 / 3.3%);
+    background-color: rgb(45 45 45 / 66%);
     border-radius: 10px;
     order: 1;
-    padding-bottom: $spacing-sm;
-    padding-top: $spacing-sm;
 
     .left::before {
       content: "LT";
@@ -119,7 +116,9 @@
   }
 
   &[data-visible="false"] {
-    display: none;
+    pointer-events: none;
+    position: absolute;
+    visibility: hidden;
   }
 }
 
@@ -128,7 +127,7 @@
 }
 
 .right {
-  border-left: 1px solid rgb(0 0 0 / 20%);
+  border-left: 2px solid rgb(255 255 255 / 6%);
   padding-left: $spacing-xs;
 }
 

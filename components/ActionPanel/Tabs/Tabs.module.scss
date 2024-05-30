@@ -3,23 +3,12 @@
 .tabs {
   margin: 0 $spacing-sm;
 
-  .tabButton {
+  button.tabButton {
     border-radius: 0;
     font-size: $font-size-sm;
     height: 32px;
     padding: 0 10px;
     width: 100%;
-
-    &:active,
-    &[data-active="true"] {
-      background-color: $panel-bg;
-      border-bottom-color: $panel-bg;
-      color: $color-alt;
-    }
-
-    &[data-active="true"] {
-      pointer-events: none;
-    }
   }
 }
 

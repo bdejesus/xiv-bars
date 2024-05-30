@@ -14,28 +14,28 @@ export default function Tags({ layoutView, job }:Props) {
   return (
     <div className={styles.tags}>
       { job && (
-        <Link href={`/job/${job.Abbr}`} className={styles.jobTag} data-role={job.Role}>
+        <Link href={`/job/${job.Abbr}`} className={`${styles.jobTag} tag`} data-role={job.Role}>
           <ClassJob job={job} className={styles.tag} name={false} />
         </Link>
       )}
 
       { (layoutView.layout === 0) && (
-        <span className={styles.tag}>
+        <span className={`${styles.tag} tag`}>
           <Icon id="xhb" alt="Cross Hotbar Icon" />
-          XHB
+          <span className={`${styles.name} tag-name`}>XHB</span>
         </span>
       )}
 
       { (layoutView.layout === 1) && (
-        <span className={styles.tag}>
+        <span className={`${styles.tag} tag`}>
           <Icon id="hb" alt="Hotbar Icon" />
-          HB
+          <span className={`${styles.name} tag-name`}>HB</span>
         </span>
       )}
 
-      <span className={styles.tag}>
-        <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'PvP' : 'PvE'} Icon`} />
-        { layoutView.isPvp ? 'PvP' : 'PvE' }
+      <span className={`${styles.tag} tag`}>
+        <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'P.V.P.' : 'P.V.E.'} Icon`} />
+        <span className={`${styles.name} tag-name`}>{ layoutView.isPvp ? 'PVP' : 'PVE' }</span>
       </span>
     </div>
   );

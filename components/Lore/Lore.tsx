@@ -9,6 +9,7 @@ export default function Lore({ description }: Props) {
     <div
       className={styles.lore}
     >
+
       <div
         className={styles.loreBody}
         // eslint-disable-next-line react/no-danger

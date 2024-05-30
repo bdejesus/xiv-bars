@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
-import { UserActions } from 'components/User/actions';
-import { AppActions } from 'components/App/actions';
-import { SystemActions, useSystemDispatch } from 'components/System';
+import { userActions } from 'components/User/actions';
+import { appActions } from 'components/App/actions';
+import { systemActions, useSystemDispatch } from 'components/System';
 import ReactMarkdown from 'react-markdown';
 import analytics from 'lib/analytics';
 import type { LayoutViewProps } from 'types/Layout';
@@ -74,17 +74,17 @@ function SaveForm() {
       .then((json) => {
         const { layoutView, layouts } = json;
 
-        appDispatch({ type: AppActions.UPDATE_VIEW, payload: layoutView });
+        appDispatch({ type: appActions.UPDATE_VIEW, payload: layoutView });
 
         systemDispatch({
-          type: SystemActions.SET_MESSAGE,
+          type: systemActions.SET_MESSAGE,
           payload: {
             status: 'success',
             text: t('SaveForm.success')
           }
         });
 
-        userDispatch({ type: UserActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
+        userDispatch({ type: userActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
 
         if (viewAction === 'new') {
           analytics.event({ action: 'form_submit', params: { form_id: 'layout', form_name: 'new_layout' } });
@@ -94,7 +94,7 @@ function SaveForm() {
       .catch((error) => {
         console.error(error);
         systemDispatch({
-          type: SystemActions.SET_MESSAGE,
+          type: systemActions.SET_MESSAGE,
           payload: {
             status: 'fail',
             text: t('SaveForm.failed')
@@ -104,7 +104,7 @@ function SaveForm() {
   }
 
   function cancelEdit() {
-    appDispatch({ type: AppActions.CANCEL_EDITS });
+    appDispatch({ type: appActions.CANCEL_EDITS });
   }
 
   function validateLayout() {
@@ -127,44 +127,45 @@ function SaveForm() {
   if (!session) return <SignInPrompt />;
 
   return (
-    <div className={styles.saveForm}>
-      <form className={styles.form}>
+    <>
+      <form className={styles.saveForm}>
         <div className={`control ${styles.titleField}`}>
-          <label htmlFor="title">
-            <div>{t('SaveForm.title')} <small>{t('SaveForm.required')}</small></div>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              ref={titleField}
-              className={styles.titleField}
-              defaultValue={title}
-              required
-              onKeyUp={validateTitle}
-            />
+          <label htmlFor="layout-title">
+            {t('SaveForm.title')} <small>{t('SaveForm.required')}</small>
           </label>
+
+          <input
+            id="layout-title"
+            name="layout-title"
+            type="text"
+            ref={titleField}
+            className={styles.titleField}
+            defaultValue={title}
+            required
+            onKeyUp={validateTitle}
+          />
         </div>
 
         <div className={`control ${styles.descriptionField}`}>
-          <label htmlFor="description">
-            <div>
-              {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
-            </div>
-            <textarea
-              id="description"
-              ref={descriptionField}
-              className={styles.descriptionField}
-              defaultValue={description}
-              onChange={validateLayout}
-            />
+          <label htmlFor="layout-description">
+            {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
           </label>
+
+          <textarea
+            id="layout-description"
+            name="layout-description"
+            ref={descriptionField}
+            className={styles.textarea}
+            defaultValue={description}
+            onChange={validateLayout}
+          />
         </div>
 
         <div className={styles.actions}>
           <button
             type="button"
             onClick={saveLayout}
-            className={`button ${shouldPublish && 'btn-primary'}`}
+            className="button btn-primary"
             disabled={!canPublish}
           >
             { t('SaveForm.save') }
@@ -186,7 +187,7 @@ function SaveForm() {
       <ReactMarkdown className={shouldPublish ? styles.info : styles.warning}>
         {t('SaveForm.draft')}
       </ReactMarkdown>
-    </div>
+    </>
   );
 }
 

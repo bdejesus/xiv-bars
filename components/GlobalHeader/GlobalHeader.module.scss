@@ -9,6 +9,7 @@
   font-weight: 400;
   height: $header-height;
   justify-content: space-between;
+  left: 0;
   letter-spacing: 0.015em;
   padding: 10px $spacing-base;
   position: sticky;
@@ -91,6 +92,7 @@
   transition-property: background-color, color, transform;
 
   .logo {
+    transform: translateZ(0);
     transition-duration: $timing-default;
     transition-property: filter, transform;
     transition-timing-function: ease;
@@ -98,7 +100,7 @@
 
   &:hover,
   &:focus {
-    transform: scale(1.025);
+    transform: scale(1.025) translateZ(0);
   }
 }
 
@@ -147,17 +149,6 @@
     display: flex;
     flex-direction: row;
     position: relative;
-
-    // &::before {
-    //   border-top: 3px solid $color-alt;
-    //   content: '';
-    //   display: block;
-    //   position: absolute;
-    //   right: 100%;
-    //   top: 50%;
-    //   width: $spacing-base;
-    //   z-index: 10;
-    // }
 
     &.action::before,
     &:first-child::before,
@@ -211,13 +202,11 @@
 
 @media (max-width: $screen-sm) {
   .globalNav {
+    width: calc(100vw - ($spacing-base * 2));
+
     ol {
       gap: $spacing-sm;
-      margin-left: -$spacing-base;
-      overflow: auto hidden;
-      padding-left: $spacing-base;
-      padding-right: $spacing-base;
-      width: 100vw;
+      overflow: visible;
 
       > li::before {
         display: none;
@@ -226,6 +215,15 @@
 
     :global(.button) {
       font-size: $font-size-sm;
+      width: 40px;
+    }
+
+    :global(.icon) {
+      margin-right: 0;
+    }
+
+    :global(.btn-label) {
+      display: none;
     }
   }
 }

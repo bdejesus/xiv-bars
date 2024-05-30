@@ -33,6 +33,7 @@
   "rules": {
     "@next/next/no-html-link-for-pages": "off",
     "@next/next/no-img-element": "off",
+    "camelcase": "off",
     "class-methods-use-this": "warn",
     "comma-dangle": "off",
     "comma-spacing": "warn",
@@ -72,7 +73,6 @@
     "jsx-a11y/iframe-has-title": "warn",
     "jsx-a11y/img-redundant-alt": "warn",
     "jsx-a11y/interactive-supports-focus": "warn",
-    "jsx-a11y/label-has-for": "warn",
     "jsx-a11y/label-has-associated-control": "warn",
     "jsx-a11y/media-has-caption": "warn",
     "jsx-a11y/mouse-events-have-key-events": "warn",

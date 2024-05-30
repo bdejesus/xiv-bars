@@ -6,9 +6,11 @@ $color-gray-dark-2: #111;
 $color-gray-light: #c0c0c0;
 $color-gray-light-2: #d0d0d0;
 $color-gray-light-3: #ddd;
-$color-alt: #F4D66B;
+
+$color-alt: rgb(244 214 107);
 $color-alt-dark: darken($color-alt, 22%);
 $color-alt-light: lighten($color-alt, 15%);
+
 $color-link: #39c;
 
 $color-red: #900;
@@ -33,16 +35,15 @@ $primary-xbar-group-height: $outer-primary-slot-size * 2 + math.div($slot-spacin
 $primary-xbar-group-width: $outer-primary-slot-size * 3;
 $primary-xbar-width: $primary-xbar-group-width * 3;
 
-$header-height: 60px;
-$header-height-lg: 118px;
-$controlbar-height: 46px;
-$sidebar-width: 400px;
+$layout-container-width: 660px;
 
 $panel-bg: $color-gray;
 $panel-bg-dark: $color-gray-dark;
-$panel-bg-dark-2: $color-gray-dark-2;
+$panel-bg-light: #f9f9f9;
 $border-radius: 4px;
-$box-shadow: 0 6px 10px rgb(0 0 0 / 66%);
+
+$box-shadow: 0 6px 10px rgb(0 0 0 / 33%);
+$box-shadow-2: 0 3px 6px rgba(0 0 0 / 66%);
 $button-shadow:
   inset 1px 1px 0 rgb(255 255 255 / 66%),
   inset -1px -1px 0 rgb(0 0 0 / 15%),
@@ -59,13 +60,10 @@ $screen-xxs: 320px;
 $screen-xs: 480px;
 $screen-sm: 720px;
 $screen-md: 980px;
-$screen-lg: 1246px;
+$screen-lg: 1300px;
+$screen-lg-2: 1400px;
+$screen-lg-3: 1540px;
 $screen-xl: 1900px;
-
-// 1440 x 900
-// 1920 x 1080
-// 2560 x 1440
-// 3840 x 2160
 
 $screen-xs-max: $screen-sm - 1;
 $screen-sm-max: $screen-md - 1;
@@ -88,3 +86,17 @@ $icon-filter-active: $icon-filter-yellow;
 $timing-fast: 0.1s;
 $timing-default: 0.2s;
 $timing-slow: 0.6s;
+
+$font-fallback: "Fira Sans", "Droid Sans", "Helvetica Neue";
+$font-system: -apple-system, "BlinkMacSystemFont", sans-serif;
+$font-family: $font-fallback, $font-system;
+$font-monospace: "Lucida Console", courier, monospace;
+$font-tiny: inherit, verdana, arial, sans-serif;
+
+$header-height: 60px;
+$header-height-lg: 118px;
+$controlbar-height: 46px;
+$sidebar-width: 400px;
+
+$view-height: calc(100vh - $header-height - $controlbar-height);
+$view-height-md: calc(100vh - $header-height-lg);

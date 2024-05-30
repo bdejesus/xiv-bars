@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-onchange */
 import React, { ReactNode } from 'react';
 import { useAppState } from 'components/App/context';
 
@@ -34,7 +33,8 @@ export function Options({
       <select
         id={id}
         name={id}
-        onChange={onChange}
+        onBlur={onChange}
+        onChange={(e) => e.currentTarget.blur()}
         defaultValue={value}
       >
         { !required && <option value={0}>Off</option> }

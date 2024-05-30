@@ -10,7 +10,7 @@ import GlobalHeader from 'components/GlobalHeader';
 import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
-import App, { AppActions, useAppDispatch } from 'components/App';
+import App, { appActions, useAppDispatch } from 'components/App';
 // import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from 'apiData/Jobs.json';
 
@@ -34,7 +34,7 @@ export default function Index(props:PageProps) {
 
   useEffect(() => {
     appDispatch({
-      type: AppActions.LOAD_VIEW_DATA,
+      type: appActions.LOAD_VIEW_DATA,
       payload: {
         viewData,
         selectedJob,

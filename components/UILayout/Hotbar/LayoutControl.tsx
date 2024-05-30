@@ -27,8 +27,12 @@ export default function LayoutControl({ id, defaultValue }: Props) {
   }
 
   return (
-    // eslint-disable-next-line jsx-a11y/no-onchange
-    <select className={styles.layoutControl} onChange={(e) => handleLayoutControl(e)} defaultValue={defaultValue}>
+    <select
+      className={styles.layoutControl}
+      onBlur={(e) => handleLayoutControl(e)}
+      onChange={(e) => e.currentTarget.blur()}
+      defaultValue={defaultValue}
+    >
       <option value={1}>
         12&times;1
       </option>
