@@ -1,6 +1,6 @@
 @import 'styles/mixins';
 
-$toggle-width: 20px;
+$toggle-width: $spacing-base;
 $panel-height: calc(100vh - $header-height);
 $panel-width: 320px;
 $panel-width-lg: $screen-xs;
@@ -12,19 +12,24 @@ $panel-width-lg: $screen-xs;
   flex: none;
   flex-direction: column;
   height: $panel-height;
+  justify-content: flex-end;
   overflow: hidden;
-  padding-right: $spacing-base + $spacing-xs;
   position: sticky;
   top: $header-height;
   transform: translate3d(0);
   transition-duration: 0.33s;
-  transition-property: width;
+  transition-property: width, box-shadow;
   transition-timing-function: ease-out;
   width: $screen-xs;
 
   &[data-hidden='true'] {
+    transition-duration: 0.2s;
     transition-timing-function: ease-in;
-    width: $toggle-width !important;
+    width: $toggle-width;
+
+    &:hover {
+      box-shadow: 1px 0 1px #f9f9f9;
+    }
   }
 
   button.toggleDetailBtn {
@@ -32,10 +37,11 @@ $panel-width-lg: $screen-xs;
     border-radius: 0;
     bottom: 0;
     height: unset;
+    left: 0;
     position: absolute;
-    right: 0;
     top: 0;
     width: $toggle-width;
+    z-index: 2;
 
     :global(.icon) {
       transform: rotate3d(0);
@@ -153,12 +159,12 @@ $panel-width-lg: $screen-xs;
   flex-direction: column;
   height: $panel-height;
   overflow-y: auto;
-  padding: $spacing-base;
+  padding: $spacing-base $spacing-base $spacing-base ($spacing-base + $toggle-width);
   transform: translate3d(0);
   transition-duration: 0.33s;
   transition-property: width;
   transition-timing-function: ease-out;
-  width: $screen-xs - $toggle-width;
+  width: $screen-xs;
 }
 
 .header,
@@ -231,20 +237,16 @@ $panel-width-lg: $screen-xs;
 }
 
 @media (max-width: $screen-lg-3) {
-  .container {
+  .container,
+  .content {
+    width: $screen-xs;
+  }
+}
+
+@media (max-width: $screen-lg) {
+  .container,
+  .content {
     width: $panel-width;
-
-    &[data-action='show'] {
-      width: $screen-xs;
-
-      .content {
-        width: $screen-xs - $toggle-width;
-      }
-    }
-
-    .content {
-      width: $panel-width - $toggle-width;
-    }
   }
 }
 
@@ -255,18 +257,13 @@ $panel-width-lg: $screen-xs;
 }
 
 @media (max-width: $screen-sm) {
+  .container,
+  .content {
+    width: 90vw;
+  }
+
   .container {
     display: flex;
     flex-direction: column;
-    width: 90vw;
-
-    &[data-action='show'] {
-      width: 90vw;
-    }
-
-    .content,
-    &[data-action='show'] .content {
-      width: calc(90vw - $toggle-width);
-    }
   }
 }
