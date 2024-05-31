@@ -1,5 +1,8 @@
 @import "styles/mixins";
 
+$button-size: 40px;
+$nav-height-sm: 30px;
+
 .container {
   align-items: center;
   background-image: linear-gradient(#fff, #f9f9f9);
@@ -19,7 +22,7 @@
 
   .jobSelect {
     border-radius: $border-radius 0 0 $border-radius;
-    width: 40px;
+    width: $button-size;
 
     :global(.icon) {
       margin: 0 auto;
@@ -119,8 +122,8 @@
   gap: $spacing-sm;
 
   :global(.btn-icon) {
-    height: 40px;
-    width: 40px;
+    height: $button-size;
+    width: $button-size;
   }
 }
 
@@ -138,7 +141,7 @@
     display: flex;
     flex-direction: row;
     gap: $spacing-base;
-    height: 40px;
+    height: $button-size;
     margin: 0;
     padding: 0;
   }
@@ -178,7 +181,7 @@
     grid-template-areas:
       "branding usernav usernav"
       "appnav appnav appnav";
-    grid-template-rows: var(--nav-height) auto;
+    grid-template-rows: $nav-height-sm auto;
     height: auto;
   }
 
@@ -226,7 +229,7 @@
 
     :global(.button) {
       font-size: $font-size-sm;
-      width: 40px;
+      width: $button-size;
     }
 
     :global(.icon) {

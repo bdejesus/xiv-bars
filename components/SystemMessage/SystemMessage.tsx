@@ -9,6 +9,11 @@ export function SystemMessage() {
   const systemDispatch = useSystemDispatch();
   const { message } = useSystemState();
   const [showMessage, setShowMessage] = useState(false);
+  const classNames = [
+    'system-message',
+    styles.message,
+    message?.status
+  ].join(' ');
 
   function resetMessage() {
     setShowMessage(false);
@@ -37,7 +42,7 @@ export function SystemMessage() {
 
   return (
     <div className={styles.system} data-active={showMessage}>
-      <div className={`system-message ${message?.status}`}>
+      <div className={classNames}>
         { message?.text }
       </div>
     </div>

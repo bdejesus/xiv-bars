@@ -34,8 +34,7 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
           ...payload,
           ...layoutTemplates,
           viewData,
-          readOnly,
-          showDetails: true
+          readOnly
         };
 
         return newState;

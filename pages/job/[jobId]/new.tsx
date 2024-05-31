@@ -11,7 +11,7 @@ import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
 import App, { appActions, useAppDispatch } from 'components/App';
-// import EorzeaProfile from 'components/EorzeaProfile';
+import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from 'apiData/Jobs.json';
 
 import type { PageProps } from 'types/Page';
@@ -65,7 +65,7 @@ export default function Index(props:PageProps) {
       </div>
 
       <HowTo />
-      {/* <EorzeaProfile /> */}
+      <EorzeaProfile />
       <Footer />
     </>
   );

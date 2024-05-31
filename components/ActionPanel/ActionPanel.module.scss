@@ -12,4 +12,6 @@
   min-height: 300px;
   overflow: hidden auto;
   padding: $spacing-base;
+
+  @include customScrollbar-dark;
 }

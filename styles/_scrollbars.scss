@@ -1,8 +1,11 @@
 @use "sass:math";
 
-$scrollbarBG: rgb(255 255 255 / 0%);
-$thumbBG: rgb(255 255 255 / 33%);
-$scrollbarSize: 6px;
+$scrollbarBG: rgba(255 255 255 / 50%);
+$thumbBG: rgba(0 0 0 / 33%);
+$scrollbarSize: 4px;
+
+$scrollbarBG-dark: rgb(0 0 0 / 0%);
+$thumbBG-dark: rgb(255 255 255 / 25%);
 
 @mixin customScrollbar {
   scrollbar-color: $thumbBG $scrollbarBG;
@@ -19,5 +22,19 @@ $scrollbarSize: 6px;
   &::-webkit-scrollbar-thumb {
     background-color: $thumbBG;
     border-radius: math.div($scrollbarSize, 2);
+  }
+}
+
+@mixin customScrollbar-dark {
+  @include customScrollbar;
+
+  scrollbar-color: $thumbBG-dark $scrollbarBG-dark;
+
+  &::-webkit-scrollbar-track {
+    background: $scrollbarBG-dark;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumbBG-dark;
   }
 }
