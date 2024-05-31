@@ -52,3 +52,15 @@
     }
   }
 }
+
+@media (max-width: $screen-md) {
+  .slot {
+    height: $slot-size-sm;
+    width: $slot-size-sm;
+
+    :global(.action-icon-wrapper) {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

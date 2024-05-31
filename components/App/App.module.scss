@@ -111,6 +111,11 @@ $icon-size: 6px;
   box-shadow: inset 0 -6px 10px rgba(0 0 0 / 33%);
   flex: 1 1 auto;
   position: relative;
+  z-index: 1;
+}
+
+.detailPanel {
+  z-index: 2;
 }
 
 .tabs {
@@ -142,7 +147,7 @@ $icon-size: 6px;
 
 @media (max-width: $screen-lg-3) {
   .actionsPanel {
-    min-width: 320px;
+    min-width: 240px;
 
     :global(.list-actions) {
       gap: $spacing-base;
@@ -151,12 +156,6 @@ $icon-size: 6px;
 
   .mainPanel {
     flex: 1 1 auto;
-  }
-}
-
-@media (max-width: $screen-lg-2) {
-  .actionsPanel {
-    min-width: 240px;
   }
 }
 
@@ -194,5 +193,9 @@ $icon-size: 6px;
 
   .mainPanel {
     overflow: hidden;
+  }
+
+  .main {
+    width: 560px;
   }
 }

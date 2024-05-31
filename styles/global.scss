@@ -1,12 +1,12 @@
 @import "styles/scrollbars";
 @import "styles/mixins";
 
-* {
-  box-sizing: border-box;
+:root {
+  --nav-height: 30px;
 }
 
-html {
-  min-height: 100vh;
+* {
+  box-sizing: border-box;
 }
 
 body {

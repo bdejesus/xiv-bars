@@ -74,3 +74,9 @@
     }
   }
 }
+
+@media (max-width: $screen-md) {
+  .xhbControls {
+    transform: scale(0.825);
+  }
+}

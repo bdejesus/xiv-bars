@@ -71,14 +71,15 @@ export default function Action({ action }: Props) {
   }
 
   const actionTypeSelector = action.UrlType ? `${action.UrlType.toLowerCase()}Type` : '';
-  const selectors = `action ${styles.action} ${styles[actionTypeSelector]} ${dragging ? styles.dragging : undefined}`;
+  const selectors = ['action', styles.action, styles[actionTypeSelector]];
+  if (dragging) selectors.push(styles.dragging);
 
   return (
     <>
       {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
       <div
         ref={actionRef}
-        className={selectors}
+        className={selectors.join(' ')}
         draggable={!readOnly}
         onDragStart={(e) => selectAction(e)}
         onDragEnd={handleDragEnd}
@@ -91,7 +92,7 @@ export default function Action({ action }: Props) {
         data-title={displayTtile}
         data-show-title={showTitles}
       >
-        <div className={styles.iconWrapper}>
+        <div className={`action-icon-wrapper ${styles.iconWrapper}`}>
           <Image
             src={action.customIcon ? action.Icon as string : `https://xivapi.com/${action.Icon}`}
             alt={`${displayTtile}`}
