@@ -259,7 +259,7 @@ $panel-width-lg: $screen-xs;
 @media (max-width: $screen-sm) {
   .container,
   .content {
-    width: 90vw;
+    width: calc(100vw - $spacing-lg);
   }
 
   .container {

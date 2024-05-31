@@ -178,12 +178,16 @@
     grid-template-areas:
       "branding usernav usernav"
       "appnav appnav appnav";
-    grid-template-rows: 40px auto;
+    grid-template-rows: var(--nav-height) auto;
     height: auto;
   }
 
   .branding {
     grid-area: branding;
+  }
+
+  .globalHeader ol {
+    height: auto;
   }
 
   .globalNav {
@@ -192,6 +196,13 @@
     margin-left: 0;
     margin-top: $spacing-base;
     padding-top: 0;
+
+    a,
+    button,
+    :global(.btn-icon),
+    .jobLink {
+      height: 32px;
+    }
   }
 
   .userNav {
