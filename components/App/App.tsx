@@ -51,12 +51,12 @@ export function App() {
     <TooltipContextProvider>
       <SelectedActionContextProvider>
         <div className={`${styles.view} app-view`} data-action={viewAction}>
+          <SystemMessage />
+
           <DetailPanel className={styles.detailPanel} visible={showDetails} />
 
           <div className={styles.mainPanel}>
             { jobs && selectedJob && <ControlBar /> }
-
-            <SystemMessage />
 
             { selectedJob && (
               <>

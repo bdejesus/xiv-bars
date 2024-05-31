@@ -1,4 +1,5 @@
 @import 'styles/mixins';
+@import "styles/scrollbars";
 
 $toggle-width: $spacing-base;
 $panel-height: calc(100vh - $header-height);
@@ -16,7 +17,7 @@ $panel-width-lg: $screen-xs;
   overflow: hidden;
   position: sticky;
   top: $header-height;
-  transform: translate3d(0);
+  transform: translateZ(0);
   transition-duration: 0.33s;
   transition-property: width, box-shadow;
   transition-timing-function: ease-out;
@@ -61,6 +62,9 @@ $panel-width-lg: $screen-xs;
   }
 
   h2, h3, h4, h5, h6, p, ul, ol {
+    margin-bottom: 0;
+    margin-top: $spacing-base;
+
     &:first-child {
       margin-top: 0;
     }
@@ -73,7 +77,6 @@ $panel-width-lg: $screen-xs;
 
   h2 {
     font-size: $font-size-xl;
-    margin-bottom: $spacing-sm;
     margin-top: $spacing-lg;
 
     &:first-child {
@@ -159,12 +162,14 @@ $panel-width-lg: $screen-xs;
   flex-direction: column;
   height: $panel-height;
   overflow-y: auto;
-  padding: $spacing-base $spacing-base $spacing-base ($spacing-base + $toggle-width);
-  transform: translate3d(0);
+  padding: $spacing-base $spacing-base $spacing-lg $spacing-lg;
+  transform: translateZ(0);
   transition-duration: 0.33s;
   transition-property: width;
   transition-timing-function: ease-out;
   width: $screen-xs;
+
+  @include customScrollbar;
 }
 
 .header,

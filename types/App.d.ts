@@ -35,6 +35,7 @@ interface DispatchPayload {
   urlParams?: URLParams,
   heartsCount?: number,
   hearted?: HeartProps,
+  showDetails?: boolean,
   _count?: { hearts: number }
 }
 

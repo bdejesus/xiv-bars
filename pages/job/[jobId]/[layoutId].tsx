@@ -19,7 +19,7 @@ export default function Index(props:PageProps) {
     selectedJob,
     actions,
     roleActions,
-    viewAction
+    viewAction,
   } = props;
 
   const router = useRouter();
@@ -39,6 +39,7 @@ export default function Index(props:PageProps) {
         roleActions,
         viewAction,
         urlParams: router.query,
+        showDetails: true
       }
     });
   }, []);
