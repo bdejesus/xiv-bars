@@ -11,7 +11,7 @@ const defaultState:SystemProps = {
   showModal: false,
   message: {
     status: 'success',
-    text: 'Woo! It\'s working!'
+    text: undefined
   },
   isLoading: false
 };
