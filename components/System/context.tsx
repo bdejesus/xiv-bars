@@ -9,10 +9,7 @@ import SystemReducer from './reducers';
 
 const defaultState:SystemProps = {
   showModal: false,
-  message: {
-    status: 'success',
-    text: undefined
-  },
+  message: undefined,
   isLoading: false
 };
 const SystemContext = createContext<SystemProps>(defaultState);
