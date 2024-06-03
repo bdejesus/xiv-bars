@@ -6,16 +6,17 @@ import styles from './LayoutsList.module.scss';
 
 interface LayoutsListProps {
   children?: ReactNode,
-  layouts: LayoutViewProps[]
+  layouts: LayoutViewProps[],
+  className?: string
 }
 
-export default function LayoutsList({ layouts, children }:LayoutsListProps) {
+export default function LayoutsList({ layouts, children, className }:LayoutsListProps) {
   const { jobs } = useAppState();
 
   if (!layouts) return null;
 
   return (
-    <ul className={styles.layoutsList}>
+    <ul className={[styles.layoutsList, className].join(' ')}>
       {layouts.map((layout:LayoutViewProps) => {
         const job = jobs.find((j) => j.Abbr === layout.jobId);
         if (!job) return null;
@@ -37,5 +38,6 @@ export default function LayoutsList({ layouts, children }:LayoutsListProps) {
 }
 
 LayoutsList.defaultProps = {
-  children: undefined
+  children: undefined,
+  className: undefined
 };

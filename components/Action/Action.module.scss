@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
 
-  &:hover .iconWrapper {
+  &[draggable='true']:hover .iconWrapper {
     background-color: rgb(0 0 0 / 80%);
     border-color: #999;
     box-shadow: 0 0 0 2px $color-alt;
@@ -20,7 +20,7 @@
     outline: none;
   }
 
-  &:active .iconWrapper {
+  &[draggable='true']:active .iconWrapper {
     cursor: grabbing;
     transform: scale(0.9);
   }
