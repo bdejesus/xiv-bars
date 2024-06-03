@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { translateData } from 'lib/utils/i18n.mjs';
@@ -9,9 +10,11 @@ import App, { useAppDispatch, appActions } from 'components/App';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import Jobs from 'apiData/Jobs.json';
+import LayoutsList from 'components/LayoutsList';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { PageProps } from 'types/Page';
+import type { LayoutViewProps } from 'types/Layout';
 
 export default function Index(props:PageProps) {
   const {
@@ -20,7 +23,10 @@ export default function Index(props:PageProps) {
     actions,
     roleActions,
     viewAction,
+    ownerLayouts
   } = props;
+
+  console.log(ownerLayouts);
 
   const router = useRouter();
   const displayName = translateData('Name', selectedJob, router.locale);
@@ -56,6 +62,10 @@ export default function Index(props:PageProps) {
 
       <App />
 
+      <section className='container section'>
+        <LayoutsList layouts={ownerLayouts} />
+      </section>
+
       <Footer />
     </>
   );
@@ -79,8 +89,36 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
     const viewData = await fetchView.json();
 
+    console.log(viewData);
+
     const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
     const { actions, roleActions } = await actionsRequest.json();
+
+    const ownerLayouts = await db.layout.findMany({
+      where: {
+        id: { not: viewData.id },
+        userId: viewData.user.id,
+        description: { not: '' }
+      },
+      take: 3,
+      include: {
+        user: {
+          select: { name: true }
+        },
+        _count: {
+          select: { hearts: true }
+        }
+      },
+      orderBy: {
+        updatedAt: 'desc'
+      }
+    });
+
+    const serializableOwnerLayouts = ownerLayouts.map((layout:LayoutViewProps) => ({
+      ...layout,
+      createdAt: layout?.createdAt?.toString(),
+      updatedAt: layout?.updatedAt?.toString()
+    }));
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
@@ -89,8 +127,10 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       selectedJob,
       actions,
       roleActions,
-      viewAction: 'show'
+      viewAction: 'show',
+      ownerLayouts: serializableOwnerLayouts
     };
+
 
     return { props };
   } catch (error) {
