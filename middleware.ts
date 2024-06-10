@@ -7,7 +7,7 @@ function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
   if (req.headers.get('host') === 'xivbars.bejezus.com') {
-    url.hostname = 'xivbars.com';
+    url.hostname = 'www.xivbars.com';
     return NextResponse.redirect(url);
   }
 
