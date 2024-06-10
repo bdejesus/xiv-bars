@@ -63,7 +63,7 @@ export default function Index(props:PageProps) {
 
       <App />
 
-      { classJobLayouts.length > 0 && (
+      { classJobLayouts?.length > 0 && (
         <div className="container-xl section">
           <LayoutsList
             title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
