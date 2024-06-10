@@ -4,10 +4,9 @@ function middleware(req: NextRequest) {
   const currentEnv = process.env.NEXT_PUBLIC_ENV || 'development';
   // retrieve the current response
   const res = NextResponse.next();
-  const url = req.nextUrl.clone();
 
   if (req.headers.get('host') === 'xivbars.bejezus.com') {
-    url.hostname = 'www.xivbars.com';
+    const url = `https://www.xivbars.com/${req.nextUrl.pathname}${req.nextUrl.search}`
     return NextResponse.redirect(url);
   }
 
