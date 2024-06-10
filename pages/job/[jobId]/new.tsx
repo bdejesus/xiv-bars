@@ -34,7 +34,7 @@ export default function Index(props:PageProps) {
 
   const router = useRouter();
   const displayName = translateData('Name', selectedJob, router.locale);
-  const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
+  const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}`;
   const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
 

@@ -24,8 +24,8 @@ export function renderMeta(title: string, description: string) {
             '@type': 'CreativeWork',
             name: title,
             description,
-            image: 'https://xivbars.bejezus.com/images/xivbars-thumb.png',
-            thumbnailUrl: 'https://xivbars.bejezus.com/images/xivbars-thumb.png',
+            image: 'https://www.xivbars.com/images/xivbars-thumb.png',
+            thumbnailUrl: 'https://www.xivbars.com/images/xivbars-thumb.png',
             author: {
               '@type': 'Person',
               name: 'Ben de Jesus',

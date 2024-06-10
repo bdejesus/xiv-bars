@@ -1,6 +1,6 @@
 # XIV Bars – A Final Fantasy XIV Cross Hotbar Layout Planner
 
-[https://xivbars.bejezus.com](https://xivbars.bejezus.com)
+[https://www.xivbars.com](https://www.xivbars.com)
 
 Welcome to XIV Bars! This is the source code for the Final Fantasy XIV (FFXIV) Cross Hotbar (XHB) planning tool. This is a passion project created for the purpose of serving the FFXIV community who may have use for a way to port hotbar layouts from the web into the game. It is built in NextJS and is continually being updated.
 

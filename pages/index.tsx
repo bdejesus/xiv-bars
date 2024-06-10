@@ -45,7 +45,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
   return (
     <>
       <Head>
-        <link rel="canonical" href="https://xivbars.bejezus.com" />
+        <link rel="canonical" href="https://www.xivbars.com" />
       </Head>
 
       <AppContextProvider>
