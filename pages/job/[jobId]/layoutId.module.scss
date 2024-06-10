@@ -1,0 +1,43 @@
+@import "styles/grid";
+
+.lists {
+  h2 {
+    font-size: $font-size-xl;
+  }
+
+  section + section {
+    border-top: 1px solid $color-gray;
+    margin-top: $spacing-lg;
+    padding-top: $spacing-base;
+  }
+}
+
+.list {
+  display: grid;
+  gap: $spacing-base;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: $spacing-base;
+}
+
+.headerGroup {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.moreLink {
+  font-size: $font-size-base;
+}
+
+@media (max-width: $screen-lg) {
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .list {
+    grid-template-columns: 1fr;
+  }
+}

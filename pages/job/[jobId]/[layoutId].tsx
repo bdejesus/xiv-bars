@@ -17,7 +17,7 @@ import LayoutsList from 'components/LayoutsList';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { PageProps } from 'types/Page';
 
-import styles from './index.module.scss';
+import styles from './layoutId.module.scss';
 
 export default function Index(props:PageProps) {
   const {
@@ -67,25 +67,26 @@ export default function Index(props:PageProps) {
       <div className={`${styles.lists} container-xl section`}>
         { ownerLayouts.length > 0 && (
           <section>
-            <h2>More layouts by {viewData?.user?.name}</h2>
-            <LayoutsList layouts={ownerLayouts} className={styles.list} />
-            <div>
-              <Link href={`/user/${viewData!.user!.id}`}>
-                All layouts by {viewData!.user!.name}...
+            <div className={styles.headerGroup}>
+              <h2>More layouts by {viewData?.user?.name}</h2>
+              <Link href={`/user/${viewData!.user!.id}`} className={styles.moreLink}>
+                View more...
               </Link>
             </div>
+            <LayoutsList layouts={ownerLayouts} className={styles.list} />
           </section>
         ) }
 
         { classJobLayouts.length > 0 && (
           <section>
-            <h2>More {viewData.jobId} Layouts</h2>
-            <LayoutsList layouts={classJobLayouts} className={styles.list} />
-            <div>
-              <Link href={`/job/${viewData.jobId}`}>
-                All {viewData.jobId} layouts...
+            <div className={styles.headerGroup}>
+              <h2>More {viewData.jobId} Layouts</h2>
+              <Link href={`/job/${viewData.jobId}`} className={styles.moreLink}>
+                View more...
               </Link>
             </div>
+
+            <LayoutsList layouts={classJobLayouts} className={styles.list} />
           </section>
         ) }
       </div>

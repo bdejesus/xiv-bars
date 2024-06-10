@@ -9,34 +9,3 @@
 .job {
   flex: 1 1 auto;
 }
-
-.lists {
-  h2 {
-    font-size: $font-size-xl;
-  }
-
-  .list {
-    display: grid;
-    gap: $spacing-base;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
-  }
-
-  section + section {
-    border-top: 1px solid $color-gray;
-    margin-top: $spacing-lg;
-    padding-top: $spacing-base;
-  }
-
-  @media (max-width: $screen-lg) {
-    .list {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media (max-width: $screen-sm) {
-    .list {
-      grid-template-columns: 1fr;
-    }
-  }
-}
