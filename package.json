@@ -4,7 +4,7 @@
   "description": "The source code for the Final Fantasy XIV Cross Hotbar (XHB) Planning Tool.",
   "private": true,
   "license": "GPL-3.0",
-  "homepage": "https://xivbars.bejezus.com",
+  "homepage": "https://www.xivbars.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/bdejesus/xiv-bars.git"
