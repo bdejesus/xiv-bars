@@ -34,14 +34,10 @@ function SaveForm() {
   const [shouldPublish, setShouldPublish] = useState(false);
   const [viewDataStore, setViewDataStore] = useState<LayoutViewProps|undefined>(undefined);
 
-  interface FilterOptions {
-    filterKeys?: string[]
-  }
-
   function saveLayout() {
     const prepareData = (
       data:LayoutViewProps,
-      opts?:FilterOptions
+      opts?:{ filterKeys?: string[] }
     ) => Object.entries(data).reduce((collection, [key, value]) => {
       const noValue = (value === undefined && value === null);
       const shouldFilter = (noValue || opts?.filterKeys?.includes(key));
@@ -105,11 +101,7 @@ function SaveForm() {
   }
 
   function cancelEdit() {
-    appDispatch({
-      type:
-      appActions.CANCEL_EDITS,
-      payload: { viewData: viewDataStore }
-    });
+    appDispatch({ type: appActions.CANCEL_EDITS, payload: { viewData: viewDataStore } });
   }
 
   function validateLayout() {
@@ -130,9 +122,7 @@ function SaveForm() {
   }, [viewData, validTitle]);
 
   useEffect(() => {
-    if (viewAction === 'edit') {
-      setViewDataStore(viewData);
-    }
+    if (viewAction === 'edit') setViewDataStore(viewData);
   }, [viewAction]);
 
   if (!session) return <SignInPrompt />;
