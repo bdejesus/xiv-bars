@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
-import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { GetServerSideProps } from 'next';
@@ -69,30 +68,23 @@ export default function Index(props:PageProps) {
       <div className={`${styles.lists} container-xl section`}>
         { ownerLayouts.length > 0 && (
           <section>
-            <div className={styles.headerGroup}>
-              <h2>
-                {t('Pages.Layout.more_layouts_by_user', { userName: viewData.user!.name })}
-              </h2>
-              <Link href={`/user/${viewData!.user!.id}`} className={styles.moreLink}>
-                {t('Pages.Layout.view_more')}
-              </Link>
-            </div>
-            <LayoutsList layouts={ownerLayouts} className={styles.list} />
+            <LayoutsList
+              title={t('Pages.Layout.more_layouts_by_user', { userName: viewData.user!.name })}
+              link={{ text: t('Pages.Layout.view_more'), href: `/user/${viewData!.user!.id}` }}
+              layouts={ownerLayouts}
+              columns={4}
+            />
           </section>
         ) }
 
         { classJobLayouts.length > 0 && (
           <section>
-            <div className={styles.headerGroup}>
-              <h2>
-                {t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
-              </h2>
-              <Link href={`/job/${viewData.jobId}`} className={styles.moreLink}>
-                {t('Pages.Layout.view_more')}
-              </Link>
-            </div>
-
-            <LayoutsList layouts={classJobLayouts} className={styles.list} />
+            <LayoutsList
+              title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
+              link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
+              layouts={classJobLayouts}
+              columns={4}
+            />
           </section>
         ) }
       </div>
