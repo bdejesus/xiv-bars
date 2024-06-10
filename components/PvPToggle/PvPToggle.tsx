@@ -7,7 +7,6 @@ import { useAppState, useAppDispatch } from 'components/App/context';
 import { buildUrl } from 'lib/utils/url';
 import Icon from 'components/Icon';
 import { appActions } from 'components/App/actions';
-import type { ClassJobProps } from 'types/ClassJob';
 
 export default function PvPToggle() {
   const { isLoading } = useSystemState();
