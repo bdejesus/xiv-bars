@@ -4,6 +4,12 @@ function middleware(req: NextRequest) {
   const currentEnv = process.env.NEXT_PUBLIC_ENV || 'development';
   // retrieve the current response
   const res = NextResponse.next();
+  const url = req.nextUrl.clone();
+
+  if (req.headers.get('host') === 'xivbars.bejezus.com') {
+    url.hostname = 'xivbars.com';
+    return NextResponse.redirect(url);
+  }
 
   // ssl redirect
   if (['production', 'staging'].includes(currentEnv)
