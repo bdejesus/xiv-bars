@@ -5,9 +5,10 @@ function middleware(req: NextRequest) {
   // retrieve the current response
   const res = NextResponse.next();
 
+  // redirect from the old domain to the new one and persist query params
   if (req.headers.get('host') === 'xivbars.bejezus.com') {
     const url = `https://www.xivbars.com/${req.nextUrl.pathname}${req.nextUrl.search}`
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(url, 301);
   }
 
   // ssl redirect
