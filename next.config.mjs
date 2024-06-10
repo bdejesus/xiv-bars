@@ -16,7 +16,22 @@ const options = {
         hostname: 'xivapi.com'
       },
     ],
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'xivbars.bejezus.com',
+          },
+        ],
+        destination: 'https://xivbars.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const SentryWebpackPluginOptions = {
