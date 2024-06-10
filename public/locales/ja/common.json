@@ -179,6 +179,11 @@
       "create_layout": "新しいレイアウトを作成する。",
       "new_layout": "新しいレイアウト"
     },
+    "Layout": {
+      "more_layouts_by_user": "{{userName}}による他のレイアウト",
+      "more_layouts_by_job": "他の{{jobName}}レイアウト",
+      "view_more": "もっと見る..."
+    },
     "NotFound": {
       "status": "404 ページが見つかりません",
       "title": "これは探しているページではありません",

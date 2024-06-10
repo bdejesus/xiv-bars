@@ -180,6 +180,11 @@
       "create_layout": "Créer une nouvelle disposition.",
       "new_layout": "Nouvelle disposition"
     },
+    "Layout": {
+      "more_layouts_by_user": "Plus de mises en page par {{userName}}",
+      "more_layouts_by_job": "Plus de mises en page de {{jobName}}",
+      "view_more": "Voir plus..."
+    },
     "NotFound": {
       "status": "404 PAGE NON TROUVÉE",
       "title": "Ce n'est pas la page que vous recherchez",

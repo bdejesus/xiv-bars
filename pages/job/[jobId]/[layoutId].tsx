@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import db from 'lib/db';
 import Link from 'next/link';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 import { GetServerSideProps } from 'next';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { serializeDates, shuffleArray } from 'lib/utils/array.mjs';
@@ -30,6 +31,7 @@ export default function Index(props:PageProps) {
     classJobLayouts
   } = props;
 
+  const { t } = useTranslation();
   const router = useRouter();
   const displayName = translateData('Name', selectedJob, router.locale);
   const displayAbbr = translateData('Abbreviation', selectedJob, router.locale);
@@ -68,9 +70,11 @@ export default function Index(props:PageProps) {
         { ownerLayouts.length > 0 && (
           <section>
             <div className={styles.headerGroup}>
-              <h2>More layouts by {viewData?.user?.name}</h2>
+              <h2>
+                {t('Pages.Layout.more_layouts_by_user', { userName: viewData.user!.name })}
+              </h2>
               <Link href={`/user/${viewData!.user!.id}`} className={styles.moreLink}>
-                View more...
+                {t('Pages.Layout.view_more')}
               </Link>
             </div>
             <LayoutsList layouts={ownerLayouts} className={styles.list} />
@@ -80,9 +84,11 @@ export default function Index(props:PageProps) {
         { classJobLayouts.length > 0 && (
           <section>
             <div className={styles.headerGroup}>
-              <h2>More {viewData.jobId} Layouts</h2>
+              <h2>
+                {t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
+              </h2>
               <Link href={`/job/${viewData.jobId}`} className={styles.moreLink}>
-                View more...
+                {t('Pages.Layout.view_more')}
               </Link>
             </div>
 

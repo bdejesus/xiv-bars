@@ -41,3 +41,14 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: $screen-xs) {
+  .headerGroup {
+    flex-direction: column;
+    margin-bottom: $spacing-base;
+
+    h2 {
+      margin-bottom: $spacing-xs;
+    }
+  }
+}
