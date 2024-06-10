@@ -45,7 +45,7 @@ export function App() {
         }
       });
     }
-  }, [router.query]);
+  }, [router.query, viewAction]);
 
   if (!selectedJob) return null;
 

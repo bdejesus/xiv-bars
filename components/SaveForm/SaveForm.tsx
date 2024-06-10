@@ -32,6 +32,7 @@ function SaveForm() {
   const [validTitle, setValidTitle] = useState(false);
   const [canPublish, setCanPublish] = useState(false);
   const [shouldPublish, setShouldPublish] = useState(false);
+  const [viewDataStore, setViewDataStore] = useState<LayoutViewProps|undefined>(undefined);
 
   interface FilterOptions {
     filterKeys?: string[]
@@ -104,7 +105,11 @@ function SaveForm() {
   }
 
   function cancelEdit() {
-    appDispatch({ type: appActions.CANCEL_EDITS });
+    appDispatch({
+      type:
+      appActions.CANCEL_EDITS,
+      payload: { viewData: viewDataStore }
+    });
   }
 
   function validateLayout() {
@@ -123,6 +128,12 @@ function SaveForm() {
       && viewData.encodedSlots.length > 0);
     setCanPublish(publishable);
   }, [viewData, validTitle]);
+
+  useEffect(() => {
+    if (viewAction === 'edit') {
+      setViewDataStore(viewData);
+    }
+  }, [viewAction]);
 
   if (!session) return <SignInPrompt />;
 

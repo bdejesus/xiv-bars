@@ -104,19 +104,26 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const selectedJob = Jobs.find((job: ClassJobProps) => job.Abbr === jobId);
     if (!selectedJob || selectedJob.Disabled) return { notFound: true };
 
+    // Fetch Layout Data using fetchOptions
     const fetchOptions = {
       method: 'POST',
       body: JSON.stringify({ layoutId, method: 'read' }),
       headers: { 'Content-Type': 'application/json' }
     };
-
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
     const viewData = await fetchView.json();
+
+    // Fetch Job Actions
     const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
     const { actions, roleActions } = await actionsRequest.json();
 
+    // DB Query Options
     const listOptions = {
-      take: 24,
+      take: 4,
+      where: {
+        id: { not: viewData.id },
+        description: { not: '' }
+      },
       include: {
         user: { select: { name: true } },
         _count: { select: { hearts: true } }
@@ -124,31 +131,25 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       orderBy: { updatedAt: 'desc' }
     };
 
+    // DB Query to fetch other layouts by the current owner
     const ownerLayouts = await db.layout.findMany({
-      where: {
-        id: { not: viewData.id },
-        userId: viewData.user.id,
-        description: { not: '' }
-      },
-      ...listOptions
+      ...listOptions,
+      where: { ...listOptions.where, userId: viewData.user.id }
     });
+    // Take results, shuffle and take 4, convert date objects to json string
+    const serializableOwnerLayouts = serializeDates(ownerLayouts);
 
-    const serializableOwnerLayouts = shuffleArray(serializeDates(ownerLayouts)).slice(0, 4);
-
+    // DB Query to fetch other layouts with the same jobClass
     const classJobLayouts = await db.layout.findMany({
-      where: {
-        id: { not: viewData.id },
-        jobId: viewData.jobId,
-        description: { not: '' }
-      },
-      ...listOptions
+      ...listOptions,
+      where: { ...listOptions.where, jobId: viewData.jobId },
+      take: 24
     });
-
-    const serializableClassJobLayouts = shuffleArray(serializeDates(classJobLayouts)).slice(0, 4);
+    // Take results, shuffle and take 4, convert date objects to json string
+    const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 4));
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
-      // Hotfix for parsing the hb column from string to number[]
       viewData: { ...viewData, hb: viewData.hb?.split(',') || null },
       selectedJob,
       actions,
