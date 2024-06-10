@@ -20,5 +20,7 @@ export interface PageProps {
   selectedJob: ClassJobProps,
   actions: ActionProps[],
   roleActions: ActionProps[],
-  viewAction: 'list' | 'new' | 'edit' | 'show'
+  viewAction: 'list' | 'new' | 'edit' | 'show',
+  ownerLayouts: LayoutViewProps[],
+  classJobLayouts: LayoutViewProps[]
 }

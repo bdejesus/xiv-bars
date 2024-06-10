@@ -45,7 +45,9 @@ export function App() {
         }
       });
     }
-  }, [router.query]);
+  }, [router.query, viewAction]);
+
+  if (!selectedJob) return null;
 
   return (
     <TooltipContextProvider>
@@ -56,29 +58,25 @@ export function App() {
           <DetailPanel className={styles.detailPanel} visible={showDetails} />
 
           <div className={styles.mainPanel}>
-            { jobs && selectedJob && <ControlBar /> }
+            { jobs && <ControlBar /> }
 
-            { selectedJob && (
-              <>
-                <div className={styles.container}>
-                  { !readOnly && roleActions && actions && (
-                    <div className={`${styles.actionsPanel}`}>
-                      <ActionPanel roleActions={roleActions} actions={actions} />
-                    </div>
-                  ) }
+            <div className={styles.container}>
+              { !readOnly && roleActions && actions && (
+              <div className={`${styles.actionsPanel}`}>
+                <ActionPanel roleActions={roleActions} actions={actions} />
+              </div>
+              ) }
 
-                  <div className={styles.main} data-readonly={readOnly}>
-                    { layouts[layoutKey] === 'chotbar'
-                      ? <Xbar />
-                      : <Hotbar />}
-                  </div>
-                </div>
-
-                <Tooltip />
-              </>
-            )}
+              <div className={styles.main} data-readonly={readOnly}>
+                { layouts[layoutKey] === 'chotbar'
+                  ? <Xbar />
+                  : <Hotbar />}
+              </div>
+            </div>
           </div>
         </div>
+
+        <Tooltip />
       </SelectedActionContextProvider>
     </TooltipContextProvider>
   );

@@ -180,6 +180,11 @@
       "create_layout": "Erstellen Sie ein neues Layout.",
       "new_layout": "Neues Layout"
     },
+    "Layout": {
+      "more_layouts_by_user": "Mehr Layouts von {{userName}}",
+      "more_layouts_by_job": "Mehr {{jobName}} Layouts",
+      "view_more": "Mehr anzeigen..."
+    },
     "NotFound": {
       "status": "404 SEITE NICHT GEFUNDEN",
       "title": "Das ist nicht die Seite, die Sie suchen",

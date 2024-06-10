@@ -1,0 +1,9 @@
+@import "styles/grid";
+
+.lists {
+  section + section {
+    border-top: 1px solid $color-gray;
+    margin-top: $spacing-lg;
+    padding-top: $spacing-base;
+  }
+}

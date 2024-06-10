@@ -30,6 +30,16 @@ body {
   max-width: $screen-sm;
 }
 
+.container-xl {
+  margin: 0 auto;
+  max-width: $screen-xl;
+  padding: 0 $spacing-lg;
+
+  @media (max-width: $screen-sm) {
+    padding: 0 $spacing-base;
+  }
+}
+
 .section {
   margin-bottom: $spacing-xl;
   margin-top: $spacing-xl;

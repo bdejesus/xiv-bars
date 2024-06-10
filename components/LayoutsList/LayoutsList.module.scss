@@ -4,4 +4,43 @@
   @include grid;
 
   max-width: 100%;
+
+  &[data-columns="4"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.headerGroup {
+  align-items: baseline;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  h2 {
+    font-size: $font-size-xl;
+  }
+}
+
+.moreLink {
+  font-size: $font-size-base;
+}
+
+@media (max-width: $screen-lg) {
+  .layoutsList {
+    &[data-columns="4"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+
+@media (max-width: $screen-xs) {
+  .headerGroup {
+    flex-direction: column;
+    margin-bottom: $spacing-base;
+
+    h2 {
+      margin-bottom: $spacing-xs;
+    }
+  }
 }

@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
+import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
+import { serializeDates, shuffleArray } from 'lib/utils/array.mjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { domain } from 'lib/host';
@@ -11,6 +13,7 @@ import Lore from 'components/Lore';
 import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
 import App, { appActions, useAppDispatch } from 'components/App';
+import LayoutsList from 'components/LayoutsList';
 import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from 'apiData/Jobs.json';
 
@@ -25,9 +28,12 @@ export default function Index(props:PageProps) {
     selectedJob,
     actions,
     roleActions,
-    viewAction
+    viewAction,
+    classJobLayouts
   } = props;
+
   const router = useRouter();
+  const displayName = translateData('Name', selectedJob, router.locale);
   const canonicalUrl = `https://xivbars.bejezus.com/job/${selectedJob.Abbr}`;
   const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
@@ -56,6 +62,17 @@ export default function Index(props:PageProps) {
       <GlobalHeader selectedJob={selectedJob} />
 
       <App />
+
+      { classJobLayouts.length > 0 && (
+        <div className="container-xl section">
+          <LayoutsList
+            title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
+            link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
+            layouts={classJobLayouts}
+            columns={4}
+          />
+        </div>
+      ) }
 
       <div className="container section">
         <div className={styles.description}>
@@ -87,13 +104,30 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${pvp}`);
     const { actions, roleActions } = await actionsRequest.json();
 
+    // DB Query to fetch other layouts with the same jobClass
+    const classJobLayouts = await db.layout.findMany({
+      take: 24,
+      where: {
+        description: { not: '' },
+        jobId: selectedJob.Abbr
+      },
+      include: {
+        user: { select: { name: true } },
+        _count: { select: { hearts: true } }
+      },
+      orderBy: { updatedAt: 'desc' }
+    });
+    // Take results, shuffle and take 4, convert date objects to json string
+    const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 4));
+
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: context.query,
       selectedJob,
       actions,
       roleActions,
-      viewAction: 'new'
+      viewAction: 'new',
+      classJobLayouts: serializableClassJobLayouts
     };
 
     return { props };

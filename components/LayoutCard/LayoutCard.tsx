@@ -61,7 +61,7 @@ export default function LayoutCard(props:Props) {
           )}
         </div>
 
-        <Link href={`/job/${layout.jobId}/${layout.id}`} className={styles.main}>
+        <a href={`/job/${layout.jobId}/${layout.id}`} className={styles.main}>
           <h3 title={layout.title}>{layout.title}</h3>
 
           <div className={styles.description}>
@@ -74,7 +74,7 @@ export default function LayoutCard(props:Props) {
               </ReactMarkdown>
             )}
           </div>
-        </Link>
+        </a>
 
         <div className={styles.footer}>
           { !hideName && (

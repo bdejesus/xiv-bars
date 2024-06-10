@@ -102,7 +102,12 @@ export function AppReducer(state:AppState, action: AppDispatchActions) {
     }
 
     case appActions.CANCEL_EDITS: {
-      return { ...state, readOnly: true, viewAction: 'show' };
+      return {
+        ...state,
+        readOnly: true,
+        viewData: action.payload?.viewData,
+        viewAction: 'show'
+      };
     }
 
     case appActions.UPDATE_VIEW: {

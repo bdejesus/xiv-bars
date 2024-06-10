@@ -53,6 +53,10 @@
 }
 
 @media (max-width: $screen-sm) {
+  .container {
+    padding: $spacing-base;
+  }
+
   .categories {
     grid-template-columns: 1fr;
   }
