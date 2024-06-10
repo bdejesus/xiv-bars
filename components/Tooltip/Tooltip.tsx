@@ -18,7 +18,7 @@ export function Tooltip() {
   useEffect(() => {
     const { innerHeight: height, innerWidth: width } = window;
     setViewport({ height, width });
-  }, [window?.innerHeight, window?.innerWidth]);
+  }, [window.innerHeight, window.innerWidth]);
 
   useEffect(() => {
     if (position) {

@@ -7,7 +7,6 @@ import type { HeartProps } from 'types/Heart';
 
 export interface AppState {
   viewData: LayoutViewProps,
-  viewDataStore?: LayoutViewProps,
   jobs: ClassJobProps[],
   readOnly: boolean,
   selectedJob?: ClassJobProps,
