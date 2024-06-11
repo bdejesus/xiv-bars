@@ -1,0 +1,105 @@
+{
+  "PvE": {
+    "actions": [
+      {
+        "Description": "Deals fire damage with a potency of 400.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Aetherhues</span>\n\n<span style=\"color:#00cc22;\">Duration:</span> 30s <br />\nThis action is affected by <span style=\"color:#ffff66;\">Hyperphantasia</span>.",
+        "Description_de": null,
+        "Description_fr": null,
+        "Description_ja": null,
+        "ID": 9990001,
+        "customIcon": true,
+        "Icon": "/actionIcons/PCT/Fire_in_Red.png",
+        "IconHD": "/actionIcons/PCT/Fire_in_Red.png",
+        "Name": "Fire in Red",
+        "Name_de": null,
+        "Name_fr": null,
+        "Name_ja": null,
+        "Url": null,
+        "UrlType": "Action",
+        "upgradable": false
+      }
+    ],
+    "roleActions": [
+      {
+        "Description": "Spells can be cast without interruption.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Nullifies most knockback and draw-in effects\n\n<span style=\"color:#00cc22;\">Duration:</span> 6s",
+        "Description_de": "Dein nächster Zauber wird nicht unterbrochen.\n\nZusatzeffekt: Fast alle Rückstoß- und Heranzieheffekte unwirksam\n\nDauer: 6 Sekunden",
+        "Description_fr": "Vous permet de lancer vos sorts sans risque d'interruption.\n\nAnnule la plupart des projections et attractions.\n\n<span style=\"color:#ffff66;\">Durée:</span> 6s",
+        "Description_ja": "一定時間、魔法詠唱を詠唱妨害されずに行うことができる。\n\nさらに、一部を除くすべてのノックバックと引き寄せを無効化する。　<span style=\"color:#00cc22;\">効果時間：</span>6秒",
+        "ID": 7559,
+        "Icon": "/i/000000/000869.png",
+        "IconHD": "/i/000000/000869_hr1.png",
+        "Name": "Surecast",
+        "Name_de": "Unbeirrbarkeit",
+        "Name_fr": "Stoïcisme",
+        "Name_ja": "堅実魔",
+        "Url": "/Action/7559",
+        "UrlType": "Action",
+        "Prefix": "r"
+      },
+      {
+        "Description": "Lowers target's physical damage dealt by 5% and magic damage dealt by 10%.\n\n<span style=\"color:#00cc22;\">Duration:</span> 10s",
+        "Description_de": "Du verringerst den ausgeteilten physischen Schaden um 5% und den ausgeteilten magischen Schaden um 10%.\n\nDauer: 10 Sekunden",
+        "Description_fr": "Réduit respectivement de 5% et 10% les dégâts physiques et magiques infligés par la cible.\n\n<span style=\"color:#ffff66;\">Durée:</span> 10s",
+        "Description_ja": "一定時間、対象の与物理ダメージを5％、与魔法ダメージを10％減少させる。　<span style=\"color:#00cc22;\">効果時間：</span>10秒",
+        "ID": 7560,
+        "Icon": "/i/000000/000861.png",
+        "IconHD": "/i/000000/000861_hr1.png",
+        "Name": "Addle",
+        "Name_de": "Stumpfsinn",
+        "Name_fr": "Embrouillement",
+        "Name_ja": "アドル",
+        "Url": "/Action/7560",
+        "UrlType": "Action",
+        "Prefix": "r"
+      },
+      {
+        "Description": "Next spell is cast immediately.\n\n<span style=\"color:#00cc22;\">Duration:</span> 10s",
+        "Description_de": "Du kannst deinen nächsten Zauber sofort wirken.\n\nDauer: 10 Sekunden",
+        "Description_fr": "Permet à votre prochain sort d'être instantané.\n\n<span style=\"color:#ffff66;\">Durée:</span> 10s",
+        "Description_ja": "一定時間、次の1回の魔法詠唱について、詠唱時間無しで詠唱することができる。　<span style=\"color:#00cc22;\">効果時間：</span>10秒",
+        "ID": 7561,
+        "Icon": "/i/000000/000866.png",
+        "IconHD": "/i/000000/000866_hr1.png",
+        "Name": "Swiftcast",
+        "Name_de": "Spontaneität",
+        "Name_fr": "Magie prompte",
+        "Name_ja": "迅速魔",
+        "Url": "/Action/7561",
+        "UrlType": "Action",
+        "Prefix": "r"
+      },
+      {
+        "Description": "Gradually restores own MP.\n\n<span style=\"color:#00cc22;\">Potency: </span>55\n\n<span style=\"color:#00cc22;\">Duration: </span>21s",
+        "Description_de": "Du regenerierst schrittweise eigene MP.\n\nRegenerationswirkung: 55\n\nDauer: 21 Sekunden",
+        "Description_fr": "Restaure périodiquement vos PM.\n\n<span style=\"color:#ffff66;\">Puissance:</span> 55 <span style=\"color:#ffff66;\">Durée:</span> 21s",
+        "Description_ja": "自身のＭＰを継続回復する。\n\n<span style=\"color:#00cc22;\">効果量：</span>55　<span style=\"color:#00cc22;\">効果時間：</span>21秒",
+        "ID": 7562,
+        "Icon": "/i/000000/000865.png",
+        "IconHD": "/i/000000/000865_hr1.png",
+        "Name": "Lucid Dreaming",
+        "Name_de": "Klartraum",
+        "Name_fr": "Rêve lucide",
+        "Name_ja": "ルーシッドドリーム",
+        "Url": "/Action/7562",
+        "UrlType": "Action",
+        "Prefix": "r"
+      },
+      {
+        "Description": "Puts target and all nearby enemies to sleep.\n\n<span style=\"color:#00cc22;\">Duration: </span>30s\n\nCancels auto-attack upon execution.",
+        "Description_de": "Du versetzt das Ziel und die Gegner in seiner Nähe in <span style=\"color:#ffff66;\">Schlaf</span>.\n\nDauer: 30 Sekunden\n\nUnterbindet Auto-Attacke.",
+        "Description_fr": "Inflige Sommeil à la cible et aux ennemis autour.\n\n<span style=\"color:#ffff66;\">Durée:</span> 30s\n\nInterrompt vos attaques automatiques.",
+        "Description_ja": "対象とその周囲の敵に睡眠を付与する。　<span style=\"color:#00cc22;\">効果時間：</span>30秒\n\n実行後にオートアタックを停止する。",
+        "ID": 25880,
+        "Icon": "/i/000000/000871.png",
+        "IconHD": "/i/000000/000871_hr1.png",
+        "Name": "Sleep",
+        "Name_de": "Schlaf",
+        "Name_fr": "Sommeil",
+        "Name_ja": "スリプル",
+        "Url": "/Action/25880",
+        "UrlType": "Action",
+        "Prefix": "r"
+      }
+    ]
+  }
+}

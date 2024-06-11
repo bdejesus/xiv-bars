@@ -3,8 +3,13 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function actionsHandler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    let file;
     const params = req.query;
-    const file = `${process.cwd()}/.apiData/JobActions/${params.job}.json`;
+    file = `${process.cwd()}/.apiData/JobActions/${params.job}.json`;
+
+    if (`${params.job}` === 'PCT') {
+      file = `${process.cwd()}/data/JobActions/PCT.json`;
+    }
 
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
