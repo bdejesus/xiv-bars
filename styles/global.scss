@@ -16,14 +16,20 @@ body {
   display: none;
 }
 
-.container {
-  margin: 0 auto;
-  max-width: $screen-lg;
+.container,
+.container-sm,
+.container-xl {
+  margin: $spacing-xl auto;
   padding: 0 $spacing-lg;
 
   @media (max-width: $screen-sm) {
+    margin: $spacing-lg auto;
     padding: 0 $spacing-base;
   }
+}
+
+.container {
+  max-width: $screen-lg;
 }
 
 .container-sm {
@@ -31,28 +37,13 @@ body {
 }
 
 .container-xl {
-  margin: 0 auto;
   max-width: $screen-xl;
-  padding: 0 $spacing-lg;
-
-  @media (max-width: $screen-sm) {
-    padding: 0 $spacing-base;
-  }
-}
-
-.section {
-  margin-bottom: $spacing-xl;
-  margin-top: $spacing-xl;
 }
 
 .app-view {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-
-  @media (max-width: $screen-sm) {
-    padding: $spacing-lg 0;
-  }
 }
 
 .panel {
@@ -89,6 +80,11 @@ h2 {
   &.branding {
     font-weight: 100;
   }
+}
+
+.undefined {
+  background-color: red !important;
+  outline: 2px solid red !important;
 }
 
 @import "typography";

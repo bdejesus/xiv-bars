@@ -14,7 +14,7 @@ $nav-height-sm: 30px;
   justify-content: space-between;
   left: 0;
   letter-spacing: 0.015em;
-  padding: 10px $spacing-base;
+  padding: 10px $spacing-lg;
   position: sticky;
   top: 0;
   width: 100%;
@@ -78,6 +78,9 @@ $nav-height-sm: 30px;
   }
 
   @media (max-width: $screen-sm) {
+    padding-left: $spacing-base;
+    padding-right: $spacing-base;
+
     .titleSegment {
       display: none;
     }

@@ -18,7 +18,7 @@
   }
 
   @media (max-width: $screen-md) {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
   }
 
   @media (max-width: $screen-sm) {

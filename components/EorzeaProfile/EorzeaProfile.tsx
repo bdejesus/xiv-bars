@@ -6,7 +6,7 @@ export function EorzeaProfile() {
   const { t } = useTranslation();
 
   return (
-    <div className={`${styles.container} container`}>
+    <div className="container">
       <a
         href="https://dashboard.twitch.tv/extensions/bsdr8tkgubqusuao9ixx6wjyhxy8je-1.1.1"
         target="_blank"

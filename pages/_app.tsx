@@ -57,7 +57,7 @@ function App({ Component, pageProps }: AppProps) {
           {t('Error.generic.title')}
         </div>
 
-        <div className="section mt-md mb-md text-center pad-lg mb-0">
+        <div className="mt-md mb-md text-center pad-lg mb-0">
           <p className="text-xl">{t('Error.generic.body')}</p>
 
           <a className="button btn-alt btn-inline mb-lg" href="/">

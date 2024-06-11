@@ -65,7 +65,7 @@ export default function Index(props:PageProps) {
 
       <App />
 
-      <div className={`${styles.lists} container-xl section`}>
+      <div className={`${styles.lists} container-xl`}>
         { ownerLayouts.length > 0 && (
           <section>
             <LayoutsList
