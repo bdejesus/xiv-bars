@@ -3,7 +3,9 @@
 .userNav,
 .globalNav,
 .navItem,
-.navItem a {
+.navItem a,
+.profileNav,
+.profile {
   height: 100%;
 }
 
@@ -12,6 +14,7 @@
   color: #333;
   display: flex;
   flex-direction: row;
+  height: 40px;
   position: relative;
 
   a {
@@ -58,6 +61,7 @@
 
   .signin {
     color: $color-alt;
+    height: 100%;
   }
 }
 
@@ -80,7 +84,7 @@
 
 .profile {
   font-weight: 700;
-  padding: $spacing-xs $spacing-sm $spacing-xs $spacing-xs;
+  padding: $spacing-xs $spacing-sm $spacing-xs $spacing-sm;
 
   &:focus,
   &:active,
@@ -92,7 +96,6 @@
 }
 
 .profileImage {
-  background-color: #333;
   border-radius: 4px;
   color: rgb(0 0 0 / 0%);
   font-size: 10px;
@@ -109,12 +112,12 @@
 }
 
 .menu {
-  background-color: #fff;
+  background-color: $color-alt-dark;
   border-radius: 4px 0 4px 4px;
   border-top-color: #eee;
   box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
   list-style: none;
-  margin: 5px 0 0;
+  margin: 0;
   padding: 4px;
   position: absolute;
   right: 0;
@@ -133,8 +136,16 @@
 
   a {
     border-radius: 2px;
+    color: #fff;
     justify-content: flex-end;
+
+    &:hover,
+    &:focus {
+      color: #333;
+      font-weight: 500;
+    }
   }
+
 }
 
 .navItem {
@@ -156,8 +167,41 @@
   }
 }
 
-@media (max-width: $screen-sm) {
+@media (max-width: $screen-xs) {
+  .globalNav {
+    margin: 0 $spacing-xs;
+  }
+
   .userNav {
-    padding-right: $spacing-base;
+    height: 32px;
+  }
+
+  a.button,
+  a.donateLink {
+    padding-left: $spacing-sm;
+    padding-right: $spacing-sm;
+
+    &::before {
+      margin-right: 0;
+    }
+  }
+
+  .signin {
+    line-height: 1.25em;
+    white-space: wrap;
+    width: 80px;
+  }
+
+  .profile {
+    padding: 0;
+  }
+
+  .profileImage {
+    margin-right: 0;
+    padding: 2px;
+  }
+
+  .profileTitle {
+    display: none;
   }
 }

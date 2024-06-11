@@ -14,7 +14,8 @@ $nav-height-sm: 30px;
   justify-content: space-between;
   left: 0;
   letter-spacing: 0.015em;
-  padding: 10px $spacing-lg;
+  max-width: unset;
+  padding: $spacing-sm $spacing-base;
   position: sticky;
   top: 0;
   width: 100%;
@@ -180,12 +181,13 @@ $nav-height-sm: 30px;
 
 @media (max-width: $screen-md) {
   .container {
+    align-items: center;
     display: grid;
     grid-template-areas:
       "branding usernav usernav"
       "appnav appnav appnav";
-    grid-template-rows: $nav-height-sm auto;
-    height: auto;
+    grid-template-rows: 40px auto;
+    height: unset;
   }
 
   .branding {
@@ -201,14 +203,6 @@ $nav-height-sm: 30px;
     grid-area: appnav;
     margin-left: 0;
     margin-top: $spacing-base;
-    padding-top: 0;
-
-    a,
-    button,
-    :global(.btn-icon),
-    .jobLink {
-      height: 32px;
-    }
   }
 
   .userNav {

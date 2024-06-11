@@ -64,7 +64,7 @@ export default function UserNav({ className }:{ className?: string}) {
                 alt={session.user.name}
               />
             </div>
-            <div className={styles.title}>
+            <div className={styles.profileTitle}>
               {session.user.name}
             </div>
           </div>
