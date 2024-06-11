@@ -1,7 +1,6 @@
 @import "styles/mixins";
 
 $button-size: 40px;
-$nav-height-sm: 30px;
 
 .container {
   align-items: center;
@@ -14,7 +13,6 @@ $nav-height-sm: 30px;
   justify-content: space-between;
   left: 0;
   letter-spacing: 0.015em;
-  max-width: unset;
   padding: $spacing-sm $spacing-base;
   position: sticky;
   top: 0;
@@ -79,9 +77,6 @@ $nav-height-sm: 30px;
   }
 
   @media (max-width: $screen-sm) {
-    padding-left: $spacing-base;
-    padding-right: $spacing-base;
-
     .titleSegment {
       display: none;
     }
@@ -187,7 +182,7 @@ $nav-height-sm: 30px;
       "branding usernav usernav"
       "appnav appnav appnav";
     grid-template-rows: 40px auto;
-    height: unset;
+    height: auto;
   }
 
   .branding {
