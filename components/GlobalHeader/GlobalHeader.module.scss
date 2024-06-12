@@ -1,7 +1,6 @@
 @import "styles/mixins";
 
 $button-size: 40px;
-$nav-height-sm: 30px;
 
 .container {
   align-items: center;
@@ -14,7 +13,7 @@ $nav-height-sm: 30px;
   justify-content: space-between;
   left: 0;
   letter-spacing: 0.015em;
-  padding: 10px $spacing-base;
+  padding: $spacing-sm $spacing-base;
   position: sticky;
   top: 0;
   width: 100%;
@@ -177,11 +176,12 @@ $nav-height-sm: 30px;
 
 @media (max-width: $screen-md) {
   .container {
+    align-items: center;
     display: grid;
     grid-template-areas:
       "branding usernav usernav"
       "appnav appnav appnav";
-    grid-template-rows: $nav-height-sm auto;
+    grid-template-rows: 40px auto;
     height: auto;
   }
 
@@ -198,14 +198,6 @@ $nav-height-sm: 30px;
     grid-area: appnav;
     margin-left: 0;
     margin-top: $spacing-base;
-    padding-top: 0;
-
-    a,
-    button,
-    :global(.btn-icon),
-    .jobLink {
-      height: 32px;
-    }
   }
 
   .userNav {

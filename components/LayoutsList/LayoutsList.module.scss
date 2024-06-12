@@ -1,8 +1,13 @@
 @import "styles/grid";
 
+.container {
+  position: relative;
+}
+
 .layoutsList {
   @include grid;
 
+  margin: 0;
   max-width: 100%;
 
   &[data-columns="4"] {
@@ -10,19 +15,18 @@
   }
 }
 
-.headerGroup {
-  align-items: baseline;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  h2 {
-    font-size: $font-size-xl;
-  }
+.title {
+  font-size: $font-size-xl;
+    margin-top: 0;
 }
 
 .moreLink {
+  display: inline-block;
   font-size: $font-size-base;
+  margin-top: $spacing-sm;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 @media (max-width: $screen-lg) {
@@ -33,14 +37,16 @@
   }
 }
 
+@media (max-width: $screen-sm) {
+  .moreLink {
+    margin-top: $spacing-base;
+    position: static;
+  }
+}
+
 
 @media (max-width: $screen-xs) {
-  .headerGroup {
-    flex-direction: column;
-    margin-bottom: $spacing-base;
-
-    h2 {
-      margin-bottom: $spacing-xs;
-    }
+  .title {
+    margin-bottom: $spacing-xs;
   }
 }

@@ -52,6 +52,8 @@
   }
 }
 
+$description-height: 42px;
+
 .card {
   padding: 0;
 
@@ -73,7 +75,7 @@
     font-weight: 400;
     line-height: 1.45;
     margin: $spacing-sm 0;
-    max-height: 64px;
+    max-height: $description-height;
     overflow: hidden;
     position: relative;
     transition: color $timing-default ease;
@@ -84,7 +86,7 @@
       display: block;
       height: 66.6%;
       left: 0;
-      min-height: 64px;
+      min-height: $description-height;
       position: absolute;
       right: 0;
       top: 0;
@@ -118,7 +120,7 @@
 
   .main {
     flex: 1 1 auto;
-    padding: 54px $spacing-base $spacing-sm $spacing-base;
+    padding: 48px $spacing-base $spacing-sm $spacing-base;
 
     &:hover,
     &:focus {
@@ -130,7 +132,7 @@
 
   .footer {
     border-top: 1px solid rgb(255 255 255 / 5%);
-    padding: $spacing-base;
+    padding: $spacing-sm $spacing-base;
   }
 
   .job {
