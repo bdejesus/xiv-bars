@@ -24,7 +24,7 @@ export default function SignInPrompt() {
           <button
             type="button"
             onClick={handleSignIn}
-            className={`${styles.signin} button btn-primary btn-block`}
+            className="button btn-primary btn-block"
           >
             {t('UserNav.signin_with_discord')}
           </button>

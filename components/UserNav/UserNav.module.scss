@@ -36,8 +36,6 @@
   }
 
   a.donateLink {
-    font-weight: 400;
-
     .donateLabel {
       align-items: center;
       display: inline-flex;
@@ -45,17 +43,21 @@
       &::before {
         color: #fff;
         content: "🍺";
-        display: inline-block;
+        display: inline-flex;
         font-size: 20px;
+        justify-content: center;
         margin-left: -$spacing-xs;
         margin-right: $spacing-xs;
+        text-align: center;
+        text-shadow: 1px 1px 1px rgb(0 0 0 / 33%);
         transition: font-size 0.3s ease;
+        width: 24px;
       }
     }
 
     &:hover .donateLabel::before {
       content: "🍻";
-      font-size: 26px;
+      font-size: 28px;
     }
   }
 
@@ -82,16 +84,20 @@
   position: relative;
 }
 
-.profile {
+.profile:global(.button) {
   font-weight: 700;
   padding: $spacing-xs $spacing-sm $spacing-xs $spacing-sm;
+  user-select: none;
 
   &:focus,
   &:active,
   &[data-active="true"] {
-    background-color: $color-alt-dark;
+    background-color: $color-alt-light;
+    border-bottom-width: $spacing-sm;
     border-radius: 4px 4px 0 0;
     box-shadow: $button-shadow;
+    color: $color-alt-dark-2;
+    text-shadow: none;
   }
 }
 
@@ -112,12 +118,14 @@
 }
 
 .menu {
-  background-color: $color-alt-dark;
+  background-color: #fff;
+  background-image: linear-gradient($color-alt-light 0%, #fff 45%);
   border-radius: 4px 0 4px 4px;
-  border-top-color: #eee;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+  border-right: 1px solid $color-gray-light;
+  border-top: 1px solid $color-gray-light;
+  box-shadow: 0 3px 4px rgb(0 0 0 / 20%);
   list-style: none;
-  margin: 0;
+  margin: -1px 0 0;
   padding: 4px;
   position: absolute;
   right: 0;
@@ -136,13 +144,11 @@
 
   a {
     border-radius: 2px;
-    color: #fff;
     justify-content: flex-end;
 
     &:hover,
     &:focus {
       color: #333;
-      font-weight: 500;
     }
   }
 
@@ -169,11 +175,7 @@
 
 @media (max-width: $screen-xs) {
   .globalNav {
-    margin: 0 $spacing-xs;
-  }
-
-  .userNav {
-    height: 32px;
+    margin: 0 $spacing-sm;
   }
 
   a.button,
@@ -193,12 +195,11 @@
   }
 
   .profile {
-    padding: 0;
+    padding: 0 5px;
   }
 
   .profileImage {
     margin-right: 0;
-    padding: 2px;
   }
 
   .profileTitle {

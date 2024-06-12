@@ -8,7 +8,8 @@ $color-gray-light-2: #d0d0d0;
 $color-gray-light-3: #ddd;
 
 $color-alt: rgb(244 214 107);
-$color-alt-dark: darken($color-alt, 22%);
+$color-alt-dark: darken($color-alt, 20%);
+$color-alt-dark-2: darken($color-alt, 60%);
 $color-alt-light: lighten($color-alt, 15%);
 
 $color-link: #39c;
