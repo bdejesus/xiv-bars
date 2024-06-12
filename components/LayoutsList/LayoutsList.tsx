@@ -30,20 +30,10 @@ export default function LayoutsList({
   if (!layouts) return null;
 
   return (
-    <>
-      { title && (
-        <div className={styles.headerGroup}>
-          <h2>{title}</h2>
+    <div className={[styles.container, className].join(' ')}>
+      { title && <h2 className={styles.title}>{title}</h2>}
 
-          { link && (
-            <Link href={link.href} className={styles.moreLink}>
-              {link.text}
-            </Link>
-          )}
-        </div>
-      )}
-
-      <ul className={[styles.layoutsList, className].join(' ')} data-columns={columns}>
+      <ul className={[styles.layoutsList, 'layoutsList'].join(' ')} data-columns={columns}>
         {layouts.map((layout:LayoutViewProps) => {
           const job = jobs.find((j) => j.Abbr === layout.jobId);
           if (!job) return null;
@@ -61,7 +51,13 @@ export default function LayoutsList({
 
         { children && children }
       </ul>
-    </>
+
+      { link && (
+        <Link href={link.href} className={styles.moreLink}>
+          {link.text}
+        </Link>
+      )}
+    </div>
   );
 }
 

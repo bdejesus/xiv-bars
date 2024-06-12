@@ -9,7 +9,7 @@ import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
 import Intro from 'components/Intro';
 import Footer from 'components/Footer';
-// import EorzeaProfile from 'components/EorzeaProfile';
+import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import type { GetServerSideProps } from 'next';
@@ -55,31 +55,32 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       <Intro />
 
       { popularLayouts?.length >= 5 ? (
-        <div className={`container mt-xl ${styles.lists}`}>
-          <div className={`${styles.listColumn} ${styles.recentLayouts}`}>
-            <h2>{t('Pages.Index.recent_layouts')}</h2>
-            <LayoutsList layouts={recentLayouts} />
+        <div className={`container ${styles.lists}`}>
+          <div className={styles.recentLayouts}>
+            <LayoutsList
+              title={t('Pages.Index.recent_layouts')}
+              layouts={recentLayouts}
+            />
           </div>
 
-          <div className={`${styles.listColumn} ${styles.popularLayouts}`}>
-            <h2>{t('Pages.Index.popular_layouts')}</h2>
-            <LayoutsList layouts={popularLayouts} />
+          <div className={styles.popularLayouts}>
+            <LayoutsList
+              title={t('Pages.Index.popular_layouts')}
+              layouts={popularLayouts}
+            />
           </div>
         </div>
       ) : (
-        <div className="container mt-xl">
-          <h2>{t('Pages.Index.recent_layouts')}</h2>
-          <LayoutsList layouts={recentLayouts} />
+        <div className="container">
+          <LayoutsList
+            title={t('Pages.Index.recent_layouts')}
+            layouts={recentLayouts}
+          />
         </div>
       ) }
 
-      <div className={styles.articles}>
-        <HowTo />
-        {/* TODO: Uncomment this onece the twitch extension is working again */}
-        {/* https://github.com/bdejesus/twitch-xiv-profile/issues/13 */}
-        {/* <EorzeaProfile /> */}
-      </div>
-
+      <HowTo />
+      <EorzeaProfile />
       <Footer />
     </>
   );

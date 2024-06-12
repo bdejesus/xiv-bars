@@ -28,7 +28,7 @@ export default function Error500() {
         </AppContextProvider>
 
         <div className={styles.main}>
-          <div className="container section">
+          <div className="container">
             <small>{t('Pages.ServerError.status')}</small>
             <h1>{t('Pages.ServerError.title')}</h1>
             <p>{t('Pages.ServerError.body')}</p>

@@ -42,7 +42,7 @@ export default function Hearts({
         }
 
         if (!hearted) {
-          analytics.event({ action: 'button_click', params: { button_id: 'heart' } });
+          analytics.event({ action: 'click', params: { id: 'heart' } });
         }
       });
     }
