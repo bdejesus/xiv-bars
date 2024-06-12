@@ -36,7 +36,7 @@
 
   .recentLayouts,
   .popularLayouts {
-    > ul {
+    ul:global(.layoutsList) {
       display: flex;
       flex-direction: column;
       margin: 0;
@@ -45,11 +45,15 @@
         display: inline-block;
         width: 100%;
       }
+
+      > li:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 
   .recentLayouts {
-    > ul {
+    ul:global(.layoutsList) {
       column-count: 2;
       display: block;
 
@@ -63,7 +67,7 @@
     gap: $spacing-lg;
     grid-template-columns: 1fr;
 
-    .popularLayouts > ul {
+    .popularLayouts ul:global(.layoutsList) {
       column-count: 2;
       display: block;
 
@@ -76,9 +80,11 @@
   @media (max-width: $screen-xs-max) {
     display: block;
 
-    .recentLayouts > ul,
-    .popularLayouts > ul {
-      column-count: 1;
+    .recentLayouts,
+    .popularLayouts {
+      ul:global(.layoutsList) {
+        column-count: 1;
+      }
     }
   }
 }

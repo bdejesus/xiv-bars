@@ -64,7 +64,7 @@ export default function Index(props:PageProps) {
       <App />
 
       { classJobLayouts?.length > 0 && (
-        <div className="container-xl section">
+        <div className="container-xl">
           <LayoutsList
             title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
             link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
@@ -74,7 +74,7 @@ export default function Index(props:PageProps) {
         </div>
       ) }
 
-      <div className="container section">
+      <div className="container">
         <div className={styles.description}>
           <h2>{jobName} {t('Global.title')}</h2>
           { selectedJob?.Description && <Lore description={selectedJob.Description} /> }

@@ -60,13 +60,6 @@ export function GlobalHeader({ selectedJob }:Props) {
               </Link>
             </li>
 
-            { ['edit', 'show', 'new'].includes(viewAction as string) && (
-              <li className={styles.actionGroup}>
-                <Sharing />
-                <ExportToMacros />
-              </li>
-            ) }
-
             <li className={viewAction !== 'new' ? styles.action : ''}>
               <a
                 href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
@@ -80,6 +73,13 @@ export function GlobalHeader({ selectedJob }:Props) {
 
               { id && <DuplicateLayout /> }
             </li>
+
+            { ['edit', 'show', 'new'].includes(viewAction as string) && (
+              <li className={styles.actionGroup}>
+                <Sharing />
+                <ExportToMacros />
+              </li>
+            ) }
           </ol>
         </nav>
       )}

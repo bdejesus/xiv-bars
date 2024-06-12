@@ -17,13 +17,22 @@ export default function UserNav({ className }:{ className?: string}) {
     signIn('discord', { callbackUrl: router.asPath });
   }
 
-  function handleSignOut(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+  function handleSignOut(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
     signOut({ callbackUrl: '/' });
   }
 
   function toggleMenu() {
     setShowMenu(!showMenu);
+  }
+
+  function handleDonate(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    e.preventDefault();
+    analytics.event({
+      action: 'click',
+      params: { id: 'donate' }
+    });
+    router.push(e.currentTarget.getAttribute('href')!);
   }
 
   return (
@@ -34,11 +43,8 @@ export default function UserNav({ className }:{ className?: string}) {
             href="https://www.buymeacoffee.com/bejezus"
             target="_blank"
             rel="noreferrer"
-            onClick={() => analytics.event({
-              action: 'button_click',
-              params: { button_id: 'donate' }
-            })}
-            className={`${styles.donateLink} button btn-clear`}
+            onClick={handleDonate}
+            className={`${styles.donateLink} button btn-primary`}
             data-title={t('UserNav.donate_title')}
           >
             <span className={styles.donateLabel}>
@@ -64,7 +70,7 @@ export default function UserNav({ className }:{ className?: string}) {
                 alt={session.user.name}
               />
             </div>
-            <div className={styles.title}>
+            <div className={styles.profileTitle}>
               {session.user.name}
             </div>
           </div>

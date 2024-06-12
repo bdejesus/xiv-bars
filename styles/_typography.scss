@@ -52,6 +52,7 @@ h5 {
 ol {
   list-style: none;
   margin: $spacing-lg 0;
+  padding: 0 $spacing-lg;
 
   h5 {
     margin-top: $spacing-base;
@@ -105,6 +106,11 @@ label {
 }
 
 @media (max-width: $screen-sm) {
+  body,
+  textarea {
+    font-size: $font-size-base;
+  }
+
   h1 {
     font-size: $font-size-xl-2;
   }

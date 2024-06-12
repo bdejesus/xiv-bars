@@ -30,7 +30,7 @@ export default function Error404() {
         </AppContextProvider>
 
         <div className={styles.main}>
-          <div className="container section">
+          <div className="container">
             <small>{t('Pages.NotFound.status')}</small>
             <h1>{t('Pages.NotFound.title')}</h1>
             <p>{t('Pages.NotFound.body')}</p>

@@ -61,10 +61,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
       <GlobalHeader selectedJob={selectedJob} />
 
-      <div className="container section">
+      <div className="container">
         <SelectedJob
           job={selectedJob}
-          className={`mt-md ${styles.title}`}
+          className={styles.title}
         />
 
         { selectedJob?.Description && (
@@ -72,11 +72,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         ) }
 
         { layouts.length > 0
-          ? (
-            <div>
-              <LayoutsList layouts={layouts} />
-            </div>
-          ) : (
+          ? <LayoutsList layouts={layouts} />
+          : (
             <>
               <h2>{t('Pages.Job.no_layouts', { jobName })}</h2>
               <a

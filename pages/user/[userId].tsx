@@ -59,7 +59,7 @@ export default function User({ user }:UserViewProps) {
         <GlobalHeader />
       </AppContextProvider>
 
-      <div className="container section">
+      <div className="container">
         <div className={styles.hgroup}>
           <h1 className="mt-md">
             <div className={styles.profile}>
@@ -84,7 +84,7 @@ export default function User({ user }:UserViewProps) {
       </div>
 
       { layouts && layouts.length > 0 && (
-        <div className="container section">
+        <div className="container">
           <LayoutsList layouts={layouts}>
             { (layouts.length < maxLayouts && isCurrentUser) && (
               <li>
@@ -103,7 +103,7 @@ export default function User({ user }:UserViewProps) {
       )}
 
       { isCurrentUser && user.hearts && user.hearts.length > 0 && (
-        <div className="container section">
+        <div className="container">
           <h2>{t('Pages.User.saved_layouts')}</h2>
           <LayoutsList layouts={user.hearts} />
         </div>
