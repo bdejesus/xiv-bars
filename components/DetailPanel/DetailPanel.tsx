@@ -119,11 +119,10 @@ export default function DetailPanel({ className, visible }:Props) {
             </>
           )
           : (
-              <div className={styles.body}>
-                <SaveForm />
-              </div>
-            )
-          }
+            <div className={styles.body}>
+              <SaveForm />
+            </div>
+          )}
 
         { ['PCT', 'VPR'].includes(selectedJob!.Abbr) && (
           <p className="system-message warn">
