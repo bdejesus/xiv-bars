@@ -10,6 +10,9 @@ export default async function actionsHandler(req: NextApiRequest, res: NextApiRe
     if (`${params.job}` === 'PCT') {
       file = `${process.cwd()}/data/JobActions/PCT.json`;
     }
+     else if (`${params.job}` === 'VPR') {
+      file = `${process.cwd()}/data/JobActions/VPR.json`;
+    }
 
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
