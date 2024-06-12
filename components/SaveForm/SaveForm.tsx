@@ -176,7 +176,7 @@ function SaveForm() {
             <button
               onClick={cancelEdit}
               type="button"
-              className={`${styles.cancelButton} button btn-clear`}
+              className="button btn-clear"
             >
               {t('SaveForm.cancel')}
             </button>
@@ -185,7 +185,7 @@ function SaveForm() {
 
       </form>
 
-      <ReactMarkdown className={shouldPublish ? styles.info : styles.warning}>
+      <ReactMarkdown className={`${styles.message} system-message ${shouldPublish ? 'info' : 'warn'}`}>
         {t('SaveForm.draft')}
       </ReactMarkdown>
     </>

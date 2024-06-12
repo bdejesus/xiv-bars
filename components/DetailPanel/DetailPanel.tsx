@@ -116,16 +116,21 @@ export default function DetailPanel({ className, visible }:Props) {
                   </ReactMarkdown>
                 )}
               </div>
-
-              { selectedJob && <JobSprite job={selectedJob} /> }
             </>
           )
           : (
             <div className={styles.body}>
               <SaveForm />
-              { selectedJob && <JobSprite job={selectedJob} /> }
             </div>
           )}
+
+        { ['PCT', 'VPR'].includes(selectedJob!.Abbr) && (
+          <p className="system-message warn">
+            The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
+          </p>
+        )}
+
+        { selectedJob && <JobSprite job={selectedJob} /> }
       </div>
     </div>
   );

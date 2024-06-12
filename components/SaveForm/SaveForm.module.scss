@@ -60,21 +60,17 @@
   flex-direction: row;
 }
 
-.info,
-.warning {
+.message {
   align-self: flex-start;
   font-style: italic;
   margin-top: $spacing-base;
   padding: $spacing-base;
+  text-align: left;
   transition-duration: 0.3s;
   transition-property: background-color;
   transition-timing-function: ease;
-}
 
-.info {
-  background-color: $color-gray-light-3;
-}
-
-.warning {
-  background-color: $color-alt-light;
+  &:global(.info) {
+    background-color: $color-gray-light-3;
+  }
 }

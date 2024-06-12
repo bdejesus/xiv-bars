@@ -71,6 +71,12 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           <Lore description={selectedJob.Description} />
         ) }
 
+        { ['PCT', 'VPR'].includes(selectedJob.Abbr) && (
+          <p className="system-message warn">
+            The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
+          </p>
+        )}
+
         { layouts.length > 0
           ? <LayoutsList layouts={layouts} />
           : (
