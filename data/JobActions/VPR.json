@@ -76,7 +76,7 @@
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Serpents_Tail.png",
           "IconHD": "/actionIcons/VPR/Serpents_Tail.png",
-          "Name": "Serpents Tail",
+          "Name": "Serpent's Tail",
           "Url": null,
           "UrlType": "Action",
           "upgradable": false
@@ -301,6 +301,10 @@
           "Prefix": "r"
         }
       ]
+    },
+    "PvP": {
+      "actions": [],
+      "roleActions:": []
     }
   }
   
