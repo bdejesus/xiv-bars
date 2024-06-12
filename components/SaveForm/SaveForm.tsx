@@ -176,7 +176,7 @@ function SaveForm() {
             <button
               onClick={cancelEdit}
               type="button"
-              className={`${styles.cancelButton} button btn-clear`}
+              className="button btn-clear"
             >
               {t('SaveForm.cancel')}
             </button>
