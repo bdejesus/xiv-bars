@@ -29,6 +29,11 @@
   }
 }
 
+.title {
+  margin-bottom: $spacing-base;
+  margin-top: 0;
+}
+
 .lists {
   display: grid;
   gap: $spacing-xl;
