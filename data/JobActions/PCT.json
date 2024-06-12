@@ -304,5 +304,9 @@
         "Prefix": "r"
       }
     ]
+  },
+  "PvP": {
+    "actions": [],
+    "roleActions:": []
   }
 }
