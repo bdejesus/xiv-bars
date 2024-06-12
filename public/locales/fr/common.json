@@ -138,7 +138,24 @@
 
   "JobSelect": {
     "class_job": "Classe/Job",
-    "job_select": "Sélection du Métier"
+    "job_select": "Sélection de Job",
+    "dow_dom": "Combattant/Mage",
+    "dow": "Combattant",
+    "dow_title": "Combattant",
+    "dom": "Mage",
+    "dom_title": "Mage",
+    "doh_dol": "Artisan/Récolteur",
+    "doh": "Discipline de la main",
+    "doh_title": "Discipline de la main",
+    "dol": "Disciplines de la terre",
+    "dol_title": "Disciplines de la terre",
+    "tank": "Tank",
+    "healer": "Soigneur",
+    "melee_dps": "DPS de mêlée",
+    "range_dps": "DPS physique à distance",
+    "magic_dps": "DPS magique à distance",
+    "crafter": "Artisan",
+    "gatherer": "Récolteur"
   },
 
   "JobsList": {

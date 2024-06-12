@@ -229,8 +229,12 @@ $panel-width-lg: $screen-xs;
   text-align: center;
 
   img {
+    align-items: center;
     box-shadow: 0 2px 0 #555, 0 4px 0 #ccc, 0 8px 0 #eee;
-    display: inline-block;
+    color: #999;
+    display: inline-flex;
+    font-style: italic;
+    justify-content: center;
   }
 }
 

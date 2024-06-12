@@ -139,14 +139,23 @@
   "JobSelect": {
     "class_job": "Class/Job",
     "job_select": "Job Select",
-    "dow_abbr": "DoW",
-    "dow": "Disciple of War",
-    "dom_abbr": "DoM",
-    "dom": "Disciple of Magic",
-    "doh_abbr": "DoH",
-    "doh": "Disciple of the Hand",
-    "dol_abbr": "DoL",
-    "dol": "Disciple of the Land"
+    "dow_dom": "DoW/DoM",
+    "dow": "DoW",
+    "dow_title": "Disciple of War",
+    "dom": "DoM",
+    "dom_title": "Disciple of Magic",
+    "doh_dol": "DoH/DoL",
+    "doh": "DoH",
+    "doh_title": "Disciple of the Hand",
+    "dol": "DoL",
+    "dol_title": "Disciple of the Land",
+    "tank": "Tank",
+    "healer": "Healer",
+    "melee_dps": "Melee DPS",
+    "range_dps": "Range DPS",
+    "magic_dps": "Magic DPS",
+    "crafter": "Crafter",
+    "gatherer": "Gatherer"
   },
 
   "JobsList": {

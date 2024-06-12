@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAppState } from 'components/App/context';
+import { useTranslation } from 'next-i18next';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 
@@ -8,9 +9,10 @@ interface Props {
 }
 
 export default function JobMenu({ action }:Props) {
+  const { t } = useTranslation();
   const tabs = {
-    DowDom: 'DoW/DoM',
-    DohDol: 'DoH/DoL'
+    DowDom: t('JobSelect.dow_dom'),
+    DohDol: t('JobSelect.doh_dol')
   };
   const { jobs } = useAppState();
   const [selectedTabId, setSelectedTabId] = useState(Object.keys(tabs)[0]);
@@ -51,35 +53,35 @@ export default function JobMenu({ action }:Props) {
       </ul>
 
       <div className={styles.section} id="DowDom" data-active={selectedTabId === 'DowDom'}>
-        <h3>DoW/DoM</h3>
+        <h3>{t('JobSelect.dow_dom')}</h3>
 
         <div className={styles.categories}>
           <JobsList
-            title="Tank"
+            title={t('JobSelect.tank')}
             jobs={tanks}
             className={styles.jobList}
             action={action}
           />
           <JobsList
-            title="Healer"
+            title={t('JobSelect.healer')}
             jobs={healers}
             className={styles.jobList}
             action={action}
           />
           <JobsList
-            title="Melee DPS"
+            title={t('JobSelect.melee_dps')}
             jobs={melee}
             className={styles.jobList}
             action={action}
           />
           <JobsList
-            title="Range DPS"
+            title={t('JobSelect.range_dps')}
             jobs={range}
             className={styles.jobList}
             action={action}
           />
           <JobsList
-            title="Magic DPS"
+            title={t('JobSelect.magic_dps')}
             jobs={mages}
             className={styles.jobList}
             action={action}
@@ -88,16 +90,17 @@ export default function JobMenu({ action }:Props) {
       </div>
 
       <div className={styles.section} id="DohDol" data-active={selectedTabId === 'DohDol'}>
-        <h3>DoH/DoL</h3>
+        <h3>{t('JobSelect.doh_dol')}</h3>
+
         <div className={styles.categories}>
           <JobsList
-            title="Crafter"
+            title={t('JobSelect.crafter')}
             jobs={DoH}
             className={styles.jobList}
             action={action}
           />
           <JobsList
-            title="Gatherer"
+            title={t('JobSelect.gatherer')}
             jobs={DoL}
             className={styles.jobList}
             action={action}

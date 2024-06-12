@@ -138,7 +138,24 @@
 
   "JobSelect": {
     "class_job": "Klasse/Job",
-    "job_select": "Beruf/Klasse auswählen"
+    "job_select": "Job Auswahl",
+    "dow_dom": "Krieger/Magier",
+    "dow": "Krieger",
+    "dow_title": "Krieger",
+    "dom": "Magier",
+    "dom_title": "Magier",
+    "doh_dol": "Handwerker/Sammler",
+    "doh": "Handwerker",
+    "doh_title": "Handwerker",
+    "dol": "Sammler",
+    "dol_title": "Sammler",
+    "tank": "Verteidiger",
+    "healer": "Heiler",
+    "melee_dps": "Nahkampf-Angreifer",
+    "range_dps": "Physischer Fernkämpfer",
+    "magic_dps": "Magie Fernkämpfer",
+    "crafter": "Handwerker",
+    "gatherer": "Sammler"
   },
 
   "JobsList": {

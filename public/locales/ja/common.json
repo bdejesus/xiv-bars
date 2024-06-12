@@ -138,7 +138,24 @@
 
   "JobSelect": {
     "class_job": "クラス/ジョブ",
-    "job_select": "ジョブ選択"
+    "job_select": "ジョブ選択",
+    "dow_dom": "バトルクラス / ジョブ",
+    "dow": "DoW",
+    "dow_title": "戦闘職",
+    "dom": "DoM",
+    "dom_title": "",
+    "doh_dol": "クラフター / ギャザラー",
+    "doh": "DoH",
+    "doh_title": "",
+    "dol": "DoL",
+    "dol_title": "",
+    "tank": "Tank",
+    "healer": "Healer",
+    "melee_dps": "Melee DPS",
+    "range_dps": "Range DPS",
+    "magic_dps": "Magic DPS",
+    "crafter": "Crafter",
+    "gatherer": "Gatherer"
   },
 
   "JobsList": {
