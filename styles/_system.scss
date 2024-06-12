@@ -1,9 +1,11 @@
 .system-message {
   box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
   display: block;
-  padding: $spacing-base $spacing-lg;
+  padding: $spacing-base;
   text-align: center;
-
+  font-weight: 400;
+  font-size: $font-size-base;
+  line-height: 1.2;
 }
 
 .inline-message {
@@ -23,4 +25,5 @@
 .warn {
   background-color: $color-alt-light;
   text-align: left;
+  color: $color-alt-dark-2;
 }

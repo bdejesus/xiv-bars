@@ -57,6 +57,12 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
         <Hero />
       </div>
 
+      <div className="container">
+        <p className="system-message warn">
+          The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
+        </p>
+      </div>
+
       <div className="app-view">
         <div className="container">
           <h2 className={styles.title} id="jobSelectTitle">
