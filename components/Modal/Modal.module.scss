@@ -2,6 +2,7 @@
 
 .modal {
   align-items: top;
+  backdrop-filter: blur(0);
   display: flex;
   inset: 0;
   justify-content: center;
@@ -9,7 +10,9 @@
   overflow: auto;
   padding: ($spacing-xl * 2) $spacing-lg;
   position: fixed;
-  transition: background 0.33s ease;
+  transition-duration: 0.33s;
+  transition-property: background, backdrop-filter;
+  transition-timing-function: ease;
   z-index: 100;
 
   .container {
@@ -29,7 +32,8 @@
   }
 
   &[aria-hidden="false"] {
-    background: rgb(0 0 0 / 96%);
+    backdrop-filter: blur(10px);
+    background: rgb(33 33 33 / 95%);
     pointer-events: auto;
 
     .container {
@@ -45,7 +49,7 @@
     padding: $spacing-base;
     position: relative;
 
-    h3 {
+    h2 {
       margin: 0 0 $spacing-sm;
     }
 
@@ -56,7 +60,7 @@
   }
 
   :global(.modal-header) {
-    margin: $spacing-sm 0 $spacing-base;
+    margin-bottom: $spacing-base;
     max-width: 100%;
     position: relative;
   }

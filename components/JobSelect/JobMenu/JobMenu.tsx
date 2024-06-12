@@ -33,7 +33,7 @@ export default function JobMenu({ action }:Props) {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <ul className={styles.tabs}>
         { Object.entries(tabs).map(([tabId, tabTitle]) => (
           <li key={tabId}>
@@ -50,64 +50,61 @@ export default function JobMenu({ action }:Props) {
         ))}
       </ul>
 
-      <div className={styles.container}>
+      <div className={styles.section} id="DowDom" data-active={selectedTabId === 'DowDom'}>
+        <h3>DoW/DoM</h3>
 
-        <div className={styles.section} id="DowDom" data-active={selectedTabId === 'DowDom'}>
-          <h3>DoW/DoM</h3>
-
-          <div className={styles.categories}>
-            <JobsList
-              title="Tank"
-              jobs={tanks}
-              className={styles.jobList}
-              action={action}
-            />
-            <JobsList
-              title="Healer"
-              jobs={healers}
-              className={styles.jobList}
-              action={action}
-            />
-            <JobsList
-              title="Melee DPS"
-              jobs={melee}
-              className={styles.jobList}
-              action={action}
-            />
-            <JobsList
-              title="Range DPS"
-              jobs={range}
-              className={styles.jobList}
-              action={action}
-            />
-            <JobsList
-              title="Magic DPS"
-              jobs={mages}
-              className={styles.jobList}
-              action={action}
-            />
-          </div>
-        </div>
-
-        <div className={styles.section} id="DohDol" data-active={selectedTabId === 'DohDol'}>
-          <h3>DoH/DoL</h3>
-          <div className={styles.categories}>
-            <JobsList
-              title="Crafter"
-              jobs={DoH}
-              className={styles.jobList}
-              action={action}
-            />
-            <JobsList
-              title="Gatherer"
-              jobs={DoL}
-              className={styles.jobList}
-              action={action}
-            />
-          </div>
+        <div className={styles.categories}>
+          <JobsList
+            title="Tank"
+            jobs={tanks}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Healer"
+            jobs={healers}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Melee DPS"
+            jobs={melee}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Range DPS"
+            jobs={range}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Magic DPS"
+            jobs={mages}
+            className={styles.jobList}
+            action={action}
+          />
         </div>
       </div>
-    </>
+
+      <div className={styles.section} id="DohDol" data-active={selectedTabId === 'DohDol'}>
+        <h3>DoH/DoL</h3>
+        <div className={styles.categories}>
+          <JobsList
+            title="Crafter"
+            jobs={DoH}
+            className={styles.jobList}
+            action={action}
+          />
+          <JobsList
+            title="Gatherer"
+            jobs={DoL}
+            className={styles.jobList}
+            action={action}
+          />
+        </div>
+      </div>
+    </div>
   );
 }
 
