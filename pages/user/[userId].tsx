@@ -46,7 +46,6 @@ export default function User({ user }:UserViewProps) {
   return (
     <>
       <Head>
-        <meta name="robots" content="noindex" />
         <title>{t('Pages.User.title', { userName: user.name })}</title>
         <meta
           name="description"

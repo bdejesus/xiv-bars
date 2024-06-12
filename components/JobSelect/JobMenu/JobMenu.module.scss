@@ -10,9 +10,41 @@
   h3 {
     margin-top: 0;
   }
+}
 
-  .section + .section {
-    margin-top: $spacing-lg;
+.tabs {
+  border-bottom: 2px solid $color-gray-dark;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-xs;
+  list-style: none;
+  margin: 0 0 $spacing-lg;
+  padding: 0;
+
+  .tab {
+    background-color: $color-gray-dark-2;
+    border-radius: $border-radius $border-radius 0 0;
+    box-shadow: none;
+    color: #fff;
+
+    &:hover {
+      background-color: $color-gray-dark;
+      color: $color-alt;
+    }
+
+    &[data-active='true'] {
+      background-color: $color-gray;
+      color: $color-alt;
+    }
+  }
+}
+
+.section {
+  display: none;
+
+  &:target,
+  &[data-active='true'] {
+    display: block;
   }
 }
 
@@ -49,6 +81,14 @@
 
   .jobList > ul {
     grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    justify-content: center;
+
+    > li {
+      width: 50%;
+    }
   }
 }
 

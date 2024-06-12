@@ -1,10 +1,10 @@
 {
   "Global": {
-    "title": "Final Fantasy XIV W Cross Hotbar (XHB/WXHB) Planer und Simulator – XIVBARS",
-    "subtitle": "Ein Planungs- und Simulationstool für das Final Fantasy XIV Cross Hotbar (XHB/WXHB).",
-    "description": "Planen und anpassen Sie Ihre FFXIV: Endwalker Cross Hotbars (XHB). Entdecken Sie verschiedene Konfigurationen und Setups für die Benutzeroberflächen von Final Fantasy XIVs Hotbar und Cross Hotbar und optimieren Sie Ihr Spielerlebnis mit unterschiedlichen Platzierungen, Größen und Anpassungsoptionen, einschließlich Drag-and-Drop-Funktionalität für eine einfache Anpassung.",
+    "title": "XIVBARS – Final Fantasy XIV W Cross Hotbar Planer und Simulator",
+    "subtitle": "Ein Planungs- und Simulationswerkzeug für die Cross Hotbars von Final Fantasy XIV.",
+    "description": "Planen und gestalten Sie Ihre FFXIV: Dawntrail Cross Hotbars (XHB). Erkunden Sie verschiedene Konfigurationen und Setups für die Hotbars und Cross Hotbars von Final Fantasy XIV, um Ihr Spielerlebnis mit unterschiedlichen Platzierungen, Tastenzuweisungsoptionen und anderen Anpassungsfunktionen zu optimieren. Nutzen Sie die Drag-and-Drop-Funktion für einfache Tastenzuweisung und Personalisierung. Exportieren Sie Ihre Konfigurationen in Makros für den direkten Import ins Spiel und teilen Sie Ihre Setups mit anderen.",
     "close": "Schließen",
-    "loading": "Laden..."
+    "loading": "Wird geladen..."
   },
 
   "ActionPanel": {
@@ -137,7 +137,25 @@
   },
 
   "JobSelect": {
-    "job_select": "Beruf/Klasse auswählen"
+    "class_job": "Klasse/Job",
+    "job_select": "Job Auswahl",
+    "dow_dom": "Krieger/Magier",
+    "dow": "Krieger",
+    "dow_title": "Krieger",
+    "dom": "Magier",
+    "dom_title": "Magier",
+    "doh_dol": "Handwerker/Sammler",
+    "doh": "Handwerker",
+    "doh_title": "Handwerker",
+    "dol": "Sammler",
+    "dol_title": "Sammler",
+    "tank": "Verteidiger",
+    "healer": "Heiler",
+    "melee_dps": "Nahkampf-Angreifer",
+    "range_dps": "Physischer Fernkämpfer",
+    "magic_dps": "Magie Fernkämpfer",
+    "crafter": "Handwerker",
+    "gatherer": "Sammler"
   },
 
   "JobsList": {

@@ -81,6 +81,8 @@ export function ExportToMacros() {
     setShowMacrosModal(true);
   }
 
+  // TODO: Implement Click to Copy function
+
   // function selectTextarea() {
   //   textarea.current?.focus();
   //   textarea.current?.select();
@@ -119,7 +121,7 @@ export function ExportToMacros() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="modal-header">
-              <h3>{t('ExportToMacro.export_to_macro')}</h3>
+              <h2>{t('ExportToMacro.export_to_macro')}</h2>
               <p>{t('ExportToMacro.limitations')}</p>
             </div>
 

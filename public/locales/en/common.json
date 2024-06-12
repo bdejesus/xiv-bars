@@ -1,8 +1,8 @@
 {
   "Global": {
-    "title": "Final Fantasy XIV W Cross Hotbar (XHB/WXHB) Planner and Simulator – XIVBARS",
-    "subtitle": "A Final Fantasy XIV Cross Hotbar (XHB/WXHB) Planning and Simulation Tool.",
-    "description": "Plan and customize your FFXIV: Endwalker Cross Hotbars (XHB). Explore various configurations and setups for Final Fantasy XIV’s hotbar and cross hotbar user interfaces, optimizing your gameplay experience with different placement, size, and customization options, including drag-and-drop functionality for easy customization.",
+    "title": "XIVBARS – Final Fantasy XIV W Cross Hotbar Planner and Simulator",
+    "subtitle": "A Final Fantasy XIV Cross Hotbar Planning and Simulation Tool.",
+    "description": "Plan and customize your FFXIV: Dawntrail Cross Hotbars (XHB). Explore various configurations and setups for Final Fantasy XIV’s hotbars and cross hotbars, optimizing your gameplay experience with different placement, keybinding options, and other customization features. Take advantage of drag-and-drop functionality for easy keymapping and personalization. Export your configurations to macros for direct import into the game and share your setups with others.",
     "close": "Close",
     "loading": "Loading..."
   },
@@ -137,7 +137,25 @@
   },
 
   "JobSelect": {
-    "job_select": "Job Select"
+    "class_job": "Class/Job",
+    "job_select": "Job Select",
+    "dow_dom": "DoW/DoM",
+    "dow": "DoW",
+    "dow_title": "Disciple of War",
+    "dom": "DoM",
+    "dom_title": "Disciple of Magic",
+    "doh_dol": "DoH/DoL",
+    "doh": "DoH",
+    "doh_title": "Disciple of the Hand",
+    "dol": "DoL",
+    "dol_title": "Disciple of the Land",
+    "tank": "Tank",
+    "healer": "Healer",
+    "melee_dps": "Melee DPS",
+    "range_dps": "Range DPS",
+    "magic_dps": "Magic DPS",
+    "crafter": "Crafter",
+    "gatherer": "Gatherer"
   },
 
   "JobsList": {

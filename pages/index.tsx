@@ -7,7 +7,8 @@ import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
-import Intro from 'components/Intro';
+import Hero from 'components/Hero';
+import JobMenu from 'components/JobSelect/JobMenu';
 import Footer from 'components/Footer';
 import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
@@ -52,7 +53,18 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
         <GlobalHeader />
       </AppContextProvider>
 
-      <Intro />
+      <div className={styles.header}>
+        <Hero />
+      </div>
+
+      <div className="app-view">
+        <div className="container">
+          <h2 className={styles.title} id="jobSelectTitle">
+            { t('JobSelect.class_job') }
+          </h2>
+          <JobMenu />
+        </div>
+      </div>
 
       { popularLayouts?.length >= 5 ? (
         <div className={`container ${styles.lists}`}>

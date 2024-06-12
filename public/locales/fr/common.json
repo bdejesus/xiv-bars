@@ -1,8 +1,8 @@
 {
   "Global": {
-    "title": "Planificateur et simulateur de la barre de raccourcis croisée (XHB/WXHB) de Final Fantasy XIV - XIVBARS",
-    "subtitle": "Un outil de planification et de simulation de la barre de raccourcis croisée (XHB/WXHB) de Final Fantasy XIV.",
-    "description": "Planifiez et personnalisez vos barres de raccourcis croisées (XHB) de FFXIV: Endwalker. Explorez différentes configurations et installations pour les interfaces utilisateur de barre de raccourcis croisées de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de taille et de personnalisation, y compris la fonctionnalité de glisser-déposer pour une personnalisation facile.",
+    "title": "XIVBARS – Planificateur et simulateur de Cross Hotbars pour Final Fantasy XIV",
+    "subtitle": "Un outil de planification et de simulation des Cross Hotbars de Final Fantasy XIV.",
+    "description": "Planifiez et personnalisez vos Cross Hotbars (XHB) dans FFXIV: Dawntrail. Explorez diverses configurations et configurations pour les barres d'action et les barres d'action croisées de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de raccourcis clavier et d'autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour une personnalisation et une attribution des touches faciles. Exportez vos configurations vers des macros pour les importer directement dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
     "loading": "Chargement en cours..."
   },
@@ -137,7 +137,25 @@
   },
 
   "JobSelect": {
-    "job_select": "Sélection du Métier"
+    "class_job": "Classe/Job",
+    "job_select": "Sélection de Job",
+    "dow_dom": "Combattant/Mage",
+    "dow": "Combattant",
+    "dow_title": "Combattant",
+    "dom": "Mage",
+    "dom_title": "Mage",
+    "doh_dol": "Artisan/Récolteur",
+    "doh": "Discipline de la main",
+    "doh_title": "Discipline de la main",
+    "dol": "Disciplines de la terre",
+    "dol_title": "Disciplines de la terre",
+    "tank": "Tank",
+    "healer": "Soigneur",
+    "melee_dps": "DPS de mêlée",
+    "range_dps": "DPS physique à distance",
+    "magic_dps": "DPS magique à distance",
+    "crafter": "Artisan",
+    "gatherer": "Récolteur"
   },
 
   "JobsList": {
