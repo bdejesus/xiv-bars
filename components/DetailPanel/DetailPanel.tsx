@@ -1,6 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { formatDateString } from 'lib/utils/time';
 import ReactMarkdown from 'react-markdown';
 import SaveForm from 'components/SaveForm';
@@ -39,6 +40,7 @@ interface Props {
 export default function DetailPanel({ className, visible }:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
+  const router = useRouter();
   const {
     viewData, readOnly, selectedJob, viewAction
   } = useAppState();
@@ -81,7 +83,7 @@ export default function DetailPanel({ className, visible }:Props) {
 
                   { updatedAt && (
                   <div className={styles.timestamp}>
-                    {t('LayoutCard.last_updated')}: {formatDateString(updatedAt as string)}
+                    {t('LayoutCard.last_updated')}: {formatDateString(updatedAt as string, router.locale)}
                   </div>
                   )}
 

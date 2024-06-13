@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -24,6 +25,7 @@ interface Props {
 export default function LayoutCard(props:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
+  const router = useRouter();
   const userDispatch = useUserDispatch();
   const {
     layout, job, className, hideName
@@ -87,7 +89,7 @@ export default function LayoutCard(props:Props) {
 
           { layout.updatedAt && (
             <div className={styles.timestamp}>
-              {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string)}
+              {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string, router.locale!)}
             </div>
           )}
         </div>

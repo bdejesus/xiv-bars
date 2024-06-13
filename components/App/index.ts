@@ -1,4 +1,4 @@
 export { default } from './App';
-export * from './context';
+export { useAppState, useAppDispatch, AppContextProvider } from './context';
 export * from './reducers';
 export * from './actions';

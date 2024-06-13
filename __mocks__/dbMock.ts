@@ -5,6 +5,13 @@ import type { LayoutViewProps } from 'types/Layout';
 import db from 'lib/db';
 
 const today = new Date();
+const user = {
+  id: 1,
+  name: 'Joe',
+  image: '/profile.jpg',
+  layouts: [],
+  hearts: []
+};
 const layout = {
   id: 14,
   userId: 1,
@@ -36,6 +43,11 @@ const layouts:LayoutViewProps[] = [layout];
 jest.mock('../lib/db', () => ({
   __esModule: true,
   default: {
+    user: {
+      findUnique: jest.fn(() => user),
+      findMany: jest.fn(() => [user]),
+      delete: jest.fn(() => ({ catch: jest.fn() }))
+    },
     layout: {
       findMany: jest.fn(() => layouts),
       findUnique: jest.fn(() => layout)

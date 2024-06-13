@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
@@ -20,7 +19,7 @@ import type { GetServerSideProps } from 'next';
 import type { UserProps } from 'types/User';
 import type { LayoutViewProps } from 'types/Layout';
 
-import styles from './user.module.scss';
+import styles from './userId.module.scss';
 
 interface UserViewProps {
   user: UserProps

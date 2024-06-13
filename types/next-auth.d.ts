@@ -8,6 +8,7 @@ declare module 'next-auth' {
    */
   interface Session {
     user: {
+      createdAt: string | undefined;
       id: number,
       name: string,
       email: string,

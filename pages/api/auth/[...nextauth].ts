@@ -7,7 +7,7 @@ async function signinUser(session: Session) {
     where: { email: session.user.email },
     include: {
       _count: {
-        select: { layouts: true }
+        select: { layouts: true, hearts: true }
       }
     }
   });

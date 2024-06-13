@@ -1,0 +1,54 @@
+@import 'styles/mixins';
+
+.settings {
+  min-height: calc(100vh - $header-height - $footer-height);
+}
+
+.profile {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-size: $font-size-base;
+  gap: $spacing-lg;
+  line-height: $font-size-xl;
+  margin: $spacing-xl 0;
+}
+
+.name {
+  font-size: $font-size-xl-2;
+  line-height: 1.45;
+
+  .userId {
+    font-style: italic;
+    font-weight: 100;
+    opacity: 0.5;
+  }
+}
+
+.accountDeletion {
+  margin-top: $spacing-xl;
+  padding-top: $spacing-lg;
+  border-top: 1px solid #666;
+
+  label {
+    color: #fff;
+    font-size: $font-size-lg;
+    font-weight: 400;
+  }
+
+  input {
+    background-color: #eee;
+    color: $color-red;
+    font-size: $font-size-lg;
+    font-weight: 600;
+    height: 40px;
+    margin-top: $spacing-sm;
+  }
+
+  .deleteActions {
+    display: flex;
+    flex-direction: row;
+    gap: $spacing-base;
+    justify-content: center;
+  }
+}
