@@ -13,7 +13,7 @@ export function formatDateString(date:string, locale:string = 'en-us') {
   return formattedDate;
 }
 
-export function formatDateStringLong(date:string, locale:string = 'en-us') {
+export function formatDateStringLong(date:string, locale:string = 'en') {
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString(
     locale,
@@ -28,7 +28,7 @@ export function formatDateStringLong(date:string, locale:string = 'en-us') {
   return formattedDate;
 }
 
-export function timeElapsed(fromDate:string, locale='en') {
+export function timeElapsed(fromDate:string, locale = 'en') {
   const today:Date = new Date();
   const startDate:Date = new Date(fromDate);
   const timeDiff:number = today.getTime() - startDate.getTime();

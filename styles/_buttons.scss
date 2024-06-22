@@ -22,8 +22,8 @@ button,
   outline: none;
   padding: 0 $spacing-base;
   position: relative;
-  transition-property: background-image, background-color, box-shadow, color, opacity;
   transition-duration: $timing-default;
+  transition-property: background-image, background-color, box-shadow, color, opacity;
   transition-timing-function: ease;
   white-space: nowrap;
 

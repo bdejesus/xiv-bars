@@ -143,10 +143,8 @@ export default function Settings() {
   );
 }
 
-export const getServerSideProps:GetServerSideProps = async (context) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(context.locale as string, ['common']))
-    }
+export const getServerSideProps:GetServerSideProps = async (context) => ({
+  props: {
+    ...(await serverSideTranslations(context.locale as string, ['common']))
   }
-};
+});
