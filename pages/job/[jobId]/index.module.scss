@@ -9,3 +9,17 @@
 .job {
   flex: 1 1 auto;
 }
+
+.header {
+  display: grid;
+  gap: $spacing-xl-2;
+  grid-template-columns: 6fr 4fr;
+  margin-bottom: $spacing-lg;
+}
+
+
+@media (max-width: $screen-sm) {
+  .header {
+    display: block;
+  }
+}

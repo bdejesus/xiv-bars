@@ -1,8 +1,8 @@
 {
   "Global": {
-    "title": "Final Fantasy XIV: Dawntrail W Cross Hotbar Planer und Simulator – XIVBARS",
-    "subtitle": "Ein Planungs- und Simulationswerkzeug für die Cross Hotbars von Final Fantasy XIV.",
-    "description": "Planen und gestalten Sie Ihre FFXIV: Dawntrail Cross Hotbars (XHB). Erkunden Sie verschiedene Konfigurationen und Setups für die Hotbars und Cross Hotbars von Final Fantasy XIV, um Ihr Spielerlebnis mit unterschiedlichen Platzierungen, Tastenzuweisungsoptionen und anderen Anpassungsfunktionen zu optimieren. Nutzen Sie die Drag-and-Drop-Funktion für einfache Tastenzuweisung und Personalisierung. Exportieren Sie Ihre Konfigurationen in Makros für den direkten Import ins Spiel und teilen Sie Ihre Setups mit anderen.",
+    "title": "Final Fantasy XIV: Dawntrail W Cross Hotbar (XHB/WXHB) Planer und Simulator – XIVBARS",
+    "subtitle": "Ein Final Fantasy XIV Cross Hotbar Mapping- und Keybinding-Tool.",
+    "description": "Planen und passen Sie Ihre FFXIV: Dawntrail Cross Hotbars (XHB) an. Erkunden Sie von Spielern erstellte Anleitungen, Konfigurationen und Setups für die Benutzeroberflächen von Final Fantasy XIV’s Hotbars und Cross Hotbars. Optimieren Sie Ihr Spielerlebnis mit verschiedenen Platzierungs-, Keybinding-Optionen und anderen Anpassungsfunktionen. Nutzen Sie die Drag-and-Drop-Funktionalität für einfache Keymappings und Personalisierungen zur Verwendung mit Tastatur und Maus oder Spielcontrollern. Exportieren Sie Ihre Konfigurationen in Makros zur direkten Importierung ins Spiel und teilen Sie Ihre Setups mit anderen.",
     "close": "Schließen",
     "loading": "Wird geladen..."
   },
@@ -23,14 +23,6 @@
 
   "App": {
     "hotbar_planner": "Hotbar Planer"
-  },
-
-  "Articles": {
-    "guides": "FFXIV Anleitungen",
-    "configure_the_ui": "Konfigurieren Sie die Cross Hotbar-Benutzeroberfläche für den automatischen Wechsel im Kampf",
-    "how_to_configure": "So konfigurieren Sie Ihre Cross Hotbar-Benutzeroberflächeneinstellungen im Controller-Modus, um automatisch zwischen einer Kampf- und einer passiven Hotbar zu wechseln, wenn Sie in und aus dem Kampf treten.",
-    "controller_mode": "Wenn Sie im <b>Controller-Modus</b> spielen, können Sie Ihre Cross Hotbars so einstellen, dass sie automatisch zu einer anderen Hotbar wechseln, wenn Sie in die Kampfhaltung gehen. Dadurch sparen Sie sich das manuelle Wechseln zur richtigen Hotbar jedes Mal, wenn Sie in und aus dem Kampf gehen.",
-    "read_more": "Weiterlesen..."
   },
 
   "ControlBar": {
@@ -210,7 +202,7 @@
     },
     "Job": {
       "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV Hotbar-Layouts • XIVBARS",
-      "index_description": "Erforschen Sie Hotbar-Layouts von {{jobName}}, die von anderen Spielern erstellt wurden.",
+      "index_description": "Diese Seite listet alle von Spielern erstellten Hotbar- (HB) und Cross-Hotbar- (XHB) Layout-Guides und Keybindings für die Klasse/den Job {{jobName}} in Final Fantasy XIV: DawnTrail auf.",
       "new_description": "Planen Sie Ihre {{jobName}} Hotbars oder Cross-Hotbars (XHB) mit diesem Tool. Ziehen und platzieren Sie Aktionen in Hotbar-Slots oder klicken Sie, um sie zuzuweisen, und speichern Sie sie in einer freigebaren URL.",
       "no_layouts": "Keine {{jobName}} Layouts vorhanden.",
       "create_layout": "Erstellen Sie ein neues Layout.",

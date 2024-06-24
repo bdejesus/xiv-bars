@@ -1,10 +1,15 @@
 @import "styles/mixins";
 
 .lore {
-  margin-bottom: $spacing-lg;
+  font-size: 12px;
+  font-style: italic;
+  margin-top: $spacing-lg;
+  opacity: 0.66;
 }
 
 .loreBody {
+  margin: 0;
+
   br {
     display: block;
     margin-bottom: 0.45em;
