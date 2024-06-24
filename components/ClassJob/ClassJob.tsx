@@ -36,19 +36,20 @@ export default function ClassJob({
               draggable={false}
               height={32}
               width={32}
+              itemProp="image"
             />
           </span>
         )}
 
         { abbr && (
-          <b className={`${styles.abbr} job-abbr`}>{displayAbbr}</b>
+          <b className={`${styles.abbr} job-abbr`} itemProp="identifier">{displayAbbr}</b>
         )}
       </span>
 
       { name && (
         <>
           &nbsp;
-          <span className={`${styles.name} job-name`}>{displayName}</span>
+          <span className={`${styles.name} job-name`} itemProp="name">{displayName}</span>
         </>
       )}
     </div>

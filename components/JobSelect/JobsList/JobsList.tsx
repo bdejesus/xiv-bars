@@ -30,12 +30,23 @@ export function JobsList({
   }
 
   return (
-    <div className={classNames}>
-      <h4 className={styles.title}>{title}</h4>
+    <div
+      className={classNames}
+      itemProp="itemListElement"
+      itemScope
+      itemType="https://schema.org/ItemList"
+    >
+      <h4 className={styles.title} itemProp="name">{title}</h4>
 
       <ul className={styles.jobList}>
         {jobs.map((job) => (
-          <li key={job.Name} value={job.ID} data-disabled={job.Disabled}>
+          <li
+            key={job.Name}
+            value={job.ID}
+            data-disabled={job.Disabled}
+            itemProp="itemListElement"
+            itemType="https://schema.org/ListItem"
+          >
             { job.Disabled ? (
               <ClassJob job={job} />
             ) : (
@@ -44,6 +55,7 @@ export function JobsList({
                   href={action === 'new' ? `/job/${job.Abbr}/new` : `/job/${job.Abbr}`}
                   className={`${styles.jobLink} jobList-link`}
                   draggable={false}
+                  itemProp="url"
                 >
                   <ClassJob job={job} />
                 </Link>
