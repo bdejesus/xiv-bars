@@ -29,10 +29,10 @@ export function formatDateStringLong(date:string, locale:string = 'en') {
 }
 
 // TODO: Add conversions to monts, years, etc -- currently this only returns number of days
-export function timeElapsed(fromDate:string) {
-  const today:Date = new Date();
+export function timeElapsed(fromDate:string, toDate:Date|string = new Date()) {
+  const toDateFormatted:Date = typeof toDate === 'string' ? new Date(toDate) : toDate;
   const startDate:Date = new Date(fromDate);
-  const timeDiff:number = today.getTime() - startDate.getTime();
+  const timeDiff:number = toDateFormatted.getTime() - startDate.getTime();
   const time = timeDiff / (1000 * 60 * 60 * 24);
   const days = Math.round(time);
   return days;
