@@ -17,7 +17,6 @@ import styles from './LayoutCard.module.scss';
 interface Props {
   layout: LayoutViewProps,
   job: ClassJobProps,
-  // eslint-disable-next-line no-unused-vars
   className?: string,
   hideName: boolean
 }
@@ -30,6 +29,7 @@ export default function LayoutCard(props:Props) {
   const {
     layout, job, className, hideName
   } = props;
+
   const [showPrompt, setShowPrompt] = useState(false);
   const isOwner = session?.user.id === layout.userId;
 
@@ -48,6 +48,8 @@ export default function LayoutCard(props:Props) {
   }
 
   if (!layout.user) return null;
+
+  const updatedAt = formatDateString(layout.updatedAt as string, router.locale!);
 
   return (
     <div className={styles.layoutCard}>
@@ -89,7 +91,7 @@ export default function LayoutCard(props:Props) {
 
           { layout.updatedAt && (
             <div className={styles.timestamp}>
-              {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string, router.locale!)}
+              {t('LayoutCard.last_updated')}: <time dateTime={layout.updatedAt}>{updatedAt}</time>
             </div>
           )}
         </div>

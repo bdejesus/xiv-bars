@@ -82,9 +82,9 @@ export default function DetailPanel({ className, visible }:Props) {
                   </div>
 
                   { updatedAt && (
-                  <div className={styles.timestamp}>
-                    {t('LayoutCard.last_updated')}: {formatDateString(updatedAt as string, router.locale)}
-                  </div>
+                    <div className={styles.timestamp}>
+                      {t('LayoutCard.last_updated')}: <time dateTime={updatedAt}>{formatDateString(updatedAt as string, router.locale)}</time>
+                    </div>
                   )}
 
                   <div className={styles.row}>

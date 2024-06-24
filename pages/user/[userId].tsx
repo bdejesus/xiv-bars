@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import db from 'lib/db';
+import db, { serializeDates } from 'lib/db';
 import Head from 'next/head';
 import { useSession } from 'next-auth/react';
 import { AppContextProvider } from 'components/App/context';
@@ -134,13 +134,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 
   const layoutQuery = {
-    where: {
-      deletedAt: null
-    },
+    where: { deletedAt: null },
     select: layoutColumns,
-    orderBy: {
-      updatedAt: 'desc'
-    }
+    orderBy: { updatedAt: 'desc' }
   };
 
   const heartsQuery = {
@@ -149,10 +145,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         select: {
           ...layoutColumns,
           user: {
-            select: {
-              name: true,
-              id: true
-            }
+            select: { name: true, id: true }
           }
         }
       }
@@ -172,25 +165,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!user) return { notFound: true };
 
-  const serializedLayouts = user.layouts.map((layout:LayoutViewProps) => ({
-    ...layout,
-    createdAt: layout.createdAt?.toString(),
-    updatedAt: layout.updatedAt?.toString(),
-    user: { name: user.name }
-  }));
-
-  const serializedHearts = user.hearts.map(({ layout }:{layout:LayoutViewProps}) => ({
-    ...layout,
-    createdAt: layout.createdAt?.toString(),
-    updatedAt: layout.updatedAt?.toString()
-  }));
-
+  const heartedLayouts = user.hearts.map(({ layout }:{ layout:LayoutViewProps }) => layout);
   const serializedUser:UserProps = {
     name: user.name,
     id: user.id,
     image: user.image,
-    hearts: serializedHearts,
-    layouts: serializedLayouts
+    hearts: serializeDates(heartedLayouts),
+    layouts: user.layouts
   };
 
   return {

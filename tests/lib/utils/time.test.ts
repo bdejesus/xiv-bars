@@ -1,6 +1,6 @@
 import { formatDateString, formatDateStringLong, timeElapsed } from 'lib/utils/time';
 
-const dateString = "2024-06-14T00:00:00Z";
+const dateString = '2024-06-14T00:00:00Z';
 
 describe('formatDateString', () => {
   it('returns a short formatted date', () => {
@@ -12,7 +12,7 @@ describe('formatDateString', () => {
 describe('formatDateStringLong', () => {
   it('returns a long formatted date', () => {
     const formattedDate = formatDateStringLong(dateString);
-    expect(formattedDate).toBe('Friday, June 14, 2024')
+    expect(formattedDate).toBe('Friday, June 14, 2024');
   });
 });
 
