@@ -188,7 +188,25 @@
       "new_layout_icon": "Neues Layout-Symbol",
       "my_layouts": "Meine Layouts",
       "no_layouts": "Keine Layouts vorhanden – erstellen Sie ein neues!",
-      "saved_layouts": "Gespeicherte Layouts"
+      "saved_layouts": "Gespeicherte Layouts",
+
+      "Settings": {
+        "account_settings": "Kontoeinstellungen",
+        "registration_date": "Registriert",
+        "account_age": "Kontoalter",
+        "days_count_one": "{{count}} Tag alt",
+        "days_count_other": "{{count}} Tage alt",
+        "hearts_count_one": "{{count}} Herz",
+        "hearts_count_other": "{{count}} Herzen",
+        "layouts_count_one": "{{count}} Layout",
+        "layouts_count_other": "{{count}} Layouts",
+        "delete_my_account": "Mein Konto löschen",
+        "are_you_sure": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten?",
+        "are_you_really_sure": "Ihre Layouts, Herzen und andere mit Ihrem Konto verbundene Informationen werden gelöscht. Diese Aktion kann nicht rückgängig gemacht werden.",
+        "enter_username": "Geben Sie Ihren Benutzernamen (**{{user_name}}**) zur Bestätigung ein",
+        "delete": "MEIN KONTO LÖSCHEN",
+        "cancel": "Abbrechen"
+      }
     },
     "Job": {
       "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV Hotbar-Layouts • XIVBARS",
@@ -256,6 +274,7 @@
     "my_layouts": "Meine Layouts",
     "logout": "Abmelden",
     "signin_with_discord": "Mit Discord anmelden",
-    "report_an_issue": "Ein Problem melden"
+    "report_an_issue": "Ein Problem melden",
+    "account_settings": "Kontoeinstellungen"
   }
 }

@@ -1,9 +1,11 @@
 import React, { useState, createRef } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSession, signOut } from 'next-auth/react';
 import { formatDateStringLong, timeElapsed } from 'lib/utils/time';
 import { AppContextProvider } from 'components/App/';
+import ReactMarkdown from 'react-markdown';
 import GlobalHeader from 'components/GlobalHeader';
 import ProfileImage from 'components/User/ProfileImage';
 import Footer from 'components/Footer';
@@ -14,6 +16,7 @@ import type { GetServerSideProps } from 'next';
 import styles from './settings.module.scss';
 
 export default function Settings() {
+  const { t } = useTranslation();
   const deleteForm = createRef<HTMLFormElement>();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [userConfirmed, setUserConfirmed] = useState(false);
@@ -55,10 +58,10 @@ export default function Settings() {
 
       <div className={styles.settings}>
         <div className="container">
-          <h1>Account Settings</h1>
+          <h1>{ t('Pages.User.Settings.account_settings') }</h1>
 
           <div className={styles.profile}>
-            <ProfileImage src={user.image} title={user.name} />
+            <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
 
             <div>
               <div className={styles.name}>
@@ -70,12 +73,22 @@ export default function Settings() {
               </div>
 
               <div className={styles.createdAt}>
-                Registered on <time dateTime={user.createdAt}>{formatDateStringLong(user.createdAt!, router.locale)}</time>&nbsp;
-                ({ timeElapsed(user.createdAt!) } days old)
+                <div>
+                  { t('Pages.User.Settings.registration_date') }&nbsp;
+                  <time dateTime={user.createdAt}>{formatDateStringLong(user.createdAt!, router.locale)}</time>
+                  <br />
+                  { t('Pages.User.Settings.days_count', { count: timeElapsed(user.createdAt!) }) }
+                </div>
               </div>
 
               <div className={styles.layouts}>
-                {user._count.layouts} layouts saved, {user._count.hearts} hearts given
+                <div>
+                  { t('Pages.User.Settings.layouts_count', { count: user._count.layouts }) }
+                </div>
+
+                <div>
+                  { t('Pages.User.Settings.hearts_count', { count: user._count.hearts }) }
+                </div>
               </div>
             </div>
           </div>
@@ -86,7 +99,7 @@ export default function Settings() {
               className="btn-danger"
               onClick={handleAccountDeletion}
             >
-              Delete My Account
+              { t('Pages.User.Settings.delete_my_account') }
             </button>
 
             <Modal
@@ -94,14 +107,15 @@ export default function Settings() {
               onClose={() => cancelDeletion()}
             >
               <div className="container-sm">
-                <h1>Are you sure you want to delete your account?</h1>
-
-                <p>Your layouts, hearts, and other account associated information will be deleted. There’s no going back once you confirm...</p>
+                <h1>{ t('Pages.User.Settings.are_you_sure') }</h1>
+                <p className="text-xl">{ t('Pages.User.Settings.are_you_really_sure') }</p>
 
                 <form autoComplete="off" ref={deleteForm}>
                   <div className="control">
                     <label htmlFor="confirmUserName">
-                      Enter your username (<b>{user.name}</b>) to confirm:
+                      <ReactMarkdown>
+                        { t('Pages.User.Settings.enter_username', { user_name: user.name }) }
+                      </ReactMarkdown>
                     </label>
 
                     <input
@@ -116,19 +130,19 @@ export default function Settings() {
                   <div className={styles.deleteActions}>
                     <button
                       type="button"
-                      className="button btn-danger"
-                      onClick={destroyAccount}
-                      disabled={!userConfirmed}
+                      className="button btn-white"
+                      onClick={cancelDeletion}
                     >
-                      DELETE MY ACCOUNT
+                      { t('Pages.User.Settings.cancel') }
                     </button>
 
                     <button
                       type="button"
-                      className="button btn-white"
-                      onClick={cancelDeletion}
+                      className="button btn-danger"
+                      onClick={destroyAccount}
+                      disabled={!userConfirmed}
                     >
-                      Take me back
+                      { t('Pages.User.Settings.delete') }
                     </button>
                   </div>
                 </form>

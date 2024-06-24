@@ -88,7 +88,7 @@ export default function UserNav({ className }:{ className?: string}) {
 
             <li className={styles.navItem}>
               <Link href="/user/settings">
-                Account Settings
+                {t('UserNav.account_settings')}
               </Link>
             </li>
 

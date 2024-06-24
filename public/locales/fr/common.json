@@ -188,7 +188,25 @@
       "new_layout_icon": "Nouvelle icône de disposition",
       "my_layouts": "Mes dispositions",
       "no_layouts": "Aucune disposition - créez-en une nouvelle !",
-      "saved_layouts": "Dispositions enregistrées"
+      "saved_layouts": "Dispositions enregistrées",
+
+      "Settings": {
+        "account_settings": "Paramètres du compte",
+        "registration_date": "Enregistré",
+        "account_age": "Âge du compte",
+        "days_count_one": "{{count}} jour",
+        "days_count_other": "{{count}} jours",
+        "hearts_count_one": "{{count}} Cœur",
+        "hearts_count_other": "{{count}} Cœurs",
+        "layouts_count_one": "{{count}} Modèle",
+        "layouts_count_other": "{{count}} Modèles",
+        "delete_my_account": "Supprimer mon compte",
+        "are_you_sure": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+        "are_you_really_sure": "Vos modèles, vos cœurs et les autres informations associées à votre compte seront supprimés. Cette action est irréversible.",
+        "enter_username": "Saisissez votre nom d'utilisateur (**{{user_name}}**) pour confirmer",
+        "delete": "SUPPRIMER MON COMPTE",
+        "cancel": "Annuler"
+      }
     },
     "Job": {
       "index_title": "Dispositions de barre de raccourcis ({{jobAbbr}}) FFXIV {{jobName}} • XIVBARS",
@@ -256,6 +274,7 @@
     "my_layouts": "Mes dispositions",
     "logout": "Déconnexion",
     "signin_with_discord": "Connectez-vous avec Discord",
-    "report_an_issue": "Signaler un problème"
+    "report_an_issue": "Signaler un problème",
+    "account_settings": "Paramètres du compte"
   }
 }

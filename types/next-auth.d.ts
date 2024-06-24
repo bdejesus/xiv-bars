@@ -14,7 +14,8 @@ declare module 'next-auth' {
       email: string,
       image: string,
       _count: {
-        layouts?: number
+        layouts?: number,
+        hearts?: number
       }
     }
   }

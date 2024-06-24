@@ -188,7 +188,25 @@
       "new_layout_icon": "New Layout Icon",
       "my_layouts": "My Layouts",
       "no_layouts": "No Layouts – create a new one!",
-      "saved_layouts": "Saved Layouts"
+      "saved_layouts": "Saved Layouts",
+
+      "Settings": {
+        "account_settings": "Account Settings",
+        "registration_date": "Registered",
+        "account_age": "Account age",
+        "days_count_one": "{{count}} day old",
+        "days_count_other": "{{count}} days old",
+        "hearts_count_one": "{{count}} Heart",
+        "hearts_count_other": "{{count}} Hearts",
+        "layouts_count_one": "{{count}} Layout",
+        "layouts_count_other": "{{count}} Layouts",
+        "delete_my_account": "Delete my account",
+        "are_you_sure": "Are you sure you want to delete your account?",
+        "are_you_really_sure": "Your layouts, hearts, and other account associated information will be deleted. There’s no going back once you confirm.",
+        "enter_username": "Enter your username (**{{user_name}}**) to confirm",
+        "delete": "DELETE MY ACCOUNT",
+        "cancel": "Cancel"
+      }
     },
     "Job": {
       "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV Hotbar Layouts • XIVBARS",
@@ -256,6 +274,7 @@
     "my_layouts": "My Layouts",
     "logout": "Log out",
     "signin_with_discord": "Sign in with Discord",
-    "report_an_issue": "Report an Issue"
+    "report_an_issue": "Report an Issue",
+    "account_settings": "Account Settings"
   }
 }

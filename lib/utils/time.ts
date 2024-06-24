@@ -28,12 +28,13 @@ export function formatDateStringLong(date:string, locale:string = 'en') {
   return formattedDate;
 }
 
-export function timeElapsed(fromDate:string, locale = 'en') {
+export function timeElapsed(fromDate:string) {
   const today:Date = new Date();
   const startDate:Date = new Date(fromDate);
   const timeDiff:number = today.getTime() - startDate.getTime();
   const time = timeDiff / (1000 * 60 * 60 * 24);
-  return Math.round(time);
+  const days = Math.round(time);
+  return days;
 }
 
 const methods = { formatDateString, formatDateStringLong, timeElapsed };

@@ -188,7 +188,25 @@
       "new_layout_icon": "新しいレイアウトアイコン",
       "my_layouts": "マイレイアウト",
       "no_layouts": "レイアウトがありません – 新しいものを作成してください！",
-      "saved_layouts": "保存されたレイアウト"
+      "saved_layouts": "保存されたレイアウト",
+
+      "Settings": {
+        "account_settings": "アカウント設定",
+        "registration_date": "登録日",
+        "account_age": "アカウントの年齢",
+        "days_count_one": "{{count}} 日経過",
+        "days_count_other": "{{count}} 日経過",
+        "hearts_count_one": "{{count}} 個のハート",
+        "hearts_count_other": "{{count}} 個のハート",
+        "layouts_count_one": "{{count}} 個のレイアウト",
+        "layouts_count_other": "{{count}} 個のレイアウト",
+        "delete_my_account": "アカウント削除",
+        "are_you_sure": "アカウントを削除してもよろしいですか？",
+        "are_you_really_sure": "レイアウト、ハート、およびアカウントに関連するその他の情報は削除されます。いったん確認すると元に戻せません",
+        "enter_username": "確認のためにユーザー名 (**{{user_name}}**) を入力してください",
+        "delete": "アカウントを削除",
+        "cancel": "キャンセル"
+      }
     },
     "Job": {
       "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV ホットバー レイアウト • XIVBARS",
@@ -255,6 +273,7 @@
     "my_layouts": "マイレイアウト",
     "logout": "ログアウト",
     "signin_with_discord": "Discordでサインイン",
-    "report_an_issue": "問題を報告する"
+    "report_an_issue": "問題を報告する",
+    "account_settings": "アカウント設定"
   }
 }
