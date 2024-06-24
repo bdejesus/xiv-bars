@@ -1,4 +1,4 @@
-export function formatDateString(date:string, locale:string = 'en-us') {
+export function formatDateString(date:string, locale:string = 'en') {
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString(
     locale,
@@ -6,14 +6,15 @@ export function formatDateString(date:string, locale:string = 'en-us') {
       weekday: 'short',
       year: 'numeric',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     }
   );
 
   return formattedDate;
 }
 
-export function formatDateStringLong(date:string, locale:string = 'en-us') {
+export function formatDateStringLong(date:string, locale:string = 'en') {
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString(
     locale,
@@ -21,7 +22,8 @@ export function formatDateStringLong(date:string, locale:string = 'en-us') {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     }
   );
 
