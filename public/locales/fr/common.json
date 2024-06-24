@@ -1,8 +1,8 @@
 {
   "Global": {
-    "title": "Final Fantasy XIV : Dawntrail W Cross Hotbar Planner et Simulateur – XIVBARS",
-    "subtitle": "Un outil de planification et de simulation des Cross Hotbars de Final Fantasy XIV.",
-    "description": "Planifiez et personnalisez vos Cross Hotbars (XHB) dans FFXIV: Dawntrail. Explorez diverses configurations et configurations pour les barres d'action et les barres d'action croisées de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de raccourcis clavier et d'autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour une personnalisation et une attribution des touches faciles. Exportez vos configurations vers des macros pour les importer directement dans le jeu et partagez vos configurations avec d'autres.",
+    "title": "Final Fantasy XIV : Dawntrail W Cross Hotbar (XHB/WXHB) Planificateur et Simulateur – XIVBARS",
+    "subtitle": "Un outil de mapping et de keybinding pour la Cross Hotbar de Final Fantasy XIV.",
+    "description": "Planifiez et personnalisez vos Cross Hotbars (XHB) de FFXIV : Dawntrail. Explorez les guides, configurations et configurations créés par les joueurs pour les interfaces utilisateur des hotbars et cross hotbars de Final Fantasy XIV. Optimisez votre expérience de jeu avec différentes options de placement, de keybinding et d'autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour des keymappings et personnalisations faciles à utiliser avec le clavier et la souris ou les contrôleurs de jeu. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
     "loading": "Chargement en cours..."
   },
@@ -23,14 +23,6 @@
 
   "App": {
     "hotbar_planner": "Planificateur de barre de raccourcis"
-  },
-
-  "Articles": {
-    "guides": "Guides FFXIV",
-    "configure_the_ui": "Configurer l'interface de la barre de raccourcis croisée pour le changement automatique en combat",
-    "how_to_configure": "Comment configurer vos paramètres d'interface de barre de raccourcis croisée en mode Contrôleur pour basculer automatiquement entre une barre de raccourcis de combat et une barre de raccourcis passive lorsque vous entrez et sortez du combat.",
-    "controller_mode": "Si vous jouez en <b>Mode Contrôleur</b>, vous pouvez configurer vos barres de raccourcis croisées pour basculer automatiquement vers une barre de raccourcis différente chaque fois que vous entrez en mode combat. Cela vous évite d'avoir à basculer manuellement vers la barre de raccourcis correcte à chaque fois que vous entrez et sortez du combat.",
-    "read_more": "En savoir plus..."
   },
 
   "ControlBar": {
@@ -210,7 +202,7 @@
     },
     "Job": {
       "index_title": "Dispositions de barre de raccourcis ({{jobAbbr}}) FFXIV {{jobName}} • XIVBARS",
-      "index_description": "Explorez les dispositions de barre de raccourcis {{jobName}} que d'autres joueurs ont créées.",
+      "index_description": "Cette page répertorie tous les guides de disposition de hotbar (HB) et cross-hotbar (XHB) créés par les joueurs et les keybindings pour la classe/job {{jobName}} dans Final Fantasy XIV : DawnTrail.",
       "new_description": "Planifiez vos barres de raccourcis ou barres de raccourcis croisées (XHB) {{jobName}} à l'aide de cet outil. Glissez-déposez ou cliquez pour attribuer des actions aux emplacements de la barre de raccourcis et enregistrez dans une URL partageable.",
       "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
       "create_layout": "Créer une nouvelle disposition.",

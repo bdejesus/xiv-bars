@@ -62,20 +62,26 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       <GlobalHeader selectedJob={selectedJob} />
 
       <div className="container">
-        <SelectedJob
-          job={selectedJob}
-          className={styles.title}
-        />
-
-        { selectedJob?.Description && (
-          <Lore description={selectedJob.Description} />
-        ) }
-
         { ['PCT', 'VPR'].includes(selectedJob.Abbr) && (
           <p className="system-message warn">
             The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
           </p>
         )}
+
+        <div className={styles.header}>
+          <div className={styles.headerDesc}>
+            <SelectedJob
+              job={selectedJob}
+              className={styles.title}
+            />
+
+            <p className="text-xl">{ t('Pages.Job.index_description', { jobName: selectedJob.Name }) }</p>
+          </div>
+
+          { selectedJob?.Description && (
+            <Lore description={selectedJob.Description} />
+          ) }
+        </div>
 
         { layouts.length > 0
           ? <LayoutsList layouts={layouts} />

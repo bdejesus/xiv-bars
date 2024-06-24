@@ -6,11 +6,8 @@ interface Props {
 
 export default function Lore({ description }: Props) {
   return (
-    <div
-      className={styles.lore}
-    >
-
-      <div
+    <div className={styles.lore}>
+      <blockquote
         className={styles.loreBody}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: description }}
