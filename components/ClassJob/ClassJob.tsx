@@ -42,7 +42,7 @@ export default function ClassJob({
         )}
 
         { abbr && (
-          <b className={`${styles.abbr} job-abbr`} itemProp="identifier">{displayAbbr}</b>
+          <b className={`${styles.abbr} job-abbr`}>{displayAbbr}</b>
         )}
       </span>
 

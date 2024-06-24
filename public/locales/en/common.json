@@ -206,7 +206,8 @@
       "new_description": "Plan your {{jobName}} Hotbars or Cross Hotbars (XHB) with this tool. Drag and drop, or click to assign actions to hotbar slots and save to a shareable URL.",
       "no_layouts": "No {{jobName}} Layouts yet.",
       "create_layout": "Create a new layout.",
-      "new_layout": "New Layout"
+      "new_layout": "New Layout",
+      "short_description": "A {{jobName}} Class/Job layout guide for keybinding hotbars for Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
       "more_layouts_by_user": "More layouts by {{userName}}",

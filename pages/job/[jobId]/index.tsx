@@ -61,7 +61,12 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
       <GlobalHeader selectedJob={selectedJob} />
 
-      <div className="container">
+      <div
+        className="container"
+        itemScope
+        itemProp="itemListElement"
+        itemType="https://schema.org/ItemList"
+      >
         { ['PCT', 'VPR'].includes(selectedJob.Abbr) && (
           <p className="system-message warn">
             The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
@@ -75,7 +80,9 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               className={styles.title}
             />
 
-            <p className="text-xl">{ t('Pages.Job.index_description', { jobName: selectedJob.Name }) }</p>
+            <p className="text-xl" itemProp="description">
+              { t('Pages.Job.index_description', { jobName: selectedJob.Name }) }
+            </p>
           </div>
 
           { selectedJob?.Description && (
