@@ -44,6 +44,7 @@ export function JobsList({
             key={job.Name}
             value={job.ID}
             data-disabled={job.Disabled}
+            itemScope
             itemProp="itemListElement"
             itemType="https://schema.org/ListItem"
           >

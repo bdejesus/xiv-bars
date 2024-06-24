@@ -64,8 +64,12 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       </div>
 
       <div className="app-view">
-        <div className="container">
-          <h2 className={styles.title} id="jobSelectTitle">
+        <div
+          className="container"
+          itemScope
+          itemType="https://schema.org/ItemList"
+        >
+          <h2 className={styles.title} id="jobSelectTitle" itemProp="name">
             { t('JobSelect.class_job') }
           </h2>
           <JobMenu />

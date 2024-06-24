@@ -35,7 +35,12 @@ export default function JobMenu({ action }:Props) {
   }
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      itemScope
+      itemProp="itemListElement"
+      itemType="https://schema.org/ItemList"
+    >
       <ul className={styles.tabs}>
         { Object.entries(tabs).map(([tabId, tabTitle]) => (
           <li key={tabId}>
@@ -57,6 +62,7 @@ export default function JobMenu({ action }:Props) {
         id="DowDom"
         data-active={selectedTabId === 'DowDom'}
         itemScope
+        itemProp="itemListElement"
         itemType="https://schema.org/ItemList"
       >
         <h3 itemProp="name">{t('JobSelect.dow_dom')}</h3>
@@ -100,6 +106,7 @@ export default function JobMenu({ action }:Props) {
         id="DohDol"
         data-active={selectedTabId === 'DohDol'}
         itemScope
+        itemProp="itemListElement"
         itemType="https://schema.org/ItemList"
       >
         <h3 itemProp="name">{t('JobSelect.doh_dol')}</h3>
