@@ -1,4 +1,4 @@
-export function formatDateString(date:string, locale:string = 'en') {
+export function formatDateString(date:string, locale:string = 'en-us') {
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString(
     locale,
@@ -13,7 +13,7 @@ export function formatDateString(date:string, locale:string = 'en') {
   return formattedDate;
 }
 
-export function formatDateStringLong(date:string, locale:string = 'en') {
+export function formatDateStringLong(date:string, locale:string = 'en-us') {
   const dateObj = new Date(date);
   const formattedDate = dateObj.toLocaleDateString(
     locale,
