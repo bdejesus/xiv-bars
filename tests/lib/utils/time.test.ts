@@ -1,6 +1,6 @@
 import { formatDateString, formatDateStringLong, timeElapsed } from 'lib/utils/time';
 
-const dateString = "2024-06-14T00:28:55.616Z";
+const dateString = "2024-06-14";
 
 describe('formatDateString', () => {
   it('returns a short formatted date', () => {
