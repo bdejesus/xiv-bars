@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import db, { serialize } from 'lib/db';
+import db, { serializeDates } from 'lib/db';
 import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
@@ -147,8 +147,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
-      recentLayouts: layouts.map(serialize),
-      popularLayouts: filteredPopularLayouts.map(serialize)
+      recentLayouts: serializeDates(layouts),
+      popularLayouts: serializeDates(filteredPopularLayouts)
     }
   };
 };

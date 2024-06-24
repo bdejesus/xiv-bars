@@ -87,6 +87,12 @@ export default function UserNav({ className }:{ className?: string}) {
             </li>
 
             <li className={styles.navItem}>
+              <Link href="/user/settings">
+                {t('UserNav.account_settings')}
+              </Link>
+            </li>
+
+            <li className={styles.navItem}>
               <a
                 href="https://github.com/bdejesus/xiv-bars/issues/new/choose"
                 target="_blank"

@@ -1,8 +1,7 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import db from 'lib/db';
+import db, { serializeDates } from 'lib/db';
 import Head from 'next/head';
 import { useSession } from 'next-auth/react';
 import { AppContextProvider } from 'components/App/context';
@@ -20,7 +19,7 @@ import type { GetServerSideProps } from 'next';
 import type { UserProps } from 'types/User';
 import type { LayoutViewProps } from 'types/Layout';
 
-import styles from './user.module.scss';
+import styles from './userId.module.scss';
 
 interface UserViewProps {
   user: UserProps
@@ -135,13 +134,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 
   const layoutQuery = {
-    where: {
-      deletedAt: null
-    },
+    where: { deletedAt: null },
     select: layoutColumns,
-    orderBy: {
-      updatedAt: 'desc'
-    }
+    orderBy: { updatedAt: 'desc' }
   };
 
   const heartsQuery = {
@@ -150,10 +145,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         select: {
           ...layoutColumns,
           user: {
-            select: {
-              name: true,
-              id: true
-            }
+            select: { name: true, id: true }
           }
         }
       }
@@ -173,31 +165,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!user) return { notFound: true };
 
-  const serializedLayouts = user.layouts.map((layout:LayoutViewProps) => ({
-    ...layout,
-    createdAt: layout.createdAt?.toString(),
-    updatedAt: layout.updatedAt?.toString(),
-    user: { name: user.name }
-  }));
-
-  const serializedHearts = user.hearts.map(({ layout }:{layout:LayoutViewProps}) => ({
-    ...layout,
-    createdAt: layout.createdAt?.toString(),
-    updatedAt: layout.updatedAt?.toString()
-  }));
-
-  const serializedUser:UserProps = {
-    name: user.name,
-    id: user.id,
-    image: user.image,
-    hearts: serializedHearts,
-    layouts: serializedLayouts
-  };
+  const heartedLayouts = user.hearts.map(({ layout }:{ layout:LayoutViewProps }) => layout);
 
   return {
     props: {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
-      user: serializedUser
+      user: {
+        name: user.name,
+        id: user.id,
+        image: user.image,
+        hearts: serializeDates(heartedLayouts),
+        layouts: user.layouts
+      }
     }
   };
 };

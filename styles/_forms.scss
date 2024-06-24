@@ -26,7 +26,7 @@ textarea {
   margin-bottom: $spacing-sm;
   padding: $spacing-sm;
   transition-duration: 0.15s;
-  transition-property: background-color, color, outline;
+  transition-property: background-color, color, outline, box-shadow, border;
   transition-timing-function: ease;
   width: 100%;
 }

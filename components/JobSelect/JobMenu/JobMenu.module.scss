@@ -100,4 +100,10 @@
   .categories {
     grid-template-columns: 1fr;
   }
+
+  .tabs {
+    a {
+      width: unset;
+    }
+  }
 }

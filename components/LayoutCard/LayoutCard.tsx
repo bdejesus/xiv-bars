@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -16,7 +17,6 @@ import styles from './LayoutCard.module.scss';
 interface Props {
   layout: LayoutViewProps,
   job: ClassJobProps,
-  // eslint-disable-next-line no-unused-vars
   className?: string,
   hideName: boolean
 }
@@ -24,10 +24,12 @@ interface Props {
 export default function LayoutCard(props:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
+  const router = useRouter();
   const userDispatch = useUserDispatch();
   const {
     layout, job, className, hideName
   } = props;
+
   const [showPrompt, setShowPrompt] = useState(false);
   const isOwner = session?.user.id === layout.userId;
 
@@ -46,6 +48,8 @@ export default function LayoutCard(props:Props) {
   }
 
   if (!layout.user) return null;
+
+  const updatedAt = formatDateString(layout.updatedAt as string, router.locale!);
 
   return (
     <div className={styles.layoutCard}>
@@ -87,7 +91,7 @@ export default function LayoutCard(props:Props) {
 
           { layout.updatedAt && (
             <div className={styles.timestamp}>
-              {t('LayoutCard.last_updated')}: {formatDateString(layout.updatedAt as string)}
+              {t('LayoutCard.last_updated')}: <time dateTime={layout.updatedAt}>{updatedAt}</time>
             </div>
           )}
         </div>

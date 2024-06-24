@@ -6,6 +6,10 @@
   font-size: 12px;
   line-height: 1.45em;
   padding: $spacing-xl 0;
+
+  p, a {
+    font-weight: 500;
+  }
 }
 
 .logo {

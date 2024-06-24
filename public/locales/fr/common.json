@@ -1,6 +1,6 @@
 {
   "Global": {
-    "title": "XIVBARS – Planificateur et simulateur de Cross Hotbars pour Final Fantasy XIV",
+    "title": "Final Fantasy XIV : Dawntrail W Cross Hotbar Planner et Simulateur – XIVBARS",
     "subtitle": "Un outil de planification et de simulation des Cross Hotbars de Final Fantasy XIV.",
     "description": "Planifiez et personnalisez vos Cross Hotbars (XHB) dans FFXIV: Dawntrail. Explorez diverses configurations et configurations pour les barres d'action et les barres d'action croisées de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de raccourcis clavier et d'autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour une personnalisation et une attribution des touches faciles. Exportez vos configurations vers des macros pour les importer directement dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
@@ -188,7 +188,25 @@
       "new_layout_icon": "Nouvelle icône de disposition",
       "my_layouts": "Mes dispositions",
       "no_layouts": "Aucune disposition - créez-en une nouvelle !",
-      "saved_layouts": "Dispositions enregistrées"
+      "saved_layouts": "Dispositions enregistrées",
+
+      "Settings": {
+        "account_settings": "Paramètres du compte",
+        "registration_date": "Enregistré",
+        "account_age": "Âge du compte",
+        "days_count_one": "{{count}} jour",
+        "days_count_other": "{{count}} jours",
+        "hearts_count_one": "{{count}} Cœur",
+        "hearts_count_other": "{{count}} Cœurs",
+        "layouts_count_one": "{{count}} Modèle",
+        "layouts_count_other": "{{count}} Modèles",
+        "delete_my_account": "Supprimer mon compte",
+        "are_you_sure": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+        "are_you_really_sure": "Vos modèles, vos cœurs et les autres informations associées à votre compte seront supprimés. Cette action est irréversible.",
+        "enter_username": "Saisissez votre nom d'utilisateur (**{{user_name}}**) pour confirmer",
+        "delete": "SUPPRIMER MON COMPTE",
+        "cancel": "Annuler"
+      }
     },
     "Job": {
       "index_title": "Dispositions de barre de raccourcis ({{jobAbbr}}) FFXIV {{jobName}} • XIVBARS",
@@ -256,6 +274,7 @@
     "my_layouts": "Mes dispositions",
     "logout": "Déconnexion",
     "signin_with_discord": "Connectez-vous avec Discord",
-    "report_an_issue": "Signaler un problème"
+    "report_an_issue": "Signaler un problème",
+    "account_settings": "Paramètres du compte"
   }
 }

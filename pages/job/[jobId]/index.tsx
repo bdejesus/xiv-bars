@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import db from 'lib/db';
+import db, { serializeDates } from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
@@ -122,18 +122,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   });
 
-  // Convert Date Objects into strings
-  const serializableLayouts = layouts.map((layout:LayoutViewProps) => ({
-    ...layout,
-    createdAt: layout?.createdAt?.toString(),
-    updatedAt: layout?.updatedAt?.toString()
-  }));
-
   return {
     props: {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
       selectedJob,
-      layouts: serializableLayouts
+      layouts: serializeDates(layouts)
     }
   };
 };

@@ -1,0 +1,29 @@
+@import 'styles/mixins';
+
+.wrapper {
+  border-radius: 10%;
+  box-shadow: $box-shadow;
+  max-height: 120px;
+  max-width: 120px;
+  overflow: hidden;
+  position: relative;
+
+  &::after {
+    border-radius: 10%;
+    box-shadow:
+      inset  2px 2px 2px rgb(255 255 255 / 80%),
+      inset -2px -2px 2px rgb(0 0 0 / 20%);
+    content: '';
+    display: block;
+    inset: 0;
+    position: absolute;
+    z-index: 2;
+  }
+
+  img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+}
