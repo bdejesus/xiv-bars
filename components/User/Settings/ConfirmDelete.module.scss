@@ -1,0 +1,8 @@
+@import 'styles/mixins';
+
+.deleteActions {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-base;
+  justify-content: center;
+}
