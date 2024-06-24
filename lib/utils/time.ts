@@ -28,6 +28,7 @@ export function formatDateStringLong(date:string, locale:string = 'en') {
   return formattedDate;
 }
 
+// TODO: Add conversions to monts, years, etc -- currently this only returns number of days
 export function timeElapsed(fromDate:string) {
   const today:Date = new Date();
   const startDate:Date = new Date(fromDate);
