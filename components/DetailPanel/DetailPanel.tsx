@@ -65,7 +65,7 @@ export default function DetailPanel({ className, viewData, visible }:Props) {
       <ToggleDetailPanel />
 
       <div className={styles.content}>
-        { title
+        { title && viewAction === 'show'
           ? (
             <>
               <div className={styles.header}>
