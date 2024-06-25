@@ -11,10 +11,15 @@ import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { appActions } from 'components/App/actions';
+import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './App.module.scss';
 
-export function App() {
+interface AppProps {
+  preloadData?: LayoutViewProps
+}
+
+export function App({preloadData}:AppProps) {
   const appDispatch = useAppDispatch();
   const appState = useAppState();
   const {
@@ -24,15 +29,15 @@ export function App() {
     roleActions,
     readOnly,
     showDetails,
-    viewData,
     viewAction
   } = appState;
 
+  const viewData = preloadData || appState.viewData;
   const router = useRouter();
   const layoutKey = viewData.layout as keyof typeof layouts;
 
   useEffect(() => {
-    if (router.query.jobId) {
+    if (router.query.jobId && !preloadData) {
       appDispatch({
         type: appActions.LOAD_VIEW_DATA,
         payload: {
@@ -47,15 +52,22 @@ export function App() {
     }
   }, [router.query, viewAction]);
 
-  if (!selectedJob) return null;
-
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
-        <div className={`${styles.view} app-view`} data-action={viewAction}>
+        <div
+          className={`${styles.view} app-view`}
+          data-action={viewAction}
+          itemScope
+          itemType="https://schema.org/Guide"
+        >
           <SystemMessage />
 
-          <DetailPanel className={styles.detailPanel} visible={showDetails} />
+          <DetailPanel
+            viewData={viewData}
+            className={styles.detailPanel}
+            visible={showDetails}
+          />
 
           <div className={styles.mainPanel}>
             { jobs && <ControlBar /> }
@@ -76,7 +88,7 @@ export function App() {
           </div>
         </div>
 
-        <Tooltip />
+        { selectedJob && <Tooltip /> }
       </SelectedActionContextProvider>
     </TooltipContextProvider>
   );

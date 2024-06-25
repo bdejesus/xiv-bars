@@ -97,7 +97,7 @@ export default function LayoutCard(props:Props) {
               itemProp="author"
             >
               <Link href={`/user/${layout.userId}`} itemProp="url">
-                <span itemProp="alternateName">{layout.user.name}</span>
+                <span itemProp="name">{layout.user.name}</span>
               </Link>
             </div>
           )}

@@ -11,6 +11,7 @@ import Hearts from 'components/Hearts';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
 import type { ClassJobProps } from 'types/ClassJob';
+import type { LayoutViewProps } from 'types/Layout';
 import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
 
@@ -22,7 +23,7 @@ function JobSprite({ job }:JobSpriteProps) {
   if (
     !job?.Abbreviation
     || !['DOW', 'DOM'].includes(job?.Discipline)
-    || job?.Abbreviation === 'BLU'
+    || ['BLU', 'VPR'].includes(job?.Abbreviation)
   ) return null;
 
   return (
@@ -34,16 +35,15 @@ function JobSprite({ job }:JobSpriteProps) {
 
 interface Props {
   className?: string,
-  visible: boolean
+  visible: boolean,
+  viewData: LayoutViewProps
 }
 
-export default function DetailPanel({ className, visible }:Props) {
+export default function DetailPanel({ className, viewData, visible }:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const router = useRouter();
-  const {
-    viewData, readOnly, selectedJob, viewAction
-  } = useAppState();
+  const { selectedJob, viewAction } = useAppState();
 
   const {
     title,
@@ -65,20 +65,28 @@ export default function DetailPanel({ className, visible }:Props) {
       <ToggleDetailPanel />
 
       <div className={styles.content}>
-        { (readOnly && title && userId)
+        { title
           ? (
             <>
               <div className={styles.header}>
                 <div className={styles.title}>
-                  <h1 className="mt-0 mb-0">
+                  <h1 className="mt-0 mb-0" itemProp="name">
                     {title}
                   </h1>
                   <EditLayoutButton />
                 </div>
 
                 <div className={styles.meta}>
-                  <div className={styles.owner}>
-                    {t('LayoutCard.by')} <Link href={`/user/${userId}`}>{user?.name}</Link>
+                  <div
+                    className={styles.owner}
+                    itemScope
+                    itemProp="author"
+                    itemType="https://schema.org/Person"
+                  >
+                    {t('LayoutCard.by')}&nbsp;
+                    <Link href={`/user/${userId}`} itemProp="url">
+                      <span itemProp="name">{user?.name}</span>
+                    </Link>
                   </div>
 
                   { updatedAt && (
@@ -104,7 +112,7 @@ export default function DetailPanel({ className, visible }:Props) {
                 </div>
               </div>
 
-              <div className={styles.body}>
+              <div className={styles.body} itemProp="text">
                 { description ? (
                   <ReactMarkdown components={{
                     h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
@@ -126,7 +134,7 @@ export default function DetailPanel({ className, visible }:Props) {
             </div>
           )}
 
-        { ['PCT', 'VPR'].includes(selectedJob!.Abbr) && (
+        { selectedJob && ['PCT', 'VPR'].includes(selectedJob.Abbr) && (
           <p className="system-message warn">
             The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
           </p>
