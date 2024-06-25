@@ -63,7 +63,7 @@ export default function Index(props:PageProps) {
 
       <GlobalHeader selectedJob={selectedJob} />
 
-      <App preloadData={viewData} />
+      <App />
 
       <div className={`${styles.lists} container-xl`}>
         { ownerLayouts.length > 0 && (

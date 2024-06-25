@@ -11,15 +11,10 @@ import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { appActions } from 'components/App/actions';
-import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './App.module.scss';
 
-interface AppProps {
-  preloadData?: LayoutViewProps
-}
-
-export function App({preloadData}:AppProps) {
+export function App() {
   const appDispatch = useAppDispatch();
   const appState = useAppState();
   const {
@@ -29,15 +24,15 @@ export function App({preloadData}:AppProps) {
     roleActions,
     readOnly,
     showDetails,
+    viewData,
     viewAction
   } = appState;
 
-  const viewData = preloadData || appState.viewData;
   const router = useRouter();
   const layoutKey = viewData.layout as keyof typeof layouts;
 
   useEffect(() => {
-    if (router.query.jobId && !preloadData) {
+    if (router.query.jobId) {
       appDispatch({
         type: appActions.LOAD_VIEW_DATA,
         payload: {
