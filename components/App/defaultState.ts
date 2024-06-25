@@ -31,7 +31,7 @@ export const defaultState:AppState = {
   showTitles: false,
   showAllLvl: false,
   showDetails: true,
-  viewAction: undefined,
+  viewAction: "show",
   roleActions: undefined,
   actions: undefined,
   chotbar,

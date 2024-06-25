@@ -35,7 +35,12 @@ export default function JobMenu({ action }:Props) {
   }
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      itemScope
+      itemProp="itemListElement"
+      itemType="https://schema.org/ItemList"
+    >
       <ul className={styles.tabs}>
         { Object.entries(tabs).map(([tabId, tabTitle]) => (
           <li key={tabId}>
@@ -52,8 +57,15 @@ export default function JobMenu({ action }:Props) {
         ))}
       </ul>
 
-      <div className={styles.section} id="DowDom" data-active={selectedTabId === 'DowDom'}>
-        <h3>{t('JobSelect.dow_dom')}</h3>
+      <div
+        className={styles.section}
+        id="DowDom"
+        data-active={selectedTabId === 'DowDom'}
+        itemScope
+        itemProp="itemListElement"
+        itemType="https://schema.org/ItemList"
+      >
+        <h3 itemProp="name">{t('JobSelect.dow_dom')}</h3>
 
         <div className={styles.categories}>
           <JobsList
@@ -89,8 +101,15 @@ export default function JobMenu({ action }:Props) {
         </div>
       </div>
 
-      <div className={styles.section} id="DohDol" data-active={selectedTabId === 'DohDol'}>
-        <h3>{t('JobSelect.doh_dol')}</h3>
+      <div
+        className={styles.section}
+        id="DohDol"
+        data-active={selectedTabId === 'DohDol'}
+        itemScope
+        itemProp="itemListElement"
+        itemType="https://schema.org/ItemList"
+      >
+        <h3 itemProp="name">{t('JobSelect.doh_dol')}</h3>
 
         <div className={styles.categories}>
           <JobsList

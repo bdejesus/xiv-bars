@@ -47,15 +47,22 @@ export function App() {
     }
   }, [router.query, viewAction]);
 
-  if (!selectedJob) return null;
-
   return (
     <TooltipContextProvider>
       <SelectedActionContextProvider>
-        <div className={`${styles.view} app-view`} data-action={viewAction}>
+        <div
+          className={`${styles.view} app-view`}
+          data-action={viewAction}
+          itemScope
+          itemType="https://schema.org/Guide"
+        >
           <SystemMessage />
 
-          <DetailPanel className={styles.detailPanel} visible={showDetails} />
+          <DetailPanel
+            viewData={viewData}
+            className={styles.detailPanel}
+            visible={showDetails}
+          />
 
           <div className={styles.mainPanel}>
             { jobs && <ControlBar /> }
@@ -76,7 +83,7 @@ export function App() {
           </div>
         </div>
 
-        <Tooltip />
+        { selectedJob && <Tooltip /> }
       </SelectedActionContextProvider>
     </TooltipContextProvider>
   );

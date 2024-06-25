@@ -202,11 +202,12 @@
     },
     "Job": {
       "index_title": "Dispositions de barre de raccourcis ({{jobAbbr}}) FFXIV {{jobName}} • XIVBARS",
-      "index_description": "Cette page répertorie tous les guides de disposition de hotbar (HB) et cross-hotbar (XHB) créés par les joueurs et les keybindings pour la classe/job {{jobName}} dans Final Fantasy XIV : DawnTrail.",
-      "new_description": "Planifiez vos barres de raccourcis ou barres de raccourcis croisées (XHB) {{jobName}} à l'aide de cet outil. Glissez-déposez ou cliquez pour attribuer des actions aux emplacements de la barre de raccourcis et enregistrez dans une URL partageable.",
+      "index_description": "Cette page répertorie tous les guides de disposition de hotbar (HB) et cross-hotbar (XHB) créés par les joueurs et les keybindings pour la classe/job {{jobName}} dans Final Fantasy XIV : Dawntrail.",
+      "new_description": "Planifiez vos barres d'actions ou vos barres d'actions croisées (XHB) pour {{jobName}} avec cet outil. Faites glisser et déposez, ou cliquez pour attribuer des actions aux emplacements des barres d'actions et enregistrez-les sous une URL partageable.",
       "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
       "create_layout": "Créer une nouvelle disposition.",
-      "new_layout": "Nouvelle disposition"
+      "new_layout": "Nouvelle disposition",
+      "short_description": "Un guide de disposition de classe/emploi {{jobName}} pour les raccourcis clavier des barres d'actions pour Final Fantasy XIV : Dawntrail."
     },
     "Layout": {
       "more_layouts_by_user": "Plus de mises en page par {{userName}}",

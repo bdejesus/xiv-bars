@@ -8,10 +8,10 @@ import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
+import ReactMarkdown from 'react-markdown';
 import { useUserDispatch, userActions } from 'components/User';
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
-import ReactMarkdown from 'react-markdown';
 import styles from './LayoutCard.module.scss';
 
 interface Props {
@@ -65,10 +65,18 @@ export default function LayoutCard(props:Props) {
           )}
         </div>
 
-        <a href={`/job/${layout.jobId}/${layout.id}`} className={styles.main}>
-          <h3 title={layout.title}>{layout.title}</h3>
+        <a
+          href={`/job/${layout.jobId}/${layout.id}`}
+          className={styles.main}
+          itemProp="url"
+        >
+          <h3 title={layout.title} itemProp="name">{layout.title}</h3>
 
-          <div className={styles.description}>
+          <div className={styles.subtitle} itemProp="description" aria-hidden="true">
+            { t('Pages.Job.short_description', { jobName: job.Name }) }
+          </div>
+
+          <div className={styles.description} itemProp="text">
             { layout.description && (
               <ReactMarkdown components={{
                 h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
@@ -82,9 +90,14 @@ export default function LayoutCard(props:Props) {
 
         <div className={styles.footer}>
           { !hideName && (
-            <div className={styles.owner}>
-              <Link href={`/user/${layout.userId}`}>
-                {layout.user.name}
+            <div
+              className={styles.owner}
+              itemScope
+              itemType="https://schema.org/Person"
+              itemProp="author"
+            >
+              <Link href={`/user/${layout.userId}`} itemProp="url">
+                <span itemProp="name">{layout.user.name}</span>
               </Link>
             </div>
           )}

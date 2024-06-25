@@ -30,15 +30,25 @@ export default function LayoutsList({
   if (!layouts) return null;
 
   return (
-    <div className={[styles.container, className].join(' ')}>
-      { title && <h2 className={styles.title}>{title}</h2>}
+    <div
+      className={[styles.container, className].join(' ')}
+      itemScope={!!title}
+      itemProp={title && 'itemListElement'}
+      itemType={title && 'https://schema.org/ItemList'}
+    >
+      { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
 
       <ul className={[styles.layoutsList, 'layoutsList'].join(' ')} data-columns={columns}>
         {layouts.map((layout:LayoutViewProps) => {
           const job = jobs.find((j) => j.Abbr === layout.jobId);
           if (!job) return null;
           return (
-            <li key={layout.id}>
+            <li
+              key={layout.id}
+              itemScope
+              itemProp="itemListElement"
+              itemType="https://schema.org/HowToTip"
+            >
               <LayoutCard
                 layout={layout}
                 job={job}

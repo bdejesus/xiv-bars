@@ -36,6 +36,7 @@ export default function ClassJob({
               draggable={false}
               height={32}
               width={32}
+              itemProp="image"
             />
           </span>
         )}
@@ -48,7 +49,7 @@ export default function ClassJob({
       { name && (
         <>
           &nbsp;
-          <span className={`${styles.name} job-name`}>{displayName}</span>
+          <span className={`${styles.name} job-name`} itemProp="name">{displayName}</span>
         </>
       )}
     </div>
