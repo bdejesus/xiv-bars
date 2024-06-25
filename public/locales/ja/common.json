@@ -203,9 +203,11 @@
     "Job": {
       "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV ホットバー レイアウト • XIVBARS",
       "index_description": "このページでは、ファイナルファンタジーXIV: ドーントレイルの{{jobName}}クラス/ジョブのホットバー (HB) とクロスホットバー (XHB) のレイアウトガイドおよびキーバインディングをプレイヤーが作成したすべてのガイドを一覧表示します。",
+      "new_description": "{{jobName}}のホットバーまたはクロスホットバー (XHB) をこのツールで計画します。ドラッグ＆ドロップ、またはクリックしてホットバースロットにアクションを割り当て、共有可能なURLに保存します。",
       "no_layouts": "{{jobName}} のレイアウトはまだありません。",
       "create_layout": "新しいレイアウトを作成する。",
-      "new_layout": "新しいレイアウト"
+      "new_layout": "新しいレイアウト",
+      "short_description": "ファイナルファンタジーXIV：ドーントレイルのホットバーのキー設定のための{{jobName}}クラス/ジョブレイアウトガイド。"
     },
     "Layout": {
       "more_layouts_by_user": "{{userName}}による他のレイアウト",
