@@ -166,6 +166,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!user) return { notFound: true };
 
   const heartedLayouts = user.hearts.map(({ layout }:{ layout:LayoutViewProps }) => layout);
+  const userLayouts = user.layouts.map((layout:LayoutViewProps) => ({
+    ...layout,
+    user: { name: user.name }
+  }));
 
   return {
     props: {
@@ -175,7 +179,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: user.id,
         image: user.image,
         hearts: serializeDates(heartedLayouts),
-        layouts: user.layouts
+        layouts: serializeDates(userLayouts)
       }
     }
   };

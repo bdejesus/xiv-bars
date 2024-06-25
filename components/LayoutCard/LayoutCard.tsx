@@ -47,8 +47,6 @@ export default function LayoutCard(props:Props) {
       });
   }
 
-  if (!layout.user) return null;
-
   const updatedAt = formatDateString(layout.updatedAt as string, router.locale!);
 
   return (

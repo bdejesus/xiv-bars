@@ -27,8 +27,6 @@ export default function LayoutsList({
 }:LayoutsListProps) {
   const { jobs } = useAppState();
 
-  if (!layouts) return null;
-
   return (
     <div className={[styles.container, className].join(' ')}>
       { title && <h2 className={styles.title}>{title}</h2>}
@@ -37,6 +35,7 @@ export default function LayoutsList({
         {layouts.map((layout:LayoutViewProps) => {
           const job = jobs.find((j) => j.Abbr === layout.jobId);
           if (!job) return null;
+
           return (
             <li key={layout.id}>
               <LayoutCard
