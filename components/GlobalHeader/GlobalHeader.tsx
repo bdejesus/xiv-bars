@@ -60,7 +60,7 @@ export function GlobalHeader({ selectedJob }:Props) {
               </Link>
             </li>
 
-            <li className={viewAction !== 'new' ? styles.action : ''}>
+            <li className={viewAction !== 'new' ? styles.action : styles.actionGroup}>
               <a
                 href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
                 className="button btn-primary"

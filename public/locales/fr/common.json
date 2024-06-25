@@ -27,9 +27,9 @@
 
   "ControlBar": {
     "CopyLayout": {
-      "copy_label": "Dupliquer la disposition",
-      "copy_layout": "Crée une nouvelle disposition avec toutes les actions et configurations enregistrées",
-      "copy_icon": "Icône : Dupliquer la disposition"
+      "copy_label": "Copier la disposition",
+      "copy_layout": "Créer une nouvelle disposition avec toutes les actions et configurations enregistrées",
+      "copy_icon": "Icône : Copier la disposition"
     },
     "ToggleMaxLvl": {
       "all_levels": "Tous les niveaux",
