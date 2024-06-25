@@ -202,7 +202,7 @@
     },
     "Job": {
       "index_title": "{{jobName}} ({{jobAbbr}}) FFXIV Hotbar Layouts • XIVBARS",
-      "index_description": "This page lists all player-created hotbar (HB) and cross-hotbar (XHB) layout guides and keybindings for the {{jobName}} Class/Job in Final Fantasy XIV: DawnTrail.",
+      "index_description": "This page lists all player-created hotbar (HB) and cross-hotbar (XHB) layout guides and keybindings for the {{jobName}} Class/Job in Final Fantasy XIV: Dawntrail.",
       "new_description": "Plan your {{jobName}} Hotbars or Cross Hotbars (XHB) with this tool. Drag and drop, or click to assign actions to hotbar slots and save to a shareable URL.",
       "no_layouts": "No {{jobName}} Layouts yet.",
       "create_layout": "Create a new layout.",
