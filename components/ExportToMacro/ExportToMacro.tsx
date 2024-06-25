@@ -102,11 +102,11 @@ export function ExportToMacros() {
       <button
         type="button"
         data-title={t('ExportToMacro.export_to_macro')}
-        className={`${styles.macroBtn} button btn-icon`}
+        className={`${styles.macroBtn} button`}
         onClick={handleShowMacros}
       >
         <Icon id={Icons.MACRO} alt={t('ExportToMacro.export_to_macro')} />
-        <span className="btn-label-hidden">{t('ExportToMacro.export_to_macro')}</span>
+        <span className="btn-label">{t('ExportToMacro.export_to_macro')}</span>
       </button>
 
       <Modal

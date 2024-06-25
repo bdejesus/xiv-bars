@@ -120,6 +120,11 @@ $button-size: 40px;
   flex-direction: row;
   gap: $spacing-sm;
 
+  button,
+  :global(.button) {
+    font-size: $font-size-sm;
+  }
+
   :global(.btn-icon) {
     height: $button-size;
     width: $button-size;

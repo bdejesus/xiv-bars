@@ -27,9 +27,9 @@
 
   "ControlBar": {
     "CopyLayout": {
-      "copy_label": "Layout duplizieren",
-      "copy_layout": "Erstellt ein neues Layout und mit allen eingesteckten Aktionen und Konfigurationen",
-      "copy_icon": "Symbol: Layout duplizieren"
+      "copy_label": "Layout kopieren",
+      "copy_layout": "Erstellen Sie ein neues Layout mit allen zugewiesenen Aktionen und Konfigurationen",
+      "copy_icon": "Symbol: Layout kopieren"
     },
     "ToggleMaxLvl": {
       "all_levels": "Alle Ebenen",

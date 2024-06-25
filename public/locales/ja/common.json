@@ -27,9 +27,9 @@
 
   "ControlBar": {
     "CopyLayout": {
-      "copy_label": "レイアウトを複製",
-      "copy_layout": "すべてのスロットされたアクションと構成を備えた新しいレイアウトを作成します。",
-      "copy_icon": "アイコン：レイアウトを複製"
+      "copy_label": "レイアウトをコピー",
+      "copy_layout": "すべてのスロットに配置されたアクションと構成で新しいレイアウトを作成",
+      "copy_icon": "アイコン: レイアウトをコピー"
     },
     "ToggleMaxLvl": {
       "all_levels": "すべてのレベル",
