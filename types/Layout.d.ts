@@ -26,6 +26,7 @@ export interface LayoutViewProps extends LayoutDataProps {
     name: string,
     id: number
   },
+  published?: boolean,
   userId?: number,
 }
 

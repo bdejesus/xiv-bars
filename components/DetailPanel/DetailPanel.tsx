@@ -1,6 +1,5 @@
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { formatDateString } from 'lib/utils/time';
 import ReactMarkdown from 'react-markdown';
@@ -8,43 +7,22 @@ import SaveForm from 'components/SaveForm';
 import EditLayoutButton from 'components/EditLayoutButton';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
+import JobSprite from 'components/JobSprite';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
-import type { ClassJobProps } from 'types/ClassJob';
-import type { LayoutViewProps } from 'types/Layout';
 import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
 
-interface JobSpriteProps {
-  job: ClassJobProps
-}
-
-function JobSprite({ job }:JobSpriteProps) {
-  if (
-    !job?.Abbreviation
-    || !['DOW', 'DOM'].includes(job?.Discipline)
-    || ['BLU', 'VPR'].includes(job?.Abbreviation)
-  ) return null;
-
-  return (
-    <div className={styles.footer}>
-      <Image src={`/classjob/sprite-${job.Abbreviation}.png`} alt={job.Name} height={52} width={52} />
-    </div>
-  );
-}
-
 interface Props {
   className?: string,
-  visible: boolean,
-  viewData: LayoutViewProps
+  visible: boolean
 }
 
-export default function DetailPanel({ className, viewData, visible }:Props) {
+export default function DetailPanel({ className, visible }:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const router = useRouter();
-  const { selectedJob, viewAction } = useAppState();
-
+  const { selectedJob, viewAction, viewData } = useAppState();
   const {
     title,
     description,
@@ -53,8 +31,16 @@ export default function DetailPanel({ className, viewData, visible }:Props) {
     updatedAt,
     _count,
     id,
-    hearted
+    hearted,
+    published
   } = viewData;
+
+  const isOwner = session?.user.id === userId;
+  const hasSprite = selectedJob && (
+    selectedJob.Abbreviation
+    || ['DOW', 'DOM'].includes(selectedJob.Discipline)
+    || !['BLU', 'VPR'].includes(selectedJob.Abbreviation)
+  );
 
   return (
     <div
@@ -106,8 +92,20 @@ export default function DetailPanel({ className, viewData, visible }:Props) {
                     )}
 
                     { (viewData && selectedJob) && (
-                    <Tags layoutView={viewData} job={selectedJob} />
+                      <Tags layoutView={viewData} job={selectedJob} />
                     )}
+
+                    { isOwner && (
+                      <div
+                        className={`tag ${styles.publishedTag}`}
+                        data-published={published}
+                      >
+                        <span className="tag-name">
+                          { published ? 'PUBLISHED' : 'DRAFT' }
+                        </span>
+                      </div>
+                    )}
+
                   </div>
                 </div>
               </div>
@@ -140,7 +138,7 @@ export default function DetailPanel({ className, viewData, visible }:Props) {
           </p>
         )}
 
-        { selectedJob && <JobSprite job={selectedJob} /> }
+        { hasSprite && <div className={styles.footer}><JobSprite job={selectedJob} /></div> }
       </div>
     </div>
   );

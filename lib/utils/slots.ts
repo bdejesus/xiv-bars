@@ -68,7 +68,8 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):LayoutViewProps
     isPvp,
     layout,
     _count,
-    hearted
+    hearted,
+    published
   }:LayoutViewProps = {
     ...defaultState.viewData,
     ...viewData,
@@ -93,7 +94,8 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):LayoutViewProps
     isPvp,
     layout,
     _count,
-    hearted
+    hearted,
+    published
   };
 }
 

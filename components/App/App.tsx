@@ -59,7 +59,6 @@ export function App() {
           <SystemMessage />
 
           <DetailPanel
-            viewData={viewData}
             className={styles.detailPanel}
             visible={showDetails}
           />

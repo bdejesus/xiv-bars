@@ -245,6 +245,19 @@ $panel-width-lg: $screen-xs;
   gap: $spacing-sm;
 }
 
+.publishedTag {
+  font-size: $font-size-base;
+
+  &[data-published='true'] {
+    color: $color-success;
+    text-shadow: 0 0 3px #F2FF63;
+  }
+
+  &[data-published='false'] {
+    color: #666;
+  }
+}
+
 @media (max-width: $screen-lg-3) {
   .container,
   .content {
