@@ -125,7 +125,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
     include: {
       user: {
-        select: { name: true }
+        select: { name: true, id: true }
       },
       _count: {
         select: { hearts: true }
