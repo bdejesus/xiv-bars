@@ -101,7 +101,7 @@ export default function DetailPanel({ className, visible }:Props) {
                         data-published={published}
                       >
                         <span className="tag-name">
-                          { published ? 'PUBLISHED' : 'DRAFT' }
+                          { published ? 'Published' : 'Draft' }
                         </span>
                       </div>
                     )}

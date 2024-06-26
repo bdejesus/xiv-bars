@@ -58,6 +58,12 @@
 .actions {
   display: flex;
   flex-direction: row;
+
+  button,
+  :global(.button) {
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+  }
 }
 
 .options:global(.control) {

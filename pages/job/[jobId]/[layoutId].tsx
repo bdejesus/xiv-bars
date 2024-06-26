@@ -120,7 +120,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       take: 4,
       where: {
         id: { not: viewData.id },
-        description: { not: '' }
+        description: { not: '' },
+        published: true
       },
       include: {
         user: { select: { name: true } },
