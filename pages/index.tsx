@@ -116,34 +116,27 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
       _count: {
         select: { hearts: true }
-      }
+      },
+    },
+    where: {
+      title: { not: '' },
+      description: { not: '' },
+      published: true
     }
   };
 
   const layouts = await db.layout.findMany({
     ...layoutsQuery,
     take: 12,
-    where: {
-      title: { not: '' },
-      description: { not: '' }
-    },
     distinct: ['userId'],
-    orderBy: {
-      updatedAt: 'desc'
-    }
+    orderBy: { updatedAt: 'desc' }
   });
 
   const popularLayouts = await db.layout.findMany({
     ...layoutsQuery,
     take: 6,
-    where: {
-      title: { not: '' },
-      description: { not: '' },
-    },
     orderBy: {
-      hearts: {
-        _count: 'desc'
-      }
+      hearts: { _count: 'desc' }
     }
   });
   const filteredPopularLayouts = popularLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);

@@ -120,7 +120,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const layouts = await db.layout.findMany({
     where: {
       jobId: selectedJob?.Abbr,
-      description: { not: '' }
+      description: { not: '' },
+      published: true
     },
     include: {
       user: {
@@ -130,9 +131,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         select: { hearts: true }
       }
     },
-    orderBy: {
-      updatedAt: 'desc'
-    }
+    orderBy: { updatedAt: 'desc' }
   });
 
   return {
