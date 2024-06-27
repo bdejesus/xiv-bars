@@ -64,8 +64,8 @@ export default function LayoutCard(props:Props) {
             />
           )}
           { isOwner && !layout.published && (
-            <div className='tag'>
-              <div className='tag-name'>
+            <div className="tag">
+              <div className="tag-name">
                 Draft
               </div>
             </div>

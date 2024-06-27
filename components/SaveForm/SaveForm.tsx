@@ -165,7 +165,7 @@ function SaveForm() {
           />
           <span className={styles.optionLabel}>Publish Layout</span>
           <span className={styles.optionInfo}>
-            Published Layouts can appear on lists and directories, and are discoverable by other users. Unplubished layouts are hidden from lists but are still accessible by loading the URL.
+            Published Layouts can appear on lists and directories, and are discoverable by other users. Unplubished layouts are hidden from lists but are still accessible by visiting the URL.
           </span>
         </label>
       </div>
