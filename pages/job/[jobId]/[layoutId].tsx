@@ -58,6 +58,7 @@ export default function Index(props:PageProps) {
         <title>{pageTitle}</title>
         <meta name="description" content={viewData?.description} />
         <link rel="canonical" href={canonicalUrl} />
+        { !viewData.published && <meta name="robots" content="noindex" /> }
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />
