@@ -7,12 +7,6 @@ export default async function actionsHandler(req: NextApiRequest, res: NextApiRe
     const params = req.query;
     file = `${process.cwd()}/.apiData/JobActions/${params.job}.json`;
 
-    if (`${params.job}` === 'PCT') {
-      file = `${process.cwd()}/data/JobActions/PCT.json`;
-    } else if (`${params.job}` === 'VPR') {
-      file = `${process.cwd()}/data/JobActions/VPR.json`;
-    }
-
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
         res.status(500).json(err);
