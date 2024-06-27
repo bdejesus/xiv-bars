@@ -246,7 +246,9 @@ $panel-width-lg: $screen-xs;
 }
 
 .publishedTag {
-  font-size: $font-size-base;
+  font-size: $font-size-sm;
+  font-style: italic;
+  text-transform: uppercase;
 
   &[data-published='true'] {
     color: $color-success;

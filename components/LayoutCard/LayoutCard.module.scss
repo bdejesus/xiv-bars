@@ -235,3 +235,9 @@ $description-height: 42px;
   pointer-events: none;
   position: absolute;
 }
+
+.publishTag {
+  font-size: $font-size-sm;
+  font-style: italic;
+  text-transform: uppercase;
+}

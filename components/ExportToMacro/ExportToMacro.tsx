@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { createRef, useState, useEffect } from 'react';
-import { layouts, chotbarSlotNames } from 'lib/xbars';
+import { layouts, chotbarSlotNames, hasActions } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import { useTranslation } from 'next-i18next';
@@ -29,13 +29,12 @@ export function ExportToMacros() {
   function generateHotbarMacros(hotbarRow: SlotProps[], hotbarNum: number) {
     return hotbarRow
       .map(({ action }, index) => {
-        if (action?.Name
-          && action?.UrlType
+        if (action
+          && action.Name
+          && action.UrlType
           && !excludeTypes.includes(action.UrlType as string)
         ) {
-          const slotName = (currLayout === 'chotbar')
-            ? chotbarSlotNames[index]
-            : index + 1;
+          const slotName = (currLayout === 'chotbar') ? chotbarSlotNames[index] : index + 1;
           const subcommand = action.Command || 'action';
           const stringArray = [
             `/${currLayout}`,
@@ -65,15 +64,25 @@ export function ExportToMacros() {
 
   function buildMacros() {
     if (currLayout) {
-      const hotbarMacros = Object.values(appState[currLayout] as SlotProps[])
+      const hotbarRows = Object.values(appState[currLayout]!);
+      const hotbarMacros = hotbarRows
         .map((row, index) => row && generateHotbarMacros(row as unknown as SlotProps[], index + 1))
         .filter((line) => line)
         .join('\n')
         .trim()
         .split('\n');
 
+      const clearMacro = hotbarRows
+        .reduce((collectKeys:string[], hbRow, index) => {
+          if (hasActions(hbRow)) {
+            return [...collectKeys, `/${currLayout} remove ${index + 1} all`];
+          }
+          return collectKeys;
+        }, []).join('\n');
+
       const macroGroups: string[] = groupMacros(hotbarMacros);
-      setMacroText(macroGroups);
+
+      setMacroText([clearMacro, ...macroGroups]);
     }
   }
 
