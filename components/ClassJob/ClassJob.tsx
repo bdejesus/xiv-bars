@@ -31,12 +31,13 @@ export default function ClassJob({
           <span className={`${styles.iconWrapper} job-icon`}>
             <Image
               className={styles.icon}
-              src={job.PreIcon || `/jobIcons${job.Icon}`}
+              src={`/jobIcons/${job.Name.replaceAll(' ', '')}.png`}
               alt={`${job.Name} Icon`}
               draggable={false}
               height={32}
               width={32}
               itemProp="image"
+              data-src={`/jobIcons/${job.Name.replaceAll(' ', '')}.png`}
             />
           </span>
         )}

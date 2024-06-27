@@ -18,7 +18,7 @@
     0 2px 4px rgb(0 0 0 / 33%),
     inset 1px 1px 0 rgb(255 255 255 / 15%),
     inset -1px -1px 0 rgb(0 0 0 / 33%);
-  padding: 2px $spacing-base 2px $spacing-xs;
+  padding: 2px $spacing-xs 2px 2px;
   transform: translateZ(0);
 
   &[data-role='TANK'] {
@@ -58,7 +58,7 @@
   font-weight: 900;
   height: $font-size-base;
   line-height: 12px;
-  margin-left: 0.1em;
+  padding: 0 $spacing-xs;
 }
 
 .name {

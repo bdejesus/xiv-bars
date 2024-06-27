@@ -17,6 +17,5 @@ export interface ClassJobProps {
   Role?: string | null,
   Url: string,
   Weapon?: string,
-  PreIcon?: string,
   UrlType?: string | null,
 }
