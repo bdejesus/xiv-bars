@@ -106,9 +106,9 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const jobId = context.params?.jobId as string;
-  const selectedJob = Jobs.find((job) => job.Abbr === jobId);
+  const selectedJob = Jobs.find((job:ClassJobProps) => job.Abbr === jobId);
 
-  if (!selectedJob || selectedJob.Disabled) return { notFound: true };
+  if (!selectedJob) return { notFound: true };
 
   // Request Layouts
   const layouts = await db.layout.findMany({

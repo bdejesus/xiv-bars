@@ -9,19 +9,6 @@
 
 .container {
   white-space: nowrap;
-
-  &[data-disabled='true'] {
-    opacity: 0.33;
-    padding: 4px;
-    pointer-events: none;
-
-    .iconWrapper {
-      left: -2px;
-      padding: 4px;
-      position: relative;
-    }
-  }
-
 }
 
 .jobWrapper {

@@ -4,6 +4,8 @@ import BaseClassIDs from 'data/BaseClassIDs.json';
 import { domain } from 'lib/host';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+import type { ClassJobProps } from 'types/ClassJob';
+
 async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
   try {
     const sitemap = new SitemapStream({
@@ -17,9 +19,9 @@ async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
     });
 
     // Create each URL row
-    const advancedJobs = Jobs.filter((job) => (!BaseClassIDs.includes(job.ID) && !job.Disabled));
+    const advancedJobs = Jobs.filter((job:ClassJobProps) => !BaseClassIDs.includes(job.ID));
 
-    advancedJobs.forEach((job) => {
+    advancedJobs.forEach((job:ClassJobProps) => {
       sitemap.write({
         url: `/job/${job.Abbr}`,
         priority: 0.9,

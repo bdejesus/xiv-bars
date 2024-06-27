@@ -43,41 +43,34 @@ export function JobsList({
           <li
             key={job.Name}
             value={job.ID}
-            data-disabled={job.Disabled}
             itemScope
             itemProp="itemListElement"
             itemType="https://schema.org/ListItem"
           >
-            { job.Disabled ? (
+            <Link
+              href={action === 'new' ? `/job/${job.Abbr}/new` : `/job/${job.Abbr}`}
+              className={`${styles.jobLink} jobList-link`}
+              draggable={false}
+              itemProp="url"
+            >
               <ClassJob job={job} />
-            ) : (
-              <>
-                <Link
-                  href={action === 'new' ? `/job/${job.Abbr}/new` : `/job/${job.Abbr}`}
-                  className={`${styles.jobLink} jobList-link`}
-                  draggable={false}
-                  itemProp="url"
-                >
-                  <ClassJob job={job} />
-                </Link>
+            </Link>
 
-                <a
-                  href={localizePath(`/job/${job.Abbr}/new`, locale)}
-                  className={`button btn-icon ${styles.addBtn} joblist-new`}
-                  onClick={handleClickNew}
-                >
-                  <Icon
-                    id={Icons.ADD}
-                    className={styles.addIcon}
-                    type="white"
-                    alt="New Layout Icon"
-                  />
-                  <span className={styles.addLabel}>
-                    {t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
-                  </span>
-                </a>
-              </>
-            )}
+            <a
+              href={localizePath(`/job/${job.Abbr}/new`, locale)}
+              className={`button btn-icon ${styles.addBtn} joblist-new`}
+              onClick={handleClickNew}
+            >
+              <Icon
+                id={Icons.ADD}
+                className={styles.addIcon}
+                type="white"
+                alt="New Layout Icon"
+              />
+              <span className={styles.addLabel}>
+                {t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
+              </span>
+            </a>
           </li>
         ))}
       </ul>

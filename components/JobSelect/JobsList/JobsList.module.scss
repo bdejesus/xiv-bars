@@ -32,10 +32,6 @@ $button-inset: 10px;
     &:last-child {
       margin-bottom: 0;
     }
-
-    &[data-disabled='true'] {
-      background-color: transparent;
-    }
   }
 }
 

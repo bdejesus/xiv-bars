@@ -18,6 +18,7 @@ import EorzeaProfile from 'components/EorzeaProfile';
 import Jobs from 'apiData/Jobs.json';
 
 import type { PageProps } from 'types/Page';
+import type { ClassJobProps } from 'types/ClassJob';
 
 import styles from '../../Index.module.scss';
 
@@ -98,8 +99,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const pvp:boolean = !isPvp ? false : isPvp === '1';
 
     // Get Selected Job
-    const selectedJob = jobId ? Jobs.find((job) => job.Abbr === jobId) : null;
-    if (!selectedJob || selectedJob.Disabled) return { notFound: true };
+    const selectedJob = jobId ? Jobs.find((job:ClassJobProps) => job.Abbr === jobId) : null;
+    if (!selectedJob) return { notFound: true };
 
     const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${pvp}`);
     const { actions, roleActions } = await actionsRequest.json();
