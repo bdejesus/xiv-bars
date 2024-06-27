@@ -163,9 +163,11 @@ function SaveForm() {
             defaultChecked={viewAction === 'new' || viewData.published}
             ref={publishedCheckbox}
           />
-          <span className={styles.optionLabel}>Publish Layout</span>
+          <span className={styles.optionLabel}>
+            { t('SaveForm.publish_layout') }
+          </span>
           <span className={styles.optionInfo}>
-            Published Layouts can appear on lists and directories, and are discoverable by other users. Unplubished layouts are hidden from lists but are still accessible by visiting the URL.
+            { t('SaveForm.publish_layout_info') }
           </span>
         </label>
       </div>

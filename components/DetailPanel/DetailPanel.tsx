@@ -101,7 +101,7 @@ export default function DetailPanel({ className, visible }:Props) {
                         data-published={published}
                       >
                         <span className="tag-name">
-                          { published ? 'Published' : 'Draft' }
+                          { published ? t('LayoutCard.published') : t('LayoutCard.draft') }
                         </span>
                       </div>
                     )}

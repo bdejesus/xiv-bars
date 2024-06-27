@@ -161,7 +161,9 @@
     "delete": "削除",
     "delete_layout": "レイアウトを削除",
     "delete_confirm": "このレイアウトを削除してもよろしいですか？",
-    "last_updated": "最終更新"
+    "last_updated": "最終更新",
+    "draft": "下書き",
+    "published": "公開済み"
   },
 
   "Lore": {
@@ -237,6 +239,7 @@
     "description": "説明",
     "save_layout": "レイアウトを保存",
     "publish_layout": "レイアウトを公開",
+    "publish_layout_info": "公開されたレイアウトはリストやディレクトリに表示され、他のユーザーによって検索可能です。未公開のレイアウトはリストには表示されませんが、URLを訪問することでアクセスできます。",
     "save": "保存",
     "cancel": "キャンセル",
     "failed": "レイアウトを保存できませんでした。もう一度お試しください",
