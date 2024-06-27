@@ -1,9 +1,14 @@
 import fs from 'fs';
 import { NextApiRequest, NextApiResponse } from 'next';
+import Jobs from 'apiData/Jobs.json';
 
 export default async function actionsHandler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    const jobIds = Jobs.map(({ Abbr }) => Abbr);
     const params = req.query;
+
+    if (!jobIds.includes(params.job as string)) throw new Error('Not Found');
+
     const file = `${process.cwd()}/.apiData/JobActions/${params.job}.json`;
 
     fs.readFile(file, 'utf8', (err, data) => {
