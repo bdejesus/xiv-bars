@@ -21,6 +21,7 @@ export const defaultState:AppState = {
     wxhb: 0,
     xhb: 1,
     hearted: undefined,
+    published: undefined,
     _count: {
       hearts: 0
     }

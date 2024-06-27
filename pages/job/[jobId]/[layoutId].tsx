@@ -27,9 +27,8 @@ export default function Index(props:PageProps) {
     roleActions,
     viewAction,
     ownerLayouts,
-    classJobLayouts
+    classJobLayouts,
   } = props;
-
   const { t } = useTranslation();
   const router = useRouter();
   const displayName = translateData('Name', selectedJob, router.locale);
@@ -42,13 +41,13 @@ export default function Index(props:PageProps) {
     appDispatch({
       type: appActions.LOAD_VIEW_DATA,
       payload: {
-        viewData,
-        selectedJob,
         actions,
         roleActions,
-        viewAction,
+        selectedJob,
+        showDetails: true,
         urlParams: router.query,
-        showDetails: true
+        viewAction,
+        viewData
       }
     });
   }, []);
@@ -121,7 +120,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       take: 4,
       where: {
         id: { not: viewData.id },
-        description: { not: '' }
+        description: { not: '' },
+        published: true
       },
       include: {
         user: { select: { name: true } },

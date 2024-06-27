@@ -161,7 +161,9 @@
     "delete": "Löschen",
     "delete_layout": "Layout löschen",
     "delete_confirm": "Sind Sie sicher, dass Sie dieses Layout löschen möchten?",
-    "last_updated": "Zuletzt aktualisiert"
+    "last_updated": "Zuletzt aktualisiert",
+    "draft": "Entwurf",
+    "published": "Veröffentlicht"
   },
 
   "Lore": {
@@ -237,6 +239,7 @@
     "description": "Beschreibung",
     "save_layout": "Layout speichern",
     "publish_layout": "Layout veröffentlichen",
+    "publish_layout_info": "Veröffentlichte Layouts können in Listen und Verzeichnissen erscheinen und von anderen Benutzern gefunden werden. Unveröffentlichte Layouts sind in Listen verborgen, bleiben jedoch über die URL zugänglich.",
     "save": "Speichern",
     "cancel": "Abbrechen",
     "failed": "Layout konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",

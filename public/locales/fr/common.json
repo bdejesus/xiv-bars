@@ -161,7 +161,9 @@
     "delete": "Supprimer",
     "delete_layout": "Supprimer la disposition",
     "delete_confirm": "Êtes-vous sûr de vouloir supprimer cette disposition ?",
-    "last_updated": "Dernière mise à jour"
+    "last_updated": "Dernière mise à jour",
+    "draft": "Brouillon",
+    "published": "Publié"
   },
 
   "Lore": {
@@ -237,6 +239,7 @@
     "description": "Description",
     "save_layout": "Enregistrer la disposition",
     "publish_layout": "Publier la disposition",
+    "publish_layout_info": "Les mises en page publiées peuvent apparaître dans des listes et des répertoires, et sont découvrables par d'autres utilisateurs. Les mises en page non publiées sont masquées des listes mais restent accessibles en visitant l'URL.",
     "save": "Sauvegarder",
     "cancel": "Annuler",
     "failed": "Impossible d'enregistrer la disposition. Veuillez réessayer",

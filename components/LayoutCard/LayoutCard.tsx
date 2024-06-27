@@ -63,6 +63,13 @@ export default function LayoutCard(props:Props) {
               className={styles.hearts}
             />
           )}
+          { isOwner && !layout.published && (
+            <div className="tag">
+              <div className="tag-name">
+                { t('LayoutCard.draft') }
+              </div>
+            </div>
+          )}
         </div>
 
         <a

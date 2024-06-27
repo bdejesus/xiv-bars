@@ -58,6 +58,36 @@
 .actions {
   display: flex;
   flex-direction: row;
+
+  button,
+  :global(.button) {
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+  }
+}
+
+.options:global(.control) {
+  margin: $spacing-sm 0 $spacing-base;
+
+  label {
+    align-items: center;
+    display: grid;
+    font-weight: 400;
+    gap: $spacing-xs;
+    grid-template-columns: 20px auto;
+    justify-content: flex-start;
+  }
+
+  .optionLabel {
+    font-size: $font-size-base;
+    line-height: $font-size-lg;
+  }
+
+  .optionInfo {
+    font-style: italic;
+    grid-column-start: 2;
+    line-height: $font-size-base;
+  }
 }
 
 .message {

@@ -120,19 +120,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const layouts = await db.layout.findMany({
     where: {
       jobId: selectedJob?.Abbr,
-      description: { not: '' }
+      description: { not: '' },
+      published: true
     },
     include: {
       user: {
-        select: { name: true }
+        select: { name: true, id: true }
       },
       _count: {
         select: { hearts: true }
       }
     },
-    orderBy: {
-      updatedAt: 'desc'
-    }
+    orderBy: { updatedAt: 'desc' }
   });
 
   return {

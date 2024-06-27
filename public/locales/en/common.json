@@ -161,7 +161,9 @@
     "delete": "Delete",
     "delete_layout": "Delete Layout",
     "delete_confirm": "Are you sure you want to delete this Layout?",
-    "last_updated": "Last updated"
+    "last_updated": "Last updated",
+    "draft": "Draft",
+    "published": "Published"
   },
 
   "Lore": {
@@ -237,6 +239,7 @@
     "description": "Description",
     "save_layout": "Save Layout",
     "publish_layout": "Publish Layout",
+    "publish_layout_info": "Published Layouts can appear on lists and directories, and are discoverable by other users. Unpublished layouts are hidden from lists but are still accessible by visiting the URL.",
     "save": "Save",
     "cancel": "Cancel",
     "failed": "Couldn’t save layout. Please try again",

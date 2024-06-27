@@ -7,7 +7,6 @@ import { useUserDispatch } from 'components/User/context';
 import { userActions } from 'components/User/actions';
 import { appActions } from 'components/App/actions';
 import { systemActions, useSystemDispatch } from 'components/System';
-import ReactMarkdown from 'react-markdown';
 import analytics from 'lib/analytics';
 import type { LayoutViewProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
@@ -20,18 +19,18 @@ function SaveForm() {
   const router = useRouter();
   const titleField = createRef<HTMLInputElement>();
   const descriptionField = createRef<HTMLTextAreaElement>();
+  const publishedCheckbox = createRef<HTMLInputElement>();
 
   const { viewData, viewAction } = useAppState();
   const {
     title,
-    description,
+    description
   } = viewData;
   const appDispatch = useAppDispatch();
   const userDispatch = useUserDispatch();
   const systemDispatch = useSystemDispatch();
   const [validTitle, setValidTitle] = useState(false);
   const [canPublish, setCanPublish] = useState(false);
-  const [shouldPublish, setShouldPublish] = useState(false);
   const [viewDataStore, setViewDataStore] = useState<LayoutViewProps|undefined>(undefined);
 
   function saveLayout() {
@@ -54,7 +53,8 @@ function SaveForm() {
         {
           ...viewData,
           title: titleField.current?.value,
-          description: descriptionField.current?.value
+          description: descriptionField.current?.value,
+          published: publishedCheckbox.current?.checked
         },
         {
           filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt', 'hearted', '_count', 'userId']
@@ -104,12 +104,6 @@ function SaveForm() {
     appDispatch({ type: appActions.CANCEL_EDITS, payload: { viewData: viewDataStore } });
   }
 
-  function validateLayout() {
-    const text = descriptionField.current?.value;
-    const readyToPub = (text ? text.length > 0 : false);
-    setShouldPublish(readyToPub);
-  }
-
   function validateTitle() {
     setValidTitle(!!titleField?.current?.value);
   }
@@ -128,67 +122,78 @@ function SaveForm() {
   if (!session) return <SignInPrompt />;
 
   return (
-    <>
-      <form className={styles.saveForm}>
-        <div className={`control ${styles.titleField}`}>
-          <label htmlFor="layout-title">
-            {t('SaveForm.title')} <small>{t('SaveForm.required')}</small>
-          </label>
+    <form className={styles.saveForm}>
+      <div className={`control ${styles.titleField}`}>
+        <label htmlFor="layout-title">
+          {t('SaveForm.title')} <small>{t('SaveForm.required')}</small>
+        </label>
 
+        <input
+          id="layout-title"
+          name="layout-title"
+          type="text"
+          ref={titleField}
+          className={styles.titleField}
+          defaultValue={title}
+          required
+          onKeyUp={validateTitle}
+        />
+      </div>
+
+      <div className={`control ${styles.descriptionField}`}>
+        <label htmlFor="layout-description">
+          {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
+        </label>
+
+        <textarea
+          id="layout-description"
+          name="layout-description"
+          ref={descriptionField}
+          className={styles.textarea}
+          defaultValue={description}
+        />
+      </div>
+
+      <div className={`control ${styles.options}`}>
+        <label htmlFor="layout-publish">
           <input
-            id="layout-title"
-            name="layout-title"
-            type="text"
-            ref={titleField}
-            className={styles.titleField}
-            defaultValue={title}
-            required
-            onKeyUp={validateTitle}
+            id="layout-publish"
+            name="layout-publish"
+            type="checkbox"
+            defaultChecked={viewAction === 'new' || viewData.published}
+            ref={publishedCheckbox}
           />
-        </div>
+          <span className={styles.optionLabel}>
+            { t('SaveForm.publish_layout') }
+          </span>
+          <span className={styles.optionInfo}>
+            { t('SaveForm.publish_layout_info') }
+          </span>
+        </label>
+      </div>
 
-        <div className={`control ${styles.descriptionField}`}>
-          <label htmlFor="layout-description">
-            {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
-          </label>
+      <div className={styles.actions}>
+        <button
+          type="button"
+          onClick={saveLayout}
+          className="button btn-primary"
+          disabled={!canPublish}
+        >
+          { t('SaveForm.save') }
+        </button>
 
-          <textarea
-            id="layout-description"
-            name="layout-description"
-            ref={descriptionField}
-            className={styles.textarea}
-            defaultValue={description}
-            onChange={validateLayout}
-          />
-        </div>
+        { viewAction !== 'new' && (
+        <button
+          onClick={cancelEdit}
+          type="button"
+          className="button btn-clear"
+        >
+          {t('SaveForm.cancel')}
+        </button>
+        )}
+      </div>
 
-        <div className={styles.actions}>
-          <button
-            type="button"
-            onClick={saveLayout}
-            className="button btn-primary"
-            disabled={!canPublish}
-          >
-            { t('SaveForm.save') }
-          </button>
-
-          { viewAction !== 'new' && (
-            <button
-              onClick={cancelEdit}
-              type="button"
-              className="button btn-clear"
-            >
-              {t('SaveForm.cancel')}
-            </button>
-          )}
-        </div>
-
-      </form>
-
-      <ReactMarkdown className={`${styles.message} system-message ${shouldPublish ? 'info' : 'warn'}`}>
-        {t('SaveForm.draft')}
-      </ReactMarkdown>
-    </>
+    </form>
   );
 }
 

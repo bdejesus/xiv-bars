@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import db, { serializeDates } from 'lib/db';
+import db, { serializeDates, layoutsQuery } from 'lib/db';
 import Head from 'next/head';
 import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { AppContextProvider } from 'components/App/context';
 import { useUserState, useUserDispatch } from 'components/User/context';
 import { userActions } from 'components/User/actions';
@@ -113,63 +115,43 @@ export default function User({ user }:UserViewProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const userId = context?.params?.userId as string;
+  const session = await getServerSession(context.req, context.res, authOptions);
+  const userId = context.params?.userId as string;
+  const isOwner = session?.user.id.toString() === userId;
   const id = parseInt(userId, 10);
   const userQuery = id ? { id } : { name: userId };
 
-  const layoutColumns = {
-    id: true,
-    title: true,
-    description: true,
-    jobId: true,
-    isPvp: true,
-    layout: true,
-    createdAt: true,
-    updatedAt: true,
-    deletedAt: false,
-    userId: true,
-    _count: {
-      select: { hearts: true }
-    }
-  };
-
-  const layoutQuery = {
-    where: { deletedAt: null },
-    select: layoutColumns,
-    orderBy: { updatedAt: 'desc' }
-  };
-
-  const heartsQuery = {
-    select: {
-      layout: {
-        select: {
-          ...layoutColumns,
-          user: {
-            select: { name: true, id: true }
-          }
-        }
-      }
-    }
-  };
+  const userLayoutsQuery = isOwner
+    ? layoutsQuery
+    : { ...layoutsQuery, where: { published: true } };
 
   const user = await db.user.findFirst({
-    where: { ...userQuery, deletedAt: null },
+    where: userQuery,
     select: {
       name: true,
       id: true,
       image: true,
-      layouts: layoutQuery,
-      hearts: heartsQuery
+      layouts: userLayoutsQuery
     }
   });
 
+  const heartedLayouts = isOwner ? await db.layout.findMany({
+    where: {
+      published: true,
+      hearts: {
+        some: { userId: id }
+      }
+    },
+    include: {
+      user: {
+        select: { id: true, name: true }
+      }
+    }
+  }) : [];
+
   if (!user) return { notFound: true };
 
-  const heartedLayouts = user.hearts.map(({ layout }:{ layout:LayoutViewProps }) => layout);
-  const userLayouts = user.layouts.map((layout:LayoutViewProps) => ({
-    ...layout,
-    user: { name: user.name }
-  }));
+  const userLayouts = user.layouts.map((layout:LayoutViewProps) => layout);
 
   return {
     props: {
