@@ -102,7 +102,7 @@ export function ExportToMacros() {
         type="button"
         data-title={t('ExportToMacro.export_to_macro')}
         className={`${styles.macroBtn} button`}
-        onClick={()=> { setShowMacrosModal(true) }}
+        onClick={() => setShowMacrosModal(true)}
       >
         <Icon id={Icons.MACRO} alt={t('ExportToMacro.export_to_macro')} />
         <span className="btn-label">{t('ExportToMacro.export_to_macro')}</span>
