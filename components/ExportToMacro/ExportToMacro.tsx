@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { createRef, useState } from 'react';
+import { createRef, useState, useEffect } from 'react';
 import { layouts, chotbarSlotNames } from 'lib/xbars';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
@@ -77,10 +77,9 @@ export function ExportToMacros() {
     }
   }
 
-  function handleShowMacros() {
+  useEffect(() => {
     buildMacros();
-    setShowMacrosModal(true);
-  }
+  }, [appState]);
 
   // TODO: Implement Click to Copy function
 
@@ -103,7 +102,7 @@ export function ExportToMacros() {
         type="button"
         data-title={t('ExportToMacro.export_to_macro')}
         className={`${styles.macroBtn} button`}
-        onClick={handleShowMacros}
+        onClick={() => setShowMacrosModal(true)}
       >
         <Icon id={Icons.MACRO} alt={t('ExportToMacro.export_to_macro')} />
         <span className="btn-label">{t('ExportToMacro.export_to_macro')}</span>
