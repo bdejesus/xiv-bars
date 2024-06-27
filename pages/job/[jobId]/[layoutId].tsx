@@ -100,8 +100,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const layoutId = context.params?.layoutId as string;
 
     // Get Selected Job
-    const selectedJob = Jobs.find((job: ClassJobProps) => job.Abbr === jobId);
-    if (!selectedJob || selectedJob.Disabled) return { notFound: true };
+    const selectedJob = Jobs.find((job:ClassJobProps) => job.Abbr === jobId);
+    if (!selectedJob) return { notFound: true };
 
     // Fetch Layout Data using fetchOptions
     const fetchOptions = {

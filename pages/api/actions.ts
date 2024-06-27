@@ -1,17 +1,12 @@
 import fs from 'fs';
 import { NextApiRequest, NextApiResponse } from 'next';
+import Jobs from 'apiData/Jobs.json';
 
 export default async function actionsHandler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    let file;
     const params = req.query;
-    file = `${process.cwd()}/.apiData/JobActions/${params.job}.json`;
-
-    if (`${params.job}` === 'PCT') {
-      file = `${process.cwd()}/data/JobActions/PCT.json`;
-    } else if (`${params.job}` === 'VPR') {
-      file = `${process.cwd()}/data/JobActions/VPR.json`;
-    }
+    const jobId = Jobs.map(({ Abbr }) => Abbr).find((id) => id === params.job);
+    const file = `${process.cwd()}/.apiData/JobActions/${jobId}.json`;
 
     fs.readFile(file, 'utf8', (err, data) => {
       if (err) {
