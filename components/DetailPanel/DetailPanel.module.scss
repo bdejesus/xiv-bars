@@ -247,8 +247,8 @@ $panel-width-lg: $screen-xs;
 
 .publishedTag {
   font-size: $font-size-sm;
-  text-transform: uppercase;
   font-style: italic;
+  text-transform: uppercase;
 
   &[data-published='true'] {
     color: $color-success;

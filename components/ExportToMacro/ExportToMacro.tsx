@@ -72,16 +72,13 @@ export function ExportToMacros() {
         .trim()
         .split('\n');
 
-      console.log(hotbarRows);
       const clearMacro = hotbarRows
         .reduce((collectKeys:string[], hbRow, index) => {
           if (hasActions(hbRow)) {
-            return [...collectKeys, `/${currLayout} remove ${index + 1} all`]
+            return [...collectKeys, `/${currLayout} remove ${index + 1} all`];
           }
           return collectKeys;
         }, []).join('\n');
-
-
 
       const macroGroups: string[] = groupMacros(hotbarMacros);
 
