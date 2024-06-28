@@ -14,6 +14,7 @@ import { SystemContextProvider } from 'components/System';
 import { AppContextProvider } from 'components/App/context';
 import Avatar from 'components/Avatar';
 import LoadScreen from 'components/LoadScreen';
+import DonateButton from 'components/DonateButton';
 import { ErrorBoundary } from 'react-error-boundary';
 import nextI18NextConfig from '../next-i18next.config.js';
 
@@ -121,6 +122,7 @@ function App({ Component, pageProps }: AppProps) {
             <UserProvider>
               <AppContextProvider>
                 <Component {...pageProps} />
+                <DonateButton />
                 <LoadScreen />
               </AppContextProvider>
             </UserProvider>
