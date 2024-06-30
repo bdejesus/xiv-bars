@@ -8,8 +8,9 @@ import layoutsApi from 'lib/api/layout';
 type UserID = number | undefined;
 
 export default async function layoutHandler(req: NextApiRequest, res: NextApiResponse) {
+  const session = await getServerSession(req, res, authOptions);
+
   try {
-    const session = await getServerSession(req, res, authOptions);
     const userId: UserID = session?.user.id;
     const { body } = req;
 
@@ -29,7 +30,8 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
       }
 
       case 'read': {
-        const readLayout = await layoutsApi.read(body.layoutId, userId)
+        const readLayout = await layoutsApi
+          .read(body.layoutId, body.viewerId)
           .catch((error) => console.error(error));
         res.status(200).json(readLayout);
         break;
@@ -83,7 +85,8 @@ export default async function layoutHandler(req: NextApiRequest, res: NextApiRes
           res.statusMessage = message;
           res.status(404).json(error);
         } else {
-          const readLayout = await layoutsApi.read(body.layoutId, userId);
+          const readLayout = await layoutsApi
+            .read(body.layoutId, body.viewerId);
           res.status(200).json(readLayout);
         }
         break;

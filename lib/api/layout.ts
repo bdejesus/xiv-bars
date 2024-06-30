@@ -53,12 +53,13 @@ export async function create(
 
 export async function read(
   id: LayoutID,
-  userId: UserID | undefined
+  viewerId: UserID | undefined
 ):Promise<LayoutViewProps> {
   if (!id) throw new Error('Layout not found');
 
   const layoutId = parseInt(id, 10);
-  const hearted = await db.heart.findFirst({ where: { userId, layoutId } });
+
+  const hearted = await db.heart.findFirst({ where: { userId: viewerId, layoutId } });
   const viewData = await db.layout
     .findUnique({
       where: { id: parseInt(id, 10) },
@@ -94,7 +95,10 @@ export async function read(
     viewData.encodedSlots = convertedSlots;
   }
 
-  return { ...viewData, hearted: hearted || undefined };
+  return {
+    ...viewData,
+    hearted
+  };
 }
 
 export async function update(data:LayoutDataProps):Promise<LayoutDataProps> {

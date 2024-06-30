@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { useTranslation } from 'next-i18next';
 import { GetServerSideProps } from 'next';
 import { translateData } from 'lib/utils/i18n.mjs';
@@ -95,6 +97,10 @@ export default function Index(props:PageProps) {
 }
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
+  const { req, res } = context;
+  const session = await getServerSession(req, res, authOptions);
+  const viewerId = session?.user.id;
+
   try {
     const jobId = context.params?.jobId as string;
     const layoutId = context.params?.layoutId as string;
@@ -106,7 +112,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     // Fetch Layout Data using fetchOptions
     const fetchOptions = {
       method: 'POST',
-      body: JSON.stringify({ layoutId, method: 'read' }),
+      body: JSON.stringify({ layoutId, viewerId, method: 'read' }),
       headers: { 'Content-Type': 'application/json' }
     };
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
@@ -116,7 +122,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
     const { actions, roleActions } = await actionsRequest.json();
 
-    // DB Query Options
+    // DB List Query Options
     const listOptions = {
       take: 4,
       where: {
@@ -131,13 +137,11 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       orderBy: { updatedAt: 'desc' }
     };
 
-    // DB Query to fetch other layouts by the current owner
+    // DB Query to fetch other layouts by the layout owner
     const ownerLayouts = await db.layout.findMany({
       ...listOptions,
       where: { ...listOptions.where, userId: viewData.user.id }
     });
-    // Take results, shuffle and take 4, convert date objects to json string
-    const serializableOwnerLayouts = serializeDates(ownerLayouts);
 
     // DB Query to fetch other layouts with the same jobClass
     const classJobLayouts = await db.layout.findMany({
@@ -155,7 +159,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       actions,
       roleActions,
       viewAction: 'show',
-      ownerLayouts: serializableOwnerLayouts,
+      ownerLayouts: serializeDates(ownerLayouts),
       classJobLayouts: serializableClassJobLayouts
     };
 
