@@ -1,0 +1,43 @@
+@import "styles/mixins";
+
+.textareaWrapper {
+  border-color: $color-gray;
+  padding: 0 $spacing-sm $spacing-sm;
+  position: relative;
+
+  .copyButton {
+    position: absolute;
+    right: $spacing-base;
+    top: $spacing-sm;
+  }
+
+  textarea {
+    background-color: $panel-bg-dark;
+    border: none;
+    color: #ccc;
+    display: block;
+    font-family: $font-monospace;
+    font-size: 11px;
+    height: 220px;
+    line-height: 1.2em;
+    margin: 0;
+    padding: $spacing-sm;
+    resize: none;
+  }
+
+  &[data-copied='true'] {
+    textarea {
+      animation: copied 0.33s ease;
+    }
+  }
+}
+
+@keyframes copied {
+  from {
+    background-color: #333;
+  }
+
+  to {
+    background-color: $panel-bg-dark;
+  }
+}

@@ -86,6 +86,7 @@
     "export_to_macro": "Exporter vers une macro",
     "limitations": "Un ensemble limité d'actions peut être attribué via des commandes de macro. Les actions incompatibles sont omises de la macro générée. Notez également que les macros sont limitées à 15 lignes chacune.",
     "copy": "Copier",
+    "copy_to": "Copier dans le presse-papiers",
     "copied": "Copié !"
   },
 

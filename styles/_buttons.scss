@@ -261,6 +261,17 @@ button,
   .icon {
     margin: 0;
   }
+
+  &.btn-sm {
+    height: 32px;
+    padding: 0;
+    width: 32px;
+
+    .icon {
+      height: 12px;
+      width: 12px;
+    }
+  }
 }
 
 .btn-block.button {

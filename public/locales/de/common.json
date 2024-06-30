@@ -86,6 +86,7 @@
     "export_to_macro": "Exportieren als Makro",
     "limitations": "Ein begrenzter Satz von Aktionen kann über Makrobefehle zugewiesen werden. Inkompatible Aktionen werden aus dem generierten Makro ausgelassen. Beachten Sie auch, dass Makros auf 15 Zeilen begrenzt sind.",
     "copy": "Kopieren",
+    "copy_to": "In die Zwischenablage kopieren",
     "copied": "Kopiert!"
   },
 

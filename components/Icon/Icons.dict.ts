@@ -1,6 +1,7 @@
 export const Icons = {
   ADD: 'add',
   COPY: 'copy',
+  COPY_TO: 'copy-to',
   EDIT: 'edit',
   HELP: 'help',
   LAYOUT: 'layout',
