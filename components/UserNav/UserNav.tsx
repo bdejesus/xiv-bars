@@ -81,9 +81,9 @@ export default function UserNav({ className }:{ className?: string}) {
             onMouseLeave={toggleMenu}
           >
             <li className={styles.navItem}>
-              <Link href={`/user/${session.user.id}`}>
+              <a href={`/user/${session.user.id}`}>
                 {t('UserNav.my_layouts')}
-              </Link>
+              </a>
             </li>
 
             <li className={styles.navItem}>
