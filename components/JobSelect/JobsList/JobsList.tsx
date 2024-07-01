@@ -2,7 +2,6 @@ import { useRouter } from 'next/router';
 import type { ClassJobProps } from 'types/ClassJob';
 import { useTranslation } from 'next-i18next';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
-import Link from 'next/link';
 import { useSystemDispatch } from 'components/System/context';
 import { systemActions } from 'components/System/actions';
 import Icon, { Icons } from 'components/Icon';
@@ -47,14 +46,14 @@ export function JobsList({
             itemProp="itemListElement"
             itemType="https://schema.org/ListItem"
           >
-            <Link
+            <a
               href={action === 'new' ? `/job/${job.Abbr}/new` : `/job/${job.Abbr}`}
               className={`${styles.jobLink} jobList-link`}
               draggable={false}
               itemProp="url"
             >
               <ClassJob job={job} />
-            </Link>
+            </a>
 
             <a
               href={localizePath(`/job/${job.Abbr}/new`, locale)}

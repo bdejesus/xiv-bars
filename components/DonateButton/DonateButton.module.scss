@@ -4,6 +4,12 @@
   bottom: $spacing-base;
   position: fixed;
   right: $spacing-base;
+  transition: opacity 0.33s ease;
+
+  &[data-hidden='true'] {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .donateLink:global(.button) {
@@ -44,5 +50,18 @@
   &:hover::before {
     content: "🍻";
     font-size: 30px;
+  }
+}
+
+.dismissBtn:global(.btn-icon) {
+  position: absolute;
+  right: $spacing-sm;
+  top: 0;
+  transform: translate(0, -50%);
+  z-index: 3;
+
+  :global(.icon) {
+    height: $spacing-base;
+    width: $spacing-base;
   }
 }
