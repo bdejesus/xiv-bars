@@ -249,7 +249,6 @@ button,
 .btn-sm.button {
   font-size: $font-size-sm;
   height: 30px;
-  padding: 0 $spacing-sm;
 }
 
 .btn-icon.button {
@@ -271,6 +270,11 @@ button,
       height: 12px;
       width: 12px;
     }
+  }
+
+  &.btn-xs {
+    height: 20px;
+    width: 20px;
   }
 }
 

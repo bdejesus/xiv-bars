@@ -122,7 +122,7 @@ export default function Slot({ id, className, action }: Props) {
         { !readOnly && action?.Name && (
           <button
             type="button"
-            className={[styles.removeBtn, 'button btn-sm btn-icon'].join(' ')}
+            className={[styles.removeBtn, 'button btn-xs btn-icon'].join(' ')}
             onClick={(e) => resetSlot(e)}
           >
             <Icon id={Icons.REMOVE} alt="Remove" />
