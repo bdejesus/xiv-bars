@@ -139,7 +139,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         published: true
       },
       include: {
-        user: { select: { name: true } },
+        user: { select: { name: true, image: true } },
         _count: { select: { hearts: true } }
       },
       orderBy: { updatedAt: 'desc' }

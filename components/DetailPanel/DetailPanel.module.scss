@@ -204,6 +204,12 @@ $panel-width-lg: $screen-xs;
   font-size: $font-size-base;
 }
 
+.profileImage {
+  box-shadow: none;
+  height: $spacing-lg;
+  width: $spacing-lg;
+}
+
 .body {
   display: flex;
   flex: 1 1 auto;
@@ -220,7 +226,6 @@ $panel-width-lg: $screen-xs;
 .timestamp {
   font-size: $font-size-sm;
   font-style: italic;
-  margin-bottom: $spacing-base;
   opacity: 0.75;
 }
 
@@ -243,6 +248,10 @@ $panel-width-lg: $screen-xs;
   display: flex;
   flex-direction: row;
   gap: $spacing-sm;
+
+  + .row {
+    margin-top: $spacing-base;
+  }
 }
 
 .publishedTag {

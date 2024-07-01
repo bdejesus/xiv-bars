@@ -157,8 +157,6 @@
   },
 
   "LayoutCard": {
-    "by": "by",
-    "by_author": "by {{authorName}}",
     "cancel": "Cancel",
     "delete": "Delete",
     "delete_layout": "Delete Layout",

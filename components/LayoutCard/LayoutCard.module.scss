@@ -157,6 +157,17 @@ $description-height: 42px;
     }
   }
 
+  .profileImage {
+    float: left;
+    height: $spacing-lg;
+    margin-right: $spacing-sm;
+    width: $spacing-lg;
+
+    &::after {
+      opacity: 0.2;
+    }
+  }
+
   .owner {
     font-size: $font-size-base;
     line-height: 1.2;

@@ -3,6 +3,7 @@
 .wrapper {
   border-radius: 10%;
   box-shadow: $box-shadow;
+  display: block;
   max-height: 120px;
   max-width: 120px;
   overflow: hidden;
@@ -21,6 +22,7 @@
   }
 
   img {
+    color: transparent;
     display: block;
     height: 100%;
     object-fit: cover;

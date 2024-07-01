@@ -106,7 +106,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const layoutsQuery = {
     include: {
       user: {
-        select: { name: true }
+        select: { name: true, image: true }
       },
       _count: {
         select: { hearts: true }

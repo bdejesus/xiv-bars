@@ -64,7 +64,7 @@ export async function read(
       where: { id: parseInt(id, 10) },
       include: {
         user: {
-          select: { name: true, id: true }
+          select: { name: true, id: true, image: true }
         },
         _count: {
           select: { hearts: true }

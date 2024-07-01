@@ -10,6 +10,7 @@ import Hearts from 'components/Hearts';
 import JobSprite from 'components/JobSprite';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
+import ProfileImage from 'components/User/ProfileImage';
 import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
 
@@ -61,23 +62,32 @@ export default function DetailPanel({ className, visible }:Props) {
                 </div>
 
                 <div className={styles.meta}>
-                  <div
-                    className={styles.owner}
-                    itemScope
-                    itemProp="author"
-                    itemType="https://schema.org/Person"
-                  >
-                    {t('LayoutCard.by')}&nbsp;
-                    <Link href={`/user/${userId}`} itemProp="url">
-                      <span itemProp="name">{user?.name}</span>
-                    </Link>
-                  </div>
+                  <div className={styles.row}>
+                    <ProfileImage
+                      src={user!.image}
+                      title={user!.name}
+                      className={styles.profileImage}
+                      href={`/user/${userId}`}
+                    />
+                    <div>
+                      <div
+                        className={styles.owner}
+                        itemScope
+                        itemProp="author"
+                        itemType="https://schema.org/Person"
+                      >
+                        <Link href={`/user/${userId}`} itemProp="url">
+                          <span itemProp="name">{user?.name}</span>
+                        </Link>
+                      </div>
 
-                  { updatedAt && (
-                    <div className={styles.timestamp}>
-                      {t('LayoutCard.last_updated')}: <time dateTime={updatedAt}>{formatDateString(updatedAt as string, router.locale)}</time>
+                      { updatedAt && (
+                        <div className={styles.timestamp}>
+                          {t('LayoutCard.last_updated')}: <time dateTime={updatedAt}>{formatDateString(updatedAt as string, router.locale)}</time>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
 
                   <div className={styles.row}>
                     { id && (
