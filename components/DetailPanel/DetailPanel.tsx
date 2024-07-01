@@ -39,7 +39,7 @@ export default function DetailPanel({ className, visible }:Props) {
   const isOwner = session?.user.id === userId;
   const hasSprite = (selectedJob && selectedJob.Abbr)
     && ['DOW', 'DOM'].includes(selectedJob.Discipline)
-    && !['BLU', 'VPR'].includes(selectedJob.Abbr);
+    && !['BLU'].includes(selectedJob.Abbr);
 
   return (
     <div
