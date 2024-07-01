@@ -33,10 +33,18 @@ export default function Index(props:PageProps) {
   } = props;
   const { t } = useTranslation();
   const router = useRouter();
-  const displayName = translateData('Name', selectedJob, router.locale);
-  const displayAbbr = translateData('Abbreviation', selectedJob, router.locale);
+  const displayJobName = translateData('Name', selectedJob, router.locale);
+  const displayJobAbbr = translateData('Abbreviation', selectedJob, router.locale);
   const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}/${viewData?.id}`;
-  const pageTitle = `${viewData?.title} – ${viewData.user?.name} • ${displayName} (${displayAbbr}) • XIVBARS`;
+  const displayAuthor = t(
+    'Pages.Layout.title_by_author',
+    { titleName: viewData.title, authorName: viewData.user!.name }
+  );
+  const displayTitle = t(
+    'Pages.Layout.title',
+    { jobName: displayJobName, jobAbbr: displayJobAbbr }
+  );
+  const pageTitle = [displayAuthor, displayTitle].join(' • ');
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
@@ -82,7 +90,7 @@ export default function Index(props:PageProps) {
         { classJobLayouts.length > 0 && (
           <section>
             <LayoutsList
-              title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
+              title={t('Pages.Layout.more_layouts_by_job', { jobName: displayJobName })}
               link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
               layouts={classJobLayouts}
               columns={4}

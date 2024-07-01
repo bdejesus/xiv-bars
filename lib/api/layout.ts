@@ -58,7 +58,6 @@ export async function read(
   if (!id) throw new Error('Layout not found');
 
   const layoutId = parseInt(id, 10);
-
   const hearted = await db.heart.findFirst({ where: { userId: viewerId, layoutId } });
   const viewData = await db.layout
     .findUnique({

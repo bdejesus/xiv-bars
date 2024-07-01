@@ -116,7 +116,7 @@ export default function LayoutCard(props:Props) {
 
         <div
           className={styles.jobBackdrop}
-          style={{ backgroundImage: `url('/jobIcons${job.Icon}')` }}
+          style={{ backgroundImage: `url(/jobIcons/${job.Name.replaceAll(' ', '')}.png` }}
         />
       </Card>
 

@@ -56,6 +56,9 @@ export default function Index(props:PageProps) {
   return (
     <>
       <Head>
+        <title>
+          { t('Pages.Layout.new_title', { jobName }) }
+        </title>
         <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         <link rel="canonical" href={canonicalUrl} />
       </Head>
