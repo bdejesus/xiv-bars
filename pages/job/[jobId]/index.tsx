@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import db, { serializeDates } from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { translateData } from 'lib/utils/i18n.mjs';
+import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'components/App/context';
 import { appActions } from 'components/App/actions';
@@ -13,6 +13,7 @@ import SelectedJob from 'components/JobSelect/SelectedJob';
 import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
+import Icon, { Icons } from 'components/Icon';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
@@ -77,6 +78,14 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             <p className="text-xl" itemProp="description">
               { t('Pages.Job.index_description', { jobName: selectedJob.Name }) }
             </p>
+
+            <a
+              href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
+              className={`button btn-primary btn-lg ${styles.newLink}`}
+            >
+              <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
+              <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
+            </a>
           </div>
 
           { selectedJob?.Description && (
