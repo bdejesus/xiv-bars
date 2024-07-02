@@ -25,18 +25,19 @@ export default function ClassJob({
   const displayName = translateData('Name', job, locale);
 
   return (
-    <div className={[styles.container, className].join(' ')} data-disabled={job.Disabled}>
+    <div className={[styles.container, className].join(' ')}>
       <span className={`${styles.jobWrapper} job-wrapper`} data-role={job.Role}>
         { icon && (
           <span className={`${styles.iconWrapper} job-icon`}>
             <Image
               className={styles.icon}
-              src={job.PreIcon || `/jobIcons${job.Icon}`}
+              src={`/jobIcons/${job.Name.replaceAll(' ', '')}.png`}
               alt={`${job.Name} Icon`}
               draggable={false}
               height={32}
               width={32}
               itemProp="image"
+              data-src={`/jobIcons/${job.Name.replaceAll(' ', '')}.png`}
             />
           </span>
         )}

@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from 'pages/api/auth/[...nextauth]';
 import { useTranslation } from 'next-i18next';
 import { GetServerSideProps } from 'next';
 import { translateData } from 'lib/utils/i18n.mjs';
@@ -31,10 +33,18 @@ export default function Index(props:PageProps) {
   } = props;
   const { t } = useTranslation();
   const router = useRouter();
-  const displayName = translateData('Name', selectedJob, router.locale);
-  const displayAbbr = translateData('Abbreviation', selectedJob, router.locale);
+  const displayJobName = translateData('Name', selectedJob, router.locale);
+  const displayJobAbbr = translateData('Abbreviation', selectedJob, router.locale);
   const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}/${viewData?.id}`;
-  const pageTitle = `${viewData?.title} – ${viewData.user?.name} • ${displayName} (${displayAbbr}) • XIVBARS`;
+  const displayAuthor = t(
+    'Pages.Layout.title_by_author',
+    { titleName: viewData.title, authorName: viewData.user!.name }
+  );
+  const displayTitle = t(
+    'Pages.Layout.title',
+    { jobName: displayJobName, jobAbbr: displayJobAbbr }
+  );
+  const pageTitle = [displayAuthor, displayTitle].join(' • ');
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
@@ -58,6 +68,7 @@ export default function Index(props:PageProps) {
         <title>{pageTitle}</title>
         <meta name="description" content={viewData?.description} />
         <link rel="canonical" href={canonicalUrl} />
+        { !viewData.published && <meta name="robots" content="noindex" /> }
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />
@@ -79,7 +90,7 @@ export default function Index(props:PageProps) {
         { classJobLayouts.length > 0 && (
           <section>
             <LayoutsList
-              title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
+              title={t('Pages.Layout.more_layouts_by_job', { jobName: displayJobName })}
               link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
               layouts={classJobLayouts}
               columns={4}
@@ -94,18 +105,22 @@ export default function Index(props:PageProps) {
 }
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
+  const { req, res } = context;
+  const session = await getServerSession(req, res, authOptions);
+  const viewerId = session?.user.id;
+
   try {
     const jobId = context.params?.jobId as string;
     const layoutId = context.params?.layoutId as string;
 
     // Get Selected Job
-    const selectedJob = Jobs.find((job: ClassJobProps) => job.Abbr === jobId);
-    if (!selectedJob || selectedJob.Disabled) return { notFound: true };
+    const selectedJob = Jobs.find((job:ClassJobProps) => job.Abbr === jobId);
+    if (!selectedJob) return { notFound: true };
 
     // Fetch Layout Data using fetchOptions
     const fetchOptions = {
       method: 'POST',
-      body: JSON.stringify({ layoutId, method: 'read' }),
+      body: JSON.stringify({ layoutId, viewerId, method: 'read' }),
       headers: { 'Content-Type': 'application/json' }
     };
     const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
@@ -115,7 +130,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
     const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
     const { actions, roleActions } = await actionsRequest.json();
 
-    // DB Query Options
+    // DB List Query Options
     const listOptions = {
       take: 4,
       where: {
@@ -124,19 +139,17 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         published: true
       },
       include: {
-        user: { select: { name: true } },
+        user: { select: { name: true, image: true } },
         _count: { select: { hearts: true } }
       },
       orderBy: { updatedAt: 'desc' }
     };
 
-    // DB Query to fetch other layouts by the current owner
+    // DB Query to fetch other layouts by the layout owner
     const ownerLayouts = await db.layout.findMany({
       ...listOptions,
       where: { ...listOptions.where, userId: viewData.user.id }
     });
-    // Take results, shuffle and take 4, convert date objects to json string
-    const serializableOwnerLayouts = serializeDates(ownerLayouts);
 
     // DB Query to fetch other layouts with the same jobClass
     const classJobLayouts = await db.layout.findMany({
@@ -154,7 +167,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       actions,
       roleActions,
       viewAction: 'show',
-      ownerLayouts: serializableOwnerLayouts,
+      ownerLayouts: serializeDates(ownerLayouts),
       classJobLayouts: serializableClassJobLayouts
     };
 

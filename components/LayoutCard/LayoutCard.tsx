@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
+import { formatDateString } from 'lib/utils/time';
+import ReactMarkdown from 'react-markdown';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
-import { formatDateString } from 'lib/utils/time';
+import { useUserDispatch, userActions } from 'components/User';
 import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
-import ReactMarkdown from 'react-markdown';
-import { useUserDispatch, userActions } from 'components/User';
+import ProfileImage from 'components/User/ProfileImage';
+
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
+
 import styles from './LayoutCard.module.scss';
 
 interface Props {
@@ -64,10 +67,8 @@ export default function LayoutCard(props:Props) {
             />
           )}
           { isOwner && !layout.published && (
-            <div className="tag">
-              <div className="tag-name">
-                { t('LayoutCard.draft') }
-              </div>
+            <div className={`tag ${styles.publishTag}`}>
+              { t('LayoutCard.draft') }
             </div>
           )}
         </div>
@@ -96,6 +97,13 @@ export default function LayoutCard(props:Props) {
         </a>
 
         <div className={styles.footer}>
+          <ProfileImage
+            src={layout.user.image}
+            title={layout.user.name}
+            href={`/user/${layout.userId}`}
+            className={styles.profileImage}
+          />
+
           { !hideName && (
             <div
               className={styles.owner}
@@ -118,7 +126,7 @@ export default function LayoutCard(props:Props) {
 
         <div
           className={styles.jobBackdrop}
-          style={{ backgroundImage: `url('/jobIcons${job.Icon}')` }}
+          style={{ backgroundImage: `url(/jobIcons/${job.Name.replaceAll(' ', '')}.png` }}
         />
       </Card>
 

@@ -8,7 +8,6 @@ export interface ClassJobProps {
   ClassActionAllowlist?: string[],
   Description?: string | null,
   Discipline: string,
-  Disabled?: boolean,
   ID: number,
   Icon: string,
   Name: string,
@@ -18,6 +17,5 @@ export interface ClassJobProps {
   Role?: string | null,
   Url: string,
   Weapon?: string,
-  PreIcon?: string,
   UrlType?: string | null,
 }

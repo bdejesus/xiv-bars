@@ -3,7 +3,8 @@
       "actions": [
         {
           "Description": "Delivers an attack with a potency of 200.",
-          "ID": 9990101,
+          "AltID": 9990101,
+          "ID": 34606,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Steel_Fangs.png",
           "IconHD": "/actionIcons/VPR/Steel_Fangs.png",
@@ -14,7 +15,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 100.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Afflicts target with <span style=\"color:#ffff66;\">Noxious Gnash</span>\n\n<span style=\"color:#00cc22;\">Noxious Gnash Effect:</span> Increases damage you deal target by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 20s\n\nExtends <span style=\"color:#ffff66;\">Noxious Gnash</span> duration by 20s to a maximum of 40s.",
-          "ID": 9990102,
+          "AltID": 9990102,
+          "ID": 34607,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Dread_Fangs.png",
           "IconHD": "/actionIcons/VPR/Dread_Fangs.png",
@@ -28,7 +30,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 150 to all nearby enemies.",
-          "ID": 9990103,
+          "AltID": 9990103,
+          "ID": 34614,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Steel_Maw.png",
           "IconHD": "/actionIcons/VPR/Steel_Maw.png",
@@ -39,7 +42,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 100 to all nearby enemies.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Afflicts target with <span style=\"color:#ffff66;\">Noxious Gnash</span>\n\n<span style=\"color:#00cc22;\">Noxious Gnash Effect:</span> Increases damage you deal target by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 20s\n\nExtends <span style=\"color:#ffff66;\">Noxious Gnash</span> duration by 20s to a maximum of 40s.",
-          "ID": 9990104,
+          "AltID": 9990104,
+          "ID": 34615,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Dread_Maw.png",
           "IconHD": "/actionIcons/VPR/Dread_Maw.png",
@@ -50,7 +54,8 @@
         },
         {
           "Description": "Delivers a ranged attack with a potency of 200.",
-          "ID": 9990105,
+          "AltID": 9990105,
+          "ID": 34632,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Writhing_Snap.png",
           "IconHD": "/actionIcons/VPR/Writhing_Snap.png",
@@ -61,7 +66,8 @@
         },
         {
           "Description": "Rush to a targetted enemy's or party member's location.\n\n<span style=\"color:#00cc22;\">Maximum Charges:</span> 3\n\nCannot be executed while bound.",
-          "ID": 9990106,
+          "AltID": 9990106,
+          "ID": 34646,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Slither.png",
           "IconHD": "/actionIcons/VPR/Slither.png",
@@ -72,7 +78,8 @@
         },
         {
           "Description": "Changes to <span style=\"color:#ff7b1a;\">Death Rattle</span>, <span style=\"color:#ff7b1a;\">Last Lash</span>, <span style=\"color:#ff7b1a;\">First Legacy</span>, <span style=\"color:#ff7b1a;\">Second Legacy</span>, <span style=\"color:#ff7b1a;\">Third Legacy</span>, or <span style=\"color:#ff7b1a;\">Fourth Legacy</span> when requirements for execution are met.",
-          "ID": 9990107,
+          "AltID": 9990107,
+          "ID": 35920,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Serpents_Tail.png",
           "IconHD": "/actionIcons/VPR/Serpents_Tail.png",
@@ -83,7 +90,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 450.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Afflicts target with <span style=\"color:#ffff66;\">Noxious Gnash</span>\n\n<span style=\"color:#00cc22;\">Noxious Gnash Effect:</span> Increases damage you deal target by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 20s\n\nExtends <span style=\"color:#ffff66;\">Noxious Gnash</span> duration by 20s to a maximum of 40s.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants a <span style=\"color:#ffff66;\">Rattling Coil</span>, up to a maximum of 3.\n\n<span style=\"color:#00cc22;\">Maximum Charges:</span> 2\nShares a recast timer with <span style=\"color:#ff7b1a;\">Pit of Dread</span>.",
-          "ID": 9990108,
+          "AltID": 9990108,
+          "ID": 34620,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Dreadwinder.png",
           "IconHD": "/actionIcons/VPR/Dreadwinder.png",
@@ -94,7 +102,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 500.\n550 when executed from a target's flank.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Hunter's Instinct</span>\n\n<span style=\"color:#00cc22;\">Hunter's Instinct Effect:</span> Increases damage dealt by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 40s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Hunter's Venom</span>\n\n<span style=\"color:#00cc22;\">Hunter's Venom Effect:</span> Increases potency of <span style=\"color:#ff7b1a;\">Twinfang Bite</span> by 50\n\n<span style=\"color:#00cc22;\">Duration:</span> 30s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Increases <span style=\"color:#ff7b1a;\">Serpent Offerings Gauge</span> by 5\nUpon successfully landing this action, <span style=\"color:#ff7b1a;\">Twinfang</span> changes to <span style=\"color:#ff7b1a;\">Twinfang Bite</span>, and <span style=\"color:#ff7b1a;\">Twinblood</span> changes to <span style=\"color:#ff7b1a;\">Twinblood Bite</span>.\nThese actions can be executed a total of two times following <span style=\"color:#ff7b1a;\">Hunter's Coil</span>.\nCan only be executed after landing <span style=\"color:#ff7b1a;\">Dreadwinder</span> or <span style=\"color:#ff7b1a;\">Swiftskin's Coil</span>.\nThis weaponskill does not share a recast timer with any other actions.",
-          "ID": 9990109,
+          "AltID": 9990109,
+          "ID": 34621,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Hunters_Coil.png",
           "IconHD": "/actionIcons/VPR/Hunters_Coil.png",
@@ -105,7 +114,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 500.\n550 when executed from a target's rear.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Swiftscaled</span>\n\n<span style=\"color:#00cc22;\">Swiftscaled Effect:</span> Increases damage dealt by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 40s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Swiftskin's Venom</span>\n\n<span style=\"color:#00cc22;\">Swiftskin's Venom Effect:</span> Increases potency of <span style=\"color:#ff7b1a;\">Twinblood Bite</span> by 100\n\n<span style=\"color:#00cc22;\">Duration:</span> 30s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Increases <span style=\"color:#ff7b1a;\">Serpent Offerings Gauge</span> by 5\nUpon successfully landing this action, <span style=\"color:#ff7b1a;\">Twinfang</span> changes to <span style=\"color:#ff7b1a;\">Twinfang Bite</span>, and <span style=\"color:#ff7b1a;\">Twinblood</span> changes to <span style=\"color:#ff7b1a;\">Twinblood Bite</span>.\nThese actions can be executed a total of two times following <span style=\"color:#ff7b1a;\">Swiftskin's Coil</span>.\nCan only be executed after landing <span style=\"color:#ff7b1a;\">Dreadwinder</span> or <span style=\"color:#ff7b1a;\">Hunter's Coil</span>.\nThis weaponskill does not share a recast timer with any other actions.",
-          "ID": 9990110,
+          "AltID": 9990110,
+          "ID": 34622,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Swiftskins_Coil.png",
           "IconHD": "/actionIcons/VPR/Swiftskins_Coil.png",
@@ -116,7 +126,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 150 to all nearby enemies.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Afflicts target with <span style=\"color:#ffff66;\">Noxious Gnash</span>\n\n<span style=\"color:#00cc22;\">Noxious Gnash Effect:</span> Increases damage you deal target by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 20s\n\nExtends <span style=\"color:#ffff66;\">Noxious Gnash</span> duration by 20s to a maximum of 40s.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants a <span style=\"color:#ffff66;\">Rattling Coil</span>, up to a maximum of 3.\n\n<span style=\"color:#00cc22;\">Maximum Charges:</span> 2\nShares a recast timer with <span style=\"color:#ff7b1a;\">Dreadwinder</span>.",
-          "ID": 9990111,
+          "AltID": 9990111,
+          "ID": 34623,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Pit_of_Dread.png",
           "IconHD": "/actionIcons/VPR/Pit_of_Dread.png",
@@ -127,7 +138,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 220 to all nearby enemies.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Hunter's Instinct</span>\n\n<span style=\"color:#00cc22;\">Hunter's Instinct Effect:</span> Increases damage dealt by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 40s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Fellhunter's Venom</span>\n\n<span style=\"color:#00cc22;\">Fellhunter's Venom Effect:</span> Increases potency of <span style=\"color:#ff7b1a;\">Twinfang Thresh</span> by 50\n\n<span style=\"color:#00cc22;\">Duration:</span> 30s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Increases <span style=\"color:#ff7b1a;\">Serpent Offerings Gauge</span> by 5\nUpon successfully landing this action, <span style=\"color:#ff7b1a;\">Twinfang</span> changes to <span style=\"color:#ff7b1a;\">Twinfang Thresh</span>, and <span style=\"color:#ff7b1a;\">Twinblood</span> changes to <span style=\"color:#ff7b1a;\">Twinblood Thresh</span>.\nThese actions can be executed a total of two times following <span style=\"color:#ff7b1a;\">Hunter's Den</span>.\nCan only be executed after landing <span style=\"color:#ff7b1a;\">Pit of Dread</span> or <span style=\"color:#ff7b1a;\">Swiftskin's Den</span>.\nThis weaponskill does not share a recast timer with any other actions.",
-          "ID": 9990112,
+          "AltID": 9990112,
+          "ID": 34624,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Hunters_Den.png",
           "IconHD": "/actionIcons/VPR/Hunters_Den.png",
@@ -138,7 +150,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 220 to all nearby enemies.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Swiftscaled</span>\n\n<span style=\"color:#00cc22;\">Swiftscaled Effect:</span> Increases damage dealt by 10% \n\n<span style=\"color:#00cc22;\">Duration:</span> 40s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Fellskin's Venom</span>\n\n<span style=\"color:#00cc22;\">Fellskin's Venom Effect:</span> Increases potency of <span style=\"color:#ff7b1a;\">Twinblood Thresh</span> by 50\n\n<span style=\"color:#00cc22;\">Duration:</span> 30s\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Increases <span style=\"color:#ff7b1a;\">Serpent Offerings Gauge</span> by 5\nUpon successfully landing this action, <span style=\"color:#ff7b1a;\">Twinfang</span> changes to <span style=\"color:#ff7b1a;\">Twinfang Thresh</span>, and <span style=\"color:#ff7b1a;\">Twinblood</span> changes to <span style=\"color:#ff7b1a;\">Twinblood Thresh</span>.\nThese actions can be executed a total of two times following <span style=\"color:#ff7b1a;\">Swiftskin's Den</span>.\nCan only be executed after landing <span style=\"color:#ff7b1a;\">Pit of Dread</span> or <span style=\"color:#ff7b1a;\">Hunter's Den</span>.\nThis weaponskill does not share a recast timer with any other actions.",
-          "ID": 9990113,
+          "AltID": 9990113,
+          "ID": 34625,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Swiftskins_Den.png",
           "IconHD": "/actionIcons/VPR/Swiftskins_Den.png",
@@ -149,7 +162,8 @@
         },
         {
           "Description": "Changes to <span style=\"color:#ff7b1a;\">Twinfang Bite</span>, <span style=\"color:#ff7b1a;\">Twinfang Thresh</span>, or <span style=\"color:#ff7b1a;\">Uncoiled Twinfang</span> when requirements for execution are met.",
-          "ID": 9990114,
+          "AltID": 9990114,
+          "ID": 35921,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Twinfang.png",
           "IconHD": "/actionIcons/VPR/Twinfang.png",
@@ -160,7 +174,8 @@
         },
         {
           "Description": "Changes to <span style=\"color:#ff7b1a;\">Twinblood Bite</span>, <span style=\"color:#ff7b1a;\">Twinblood Thresh</span>, or <span style=\"color:#ff7b1a;\">Uncoiled Twinblood</span> when requirements for execution are met.",
-          "ID": 9990115,
+          "AltID": 9990115,
+          "ID": 35922,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Twinblood.png",
           "IconHD": "/actionIcons/VPR/Twinblood.png",
@@ -171,7 +186,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 500 to target and all enemies nearby it.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants <span style=\"color:#ffff66;\">Poised for Twinfang</span>\n\n<span style=\"color:#00cc22;\">Poised for Twinfang Effect:</span> Increases the potency of <span style=\"color:#ff7b1a;\">Uncoiled Twinfang</span> by 100.\n\n<span style=\"color:#00cc22;\">Duration:</span> 60s\n\n<span style=\"color:#00cc22;\">Rattling Coil Cost:</span> 1\nThis weaponskill does not share a recast timer with any other actions.",
-          "ID": 9990116,
+          "AltID": 9990116,
+          "ID": 39168,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Uncoiled_Fury.png",
           "IconHD": "/actionIcons/VPR/Uncoiled_Fury.png",
@@ -182,7 +198,8 @@
         },
         {
           "Description": "Grants one stack of <span style=\"color:#ffff66;\">Rattling Coil</span>.\nGrants <span style=\"color:#ffff66;\">Ready to Rewawaken</span>.\n\n<span style=\"color:#00cc22;\">Duration:</span> 30s",
-          "ID": 9990117,
+          "AltID": 9990117,
+          "ID": 34647,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Serpents_Ire.png",
           "IconHD": "/actionIcons/VPR/Serpents_Ire.png",
@@ -193,7 +210,8 @@
         },
         {
           "Description": "Delivers an attack with a potency of 600 to all nearby enemies.\n\n<span style=\"color:#00cc22;\">Additional Effect:</span> Grants 5 stacks of <span style=\"color:#ffff66;\">Anguine Tribute</span>\n\n<span style=\"color:#00cc22;\">Duration:</span> 30s\n\n<span style=\"color:#00cc22;\">Serpent Offerings Gauge Cost:</span> 50",
-          "ID": 9990118,
+          "AltID": 9990118,
+          "ID": 34626,
           "customIcon": true,
           "Icon": "/actionIcons/VPR/Reawaken.png",
           "IconHD": "/actionIcons/VPR/Reawaken.png",
@@ -209,7 +227,7 @@
           "Description_de": "Du verringerst deinen erlittenen Schaden um 10 % und führst eine Konterattacke auf den Angreifer aus.\n\nDauer: 6 Sekunden\n\nZusatzeffekt der Konterattacke: Verringert von Angreifern ausgeteilten Schaden um 10%.\n\nDauer: 6 Sekunden",
           "Description_fr": "Réduit de 10% vos dégâts subis et lance un contre affaiblissant chaque fois que vous vous faites toucher.\n\n<span style=\"color:#ffff66;\">Durée:</span> 6s\n\n<span style=\"color:#ffff66;\">Effet du contre affaiblissant:</span> réduit de 10% les dégâts infligés par l'assaillant.\n\n<span style=\"color:#ffff66;\">Durée:</span> 6s",
           "Description_ja": "自身の被ダメージを10％軽減させ、かつ自身が攻撃を受けた場合に反撃効果を与える。\n\n<span style=\"color:#00cc22;\">効果時間：</span>6秒\n\n<span style=\"color:#00cc22;\">反撃効果：</span>攻撃者の与ダメージを10％減少させる。\n\n<span style=\"color:#00cc22;\">効果時間：</span>6秒",
-          "ID": 7548,
+          "AltID": 7548,
           "Icon": "/i/000000/000822.png",
           "IconHD": "/i/000000/000822_hr1.png",
           "Name": "Arm's Length",
@@ -225,7 +243,7 @@
           "Description_de": "Du absorbierst einen Teil des physischen Schadens, den du austeilst, als eigene LP.\n\nDauer: 20 Sekunden",
           "Description_fr": "Convertit une partie des dégâts infligés par vos attaques physiques en PV.\n\n<span style=\"color:#ffff66;\">Durée:</span> 20s",
           "Description_ja": "一定時間、自身の物理攻撃に、与えたダメージの一部をＨＰとして吸収する効果を付与する。　<span style=\"color:#00cc22;\">効果時間：</span>20秒",
-          "ID": 7542,
+          "AltID": 7542,
           "Icon": "/i/000000/000823.png",
           "IconHD": "/i/000000/000823_hr1.png",
           "Name": "Bloodbath",
@@ -241,7 +259,7 @@
           "Description_de": "Du regenerierst eigene LP.\n\nHeilpotenzial: 500",
           "Description_fr": "Restaure vos PV.\n\n<span style=\"color:#ffff66;\">Puissance:</span> 500",
           "Description_ja": "自身のＨＰを回復する。　<span style=\"color:#00cc22;\">回復力：</span>500",
-          "ID": 7541,
+          "AltID": 7541,
           "Icon": "/i/000000/000821.png",
           "IconHD": "/i/000000/000821_hr1.png",
           "Name": "Second Wind",
@@ -257,7 +275,7 @@
           "Description_de": "Du verringerst den ausgeteilten physischen Schaden um 10% und den ausgeteilten magischen Schaden um 5%.\n\nDauer: 10 Sekunden",
           "Description_fr": "Réduit respectivement de 10% et 5% les dégâts physiques et magiques infligés par la cible.\n\n<span style=\"color:#ffff66;\">Durée:</span> 10s",
           "Description_ja": "一定時間、対象の与物理ダメージを10％、与魔法ダメージを5％減少させる。　<span style=\"color:#00cc22;\">効果時間：</span>10秒",
-          "ID": 7549,
+          "AltID": 7549,
           "Icon": "/i/000000/000828.png",
           "IconHD": "/i/000000/000828_hr1.png",
           "Name": "Feint",
@@ -273,7 +291,7 @@
           "Description_de": "Du fügst dem Ziel <span style=\"color:#ffff66;\">Betäubung</span> zu.\n\nDauer: 3 Sekunden",
           "Description_fr": "Inflige Étourdissement à la cible.\n\n<span style=\"color:#ffff66;\">Durée:</span> 3s",
           "Description_ja": "対象をスタンさせる。　<span style=\"color:#00cc22;\">効果時間：</span>3秒",
-          "ID": 7863,
+          "AltID": 7863,
           "Icon": "/i/000000/000824.png",
           "IconHD": "/i/000000/000824_hr1.png",
           "Name": "Leg Sweep",
@@ -289,7 +307,7 @@
           "Description_de": "Alle Richtungsbedingungen deiner Kommandos werden als erfüllt betrachtet, egal, aus welcher Richtung du sie ausführst.\n\nDauer: 10 Sekunden\n\nMaximale Aufladungen: 2",
           "Description_fr": "Fait réussir les actions directionnelles dans n'importe quelle position.\n\n<span style=\"color:#ffff66;\">Durée:</span> 10s\n\n<span style=\"color:#ffff66;\">Maximum de charges:</span> 2",
           "Description_ja": "一定時間、方向指定条件のあるアクションをどの方向から実行しても成功させる。　<span style=\"color:#00cc22;\">効果時間：</span>10秒\n\n<span style=\"color:#00cc22;\">最大チャージ数：</span>2",
-          "ID": 7546,
+          "AltID": 7546,
           "Icon": "/i/000000/000830.png",
           "IconHD": "/i/000000/000830_hr1.png",
           "Name": "True North",
@@ -307,4 +325,3 @@
       "roleActions:": []
     }
   }
-  

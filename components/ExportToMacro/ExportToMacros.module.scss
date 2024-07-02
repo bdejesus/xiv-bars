@@ -23,19 +23,6 @@
   gap: $spacing-sm;
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: flex-start;
-
-  textarea {
-    background-color: $panel-bg-dark;
-    border: none;
-    color: #ccc;
-    display: block;
-    font-family: $font-monospace;
-    font-size: 11px;
-    height: 220px;
-    line-height: 1.2em;
-    padding: $spacing-sm;
-    resize: none;
-  }
 }
 
 .modal[data-active="false"] {

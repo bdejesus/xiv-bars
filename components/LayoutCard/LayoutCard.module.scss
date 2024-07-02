@@ -157,6 +157,17 @@ $description-height: 42px;
     }
   }
 
+  .profileImage {
+    float: left;
+    height: $spacing-lg;
+    margin-right: $spacing-sm;
+    width: $spacing-lg;
+
+    &::after {
+      opacity: 0.2;
+    }
+  }
+
   .owner {
     font-size: $font-size-base;
     line-height: 1.2;
@@ -234,4 +245,10 @@ $description-height: 42px;
   opacity: 0.025;
   pointer-events: none;
   position: absolute;
+}
+
+.publishTag {
+  font-size: $font-size-sm;
+  font-style: italic;
+  text-transform: uppercase;
 }

@@ -1,0 +1,67 @@
+@import 'styles/mixins';
+
+.wrapper {
+  bottom: $spacing-base;
+  position: fixed;
+  right: $spacing-base;
+  transition: opacity 0.33s ease;
+
+  &[data-hidden='true'] {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.donateLink:global(.button) {
+  align-items: center;
+  display: inline-flex;
+  font-weight: 400;
+  height: unset;
+  padding: $spacing-base;
+
+  &:hover {
+    color: #333 !important;
+    text-shadow: none;
+  }
+
+  .donateLabel {
+    line-height: 1.15;
+    margin-left: $spacing-sm;
+
+    b {
+      font-size: 16px;
+    }
+  }
+
+  &::before {
+    color: #fff;
+    content: "🍺";
+    display: inline-flex;
+    font-size: 24px;
+    justify-content: center;
+    margin-left: -$spacing-xs;
+    margin-right: $spacing-xs;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgb(0 0 0 / 33%);
+    transition: font-size 0.3s ease;
+    width: 24px;
+  }
+
+  &:hover::before {
+    content: "🍻";
+    font-size: 30px;
+  }
+}
+
+.dismissBtn:global(.btn-icon) {
+  position: absolute;
+  right: $spacing-sm;
+  top: 0;
+  transform: translate(0, -50%);
+  z-index: 3;
+
+  :global(.icon) {
+    height: $spacing-base;
+    width: $spacing-base;
+  }
+}

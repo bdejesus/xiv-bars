@@ -246,10 +246,13 @@ button,
   }
 }
 
+.btn-lg.button {
+  height: $spacing-xl;
+}
+
 .btn-sm.button {
   font-size: $font-size-sm;
   height: 30px;
-  padding: 0 $spacing-sm;
 }
 
 .btn-icon.button {
@@ -260,6 +263,22 @@ button,
 
   .icon {
     margin: 0;
+  }
+
+  &.btn-sm {
+    height: 32px;
+    padding: 0;
+    width: 32px;
+
+    .icon {
+      height: 12px;
+      width: 12px;
+    }
+  }
+
+  &.btn-xs {
+    height: 20px;
+    width: 20px;
   }
 }
 

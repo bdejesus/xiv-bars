@@ -10,6 +10,7 @@ import Hearts from 'components/Hearts';
 import JobSprite from 'components/JobSprite';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
+import ProfileImage from 'components/User/ProfileImage';
 import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
 
@@ -36,11 +37,9 @@ export default function DetailPanel({ className, visible }:Props) {
   } = viewData;
 
   const isOwner = session?.user.id === userId;
-  const hasSprite = selectedJob && (
-    selectedJob.Abbreviation
-    || ['DOW', 'DOM'].includes(selectedJob.Discipline)
-    || !['BLU', 'VPR'].includes(selectedJob.Abbreviation)
-  );
+  const hasSprite = (selectedJob && selectedJob.Abbr)
+    && ['DOW', 'DOM'].includes(selectedJob.Discipline)
+    && !['BLU'].includes(selectedJob.Abbr);
 
   return (
     <div
@@ -63,23 +62,32 @@ export default function DetailPanel({ className, visible }:Props) {
                 </div>
 
                 <div className={styles.meta}>
-                  <div
-                    className={styles.owner}
-                    itemScope
-                    itemProp="author"
-                    itemType="https://schema.org/Person"
-                  >
-                    {t('LayoutCard.by')}&nbsp;
-                    <Link href={`/user/${userId}`} itemProp="url">
-                      <span itemProp="name">{user?.name}</span>
-                    </Link>
-                  </div>
+                  <div className={styles.row}>
+                    <ProfileImage
+                      src={user!.image}
+                      title={user!.name}
+                      className={styles.profileImage}
+                      href={`/user/${userId}`}
+                    />
+                    <div>
+                      <div
+                        className={styles.owner}
+                        itemScope
+                        itemProp="author"
+                        itemType="https://schema.org/Person"
+                      >
+                        <Link href={`/user/${userId}`} itemProp="url">
+                          <span itemProp="name">{user?.name}</span>
+                        </Link>
+                      </div>
 
-                  { updatedAt && (
-                    <div className={styles.timestamp}>
-                      {t('LayoutCard.last_updated')}: <time dateTime={updatedAt}>{formatDateString(updatedAt as string, router.locale)}</time>
+                      { updatedAt && (
+                        <div className={styles.timestamp}>
+                          {t('LayoutCard.last_updated')}: <time dateTime={updatedAt}>{formatDateString(updatedAt as string, router.locale)}</time>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
 
                   <div className={styles.row}>
                     { id && (
@@ -131,12 +139,6 @@ export default function DetailPanel({ className, visible }:Props) {
               <SaveForm />
             </div>
           )}
-
-        { selectedJob && ['PCT', 'VPR'].includes(selectedJob.Abbr) && (
-          <p className="system-message warn">
-            The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
-          </p>
-        )}
 
         { hasSprite && <div className={styles.footer}><JobSprite job={selectedJob} /></div> }
       </div>

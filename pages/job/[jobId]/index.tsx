@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import db, { serializeDates } from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
-import { translateData } from 'lib/utils/i18n.mjs';
+import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'components/App/context';
 import { appActions } from 'components/App/actions';
@@ -13,6 +13,7 @@ import SelectedJob from 'components/JobSelect/SelectedJob';
 import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
+import Icon, { Icons } from 'components/Icon';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
@@ -67,12 +68,6 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         itemProp="itemListElement"
         itemType="https://schema.org/ItemList"
       >
-        { ['PCT', 'VPR'].includes(selectedJob.Abbr) && (
-          <p className="system-message warn">
-            The <b>Viper (VPR)</b> and <b>Pictomancer (PCT)</b> Class/Jobs are now available in a preview/development state. Layouts created prior to the release of patch 7.0 may break as Actions and other features associated with those Jobs are subject to change.
-          </p>
-        )}
-
         <div className={styles.header}>
           <div className={styles.headerDesc}>
             <SelectedJob
@@ -83,6 +78,14 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             <p className="text-xl" itemProp="description">
               { t('Pages.Job.index_description', { jobName: selectedJob.Name }) }
             </p>
+
+            <a
+              href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
+              className={`button btn-primary btn-lg ${styles.newLink}`}
+            >
+              <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
+              <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
+            </a>
           </div>
 
           { selectedJob?.Description && (
@@ -112,9 +115,9 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const jobId = context.params?.jobId as string;
-  const selectedJob = Jobs.find((job) => job.Abbr === jobId);
+  const selectedJob = Jobs.find((job:ClassJobProps) => job.Abbr === jobId);
 
-  if (!selectedJob || selectedJob.Disabled) return { notFound: true };
+  if (!selectedJob) return { notFound: true };
 
   // Request Layouts
   const layouts = await db.layout.findMany({
@@ -125,7 +128,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
     include: {
       user: {
-        select: { name: true, id: true }
+        select: { name: true, id: true, image: true }
       },
       _count: {
         select: { hearts: true }

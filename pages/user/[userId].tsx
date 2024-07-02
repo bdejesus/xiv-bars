@@ -15,6 +15,7 @@ import Card from 'components/Card';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
+import ProfileImage from 'components/User/ProfileImage';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
 import type { GetServerSideProps } from 'next';
@@ -61,11 +62,9 @@ export default function User({ user }:UserViewProps) {
 
       <div className="container">
         <div className={styles.hgroup}>
-          <h1 className="mt-md">
-            <div className={styles.profile}>
-              { user.image && <img src={user.image} alt="" className={styles.image} /> }
-              {user.name}
-            </div>
+          <h1 className={`mt-md ${styles.profile}`}>
+            <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
+            <span className={styles.profileName}>{user.name}</span>
           </h1>
 
           { isCurrentUser && (
@@ -144,7 +143,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
     include: {
       user: {
-        select: { id: true, name: true }
+        select: { id: true, name: true, image: true }
       }
     }
   }) : [];
