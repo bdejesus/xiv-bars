@@ -1,10 +1,7 @@
 @import "styles/mixins";
 
 .button {
-  position: absolute;
-  right: 0;
+  position: relative;
   text-transform: uppercase;
-  top: -1px;
-  transform: translateY(-100%);
   z-index: 1;
 }

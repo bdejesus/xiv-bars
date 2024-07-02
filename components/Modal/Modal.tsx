@@ -40,7 +40,7 @@ export default function Modal({
       tabIndex={-1}
     >
       <div className={`${styles.container} modal-container`}>
-        <CloseButton onClick={onClose} />
+        <CloseButton onClick={onClose} className={styles.closeBtn} />
         <div className={styles.content}>
           {children}
         </div>

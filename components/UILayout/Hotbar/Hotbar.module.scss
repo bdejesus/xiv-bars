@@ -53,7 +53,7 @@
   .layoutControl {
     background-color: $color-gray-dark-2;
     border: none;
-    border-radius: 6px;
+    border-radius: $border-radius;
     bottom: 100%;
     box-shadow: 0 2px 1px rgb(255 255 255 / 25%);
     color: #fff;

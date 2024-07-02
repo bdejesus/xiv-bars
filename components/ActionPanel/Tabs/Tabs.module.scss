@@ -23,11 +23,11 @@
 
   > li {
     &:first-child .tabButton {
-      border-radius: 4px 0 0;
+      border-radius: $border-radius 0 0;
     }
 
     &:last-child .tabButton {
-      border-radius: 0 4px 0 0;
+      border-radius: 0 $border-radius 0 0;
     }
   }
 }

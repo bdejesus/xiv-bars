@@ -74,6 +74,13 @@
   }
 }
 
+.closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-$spacing-base, -50%);
+}
+
 @media (max-width: $screen-sm) {
   .modal {
     padding: $spacing-xl $spacing-base $spacing-base;

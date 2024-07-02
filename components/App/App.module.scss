@@ -127,7 +127,7 @@ $icon-size: 6px;
 
   a {
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: $border-radius;
     display: block;
     font-size: $font-size-xs;
     height: 32px;

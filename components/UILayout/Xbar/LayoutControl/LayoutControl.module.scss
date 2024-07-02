@@ -61,7 +61,7 @@
   select {
     background-color: $panel-bg-dark;
     border: none;
-    border-radius: 6px;
+    border-radius: $border-radius;
     color: #fff;
     font-size: $font-size-lg;
     padding: $spacing-sm;

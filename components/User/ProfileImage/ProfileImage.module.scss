@@ -1,7 +1,7 @@
 @import 'styles/mixins';
 
 .wrapper {
-  border-radius: 10%;
+  border-radius: 6%;
   box-shadow: $box-shadow;
   display: block;
   max-height: 120px;
@@ -10,7 +10,7 @@
   position: relative;
 
   &::after {
-    border-radius: 10%;
+    border-radius: 6%;
     box-shadow:
       inset  2px 2px 2px rgb(255 255 255 / 80%),
       inset -2px -2px 2px rgb(0 0 0 / 20%);
