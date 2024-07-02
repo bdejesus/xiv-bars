@@ -11,7 +11,10 @@ interface Props {
 }
 
 export default function Modal({
-  children, showModal, className, onClose
+  children,
+  showModal,
+  className = '',
+  onClose
 }: Props) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(showModal);
@@ -48,7 +51,3 @@ export default function Modal({
     </div>
   );
 }
-
-Modal.defaultProps = {
-  className: undefined
-};

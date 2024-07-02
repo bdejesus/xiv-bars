@@ -88,8 +88,4 @@ export function App() {
   );
 }
 
-App.defaultProps = {
-  encodedSlots: undefined
-};
-
 export default App;

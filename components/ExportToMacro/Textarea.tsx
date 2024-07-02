@@ -46,7 +46,3 @@ export default function Textarea({ id, defaultValue }:TextareaProps) {
     </fieldset>
   );
 }
-
-Textarea.defaultProps = {
-  defaultValue: undefined
-};

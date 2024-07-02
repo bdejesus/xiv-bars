@@ -5,14 +5,14 @@ interface Props {
   id: string,
   alt: string,
   className?: string,
-  type?: 'white' | 'active' | undefined
+  type?: 'black' | 'white' | 'active' | undefined
 }
 
 export default function Icon({
   id,
   alt,
-  className,
-  type
+  className = '',
+  type = 'black'
 }:Props) {
   return (
     <span className={`${styles.icon} ${className} ${type && styles[type]} icon`}>
@@ -26,8 +26,3 @@ export default function Icon({
     </span>
   );
 }
-
-Icon.defaultProps = {
-  className: '',
-  type: 'black'
-};

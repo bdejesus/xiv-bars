@@ -14,7 +14,7 @@ import { setActionToSlot } from 'lib/utils/slots';
 import { buildUrl } from 'lib/utils/url';
 import styles from './Slot.module.scss';
 
-interface Props {
+interface SlotProps {
   id: string,
   className?: string,
   action: ActionProps
@@ -22,7 +22,11 @@ interface Props {
 
 type ButtonEventProps = React.MouseEvent<HTMLDivElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
-export default function Slot({ id, className, action }: Props) {
+export default function Slot({
+  id,
+  className = '',
+  action
+}: SlotProps) {
   const {
     viewData,
     readOnly,
@@ -133,7 +137,3 @@ export default function Slot({ id, className, action }: Props) {
     </>
   );
 }
-
-Slot.defaultProps = {
-  className: ''
-};

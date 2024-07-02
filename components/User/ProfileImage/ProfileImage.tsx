@@ -11,25 +11,24 @@ interface ProfileImageProps {
 }
 
 export default function ProfileImage({
-  title, src, href, className
+  title,
+  src,
+  href,
+  className = ''
 }:ProfileImageProps) {
-  const imageSrc = src || '/images/mog_trumpet.png';
+  const Image = () => src
+    ? <img src={src} alt={title} itemProp="image" />
+    : <img src={'/icons/favicon-96x96.png'} className={styles.placeholder} alt={title} />;
 
   return (
     href ? (
       <Link href={href} className={[styles.wrapper, className].join(' ')}>
-        <img src={imageSrc} alt={title} itemProp="image" />
+        <Image />
       </Link>
     ) : (
       <div className={[styles.wrapper, className].join(' ')}>
-        <img src={imageSrc} alt={title} itemProp="image" />
+        <Image />
       </div>
     )
   );
 }
-
-ProfileImage.defaultProps = {
-  className: undefined,
-  src: undefined,
-  href: undefined
-};

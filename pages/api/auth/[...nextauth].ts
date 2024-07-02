@@ -17,8 +17,7 @@ async function signinUser(session: Session) {
       data: {
         name: session.user.name,
         email: session.user.email,
-        image: session.user.image,
-        uid: session.user.id
+        image: session.user.image
       }
     });
   } else if (session.user.image && !user.image) {
@@ -30,15 +29,6 @@ async function signinUser(session: Session) {
         image: session.user.image
       }
     });
-  } else if (session.user.id && !user.uid) {
-    user = await db.user.update({
-      where: {
-        id: user.id
-      },
-      data: {
-        uid: session.user.id
-      }
-    })
   }
 
   return user;
@@ -50,13 +40,14 @@ export const authOptions = {
       id: 'discord',
       name: 'Discord',
       clientId: process.env.DISCORD_ID || '',
-      clientSecret: process.env.DISCORD_SECRET || ''
+      clientSecret: process.env.DISCORD_SECRET || '',
+      authorization: { params: { scope: 'identify email openid' } },
+      idToken: true
     })
   ],
 
   callbacks: {
     async session({ session }: { session: Session }) {
-      console.log(session);
       const user = await signinUser(session);
 
       // eslint-disable-next-line no-param-reassign

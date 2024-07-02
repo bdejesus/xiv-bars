@@ -50,6 +50,3 @@ export function SystemContextProvider({
 }
 
 export default SystemContextProvider;
-
-SystemContextProvider.defaultProps = {
-};

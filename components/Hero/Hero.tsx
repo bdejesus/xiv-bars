@@ -6,7 +6,7 @@ interface Props {
   primary?: boolean
 }
 
-export default function Hero({ primary }: Props) {
+export default function Hero({ primary = true }: Props) {
   const { t } = useTranslation();
 
   return (
@@ -23,7 +23,3 @@ export default function Hero({ primary }: Props) {
 
   );
 }
-
-Hero.defaultProps = {
-  primary: true
-};

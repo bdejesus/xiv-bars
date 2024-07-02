@@ -3,15 +3,17 @@ import { useAppState } from 'components/App/context';
 import type { ActionProps } from 'types/Action';
 import styles from './ActionGroup.module.scss';
 
-interface Props {
+interface ActionGroupProps {
   title: string,
   actions: ActionProps[],
   limit?: number
 }
 
 export default function ActionGroup({
-  title, actions, limit
-}: Props) {
+  title,
+  actions,
+  limit = undefined
+}: ActionGroupProps) {
   const { showTitles } = useAppState();
   const actionsList = limit ? actions.slice(0, limit) : actions;
   return (
@@ -27,7 +29,3 @@ export default function ActionGroup({
     </div>
   );
 }
-
-ActionGroup.defaultProps = {
-  limit: undefined
-};

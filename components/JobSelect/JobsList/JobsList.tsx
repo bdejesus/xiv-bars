@@ -17,7 +17,10 @@ interface Props {
 }
 
 export function JobsList({
-  title, jobs, className, action
+  title,
+  jobs,
+  className = '',
+  action
 }: Props) {
   const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
@@ -51,6 +54,7 @@ export function JobsList({
               className={`${styles.jobLink} jobList-link`}
               draggable={false}
               itemProp="url"
+              aria-labelledby={`job-label-${job.Name}`}
             >
               <ClassJob job={job} />
             </a>
@@ -76,10 +80,5 @@ export function JobsList({
     </div>
   );
 }
-
-JobsList.defaultProps = {
-  className: '',
-  action: undefined
-};
 
 export default JobsList;

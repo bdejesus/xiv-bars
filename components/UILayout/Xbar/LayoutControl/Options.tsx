@@ -12,7 +12,11 @@ interface Props {
 type ReduceType = (number|string|never|boolean|object|undefined)[]
 
 export function Options({
-  id, onChange, value, children, required
+  id,
+  onChange,
+  value = 0,
+  children,
+  required = false
 }: Props) {
   const appState = useAppState();
   const { chotbar } = appState;
@@ -57,8 +61,3 @@ export function Options({
 }
 
 export default Options;
-
-Options.defaultProps = {
-  required: false,
-  value: '0'
-};

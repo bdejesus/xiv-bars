@@ -8,7 +8,7 @@ interface Props {
   className?: string
 }
 
-export default function CloseButton({ onClick, className }: Props) {
+export default function CloseButton({ onClick, className = '' }: Props) {
   const { t } = useTranslation();
 
   return (
@@ -18,11 +18,7 @@ export default function CloseButton({ onClick, className }: Props) {
       onClick={onClick}
     >
       <Icon id={Icons.REMOVE} alt={t('Global.close')} type="white" />
-      <span className='btn-label-hidden'>{t('Global.close')}</span>
+      <span className="btn-label-hidden">{t('Global.close')}</span>
     </button>
   );
 }
-
-CloseButton.defaultProps = {
-  className: ''
-};

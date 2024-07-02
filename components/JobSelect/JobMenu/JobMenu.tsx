@@ -129,7 +129,3 @@ export default function JobMenu({ action }:Props) {
     </div>
   );
 }
-
-JobMenu.defaultProps = {
-  action: undefined
-};

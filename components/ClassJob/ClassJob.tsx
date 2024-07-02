@@ -15,17 +15,17 @@ interface Props {
 
 export default function ClassJob({
   job,
-  className,
-  abbr,
-  name,
-  icon
+  className = '',
+  abbr = true,
+  name = true,
+  icon = true
 }: Props) {
   const { locale } = useRouter();
   const displayAbbr = translateData('Abbreviation', job, locale);
   const displayName = translateData('Name', job, locale);
 
   return (
-    <div className={[styles.container, className].join(' ')}>
+    <span className={[styles.container, className].join(' ')} id={`job-label-${job.Name}`}>
       <span className={`${styles.jobWrapper} job-wrapper`} data-role={job.Role}>
         { icon && (
           <span className={`${styles.iconWrapper} job-icon`}>
@@ -53,13 +53,6 @@ export default function ClassJob({
           <span className={`${styles.name} job-name`} itemProp="name">{displayName}</span>
         </>
       )}
-    </div>
+    </span>
   );
 }
-
-ClassJob.defaultProps = {
-  className: '',
-  abbr: true,
-  name: true,
-  icon: true
-};
