@@ -30,8 +30,8 @@
 
     &.placeholder {
       background-color: #fff;
-      object-fit: contain;
-      filter: brightness(0.5) invert(0.75)
+      filter: brightness(0.5) invert(0.75);
+      object-fit: contain
     }
   }
 }
