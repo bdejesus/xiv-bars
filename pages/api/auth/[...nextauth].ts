@@ -40,9 +40,7 @@ export const authOptions = {
       id: 'discord',
       name: 'Discord',
       clientId: process.env.DISCORD_ID || '',
-      clientSecret: process.env.DISCORD_SECRET || '',
-      authorization: { params: { scope: 'identify email openid' } },
-      idToken: true
+      clientSecret: process.env.DISCORD_SECRET || ''
     })
   ],
 
