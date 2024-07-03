@@ -22,7 +22,7 @@ export default function LayoutsList({
   link,
   layouts,
   children,
-  className,
+  className = '',
   columns
 }:LayoutsListProps) {
   const { jobs } = useAppState();
@@ -70,11 +70,3 @@ export default function LayoutsList({
     </div>
   );
 }
-
-LayoutsList.defaultProps = {
-  children: undefined,
-  className: undefined,
-  title: undefined,
-  link: undefined,
-  columns: 3
-};

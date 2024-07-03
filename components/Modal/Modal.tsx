@@ -11,7 +11,10 @@ interface Props {
 }
 
 export default function Modal({
-  children, showModal, className, onClose
+  children,
+  showModal,
+  className = '',
+  onClose
 }: Props) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(showModal);
@@ -40,7 +43,7 @@ export default function Modal({
       tabIndex={-1}
     >
       <div className={`${styles.container} modal-container`}>
-        <CloseButton onClick={onClose} />
+        <CloseButton onClick={onClose} className={styles.closeBtn} />
         <div className={styles.content}>
           {children}
         </div>
@@ -48,7 +51,3 @@ export default function Modal({
     </div>
   );
 }
-
-Modal.defaultProps = {
-  className: undefined
-};

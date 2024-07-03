@@ -7,7 +7,7 @@ interface AvatarProps {
 
 export default function Avatar({
   img,
-  className
+  className = ''
 }:AvatarProps) {
   const avatarStyles = {
     backgroundImage: `url('/avatars/${img}')`
@@ -20,7 +20,3 @@ export default function Avatar({
     />
   );
 }
-
-Avatar.defaultProps = {
-  className: ''
-};

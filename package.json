@@ -57,7 +57,6 @@
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^7.7.0",
     "@typescript-eslint/parser": "^7.7.0",
-    "typescript": "^5.3.3",
     "eslint": "^8.18.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "^14.2.1",
@@ -76,7 +75,8 @@
     "stylelint": "^16.1.0",
     "stylelint-config-standard": "^36.0.0",
     "stylelint-order": "^6.0.3",
-    "stylelint-scss": "^6.0.0"
+    "stylelint-scss": "^6.0.0",
+    "typescript": "^5.3.3"
   },
   "cacheDirectories": [
     ".next/cache"

@@ -19,8 +19,8 @@ export default function Hearts({
   layoutId,
   count,
   hearted,
-  disabled,
-  className
+  disabled = true,
+  className = ''
 }:Props) {
   const { t } = useTranslation();
   const appDispatch = useAppDispatch();
@@ -64,9 +64,3 @@ export default function Hearts({
     </button>
   );
 }
-
-Hearts.defaultProps = {
-  disabled: true,
-  hearted: false,
-  className: ''
-};

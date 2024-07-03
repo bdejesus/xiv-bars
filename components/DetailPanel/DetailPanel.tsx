@@ -19,7 +19,7 @@ interface Props {
   visible: boolean
 }
 
-export default function DetailPanel({ className, visible }:Props) {
+export default function DetailPanel({ className = '', visible }:Props) {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const router = useRouter();
@@ -145,7 +145,3 @@ export default function DetailPanel({ className, visible }:Props) {
     </div>
   );
 }
-
-DetailPanel.defaultProps = {
-  className: undefined
-};

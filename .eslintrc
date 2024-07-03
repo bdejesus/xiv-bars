@@ -56,6 +56,7 @@
     "react/no-array-index-key": "off",
     "react/no-unused-prop-types": "warn",
     "react/no-unused-state": "warn",
+    "react/require-default-props": "off",
     "react-hooks/exhaustive-deps": "off",
     "jsx-a11y/accessible-emoji": "warn",
     "jsx-a11y/alt-text": "warn",

@@ -18,7 +18,7 @@ $button-inset: 10px;
   > li {
     align-items: center;
     background-color: rgba(255 255 255 / 5%);
-    border-radius: 6px;
+    border-radius: $border-radius;
     display: flex;
     flex-direction: row;
     margin: $spacing-sm 0;
@@ -38,7 +38,7 @@ $button-inset: 10px;
 .jobLink {
   align-items: center;
   background-color: transparent;
-  border-radius: 4px;
+  border-radius: $border-radius;
   color: #fff;
   display: flex;
   flex: 1 1 auto;
@@ -71,7 +71,7 @@ $button-inset: 10px;
   align-items: center;
   background-color: rgb(0 0 0 / 0%);
   border: 1px solid rgb(0 0 0 / 0%);
-  border-radius: 6px;
+  border-radius: $border-radius;
   bottom: 0;
   box-shadow: none;
   height: unset;

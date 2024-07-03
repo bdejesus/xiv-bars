@@ -20,7 +20,7 @@ input[type="text"],
 textarea {
   background-color: $panel-bg-dark;
   border: none;
-  border-radius: 4px;
+  border-radius: $border-radius;
   color: #eee;
   display: block;
   margin-bottom: $spacing-sm;

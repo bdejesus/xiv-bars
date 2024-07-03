@@ -17,21 +17,23 @@ import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './LayoutCard.module.scss';
 
-interface Props {
+interface LayoutCardProps {
   layout: LayoutViewProps,
   job: ClassJobProps,
   className?: string,
   hideName: boolean
 }
 
-export default function LayoutCard(props:Props) {
+export default function LayoutCard({
+  layout,
+  job,
+  className = '',
+  hideName
+}:LayoutCardProps) {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const router = useRouter();
   const userDispatch = useUserDispatch();
-  const {
-    layout, job, className, hideName
-  } = props;
 
   const [showPrompt, setShowPrompt] = useState(false);
   const isOwner = session?.user.id === layout.userId;
@@ -163,7 +165,3 @@ export default function LayoutCard(props:Props) {
     </div>
   );
 }
-
-LayoutCard.defaultProps = {
-  className: ''
-};

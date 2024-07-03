@@ -13,7 +13,7 @@ interface RoleNamesType {
   [key: string]: string
 }
 
-export default function SelectedJob({ job, className }: Props) {
+export default function SelectedJob({ job, className = '' }: Props) {
   const roleNames: RoleNamesType = RoleNames;
 
   return (
@@ -29,7 +29,3 @@ export default function SelectedJob({ job, className }: Props) {
     </div>
   );
 }
-
-SelectedJob.defaultProps = {
-  className: ''
-};

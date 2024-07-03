@@ -90,8 +90,4 @@ export function GlobalHeader({ selectedJob }:Props) {
   );
 }
 
-GlobalHeader.defaultProps = {
-  selectedJob: undefined
-};
-
 export default GlobalHeader;

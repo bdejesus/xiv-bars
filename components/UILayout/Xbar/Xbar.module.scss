@@ -101,7 +101,7 @@
 
   &[data-main="true"] {
     background-color: rgb(45 45 45 / 66%);
-    border-radius: 10px;
+    border-radius: $border-radius;
     order: 1;
 
     .left::before {

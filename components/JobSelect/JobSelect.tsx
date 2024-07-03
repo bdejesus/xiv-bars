@@ -13,7 +13,10 @@ interface Props {
 }
 
 export function JobSelect({
-  disabled, className, children, action
+  disabled,
+  className = '',
+  children,
+  action
 }: Props) {
   const { t } = useTranslation();
   const [showJobsModal, setShowJobsModal] = useState(false);
@@ -56,12 +59,5 @@ export function JobSelect({
     </>
   );
 }
-
-JobSelect.defaultProps = {
-  disabled: undefined,
-  className: '',
-  children: undefined,
-  action: undefined
-};
 
 export default JobSelect;

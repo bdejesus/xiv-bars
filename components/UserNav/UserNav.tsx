@@ -6,7 +6,11 @@ import Link from 'next/link';
 import analytics from 'lib/analytics';
 import styles from './UserNav.module.scss';
 
-export default function UserNav({ className }:{ className?: string}) {
+interface UserNavProps {
+  className?: string
+}
+
+export default function UserNav({ className = '' }:UserNavProps) {
   const { t } = useTranslation();
   const { data: session } = useSession();
   const [showMenu, setShowMenu] = useState(false);
@@ -125,7 +129,3 @@ export default function UserNav({ className }:{ className?: string}) {
     </div>
   );
 }
-
-UserNav.defaultProps = {
-  className: ''
-};
