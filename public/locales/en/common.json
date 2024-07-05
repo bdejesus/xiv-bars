@@ -192,7 +192,6 @@
       "new_description": "Plan your {{jobName}} Hotbars or Cross Hotbars (XHB) with this tool. Drag and drop, or click to assign actions to hotbar slots and save to a shareable URL.",
       "no_layouts": "No {{jobName}} Layouts yet.",
       "create_layout": "Create a new layout.",
-      "new_layout": "New Layout",
       "short_description": "A {{jobName}} Class/Job layout guide for keybinding hotbars for Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
@@ -224,7 +223,6 @@
   "SaveForm": {
     "title": "Title",
     "description": "Description",
-    "save_layout": "Save Layout",
     "publish_layout": "Publish Layout",
     "publish_layout_info": "Published Layouts can appear on lists and directories, and are discoverable by other users. Unpublished layouts are hidden from lists but are still accessible by visiting the URL.",
     "save": "Save",
@@ -232,8 +230,7 @@
     "failed": "Couldn’t save layout. Please try again",
     "required": "required",
     "success": "Layout Saved!",
-    "markdown_support": "Markdown is supported",
-    "draft": "**Layouts** with no descriptions are treated as drafts and are hidden from public listings. They are still accessible via the **Layout** url."
+    "markdown_support": "Markdown is supported"
   },
 
   "Sharing": {
