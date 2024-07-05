@@ -26,10 +26,6 @@ export default function UserNav({ className = '' }:UserNavProps) {
     signOut({ callbackUrl: '/' });
   }
 
-  function toggleMenu() {
-    setShowMenu(!showMenu);
-  }
-
   function handleDonate(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
     e.preventDefault();
     analytics.event({
@@ -37,6 +33,11 @@ export default function UserNav({ className = '' }:UserNavProps) {
       params: { id: 'donate' }
     });
     router.push(e.currentTarget.getAttribute('href')!);
+  }
+
+  function handleProfileKeyup(e:React.KeyboardEvent<HTMLElement>) {
+    if (e.code === 'Enter') setShowMenu(!showMenu);
+    if (e.code === 'Escape') setShowMenu(false);
   }
 
   return (
@@ -59,13 +60,16 @@ export default function UserNav({ className = '' }:UserNavProps) {
       </ul>
 
       { session ? (
-        <div className={styles.profileNav}>
-          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events */}
+        <div
+          className={styles.profileNav}
+          onClick={() => setShowMenu(!showMenu)}
+          onMouseLeave={() => setShowMenu(false)}
+          onKeyUp={handleProfileKeyup}
+          role="button"
+          tabIndex={0}
+        >
           <div
             className={`${styles.profile} button btn-clear`}
-            onClick={toggleMenu}
-            role="button"
-            tabIndex={0}
             data-active={showMenu}
           >
             <div className={styles.profileImage}>
@@ -82,7 +86,6 @@ export default function UserNav({ className = '' }:UserNavProps) {
           <ul
             className={styles.menu}
             data-active={showMenu}
-            onMouseLeave={toggleMenu}
           >
             <li className={styles.navItem}>
               <a href={`/user/${session.user.id}`}>
