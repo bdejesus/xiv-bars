@@ -21,10 +21,6 @@
     "company_actions": "Actions de compagnie"
   },
 
-  "App": {
-    "hotbar_planner": "Planificateur de barre de raccourcis"
-  },
-
   "ControlBar": {
     "CopyLayout": {
       "copy_label": "Copier la disposition",
@@ -74,7 +70,6 @@
   },
 
   "Error": {
-    "no_jobs": "Quelque chose s'est mal passé et nous n'avons pas pu charger les données des métiers. Veuillez réessayer plus tard.",
     "generic": {
       "title": "Oups ! Quelque chose s'est mal passé...",
       "body": "Nous semblons avoir atteint un état d'échec. L'erreur a été enregistrée mais malheureusement, vous devrez recommencer.",
@@ -85,7 +80,6 @@
   "ExportToMacro": {
     "export_to_macro": "Exporter vers une macro",
     "limitations": "Un ensemble limité d'actions peut être attribué via des commandes de macro. Les actions incompatibles sont omises de la macro générée. Notez également que les macros sont limitées à 15 lignes chacune.",
-    "copy": "Copier",
     "copy_to": "Copier dans le presse-papiers",
     "copied": "Copié !"
   },
@@ -98,15 +92,6 @@
 
   "GlobalHeader": {
     "new_layout": "Nouvelle disposition"
-  },
-
-  "Intro": {
-    "select_a_job": "Sélectionnez un Job"
-  },
-
-  "Header": {
-    "title": "Simulez et exportez les barres de raccourcis croisées FFXIV Endwalker pour PC, Playstation 4 ou Playstation 5",
-    "body": "XIVBARS est un planificateur de barre de raccourcis croisée (XHB/WXHB) FFXIV pour simuler l'interface de contrôle en jeu. Vous pouvez exporter des barres de raccourcis pour PC, PS4 ou PS5 via des macros. Partagez des configurations de disposition avec d'autres via une URL générée ou générez une commande de macro à importer dans le jeu."
   },
 
   "Hearts": {
@@ -152,7 +137,6 @@
   },
 
   "JobsList": {
-    "new_layout": "Créer une nouvelle disposition",
     "new_job_layout": "Nouvelle disposition {{jobName}}"
   },
 
@@ -209,7 +193,6 @@
       "new_description": "Planifiez vos barres d'actions ou vos barres d'actions croisées (XHB) pour {{jobName}} avec cet outil. Faites glisser et déposez, ou cliquez pour attribuer des actions aux emplacements des barres d'actions et enregistrez-les sous une URL partageable.",
       "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
       "create_layout": "Créer une nouvelle disposition.",
-      "new_layout": "Nouvelle disposition",
       "short_description": "Un guide de disposition de classe/emploi {{jobName}} pour les raccourcis clavier des barres d'actions pour Final Fantasy XIV : Dawntrail."
     },
     "Layout": {
@@ -241,7 +224,6 @@
   "SaveForm": {
     "title": "Titre",
     "description": "Description",
-    "save_layout": "Enregistrer la disposition",
     "publish_layout": "Publier la disposition",
     "publish_layout_info": "Les mises en page publiées peuvent apparaître dans des listes et des répertoires, et sont découvrables par d'autres utilisateurs. Les mises en page non publiées sont masquées des listes mais restent accessibles en visitant l'URL.",
     "save": "Sauvegarder",
@@ -249,8 +231,7 @@
     "failed": "Impossible d'enregistrer la disposition. Veuillez réessayer",
     "required": "obligatoire",
     "success": "Disposition enregistrée !",
-    "markdown_support": "Le markdown est pris en charge",
-    "draft": "**Les dispositions** sans descriptions sont traitées comme des brouillons et sont cachées des listes publiques. Elles sont toujours accessibles via l'URL de **disposition**."
+    "markdown_support": "Le markdown est pris en charge"
   },
 
   "Sharing": {
