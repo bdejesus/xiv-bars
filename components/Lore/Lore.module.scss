@@ -1,29 +1,14 @@
 @import "styles/mixins";
 
 .lore {
-  font-size: 12px;
+  font-size: 13px;
   font-style: italic;
-  margin-top: $spacing-lg;
+  line-height: 1.45em;
+  margin: $spacing-lg 0 0;
   opacity: 0.66;
-}
-
-.loreBody {
-  margin: 0;
 
   br {
     display: block;
     margin-bottom: 0.45em;
-  }
-}
-
-.lore[data-expanded="false"] .loreBody {
-  display: none;
-}
-
-.lore[data-expanded="true"] {
-  padding: $spacing-lg;
-
-  .loreBody {
-    display: block;
   }
 }

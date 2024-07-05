@@ -3,6 +3,7 @@
 $tag-size: 24px;
 
 .tags {
+  align-items: center;
   display: flex;
   flex-direction: row;
   gap: $spacing-sm;

@@ -102,6 +102,7 @@ $button-size: 40px;
 
   &:hover,
   &:focus {
+    outline: none;
     transform: scale(1.025) translateZ(0);
   }
 }

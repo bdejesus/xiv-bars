@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { formatDateString } from 'lib/utils/time';
-import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { useUserDispatch, userActions } from 'components/User';
-import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
@@ -14,6 +12,7 @@ import ProfileImage from 'components/User/ProfileImage';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
+import Summary from './Summary';
 
 import styles from './LayoutCard.module.scss';
 
@@ -27,7 +26,7 @@ interface LayoutCardProps {
 export default function LayoutCard({
   layout,
   job,
-  className = '',
+  className = undefined,
   hideName
 }:LayoutCardProps) {
   const { t } = useTranslation();
@@ -57,7 +56,7 @@ export default function LayoutCard({
   const updatedAt = formatDateString(layout.updatedAt as string, router.locale!);
 
   return (
-    <Card className={[styles.layoutCard, className].join(' ')}>
+    <div className={[styles.layoutCard, className].join(' ')}>
       <Tags layoutView={layout} job={job} className={styles.tags}>
         { layout._count?.hearts > 0 && (
           <Hearts
@@ -73,28 +72,12 @@ export default function LayoutCard({
         )}
       </Tags>
 
-      <a
-        href={`/job/${layout.jobId}/${layout.id}`}
-        className={styles.main}
-        itemProp="url"
-      >
-        <h3 title={layout.title} itemProp="name">{layout.title}</h3>
-
-        <div className={styles.subtitle} itemProp="description" aria-hidden="true">
-          { t('Pages.Job.short_description', { jobName: job.Name }) }
-        </div>
-
-        <div className={styles.description} itemProp="text">
-          { layout.description && (
-            <ReactMarkdown components={{
-              h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
-            }}
-            >
-              {layout.description.substring(0, 255)}
-            </ReactMarkdown>
-          )}
-        </div>
-      </a>
+      <Summary
+        id={layout.id!}
+        title={layout.title!}
+        description={layout.description}
+        job={job}
+      />
 
       <div className={styles.footer}>
         <ProfileImage
@@ -159,6 +142,6 @@ export default function LayoutCard({
           </div>
         </div>
       )}
-    </Card>
+    </div>
   );
 }

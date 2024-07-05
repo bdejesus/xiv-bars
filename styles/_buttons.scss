@@ -150,6 +150,10 @@ button,
     }
   }
 
+  &:focus {
+    outline: 3px double $color-alt-dark;
+  }
+
   &:active {
     background-color: $color-alt-dark;
     color: #fff;

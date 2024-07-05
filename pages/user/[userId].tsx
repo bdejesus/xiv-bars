@@ -11,7 +11,6 @@ import { useUserState, useUserDispatch } from 'components/User/context';
 import { userActions } from 'components/User/actions';
 import GlobalHeader from 'components/GlobalHeader';
 import LayoutsList from 'components/LayoutsList';
-import Card from 'components/Card';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
@@ -88,12 +87,10 @@ export default function User({ user }:UserViewProps) {
             { (layouts.length < maxLayouts && isCurrentUser) && (
               <li>
                 <JobSelect className={styles.jobSelectCard} action="new">
-                  <Card className={[styles.card, styles.newCard].join(' ')}>
-                    <h4 className={styles.placeholder}>
-                      <Icon id={Icons.ADD} type="white" alt={t('Pages.User.new_layout_icon')} />
-                      <span className="btn-layout">{t('Pages.User.new_layout')}</span>
-                    </h4>
-                  </Card>
+                  <h4 className={styles.placeholder}>
+                    <Icon id={Icons.ADD} type="white" alt={t('Pages.User.new_layout_icon')} />
+                    <span className="btn-layout">{t('Pages.User.new_layout')}</span>
+                  </h4>
                 </JobSelect>
               </li>
             )}

@@ -54,7 +54,7 @@ export function JobSelect({
         onClose={() => setShowJobsModal(false)}
         className={classNames()}
       >
-        <JobMenu action={action} />
+        { showJobsModal && <JobMenu action={action} /> }
       </Modal>
     </>
   );
