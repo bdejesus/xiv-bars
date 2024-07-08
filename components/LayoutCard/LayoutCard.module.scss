@@ -58,8 +58,18 @@
   }
 
   .footer {
-    border-top: 1px solid rgb(255 255 255 / 5%);
-    padding: $spacing-sm $spacing-base;
+    padding: $spacing-sm $spacing-base $spacing-base;
+    position: relative;
+
+    &::before {
+      border-top: 1px solid rgb(255 255 255 / 5%);
+      content: '';
+      display: block;
+      left: $spacing-base;
+      position: absolute;
+      right: $spacing-base;
+      top: 0;
+    }
   }
 
   .job {

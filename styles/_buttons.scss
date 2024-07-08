@@ -23,7 +23,7 @@ button,
   padding: 0 12px;
   position: relative;
   transition-duration: $timing-default;
-  transition-property: background-image, background-color, box-shadow, color, opacity;
+  transition-property: background-image, background-color, box-shadow, color, opacity, transform;
   transition-timing-function: ease;
   white-space: nowrap;
 
