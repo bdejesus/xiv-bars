@@ -15,6 +15,7 @@ import Footer from 'components/Footer';
 import App, { appActions, useAppDispatch } from 'components/App';
 import LayoutsList from 'components/LayoutsList';
 import EorzeaProfile from 'components/EorzeaProfile';
+import { hasSprite } from 'components/JobSprite';
 import Jobs from 'apiData/Jobs.json';
 
 import type { PageProps } from 'types/Page';
@@ -61,7 +62,14 @@ export default function Index(props:PageProps) {
         </title>
         <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:image" content={imgURL} />
+
+        { hasSprite(selectedJob)
+          && (
+          <meta
+            property="og:image"
+            content={`${domain}/classjob/sprite-${selectedJob.Abbr}.png`}
+          />
+          )}
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />

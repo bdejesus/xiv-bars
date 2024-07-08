@@ -11,11 +11,8 @@ interface MetaProps {
 export function renderMeta({
   title,
   description,
-  currentPath,
-  image = undefined
+  currentPath
 }:MetaProps) {
-  const imgURL = image || `${domain}/icons/favicon-144x144.png`;
-
   return (
     <>
       <meta name="description" content={description} />
