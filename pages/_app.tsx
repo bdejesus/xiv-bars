@@ -34,8 +34,9 @@ function App({ Component, pageProps }: AppProps) {
   const { t } = useTranslation('common');
   const { selectedJob, session } = pageProps;
   const router = useRouter();
+  const currentPath = router.asPath;
 
-  useEffect(() => { analytics.pageview(router.asPath); }, []);
+  useEffect(() => { analytics.pageview(currentPath); }, []);
 
   function generateTitle() {
     if (selectedJob) {
@@ -48,8 +49,8 @@ function App({ Component, pageProps }: AppProps) {
     return t('Global.description');
   }
 
-  const pageTitle = generateTitle();
-  const description = generateDescription();
+  const displayTitle = generateTitle();
+  const displayDescription = generateDescription();
 
   return (
     <ErrorBoundary fallback={(
@@ -99,8 +100,12 @@ function App({ Component, pageProps }: AppProps) {
       </Script>
 
       <Head>
-        <title>{pageTitle}</title>
-        { renderMeta(pageTitle, description) }
+        <title>{displayTitle}</title>
+        { renderMeta({
+          title: displayTitle,
+          description: displayDescription,
+          currentPath
+        }) }
         { renderFavicon() }
       </Head>
 

@@ -49,7 +49,7 @@ export default function LayoutsList({
               itemProp="itemListElement"
               itemType="https://schema.org/HowToTip"
             >
-              <meta itemProp="position" content={`${index + 1}`}/>
+              <meta itemProp="position" content={`${index + 1}`} />
               <LayoutCard
                 layout={layout}
                 job={job}

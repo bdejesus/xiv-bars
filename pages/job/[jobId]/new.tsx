@@ -61,6 +61,7 @@ export default function Index(props:PageProps) {
         </title>
         <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:image" content={imgURL} />
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />
