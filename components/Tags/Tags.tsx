@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import ClassJob from 'components/ClassJob';
 import Icon from 'components/Icon';
@@ -6,13 +7,20 @@ import type { ClassJobProps } from 'types/ClassJob';
 import styles from './Tags.module.scss';
 
 interface Props {
+  className?: string,
   layoutView: LayoutViewProps,
-  job: ClassJobProps
+  job: ClassJobProps,
+  children?: ReactNode
 }
 
-export default function Tags({ layoutView, job }:Props) {
+export default function Tags({
+  className = undefined,
+  layoutView,
+  job,
+  children
+}:Props) {
   return (
-    <div className={styles.tags}>
+    <div className={[styles.tags, className].join(' ')}>
       { job && (
         <Link href={`/job/${job.Abbr}`} className={`${styles.jobTag} tag`} data-role={job.Role}>
           <ClassJob job={job} className={styles.tag} name={false} />
@@ -20,23 +28,25 @@ export default function Tags({ layoutView, job }:Props) {
       )}
 
       { (layoutView.layout === 0) && (
-        <span className={`${styles.tag} tag`}>
+        <div className={`${styles.tag} tag`}>
           <Icon id="xhb" alt="Cross Hotbar Icon" />
           <span className={`${styles.name} tag-name`}>XHB</span>
-        </span>
+        </div>
       )}
 
       { (layoutView.layout === 1) && (
-        <span className={`${styles.tag} tag`}>
+        <div className={`${styles.tag} tag`}>
           <Icon id="hb" alt="Hotbar Icon" />
           <span className={`${styles.name} tag-name`}>HB</span>
-        </span>
+        </div>
       )}
 
-      <span className={`${styles.tag} tag`}>
+      <div className={`${styles.tag} tag`}>
         <Icon id={layoutView.isPvp ? 'pvp' : 'pve'} alt={`${layoutView.isPvp ? 'P.V.P.' : 'P.V.E.'} Icon`} />
         <span className={`${styles.name} tag-name`}>{ layoutView.isPvp ? 'PVP' : 'PVE' }</span>
-      </span>
+      </div>
+
+      { children }
     </div>
   );
 }

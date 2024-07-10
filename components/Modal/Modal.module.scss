@@ -16,6 +16,7 @@
   z-index: 100;
 
   .container {
+    position: relative;
     transition: opacity 0.33s ease, transform 0.33s ease;
   }
 
@@ -72,13 +73,6 @@
   .content {
     margin-bottom: $spacing-xl;
   }
-}
-
-.closeBtn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translate(-$spacing-base, -50%);
 }
 
 @media (max-width: $screen-sm) {

@@ -1,13 +1,9 @@
 @import 'styles/mixins';
 
 .container {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  flex-direction: row;
-}
-
-.textWrapper {
-  text-align: left;
+  flex-direction: column;
 }
 
 .title {

@@ -3,8 +3,10 @@
 $tag-size: 24px;
 
 .tags {
+  align-items: center;
   display: flex;
   flex-direction: row;
+  gap: $spacing-sm;
   line-height: 1;
 }
 
@@ -17,7 +19,6 @@ $tag-size: 24px;
   font-size: $font-size-xs;
   height: $tag-size;
   justify-content: center;
-  margin-right: $spacing-xs;
   padding: 2px 6px 2px 4px;
   transform: translateZ(0);
 }

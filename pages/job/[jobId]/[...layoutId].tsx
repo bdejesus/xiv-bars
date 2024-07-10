@@ -60,7 +60,7 @@ export default function Index(props:PageProps) {
         viewData
       }
     });
-  }, []);
+  }, [router.query]);
 
   return (
     <>
@@ -108,72 +108,74 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   const { req, res } = context;
   const session = await getServerSession(req, res, authOptions);
   const viewerId = session?.user.id;
+  const layoutId = parseInt(context.params?.layoutId as string, 10);
+  const jobId = context.params?.jobId as string;
 
-  try {
-    const jobId = context.params?.jobId as string;
-    const layoutId = context.params?.layoutId as string;
+  if (layoutId) {
+    try {
+      // Get Selected Job
+      const selectedJob = Jobs.find((job:ClassJobProps) => job.Abbr === jobId);
+      if (!selectedJob) return { notFound: true };
 
-    // Get Selected Job
-    const selectedJob = Jobs.find((job:ClassJobProps) => job.Abbr === jobId);
-    if (!selectedJob) return { notFound: true };
+      // Fetch Layout Data using fetchOptions
+      const fetchOptions = {
+        method: 'POST',
+        body: JSON.stringify({ layoutId, viewerId, method: 'read' }),
+        headers: { 'Content-Type': 'application/json' }
+      };
+      const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
+      const viewData = await fetchView.json();
 
-    // Fetch Layout Data using fetchOptions
-    const fetchOptions = {
-      method: 'POST',
-      body: JSON.stringify({ layoutId, viewerId, method: 'read' }),
-      headers: { 'Content-Type': 'application/json' }
-    };
-    const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
-    const viewData = await fetchView.json();
+      // Fetch Job Actions
+      const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
+      const { actions, roleActions } = await actionsRequest.json();
 
-    // Fetch Job Actions
-    const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
-    const { actions, roleActions } = await actionsRequest.json();
+      // DB List Query Options
+      const listOptions = {
+        take: 4,
+        where: {
+          id: { not: viewData.id },
+          description: { not: '' },
+          published: true
+        },
+        include: {
+          user: { select: { name: true, image: true } },
+          _count: { select: { hearts: true } }
+        },
+        orderBy: { updatedAt: 'desc' }
+      };
 
-    // DB List Query Options
-    const listOptions = {
-      take: 4,
-      where: {
-        id: { not: viewData.id },
-        description: { not: '' },
-        published: true
-      },
-      include: {
-        user: { select: { name: true, image: true } },
-        _count: { select: { hearts: true } }
-      },
-      orderBy: { updatedAt: 'desc' }
-    };
+      // DB Query to fetch other layouts by the layout owner
+      const ownerLayouts = await db.layout.findMany({
+        ...listOptions,
+        where: { ...listOptions.where, userId: viewData.user.id }
+      });
 
-    // DB Query to fetch other layouts by the layout owner
-    const ownerLayouts = await db.layout.findMany({
-      ...listOptions,
-      where: { ...listOptions.where, userId: viewData.user.id }
-    });
+      // DB Query to fetch other layouts with the same jobClass
+      const classJobLayouts = await db.layout.findMany({
+        ...listOptions,
+        where: { ...listOptions.where, jobId: viewData.jobId },
+        take: 24
+      });
+      // Take results, shuffle and take 4, convert date objects to json string
+      const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 4));
 
-    // DB Query to fetch other layouts with the same jobClass
-    const classJobLayouts = await db.layout.findMany({
-      ...listOptions,
-      where: { ...listOptions.where, jobId: viewData.jobId },
-      take: 24
-    });
-    // Take results, shuffle and take 4, convert date objects to json string
-    const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 4));
+      const props = {
+        ...(await serverSideTranslations(context.locale as string, ['common'])),
+        viewData: { ...viewData, hb: viewData.hb?.split(',') || null },
+        selectedJob,
+        actions,
+        roleActions,
+        viewAction: 'show',
+        ownerLayouts: serializeDates(ownerLayouts),
+        classJobLayouts: serializableClassJobLayouts
+      };
 
-    const props = {
-      ...(await serverSideTranslations(context.locale as string, ['common'])),
-      viewData: { ...viewData, hb: viewData.hb?.split(',') || null },
-      selectedJob,
-      actions,
-      roleActions,
-      viewAction: 'show',
-      ownerLayouts: serializeDates(ownerLayouts),
-      classJobLayouts: serializableClassJobLayouts
-    };
-
-    return { props };
-  } catch (error) {
-    console.error(error);
-    return { notFound: true };
+      return { props };
+    } catch (error) {
+      console.error(error);
+      return { notFound: true };
+    }
   }
+  return { notFound: true };
 };

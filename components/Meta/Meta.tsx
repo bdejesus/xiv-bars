@@ -1,6 +1,18 @@
 import Script from 'next/script';
+import { domain } from 'lib/host';
 
-export function renderMeta(title: string, description: string) {
+interface MetaProps {
+  title: string,
+  description: string,
+  currentPath: string,
+  image?: string
+}
+
+export function renderMeta({
+  title,
+  description,
+  currentPath
+}:MetaProps) {
   return (
     <>
       <meta name="description" content={description} />
@@ -11,9 +23,6 @@ export function renderMeta(title: string, description: string) {
       <meta name="msapplication-TileImage" content="icons/favicon-144x144.png" />
       <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
 
-      <link rel="preconnect" href="https://xivapi.com" />
-      <link rel="preconnect" href="https://www.google-analytics.com" />
-      <link rel="manifest" href="/manifest.json" />
       <Script
         id="schema"
         type="application/ld+json"
@@ -42,6 +51,13 @@ export function renderMeta(title: string, description: string) {
           })
         }}
       />
+
+      <meta property="og:url" content={[domain, currentPath].join('')} />
+      <meta property="og:type" content="website" />
+
+      <link rel="preconnect" href="https://xivapi.com" />
+      <link rel="preconnect" href="https://www.google-analytics.com" />
+      <link rel="manifest" href="/manifest.json" />
     </>
   );
 }

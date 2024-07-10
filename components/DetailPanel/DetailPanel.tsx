@@ -7,7 +7,7 @@ import SaveForm from 'components/SaveForm';
 import EditLayoutButton from 'components/EditLayoutButton';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
-import JobSprite from 'components/JobSprite';
+import JobSprite, { hasSprite } from 'components/JobSprite';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
 import ProfileImage from 'components/User/ProfileImage';
@@ -37,9 +37,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
   } = viewData;
 
   const isOwner = session?.user.id === userId;
-  const hasSprite = (selectedJob && selectedJob.Abbr)
-    && ['DOW', 'DOM'].includes(selectedJob.Discipline)
-    && !['BLU'].includes(selectedJob.Abbr);
+  const showSprite = selectedJob && hasSprite(selectedJob);
 
   return (
     <div
@@ -140,7 +138,8 @@ export default function DetailPanel({ className = '', visible }:Props) {
             </div>
           )}
 
-        { hasSprite && <div className={styles.footer}><JobSprite job={selectedJob} /></div> }
+        { showSprite
+          && <div className={styles.footer}><JobSprite job={selectedJob} /></div>}
       </div>
     </div>
   );

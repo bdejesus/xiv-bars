@@ -55,49 +55,49 @@ export async function read(
   id: LayoutID,
   viewerId: UserID | undefined
 ):Promise<LayoutViewProps> {
-  if (!id) throw new Error('Layout not found');
-
-  const layoutId = parseInt(id, 10);
-  const hearted = await db.heart.findFirst({ where: { userId: viewerId, layoutId } });
-  const viewData = await db.layout
-    .findUnique({
-      where: { id: parseInt(id, 10) },
-      include: {
-        user: {
-          select: { name: true, id: true, image: true }
-        },
-        _count: {
-          select: { hearts: true }
+  try {
+    const layoutId = parseInt(id, 10);
+    const hearted = await db.heart.findFirst({ where: { userId: viewerId, layoutId } });
+    const viewData = await db.layout
+      .findUnique({
+        where: { id: parseInt(id, 10) },
+        include: {
+          user: {
+            select: { name: true, id: true, image: true }
+          },
+          _count: {
+            select: { hearts: true }
+          }
         }
-      }
-    }).catch((error:Error) => {
-      console.error(error);
-      return new Error('Could not read layout.');
-    });
+      });
 
-  // Because Layouts created before the 7.0 release used placeholder IDs for VPR and PCT
-  // actions, we need to convert them into the release IDs to make the transition.
-  // TODO: Create a script to update old placeholder IDs in the DB to migrate them to
-  // the new release versions
-  const jobIdString = viewData?.jobId as string;
-  if (['VPR', 'PCT'].includes(jobIdString)) {
-    type AltIDs = { ID:number, AltID:number }
-    const newJobActions = { VPR: VPRActions.PvE.actions, PCT: PCTActions.PvE.actions };
-    const ActionIDs = newJobActions[jobIdString as keyof typeof newJobActions]
-      .map(({ ID, AltID }:AltIDs) => ({ ID, AltID }));
-    const encodedSlotIDs = viewData.encodedSlots.split(',');
-    const convertedSlots = encodedSlotIDs.map((actionId:string) => {
-      const hasAltID = ActionIDs.find((act:AltIDs) => act.AltID.toString() === actionId);
-      if (hasAltID) return hasAltID.ID;
-      return actionId;
-    }).join(',');
-    viewData.encodedSlots = convertedSlots;
+    // Because Layouts created before the 7.0 release used placeholder IDs for VPR and PCT
+    // actions, we need to convert them into the release IDs to make the transition.
+    // TODO: Create a script to update old placeholder IDs in the DB to migrate them to
+    // the new release versions
+    const jobIdString = viewData?.jobId as string;
+    if (['VPR', 'PCT'].includes(jobIdString)) {
+      type AltIDs = { ID:number, AltID:number }
+      const newJobActions = { VPR: VPRActions.PvE.actions, PCT: PCTActions.PvE.actions };
+      const ActionIDs = newJobActions[jobIdString as keyof typeof newJobActions]
+        .map(({ ID, AltID }:AltIDs) => ({ ID, AltID }));
+      const encodedSlotIDs = viewData.encodedSlots.split(',');
+      const convertedSlots = encodedSlotIDs.map((actionId:string) => {
+        const hasAltID = ActionIDs.find((act:AltIDs) => act.AltID.toString() === actionId);
+        if (hasAltID) return hasAltID.ID;
+        return actionId;
+      }).join(',');
+      viewData.encodedSlots = convertedSlots;
+    }
+
+    return {
+      ...viewData,
+      hearted
+    };
+  } catch {
+    console.error('ERROR: Could not read layout');
+    throw new Error('Could not read layout.');
   }
-
-  return {
-    ...viewData,
-    hearted
-  };
 }
 
 export async function update(data:LayoutDataProps):Promise<LayoutDataProps> {

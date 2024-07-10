@@ -53,9 +53,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
         <GlobalHeader />
       </AppContextProvider>
 
-      <div className={styles.header}>
-        <Hero />
-      </div>
+      <Hero />
 
       <div className="app-view">
         <div
@@ -72,19 +70,16 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
       { popularLayouts?.length >= 5 ? (
         <div className={`container ${styles.lists}`}>
-          <div className={styles.recentLayouts}>
-            <LayoutsList
-              title={t('Pages.Index.recent_layouts')}
-              layouts={recentLayouts}
-            />
-          </div>
-
-          <div className={styles.popularLayouts}>
-            <LayoutsList
-              title={t('Pages.Index.popular_layouts')}
-              layouts={popularLayouts}
-            />
-          </div>
+          <LayoutsList
+            className={styles.recentLayouts}
+            title={t('Pages.Index.recent_layouts')}
+            layouts={recentLayouts}
+          />
+          <LayoutsList
+            className={styles.popularLayouts}
+            title={t('Pages.Index.popular_layouts')}
+            layouts={popularLayouts}
+          />
         </div>
       ) : (
         <div className="container">
