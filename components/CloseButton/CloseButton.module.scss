@@ -1,7 +1,14 @@
 @import "styles/mixins";
 
-.button {
-  position: relative;
+.button:global(.button) {
+  position: absolute;
+  right: 0;
   text-transform: uppercase;
+  top: 0;
+  transform: translate(-$spacing-base, -50%);
   z-index: 1;
+
+  &:hover {
+    transform: translate(-$spacing-base, -50%) scale(1.2);
+  }
 }

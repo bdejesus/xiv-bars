@@ -25,7 +25,10 @@ export default function ClassJob({
   const displayName = translateData('Name', job, locale);
 
   return (
-    <span className={[styles.container, className].join(' ')} id={`job-label-${job.Name}`}>
+    <span
+      className={[styles.container, className].join(' ')}
+      id={`job-label-${job.Name}`}
+    >
       <span className={`${styles.jobWrapper} job-wrapper`} data-role={job.Role}>
         { icon && (
           <span className={`${styles.iconWrapper} job-icon`}>
@@ -48,10 +51,9 @@ export default function ClassJob({
       </span>
 
       { name && (
-        <>
-          &nbsp;
-          <span className={`${styles.name} job-name`} itemProp="name">{displayName}</span>
-        </>
+        <span className={`${styles.name} job-name`} itemProp="name">
+          {displayName}
+        </span>
       )}
     </span>
   );

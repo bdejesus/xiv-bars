@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { formatDateString } from 'lib/utils/time';
-import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { useUserDispatch, userActions } from 'components/User';
-import Card from 'components/Card';
 import Icon, { Icons } from 'components/Icon';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
@@ -14,6 +12,7 @@ import ProfileImage from 'components/User/ProfileImage';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
+import Summary from './Summary';
 
 import styles from './LayoutCard.module.scss';
 
@@ -27,7 +26,7 @@ interface LayoutCardProps {
 export default function LayoutCard({
   layout,
   job,
-  className = '',
+  className = undefined,
   hideName
 }:LayoutCardProps) {
   const { t } = useTranslation();
@@ -57,80 +56,61 @@ export default function LayoutCard({
   const updatedAt = formatDateString(layout.updatedAt as string, router.locale!);
 
   return (
-    <div className={styles.layoutCard}>
-      <Card className={[styles.card, className].join(' ')}>
-        <div className={styles.tags}>
-          <Tags layoutView={layout} job={job} />
-          { layout._count?.hearts > 0 && (
-            <Hearts
-              layoutId={layout.id as number}
-              count={layout._count?.hearts || 0}
-              className={styles.hearts}
-            />
-          )}
-          { isOwner && !layout.published && (
-            <div className={`tag ${styles.publishTag}`}>
-              { t('LayoutCard.draft') }
-            </div>
-          )}
-        </div>
-
-        <a
-          href={`/job/${layout.jobId}/${layout.id}`}
-          className={styles.main}
-          itemProp="url"
-        >
-          <h3 title={layout.title} itemProp="name">{layout.title}</h3>
-
-          <div className={styles.subtitle} itemProp="description" aria-hidden="true">
-            { t('Pages.Job.short_description', { jobName: job.Name }) }
-          </div>
-
-          <div className={styles.description} itemProp="text">
-            { layout.description && (
-              <ReactMarkdown components={{
-                h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
-              }}
-              >
-                {layout.description.substring(0, 255)}
-              </ReactMarkdown>
-            )}
-          </div>
-        </a>
-
-        <div className={styles.footer}>
-          <ProfileImage
-            src={layout.user.image}
-            title={layout.user.name}
-            href={`/user/${layout.userId}`}
-            className={styles.profileImage}
+    <div className={[styles.layoutCard, className].join(' ')}>
+      <Tags layoutView={layout} job={job} className={styles.tags}>
+        { layout._count?.hearts > 0 && (
+          <Hearts
+            layoutId={layout.id as number}
+            count={layout._count?.hearts || 0}
+            className={styles.hearts}
           />
+        )}
+        { isOwner && !layout.published && (
+          <div className={`tag ${styles.publishTag}`}>
+            { t('LayoutCard.draft') }
+          </div>
+        )}
+      </Tags>
 
-          { !hideName && (
-            <div
-              className={styles.owner}
-              itemScope
-              itemType="https://schema.org/Person"
-              itemProp="author"
-            >
-              <Link href={`/user/${layout.userId}`} itemProp="url">
-                <span itemProp="name">{layout.user.name}</span>
-              </Link>
-            </div>
-          )}
+      <Summary
+        id={layout.id!}
+        title={layout.title!}
+        description={layout.description}
+        job={job}
+      />
 
-          { layout.updatedAt && (
-            <div className={styles.timestamp}>
-              {t('LayoutCard.last_updated')}: <time dateTime={layout.updatedAt}>{updatedAt}</time>
-            </div>
-          )}
-        </div>
-
-        <div
-          className={styles.jobBackdrop}
-          style={{ backgroundImage: `url(/jobIcons/${job.Name.replaceAll(' ', '')}.png` }}
+      <div className={styles.footer}>
+        <ProfileImage
+          src={layout.user.image}
+          title={layout.user.name}
+          href={`/user/${layout.userId}`}
+          className={styles.profileImage}
         />
-      </Card>
+
+        { !hideName && (
+          <div
+            className={styles.owner}
+            itemScope
+            itemType="https://schema.org/Person"
+            itemProp="author"
+          >
+            <Link href={`/user/${layout.userId}`} itemProp="url">
+              <span itemProp="name">{layout.user.name}</span>
+            </Link>
+          </div>
+        )}
+
+        { layout.updatedAt && (
+          <div className={styles.timestamp}>
+            {t('LayoutCard.last_updated')}: <time dateTime={layout.updatedAt}>{updatedAt}</time>
+          </div>
+        )}
+      </div>
+
+      <div
+        className={styles.jobBackdrop}
+        style={{ backgroundImage: `url(/jobIcons/${job.Name.replaceAll(' ', '')}.png` }}
+      />
 
       { !!isOwner && (
         <div className={styles.cardActions}>

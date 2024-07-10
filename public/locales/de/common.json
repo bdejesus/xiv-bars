@@ -21,10 +21,6 @@
     "company_actions": "Unternehmensaktionen"
   },
 
-  "App": {
-    "hotbar_planner": "Hotbar Planer"
-  },
-
   "ControlBar": {
     "CopyLayout": {
       "copy_label": "Layout kopieren",
@@ -74,7 +70,6 @@
   },
 
   "Error": {
-    "no_jobs": "Etwas ist schiefgelaufen und wir konnten keine Job-Daten laden. Bitte versuchen Sie es später erneut.",
     "generic": {
       "title": "Oh oh! Etwas ist schiefgelaufen...",
       "body": "Es scheint, als hätten wir einen Fehlerzustand erreicht. Der Fehler wurde protokolliert, aber leider müssen Sie von vorne beginnen.",
@@ -85,7 +80,6 @@
   "ExportToMacro": {
     "export_to_macro": "Exportieren als Makro",
     "limitations": "Ein begrenzter Satz von Aktionen kann über Makrobefehle zugewiesen werden. Inkompatible Aktionen werden aus dem generierten Makro ausgelassen. Beachten Sie auch, dass Makros auf 15 Zeilen begrenzt sind.",
-    "copy": "Kopieren",
     "copy_to": "In die Zwischenablage kopieren",
     "copied": "Kopiert!"
   },
@@ -98,15 +92,6 @@
 
   "GlobalHeader": {
     "new_layout": "Neues Layout"
-  },
-
-  "Intro": {
-    "select_a_job": "Wähle einen Job"
-  },
-
-  "Header": {
-    "title": "Simulieren und Exportieren von FFXIV Endwalker Cross Hotbars für PC, Playstation 4 oder Playstation 5",
-    "body": "XIVBARS ist ein FFXIV Cross Hotbar (XHB/WXHB) Planer zur Simulation der Steuerungsoberfläche im Spiel. Sie können Hotbars für PC, PS4 oder PS5 über Makros exportieren. Teilen Sie Layoutkonfigurationen mit anderen über eine generierte URL oder generieren Sie einen Makrobefehl zum Importieren ins Spiel."
   },
 
   "Hearts": {
@@ -152,7 +137,6 @@
   },
 
   "JobsList": {
-    "new_layout": "Neues Layout erstellen",
     "new_job_layout": "Neues {{jobName}} Layout"
   },
 
@@ -209,7 +193,6 @@
       "new_description": "Planen Sie Ihre {{jobName}}-Aktionsleisten oder Kreuz-Aktionsleisten (XHB) mit diesem Tool. Ziehen Sie per Drag & Drop oder klicken Sie, um Aktionen den Aktionsleistenplätzen zuzuweisen und speichern Sie diese unter einer teilbaren URL.",
       "no_layouts": "Keine {{jobName}} Layouts vorhanden.",
       "create_layout": "Erstellen Sie ein neues Layout.",
-      "new_layout": "Neues Layout",
       "short_description": "Ein {{jobName}} Klassen/Job Layout-Guide für die Tastenbelegung der Aktionsleisten für Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
@@ -241,7 +224,6 @@
   "SaveForm": {
     "title": "Titel",
     "description": "Beschreibung",
-    "save_layout": "Layout speichern",
     "publish_layout": "Layout veröffentlichen",
     "publish_layout_info": "Veröffentlichte Layouts können in Listen und Verzeichnissen erscheinen und von anderen Benutzern gefunden werden. Unveröffentlichte Layouts sind in Listen verborgen, bleiben jedoch über die URL zugänglich.",
     "save": "Speichern",
@@ -249,8 +231,7 @@
     "failed": "Layout konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
     "required": "erforderlich",
     "success": "Layout gespeichert!",
-    "markdown_support": "Markdown wird unterstützt",
-    "draft": "**Layouts** ohne Beschreibungen werden als Entwürfe behandelt und sind vor öffentlichen Auflistungen versteckt. Sie sind immer noch über die **Layout**-URL zugänglich."
+    "markdown_support": "Markdown wird unterstützt"
   },
 
   "Sharing": {

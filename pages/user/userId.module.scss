@@ -6,20 +6,21 @@
 }
 
 .jobSelectCard {
-  background-color: transparent;
+  background-color: #111;
   border-radius: 0;
   box-shadow: none;
   height: unset;
   overflow: visible;
   padding: 0;
+  transition-property: background-color, border, color, box-shadow;
   width: 100%;
 
   &:hover {
     background: transparent;
   }
 
-  &:hover .newCard,
-  &:focus .newCard {
+  &:hover,
+  &:focus {
     box-shadow: inset 0 0 1px 2px $color-alt;
 
     .placeholder {
@@ -37,6 +38,7 @@
   color: #fff;
   display: flex;
   justify-content: center;
+  margin: 0;
   min-height: 160px;
   transition: color 0.3s ease;
 }

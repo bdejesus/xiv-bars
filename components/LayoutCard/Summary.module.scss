@@ -1,0 +1,83 @@
+@import 'styles/mixins';
+
+$description-height: 42px;
+
+.summary {
+  flex: 1 1 auto;
+  padding: 54px $spacing-base $spacing-sm;
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    > a h3 {
+      color: $color-alt;
+    }
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 0 1px $color-alt;
+    outline: none;
+  }
+
+  h3 {
+    color: #fff;
+    margin: 0;
+    max-width: 320px;
+    min-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color $timing-default ease;
+    white-space: nowrap;
+  }
+
+  .description {
+    color: #999;
+    flex: 1 1 auto;
+    font-size: $font-size-base;
+    font-weight: 400;
+    line-height: 1.45;
+    margin: $spacing-sm 0;
+    max-height: $description-height;
+    overflow: hidden;
+    position: relative;
+    transition: color $timing-default ease;
+
+    &::after {
+      background-image: linear-gradient(rgb(0 0 0 / 0%) 0, #111 95%);
+      content: '';
+      display: block;
+      height: 66.6%;
+      left: 0;
+      min-height: $description-height;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    h2, h3, h4 ,h5, h6 {
+      font-weight: 500;
+      margin: 0 0 $spacing-sm;
+    }
+
+    h2 {
+      font-size: $font-size-base;
+    }
+
+    h3 {
+      font-size: $font-size-sm;
+    }
+
+    h4 {
+      font-size: $font-size-xs;
+    }
+
+    p, li {
+      font-weight: inherit;
+    }
+
+    pre {
+      display: none;
+    }
+  }
+}

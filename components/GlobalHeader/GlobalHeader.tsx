@@ -54,7 +54,6 @@ export function GlobalHeader({ selectedJob }:Props) {
               <Link
                 href={`/job/${selectedJob.Abbr}`}
                 className={`${styles.jobLink} ${viewAction === 'list' && 'btn-alt'}`}
-                // className={`button btn-link${viewAction === 'list' && 'btn-alt'}`}
               >
                 <ClassJob job={selectedJob} name={false} className={styles.selectedJob} />
               </Link>

@@ -4,11 +4,14 @@
   bottom: $spacing-base;
   position: fixed;
   right: $spacing-base;
-  transition: opacity 0.33s ease;
+  transition-duration: 0.33s;
+  transition-property: opacity, transform;
+  transition-timing-function: ease;
 
   &[data-hidden='true'] {
     opacity: 0;
     pointer-events: none;
+    transform: translateY(100px);
   }
 }
 
@@ -18,10 +21,12 @@
   font-weight: 400;
   height: unset;
   padding: $spacing-base;
+  transition-property: color, background-color, box-shadow, border, opacity, transform;
 
   &:hover {
     color: #333 !important;
     text-shadow: none;
+    transform: translateY(-4px);
   }
 
   .donateLabel {
@@ -50,18 +55,5 @@
   &:hover::before {
     content: "🍻";
     font-size: 30px;
-  }
-}
-
-.dismissBtn:global(.btn-icon) {
-  position: absolute;
-  right: $spacing-sm;
-  top: 0;
-  transform: translate(0, -50%);
-  z-index: 3;
-
-  :global(.icon) {
-    height: $spacing-base;
-    width: $spacing-base;
   }
 }

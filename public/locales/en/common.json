@@ -21,10 +21,6 @@
     "company_actions": "Company Actions"
   },
 
-  "App": {
-    "hotbar_planner": "Hotbar Planner"
-  },
-
   "ControlBar": {
     "CopyLayout": {
       "copy_label": "Copy Layout",
@@ -74,7 +70,6 @@
   },
 
   "Error": {
-    "no_jobs": "Something went wrong and we couldn’t load any jobs data. Please try again later.",
     "generic": {
       "title": "Uh oh! Something went wrong...",
       "body": "We seem to have hit a fail state. The error has been logged but unfortunately you’ll need to start over.",
@@ -85,7 +80,6 @@
   "ExportToMacro": {
     "export_to_macro": "Export to Macro",
     "limitations": "A limited set of actions can assigned via macro commands. Incompatible actions are ommited from the generated macro. Also note that Macros are limited to 15 lines each.",
-    "copy": "Copy",
     "copy_to": "Copy to Clipboard",
     "copied": "Copied!"
   },
@@ -98,15 +92,6 @@
 
   "GlobalHeader": {
     "new_layout": "New Layout"
-  },
-
-  "Intro": {
-    "select_a_job": "Select a Job"
-  },
-
-  "Header": {
-    "title": "Simulate and Export FFXIV Endwalker Cross Hotbars for PC, Playstation 4 or Playstation 5",
-    "body": "XIVBARS is a FFXIV Cross Hotbar (XHB/WXHB) Planner for simulating the in-game control UI. You can export hotbars for PC, PS4 or PS5 via macros. Share layout configurations with others via a generated URL or generate a macro command to import into the game."
   },
 
   "Hearts": {
@@ -152,7 +137,6 @@
   },
 
   "JobsList": {
-    "new_layout": "Create new layout",
     "new_job_layout": "New {{jobName}} Layout"
   },
 
@@ -208,7 +192,6 @@
       "new_description": "Plan your {{jobName}} Hotbars or Cross Hotbars (XHB) with this tool. Drag and drop, or click to assign actions to hotbar slots and save to a shareable URL.",
       "no_layouts": "No {{jobName}} Layouts yet.",
       "create_layout": "Create a new layout.",
-      "new_layout": "New Layout",
       "short_description": "A {{jobName}} Class/Job layout guide for keybinding hotbars for Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
@@ -240,7 +223,6 @@
   "SaveForm": {
     "title": "Title",
     "description": "Description",
-    "save_layout": "Save Layout",
     "publish_layout": "Publish Layout",
     "publish_layout_info": "Published Layouts can appear on lists and directories, and are discoverable by other users. Unpublished layouts are hidden from lists but are still accessible by visiting the URL.",
     "save": "Save",
@@ -248,8 +230,7 @@
     "failed": "Couldn’t save layout. Please try again",
     "required": "required",
     "success": "Layout Saved!",
-    "markdown_support": "Markdown is supported",
-    "draft": "**Layouts** with no descriptions are treated as drafts and are hidden from public listings. They are still accessible via the **Layout** url."
+    "markdown_support": "Markdown is supported"
   },
 
   "Sharing": {
