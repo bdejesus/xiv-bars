@@ -3,7 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useSession } from 'next-auth/react';
-import { formatDateStringLong, timeElapsed } from 'lib/utils/time';
+import { formatDateStringLong, daysAgo } from 'lib/utils/time';
 import { AppContextProvider } from 'components/App/';
 import GlobalHeader from 'components/GlobalHeader';
 import ProfileImage from 'components/User/ProfileImage';
@@ -60,7 +60,7 @@ export default function Settings() {
                   { t('Pages.User.Settings.registration_date') }&nbsp;
                   <time dateTime={user.createdAt}>{formatDateStringLong(user.createdAt!, router.locale)}</time>
                   <br />
-                  { t('Pages.User.Settings.days_count', { count: timeElapsed(user.createdAt!) }) }
+                  { t('Pages.User.Settings.days_count', { count: daysAgo(user.createdAt!) }) }
                 </div>
               </div>
 

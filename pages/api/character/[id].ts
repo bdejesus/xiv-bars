@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import * as HTMLParser from 'fast-html-parser';
+import { timeElapsed } from 'lib/utils/time';
 import type { HTMLElement } from 'fast-html-parser';
 import type { Character } from 'types/Character';
 import db from 'lib/db';
@@ -188,8 +189,10 @@ export default async function characterHandler(req: NextApiRequest, res: NextApi
   const characterId = parseInt(req.query.id as string, 10);
   const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
   const characterData = await readCharacter(characterId);
+  const today = new Date();
+  const shouldUpdate = timeElapsed(characterData.updatedAt, today, 'minutes') > 30;
 
-  if (!characterData) {
+  if (!characterData || shouldUpdate) {
     fetch(lodestoneURL)
       .then((response) => response.text())
       .then((content) => {
