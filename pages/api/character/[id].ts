@@ -190,7 +190,7 @@ export default async function characterHandler(req: NextApiRequest, res: NextApi
   const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
   const characterData = await readCharacter(characterId);
   const today = new Date();
-  const shouldUpdate = timeElapsed(characterData.updatedAt, today) > 1;
+  const shouldUpdate = timeElapsed(characterData.updatedAt, today, 'minutes') > 30;
 
   if (!characterData || shouldUpdate) {
     fetch(lodestoneURL)

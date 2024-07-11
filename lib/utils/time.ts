@@ -30,16 +30,35 @@ export function formatDateStringLong(date:string, locale:string = 'en') {
   return formattedDate;
 }
 
+type DateParam = Date | string;
+
 // TODO: Add conversions to monts, years, etc -- currently this only returns number of days
-export function timeElapsed(fromDate:string, toDate:Date|string = new Date()) {
+export function daysAgo(fromDate:DateParam, toDate:DateParam = new Date()) {
   const toDateFormatted:Date = typeof toDate === 'string' ? new Date(toDate) : toDate;
-  const startDate:Date = new Date(fromDate);
+  const startDate:Date = typeof fromDate === 'string' ? new Date(fromDate) : fromDate;
   const timeDiff:number = toDateFormatted.getTime() - startDate.getTime();
   const time = timeDiff / (1000 * 60 * 60 * 24);
   const days = Math.round(time);
   return days;
 }
 
-const methods = { formatDateString, formatDateStringLong, timeElapsed };
+export function timeElapsed(
+  fromDate:DateParam,
+  toDate:DateParam = new Date(),
+  unit:'minutes'|undefined = undefined
+) {
+  const toDateFormatted:Date = typeof toDate === 'string' ? new Date(toDate) : toDate;
+  const startDate:Date = typeof fromDate === 'string' ? new Date(fromDate) : fromDate;
+  const timeDiff:number = toDateFormatted.getTime() - startDate.getTime();
+
+  switch (unit) {
+    case 'minutes': {
+      return timeDiff / ((1000 * 60 * 60) / 60);
+    }
+    default: return timeDiff;
+  }
+}
+
+const methods = { formatDateString, formatDateStringLong, daysAgo };
 
 export default methods;
