@@ -19,11 +19,18 @@ button,
   height: 40px;
   justify-content: center;
   line-height: 1em;
-  outline: none;
+  outline: 1px solid rgb(255 255 255 / 0%);
   padding: 0 12px;
   position: relative;
   transition-duration: $timing-default;
-  transition-property: background-image, background-color, box-shadow, color, opacity, transform;
+  transition-property:
+    background-image,
+    background-color,
+    box-shadow,
+    color,
+    opacity,
+    outline,
+    transform;
   transition-timing-function: ease;
   white-space: nowrap;
 
@@ -138,6 +145,7 @@ button,
     text-decoration: none;
     text-shadow: $button-label-shadow;
 
+
     .icon {
       filter: $icon-filter-white drop-shadow($button-label-shadow);
     }
@@ -152,6 +160,7 @@ button,
 
   &:focus {
     outline: 3px double $color-alt-dark;
+    z-index: 2;
   }
 
   &:active {

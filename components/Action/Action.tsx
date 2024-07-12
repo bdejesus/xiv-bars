@@ -17,7 +17,7 @@ interface Props {
   action: ActionProps
 }
 
-export default function Action({ action }: Props) {
+export default function Action({ action }:Props) {
   const { locale } = useRouter();
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
@@ -91,6 +91,7 @@ export default function Action({ action }: Props) {
         tabIndex={0}
         data-title={displayTtile}
         data-show-title={showTitles}
+        id={action.ID as string}
       >
         <div className={`action-icon-wrapper ${styles.iconWrapper}`}>
           <Image

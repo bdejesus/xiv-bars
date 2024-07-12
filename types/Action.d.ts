@@ -15,7 +15,24 @@ export interface ActionProps {
   Command?: string,
   customIcon?: string,
   upgradable?: boolean,
-  Prefix?: string
+  Prefix?: string,
+  ActionCombo?: {
+    ActionCombo: number
+  },
+  ActionComboTargetID?: number,
+  IsPlayerAction?: number,
+  ClassJobLevel?: number,
+  Cast100ms?: number,
+  Recast100ms?: number,
+  CooldownGroup?: number,
+  ActionCategory?: object,
+  GameContentLinks?: {
+    Action: {
+      ActionCombo: number[]
+    }
+  }, b
+  DisableOrder?: 0 | 1,
+  ComboActions?: ActionProps[]
 }
 
 export interface SlotProps {

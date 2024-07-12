@@ -9,6 +9,7 @@ import MAIN_COMMANDS from 'apiData/MainCommand.json';
 import GENERAL_ACTIONS from 'apiData/GeneralAction.json';
 import type { ActionProps } from 'types/Action';
 import ActionGroup from './ActionGroup';
+
 import Tabs from './Tabs';
 
 import styles from './ActionPanel.module.scss';
@@ -50,7 +51,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-actions'}
         >
-          <ActionGroup actions={displayActions} title={t('ActionPanel.job_actions')} />
+          <ActionGroup actions={displayActions} title={t('ActionPanel.job_actions')} layout="alt" />
 
           {(roleActions && (roleActions.length > 0)) && (
             <ActionGroup actions={roleActions} title={t('ActionPanel.role_actions')} />
@@ -65,7 +66,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
         >
           <ActionGroup actions={GENERAL_ACTIONS} title={t('ActionPanel.general_actions')} />
           <ActionGroup actions={BUDDY_ACTIONS} title={t('ActionPanel.companion_actions')} />
-          <ActionGroup actions={PET_ACTIONS} title={t('ActionPanel.pet_actions')} limit={7} />
+          <ActionGroup actions={PET_ACTIONS} title={t('ActionPanel.pet_actions')} />
         </div>
       )}
 
