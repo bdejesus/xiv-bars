@@ -51,7 +51,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-actions'}
         >
-          <ActionGroup actions={displayActions} title={t('ActionPanel.job_actions')} layout="alt" />
+          <ActionGroup actions={displayActions} title={t('ActionPanel.job_actions')} layout="alt" filterDesc />
 
           {(roleActions && (roleActions.length > 0)) && (
             <ActionGroup actions={roleActions} title={t('ActionPanel.role_actions')} />

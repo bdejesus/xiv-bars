@@ -70,12 +70,13 @@ $nest-space: 24px;
   ul {
     list-style: none;
     margin: 0;
+    overflow: hidden;
     padding: 0;
     z-index: 1;
   }
 
   li {
-    margin: $spacing-base 0 0;
+    margin: $spacing-sm 0;
     padding: 0 0 0 $nest-space;
     position: relative;
 
@@ -98,8 +99,8 @@ $nest-space: 24px;
 
   + .comboGroup {
     > :global(.action)::before {
-      height: 112px;
-      margin-top: -112px;
+      height: 200px;
+      margin-top: -200px;
     }
   }
 }

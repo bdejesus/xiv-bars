@@ -29,10 +29,10 @@ export default function Action({ action }:Props) {
   const displayTtile = translateData('Name', action, locale) || action.Name;
   const displayBody = translateData('Description', action, locale) || action.Description;
 
-  function handleMouseLeave() {
-    clearTimeout(tooltipTimeout);
-    setHovering(false);
-    tooltipDispatch({ type: TooltipAction.HIDE });
+  function selectAction() {
+    tooltipDispatch({ type: 'hide' });
+    selectedActionDispatch({ type: 'selectAction', payload: { selectedAction: action } });
+    setDragging(true);
   }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -55,15 +55,21 @@ export default function Action({ action }:Props) {
     }, hoverDelay);
   }
 
-  function selectAction(e:React.MouseEvent) {
-    tooltipDispatch({ type: 'hide' });
-    selectedActionDispatch({
-      type: 'selectAction',
-      payload: { selectedAction: action }
-    });
-    setDragging(true);
+  function handleMouseLeave() {
+    clearTimeout(tooltipTimeout);
+    setHovering(false);
+    tooltipDispatch({ type: TooltipAction.HIDE });
+  }
 
+  function handleClick(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    selectAction();
     if (readOnly) e.stopPropagation();
+  }
+
+  function handleDragStart(e:React.DragEvent<HTMLDivElement>) {
+    const image = actionRef.current?.querySelector('img');
+    if (image) e.dataTransfer.setDragImage(image, 20, 20);
+    selectAction();
   }
 
   function handleDragEnd() {
@@ -81,13 +87,13 @@ export default function Action({ action }:Props) {
         ref={actionRef}
         className={selectors.join(' ')}
         draggable={!readOnly}
-        onDragStart={(e) => selectAction(e)}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
-        onMouseMove={(e) => handleMouseMove(e)}
+        onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onBlur={handleMouseLeave}
         role="button"
-        onClick={(e) => selectAction(e)}
+        onClick={(e) => handleClick(e)}
         tabIndex={0}
         data-title={displayTtile}
         data-show-title={showTitles}

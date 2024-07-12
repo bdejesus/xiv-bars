@@ -6,7 +6,8 @@ import styles from './ActionGroup.module.scss';
 interface ActionGroupProps {
   title: string,
   actions: ActionProps[],
-  layout?: 'default' | 'alt'
+  layout?: 'default' | 'alt',
+  filterDesc?: boolean
 }
 
 function ComboAction({ action }:{ action:ActionProps }) {
@@ -54,15 +55,17 @@ function AltLayout({ actions }:{ actions:ActionProps[]}) {
 export default function ActionGroup({
   title,
   actions,
-  layout = 'default'
+  layout = 'default',
+  filterDesc = false
 }: ActionGroupProps) {
   const { showTitles } = useAppState();
-  const filteredActions = actions.filter((ac) => ac.DisableOrder !== 0);
+  const filteredActions = filterDesc
+    ? actions.filter((ac) => ac.DisableOrder !== 0 && !!ac.Description)
+    : actions.filter((ac) => ac.DisableOrder !== 0);
 
   return (
     <div className={styles.container} data-show-titles={showTitles}>
       <h4 className={styles.groupTitle}>{title}</h4>
-
       { layout === 'alt' && showTitles
         ? <AltLayout actions={filteredActions} />
         : (
