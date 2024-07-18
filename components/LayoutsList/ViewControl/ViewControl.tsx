@@ -9,10 +9,11 @@ export const defaultView:LayoutListOptions = {
 };
 
 interface ViewControlProps {
+  id: string,
   onChange: React.Dispatch<React.SetStateAction<LayoutListOptions>>
 }
 
-export default function ViewControl({ onChange }:ViewControlProps) {
+export default function ViewControl({ id, onChange }:ViewControlProps) {
   const [viewOptions, setViewOptions] = useState<LayoutListOptions>(defaultView);
   function handleControlChange(e:React.FormEvent<HTMLInputElement>) {
     const target = e.currentTarget;
@@ -38,11 +39,11 @@ export default function ViewControl({ onChange }:ViewControlProps) {
       <div className={[styles.controlGroup, styles.controlSort].join(' ')}>
         <div className={styles.groupLabel}>Sort by</div>
 
-        <label className={styles.control} htmlFor="sort-recent">
+        <label className={styles.control} htmlFor={`${id}-sort-recent`}>
           <input
             type="radio"
-            name="sort"
-            id="sort-recent"
+            name={`${id}-sort`}
+            id={`${id}-sort-recent`}
             value="recent"
             onChange={handleControlChange}
             defaultChecked
@@ -50,11 +51,11 @@ export default function ViewControl({ onChange }:ViewControlProps) {
           <span>Most Recent</span>
         </label>
 
-        <label className={styles.control} htmlFor="sort-hearts">
+        <label className={styles.control} htmlFor={`${id}-sort-hearts`}>
           <input
             type="radio"
-            name="sort"
-            id="sort-hearts"
+            name={`${id}-sort`}
+            id={`${id}-sort-recent`}
             value="hearts"
             onChange={handleControlChange}
           />
@@ -71,13 +72,13 @@ export default function ViewControl({ onChange }:ViewControlProps) {
           <label
             className={styles.control}
             key={`filter-${filter}`}
-            htmlFor={`filter-${filter}`}
+            htmlFor={`${id}-filter-${filter}`}
           >
             <input
               type="checkbox"
               value={filter}
-              name={`filter-${filter}`}
-              id={`filter-${filter}`}
+              name={`${id}-filter-${filter}`}
+              id={`${id}-filter-${filter}`}
               onChange={handleControlChange}
               defaultChecked
             />

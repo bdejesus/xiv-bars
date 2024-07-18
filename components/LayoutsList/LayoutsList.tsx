@@ -9,6 +9,7 @@ import ViewControl, { defaultView } from './ViewControl';
 import styles from './LayoutsList.module.scss';
 
 interface LayoutsListProps {
+  id: string,
   title?: string,
   link?: {
     text: string,
@@ -22,6 +23,7 @@ interface LayoutsListProps {
 }
 
 export default function LayoutsList({
+  id,
   title,
   link,
   layouts,
@@ -90,7 +92,7 @@ export default function LayoutsList({
     >
       { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
 
-      { filterable && <ViewControl onChange={setViewOptions} /> }
+      { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
       <ul className={[styles.layoutsList, 'layoutsList'].join(' ')} data-columns={columns}>
         {viewLayouts?.map((layout:LayoutViewProps, index:number) => {

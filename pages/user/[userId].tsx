@@ -83,7 +83,11 @@ export default function User({ user }:UserViewProps) {
 
       { layouts && layouts.length > 0 && (
         <div className="container">
-          <LayoutsList layouts={layouts} filterable>
+          <LayoutsList
+            id="userLayouts"
+            layouts={layouts}
+            filterable
+          >
             { (layouts.length < maxLayouts && isCurrentUser) && (
               <li>
                 <JobSelect className={styles.jobSelectCard} action="new">
@@ -101,7 +105,11 @@ export default function User({ user }:UserViewProps) {
       { isCurrentUser && user.hearts && user.hearts.length > 0 && (
         <div className="container">
           <h2>{t('Pages.User.saved_layouts')}</h2>
-          <LayoutsList layouts={user.hearts} filterable />
+          <LayoutsList
+            id="heartedLayouts"
+            layouts={user.hearts}
+            filterable
+          />
         </div>
       )}
 

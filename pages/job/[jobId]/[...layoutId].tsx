@@ -79,6 +79,7 @@ export default function Index(props:PageProps) {
         { ownerLayouts.length > 0 && (
           <section>
             <LayoutsList
+              id="userLayouts"
               title={t('Pages.Layout.more_layouts_by_user', { userName: viewData.user!.name })}
               link={{ text: t('Pages.Layout.view_more'), href: `/user/${viewData!.user!.id}` }}
               layouts={ownerLayouts}
@@ -90,6 +91,7 @@ export default function Index(props:PageProps) {
         { classJobLayouts.length > 0 && (
           <section>
             <LayoutsList
+              id="jobLayouts"
               title={t('Pages.Layout.more_layouts_by_job', { jobName: displayJobName })}
               link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
               layouts={classJobLayouts}

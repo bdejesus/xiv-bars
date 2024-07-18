@@ -94,7 +94,13 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         </div>
 
         { layouts.length > 0
-          ? <LayoutsList layouts={layouts} filterable />
+          ? (
+            <LayoutsList
+              id="jobLayouts"
+              layouts={layouts}
+              filterable
+            />
+          )
           : (
             <>
               <h2>{t('Pages.Job.no_layouts', { jobName })}</h2>

@@ -71,11 +71,13 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       { popularLayouts?.length >= 5 ? (
         <div className={`container ${styles.lists}`}>
           <LayoutsList
+            id="recentLayouts"
             className={styles.recentLayouts}
             title={t('Pages.Index.recent_layouts')}
             layouts={recentLayouts}
           />
           <LayoutsList
+            id="popularLayouts"
             className={styles.popularLayouts}
             title={t('Pages.Index.popular_layouts')}
             layouts={popularLayouts}
@@ -84,6 +86,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       ) : (
         <div className="container">
           <LayoutsList
+            id="recentLayouts"
             title={t('Pages.Index.recent_layouts')}
             layouts={recentLayouts}
           />
