@@ -1,0 +1,51 @@
+@import 'styles/mixins';
+
+.container {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-base;
+  justify-content: flex-start;
+  margin: $spacing-base 0;
+  padding-top: $spacing-base;
+}
+
+.controlGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+  position: relative;
+}
+
+.groupLabel {
+  bottom: 100%;
+  color: $color-gray-light;
+  font-size: $font-size-sm;
+  left: 0;
+  position: absolute;
+}
+
+.control {
+  background-color: $color-gray-dark-2;
+  border-radius: $border-radius;
+  color: #FFF;
+  display: inline-block;
+  font-size: $font-size-base;
+  font-weight: 400;
+  padding: $spacing-sm;
+  user-select: none;
+
+  &:hover {
+    color: $color-alt;
+    cursor: pointer;
+  }
+
+  input {
+    margin: 0 $spacing-xs 0 0;
+  }
+}
+
+.controlSort {
+  background-color: $color-gray-dark-2;
+  gap: 0;
+}

@@ -13,7 +13,7 @@ input,
 textarea,
 select,
 option {
-  font-family: inherit;
+  font-family: $font-family;
 }
 
 input[type="text"],

@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { useAppState } from 'components/App/context';
 import LayoutCard from 'components/LayoutCard';
 import type { LayoutViewProps } from 'types/Layout';
+import Filters from './Filters';
+
 import styles from './LayoutsList.module.scss';
 
 interface LayoutsListProps {
@@ -37,6 +39,8 @@ export default function LayoutsList({
       itemType={title && 'https://schema.org/ItemList'}
     >
       { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
+
+      <Filters />
 
       <ul className={[styles.layoutsList, 'layoutsList'].join(' ')} data-columns={columns}>
         {layouts.map((layout:LayoutViewProps, index:number) => {
