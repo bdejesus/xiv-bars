@@ -42,3 +42,10 @@ export interface MergeDataProps {
   isPvp?: boolean,
   layout?: number,
 }
+
+export type SortType = 'recent' | 'hearts';
+
+export interface LayoutListOptions {
+  sortBy: SortType,
+  filters: string[]
+}

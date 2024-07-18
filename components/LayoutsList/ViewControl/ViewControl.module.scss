@@ -29,22 +29,26 @@
   align-items: center;
   background-color: $color-gray-dark-2;
   border-radius: $border-radius;
-  color: #FFF;
+  color: #ddd;
   display: inline-flex;
   flex-direction: row;
   font-size: $font-size-base;
   font-weight: 400;
   line-height: 1;
-  padding: $spacing-sm;
+  padding: 10px $spacing-base;
   user-select: none;
 
   &:hover {
-    color: $color-alt;
+    color: #fff;
     cursor: pointer;
   }
 
   input {
     margin: 0 $spacing-sm 0 0;
+
+    &:checked + span {
+      color: $color-alt;
+    }
   }
 }
 

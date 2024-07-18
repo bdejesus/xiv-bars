@@ -1,9 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
+import { byKey } from 'lib/utils/array.mjs';
 import { useAppState } from 'components/App/context';
 import LayoutCard from 'components/LayoutCard';
 import type { LayoutViewProps } from 'types/Layout';
-import Filters from './Filters';
+import ViewControl, { defaultView } from './ViewControl';
 
 import styles from './LayoutsList.module.scss';
 
@@ -16,7 +17,8 @@ interface LayoutsListProps {
   layouts: LayoutViewProps[],
   children?: ReactNode,
   className?: string,
-  columns?: 3 | 4
+  columns?: 3 | 4,
+  filterable?: boolean
 }
 
 export default function LayoutsList({
@@ -25,9 +27,57 @@ export default function LayoutsList({
   layouts,
   children,
   className = '',
-  columns
+  columns,
+  filterable = false
 }:LayoutsListProps) {
   const { jobs } = useAppState();
+  const [viewLayouts, setViewLayouts] = useState(layouts);
+  const [viewOptions, setViewOptions] = useState(defaultView);
+
+  useEffect(() => {
+    const applySort = (list:LayoutViewProps[]) => {
+      switch (viewOptions.sortBy) {
+        case 'recent': return list.toSorted(byKey('updatedAt'));
+        case 'hearts': return list.toSorted((a, b) => b._count.hearts - a._count.hearts);
+        default: return list;
+      }
+    };
+
+    const applyFilter = (list:LayoutViewProps[]) => {
+      const showHb = viewOptions.filters.includes('HB');
+      const showXhb = viewOptions.filters.includes('XHB');
+      const showPvp = viewOptions.filters.includes('PVP');
+      const showPve = viewOptions.filters.includes('PVE');
+
+      let updatedList = list;
+
+      if (!(showPvp && showPve)) {
+        if (!showPvp) {
+          updatedList = updatedList.filter((l:LayoutViewProps) => !l.isPvp);
+        }
+
+        if (!showPve) {
+          updatedList = updatedList.filter((l:LayoutViewProps) => l.isPvp);
+        }
+      }
+
+      if (!(showHb && showXhb)) {
+        if (!showXhb) {
+          updatedList = updatedList.filter((l:LayoutViewProps) => l.layout !== 0);
+        }
+
+        if (!showHb) {
+          updatedList = updatedList.filter((l:LayoutViewProps) => l.layout !== 1);
+        }
+      }
+
+      return updatedList;
+    };
+
+    const filterLayouts = applyFilter(layouts);
+    const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
+    setViewLayouts(sortLayouts);
+  }, [viewOptions]);
 
   if (!layouts) return null;
 
@@ -40,10 +90,10 @@ export default function LayoutsList({
     >
       { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
 
-      <Filters />
+      { filterable && <ViewControl onChange={setViewOptions} /> }
 
       <ul className={[styles.layoutsList, 'layoutsList'].join(' ')} data-columns={columns}>
-        {layouts.map((layout:LayoutViewProps, index:number) => {
+        {viewLayouts?.map((layout:LayoutViewProps, index:number) => {
           const job = jobs.find((j) => j.Abbr === layout.jobId);
           if (!job) return null;
           return (

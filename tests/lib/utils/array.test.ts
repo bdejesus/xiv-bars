@@ -1,4 +1,4 @@
-import { isEmpty } from "lib/utils/array.mjs";
+import { isEmpty } from 'lib/utils/array.mjs';
 
 describe('isEmpty', () => {
   it('returns true if array is empty', () => {
