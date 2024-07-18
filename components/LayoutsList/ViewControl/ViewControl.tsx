@@ -17,7 +17,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
   const [viewOptions, setViewOptions] = useState<LayoutListOptions>(defaultView);
   function handleControlChange(e:React.FormEvent<HTMLInputElement>) {
     const target = e.currentTarget;
-    if (target.getAttribute('name') === 'sort') {
+    if (target.getAttribute('name') === `${id}-sort`) {
       setViewOptions({ ...viewOptions, sortBy: target.value as SortType });
     } else if (target.getAttribute('type') === 'checkbox') {
       if (target.checked) {
