@@ -37,7 +37,7 @@ export default function LayoutsList({
   useEffect(() => {
     const applySort = (list:LayoutViewProps[]) => {
       switch (viewOptions.sortBy) {
-        case 'recent': return list.toSorted(byKey('updatedAt'));
+        case 'recent': return list.toSorted(byKey('updatedAt', 'desc'));
         case 'hearts': return list.toSorted((a, b) => b._count.hearts - a._count.hearts);
         default: return list;
       }
