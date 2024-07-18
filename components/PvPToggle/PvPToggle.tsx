@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useSystemState, useSystemDispatch } from 'components/System/context';
-import { systemActions } from 'components/System/actions';
+import { useSystemState } from 'components/System/context';
 import { useAppState, useAppDispatch } from 'components/App/context';
 import { buildUrl } from 'lib/utils/url';
 import Icon from 'components/Icon';
@@ -10,7 +9,6 @@ import { appActions } from 'components/App/actions';
 
 export default function PvPToggle() {
   const { isLoading } = useSystemState();
-  const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
   const router = useRouter();
   const appDispatch = useAppDispatch();
@@ -33,11 +31,9 @@ export default function PvPToggle() {
 
   useEffect(() => {
     async function getActions() {
-      systemDispatch({ type: systemActions.LOADING_START });
       const fetchActions = await fetch(`/api/actions?job=${selectedJob!.Abbr}&isPvp=${viewData.isPvp}`);
       const actionsJson = await fetchActions.json();
       appDispatch({ type: appActions.LOAD_JOBACTIONS, payload: actionsJson });
-      systemDispatch({ type: systemActions.LOADING_END });
     }
 
     if (selectedJob) getActions();

@@ -6,7 +6,6 @@ import ExportToMacros from 'components/ExportToMacro';
 import Sharing from 'components/Sharing';
 import Link from 'next/link';
 import UserNav from 'components/UserNav';
-import { useSystemDispatch, systemActions } from 'components/System';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
@@ -22,15 +21,10 @@ interface Props {
 }
 
 export function GlobalHeader({ selectedJob }:Props) {
-  const systemDispatch = useSystemDispatch();
   const router = useRouter();
   const { t } = useTranslation();
   const { viewData, viewAction } = useAppState();
   const { id } = viewData || {};
-
-  function handleClickNew() {
-    systemDispatch({ type: systemActions.LOADING_START });
-  }
 
   return (
     <div className={styles.container}>
@@ -63,7 +57,6 @@ export function GlobalHeader({ selectedJob }:Props) {
               <a
                 href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
                 className="button btn-primary"
-                onClick={handleClickNew}
                 data-title={t('GlobalHeader.new_layout')}
               >
                 <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
