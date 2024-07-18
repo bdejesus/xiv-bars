@@ -55,7 +55,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
           <input
             type="radio"
             name={`${id}-sort`}
-            id={`${id}-sort-recent`}
+            id={`${id}-sort-hearts`}
             value="hearts"
             onChange={handleControlChange}
           />
