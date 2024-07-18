@@ -26,12 +26,15 @@
 }
 
 .control {
+  align-items: center;
   background-color: $color-gray-dark-2;
   border-radius: $border-radius;
   color: #FFF;
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: row;
   font-size: $font-size-base;
   font-weight: 400;
+  line-height: 1;
   padding: $spacing-sm;
   user-select: none;
 
@@ -41,11 +44,12 @@
   }
 
   input {
-    margin: 0 $spacing-xs 0 0;
+    margin: 0 $spacing-sm 0 0;
   }
 }
 
 .controlSort {
   background-color: $color-gray-dark-2;
+  border-radius: $border-radius;
   gap: 0;
 }
