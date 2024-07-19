@@ -5,6 +5,7 @@ import { useTranslation } from 'next-i18next';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'components/App/context';
+import { useSystemDispatch, systemActions } from 'components/System';
 import { appActions } from 'components/App/actions';
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
@@ -29,6 +30,7 @@ interface Props {
 export default function Layouts({ selectedJob, layouts }: Props) {
   const { t } = useTranslation();
   const router = useRouter();
+  const systemDispatch = useSystemDispatch();
   const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
@@ -44,6 +46,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         query: router.query
       });
     }
+
+    systemDispatch({ type: systemActions.LOADING_END });
   }, []);
 
   return (
@@ -94,7 +98,13 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         </div>
 
         { layouts.length > 0
-          ? <LayoutsList layouts={layouts} />
+          ? (
+            <LayoutsList
+              id="jobLayouts"
+              layouts={layouts}
+              filterable
+            />
+          )
           : (
             <>
               <h2>{t('Pages.Job.no_layouts', { jobName })}</h2>

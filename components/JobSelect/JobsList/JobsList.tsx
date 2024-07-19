@@ -2,8 +2,6 @@ import { useRouter } from 'next/router';
 import type { ClassJobProps } from 'types/ClassJob';
 import { useTranslation } from 'next-i18next';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
-import { useSystemDispatch } from 'components/System/context';
-import { systemActions } from 'components/System/actions';
 import Icon, { Icons } from 'components/Icon';
 import ClassJob from 'components/ClassJob';
 
@@ -22,14 +20,9 @@ export function JobsList({
   className = '',
   action
 }: Props) {
-  const systemDispatch = useSystemDispatch();
   const { t } = useTranslation();
   const { locale } = useRouter();
   const classNames = [styles.container, className].join(' ');
-
-  function handleClickNew() {
-    systemDispatch({ type: systemActions.LOADING_START });
-  }
 
   return (
     <div
@@ -62,7 +55,6 @@ export function JobsList({
             <a
               href={localizePath(`/job/${job.Abbr}/new`, locale)}
               className={`button btn-icon ${styles.addBtn} joblist-new`}
-              onClick={handleClickNew}
             >
               <Icon
                 id={Icons.ADD}
