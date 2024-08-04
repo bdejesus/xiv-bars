@@ -15,7 +15,7 @@ export function ExportToMacros() {
   const [showMacrosModal, setShowMacrosModal] = useState(false);
   const [macroText, setMacroText] = useState([] as string[]);
   const appState = useAppState();
-  const { layout } = appState.viewData;
+  const { layout, isPvp } = appState.viewData;
   const layoutIndex = layout || 0;
   const currLayout = layouts[layoutIndex] as keyof typeof appState;
 
@@ -33,10 +33,11 @@ export function ExportToMacros() {
           && action.UrlType
           && !excludeTypes.includes(action.UrlType as string)
         ) {
-          const slotName = (currLayout === 'chotbar') ? chotbarSlotNames[index] : index + 1;
+          const command = [isPvp ? 'pvp' : '', currLayout].join('');
           const subcommand = action.Command || 'action';
+          const slotName = (currLayout === 'chotbar') ? chotbarSlotNames[index] : index + 1;
           const stringArray = [
-            `/${currLayout}`,
+            `/${command}`,
             subcommand,
             `"${action.Name}"`,
             hotbarNum,
