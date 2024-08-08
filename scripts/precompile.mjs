@@ -71,7 +71,7 @@ async function getJobActions(jobs) {
       const jobPvpActions = await listJobActions(job, true);
       const rolePvPActions = await listRoleActions(job, true);
 
-      console.log(`Writing ${job.Abbr} actions...`);
+      console.info(`Writing ${job.Abbr} actions...`);
 
       const actions = {
         PvE: {
@@ -96,6 +96,7 @@ async function getActions() {
 
   actionTypes.forEach(async (actionSet) => {
     const actionColumns = [
+      'DisableOrder',
       ...columns,
       ...ActionCategory[actionSet].columns,
       ...localizeKeys('Name'),
@@ -104,7 +105,7 @@ async function getActions() {
     const actions = await fetch(`${apiURL}/${actionSet}?columns=${actionColumns}`)
       .then((res) => res.json())
       .then(async (json) => {
-        console.log(`Building ${actionSet} actions...`);
+        console.info(`Building ${actionSet} actions...`);
         const results = json.Results.filter((c) => c.Icon !== '');
 
         const decoratedResults = results.map((action) => ({
@@ -131,9 +132,9 @@ async function getActions() {
 (async () => {
   try {
     rm(dest, { recursive: true }, () => {
-      console.log('🗑 Cleaning up old files...');
+      console.info('🗑 Cleaning up old files...');
       mkdir(dest, () => {
-        console.log(`📂 Creating "${dest}" directory...`);
+        console.info(`📂 Creating "${dest}" directory...`);
         mkdir(`${dest}/JobActions`, () =>{
           getJobs();
           getActions();

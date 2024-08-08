@@ -5,9 +5,9 @@ import { apiData } from '../app.config.json';
 function clean() {
   // Clean up files and recreate directory
   fs.rmdir(apiData, { recursive: true }, () => {
-    console.log('🗑 Cleaning up old files...');
+    console.info('🗑 Cleaning up old files...');
     fs.mkdir(apiData, () => {
-      console.log(`📂 Creating "${apiData}" directory...`);
+      console.info(`📂 Creating "${apiData}" directory...`);
     });
   });
 }

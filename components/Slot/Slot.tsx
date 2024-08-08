@@ -111,10 +111,10 @@ export default function Slot({
       <div
         id={id}
         className={`${styles.slot} ${className} slot`}
-        onDrop={(event) => handleDrop(event)}
+        onDrop={handleDrop}
         onDragStart={handleDragStart}
-        onDragOver={(event) => handleDragOver(event)}
-        onDragLeave={(event) => handleDragLeave(event)}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
         onClick={() => setSelectedAction()}
         role="button"
         tabIndex={0}

@@ -6,8 +6,7 @@
   flex-direction: column;
 
   &[draggable='true']:hover .iconWrapper {
-    background-color: rgb(0 0 0 / 80%);
-    border-color: #999;
+    background-color: $color-alt;
     box-shadow: 0 0 0 2px $color-alt;
     cursor: pointer;
     cursor: grab;
