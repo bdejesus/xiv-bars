@@ -1,6 +1,6 @@
 @import 'styles/mixins';
 
-$description-height: 42px;
+$description-height: 230px;
 
 .summary {
   flex: 1 1 auto;
@@ -34,7 +34,7 @@ $description-height: 42px;
   .description {
     color: #999;
     flex: 1 1 auto;
-    font-size: $font-size-base;
+    font-size: $font-size-sm;
     font-weight: 400;
     line-height: 1.45;
     margin: $spacing-sm 0;
@@ -74,6 +74,15 @@ $description-height: 42px;
 
     p, li {
       font-weight: inherit;
+      line-height: 1.2em;
+    }
+
+    p, ul {
+      margin-bottom: 1em;
+    }
+
+    ul {
+      padding-left: 1.5em;
     }
 
     pre {
