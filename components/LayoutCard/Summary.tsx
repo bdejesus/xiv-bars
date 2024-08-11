@@ -22,6 +22,11 @@ export default function Summary({
   const { t } = useTranslation();
   const router = useRouter();
   const layoutUrl = `/job/${job.Abbr}/${id}`;
+  const shortDesc = description && description
+    .split('\n')
+    .filter((p) => p.trim() !== '')
+    .slice(0, 2)
+    .join('\n\n');
 
   function handleClick(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
     router.push(layoutUrl);
@@ -54,7 +59,7 @@ export default function Summary({
             h1: 'h2', h2: 'h3', h3: 'h4', h4: 'h5', h5: 'h6', h6: 'p'
           }}
           >
-            {description}
+            { shortDesc }
           </ReactMarkdown>
         )}
       </div>

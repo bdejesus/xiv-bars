@@ -48,15 +48,9 @@ export default function LayoutsList({
     });
   }
 
-  function applySort(list:LayoutViewProps[]) {
-    switch (viewOptions.sortBy) {
-      case 'recent': return list.toSorted(byKey('updatedAt', 'desc'));
-      case 'hearts': return list.toSorted((a, b) => b._count.hearts - a._count.hearts);
-      default: return list;
-    }
-  }
-
   function applyFilter(list:LayoutViewProps[]) {
+    if (!filterable) return list;
+
     const showHb = viewOptions.filters.includes('HB');
     const showXhb = viewOptions.filters.includes('XHB');
     const showPvp = viewOptions.filters.includes('PVP');
@@ -85,6 +79,16 @@ export default function LayoutsList({
     }
 
     return updatedList;
+  }
+
+  function applySort(list:LayoutViewProps[]) {
+    if (!filterable) return list;
+
+    switch (viewOptions.sortBy) {
+      case 'recent': return list.toSorted(byKey('updatedAt', 'desc'));
+      case 'hearts': return list.toSorted((a, b) => b._count.hearts - a._count.hearts);
+      default: return list;
+    }
   }
 
   function groupIntoColumns(list:LayoutViewProps[], columnCount:number = columns) {
@@ -124,8 +128,8 @@ export default function LayoutsList({
   }
 
   useEffect(() => {
-    const filterLayouts = filterable ? applyFilter(layouts) : layouts;
-    const sortLayouts = (filterable && filterLayouts) ? applySort(filterLayouts) : layouts;
+    const filterLayouts = applyFilter(layouts);
+    const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
     const groupLayouts = groupIntoColumns(sortLayouts);
     setViewLayouts(groupLayouts);
   }, [viewOptions]);

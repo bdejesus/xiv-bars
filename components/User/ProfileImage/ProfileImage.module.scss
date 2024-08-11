@@ -9,6 +9,10 @@
   overflow: hidden;
   position: relative;
 
+  &:hover {
+    text-decoration: none;
+  }
+
   &::after {
     border-radius: 6%;
     box-shadow:
