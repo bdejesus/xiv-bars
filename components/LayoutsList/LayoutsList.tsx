@@ -1,4 +1,6 @@
-import { ReactNode, useState, useEffect } from 'react';
+import {
+  ReactNode, useState, useEffect, useRef
+} from 'react';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
 import { useAppState } from 'components/App/context';
@@ -33,8 +35,12 @@ export default function LayoutsList({
   filterable = false
 }:LayoutsListProps) {
   const { jobs } = useAppState();
-  const [viewLayouts, setViewLayouts] = useState(layouts);
+  const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>();
   const [viewOptions, setViewOptions] = useState(defaultView);
+  const [balanced, setBalanced] = useState(false);
+  const [ready, setReady] = useState(false);
+  const listsWrapper = useRef<HTMLDivElement>(null);
+  const initColumns = Array.from({ length: columns }, () => []);
 
   useEffect(() => {
     const applySort = (list:LayoutViewProps[]) => {
@@ -78,16 +84,39 @@ export default function LayoutsList({
 
     const filterLayouts = applyFilter(layouts);
     const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
-    setViewLayouts(sortLayouts);
+    const listColumns = sortLayouts.reduce<LayoutViewProps[][]>((acc, curr, index) => {
+      acc[index % columns].push(curr);
+      return acc;
+    }, initColumns);
+
+    setViewLayouts(listColumns);
   }, [viewOptions]);
 
-  if (!layouts) return null;
+  useEffect(() => {
+    const listCols = listsWrapper.current?.querySelectorAll('.layoutsList');
 
-  const initColumns = Array.from({ length: columns }, () => []);
-  const listColumns = viewLayouts.reduce<LayoutViewProps[][]>((acc, curr, index) => {
-    acc[index % columns].push(curr);
-    return acc;
-  }, initColumns);
+    if (ready && !balanced && listCols) {
+      const lengths:number[] = [...listCols].map((col) => col.getBoundingClientRect().height);
+      const high = Math.max(...lengths);
+      const low = Math.min(...lengths);
+
+      if ((high - low) > 180) {
+        const balanceColumns = viewLayouts!;
+        const highIndex = lengths.indexOf(high);
+        const lowIndex = lengths.indexOf(low);
+        const overflowItem = balanceColumns[highIndex].splice(-1, 1)[0];
+        balanceColumns[lowIndex].push(overflowItem);
+        setViewLayouts(balanceColumns);
+        setBalanced(true);
+      }
+    }
+  }, [ready]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') setReady(true);
+  }, []);
+
+  if (!layouts) return null;
 
   return (
     <div
@@ -99,11 +128,10 @@ export default function LayoutsList({
       { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
       { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
-      <div className={styles.listColumns}>
-        {listColumns.map((layoutsColumn, columnIndex) => (
+      <div className={styles.listColumns} ref={listsWrapper}>
+        {viewLayouts?.map((layoutsColumn, columnIndex) => (
           <ul
             className={[styles.layoutsList, 'layoutsList'].join(' ')}
-            data-columns={columns}
             key={`layoutColumn-${columnIndex}`}
           >
             {layoutsColumn?.map((layout:LayoutViewProps, index:number) => {
