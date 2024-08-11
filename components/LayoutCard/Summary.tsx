@@ -23,7 +23,7 @@ export default function Summary({
   const router = useRouter();
   const layoutUrl = `/job/${job.Abbr}/${id}`;
   const shortDesc = description && description
-    .split('\n')
+    .split('\n\n')
     .filter((p) => p.trim() !== '')
     .slice(0, 2)
     .join('\n\n');

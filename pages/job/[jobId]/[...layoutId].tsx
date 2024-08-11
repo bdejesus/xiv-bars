@@ -9,6 +9,7 @@ import { translateData } from 'lib/utils/i18n.mjs';
 import { serializeDates, shuffleArray } from 'lib/utils/array.mjs';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
+import { hasSprite } from 'components/JobSprite';
 import Head from 'next/head';
 import App, { useAppDispatch, appActions } from 'components/App';
 import GlobalHeader from 'components/GlobalHeader';
@@ -69,6 +70,12 @@ export default function Index(props:PageProps) {
         <meta name="description" content={viewData?.description} />
         <link rel="canonical" href={canonicalUrl} />
         { !viewData.published && <meta name="robots" content="noindex" /> }
+        { hasSprite(selectedJob) && (
+          <meta
+            property="og:image"
+            content={`${domain}/classjob/sprite-${selectedJob.Abbr}.png`}
+          />
+        )}
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />
