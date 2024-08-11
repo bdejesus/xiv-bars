@@ -84,7 +84,7 @@ export default function LayoutsList({
 
     const filterLayouts = applyFilter(layouts);
     const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
-    const listColumns = sortLayouts.reduce<LayoutViewProps[][]>((acc, curr, index) => {
+    const listColumns = sortLayouts?.reduce<LayoutViewProps[][]>((acc, curr, index) => {
       acc[index % columns].push(curr);
       return acc;
     }, initColumns);
@@ -93,18 +93,23 @@ export default function LayoutsList({
   }, [viewOptions]);
 
   useEffect(() => {
+    // Get all column elements
     const listCols = listsWrapper.current?.querySelectorAll('.layoutsList');
 
     if (ready && !balanced && listCols) {
-      const lengths:number[] = [...listCols].map((col) => col.getBoundingClientRect().height);
-      const high = Math.max(...lengths);
-      const low = Math.min(...lengths);
+      // Get column heights and get tallest, and shortest columns
+      const heights:number[] = [...listCols].map((col) => col.getBoundingClientRect().height);
+      const high = Math.max(...heights);
+      const low = Math.min(...heights);
 
+      // Check if there's enough height diff that it needs to rebalance
       if ((high - low) > 180) {
-        const balanceColumns = viewLayouts!;
-        const highIndex = lengths.indexOf(high);
-        const lowIndex = lengths.indexOf(low);
+        let balanceColumns = viewLayouts!; // store a mutable copy of layouts list
+        const highIndex = heights.indexOf(high);
+        const lowIndex = heights.indexOf(low);
+        // Remove the last item from the tallest column
         const overflowItem = balanceColumns[highIndex].splice(-1, 1)[0];
+        // Add it to the shortest column
         balanceColumns[lowIndex].push(overflowItem);
         setViewLayouts(balanceColumns);
         setBalanced(true);
