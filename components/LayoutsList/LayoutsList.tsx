@@ -107,7 +107,7 @@ export default function LayoutsList({
       const low = Math.min(...heights);
 
       // Check if there's enough height diff that it needs to rebalance
-      if ((high - low) > 200) {
+      if ((high - low) > 180) {
         const rebalancedColumns = list; // store a mutable copy of layouts list
         const highIndex = heights.indexOf(high);
         const lowIndex = heights.indexOf(low);
