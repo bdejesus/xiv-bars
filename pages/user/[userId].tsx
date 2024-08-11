@@ -13,7 +13,6 @@ import GlobalHeader from 'components/GlobalHeader';
 import LayoutsList from 'components/LayoutsList';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
-import JobSelect from 'components/JobSelect';
 import ProfileImage from 'components/User/ProfileImage';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
@@ -87,18 +86,7 @@ export default function User({ user }:UserViewProps) {
             id="userLayouts"
             layouts={layouts}
             filterable
-          >
-            { (layouts.length < maxLayouts && isCurrentUser) && (
-              <li>
-                <JobSelect className={styles.jobSelectCard} action="new">
-                  <h4 className={styles.placeholder}>
-                    <Icon id={Icons.ADD} type="white" alt={t('Pages.User.new_layout_icon')} />
-                    <span className="btn-layout">{t('Pages.User.new_layout')}</span>
-                  </h4>
-                </JobSelect>
-              </li>
-            )}
-          </LayoutsList>
+          />
         </div>
       )}
 

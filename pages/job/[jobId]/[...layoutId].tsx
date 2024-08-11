@@ -9,6 +9,7 @@ import { translateData } from 'lib/utils/i18n.mjs';
 import { serializeDates, shuffleArray } from 'lib/utils/array.mjs';
 import { useRouter } from 'next/router';
 import { domain } from 'lib/host';
+import { hasSprite } from 'components/JobSprite';
 import Head from 'next/head';
 import App, { useAppDispatch, appActions } from 'components/App';
 import GlobalHeader from 'components/GlobalHeader';
@@ -69,6 +70,12 @@ export default function Index(props:PageProps) {
         <meta name="description" content={viewData?.description} />
         <link rel="canonical" href={canonicalUrl} />
         { !viewData.published && <meta name="robots" content="noindex" /> }
+        { hasSprite(selectedJob) && (
+          <meta
+            property="og:image"
+            content={`${domain}/classjob/sprite-${selectedJob.Abbr}.png`}
+          />
+        )}
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />
@@ -133,8 +140,9 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       const { actions, roleActions } = await actionsRequest.json();
 
       // DB List Query Options
+      const layoutLimit = 12;
       const listOptions = {
-        take: 4,
+        take: layoutLimit,
         where: {
           id: { not: viewData.id },
           description: { not: '' },
@@ -159,8 +167,9 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         where: { ...listOptions.where, jobId: viewData.jobId },
         take: 24
       });
-      // Take results, shuffle and take 4, convert date objects to json string
-      const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 4));
+      // Take results, shuffle and take a subset,
+      // then convert date objects to json string
+      const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, layoutLimit));
 
       const props = {
         ...(await serverSideTranslations(context.locale as string, ['common'])),

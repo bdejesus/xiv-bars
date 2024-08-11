@@ -1,6 +1,6 @@
 @import 'styles/mixins';
 
-$description-height: 230px;
+$description-height: 165px;
 
 .summary {
   flex: 1 1 auto;
@@ -9,6 +9,10 @@ $description-height: 230px;
   &:hover,
   &:focus {
     cursor: pointer;
+
+    > a {
+      text-decoration: none;
+    }
 
     > a h3 {
       color: $color-alt;
@@ -79,6 +83,10 @@ $description-height: 230px;
 
     p, ul {
       margin-bottom: 1em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     ul {

@@ -8,6 +8,7 @@ import { useAppDispatch } from 'components/App/context';
 import { useSystemDispatch, systemActions } from 'components/System';
 import { appActions } from 'components/App/actions';
 import Head from 'next/head';
+import { domain } from 'lib/host';
 import GlobalHeader from 'components/GlobalHeader';
 import Jobs from 'apiData/Jobs.json';
 import SelectedJob from 'components/JobSelect/SelectedJob';
@@ -15,6 +16,7 @@ import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
+import { hasSprite } from 'components/JobSprite';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
@@ -61,6 +63,12 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             name="description"
             content={t('Pages.Job.index_description', { jobName })}
           />
+          { hasSprite(selectedJob) && (
+            <meta
+              property="og:image"
+              content={`${domain}/classjob/sprite-${selectedJob.Abbr}.png`}
+            />
+          )}
         </Head>
       )}
 

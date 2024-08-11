@@ -34,66 +34,6 @@
   margin-top: 0;
 }
 
-.lists {
-  display: grid;
-  gap: $spacing-xl;
-  grid-template-columns: 2fr 1fr;
-
-  .recentLayouts,
-  .popularLayouts {
-    ul:global(.layoutsList) {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-
-      > li {
-        display: inline-block;
-        width: 100%;
-      }
-
-      > li:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  .recentLayouts {
-    ul:global(.layoutsList) {
-      column-count: 2;
-      display: block;
-
-      > li {
-        margin-bottom: $spacing-base;
-      }
-    }
-  }
-
-  @media (max-width: $screen-md) {
-    gap: $spacing-lg;
-    grid-template-columns: 1fr;
-
-    .popularLayouts ul:global(.layoutsList) {
-      column-count: 2;
-      display: block;
-
-      > li {
-        margin-bottom: $spacing-base;
-      }
-    }
-  }
-
-  @media (max-width: $screen-xs-max) {
-    display: block;
-
-    .recentLayouts,
-    .popularLayouts {
-      ul:global(.layoutsList) {
-        column-count: 1;
-      }
-    }
-
-    .popularLayouts {
-      margin-top: $spacing-base;
-    }
-  }
+.recentLayouts {
+  margin-top: $spacing-xl;
 }

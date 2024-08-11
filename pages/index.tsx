@@ -68,30 +68,23 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
         </div>
       </div>
 
-      { popularLayouts?.length >= 5 ? (
-        <div className={`container ${styles.lists}`}>
-          <LayoutsList
-            id="recentLayouts"
-            className={styles.recentLayouts}
-            title={t('Pages.Index.recent_layouts')}
-            layouts={recentLayouts}
-          />
+      <div className="container">
+        { popularLayouts?.length >= 5 && (
           <LayoutsList
             id="popularLayouts"
             className={styles.popularLayouts}
             title={t('Pages.Index.popular_layouts')}
             layouts={popularLayouts}
           />
-        </div>
-      ) : (
-        <div className="container">
-          <LayoutsList
-            id="recentLayouts"
-            title={t('Pages.Index.recent_layouts')}
-            layouts={recentLayouts}
-          />
-        </div>
-      ) }
+        ) }
+
+        <LayoutsList
+          id="recentLayouts"
+          className={styles.recentLayouts}
+          title={t('Pages.Index.recent_layouts')}
+          layouts={recentLayouts}
+        />
+      </div>
 
       <HowTo />
       <EorzeaProfile />
@@ -119,14 +112,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const layouts = await db.layout.findMany({
     ...layoutsQuery,
-    take: 12,
+    take: 24,
     distinct: ['userId'],
     orderBy: { updatedAt: 'desc' }
   });
 
   const popularLayouts = await db.layout.findMany({
     ...layoutsQuery,
-    take: 6,
+    take: 24,
     orderBy: {
       hearts: { _count: 'desc' }
     }
