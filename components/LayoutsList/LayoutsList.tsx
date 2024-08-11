@@ -39,89 +39,146 @@ export default function LayoutsList({
   const [viewOptions, setViewOptions] = useState(defaultView);
   const [balanced, setBalanced] = useState(false);
   const [ready, setReady] = useState(false);
+  const [windowSize, setWindowSize] = useState<{height?:number, width?:number}>({
+    height: undefined,
+    width: undefined
+  });
   const listsWrapper = useRef<HTMLDivElement>(null);
-  const initColumns = Array.from({ length: columns }, () => []);
 
-  useEffect(() => {
-    const applySort = (list:LayoutViewProps[]) => {
-      switch (viewOptions.sortBy) {
-        case 'recent': return list.toSorted(byKey('updatedAt', 'desc'));
-        case 'hearts': return list.toSorted((a, b) => b._count.hearts - a._count.hearts);
-        default: return list;
-      }
-    };
+  function handleResize() {
+    setWindowSize({
+      height: window.innerHeight,
+      width: window.innerWidth,
+    });
+  }
 
-    const applyFilter = (list:LayoutViewProps[]) => {
-      const showHb = viewOptions.filters.includes('HB');
-      const showXhb = viewOptions.filters.includes('XHB');
-      const showPvp = viewOptions.filters.includes('PVP');
-      const showPve = viewOptions.filters.includes('PVE');
+  function applySort(list:LayoutViewProps[]) {
+    switch (viewOptions.sortBy) {
+      case 'recent': return list.toSorted(byKey('updatedAt', 'desc'));
+      case 'hearts': return list.toSorted((a, b) => b._count.hearts - a._count.hearts);
+      default: return list;
+    }
+  }
 
-      let updatedList = list;
+  function applyFilter(list:LayoutViewProps[]) {
+    const showHb = viewOptions.filters.includes('HB');
+    const showXhb = viewOptions.filters.includes('XHB');
+    const showPvp = viewOptions.filters.includes('PVP');
+    const showPve = viewOptions.filters.includes('PVE');
 
-      if (!(showPvp && showPve)) {
-        if (!showPvp) {
-          updatedList = updatedList.filter((l:LayoutViewProps) => !l.isPvp);
-        }
+    let updatedList = list;
 
-        if (!showPve) {
-          updatedList = updatedList.filter((l:LayoutViewProps) => l.isPvp);
-        }
-      }
-
-      if (!(showHb && showXhb)) {
-        if (!showXhb) {
-          updatedList = updatedList.filter((l:LayoutViewProps) => l.layout !== 0);
-        }
-
-        if (!showHb) {
-          updatedList = updatedList.filter((l:LayoutViewProps) => l.layout !== 1);
-        }
+    if (!(showPvp && showPve)) {
+      if (!showPvp) {
+        updatedList = updatedList.filter((l:LayoutViewProps) => !l.isPvp);
       }
 
-      return updatedList;
-    };
+      if (!showPve) {
+        updatedList = updatedList.filter((l:LayoutViewProps) => l.isPvp);
+      }
+    }
 
-    const filterLayouts = applyFilter(layouts);
-    const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
-    const listColumns = sortLayouts?.reduce<LayoutViewProps[][]>((acc, curr, index) => {
-      acc[index % columns].push(curr);
+    if (!(showHb && showXhb)) {
+      if (!showXhb) {
+        updatedList = updatedList.filter((l:LayoutViewProps) => l.layout !== 0);
+      }
+
+      if (!showHb) {
+        updatedList = updatedList.filter((l:LayoutViewProps) => l.layout !== 1);
+      }
+    }
+
+    return updatedList;
+  }
+
+  function groupIntoColumns(list:LayoutViewProps[], columnCount:number = columns) {
+    const initColumns = Array.from({ length: columnCount }, () => []);
+    setBalanced(false);
+    return list.reduce<LayoutViewProps[][]>((acc, curr, index) => {
+      acc[index % columnCount].push(curr);
       return acc;
     }, initColumns);
+  }
 
-    setViewLayouts(listColumns);
-  }, [viewOptions]);
-
-  useEffect(() => {
+  function balanceColumns(list:LayoutViewProps[][]) {
     // Get all column elements
-    const listCols = listsWrapper.current?.querySelectorAll('.layoutsList');
+    const listElements = listsWrapper.current?.querySelectorAll('.layoutsList');
 
-    if (ready && !balanced && listCols) {
+    if (listElements) {
       // Get column heights and get tallest, and shortest columns
-      const heights:number[] = [...listCols].map((col) => col.getBoundingClientRect().height);
+      const heights:number[] = [...listElements].map((col) => col.getBoundingClientRect().height);
       const high = Math.max(...heights);
       const low = Math.min(...heights);
 
       // Check if there's enough height diff that it needs to rebalance
       if ((high - low) > 180) {
-        let balanceColumns = viewLayouts!; // store a mutable copy of layouts list
+        const rebalancedColumns = list; // store a mutable copy of layouts list
         const highIndex = heights.indexOf(high);
         const lowIndex = heights.indexOf(low);
         // Remove the last item from the tallest column
-        const overflowItem = balanceColumns[highIndex].splice(-1, 1)[0];
+        const overflowItem = rebalancedColumns[highIndex]?.splice(-1, 1)[0];
         // Add it to the shortest column
-        balanceColumns[lowIndex].push(overflowItem);
-        setViewLayouts(balanceColumns);
+        rebalancedColumns[lowIndex].push(overflowItem);
         setBalanced(true);
+        return rebalancedColumns;
       }
     }
+
+    return list;
+  }
+
+  useEffect(() => {
+    const filterLayouts = applyFilter(layouts);
+    const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
+    const groupLayouts = groupIntoColumns(sortLayouts);
+    setViewLayouts(groupLayouts);
+  }, [viewOptions]);
+
+  useEffect(() => {
+    if (viewLayouts) {
+      const filterLayouts = applyFilter(layouts);
+      const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
+
+      const groupLayouts = () => {
+        if (window.matchMedia('(max-width: 480px)').matches) {
+          return groupIntoColumns(sortLayouts, 1);
+        }
+        if (window.matchMedia('(max-width: 720px)').matches) {
+          return groupIntoColumns(sortLayouts, 2);
+        }
+        return groupIntoColumns(sortLayouts);
+      };
+
+      const groupedLayouts = groupLayouts();
+      setViewLayouts(groupedLayouts);
+    }
+  }, [windowSize]);
+
+  useEffect(() => {
+    handleResize();
   }, [ready]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') setReady(true);
-  }, []);
+    if (ready && !balanced && viewLayouts) {
+      const balancedLayouts = balanceColumns(viewLayouts);
+      setViewLayouts(balancedLayouts);
+    }
+  }, [balanced]);
 
-  if (!layouts) return null;
+  useEffect(() => {
+    if (ready && !balanced && listsWrapper.current && viewLayouts) {
+      const rebalancedColumns = balanceColumns(viewLayouts);
+      setViewLayouts(rebalancedColumns);
+    }
+  }, [listsWrapper.current]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setReady(true);
+      window.addEventListener('resize', handleResize);
+    }
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div

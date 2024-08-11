@@ -46,14 +46,21 @@ $grid-gutter: $spacing-base;
 }
 
 @media (max-width: $screen-sm) {
+  .layoutsList {
+    width: 50%;
+  }
+
   .moreLink {
     margin-top: $spacing-base;
     position: static;
   }
 }
 
-
 @media (max-width: $screen-xs) {
+  .layoutsList {
+    width: 100%;
+  }
+
   .title {
     margin-bottom: $spacing-xs;
   }
