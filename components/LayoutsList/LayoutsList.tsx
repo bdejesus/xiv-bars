@@ -94,7 +94,7 @@ export default function LayoutsList({
   function groupIntoColumns(list:LayoutViewProps[], columnCount:number = columns) {
     const initColumns = Array.from({ length: columnCount }, () => []);
     setBalanced(false);
-    return list.reduce<LayoutViewProps[][]>((acc, curr, index) => {
+    return list?.reduce<LayoutViewProps[][]>((acc, curr, index) => {
       acc[index % columnCount].push(curr);
       return acc;
     }, initColumns);
@@ -140,10 +140,10 @@ export default function LayoutsList({
       const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
 
       const groupLayouts = () => {
-        if (window.matchMedia('(max-width: 480px)').matches) {
+        if (window.matchMedia('(max-width: 720px)').matches) {
           return groupIntoColumns(sortLayouts, 1);
         }
-        if (window.matchMedia('(max-width: 720px)').matches) {
+        if (window.matchMedia('(max-width: 980px)').matches) {
           return groupIntoColumns(sortLayouts, 2);
         }
         return groupIntoColumns(sortLayouts);
