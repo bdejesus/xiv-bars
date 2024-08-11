@@ -29,7 +29,7 @@ export default function LayoutsList({
   layouts,
   children,
   className = '',
-  columns,
+  columns = 3,
   filterable = false
 }:LayoutsListProps) {
   const { jobs } = useAppState();
@@ -83,6 +83,12 @@ export default function LayoutsList({
 
   if (!layouts) return null;
 
+  const initColumns = Array.from({ length: columns }, () => []);
+  const listColumns = viewLayouts.reduce<LayoutViewProps[][]>((acc, curr, index) => {
+    acc[index % columns].push(curr);
+    return acc;
+  }, initColumns);
+
   return (
     <div
       className={[styles.container, className].join(' ')}
@@ -91,33 +97,40 @@ export default function LayoutsList({
       itemType={title && 'https://schema.org/ItemList'}
     >
       { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
-
       { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
-      <ul className={[styles.layoutsList, 'layoutsList'].join(' ')} data-columns={columns}>
-        {viewLayouts?.map((layout:LayoutViewProps, index:number) => {
-          const job = jobs.find((j) => j.Abbr === layout.jobId);
-          if (!job) return null;
-          return (
-            <li
-              key={layout.id}
-              itemScope
-              itemProp="itemListElement"
-              itemType="https://schema.org/HowToTip"
-            >
-              <meta itemProp="position" content={`${index + 1}`} />
-              <LayoutCard
-                layout={layout}
-                job={job}
-                className={styles.card}
-                hideName={false}
-              />
-            </li>
-          );
-        })}
+      <div className={styles.listColumns}>
+        {listColumns.map((layoutsColumn, columnIndex) => (
+          <ul
+            className={[styles.layoutsList, 'layoutsList'].join(' ')}
+            data-columns={columns}
+            key={`layoutColumn-${columnIndex}`}
+          >
+            {layoutsColumn?.map((layout:LayoutViewProps, index:number) => {
+              const job = jobs.find((j) => j.Abbr === layout.jobId);
+              if (!job) return null;
+              return (
+                <li
+                  key={layout.id}
+                  itemScope
+                  itemProp="itemListElement"
+                  itemType="https://schema.org/HowToTip"
+                >
+                  <meta itemProp="position" content={`${index + 1}`} />
+                  <LayoutCard
+                    layout={layout}
+                    job={job}
+                    className={styles.card}
+                    hideName={false}
+                  />
+                </li>
+              );
+            })}
 
-        { children && children }
-      </ul>
+            { children && children }
+          </ul>
+        ))}
+      </div>
 
       { link && (
         <Link href={link.href} className={styles.moreLink}>

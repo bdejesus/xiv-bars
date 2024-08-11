@@ -133,8 +133,9 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       const { actions, roleActions } = await actionsRequest.json();
 
       // DB List Query Options
+      const layoutLimit = 8;
       const listOptions = {
-        take: 4,
+        take: layoutLimit,
         where: {
           id: { not: viewData.id },
           description: { not: '' },
@@ -159,8 +160,9 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         where: { ...listOptions.where, jobId: viewData.jobId },
         take: 24
       });
-      // Take results, shuffle and take 4, convert date objects to json string
-      const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 4));
+      // Take results, shuffle and take a subset,
+      // then convert date objects to json string
+      const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, layoutLimit));
 
       const props = {
         ...(await serverSideTranslations(context.locale as string, ['common'])),

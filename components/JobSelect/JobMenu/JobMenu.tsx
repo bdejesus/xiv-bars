@@ -87,14 +87,14 @@ export default function JobMenu({ action }:Props) {
             action={action}
           />
           <JobsList
-            title={t('JobSelect.range_dps')}
-            jobs={range}
+            title={t('JobSelect.magic_dps')}
+            jobs={mages}
             className={styles.jobList}
             action={action}
           />
           <JobsList
-            title={t('JobSelect.magic_dps')}
-            jobs={mages}
+            title={t('JobSelect.range_dps')}
+            jobs={range}
             className={styles.jobList}
             action={action}
           />

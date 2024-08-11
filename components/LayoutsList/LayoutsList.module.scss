@@ -1,18 +1,26 @@
-@import "styles/grid";
+@import 'styles/mixins';
+
+$grid-gutter: $spacing-base;
 
 .container {
   position: relative;
 }
 
+.listColumns {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  gap: $grid-gutter;
+}
+
 .layoutsList {
-  @include grid;
-
+  display: flex;
+  flex-direction: column;
+  gap: $grid-gutter;
+  list-style: none;
   margin: 0;
-  max-width: 100%;
-
-  &[data-columns="4"] {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  padding: 0;
+  width: 33.333%;
 }
 
 .title {
