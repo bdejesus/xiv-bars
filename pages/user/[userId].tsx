@@ -13,7 +13,6 @@ import GlobalHeader from 'components/GlobalHeader';
 import LayoutsList from 'components/LayoutsList';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
-import JobSelect from 'components/JobSelect';
 import ProfileImage from 'components/User/ProfileImage';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
