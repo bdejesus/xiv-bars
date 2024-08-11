@@ -100,7 +100,7 @@ export default function LayoutsList({
     // Get all column elements
     const listElements = listsWrapper.current?.querySelectorAll('.layoutsList');
 
-    if (listElements && layouts.length > 8) {
+    if (listElements && layouts.length > 6) {
       // Get column heights and get tallest, and shortest columns
       const heights:number[] = [...listElements].map((col) => col.getBoundingClientRect().height);
       const high = Math.max(...heights);
