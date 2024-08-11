@@ -10,6 +10,10 @@ $description-height: 230px;
   &:focus {
     cursor: pointer;
 
+    > a {
+      text-decoration: none;
+    }
+
     > a h3 {
       color: $color-alt;
     }

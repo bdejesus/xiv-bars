@@ -1,6 +1,4 @@
-import {
-  ReactNode, useState, useEffect, useRef
-} from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
 import { useAppState } from 'components/App/context';
@@ -18,7 +16,6 @@ interface LayoutsListProps {
     href: string
   },
   layouts: LayoutViewProps[],
-  children?: ReactNode,
   className?: string,
   columns?: 3 | 4,
   filterable?: boolean
@@ -127,8 +124,8 @@ export default function LayoutsList({
   }
 
   useEffect(() => {
-    const filterLayouts = applyFilter(layouts);
-    const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
+    const filterLayouts = filterable ? applyFilter(layouts) : layouts;
+    const sortLayouts = (filterable && filterLayouts) ? applySort(filterLayouts) : layouts;
     const groupLayouts = groupIntoColumns(sortLayouts);
     setViewLayouts(groupLayouts);
   }, [viewOptions]);
