@@ -119,7 +119,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const popularLayouts = await db.layout.findMany({
     ...layoutsQuery,
-    take: 12,
+    take: 21,
     orderBy: {
       hearts: { _count: 'desc' }
     }

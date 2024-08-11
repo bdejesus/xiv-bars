@@ -133,7 +133,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       const { actions, roleActions } = await actionsRequest.json();
 
       // DB List Query Options
-      const layoutLimit = 8;
+      const layoutLimit = 12;
       const listOptions = {
         take: layoutLimit,
         where: {
