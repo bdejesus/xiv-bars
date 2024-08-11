@@ -100,14 +100,14 @@ export default function LayoutsList({
     // Get all column elements
     const listElements = listsWrapper.current?.querySelectorAll('.layoutsList');
 
-    if (listElements && layouts.length > 6) {
+    if (listElements && layouts.length > 5) {
       // Get column heights and get tallest, and shortest columns
       const heights:number[] = [...listElements].map((col) => col.getBoundingClientRect().height);
       const high = Math.max(...heights);
       const low = Math.min(...heights);
 
       // Check if there's enough height diff that it needs to rebalance
-      if ((high - low) > 180) {
+      if ((high - low) > 240) {
         const rebalancedColumns = list; // store a mutable copy of layouts list
         const highIndex = heights.indexOf(high);
         const lowIndex = heights.indexOf(low);
