@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import CloseButton from 'components/CloseButton';
 import analytics from 'lib/analytics';
@@ -6,6 +7,7 @@ import styles from './DonateButton.module.scss';
 
 export default function DonateButton() {
   const router = useRouter();
+  const { t } = useTranslation();
   const [hidden, setHidden] = useState(false);
 
   function handleDonate(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
@@ -28,9 +30,9 @@ export default function DonateButton() {
         className={`${styles.donateLink} button btn-primary`}
       >
         <span className={styles.donateLabel}>
-          <b>Donate if you like this app!</b>
+          <b>{t('Donate.title')}</b>
           <br />
-          Donations help keep the servers up!
+          {t('Donate.subtitle')}
         </span>
       </a>
     </div>

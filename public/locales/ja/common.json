@@ -251,11 +251,16 @@
   "UserNav": {
     "whats_new": "新着情報",
     "donate": "寄付する",
-    "donate_title": "このアプリが気に入ったら寄付してください！",
     "my_layouts": "マイレイアウト",
     "logout": "ログアウト",
     "signin_with_discord": "Discordでサインイン",
     "report_an_issue": "問題を報告する",
     "account_settings": "アカウント設定"
+  },
+
+  "Donate": {
+    "title": "このアプリが気に入ったら寄付してください",
+    "subtitle": "あなたの寄付がサーバーの維持に役立ちます！"
   }
+
 }

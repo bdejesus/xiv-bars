@@ -251,11 +251,15 @@
   "UserNav": {
     "whats_new": "Was ist neu",
     "donate": "Spenden",
-    "donate_title": "Spenden Sie, wenn Ihnen diese App gefällt!",
     "my_layouts": "Meine Layouts",
     "logout": "Abmelden",
     "signin_with_discord": "Mit Discord anmelden",
     "report_an_issue": "Ein Problem melden",
     "account_settings": "Kontoeinstellungen"
+  },
+
+  "Donate": {
+    "title": "Spenden Sie, wenn Ihnen diese App gefällt",
+    "subtitle": "Ihre Spenden helfen, die Server am Laufen zu halten!"
   }
 }

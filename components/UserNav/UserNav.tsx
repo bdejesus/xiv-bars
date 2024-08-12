@@ -26,15 +26,6 @@ export default function UserNav({ className = '' }:UserNavProps) {
     signOut({ callbackUrl: '/' });
   }
 
-  function handleDonate(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    e.preventDefault();
-    analytics.event({
-      action: 'click',
-      params: { id: 'donate' }
-    });
-    router.push(e.currentTarget.getAttribute('href')!);
-  }
-
   function handleProfileKeyup(e:React.KeyboardEvent<HTMLElement>) {
     if (e.code === 'Enter') setShowMenu(!showMenu);
     if (e.code === 'Escape') setShowMenu(false);
@@ -42,23 +33,6 @@ export default function UserNav({ className = '' }:UserNavProps) {
 
   return (
     <div className={`${styles.userNav} ${className}`}>
-      <ul className={styles.globalNav}>
-        <li className={styles.navItem}>
-          <a
-            href="https://www.buymeacoffee.com/bejezus"
-            target="_blank"
-            rel="noreferrer"
-            onClick={handleDonate}
-            className={`${styles.donateLink} button btn-primary`}
-            data-title={t('UserNav.donate_title')}
-          >
-            <span className={styles.donateLabel}>
-              {t('UserNav.donate')}
-            </span>
-          </a>
-        </li>
-      </ul>
-
       { session ? (
         <div
           className={styles.profileNav}

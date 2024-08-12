@@ -251,11 +251,15 @@
   "UserNav": {
     "whats_new": "Quoi de neuf",
     "donate": "Donner",
-    "donate_title": "Faites un don si vous aimez cette application !",
     "my_layouts": "Mes dispositions",
     "logout": "Déconnexion",
     "signin_with_discord": "Connectez-vous avec Discord",
     "report_an_issue": "Signaler un problème",
     "account_settings": "Paramètres du compte"
+  },
+
+  "Donate": {
+    "title": "Faites un don si vous aimez cette application",
+    "subtitle": "Vos dons aident à maintenir les serveurs en ligne !"
   }
 }

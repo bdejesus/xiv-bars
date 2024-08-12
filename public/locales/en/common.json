@@ -250,11 +250,15 @@
   "UserNav": {
     "whats_new": "What‘s New",
     "donate": "Donate",
-    "donate_title": "Donate if you like this app!",
     "my_layouts": "My Layouts",
     "logout": "Log out",
     "signin_with_discord": "Sign in with Discord",
     "report_an_issue": "Report an Issue",
     "account_settings": "Account Settings"
+  },
+
+  "Donate": {
+    "title": "Donate if you like this app",
+    "subtitle": "Your donations help keep the servers up!"
   }
 }
