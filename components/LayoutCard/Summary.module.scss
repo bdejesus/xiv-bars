@@ -81,7 +81,7 @@ $description-height: 165px;
       line-height: 1.2em;
     }
 
-    p, ul {
+    p {
       margin-bottom: 1em;
 
       &:last-child {
@@ -89,8 +89,13 @@ $description-height: 165px;
       }
     }
 
-    ul {
+    ul, ol {
+      margin: 1em 0;
       padding-left: 1.5em;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
 
     pre {

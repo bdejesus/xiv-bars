@@ -43,7 +43,9 @@ export function JobsList({
             itemType="https://schema.org/ListItem"
           >
             <a
-              href={action === 'new' ? `/job/${job.Abbr}/new` : `/job/${job.Abbr}`}
+              href={action === 'new'
+                ? localizePath(`/job/${job.Abbr}/new`, locale)
+                : localizePath(`/job/${job.Abbr}`, locale)}
               className={`${styles.jobLink} jobList-link`}
               draggable={false}
               itemProp="url"

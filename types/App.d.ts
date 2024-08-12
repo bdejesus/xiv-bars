@@ -17,7 +17,8 @@ export interface AppState {
   roleActions?: ActionProps[],
   actions?: ActionProps[],
   chotbar: {[key: string]: object},
-  hotbar: {[key: string]: object}
+  hotbar: {[key: string]: object},
+  showMarkdownGuide: boolean,
 }
 
 interface DispatchPayload {
@@ -36,6 +37,7 @@ interface DispatchPayload {
   heartsCount?: number,
   hearted?: HeartProps,
   showDetails?: boolean,
+  showMarkdownGuide?: boolean,
   _count?: { hearts: number }
 }
 

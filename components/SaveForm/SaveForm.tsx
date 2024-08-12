@@ -1,4 +1,4 @@
-import { createRef, useState, useEffect } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
@@ -119,6 +119,17 @@ function SaveForm() {
     if (viewAction === 'edit') setViewDataStore(viewData);
   }, [viewAction]);
 
+  function openMarkdownGuide(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+    e.preventDefault();
+
+    appDispatch({
+      type: appActions.SET_STATE,
+      payload: {
+        showMarkdownGuide: true
+      }
+    });
+  }
+
   if (!session) return <SignInPrompt />;
 
   return (
@@ -142,7 +153,16 @@ function SaveForm() {
 
       <div className={`control ${styles.descriptionField}`}>
         <label htmlFor="layout-description">
-          {t('SaveForm.description')} <small><a href="https://www.markdownguide.org/basic-syntax/" target="_blank">{t('SaveForm.markdown_support')}</a></small>
+          {t('SaveForm.description')}
+          <small>
+            <a
+              href="https://www.markdownguide.org/basic-syntax/"
+              target="_blank"
+              onClick={openMarkdownGuide}
+            >
+              {t('SaveForm.markdown_support')}
+            </a>
+          </small>
         </label>
 
         <textarea
@@ -192,7 +212,6 @@ function SaveForm() {
         </button>
         )}
       </div>
-
     </form>
   );
 }

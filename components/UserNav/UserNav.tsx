@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import analytics from 'lib/analytics';
+import { localizePath } from 'lib/utils/i18n.mjs';
 import styles from './UserNav.module.scss';
 
 interface UserNavProps {
@@ -62,13 +63,13 @@ export default function UserNav({ className = '' }:UserNavProps) {
             data-active={showMenu}
           >
             <li className={styles.navItem}>
-              <a href={`/user/${session.user.id}`}>
+              <a href={localizePath(`/user/${session.user.id}`, router.locale)}>
                 {t('UserNav.my_layouts')}
               </a>
             </li>
 
             <li className={styles.navItem}>
-              <Link href="/user/settings">
+              <Link href={localizePath('/user/settings', router.locale)}>
                 {t('UserNav.account_settings')}
               </Link>
             </li>

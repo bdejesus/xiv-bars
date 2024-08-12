@@ -46,8 +46,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
       data-action={viewAction}
     >
       <ToggleDetailPanel />
-
-      <div className={styles.content}>
+      <div className={`${styles.content} markdown`}>
         { title && viewAction === 'show'
           ? (
             <>
@@ -138,8 +137,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
             </div>
           )}
 
-        { showSprite
-          && <div className={styles.footer}><JobSprite job={selectedJob} /></div>}
+        { showSprite && <div className={styles.footer}><JobSprite job={selectedJob} /></div>}
       </div>
     </div>
   );

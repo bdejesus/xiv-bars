@@ -11,7 +11,7 @@ $panel-width-lg: $screen-xs;
   background-color: #f9f9f9;
   display: flex;
   flex: none;
-  flex-direction: column;
+  flex-direction: row;
   height: $panel-height;
   justify-content: flex-end;
   overflow: hidden;
@@ -59,101 +59,6 @@ $panel-width-lg: $screen-xs;
         transform: rotate3d(0, 1, 0, 180deg);
       }
     }
-  }
-
-  h2, h3, h4, h5, h6, p, ul, ol {
-    margin-bottom: 0;
-    margin-top: $spacing-base;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  h2, h3, h4, h5, h6 {
-    color: $color-gray;
-    font-weight: 700;
-  }
-
-  h2 {
-    font-size: $font-size-xl;
-    margin-top: $spacing-lg;
-
-    &:first-child {
-      margin-top: 0;
-    }
-  }
-
-  h3 {
-    font-size: $font-size-lg;
-  }
-
-  h4 {
-    font-size: $font-size-base;
-  }
-
-  h5 {
-    text-transform: uppercase;
-  }
-
-  h5, h6 {
-    font-size: $font-size-xs;
-  }
-
-  p, ul, ol {
-    font-weight: inherit;
-    line-height: 1.65em;
-    margin-bottom: 0;
-    margin-top: $spacing-base;
-  }
-
-  ul, ol {
-    padding-left: 1.5em;
-
-    ul, ol {
-      margin: 0;
-    }
-
-    li {
-      margin: $spacing-sm 0;
-    }
-
-    p {
-      margin-bottom: 0;
-    }
-  }
-
-  pre,
-  code {
-    background-color: rgb(0 0 0 / 10%);
-    border-radius: $border-radius;
-    font-size: $font-size-sm;
-  }
-
-  code {
-    display: inline-block;
-    line-height: 1.6;
-    padding: 0 4px;
-  }
-
-  pre {
-    line-height: $font-size-lg;
-    padding: $spacing-sm;
-    text-shadow: 0 0 4px #fefefe;
-
-    code {
-      background-color: unset;
-      border-radius: unset;
-      display: unset;
-      font-size: inherit;
-      padding: unset;
-    }
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: $spacing-lg 0;
   }
 }
 
