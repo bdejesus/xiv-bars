@@ -57,7 +57,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
           <title>
-            {t('Pages.Job.index_title', { jobName, jobAbbr })} | XIVBARS
+            {`${t('Pages.Job.index_title', { jobName, jobAbbr })} | XIVBARS`}
           </title>Lore
           <meta
             name="description"

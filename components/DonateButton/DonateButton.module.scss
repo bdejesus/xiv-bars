@@ -1,8 +1,8 @@
 @import 'styles/mixins';
 
 .wrapper {
-  opacity: 0;
   bottom: $spacing-base;
+  opacity: 0;
   position: fixed;
   right: $spacing-base;
   transition-duration: 0.33s;
@@ -72,6 +72,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -83,6 +84,7 @@
     opacity: 1;
     transform: translateY(0);
   }
+
   to {
     opacity: 0;
     transform: translateY(100px);

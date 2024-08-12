@@ -37,7 +37,9 @@ export default function Settings() {
   return (
     <>
       <Head>
-        <title>{t('Pages.User.Settings.account_settings', { userName: user.name })} | {user.name} | XIVBARS</title>
+        <title>
+          {`${t('Pages.User.Settings.account_settings', { userName: user.name })} | ${user.name} | XIVBARS`}
+        </title>
       </Head>
 
       <AppContextProvider>

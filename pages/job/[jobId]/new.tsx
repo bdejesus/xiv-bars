@@ -58,7 +58,7 @@ export default function Index(props:PageProps) {
     <>
       <Head>
         <title>
-          { t('Pages.Layout.new_title', { jobName }) } | XIVBARS
+          {`${t('Pages.Layout.new_title', { jobName })} | XIVBARS`}
         </title>
         <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         <link rel="canonical" href={canonicalUrl} />

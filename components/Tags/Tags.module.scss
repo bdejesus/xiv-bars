@@ -14,6 +14,7 @@ $tag-size: 24px;
   align-items: center;
   background-color: #ddd;
   border-radius: $border-radius;
+  box-shadow: inset 1px 1px 0 rgb(255 255 255 / 50%), inset -1px -1px 0 rgb(0 0 0 / 10%);
   color: $color-gray;
   display: flex;
   font-size: $font-size-xs;
@@ -21,7 +22,6 @@ $tag-size: 24px;
   justify-content: center;
   padding: 0 6px 0 4px;
   transform: translateZ(0);
-  box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 0 rgba(0,0,0,0.1);
 }
 
 .name {
@@ -36,8 +36,8 @@ $tag-size: 24px;
   .tag {
     background-color: transparent;
     color: #fff;
-    padding: 0;
     height: $tag-size;
+    padding: 0;
   }
 
   &:hover,

@@ -46,7 +46,9 @@ export default function User({ user }:UserViewProps) {
   return (
     <>
       <Head>
-        <title>{t('Pages.User.title', { userName: user.name })} | XIVBARS</title>
+        <title>
+          {`${t('Pages.User.title', { userName: user.name })} | XIVBARS`}
+        </title>
         <meta
           name="description"
           content={t('Pages.User.description', { userName: user.name })}

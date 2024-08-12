@@ -11,8 +11,8 @@
   overflow: hidden;
   padding: 0;
   position: relative;
-  transition-property: box-shadow, transform;
   transition-duration: 0.33s;
+  transition-property: box-shadow, transform;
   transition-timing-function: ease;
 
   .cardActions {
