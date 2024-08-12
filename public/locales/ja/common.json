@@ -161,7 +161,7 @@
       "recent_layouts": "最近のレイアウト"
     },
     "User": {
-      "title": "{{userName}} さんのホットバー レイアウト • XIVBARS",
+      "title": "{{userName}} | ファイナルファンタジーXIV: 暁月の終焉 ホットバー配置ガイド",
       "description": "{{userName}} さんによる FFXIV のホットバーとクロスホットバーの UI レイアウト。Final Fantasy XIV のホットバーとクロスホットバーのユーザーインターフェースのさまざまな構成やセットアップを探索し、異なる配置、サイズ、カスタマイズオプションでゲームプレイ体験を最適化します。",
       "new_layout": "新しいレイアウト",
       "new_layout_icon": "新しいレイアウトアイコン",
@@ -188,7 +188,7 @@
       }
     },
     "Job": {
-      "index_title": "{{jobName}} ({{jobAbbr}}) ホットバーキーマッピングガイド • ファイナルファンタジーXIV：暁月の終焉 • XIVBARS",
+      "index_title": "{{jobName}} ({{jobAbbr}}) ファイナルファンタジーXIV: 暁月の終焉 ホットバーキーマップ配置ガイド",
       "index_description": "このページでは、ファイナルファンタジーXIV: ドーントレイルの{{jobName}}クラス/ジョブのホットバー (HB) とクロスホットバー (XHB) のレイアウトガイドおよびキーバインディングをプレイヤーが作成したすべてのガイドを一覧表示します。",
       "new_description": "{{jobName}}のホットバーまたはクロスホットバー (XHB) をこのツールで計画します。ドラッグ＆ドロップ、またはクリックしてホットバースロットにアクションを割り当て、共有可能なURLに保存します。",
       "no_layouts": "{{jobName}} のレイアウトはまだありません。",
@@ -196,7 +196,7 @@
       "short_description": "ファイナルファンタジーXIV：ドーントレイルのホットバーのキー設定のための{{jobName}}クラス/ジョブレイアウトガイド。"
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) ホットバーキーマッピングガイド • ファイナルファンタジーXIV：暁月の終焉 • XIVBARS",
+      "title": "{{jobName}} ({{jobAbbr}}) ファイナルファンタジーXIV: 暁月の終焉 ホットバーキーマップ配置ガイド",
       "new_title": "新しい{{jobName}}ホットバーキーマッピングガイドを作成 • ファイナルファンタジーXIV：暁月の終焉 • XIVBARS",
       "title_by_author": "{{ titleName }} 作成者 {{ authorName }}",
       "more_layouts_by_user": "{{userName}}による他のレイアウト",
