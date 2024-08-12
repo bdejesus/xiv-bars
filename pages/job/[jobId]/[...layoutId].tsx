@@ -45,7 +45,7 @@ export default function Index(props:PageProps) {
     'Pages.Layout.title',
     { jobName: displayJobName, jobAbbr: displayJobAbbr }
   );
-  const pageTitle = [displayAuthor, displayTitle].join(' • ');
+  const pageTitle = [displayAuthor, displayTitle, 'XIVBARS'].join(' | ');
   const appDispatch = useAppDispatch();
 
   useEffect(() => {
@@ -71,10 +71,7 @@ export default function Index(props:PageProps) {
         <link rel="canonical" href={canonicalUrl} />
         { !viewData.published && <meta name="robots" content="noindex" /> }
         { hasSprite(selectedJob) && (
-          <meta
-            property="og:image"
-            content={`${domain}/classjob/sprite-${selectedJob.Abbr}.png`}
-          />
+          <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
         )}
       </Head>
 

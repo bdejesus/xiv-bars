@@ -13,7 +13,7 @@ import styles from './Index.module.scss';
 
 export default function Error500() {
   const { t } = useTranslation();
-  const pageTitle = `${t('Pages.ServerError.title')} • ${t('Pages.ServerError.status')} • XIVBARS`;
+  const pageTitle = `${t('Pages.ServerError.title')} | ${t('Pages.ServerError.status')}`;
 
   return (
     <>

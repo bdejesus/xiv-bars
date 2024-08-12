@@ -1,18 +1,26 @@
 @import 'styles/mixins';
 
 .wrapper {
+  opacity: 0;
   bottom: $spacing-base;
   position: fixed;
   right: $spacing-base;
   transition-duration: 0.33s;
   transition-property: opacity, transform;
   transition-timing-function: ease;
-  z-index: 10;
+  z-index: 5;
+
+  &[data-hidden='false'] {
+    animation: enterWrapper 0.33s ease-out;
+    animation-delay: 0.66s;
+    animation-fill-mode: forwards;
+  }
 
   &[data-hidden='true'] {
-    opacity: 0;
+    animation: exitWrapper 0.33s ease-out;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
     pointer-events: none;
-    transform: translateY(100px);
   }
 }
 
@@ -56,5 +64,27 @@
   &:hover::before {
     content: "🍻";
     font-size: 30px;
+  }
+}
+
+@keyframes enterWrapper {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes exitWrapper {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100px);
   }
 }

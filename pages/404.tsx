@@ -15,7 +15,7 @@ import styles from './Index.module.scss';
 
 export default function Error404() {
   const { t } = useTranslation();
-  const pageTitle = `${t('Pages.NotFound.title')} • ${t('Pages.NotFound.status')} • XIVBARS`;
+  const pageTitle = `${t('Pages.NotFound.title')} | ${t('Pages.NotFound.status')}`;
 
   return (
     <>

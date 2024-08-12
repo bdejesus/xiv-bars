@@ -57,17 +57,14 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
           <title>
-            {t('Pages.Job.index_title', { jobName, jobAbbr })}
+            {t('Pages.Job.index_title', { jobName, jobAbbr })} | XIVBARS
           </title>Lore
           <meta
             name="description"
             content={t('Pages.Job.index_description', { jobName })}
           />
           { hasSprite(selectedJob) && (
-            <meta
-              property="og:image"
-              content={`${domain}/classjob/sprite-${selectedJob.Abbr}.png`}
-            />
+            <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
           )}
         </Head>
       )}
