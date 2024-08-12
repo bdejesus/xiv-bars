@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -35,6 +36,12 @@ export default function Settings() {
 
   return (
     <>
+      <Head>
+        <title>
+          {`${t('Pages.User.Settings.account_settings', { userName: user.name })} | ${user.name} | XIVBARS`}
+        </title>
+      </Head>
+
       <AppContextProvider>
         <GlobalHeader />
       </AppContextProvider>

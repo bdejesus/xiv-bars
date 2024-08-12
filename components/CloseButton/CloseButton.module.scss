@@ -2,7 +2,7 @@
 
 .button:global(.button) {
   position: absolute;
-  right: 0;
+  right: -$spacing-xs;
   text-transform: uppercase;
   top: 0;
   transform: translate(-$spacing-base, -50%);

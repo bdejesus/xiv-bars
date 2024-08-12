@@ -49,9 +49,9 @@ h5 {
   margin-bottom: 0;
 }
 
+ul,
 ol {
-  list-style: none;
-  margin: $spacing-lg 0;
+  margin: $spacing-lg 0 $spacing-lg $spacing-sm;
   padding: 0 $spacing-lg;
 
   h5 {
@@ -77,6 +77,14 @@ p {
   }
 }
 
+blockquote {
+  border-left: $spacing-xs solid $color-gray-light-2;
+  font-style: italic;
+  margin-left: 0;
+  margin-right: 0;
+  padding: $spacing-xs $spacing-base;
+}
+
 pre, code {
   font-weight: 700;
 }
@@ -95,6 +103,7 @@ label {
 
 .text-xl {
   font-size: $font-size-xl;
+  font-weight: 400;
   line-height: $font-size-xl-2;
 }
 

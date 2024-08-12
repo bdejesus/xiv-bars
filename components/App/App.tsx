@@ -11,6 +11,8 @@ import ActionPanel from 'components/ActionPanel';
 import SystemMessage from 'components/SystemMessage';
 import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { appActions } from 'components/App/actions';
+import Modal from 'components/Modal';
+import MarkdownGuide from 'components/SaveForm/MarkdownGuide';
 
 import styles from './App.module.scss';
 
@@ -25,7 +27,8 @@ export function App() {
     readOnly,
     showDetails,
     viewData,
-    viewAction
+    viewAction,
+    showMarkdownGuide
   } = appState;
 
   const router = useRouter();
@@ -46,6 +49,15 @@ export function App() {
       });
     }
   }, [router.query, viewAction]);
+
+  function closeMarkdownGuide() {
+    appDispatch({
+      type: appActions.SET_STATE,
+      payload: {
+        showMarkdownGuide: false
+      }
+    });
+  }
 
   return (
     <TooltipContextProvider>
@@ -81,6 +93,10 @@ export function App() {
             </div>
           </div>
         </div>
+
+        <Modal onClose={() => closeMarkdownGuide()} showModal={showMarkdownGuide}>
+          <MarkdownGuide />
+        </Modal>
 
         { selectedJob && <Tooltip /> }
       </SelectedActionContextProvider>

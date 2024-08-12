@@ -1,7 +1,7 @@
 {
   "Global": {
-    "title": "Final Fantasy XIV : Dawntrail W Cross Hotbar (XHB/WXHB) Planificateur et Simulateur – XIVBARS",
-    "subtitle": "Un outil de mapping et de keybinding pour la Cross Hotbar de Final Fantasy XIV.",
+    "title": "XIVBARS | Un outil de mappage et de configuration des touches de la Croix Hotbar (XHB) pour Final Fantasy XIV : Aube du Voyage",
+    "subtitle": "Un outil de mappage et de configuration des touches de la Croix Hotbar (XHB) pour Final Fantasy XIV : Aube du Voyage.",
     "description": "Planifiez et personnalisez vos Cross Hotbars (XHB) de FFXIV : Dawntrail. Explorez les guides, configurations et configurations créés par les joueurs pour les interfaces utilisateur des hotbars et cross hotbars de Final Fantasy XIV. Optimisez votre expérience de jeu avec différentes options de placement, de keybinding et d'autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour des keymappings et personnalisations faciles à utiliser avec le clavier et la souris ou les contrôleurs de jeu. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
     "loading": "Chargement en cours..."
@@ -161,7 +161,7 @@
       "recent_layouts": "Dispositions récentes"
     },
     "User": {
-      "title": "Dispositions de barre de raccourcis par {{userName}} • XIVBARS",
+      "title": "{{userName}} | Guides de disposition de la Hotbar pour Final Fantasy XIV : Aube du Voyage",
       "description": "Dispositions d'interface de barre de raccourcis croisée FFXIV par {{userName}}. Explorez différentes configurations et installations pour les interfaces utilisateur de barre de raccourcis et de barre de raccourcis croisée de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de taille et de personnalisation.",
       "new_layout": "Nouvelle disposition",
       "new_layout_icon": "Nouvelle icône de disposition",
@@ -188,7 +188,7 @@
       }
     },
     "Job": {
-      "index_title": "Guides de disposition des touches de la barre de raccourcis {{jobName}} ({{jobAbbr}}) • Final Fantasy XIV : Dawntrail • XIVBARS",
+      "index_title": "Guides de disposition des touches pour {{jobName}} ({{jobAbbr}}) dans Final Fantasy XIV : Aube du Voyage",
       "index_description": "Cette page répertorie tous les guides de disposition de hotbar (HB) et cross-hotbar (XHB) créés par les joueurs et les keybindings pour la classe/job {{jobName}} dans Final Fantasy XIV : Dawntrail.",
       "new_description": "Planifiez vos barres d'actions ou vos barres d'actions croisées (XHB) pour {{jobName}} avec cet outil. Faites glisser et déposez, ou cliquez pour attribuer des actions aux emplacements des barres d'actions et enregistrez-les sous une URL partageable.",
       "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
@@ -196,7 +196,7 @@
       "short_description": "Un guide de disposition de classe/emploi {{jobName}} pour les raccourcis clavier des barres d'actions pour Final Fantasy XIV : Dawntrail."
     },
     "Layout": {
-      "title": "Guide de disposition des touches de la barre de raccourcis {{jobName}} ({{jobAbbr}}) • Final Fantasy XIV : Dawntrail • XIVBARS",
+      "title": "Guide de disposition des touches pour {{jobName}} ({{jobAbbr}}) dans Final Fantasy XIV : Aube du Voyage",
       "new_title": "Créer un nouveau guide de disposition des touches de la barre de raccourcis {{jobName}} • Final Fantasy XIV : Dawntrail • XIVBARS",
       "title_by_author": "{{ titleName }} par {{ authorName }}",
       "more_layouts_by_user": "Plus de mises en page par {{userName}}",
@@ -251,11 +251,15 @@
   "UserNav": {
     "whats_new": "Quoi de neuf",
     "donate": "Donner",
-    "donate_title": "Faites un don si vous aimez cette application !",
     "my_layouts": "Mes dispositions",
     "logout": "Déconnexion",
     "signin_with_discord": "Connectez-vous avec Discord",
     "report_an_issue": "Signaler un problème",
     "account_settings": "Paramètres du compte"
+  },
+
+  "Donate": {
+    "title": "Faites un don si vous aimez cette application",
+    "subtitle": "Vos dons aident à maintenir les serveurs en ligne !"
   }
 }

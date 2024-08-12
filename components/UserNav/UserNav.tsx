@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import analytics from 'lib/analytics';
+import { localizePath } from 'lib/utils/i18n.mjs';
 import styles from './UserNav.module.scss';
 
 interface UserNavProps {
@@ -26,15 +27,6 @@ export default function UserNav({ className = '' }:UserNavProps) {
     signOut({ callbackUrl: '/' });
   }
 
-  function handleDonate(e:React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    e.preventDefault();
-    analytics.event({
-      action: 'click',
-      params: { id: 'donate' }
-    });
-    router.push(e.currentTarget.getAttribute('href')!);
-  }
-
   function handleProfileKeyup(e:React.KeyboardEvent<HTMLElement>) {
     if (e.code === 'Enter') setShowMenu(!showMenu);
     if (e.code === 'Escape') setShowMenu(false);
@@ -42,23 +34,6 @@ export default function UserNav({ className = '' }:UserNavProps) {
 
   return (
     <div className={`${styles.userNav} ${className}`}>
-      <ul className={styles.globalNav}>
-        <li className={styles.navItem}>
-          <a
-            href="https://www.buymeacoffee.com/bejezus"
-            target="_blank"
-            rel="noreferrer"
-            onClick={handleDonate}
-            className={`${styles.donateLink} button btn-primary`}
-            data-title={t('UserNav.donate_title')}
-          >
-            <span className={styles.donateLabel}>
-              {t('UserNav.donate')}
-            </span>
-          </a>
-        </li>
-      </ul>
-
       { session ? (
         <div
           className={styles.profileNav}
@@ -88,13 +63,13 @@ export default function UserNav({ className = '' }:UserNavProps) {
             data-active={showMenu}
           >
             <li className={styles.navItem}>
-              <a href={`/user/${session.user.id}`}>
+              <a href={localizePath(`/user/${session.user.id}`, router.locale)}>
                 {t('UserNav.my_layouts')}
               </a>
             </li>
 
             <li className={styles.navItem}>
-              <Link href="/user/settings">
+              <Link href={localizePath('/user/settings', router.locale)}>
                 {t('UserNav.account_settings')}
               </Link>
             </li>

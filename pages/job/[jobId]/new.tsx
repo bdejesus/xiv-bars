@@ -58,18 +58,14 @@ export default function Index(props:PageProps) {
     <>
       <Head>
         <title>
-          { t('Pages.Layout.new_title', { jobName }) }
+          {`${t('Pages.Layout.new_title', { jobName })} | XIVBARS`}
         </title>
         <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         <link rel="canonical" href={canonicalUrl} />
 
-        { hasSprite(selectedJob)
-          && (
-          <meta
-            property="og:image"
-            content={`${domain}/classjob/sprite-${selectedJob.Abbr}.png`}
-          />
-          )}
+        { hasSprite(selectedJob) && (
+          <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
+        )}
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />

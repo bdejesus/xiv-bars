@@ -36,7 +36,8 @@ export const defaultState:AppState = {
   roleActions: undefined,
   actions: undefined,
   chotbar,
-  hotbar
+  hotbar,
+  showMarkdownGuide: false
 };
 
 export default defaultState;

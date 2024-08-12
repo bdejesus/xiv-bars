@@ -14,12 +14,13 @@ $tag-size: 24px;
   align-items: center;
   background-color: #ddd;
   border-radius: $border-radius;
+  box-shadow: inset 1px 1px 0 rgb(255 255 255 / 50%), inset -1px -1px 0 rgb(0 0 0 / 10%);
   color: $color-gray;
   display: flex;
   font-size: $font-size-xs;
   height: $tag-size;
   justify-content: center;
-  padding: 2px 6px 2px 4px;
+  padding: 0 6px 0 4px;
   transform: translateZ(0);
 }
 
@@ -35,6 +36,7 @@ $tag-size: 24px;
   .tag {
     background-color: transparent;
     color: #fff;
+    height: $tag-size;
     padding: 0;
   }
 
@@ -45,7 +47,7 @@ $tag-size: 24px;
 
   :global(.job-wrapper) {
     height: $tag-size;
-    padding: 2px $spacing-sm 2px 0;
+    padding: 0 $spacing-sm 0 2px;
   }
 
   :global(.job-abbr) {
@@ -58,6 +60,6 @@ $tag-size: 24px;
   :global(.job-icon) {
     height: 100%;
     height: 20px;
-    width: 24px;
+    width: 20px;
   }
 }
