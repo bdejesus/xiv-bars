@@ -113,7 +113,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 
   try {
-
     const layouts = await db.layout.findMany({
       ...layoutsQuery,
       take: 24,
@@ -144,6 +143,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         recentLayouts: [],
         popularLayouts: []
       }
-    }
+    };
   }
 };

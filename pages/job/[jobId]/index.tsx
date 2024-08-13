@@ -167,6 +167,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         selectedJob,
         layouts: []
       }
-    }
+    };
   }
 };
