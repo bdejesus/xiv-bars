@@ -78,12 +78,14 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
           />
         ) }
 
-        <LayoutsList
-          id="recentLayouts"
-          className={styles.recentLayouts}
-          title={t('Pages.Index.recent_layouts')}
-          layouts={recentLayouts}
-        />
+        { recentLayouts?.length > 0 && (
+          <LayoutsList
+            id="recentLayouts"
+            className={styles.recentLayouts}
+            title={t('Pages.Index.recent_layouts')}
+            layouts={recentLayouts}
+          />
+        )}
       </div>
 
       <HowTo />
@@ -110,27 +112,38 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   };
 
-  const layouts = await db.layout.findMany({
-    ...layoutsQuery,
-    take: 24,
-    distinct: ['userId'],
-    orderBy: { updatedAt: 'desc' }
-  });
+  try {
 
-  const popularLayouts = await db.layout.findMany({
-    ...layoutsQuery,
-    take: 24,
-    orderBy: {
-      hearts: { _count: 'desc' }
-    }
-  });
-  const filteredPopularLayouts = popularLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
+    const layouts = await db.layout.findMany({
+      ...layoutsQuery,
+      take: 24,
+      distinct: ['userId'],
+      orderBy: { updatedAt: 'desc' }
+    });
 
-  return {
-    props: {
-      ...(await serverSideTranslations(context.locale as string, ['common'])),
-      recentLayouts: serializeDates(layouts),
-      popularLayouts: serializeDates(filteredPopularLayouts)
+    const popularLayouts = await db.layout.findMany({
+      ...layoutsQuery,
+      take: 24,
+      orderBy: {
+        hearts: { _count: 'desc' }
+      }
+    });
+    const filteredPopularLayouts = popularLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
+
+    return {
+      props: {
+        ...(await serverSideTranslations(context.locale as string, ['common'])),
+        recentLayouts: serializeDates(layouts),
+        popularLayouts: serializeDates(filteredPopularLayouts)
+      }
+    };
+  } catch {
+    return {
+      props: {
+        ...(await serverSideTranslations(context.locale as string, ['common'])),
+        recentLayouts: [],
+        popularLayouts: []
+      }
     }
-  };
+  }
 };
