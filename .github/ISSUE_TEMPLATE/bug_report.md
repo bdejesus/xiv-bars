@@ -23,10 +23,7 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Environment (please complete the following information if relevant):**
+**Additional context or notes**
+Add any other context about the problem here:
  - OS: [e.g. iOS]
  - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Additional context or notes**
-Add any other context about the problem here.
