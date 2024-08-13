@@ -135,28 +135,38 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!selectedJob) return { notFound: true };
 
   // Request Layouts
-  const layouts = await db.layout.findMany({
-    where: {
-      jobId: selectedJob?.Abbr,
-      description: { not: '' },
-      published: true
-    },
-    include: {
-      user: {
-        select: { name: true, id: true, image: true }
+  try {
+    const layouts = await db.layout.findMany({
+      where: {
+        jobId: selectedJob?.Abbr,
+        description: { not: '' },
+        published: true
       },
-      _count: {
-        select: { hearts: true }
-      }
-    },
-    orderBy: { updatedAt: 'desc' }
-  });
+      include: {
+        user: {
+          select: { name: true, id: true, image: true }
+        },
+        _count: {
+          select: { hearts: true }
+        }
+      },
+      orderBy: { updatedAt: 'desc' }
+    });
 
-  return {
-    props: {
-      ...(await serverSideTranslations(context.locale as string, ['common'])),
-      selectedJob,
-      layouts: serializeDates(layouts)
-    }
-  };
+    return {
+      props: {
+        ...(await serverSideTranslations(context.locale as string, ['common'])),
+        selectedJob,
+        layouts: serializeDates(layouts)
+      }
+    };
+  } catch {
+    return {
+      props: {
+        ...(await serverSideTranslations(context.locale as string, ['common'])),
+        selectedJob,
+        layouts: []
+      }
+    };
+  }
 };

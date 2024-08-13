@@ -114,6 +114,14 @@ function App({ Component, pageProps }: AppProps) {
           <SessionProvider session={session}>
             <UserProvider>
               <AppContextProvider>
+                { process.env.NEXT_PUBLIC_MESSAGE && (
+                  <div className="system-message warn">
+                    <div className="text-center">
+                      { process.env.NEXT_PUBLIC_MESSAGE }
+                    </div>
+                  </div>
+                )}
+
                 <Component {...pageProps} />
                 <DonateButton />
                 <LoadScreen />

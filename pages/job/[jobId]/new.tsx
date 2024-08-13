@@ -103,17 +103,17 @@ type ContextQuery = {
 };
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
+  const { jobId, isPvp } = context.query as ContextQuery;
+  const pvp:boolean = !isPvp ? false : isPvp === '1';
+
+  // Get Selected Job
+  const selectedJob = jobId ? Jobs.find((job:ClassJobProps) => job.Abbr === jobId) : null;
+  if (!selectedJob) return { notFound: true };
+
+  const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${pvp}`);
+  const { actions, roleActions } = await actionsRequest.json();
+
   try {
-    const { jobId, isPvp } = context.query as ContextQuery;
-    const pvp:boolean = !isPvp ? false : isPvp === '1';
-
-    // Get Selected Job
-    const selectedJob = jobId ? Jobs.find((job:ClassJobProps) => job.Abbr === jobId) : null;
-    if (!selectedJob) return { notFound: true };
-
-    const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${pvp}`);
-    const { actions, roleActions } = await actionsRequest.json();
-
     // DB Query to fetch other layouts with the same jobClass
     const classJobLayouts = await db.layout.findMany({
       take: 24,
@@ -142,7 +142,16 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     return { props };
   } catch (error) {
-    console.error(error);
-    return { props: { error: JSON.stringify(error) } };
+    const props = {
+      ...(await serverSideTranslations(context.locale as string, ['common'])),
+      viewData: context.query,
+      selectedJob,
+      actions,
+      roleActions,
+      viewAction: 'new',
+      classJobLayouts: []
+    };
+
+    return { props };
   }
 };
