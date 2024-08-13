@@ -69,15 +69,6 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       </div>
 
       <div className="container">
-        { popularLayouts?.length >= 5 && (
-          <LayoutsList
-            id="popularLayouts"
-            className={styles.popularLayouts}
-            title={t('Pages.Index.popular_layouts')}
-            layouts={popularLayouts}
-          />
-        ) }
-
         { recentLayouts?.length > 0 && (
           <LayoutsList
             id="recentLayouts"
@@ -86,6 +77,15 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
             layouts={recentLayouts}
           />
         )}
+
+        { popularLayouts?.length >= 5 && (
+          <LayoutsList
+            id="popularLayouts"
+            className={styles.popularLayouts}
+            title={t('Pages.Index.popular_layouts')}
+            layouts={popularLayouts}
+          />
+        ) }
       </div>
 
       <HowTo />
