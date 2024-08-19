@@ -7,6 +7,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import type { ClassJobProps } from 'types/ClassJob';
 
 async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
+  const lastmod = '2024-08-19';
+
   try {
     const sitemap = new SitemapStream({
       hostname: domain
@@ -15,7 +17,13 @@ async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
     sitemap.write({
       url: '/',
       priority: 0.9,
-      lastmod: '2019-12-29'
+      lastmod
+    });
+
+    sitemap.write({
+      url: '/privacy',
+      priority: 0.9,
+      lastmod
     });
 
     // Create each URL row
@@ -25,12 +33,12 @@ async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
       sitemap.write({
         url: `/job/${job.Abbr}`,
         priority: 0.9,
-        lastmod: '2019-12-29'
+        lastmod
       });
       sitemap.write({
         url: `/job/${job.Abbr}/new`,
         priority: 0.9,
-        lastmod: '2019-12-29'
+        lastmod
       });
     });
 

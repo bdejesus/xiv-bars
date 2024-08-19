@@ -21,6 +21,10 @@ $grid-gutter: $spacing-base;
   margin: 0;
   padding: 0;
   width: 33.333%;
+
+  > li {
+    margin: 0;
+  }
 }
 
 .title {
