@@ -73,6 +73,12 @@ function App({ Component, pageProps }: AppProps) {
       </div>
     )}
     >
+      <Head>
+        <title>{displayTitle}</title>
+        { renderMeta({ title: displayTitle, description: displayDescription, currentPath }) }
+        { renderFavicon() }
+      </Head>
+
       <style jsx global>{`
         html {
           font-family: ${roboto.style.fontFamily};
@@ -98,16 +104,11 @@ function App({ Component, pageProps }: AppProps) {
           gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
         `}
       </Script>
-
-      <Head>
-        <title>{displayTitle}</title>
-        { renderMeta({
-          title: displayTitle,
-          description: displayDescription,
-          currentPath
-        }) }
-        { renderFavicon() }
-      </Head>
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3274093949320222"
+        crossOrigin="anonymous"
+      />
 
       <main>
         <SystemContextProvider>
