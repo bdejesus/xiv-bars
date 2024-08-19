@@ -77,6 +77,7 @@ function App({ Component, pageProps }: AppProps) {
         <title>{displayTitle}</title>
         { renderMeta({ title: displayTitle, description: displayDescription, currentPath }) }
         { renderFavicon() }
+        <meta name="google-adsense-account" content="ca-pub-3274093949320222" />
       </Head>
 
       <style jsx global>{`
@@ -104,11 +105,6 @@ function App({ Component, pageProps }: AppProps) {
           gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
         `}
       </Script>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3274093949320222"
-        crossOrigin="anonymous"
-      />
 
       <main>
         <SystemContextProvider>
