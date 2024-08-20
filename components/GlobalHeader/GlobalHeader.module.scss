@@ -146,8 +146,8 @@ $button-size: 40px;
     color: #999;
     display: flex;
     flex-direction: row;
-    position: relative;
     margin: 0;
+    position: relative;
 
     &.action::before,
     &:first-child::before,
