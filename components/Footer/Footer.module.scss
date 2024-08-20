@@ -33,6 +33,17 @@
   justify-content: center;
   list-style: none;
   margin: 0;
+
+  > li {
+    border-left: 1px solid #333;
+    display: inline-block;
+    padding-left: $spacing-base;
+
+    &:first-child {
+      border-left: none;
+      padding-left: 0;
+    }
+  }
 }
 
 .attribution {
