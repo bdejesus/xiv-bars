@@ -128,7 +128,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       orderBy: { updatedAt: 'desc' }
     });
     // Take results, shuffle and take 4, convert date objects to json string
-    const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 4));
+    const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 12));
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
