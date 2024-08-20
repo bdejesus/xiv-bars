@@ -106,6 +106,12 @@ function App({ Component, pageProps }: AppProps) {
         `}
       </Script>
 
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3274093949320222"
+        crossOrigin="anonymous"
+      />
+
       <main>
         <SystemContextProvider>
           <SessionProvider session={session}>

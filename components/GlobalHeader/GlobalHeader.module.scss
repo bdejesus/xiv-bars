@@ -147,6 +147,7 @@ $button-size: 40px;
     display: flex;
     flex-direction: row;
     position: relative;
+    margin: 0;
 
     &.action::before,
     &:first-child::before,
