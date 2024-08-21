@@ -107,7 +107,7 @@
     "select_a_class": "Select a FFXIV Job/Class",
     "plan_your_hotbars": "Choose from and plan your hotbars for any of the FFXIV Class/Jobs",
     "toggle_hotbars": "Toggle between FFXIV Hotbar layouts",
-    "simulate_hotbars": "Simulate either a Cross Hotbar (XHB/WXHB) or standard Hotbars layout.",
+    "simulate_hotbars": "Simulate either a Cross Hotbar (XHB) or standard Hotbars layout.",
     "drag_and_drop": "Drag & Drop Actions to Slots",
     "slot_actions": "Slot any of the Combat and Role actions for your selected Class/Job, as well as any Menu Command, Macros, and other Actions.",
     "export_to_macro": "Export to a Macro and Share With Others",

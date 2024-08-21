@@ -107,7 +107,7 @@
     "select_a_class": "Sélectionnez un Métier/Classe FFXIV",
     "plan_your_hotbars": "Choisissez parmi et planifiez vos barres de raccourcis pour n'importe quel Métier/Classe FFXIV",
     "toggle_hotbars": "Basculer entre les configurations de barres de raccourcis FFXIV",
-    "simulate_hotbars": "Simuler une configuration de barre de raccourcis croisée (XHB/WXHB) ou des barres de raccourcis standard.",
+    "simulate_hotbars": "Simuler une configuration de barre de raccourcis croisée (XHB) ou des barres de raccourcis standard.",
     "drag_and_drop": "Glisser et déposer des actions dans les emplacements",
     "slot_actions": "Attribuez n'importe quelle action de combat et de rôle pour votre Métier/Classe sélectionné, ainsi que n'importe quelle commande de menu, macro et autre action.",
     "export_to_macro": "Exporter vers une macro et partager avec d'autres",
