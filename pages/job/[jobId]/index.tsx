@@ -100,7 +100,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
             { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
           </div>
-          <AdUnit id="ad-classjob-top" width={380} />
+          <AdUnit width={380} />
         </div>
 
         { layouts.length > 0

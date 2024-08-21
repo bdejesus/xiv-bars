@@ -199,9 +199,9 @@ export default function LayoutsList({
         >
           { viewLayouts
             ? viewLayouts?.map((layoutsColumn, colIndex) => (
-              <ListCards layouts={layoutsColumn} key={`layoutColumn-${colIndex}`} />
+              <ListCards layouts={layoutsColumn} key={`layoutColumn-${colIndex}`} listIndex={colIndex} />
             )) : (
-              <ListCards layouts={layouts} />
+              <ListCards layouts={layouts} listIndex={1} />
             )}
         </div>
 
@@ -213,7 +213,7 @@ export default function LayoutsList({
       </div>
 
       { layouts.length > 3 && (
-        <AdUnit id={`ad-${id}-footer`} className="mt-lg" />
+        <AdUnit className="mt-lg" />
       )}
     </>
   );
