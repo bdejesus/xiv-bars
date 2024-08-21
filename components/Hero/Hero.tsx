@@ -21,7 +21,7 @@ export default function Hero({ primary = true }: Props) {
       </div>
 
       <div className="sidebar">
-        <AdUnit id="hero-ad" />
+        <AdUnit />
       </div>
     </div>
 

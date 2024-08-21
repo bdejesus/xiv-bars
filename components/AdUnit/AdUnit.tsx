@@ -1,24 +1,25 @@
-import Script from 'next/script';
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
-export default function AdUnit({ id }:{id:string}) {
+export default function AdUnit() {
+  const pathname = usePathname();
+
+  function renderAds() {
+    if (window) { (window.adsbygoogle = window.adsbygoogle || []).push({}); }
+  }
+
+  useEffect(() => {
+    renderAds();
+  }, [pathname]);
+
   return (
-    <>
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3274093949320222"
-        crossOrigin="anonymous"
-      />
-      <ins
-        className="adsbygoogle"
-        style={{ display: 'block' }}
-        data-ad-client="ca-pub-3274093949320222"
-        data-ad-slot="2483095747"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-      <Script id={id}>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </Script>
-    </>
+    <ins
+      className="adsbygoogle"
+      style={{ display: 'block' }}
+      data-ad-client="ca-pub-3274093949320222"
+      data-ad-slot="2483095747"
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
   );
 }
