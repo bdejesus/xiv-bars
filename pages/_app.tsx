@@ -72,7 +72,9 @@ function App({ Component, pageProps }: AppProps) {
         <title>{displayTitle}</title>
         { renderMeta({ title: displayTitle, description: t('Global.short_desc'), currentPath }) }
         { renderFavicon() }
-        <meta name="google-adsense-account" content="ca-pub-3274093949320222" />
+        { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
+          <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE} />
+        )}
       </Head>
 
       <style jsx global>{`

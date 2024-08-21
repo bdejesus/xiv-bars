@@ -12,7 +12,7 @@ function Display() {
     <ins
       className="adsbygoogle"
       style={{ display: 'block' }}
-      data-ad-client="ca-pub-3274093949320222"
+      data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
       data-ad-slot="2483095747"
       data-ad-format="auto"
       data-full-width-responsive="true"
@@ -25,7 +25,7 @@ function InFeed() {
     <ins
       className="adsbygoogle"
       style={{ display: 'block' }}
-      data-ad-client="ca-pub-3274093949320222"
+      data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
       data-ad-slot="5638375142"
       data-ad-format="fluid"
       data-ad-layout-key="-61+bt-5k-al+1lj"
