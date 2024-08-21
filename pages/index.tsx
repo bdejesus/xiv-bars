@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import * as Sentry from "@sentry/nextjs";
 import { useRouter } from 'next/router';
 import db, { serializeDates } from 'lib/db';
 import Head from 'next/head';
@@ -136,7 +137,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         popularLayouts: serializeDates(filteredPopularLayouts)
       }
     };
-  } catch {
+  } catch (error) {
+    Sentry.captureException(error);
+
     return {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),

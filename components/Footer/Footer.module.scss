@@ -36,12 +36,27 @@
 
   > li {
     border-left: 1px solid #333;
-    display: inline-block;
+    display: block;
     padding-left: $spacing-base;
+    text-align: center;
+
+    a {
+      display: inline-block;
+    }
 
     &:first-child {
       border-left: none;
       padding-left: 0;
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+    display: block;
+
+    > li {
+      border-left: none;
+      padding-left: 0;
+
     }
   }
 }

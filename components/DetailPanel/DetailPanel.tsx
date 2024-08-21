@@ -12,6 +12,7 @@ import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
 import ProfileImage from 'components/User/ProfileImage';
 import ToggleDetailPanel from './ToggleDetailPanel';
+import AdUnit from 'components/AdUnit';
 import styles from './DetailPanel.module.scss';
 
 interface Props {
@@ -136,7 +137,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
               <SaveForm />
             </div>
           )}
-
+        <AdUnit id="ad-sidepanel" />
         { showSprite && <div className={styles.footer}><JobSprite job={selectedJob} /></div>}
       </div>
     </div>

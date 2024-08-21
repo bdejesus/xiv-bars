@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import db from 'lib/db';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
+import * as Sentry from "@sentry/nextjs";
 import { serializeDates, shuffleArray } from 'lib/utils/array.mjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
@@ -142,6 +143,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     return { props };
   } catch (error) {
+    Sentry.captureException(error);
+
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: context.query,
