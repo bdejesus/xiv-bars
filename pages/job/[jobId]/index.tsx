@@ -17,6 +17,7 @@ import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
+import AdUnit from 'components/AdUnit';
 import { hasSprite } from 'components/JobSprite';
 
 import type { ClassJobProps } from 'types/ClassJob';
@@ -96,11 +97,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
               <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
             </a>
-          </div>
 
-          { selectedJob?.Description && (
-            <Lore description={selectedJob.Description} />
-          ) }
+            { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
+          </div>
+          <AdUnit id="ad-classjob-top" />
         </div>
 
         { layouts.length > 0
@@ -108,6 +108,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             <LayoutsList
               id="jobLayouts"
               layouts={layouts}
+              className="mb-lg"
               filterable
             />
           )
@@ -122,6 +123,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               </a>
             </>
           )}
+
+        <AdUnit id="ad-classjob-bottom" />
       </div>
 
       <Footer />

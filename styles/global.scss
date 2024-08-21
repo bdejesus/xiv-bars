@@ -102,6 +102,17 @@ h2 {
   }
 }
 
+.adsbygoogle {
+  &::before {
+    color: #666;
+    content: 'advertisement';
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: 300;
+    text-align: center;
+  }
+}
+
 @import "typography";
 @import "links";
 @import "forms";
