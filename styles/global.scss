@@ -87,6 +87,15 @@ h2 {
   outline: 2px solid red !important;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: $screen-sm) {
+    flex-direction: column;
+  }
+}
+
 @import "typography";
 @import "links";
 @import "forms";
