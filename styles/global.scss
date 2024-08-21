@@ -88,6 +88,7 @@ h2 {
 }
 
 .row {
+  align-items: flex-start;
   display: flex;
   flex-direction: row;
   gap: $spacing-xl;

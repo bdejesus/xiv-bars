@@ -14,8 +14,10 @@ import LayoutsList from 'components/LayoutsList';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import ProfileImage from 'components/User/ProfileImage';
+import AdUnit from 'components/AdUnit';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
+
 import type { GetServerSideProps } from 'next';
 import type { UserProps } from 'types/User';
 import type { LayoutViewProps } from 'types/Layout';
@@ -67,14 +69,16 @@ export default function User({ user }:UserViewProps) {
               <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
               <span className={styles.profileName}>{user.name}</span>
             </h1>
+
+            { isCurrentUser && (
+              <div className={styles.layoutsCount}>
+                {layouts?.length ? layouts.length : '-'}/{maxLayouts}
+                <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
+              </div>
+            )}
           </div>
           <div className="sidebar">
-            { isCurrentUser && (
-            <div className={styles.layoutsCount}>
-              {layouts?.length ? layouts.length : '-'}/{maxLayouts}
-              <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
-            </div>
-            )}
+            <AdUnit id="id-user" />
           </div>
 
         </div>
