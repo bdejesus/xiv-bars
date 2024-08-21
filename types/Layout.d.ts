@@ -29,6 +29,7 @@ export interface LayoutViewProps extends LayoutDataProps {
   },
   published?: boolean,
   userId?: number,
+  position?: number
 }
 
 export interface MergeDataProps {
