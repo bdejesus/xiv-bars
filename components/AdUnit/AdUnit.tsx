@@ -36,11 +36,15 @@ function InFeed() {
 export default function AdUnit({
   width, className = '', format = 'display'
 }:AdUnitProps) {
+  const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
+
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && enabled) {
       ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
     }
   }, []);
+
+  if (!enabled) return null;
 
   return (
     <div

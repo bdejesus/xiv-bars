@@ -9,10 +9,9 @@ import styles from '../LayoutsList.module.scss';
 
 interface ListCardsProps {
   layouts: LayoutViewProps[],
-  listIndex: number
 }
 
-export default function ListCards({ layouts, listIndex = 1 }:ListCardsProps) {
+export default function ListCards({ layouts }:ListCardsProps) {
   const { jobs } = useAppState();
 
   return (
@@ -21,32 +20,24 @@ export default function ListCards({ layouts, listIndex = 1 }:ListCardsProps) {
         const job = jobs.find((j) => j.Abbr === layout.jobId);
         if (!job) return null;
         return (
-          <React.Fragment key={layout.id}>
-            { ((layout.position!) % 5 === 0)
-              && (
-              <li>
-                <AdUnit
-                  id={`ad-card-${listIndex + index}`}
-                  width={320}
-                  format="feed"
-                />
-              </li>
-              )}
+          <li
+            itemScope
+            itemProp="itemListElement"
+            itemType="https://schema.org/HowTo"
+            key={layout.id}
+          >
+            { ((layout.position!) % 5 === 0) && (
+              <AdUnit width={320} format="feed" />
+            )}
 
-            <li
-              itemScope
-              itemProp="itemListElement"
-              itemType="https://schema.org/HowTo"
-            >
-              <meta itemProp="position" content={`${layout.position || index + 1}`} />
-              <LayoutCard
-                layout={layout}
-                job={job}
-                className={styles.card}
-                hideName={false}
-              />
-            </li>
-          </React.Fragment>
+            <meta itemProp="position" content={`${layout.position || index + 1}`} />
+            <LayoutCard
+              layout={layout}
+              job={job}
+              className={styles.card}
+              hideName={false}
+            />
+          </li>
         );
       })}
     </ul>

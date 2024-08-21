@@ -101,13 +101,15 @@ function App({ Component, pageProps }: AppProps) {
         `}
       </Script>
 
-      <Script
-        id="google-adsense"
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3274093949320222"
-        crossOrigin="anonymous"
-        strategy="lazyOnload"
-      />
+      { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
+        <Script
+          id="google-adsense"
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
+      )}
 
       <main>
         <SystemContextProvider>
