@@ -212,7 +212,9 @@ export default function LayoutsList({
         )}
       </div>
 
-      <AdUnit id={`ad-${id}-footer`} className="mt-lg" />
+      { layouts.length > 3 && (
+        <AdUnit id={`ad-${id}-footer`} className="mt-lg" />
+      )}
     </>
   );
 }

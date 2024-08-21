@@ -137,7 +137,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
               <SaveForm />
             </div>
           )}
-        <AdUnit id="ad-sidepanel" />
+        <AdUnit id="ad-sidepanel" width={380} />
         { showSprite && <div className={styles.footer}><JobSprite job={selectedJob} /></div>}
       </div>
     </div>

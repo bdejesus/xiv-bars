@@ -1,6 +1,9 @@
 @import 'styles/mixins';
 
 .container {
+  border: 1px solid #ddd;
+  margin-left: auto;
+  margin-right: auto;
   overflow: hidden;
 
   &::before {
