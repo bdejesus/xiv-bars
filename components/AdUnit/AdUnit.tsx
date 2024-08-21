@@ -1,4 +1,6 @@
-export default function AdUnit() {
+import Script from 'next/script';
+
+export default function AdUnit({ id }:{id:string}) {
   return (
     <>
       <ins
@@ -9,9 +11,9 @@ export default function AdUnit() {
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
-      <script>
+      <Script id={id}>
         (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+      </Script>
     </>
   );
 }

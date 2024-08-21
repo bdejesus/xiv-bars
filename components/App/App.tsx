@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppState } from 'components/App/context';
+import { useSession } from 'next-auth/react';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import DetailPanel from 'components/DetailPanel';
 import ControlBar from 'components/ControlBar';
@@ -19,6 +20,7 @@ import styles from './App.module.scss';
 export function App() {
   const appDispatch = useAppDispatch();
   const appState = useAppState();
+  const { data: session } = useSession();
   const {
     jobs,
     selectedJob,
@@ -94,9 +96,11 @@ export function App() {
           </div>
         </div>
 
-        <Modal onClose={() => closeMarkdownGuide()} showModal={showMarkdownGuide}>
-          <MarkdownGuide />
-        </Modal>
+        { session && (
+          <Modal onClose={() => closeMarkdownGuide()} showModal={showMarkdownGuide}>
+            <MarkdownGuide />
+          </Modal>
+        )}
 
         { selectedJob && <Tooltip /> }
       </SelectedActionContextProvider>

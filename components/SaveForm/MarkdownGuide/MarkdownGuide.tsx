@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import styles from './MarkdownGuide.module.scss';
@@ -81,7 +82,7 @@ function DisplayMarkdown({ title, defs }:DisplayMarkdownProps) {
 
       <dl>
         { defs.map((def) => (
-          <>
+          <React.Fragment key={def.title}>
             <dt>{def.title}</dt>
 
             <dd>
@@ -108,7 +109,7 @@ function DisplayMarkdown({ title, defs }:DisplayMarkdownProps) {
                 </ReactMarkdown>
               </div>
             </dd>
-          </>
+          </React.Fragment>
         )) }
       </dl>
     </div>
