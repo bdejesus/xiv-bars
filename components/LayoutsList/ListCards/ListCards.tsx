@@ -27,7 +27,7 @@ export default function ListCards({ layouts }:ListCardsProps) {
             key={layout.id}
           >
             { ((layout.position!) % 11 === 0) && (
-              <AdUnit width={320} height={320} format="feed" className="mb-md" />
+              <AdUnit width={320} format="feed" className="mb-md" />
             )}
 
             <meta itemProp="position" content={`${layout.position || index + 1}`} />
