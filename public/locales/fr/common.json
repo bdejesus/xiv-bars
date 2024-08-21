@@ -2,6 +2,7 @@
   "Global": {
     "title": "Un outil de mappage de touches pour la Cross Hotbar (XHB) de Final Fantasy XIV: Dawntrail – XIVBARS",
     "subtitle": "Un outil de mappage et de configuration des touches de la Croix Hotbar (XHB) pour Final Fantasy XIV : Aube du Voyage.",
+    "short_desc": "Explorez des guides de mappage de touches créés par les joueurs pour les barres de raccourcis de Final Fantasy XIV. Utilisez la fonctionnalité de glisser-déposer pour des mappages et personnalisations faciles à utiliser avec un clavier et une souris ou des manettes de jeu. Exportez vos configurations en macros pour les importer directement dans le jeu et les partager avec d'autres.",
     "description": "Planifiez et personnalisez vos Cross Hotbars (XHB) de FFXIV : Dawntrail. Explorez les guides, configurations et configurations créés par les joueurs pour les interfaces utilisateur des hotbars et cross hotbars de Final Fantasy XIV. Optimisez votre expérience de jeu avec différentes options de placement, de keybinding et d'autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour des keymappings et personnalisations faciles à utiliser avec le clavier et la souris ou les contrôleurs de jeu. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
     "loading": "Chargement en cours..."

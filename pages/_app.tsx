@@ -45,12 +45,7 @@ function App({ Component, pageProps }: AppProps) {
     return t('Global.title');
   }
 
-  function generateDescription() {
-    return t('Global.description');
-  }
-
   const displayTitle = generateTitle();
-  const displayDescription = generateDescription();
 
   return (
     <ErrorBoundary fallback={(
@@ -75,7 +70,7 @@ function App({ Component, pageProps }: AppProps) {
     >
       <Head>
         <title>{displayTitle}</title>
-        { renderMeta({ title: displayTitle, description: displayDescription, currentPath }) }
+        { renderMeta({ title: displayTitle, description: t('Global.short_desc'), currentPath }) }
         { renderFavicon() }
         <meta name="google-adsense-account" content="ca-pub-3274093949320222" />
       </Head>
