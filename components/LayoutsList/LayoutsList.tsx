@@ -186,12 +186,15 @@ export default function LayoutsList({
       itemScope={!!title}
       itemProp={title && 'itemListElement'}
       itemType={title && 'https://schema.org/ItemList'}
-      // data-columns={viewLayouts?.length || 1}
     >
       { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
       { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
-      <div className={styles.listColumns} ref={listsWrapper}>
+      <div
+        className={styles.listColumns}
+        ref={listsWrapper}
+        data-columns={viewLayouts?.length || 1}
+      >
         { viewLayouts
           ? viewLayouts?.map((layoutsColumn, colIndex) => (
             <ListCards layouts={layoutsColumn} key={`layoutColumn-${colIndex}`} />

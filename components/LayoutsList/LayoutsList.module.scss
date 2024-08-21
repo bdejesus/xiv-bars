@@ -11,6 +11,15 @@ $grid-gutter: $spacing-base;
   display: flex;
   flex-direction: row;
   gap: $grid-gutter;
+
+  &[data-columns="4"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    .layoutsList {
+      width: auto;
+    }
+  }
 }
 
 .layoutsList {
@@ -38,14 +47,6 @@ $grid-gutter: $spacing-base;
   position: absolute;
   right: 0;
   top: 0;
-}
-
-@media (max-width: $screen-lg) {
-  .layoutsList {
-    &[data-columns="4"] {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
 }
 
 @media (max-width: $screen-md) {
