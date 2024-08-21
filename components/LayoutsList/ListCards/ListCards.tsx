@@ -26,8 +26,8 @@ export default function ListCards({ layouts }:ListCardsProps) {
             itemType="https://schema.org/HowTo"
             key={layout.id}
           >
-            { ((layout.position!) % 5 === 0) && (
-              <AdUnit width={320} format="feed" />
+            { ((layout.position!) % 11 === 0) && (
+              <AdUnit width={320} height={320} format="feed" className="mb-md" />
             )}
 
             <meta itemProp="position" content={`${layout.position || index + 1}`} />

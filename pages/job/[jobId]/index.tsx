@@ -79,8 +79,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         itemProp="itemListElement"
         itemType="https://schema.org/ItemList"
       >
-        <div className={styles.header}>
-          <div className={styles.headerDesc}>
+        <div className={`${styles.header} row`}>
+          <div className="main">
             <SelectedJob
               job={selectedJob}
               className={styles.title}
@@ -100,7 +100,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
             { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
           </div>
-          <AdUnit width={380} />
+
+          <div className="sidebar">
+            <AdUnit width={320} />
+          </div>
         </div>
 
         { layouts.length > 0

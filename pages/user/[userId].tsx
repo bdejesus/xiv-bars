@@ -78,7 +78,7 @@ export default function User({ user }:UserViewProps) {
             )}
           </div>
           <div className="sidebar">
-            <AdUnit width={380} />
+            <AdUnit width={320} />
           </div>
 
         </div>

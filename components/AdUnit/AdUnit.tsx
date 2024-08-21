@@ -3,6 +3,7 @@ import styles from './AdUnit.module.scss';
 
 interface AdUnitProps {
   width?: number,
+  height?: number,
   className?: string,
   format?: 'display' | 'feed'
 }
@@ -34,7 +35,7 @@ function InFeed() {
 }
 
 export default function AdUnit({
-  width, className = '', format = 'display'
+  width, height, className = '', format = 'display'
 }:AdUnitProps) {
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
 
@@ -49,7 +50,10 @@ export default function AdUnit({
   return (
     <div
       className={`${styles.container} ${className}`}
-      style={{ width: width ? `${width}px` : 'unset' }}
+      style={{
+        width: width ? `${width}px` : 'unset',
+        height: height ? `${height}px` : 'unset'
+      }}
     >
       { format === 'feed'
         ? <InFeed />
