@@ -14,6 +14,7 @@ import Footer from 'components/Footer';
 import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
+import AdUnit from 'components/AdUnit';
 import type { GetServerSideProps } from 'next';
 import type { LayoutViewProps } from 'types/Layout';
 
@@ -67,6 +68,10 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
           </h2>
           <JobMenu />
         </div>
+      </div>
+
+      <div className="container">
+        <AdUnit id="ad-mid-1" />
       </div>
 
       <div className="container">

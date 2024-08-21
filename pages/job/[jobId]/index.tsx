@@ -100,7 +100,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
             { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
           </div>
-          <AdUnit id="ad-classjob-top" />
+          <AdUnit id="ad-classjob-top" width={380} />
         </div>
 
         { layouts.length > 0
@@ -123,8 +123,6 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               </a>
             </>
           )}
-
-        <AdUnit id="ad-classjob-bottom" />
       </div>
 
       <Footer />

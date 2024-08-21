@@ -94,22 +94,11 @@ h2 {
   gap: $spacing-xl;
 
   .sidebar {
-    min-width: 320px;
+    min-width: 380px;
   }
 
   @media (max-width: $screen-sm) {
     flex-direction: column;
-  }
-}
-
-.adsbygoogle {
-  &::before {
-    color: #666;
-    content: 'advertisement';
-    display: block;
-    font-size: $font-size-xs;
-    font-weight: 300;
-    text-align: center;
   }
 }
 

@@ -1,0 +1,14 @@
+@import 'styles/mixins';
+
+.container {
+  overflow: hidden;
+
+  &::before {
+    color: #666;
+    content: 'advertisement';
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: 300;
+    text-align: center;
+  }
+}

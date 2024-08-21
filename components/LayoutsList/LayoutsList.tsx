@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
 import type { LayoutViewProps } from 'types/Layout';
+import AdUnit from 'components/AdUnit';
 import ListCards from './ListCards';
 import ViewControl, { defaultView } from './ViewControl';
 
@@ -181,33 +182,37 @@ export default function LayoutsList({
   }, []);
 
   return (
-    <div
-      className={[styles.container, className].join(' ')}
-      itemScope={!!title}
-      itemProp={title && 'itemListElement'}
-      itemType={title && 'https://schema.org/ItemList'}
-    >
-      { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
-      { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
-
+    <>
       <div
-        className={styles.listColumns}
-        ref={listsWrapper}
-        data-columns={viewLayouts?.length || 1}
+        className={[styles.container, className].join(' ')}
+        itemScope={!!title}
+        itemProp={title && 'itemListElement'}
+        itemType={title && 'https://schema.org/ItemList'}
       >
-        { viewLayouts
-          ? viewLayouts?.map((layoutsColumn, colIndex) => (
-            <ListCards layouts={layoutsColumn} key={`layoutColumn-${colIndex}`} />
-          )) : (
-            <ListCards layouts={layouts} />
-          )}
+        { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
+        { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
+
+        <div
+          className={styles.listColumns}
+          ref={listsWrapper}
+          data-columns={viewLayouts?.length || 1}
+        >
+          { viewLayouts
+            ? viewLayouts?.map((layoutsColumn, colIndex) => (
+              <ListCards layouts={layoutsColumn} key={`layoutColumn-${colIndex}`} />
+            )) : (
+              <ListCards layouts={layouts} />
+            )}
+        </div>
+
+        { link && (
+          <Link href={link.href} className={styles.moreLink}>
+            {link.text}
+          </Link>
+        )}
       </div>
 
-      { link && (
-        <Link href={link.href} className={styles.moreLink}>
-          {link.text}
-        </Link>
-      )}
-    </div>
+      <AdUnit id={`ad-${id}-footer`} className="mt-lg" />
+    </>
   );
 }
