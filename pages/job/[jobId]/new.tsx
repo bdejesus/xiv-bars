@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import { translateData } from 'lib/utils/i18n.mjs';
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 import { serializeDates, shuffleArray } from 'lib/utils/array.mjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';

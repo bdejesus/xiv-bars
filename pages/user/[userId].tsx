@@ -62,21 +62,20 @@ export default function User({ user }:UserViewProps) {
 
       <div className="container">
         <div className={`${styles.hgroup} row`}>
-          <div className='main'>
+          <div className="main">
             <h1 className={`mt-md ${styles.profile}`}>
               <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
               <span className={styles.profileName}>{user.name}</span>
             </h1>
           </div>
-          <div className='sidebar'>
-          { isCurrentUser && (
+          <div className="sidebar">
+            { isCurrentUser && (
             <div className={styles.layoutsCount}>
               {layouts?.length ? layouts.length : '-'}/{maxLayouts}
               <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
             </div>
-          )}
+            )}
           </div>
-
 
         </div>
 

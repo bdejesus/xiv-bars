@@ -3,7 +3,7 @@ import db, { serializeDates } from 'lib/db';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
-import * as Sentry from "@sentry/nextjs";
+import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'components/App/context';
 import { useSystemDispatch, systemActions } from 'components/System';

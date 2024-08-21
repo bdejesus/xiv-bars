@@ -11,8 +11,8 @@ import JobSprite, { hasSprite } from 'components/JobSprite';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
 import ProfileImage from 'components/User/ProfileImage';
-import ToggleDetailPanel from './ToggleDetailPanel';
 import AdUnit from 'components/AdUnit';
+import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
 
 interface Props {
