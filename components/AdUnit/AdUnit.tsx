@@ -9,13 +9,15 @@ import styles from './AdUnit.module.scss';
 interface AdUnitProps {
   id: string,
   className?: string,
-  format?: 'fluid' | 'skyscraper' | 'mediumRect' | 'largeRect' | 'leaderboard'
+  format?: 'fluid' | 'skyscraper' | 'mediumRect' | 'largeRect' | 'leaderboard',
+  variant?: 'light' | 'dark'
 }
 
 export default function AdUnit({
   id,
   className = '',
-  format = 'fluid'
+  format = 'fluid',
+  variant = 'dark'
 }:AdUnitProps) {
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
   const pathname = usePathname();
@@ -57,6 +59,7 @@ export default function AdUnit({
       className={`${styles.container} ${className}`}
       style={sizeStyle}
       id={id}
+      data-variant={variant}
     >
       <ins
         id={`${id}-ins`}

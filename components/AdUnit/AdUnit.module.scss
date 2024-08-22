@@ -5,18 +5,19 @@
   border-top: 1px solid rgb(80 80 80 / 50%);
   box-sizing: content-box;
   margin: $spacing-base auto $spacing-base auto;
-  padding: $spacing-sm 0 $spacing-sm;
+  padding: $spacing-base 0 $spacing-base;
   position: relative;
   text-align: center;
 
   &::before {
     background-color: #212121;
-    color: #666;
+    color: #ccc;
     content: 'advertisement';
     display: block;
     font-size: $font-size-xs;
-    font-weight: 300;
+    font-weight: 400;
     left: 50%;
+    letter-spacing: 0.025em;
     line-height: 1;
     margin-bottom: $spacing-xs;
     padding: 0 $spacing-xs;
@@ -28,5 +29,15 @@
 
   ins {
     background-color: #111;
+  }
+
+  &[data-variant='light'] {
+    border-color: #ccc;
+
+    &::before {
+      background-color: #F9F9F9;
+      color: #333;
+      font-weight: 600;
+    }
   }
 }

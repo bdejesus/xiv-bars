@@ -135,7 +135,8 @@ export default function DetailPanel({ className = '', visible }:Props) {
                 <AdUnit
                   format="mediumRect"
                   id="ad-DetailPanel"
-                  className={`${styles.adUnit} mt-lg`}
+                  variant="light"
+                  className="mt-lg"
                 />
               </div>
             </>
@@ -146,7 +147,8 @@ export default function DetailPanel({ className = '', visible }:Props) {
               <AdUnit
                 format="mediumRect"
                 id="ad-DetailPanel-SaveForm"
-                className={`${styles.adUnit} mt-lg`}
+                variant="light"
+                className="mt-lg"
               />
             </div>
           )}
