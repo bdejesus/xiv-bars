@@ -2,6 +2,8 @@
 
 import { useEffect, } from 'react';
 import { usePathname } from 'next/navigation';
+import * as Sentry from '@sentry/nextjs';
+
 import styles from './AdUnit.module.scss';
 
 interface AdUnitProps {
@@ -33,6 +35,7 @@ export default function AdUnit({
       try {
         ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
       } catch (error) {
+        Sentry.captureException(error);
         console.error('Adsense Error: ', error);
       }
     }
