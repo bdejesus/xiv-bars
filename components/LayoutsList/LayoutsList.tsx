@@ -215,7 +215,7 @@ export default function LayoutsList({
       </div>
 
       { layouts.length > 3 && (
-        <AdUnit />
+        <AdUnit id={`ad-LayoutsList-${id}`} />
       )}
     </>
   );

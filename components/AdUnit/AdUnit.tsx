@@ -1,57 +1,43 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, } from 'react';
 import { usePathname } from 'next/navigation';
 import styles from './AdUnit.module.scss';
 
-function Display() {
-  return (
-    <ins
-      className="adsbygoogle"
-      style={{ display: 'block' }}
-      data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
-      data-ad-slot="2483095747"
-      data-ad-format="auto"
-      data-full-width-responsive="true"
-    />
-  );
-}
-
-function FixedSize({ height = 360, width = 368 }:{height?: number, width?: number}) {
-  return (
-    <ins
-      className="adsbygoogle"
-      style={{ display: 'inline-block', width: `${width}px`, height: `${height}px` }}
-      data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
-      data-ad-slot="9103811582"
-    />
-  );
-}
-
 interface AdUnitProps {
-  width?: number,
-  height?: number,
+  id: string,
   className?: string,
-  format?: 'display' | 'feed' | 'fixed-square'
+  format?: 'fluid' | 'skyscraper' | 'largeRect' | 'leaderboard'
 }
 
 export default function AdUnit({
-  width,
-  height,
+  id,
   className = '',
-  format = 'display'
+  format = 'fluid'
 }:AdUnitProps) {
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
   const pathname = usePathname();
+  const formats = {
+    skyscraper: { width: 160, height: 600, slot: 8212034761 },
+    largeRect: { width: 336, height: 280, slot: 9103811582 },
+    leaderboard: { width: 728, height: 90, slot: 8931155846 },
+    fluid: { width: undefined, height: undefined, slot: 2483095747 }
+  };
+  const { width, height, slot } = formats[format];
+  const displayStyle = { display: format === 'fluid' ? 'block' : 'inline-block' };
+  const sizeStyle = format === 'fluid' ? {} : { width: `${width}px`, height: `${height}px` };
 
   useEffect(() => {
-    function initializeAdUnit() {
+    function initialize() {
       if (typeof window !== 'undefined' && enabled) {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+        try {
+          ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+        } catch (error) {
+          console.error('Adsense Error: ', error);
+        }
       }
     }
-
-    initializeAdUnit();
+    initialize();
   }, [pathname]);
 
   if (!enabled) return null;
@@ -59,14 +45,19 @@ export default function AdUnit({
   return (
     <div
       className={`${styles.container} ${className}`}
-      style={{
-        width: width ? `${width}px` : 'unset',
-        height: height ? `${height}px` : 'unset'
-      }}
+      style={sizeStyle}
+      id={id}
     >
-      { format === 'fixed-square'
-        ? <FixedSize height={height} width={width} />
-        : <Display />}
+      <ins
+        id={`${id}-ins`}
+        className="adsbygoogle"
+        style={{ ...displayStyle, ...sizeStyle }}
+        data-format={JSON.stringify({ f: formats[format], sizeStyle })}
+        data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
+        data-ad-slot={slot}
+        data-ad-format={format === 'fluid' ? 'auto' : null}
+        data-full-width-responsive={format === 'fluid' ? 'true' : null}
+      />
     </div>
   );
 }

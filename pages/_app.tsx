@@ -75,9 +75,21 @@ function App({ Component, pageProps }: AppProps) {
         { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE} />
         )}
+
+        {/* <!-- Google AdSense --> */}
+        { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
+          <Script
+            id="google-adsense"
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
       </Head>
 
-      <style jsx global>{`
+      <style jsx global>
+        {`
         html {
           font-family: ${roboto.style.fontFamily};
         }
@@ -92,26 +104,19 @@ function App({ Component, pageProps }: AppProps) {
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+      >
         {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
-        `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
+          `}
       </Script>
-
-      { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
-        <Script
-          id="google-adsense"
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
-      )}
 
       <main>
         <SystemContextProvider>

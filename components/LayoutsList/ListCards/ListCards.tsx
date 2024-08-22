@@ -22,24 +22,27 @@ export default function ListCards({ layouts }:ListCardsProps) {
         const job = jobs.find((j) => j.Abbr === layout.jobId);
         if (!job) return null;
         return (
-          <li
-            itemScope
-            itemProp="itemListElement"
-            itemType="https://schema.org/HowTo"
-            key={layout.id}
-          >
+          <React.Fragment key={layout.id}>
             { ((layout.position!) % 11 === 0) && (
-              <AdUnit format="fixed-square" />
+              <li>
+                <AdUnit format="largeRect" id={`ad-ListCards-${layout.id}`} />
+              </li>
             )}
-
-            <meta itemProp="position" content={`${layout.position || index + 1}`} />
-            <LayoutCard
-              layout={layout}
-              job={job}
-              className={styles.card}
-              hideName={false}
-            />
-          </li>
+            <li
+              itemScope
+              itemProp="itemListElement"
+              itemType="https://schema.org/HowTo"
+              key={layout.id}
+            >
+              <meta itemProp="position" content={`${layout.position || index + 1}`} />
+              <LayoutCard
+                layout={layout}
+                job={job}
+                className={styles.card}
+                hideName={false}
+              />
+            </li>
+          </React.Fragment>
         );
       })}
     </ul>

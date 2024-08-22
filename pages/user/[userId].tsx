@@ -80,7 +80,7 @@ export default function User({ user }:UserViewProps) {
             )}
           </div>
           <div className="sidebar">
-            <AdUnit format="fixed-square" />
+            <AdUnit format="largeRect" id="ad-UserPage" />
           </div>
 
         </div>

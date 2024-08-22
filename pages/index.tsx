@@ -73,7 +73,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
       </div>
 
       <div className="container">
-        <AdUnit />
+        <AdUnit id="ad-IndexPage" />
       </div>
 
       <div className="container">

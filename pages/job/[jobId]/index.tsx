@@ -104,7 +104,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           </div>
 
           <div className="sidebar">
-            <AdUnit format="fixed-square" />
+            <AdUnit format="largeRect" id="ad-JobsIndexPage" />
           </div>
         </div>
 
