@@ -129,16 +129,17 @@ export default function DetailPanel({ className = '', visible }:Props) {
                     {t('DetailPanel.draft')}
                   </ReactMarkdown>
                 )}
+
+                <AdUnit format="fixed-square" className="mt-lg" />
               </div>
             </>
           )
           : (
             <div className={styles.body}>
               <SaveForm />
+              <AdUnit format="fixed-square" />
             </div>
           )}
-
-        <AdUnit format="fixed-square" />
 
         { showSprite && <div className={styles.footer}><JobSprite job={selectedJob} /></div>}
       </div>

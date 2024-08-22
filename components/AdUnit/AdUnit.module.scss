@@ -1,10 +1,11 @@
 @import 'styles/mixins';
 
 .container {
-  border: 1px solid #333;
-  margin: 0 auto $spacing-base;
+  border-bottom: 1px solid #333;
+  border-top: 1px solid #333;
+  margin-bottom: $spacing-base;
   overflow: hidden;
-  padding: 0 $spacing-base $spacing-base;
+  padding: $spacing-sm 0;
   text-align: center;
 
   &::before {
