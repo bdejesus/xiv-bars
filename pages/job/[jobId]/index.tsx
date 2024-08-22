@@ -102,7 +102,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           </div>
 
           <div className="sidebar">
-            <AdUnit width={320} />
+            <AdUnit format="fixed-square" />
           </div>
         </div>
 
