@@ -213,7 +213,7 @@ export default function LayoutsList({
       </div>
 
       { layouts.length > 3 && (
-        <AdUnit className="mt-lg" />
+        <AdUnit />
       )}
     </>
   );

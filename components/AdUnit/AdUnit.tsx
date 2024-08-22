@@ -4,14 +4,13 @@ import styles from './AdUnit.module.scss';
 interface AdUnitProps {
   width?: number,
   height?: number,
-  className?: string,
-  format?: 'display' | 'feed'
+  format?: 'display' | 'feed' | 'fixed-square'
 }
 
 function Display() {
   return (
     <ins
-      className="adsbygoogle"
+      className={`${styles.container} adsbygoogle`}
       style={{ display: 'block' }}
       data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
       data-ad-slot="2483095747"
@@ -21,43 +20,36 @@ function Display() {
   );
 }
 
-function InFeed() {
+function FixedSize({ height = 360, width = 368 }:{height?: number, width?: number}) {
   return (
     <ins
-      className="adsbygoogle"
-      style={{ display: 'block' }}
+      className={`${styles.container} ${styles.inFeed} adsbygoogle`}
+      style={{ display: 'inline-block', width: `${width}px`, height: `${height}px` }}
       data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
-      data-ad-slot="5638375142"
-      data-ad-format="fluid"
-      data-ad-layout-key="-61+bt-5k-al+1lj"
+      data-ad-slot="9103811582"
     />
   );
 }
 
 export default function AdUnit({
-  width, height, className = '', format = 'display'
+  width,
+  height,
+  format = 'display'
 }:AdUnitProps) {
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && enabled) {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+    if ((window as any).adsbygoogle) { // eslint-disable-line
+      try {
+        (window as any).adsbygoogle.push({}); // eslint-disable-line
+      } catch (e) {
+        console.error('AdSense error:', e);
+      }
     }
   }, []);
 
   if (!enabled) return null;
 
-  return (
-    <div
-      className={`${styles.container} ${className}`}
-      style={{
-        width: width ? `${width}px` : 'unset',
-        height: height ? `${height}px` : 'unset'
-      }}
-    >
-      { format === 'feed'
-        ? <InFeed />
-        : <Display />}
-    </div>
-  );
+  if (format === 'fixed-square') return <FixedSize height={height} width={width} />;
+  return <Display />;
 }

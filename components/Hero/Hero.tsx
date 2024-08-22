@@ -21,7 +21,7 @@ export default function Hero({ primary = true }: Props) {
       </div>
 
       <div className="sidebar">
-        <AdUnit width={320} />
+        <AdUnit format="fixed-square" />
       </div>
     </div>
 

@@ -93,10 +93,6 @@ h2 {
   flex-direction: row;
   gap: $spacing-xl;
 
-  .sidebar {
-    min-width: 320px;
-  }
-
   @media (max-width: $screen-sm) {
     flex-direction: column;
   }

@@ -2,8 +2,7 @@
 
 .container {
   border: 1px solid #333;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto $spacing-base;
   overflow: hidden;
   padding: 0 $spacing-base $spacing-base;
   text-align: center;
@@ -16,4 +15,8 @@
     font-weight: 300;
     text-align: center;
   }
+}
+
+.inFeed {
+  margin: 0 auto $spacing-sm;
 }
