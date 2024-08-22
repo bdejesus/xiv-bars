@@ -16,6 +16,10 @@ interface ListCardsProps {
 export default function ListCards({ layouts }:ListCardsProps) {
   const { jobs } = useAppState();
 
+  function shouldInsertAdUnit(position:number) {
+    return ((position % 11 === 0) || position === 6);
+  }
+
   return (
     <ul className={[styles.layoutsList, 'layoutsList'].join(' ')}>
       { layouts.map((layout, index:number) => {
@@ -23,7 +27,7 @@ export default function ListCards({ layouts }:ListCardsProps) {
         if (!job) return null;
         return (
           <React.Fragment key={layout.id}>
-            { ((layout.position!) % 11 === 0) && (
+            { shouldInsertAdUnit(layout.position || 0) && (
               <li>
                 <AdUnit format="largeRect" id={`ad-ListCards-${layout.id}`} />
               </li>

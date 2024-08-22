@@ -132,14 +132,22 @@ export default function DetailPanel({ className = '', visible }:Props) {
                   </ReactMarkdown>
                 )}
 
-                <AdUnit format="largeRect" id="ad-DetailPanel" className={styles.adUnit} />
+                <AdUnit
+                  format="mediumRect"
+                  id="ad-DetailPanel"
+                  className={`${styles.adUnit} mt-lg`}
+                />
               </div>
             </>
           )
           : (
             <div className={styles.body}>
               <SaveForm />
-              <AdUnit format="largeRect" id="ad-DetailPanel-SaveForm" className={styles.adUnit} />
+              <AdUnit
+                format="mediumRect"
+                id="ad-DetailPanel-SaveForm"
+                className={`${styles.adUnit} mt-lg`}
+              />
             </div>
           )}
 
