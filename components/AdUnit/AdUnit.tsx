@@ -28,16 +28,21 @@ export default function AdUnit({
   const displayStyle = { display: format === 'fluid' ? 'block' : 'inline-block' };
   const sizeStyle = format === 'fluid' ? {} : { width: `${width}px`, height: `${height}px` };
 
-  useEffect(() => {
-    function initialize() {
-      if (typeof window !== 'undefined' && enabled) {
-        try {
-          ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
-        } catch (error) {
-          console.error('Adsense Error: ', error);
-        }
+  function initialize() {
+    if (typeof window !== 'undefined' && enabled) {
+      try {
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+      } catch (error) {
+        console.error('Adsense Error: ', error);
       }
     }
+  }
+
+  useEffect(() => {
+    initialize();
+  }, []);
+
+  useEffect(() => {
     initialize();
   }, [pathname]);
 
