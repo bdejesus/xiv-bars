@@ -137,7 +137,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
           : (
             <div className={styles.body}>
               <SaveForm />
-              <AdUnit format="fixed-square" />
+              <AdUnit format="fixed-square" className="mt-lg" />
             </div>
           )}
 
