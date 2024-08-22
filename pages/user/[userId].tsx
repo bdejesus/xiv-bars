@@ -14,7 +14,7 @@ import LayoutsList from 'components/LayoutsList';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import ProfileImage from 'components/User/ProfileImage';
-import AdUnit from 'components/AdUnit';
+import dynamic from 'next/dynamic';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
 
@@ -23,6 +23,8 @@ import type { UserProps } from 'types/User';
 import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './userId.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface UserViewProps {
   user: UserProps

@@ -14,11 +14,13 @@ import Footer from 'components/Footer';
 import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
-import AdUnit from 'components/AdUnit';
+import dynamic from 'next/dynamic';
 import type { GetServerSideProps } from 'next';
 import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './Index.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface QueryProps {
   job?: string,

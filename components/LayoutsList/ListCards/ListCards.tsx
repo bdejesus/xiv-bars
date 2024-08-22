@@ -1,11 +1,13 @@
 import React from 'react';
 import { useAppState } from 'components/App/context';
 import LayoutCard from 'components/LayoutCard';
-import AdUnit from 'components/AdUnit';
+import dynamic from 'next/dynamic';
 
 import type { LayoutViewProps } from 'types/Layout';
 
 import styles from '../LayoutsList.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface ListCardsProps {
   layouts: LayoutViewProps[],

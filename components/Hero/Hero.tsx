@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 import { useTranslation } from 'next-i18next';
-import AdUnit from 'components/AdUnit';
+import dynamic from 'next/dynamic';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface Props {
   primary?: boolean

@@ -1,12 +1,8 @@
-import { useEffect } from 'react';
-import styles from './AdUnit.module.scss';
+'use client';
 
-interface AdUnitProps {
-  width?: number,
-  height?: number,
-  className?: string,
-  format?: 'display' | 'feed' | 'fixed-square'
-}
+import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import styles from './AdUnit.module.scss';
 
 function Display() {
   return (
@@ -32,6 +28,13 @@ function FixedSize({ height = 360, width = 368 }:{height?: number, width?: numbe
   );
 }
 
+interface AdUnitProps {
+  width?: number,
+  height?: number,
+  className?: string,
+  format?: 'display' | 'feed' | 'fixed-square'
+}
+
 export default function AdUnit({
   width,
   height,
@@ -39,12 +42,17 @@ export default function AdUnit({
   format = 'display'
 }:AdUnitProps) {
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && enabled) {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+    function initializeAdUnit() {
+      if (typeof window !== 'undefined' && enabled) {
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+      }
     }
-  }, []);
+
+    initializeAdUnit();
+  }, [pathname]);
 
   if (!enabled) return null;
 

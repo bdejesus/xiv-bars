@@ -11,9 +11,11 @@ import JobSprite, { hasSprite } from 'components/JobSprite';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
 import ProfileImage from 'components/User/ProfileImage';
-import AdUnit from 'components/AdUnit';
+import dynamic from 'next/dynamic';
 import ToggleDetailPanel from './ToggleDetailPanel';
 import styles from './DetailPanel.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface Props {
   className?: string,

@@ -17,7 +17,7 @@ import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
-import AdUnit from 'components/AdUnit';
+import dynamic from 'next/dynamic';
 import { hasSprite } from 'components/JobSprite';
 
 import type { ClassJobProps } from 'types/ClassJob';
@@ -25,6 +25,8 @@ import type { LayoutViewProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
 
 import styles from './index.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface Props {
   selectedJob: ClassJobProps,

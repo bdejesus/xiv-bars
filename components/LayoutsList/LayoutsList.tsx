@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
 import type { LayoutViewProps } from 'types/Layout';
-import AdUnit from 'components/AdUnit';
+import dynamic from 'next/dynamic';
 import ListCards from './ListCards';
 import ViewControl, { defaultView } from './ViewControl';
 
 import styles from './LayoutsList.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface LayoutsListProps {
   id: string,
