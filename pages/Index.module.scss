@@ -3,14 +3,14 @@
 .errorPage {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 48px);
 
   .main {
     align-items: center;
     display: flex;
-    flex: 1 1 auto;
+    flex: 1 1 calc(100vh - 402px);
     flex-direction: column;
     justify-content: center;
+    padding: $spacing-xl-2 0;
   }
 
   h1 {
