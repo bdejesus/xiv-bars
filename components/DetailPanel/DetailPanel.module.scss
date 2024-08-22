@@ -60,6 +60,14 @@ $panel-width-lg: $screen-xs;
       }
     }
   }
+
+  .adUnit {
+    border-color: #ccc;
+
+    &::before {
+      background-color: #F9F9F9;
+    }
+  }
 }
 
 .content {
