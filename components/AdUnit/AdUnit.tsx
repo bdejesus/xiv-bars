@@ -18,10 +18,11 @@ export default function AdUnit({
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
   const pathname = usePathname();
   const formats = {
-    skyscraper: { width: 160, height: 600, slot: 8212034761 },
-    largeRect: { width: 336, height: 280, slot: 9103811582 },
-    leaderboard: { width: 728, height: 90, slot: 8931155846 },
-    fluid: { width: undefined, height: undefined, slot: 2483095747 }
+    skyscraper: { width: 160, height: 600, slot: '8212034761' },
+    largeRect: { width: 336, height: 280, slot: '9103811582' },
+    leaderboard: { width: 728, height: 90, slot: '8931155846' },
+    mobileLeaderboard: { width: 300, height: 50, slot: '7673812865' },
+    fluid: { width: undefined, height: undefined, slot: '2483095747' }
   };
   const { width, height, slot } = formats[format];
   const displayStyle = { display: format === 'fluid' ? 'block' : 'inline-block' };

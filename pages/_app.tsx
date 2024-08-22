@@ -75,18 +75,18 @@ function App({ Component, pageProps }: AppProps) {
         { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE} />
         )}
-
-        {/* <!-- Google AdSense --> */}
-        { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
-          <Script
-            id="google-adsense"
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
       </Head>
+
+      {/* <!-- Google AdSense --> */}
+      { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
+        <Script
+          id="google-adsense"
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      )}
 
       <style jsx global>
         {`
