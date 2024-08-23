@@ -46,10 +46,6 @@ export default function AdUnit({
 
   useEffect(() => {
     initialize();
-  }, []);
-
-  useEffect(() => {
-    initialize();
   }, [pathname]);
 
   if (!enabled) return null;
