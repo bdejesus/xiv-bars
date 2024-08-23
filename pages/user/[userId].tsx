@@ -14,13 +14,17 @@ import LayoutsList from 'components/LayoutsList';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import ProfileImage from 'components/User/ProfileImage';
+import dynamic from 'next/dynamic';
 import { maxLayouts } from 'lib/user';
 import { domain } from 'lib/host';
+
 import type { GetServerSideProps } from 'next';
 import type { UserProps } from 'types/User';
 import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './userId.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface UserViewProps {
   user: UserProps
@@ -61,18 +65,24 @@ export default function User({ user }:UserViewProps) {
       </AppContextProvider>
 
       <div className="container">
-        <div className={styles.hgroup}>
-          <h1 className={`mt-md ${styles.profile}`}>
-            <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
-            <span className={styles.profileName}>{user.name}</span>
-          </h1>
+        <div className={`${styles.hgroup} row`}>
+          <div className="main">
+            <h1 className={`mt-md ${styles.profile}`}>
+              <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
+              <span className={styles.profileName}>{user.name}</span>
+            </h1>
 
-          { isCurrentUser && (
-            <div className={styles.layoutsCount}>
-              {layouts?.length ? layouts.length : '-'}/{maxLayouts}
-              <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
-            </div>
-          )}
+            { isCurrentUser && (
+              <div className={styles.layoutsCount}>
+                {layouts?.length ? layouts.length : '-'}/{maxLayouts}
+                <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
+              </div>
+            )}
+          </div>
+          <div className="sidebar">
+            <AdUnit format="largeRect" id="ad-UserPage" />
+          </div>
+
         </div>
 
         { (!layouts || layouts.length <= 0) && (

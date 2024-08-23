@@ -1,6 +1,9 @@
 import { useTranslation } from 'next-i18next';
+import dynamic from 'next/dynamic';
 
 import styles from './EorzeaProfile.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 export function EorzeaProfile() {
   const { t } = useTranslation();
@@ -31,6 +34,8 @@ export function EorzeaProfile() {
           </div>
         </div>
       </a>
+
+      <AdUnit id="ad-EorzeaProfile" className="mt-xl" />
     </div>
   );
 }

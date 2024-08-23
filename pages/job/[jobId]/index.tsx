@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import db, { serializeDates } from 'lib/db';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
+import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import { useAppDispatch } from 'components/App/context';
 import { useSystemDispatch, systemActions } from 'components/System';
@@ -16,6 +17,7 @@ import LayoutsList from 'components/LayoutsList';
 import Lore from 'components/Lore';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
+import dynamic from 'next/dynamic';
 import { hasSprite } from 'components/JobSprite';
 
 import type { ClassJobProps } from 'types/ClassJob';
@@ -23,6 +25,8 @@ import type { LayoutViewProps } from 'types/Layout';
 import type { GetServerSideProps } from 'next';
 
 import styles from './index.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface Props {
   selectedJob: ClassJobProps,
@@ -77,8 +81,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
         itemProp="itemListElement"
         itemType="https://schema.org/ItemList"
       >
-        <div className={styles.header}>
-          <div className={styles.headerDesc}>
+        <div className={`${styles.header} row`}>
+          <div className="main">
             <SelectedJob
               job={selectedJob}
               className={styles.title}
@@ -95,11 +99,13 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
               <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
             </a>
+
+            { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
           </div>
 
-          { selectedJob?.Description && (
-            <Lore description={selectedJob.Description} />
-          ) }
+          <div className="sidebar">
+            <AdUnit format="largeRect" id="ad-JobsIndexPage" />
+          </div>
         </div>
 
         { layouts.length > 0
@@ -107,6 +113,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             <LayoutsList
               id="jobLayouts"
               layouts={layouts}
+              className="mb-lg"
               filterable
             />
           )
@@ -160,7 +167,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         layouts: serializeDates(layouts)
       }
     };
-  } catch {
+  } catch (error) {
+    Sentry.captureException(error);
+
     return {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),

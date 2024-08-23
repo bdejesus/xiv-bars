@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
-import { useAppState } from 'components/App/context';
-import LayoutCard from 'components/LayoutCard';
 import type { LayoutViewProps } from 'types/Layout';
+import dynamic from 'next/dynamic';
+import ListCards from './ListCards';
 import ViewControl, { defaultView } from './ViewControl';
 
 import styles from './LayoutsList.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface LayoutsListProps {
   id: string,
@@ -30,7 +32,6 @@ export default function LayoutsList({
   columns = 3,
   filterable = false
 }:LayoutsListProps) {
-  const { jobs } = useAppState();
   const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>();
   const [viewOptions, setViewOptions] = useState(defaultView);
   const [balanced, setBalanced] = useState(false);
@@ -130,7 +131,8 @@ export default function LayoutsList({
   useEffect(() => {
     const filterLayouts = applyFilter(layouts);
     const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
-    const groupLayouts = groupIntoColumns(sortLayouts);
+    const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
+    const groupLayouts = groupIntoColumns(indexedLayouts);
     setViewLayouts(groupLayouts);
   }, [viewOptions]);
 
@@ -138,15 +140,16 @@ export default function LayoutsList({
     if (viewLayouts) {
       const filterLayouts = applyFilter(layouts);
       const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
+      const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
 
       const groupLayouts = () => {
         if (window.matchMedia('(max-width: 720px)').matches) {
-          return groupIntoColumns(sortLayouts, 1);
+          return groupIntoColumns(indexedLayouts, 1);
         }
         if (window.matchMedia('(max-width: 980px)').matches) {
-          return groupIntoColumns(sortLayouts, 2);
+          return groupIntoColumns(indexedLayouts, 2);
         }
-        return groupIntoColumns(sortLayouts);
+        return groupIntoColumns(indexedLayouts);
       };
 
       const groupedLayouts = groupLayouts();
@@ -181,50 +184,39 @@ export default function LayoutsList({
   }, []);
 
   return (
-    <div
-      className={[styles.container, className].join(' ')}
-      itemScope={!!title}
-      itemProp={title && 'itemListElement'}
-      itemType={title && 'https://schema.org/ItemList'}
-    >
-      { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
-      { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
+    <>
+      <div
+        className={[styles.container, className].join(' ')}
+        itemScope={!!title}
+        itemProp={title && 'itemListElement'}
+        itemType={title && 'https://schema.org/ItemList'}
+      >
+        { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
+        { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
-      <div className={styles.listColumns} ref={listsWrapper}>
-        {viewLayouts?.map((layoutsColumn, columnIndex) => (
-          <ul
-            className={[styles.layoutsList, 'layoutsList'].join(' ')}
-            key={`layoutColumn-${columnIndex}`}
-          >
-            {layoutsColumn?.map((layout:LayoutViewProps, index:number) => {
-              const job = jobs.find((j) => j.Abbr === layout.jobId);
-              if (!job) return null;
-              return (
-                <li
-                  key={layout.id}
-                  itemScope
-                  itemProp="itemListElement"
-                  itemType="https://schema.org/HowToTip"
-                >
-                  <meta itemProp="position" content={`${index + 1}`} />
-                  <LayoutCard
-                    layout={layout}
-                    job={job}
-                    className={styles.card}
-                    hideName={false}
-                  />
-                </li>
-              );
-            })}
-          </ul>
-        ))}
+        <div
+          className={styles.listColumns}
+          ref={listsWrapper}
+          data-columns={viewLayouts?.length || 1}
+        >
+          { viewLayouts
+            ? viewLayouts?.map((layoutsColumn, colIndex) => (
+              <ListCards layouts={layoutsColumn} key={`layoutColumn-${colIndex}`} />
+            )) : (
+              <ListCards layouts={layouts} />
+            )}
+        </div>
+
+        { link && (
+          <Link href={link.href} className={styles.moreLink}>
+            {link.text}
+          </Link>
+        )}
       </div>
 
-      { link && (
-        <Link href={link.href} className={styles.moreLink}>
-          {link.text}
-        </Link>
+      { layouts.length > 3 && (
+        <AdUnit id={`ad-LayoutsList-${id}`} />
       )}
-    </div>
+    </>
   );
 }

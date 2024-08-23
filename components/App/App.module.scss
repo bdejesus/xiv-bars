@@ -70,7 +70,7 @@ $icon-size: 6px;
   gap: $spacing-lg;
   justify-content: center;
   max-width: 100%;
-  padding: $spacing-base;
+  padding: $spacing-base $spacing-base $spacing-lg;
 }
 
 .main {

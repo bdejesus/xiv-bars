@@ -45,12 +45,7 @@ function App({ Component, pageProps }: AppProps) {
     return t('Global.title');
   }
 
-  function generateDescription() {
-    return t('Global.description');
-  }
-
   const displayTitle = generateTitle();
-  const displayDescription = generateDescription();
 
   return (
     <ErrorBoundary fallback={(
@@ -73,7 +68,28 @@ function App({ Component, pageProps }: AppProps) {
       </div>
     )}
     >
-      <style jsx global>{`
+      <Head>
+        <title>{displayTitle}</title>
+        { renderMeta({ title: displayTitle, description: t('Global.short_desc'), currentPath }) }
+        { renderFavicon() }
+        { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
+          <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE} />
+        )}
+      </Head>
+
+      {/* <!-- Google AdSense --> */}
+      { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
+        <Script
+          id="google-adsense"
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      )}
+
+      <style jsx global>
+        {`
         html {
           font-family: ${roboto.style.fontFamily};
         }
@@ -88,26 +104,19 @@ function App({ Component, pageProps }: AppProps) {
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+      >
         {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
-        `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
+          `}
       </Script>
-
-      <Head>
-        <title>{displayTitle}</title>
-        { renderMeta({
-          title: displayTitle,
-          description: displayDescription,
-          currentPath
-        }) }
-        { renderFavicon() }
-      </Head>
 
       <main>
         <SystemContextProvider>

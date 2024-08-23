@@ -1,0 +1,43 @@
+@import 'styles/mixins';
+
+.container {
+  border-bottom: 1px solid rgb(80 80 80 / 50%);
+  border-top: 1px solid rgb(80 80 80 / 50%);
+  box-sizing: content-box;
+  margin: $spacing-base auto $spacing-base auto;
+  padding: $spacing-base 0 $spacing-base;
+  position: relative;
+  text-align: center;
+
+  &::before {
+    background-color: #212121;
+    color: #ccc;
+    content: 'advertisement';
+    display: block;
+    font-size: $font-size-xs;
+    font-weight: 400;
+    left: 50%;
+    letter-spacing: 0.025em;
+    line-height: 1;
+    margin-bottom: $spacing-xs;
+    padding: 0 $spacing-xs;
+    position: absolute;
+    text-align: center;
+    top: -1px;
+    transform: translate(-50%, -50%);
+  }
+
+  ins {
+    background-color: #111;
+  }
+
+  &[data-variant='light'] {
+    border-color: #ccc;
+
+    &::before {
+      background-color: #F9F9F9;
+      color: #333;
+      font-weight: 600;
+    }
+  }
+}

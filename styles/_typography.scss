@@ -49,9 +49,20 @@ h5 {
   margin-bottom: 0;
 }
 
+p, ol, ul {
+  font-weight: 300;
+  margin-bottom: 1.55em;
+  margin-top: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 ul,
 ol {
-  margin: $spacing-lg 0 $spacing-lg $spacing-sm;
+  // margin: $spacing-lg 0 $spacing-lg $spacing-sm;
+  margin-left: $spacing-sm;
   padding: 0 $spacing-lg;
 
   h5 {
@@ -63,26 +74,8 @@ ol {
   }
 
   > li {
-    margin: 0;
+    margin: $spacing-sm 0;
   }
-}
-
-p {
-  font-weight: 300;
-  margin-bottom: 1.55em;
-  margin-top: 0;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-
-blockquote {
-  border-left: $spacing-xs solid $color-gray-light-2;
-  font-style: italic;
-  margin-left: 0;
-  margin-right: 0;
-  padding: $spacing-xs $spacing-base;
 }
 
 pre, code {

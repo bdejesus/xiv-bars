@@ -7,9 +7,13 @@ import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 
+import dynamic from 'next/dynamic';
+
 import type { GetStaticProps } from 'next';
 
 import styles from './Index.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 export default function Error500() {
   const { t } = useTranslation();
@@ -52,6 +56,8 @@ export default function Error500() {
                 </a>
               </li>
             </ul>
+
+            <AdUnit id="ad-500" className="mt-xl" />
 
           </div>
         </div>

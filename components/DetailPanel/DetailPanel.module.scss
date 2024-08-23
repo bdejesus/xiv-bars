@@ -3,7 +3,7 @@
 
 $toggle-width: $spacing-base;
 $panel-height: calc(100vh - $header-height);
-$panel-width: 320px;
+$panel-width: 360px;
 $panel-width-lg: $screen-xs;
 
 .container {
@@ -121,6 +121,7 @@ $panel-width-lg: $screen-xs;
   flex-direction: column;
   font-size: $font-size-base;
   line-height: 1.45em;
+  margin-bottom: $spacing-lg;
 }
 
 .meta {

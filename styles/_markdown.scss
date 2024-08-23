@@ -63,6 +63,14 @@
     }
   }
 
+  blockquote {
+    border-left: $spacing-xs solid $color-gray-light-2;
+    font-style: italic;
+    margin-left: 0;
+    margin-right: 0;
+    padding: $spacing-xs $spacing-base;
+  }
+
   pre,
   code {
     background-color: rgb(0 0 0 / 10%);

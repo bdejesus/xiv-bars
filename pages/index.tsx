@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import db, { serializeDates } from 'lib/db';
 import Head from 'next/head';
@@ -13,10 +14,13 @@ import Footer from 'components/Footer';
 import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
+import dynamic from 'next/dynamic';
 import type { GetServerSideProps } from 'next';
 import type { LayoutViewProps } from 'types/Layout';
 
 import styles from './Index.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface QueryProps {
   job?: string,
@@ -66,6 +70,10 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
           </h2>
           <JobMenu />
         </div>
+      </div>
+
+      <div className="container">
+        <AdUnit id="ad-IndexPage" />
       </div>
 
       <div className="container">
@@ -136,7 +144,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         popularLayouts: serializeDates(filteredPopularLayouts)
       }
     };
-  } catch {
+  } catch (error) {
+    Sentry.captureException(error);
+
     return {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),

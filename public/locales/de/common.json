@@ -1,7 +1,8 @@
 {
   "Global": {
-    "title": "XIVBARS | Ein Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Tastenbelegungs- und Keybinding-Tool",
+    "title": "Ein Keybinding-Tool für die Cross Hotbar (XHB) in Final Fantasy XIV: Dawntrail – XIVBARS",
     "subtitle": "Ein Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Tastenbelegungs- und Keybinding-Tool.",
+    "short_desc": "Erkunde von Spielern erstellte Keybinding-Guides für die Hotbars von Final Fantasy XIV. Nutze die Drag-and-Drop-Funktion für einfache Tastenzuweisungen und Anpassungen zur Verwendung mit Tastatur und Maus oder Gamepads. Exportiere deine Konfigurationen in Makros für den direkten Import ins Spiel und teile sie mit anderen.",
     "description": "Planen und passen Sie Ihre FFXIV: Dawntrail Cross Hotbars (XHB) an. Erkunden Sie von Spielern erstellte Anleitungen, Konfigurationen und Setups für die Benutzeroberflächen von Final Fantasy XIV’s Hotbars und Cross Hotbars. Optimieren Sie Ihr Spielerlebnis mit verschiedenen Platzierungs-, Keybinding-Optionen und anderen Anpassungsfunktionen. Nutzen Sie die Drag-and-Drop-Funktionalität für einfache Keymappings und Personalisierungen zur Verwendung mit Tastatur und Maus oder Spielcontrollern. Exportieren Sie Ihre Konfigurationen in Makros zur direkten Importierung ins Spiel und teilen Sie Ihre Setups mit anderen.",
     "close": "Schließen",
     "loading": "Wird geladen..."
@@ -107,7 +108,7 @@
     "select_a_class": "Wählen Sie einen FFXIV-Beruf/Klasse aus",
     "plan_your_hotbars": "Wählen Sie aus und planen Sie Ihre Hotbars für einen beliebigen FFXIV-Beruf/Klasse",
     "toggle_hotbars": "Umschalten zwischen FFXIV-Hotbar-Layouts",
-    "simulate_hotbars": "Simulieren Sie entweder ein Cross Hotbar (XHB/WXHB) oder ein Standard-Hotbar-Layout.",
+    "simulate_hotbars": "Simulieren Sie entweder ein Cross Hotbar (XHB) oder ein Standard-Hotbar-Layout.",
     "drag_and_drop": "Aktionen in Slots ziehen und ablegen",
     "slot_actions": "Setzen Sie beliebige Kampf- und Rollenaktionen für Ihren ausgewählten Beruf/Klasse sowie beliebige Menübefehle, Makros und andere Aktionen ein.",
     "export_to_macro": "Exportieren als Makro und mit anderen teilen",

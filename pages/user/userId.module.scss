@@ -44,9 +44,6 @@
 }
 
 .hgroup {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
 
   h1 {
@@ -57,6 +54,7 @@
 .layoutsCount {
   color: #fff;
   font-size: $font-size-xl;
+  margin-top: $spacing-base;
   opacity: 0.8;
 
   :global(.icon) {
