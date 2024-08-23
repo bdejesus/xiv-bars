@@ -43,8 +43,7 @@
     "react-markdown": "^9.0.1",
     "sass": "^1.69.7",
     "sitemap": "^7.1.1",
-    "ssl-express-www": "^3.2.1",
-    "use-breakpoint": "^4.0.1"
+    "ssl-express-www": "^3.2.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.0.0",

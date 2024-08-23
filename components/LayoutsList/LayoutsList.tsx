@@ -214,8 +214,8 @@ export default function LayoutsList({
         )}
       </div>
 
-      { layouts.length > 0 && (
-        <AdUnit id={`ad-LayoutsList-${id}`} format='leaderboard' />
+      { layouts.length > 3 && (
+        <AdUnit id={`ad-LayoutsList-${id}`} />
       )}
     </>
   );
