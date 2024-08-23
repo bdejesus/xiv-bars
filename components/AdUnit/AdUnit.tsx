@@ -1,10 +1,19 @@
 'use client';
 
-import { useEffect, } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useBreakpoint } from 'use-breakpoint';
 import * as Sentry from '@sentry/nextjs';
 
 import styles from './AdUnit.module.scss';
+
+const breakpoints = { mobile: 0, tablet: 600, desktop: 800 };
+
+type FormatProps = {
+  width?: string,
+  height?: string,
+  slot: string
+}
 
 interface AdUnitProps {
   id: string,
@@ -19,19 +28,30 @@ export default function AdUnit({
   format = 'fluid',
   variant = 'dark'
 }:AdUnitProps) {
+  const { breakpoint } = useBreakpoint(breakpoints);
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
   const pathname = usePathname();
+  const [displayFormat, setDisplayFormat] = useState<FormatProps|undefined>(undefined);
+
   const formats = {
-    skyscraper: { width: 160, height: 600, slot: '8212034761' },
-    mediumRect: { width: 300, height: 250, slot: '7299242495' },
-    largeRect: { width: 336, height: 280, slot: '9103811582' },
-    leaderboard: { width: 728, height: 90, slot: '8931155846' },
-    mobileLeaderboard: { width: 300, height: 50, slot: '7673812865' },
+    skyscraper: { width: '160px', height: '600px', slot: '8212034761' },
+    mediumRect: { width: '300px', height: '250px', slot: '7299242495' },
+    largeRect: { width: '336px', height: '280px', slot: '9103811582' },
+    leaderboard: { width: '728px', height: '90px', slot: '8931155846' },
+    mobileLeaderboard: { width: '300px', height: '50px', slot: '7673812865' },
     fluid: { width: undefined, height: undefined, slot: '2483095747' }
   };
-  const { width, height, slot } = formats[format];
-  const displayStyle = { display: format === 'fluid' ? 'block' : 'inline-block' };
-  const sizeStyle = format === 'fluid' ? {} : { width: `${width}px`, height: `${height}px` };
+
+  const desktopFormats = formats;
+  const tabletFormats = {
+    ...formats,
+    leaderboard: { width: undefined, height: undefined, slot: '2483095747' }
+  };
+  const mobileFormats = {
+    ...formats,
+    largeRect: formats.mediumRect,
+    leaderboard: formats.mobileLeaderboard,
+  };
 
   function initialize() {
     if (typeof window !== 'undefined' && enabled) {
@@ -45,28 +65,48 @@ export default function AdUnit({
   }
 
   useEffect(() => {
-    initialize();
-  }, [pathname]);
+    if (displayFormat) initialize();
+  }, [pathname, displayFormat]);
 
-  if (!enabled) return null;
+  useEffect(() => {
+    const selectFormat = () => {
+      switch (breakpoint) {
+        case 'desktop': return desktopFormats[format];
+        case 'tablet': return tabletFormats[format];
+        case 'mobile': return mobileFormats[format];
+        default: return undefined;
+      }
+    };
 
-  return (
-    <div
-      className={`${styles.container} ${className}`}
-      style={sizeStyle}
-      id={id}
-      data-variant={variant}
-    >
-      <ins
-        id={`${id}-ins`}
-        className="adsbygoogle"
-        style={{ ...displayStyle, ...sizeStyle }}
-        data-format={JSON.stringify({ f: formats[format], sizeStyle })}
-        data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
-        data-ad-slot={slot}
-        data-ad-format={format === 'fluid' ? 'auto' : null}
-        data-full-width-responsive={format === 'fluid' ? 'true' : null}
-      />
-    </div>
-  );
+    setDisplayFormat(selectFormat());
+  }, [breakpoint]);
+
+  if (enabled && !!displayFormat) {
+    return (
+      <div
+        className={`${styles.container} ${className}`}
+        style={{
+          width: displayFormat.width,
+          height: displayFormat.height
+        }}
+        id={id}
+        data-variant={variant}
+      >
+        <ins
+          id={`${id}-ins`}
+          className="adsbygoogle"
+          style={{
+            display: displayFormat.width ? 'inline-block' : 'block',
+            width: displayFormat.width,
+            height: displayFormat.height
+          }}
+          data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
+          data-ad-slot={displayFormat.slot}
+          data-ad-format={displayFormat.width ? null : 'auto'}
+          data-full-width-responsive={displayFormat.width ? null : 'true'}
+        />
+      </div>
+    );
+  }
+  return null;
 }
