@@ -99,14 +99,24 @@
   }
 
   > li::before {
+    align-items: center;
+    background-color: $color-gray-dark-2;
+    border-radius: $border-radius;
     content: counter(slots);
     counter-increment: slots;
+    display: inline-flex;
+    font-size: $font-size-sm;
     font-weight: 400;
     height: $slot-size;
+    height: 1.5em;
+    justify-content: center;
+    line-height: 1em;
     min-width: 1em;
     opacity: 0.66;
     position: relative;
-    text-align: right;
+    text-align: center;
+    top: 10px;
+    width: 1.5em;
   }
 
   > li:empty {

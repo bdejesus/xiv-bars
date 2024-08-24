@@ -144,12 +144,6 @@ export default function DetailPanel({ className = '', visible }:Props) {
           : (
             <div className={styles.body}>
               <SaveForm />
-              <AdUnit
-                format="mediumRect"
-                id="ad-DetailPanel-SaveForm"
-                variant="light"
-                className="mt-lg"
-              />
             </div>
           )}
 
