@@ -4,14 +4,17 @@ $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
 
 @keyframes buttonFocus {
   0% {
-    outline: 1x double $color-alt-dark;
+    outline: 1px double $color-alt-dark;
   }
+
   60% {
-    outline: 8px double rgba(255,255,255,0);
+    outline: 8px double rgb(255 255 255 / 0%);
   }
+
   61% {
-    outline: 3px double rgba(255,255,255,0);
+    outline: 3px double rgb(255 255 255 / 0%);
   }
+
   100% {
     outline: 3px double $color-alt-dark;
   }
@@ -69,10 +72,6 @@ button,
         opacity: 1;
       }
     }
-  }
-
-  &:hover {
-    padding-bottom: 1px;
   }
 
   &:focus {
@@ -287,7 +286,8 @@ button,
 .btn-icon.button {
   font-size: $font-size-sm;
   height: 30px;
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
   width: 30px;
 
   .icon {
@@ -296,7 +296,8 @@ button,
 
   &.btn-sm {
     height: 32px;
-    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
     width: 32px;
 
     .icon {
@@ -320,16 +321,19 @@ button,
 }
 
 .btn-switch.button {
-  align-items: stretch;
+  align-items: center;
   height: 30px;
   overflow: hidden;
-  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
 
   .label {
     align-items: center;
     color: #ddd;
     display: flex;
-    padding: 0 16px;
+    height: 28px;
+    padding-left: 16px;
+    padding-right: 16px;
 
     &[data-disabled="true"] {
       display: none;
@@ -349,8 +353,16 @@ button,
   &:hover,
   &:focus,
   &:active {
+    background-color: $color-gray-dark-2;
+
     .label[data-selected="false"] {
       color: $color-alt;
+    }
+  }
+
+  &:active {
+    .label[data-selected="false"] {
+      padding-top: 1px;
     }
   }
 
