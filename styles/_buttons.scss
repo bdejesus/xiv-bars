@@ -2,10 +2,26 @@
 
 $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
 
+@keyframes buttonFocus {
+  0% {
+    outline: 1x double $color-alt-dark;
+  }
+  60% {
+    outline: 8px double rgba(255,255,255,0);
+  }
+  61% {
+    outline: 3px double rgba(255,255,255,0);
+  }
+  100% {
+    outline: 3px double $color-alt-dark;
+  }
+
+}
+
 button,
 .button {
   align-items: center;
-  background: #fff;
+  background-color: #fff;
   border: none;
   border-radius: $border-radius;
   box-shadow: $button-shadow;
@@ -19,11 +35,11 @@ button,
   height: 40px;
   justify-content: center;
   line-height: 1em;
-  outline: none;
+  outline: 3px double rgb(255 255 255 / 0%);
   padding: 0 12px;
   position: relative;
   transition-duration: $timing-default;
-  transition-property: background-image, background-color, box-shadow, color, opacity, transform;
+  transition-property: background-image, background-color, box-shadow, color, opacity, transform, outline, padding;
   transition-timing-function: ease;
   white-space: nowrap;
 
@@ -33,6 +49,48 @@ button,
 
     @media (max-width: $screen-sm) {
       margin-left: $spacing-sm;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $color-alt-dark;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: $button-label-shadow;
+
+    .icon {
+      filter: $icon-filter-white drop-shadow($button-label-shadow);
+    }
+
+    &[data-title] {
+      &::before,
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &:hover {
+    padding-bottom: 1px;
+  }
+
+  &:focus {
+    animation: buttonFocus 0.5s linear;
+    animation-fill-mode: forwards;
+    outline: 1px double $color-alt-dark;
+    z-index: 2;
+  }
+
+  &:active {
+    background-color: $color-alt-dark;
+    box-shadow: inset 2px 2px 1px rgb(0 0 0 / 10%), inset 2px 2px 1px rgb(255 255 255 / 10%);
+    color: #fff;
+    padding-top: 2px;
+    text-shadow: 0 1px 2px darken($color-alt, 50%);
+
+    .icon {
+      filter: $icon-filter-white drop-shadow(0 1px 1px darken($color-alt, 40%));
     }
   }
 
@@ -126,44 +184,6 @@ button,
     }
   }
 
-  .icon {
-    display: block;
-    margin-right: $spacing-xs;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: $color-alt-dark;
-    color: #fff;
-    text-decoration: none;
-    text-shadow: $button-label-shadow;
-
-    .icon {
-      filter: $icon-filter-white drop-shadow($button-label-shadow);
-    }
-
-    &[data-title] {
-      &::before,
-      &::after {
-        opacity: 1;
-      }
-    }
-  }
-
-  &:focus {
-    outline: 3px double $color-alt-dark;
-  }
-
-  &:active {
-    background-color: $color-alt-dark;
-    color: #fff;
-    text-shadow: 0 1px 2px darken($color-alt, 50%);
-
-    .icon {
-      filter: $icon-filter-white drop-shadow(0 1px 1px darken($color-alt, 40%));
-    }
-  }
-
   &[data-active="true"] {
     box-shadow:
       inset 1px 1px 0 rgb(255 255 255 / 66%),
@@ -176,6 +196,11 @@ button,
     cursor: default;
     opacity: 0.33;
     pointer-events: none;
+  }
+
+  .icon {
+    display: block;
+    margin-right: $spacing-xs;
   }
 }
 
