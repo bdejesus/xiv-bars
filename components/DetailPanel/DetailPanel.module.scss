@@ -12,8 +12,8 @@ $panel-width-lg: $screen-xs;
   display: flex;
   flex: none;
   flex-direction: row;
-  height: $panel-height;
   justify-content: flex-end;
+  max-height: $panel-height;
   overflow: hidden;
   position: sticky;
   top: $header-height;
@@ -65,7 +65,7 @@ $panel-width-lg: $screen-xs;
 .content {
   display: flex;
   flex-direction: column;
-  min-height: $panel-height;
+  max-height: $panel-height;
   overflow-y: auto;
   padding: $spacing-base $spacing-base $spacing-lg $spacing-lg;
   transform: translateZ(0);
