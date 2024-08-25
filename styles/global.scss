@@ -92,8 +92,12 @@ h2 {
   gap: $spacing-xl-2;
   grid-template-columns: auto 336px;
 
-  @media (max-width: $screen-sm) {
-    flex-direction: column;
+  @media (max-width: $screen-lg) {
+    gap: $spacing-lg;
+  }
+
+  @media (max-width: $screen-md) {
+    grid-template-columns: auto;
   }
 }
 
