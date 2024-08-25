@@ -42,8 +42,8 @@ export default function Summary({
       className={styles.summary}
       role="button"
       onClick={handleClick}
-      tabIndex={0}
       onKeyUp={handleKeyPress}
+      tabIndex={0}
     >
       <a href={layoutUrl} itemProp="url">
         <h3 title={title} itemProp="name">{title}</h3>

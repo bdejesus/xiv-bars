@@ -22,7 +22,6 @@ export default function Tags({
     <div className={[styles.tags, className].join(' ')}>
       { job && (
         <ClassJob
-          href={`/job/${job.Abbr}`}
           job={job}
           name={false}
           className={`${styles.jobTag} ${styles.tag} tag`}

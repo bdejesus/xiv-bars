@@ -25,11 +25,15 @@ export default function ProfileImage({
   title,
   src,
   href,
-  className = ''
+  className = '',
 }:ProfileImageProps) {
   return (
     href ? (
-      <Link href={href} className={[styles.wrapper, className].join(' ')}>
+      <Link
+        href={href}
+        className={[styles.wrapper, className].join(' ')}
+        tabIndex={-1}
+      >
         <Image src={src} alt={title} />
       </Link>
     ) : (

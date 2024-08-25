@@ -12,6 +12,15 @@
     pointer-events: none;
   }
 
+  &[data-hearted='true'] {
+    background-color: $color-alt-dark;
+    color: #fff;
+
+    :global(.icon) {
+      filter: $icon-filter-white;
+    }
+  }
+
   :global(.icon) {
     margin-right: 0;
   }

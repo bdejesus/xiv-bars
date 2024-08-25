@@ -57,7 +57,7 @@ export default function Hearts({
       data-title={hearted ? t('Hearts.unheartTitle') : t('Hearts.heartTitle')}
       onClick={handleHeartClick}
       data-disabled={disabled}
-      data-hearted={hearted?.id}
+      data-hearted={!!hearted?.id}
       data-title-anchor="left"
       disabled={disabled}
     >

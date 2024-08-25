@@ -28,11 +28,12 @@ $button-size: 40px;
     }
   }
 
-  .selectedJob {
+  .selectedJob:global(.button) {
     border-radius: 0 $border-radius $border-radius 0;
     display: flex;
     line-height: 1;
     margin-left: 0;
+    width: unset;
 
     &::after {
       background-color: #000;
