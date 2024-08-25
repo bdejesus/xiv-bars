@@ -43,7 +43,7 @@ export default function SignInPrompt() {
       </div>
 
       <AdUnit
-        id="ad-DetailPanel-SaveForm"
+        id="ad-DetailPanel-SignInPrompt"
         variant="light"
         className="mt-lg"
       />

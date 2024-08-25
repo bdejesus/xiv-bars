@@ -33,7 +33,9 @@ $tag-size: 24px;
 }
 
 .jobTag {
+  background-color: $color-gray-dark;
   box-shadow: inset 1px 1px 0 rgb(255 255 255 / 10%);
+  padding-left: 2px;
 
   .tag {
     background-color: transparent;
@@ -45,11 +47,6 @@ $tag-size: 24px;
   &:hover,
   &:focus {
     text-decoration: none;
-  }
-
-  &:global(.job-wrapper) {
-    height: $tag-size;
-    padding: 0 $spacing-sm 0 2px;
   }
 
   :global(.job-abbr) {

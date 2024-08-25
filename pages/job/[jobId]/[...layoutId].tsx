@@ -79,7 +79,7 @@ export default function Index(props:PageProps) {
 
       <App />
 
-      <div className={`${styles.lists} container-xl`}>
+      <div className={`${styles.lists} container`}>
         { ownerLayouts.length > 0 && (
           <section>
             <LayoutsList
@@ -87,7 +87,7 @@ export default function Index(props:PageProps) {
               title={t('Pages.Layout.more_layouts_by_user', { userName: viewData.user!.name })}
               link={{ text: t('Pages.Layout.view_more'), href: `/user/${viewData!.user!.id}` }}
               layouts={ownerLayouts}
-              columns={4}
+              columns={3}
             />
           </section>
         ) }
@@ -99,7 +99,7 @@ export default function Index(props:PageProps) {
               title={t('Pages.Layout.more_layouts_by_job', { jobName: displayJobName })}
               link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
               layouts={classJobLayouts}
-              columns={4}
+              columns={3}
             />
           </section>
         ) }

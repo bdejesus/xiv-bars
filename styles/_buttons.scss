@@ -4,7 +4,7 @@ $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
 
 @keyframes buttonFocus {
   0% {
-    outline: 1px double $color-alt-dark;
+    outline: 2px double $color-alt-dark;
   }
 
   60% {
@@ -12,11 +12,11 @@ $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
   }
 
   61% {
-    outline: 3px double rgb(255 255 255 / 0%);
+    outline: 0 double rgb(255 255 255 / 0%);
   }
 
   100% {
-    outline: 3px double $color-alt-dark;
+    outline: 2px double $color-alt-dark;
   }
 
 }
@@ -77,7 +77,7 @@ button,
   &:focus {
     animation: buttonFocus 0.5s linear;
     animation-fill-mode: forwards;
-    outline: 1px double $color-alt-dark;
+    outline: 2px double $color-alt-dark;
     z-index: 2;
   }
 
@@ -331,7 +331,7 @@ button,
     align-items: center;
     color: #ddd;
     display: flex;
-    height: 28px;
+    height: 100%;
     padding-left: 16px;
     padding-right: 16px;
 

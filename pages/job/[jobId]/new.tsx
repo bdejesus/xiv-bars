@@ -74,13 +74,13 @@ export default function Index(props:PageProps) {
       <App />
 
       { classJobLayouts?.length > 0 && (
-        <div className="container-xl">
+        <div className="container">
           <LayoutsList
             id="jobLayouts"
             title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
             link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
             layouts={classJobLayouts}
-            columns={4}
+            columns={3}
           />
         </div>
       ) }
