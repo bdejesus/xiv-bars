@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Link from 'next/link';
 import type { ClassJobProps } from 'types/ClassJob';
 import { translateData } from 'lib/utils/i18n.mjs';
 import styles from './ClassJob.module.scss';
@@ -10,26 +11,27 @@ interface Props {
   className?: string,
   abbr?: boolean,
   name?: boolean,
-  icon?: boolean
+  icon?: boolean,
+  href?: string
 }
 
-export default function ClassJob({
-  job,
-  className = '',
-  abbr = true,
-  name = true,
-  icon = true
-}: Props) {
+interface ClassJobElementsProps {
+  icon: boolean,
+  job: ClassJobProps,
+  name: boolean,
+  abbr: boolean,
+}
+
+function ClassJobElements({
+  icon, job, name, abbr
+}:ClassJobElementsProps) {
   const { locale } = useRouter();
   const displayAbbr = translateData('Abbreviation', job, locale);
   const displayName = translateData('Name', job, locale);
 
   return (
-    <span
-      className={[styles.container, className].join(' ')}
-      id={`job-label-${job.Name}`}
-    >
-      <span className={`${styles.jobWrapper} job-wrapper`} data-role={job.Role}>
+    <>
+      <span className={`${styles.jobWrapper} job-wrapper`}>
         { icon && (
           <span className={`${styles.iconWrapper} job-icon`}>
             <Image
@@ -55,6 +57,37 @@ export default function ClassJob({
           {displayName}
         </span>
       )}
+    </>
+  );
+}
+
+export default function ClassJob({
+  job,
+  className = '',
+  abbr = true,
+  name = true,
+  icon = true,
+  href = undefined
+}: Props) {
+  if (href) {
+    return (
+      <Link
+        href={href}
+        className={[styles.container, className].join(' ')}
+        id={`job-label-${job.Name}`}
+        data-role={job.Role}
+      >
+        <ClassJobElements icon={icon} job={job} name={name} abbr={abbr} />
+      </Link>
+    );
+  }
+  return (
+    <span
+      className={[styles.container, className].join(' ')}
+      id={`job-label-${job.Name}`}
+      data-role={job.Role}
+    >
+      <ClassJobElements icon={icon} job={job} name={name} abbr={abbr} />
     </span>
   );
 }

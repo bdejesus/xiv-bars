@@ -2,8 +2,8 @@
 
 .button {
   display: block;
-  padding: 0 $spacing-sm;
-  transition: background-color 0.33s ease;
+  padding-left: $spacing-sm;
+  padding-right: $spacing-sm;
 
   &:hover,
   &:focus {

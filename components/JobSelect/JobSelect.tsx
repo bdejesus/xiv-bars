@@ -36,7 +36,7 @@ export function JobSelect({
       <button
         type="button"
         id="jobSelectTitle"
-        className={[styles.button, className].join(' ')}
+        className={['button', styles.button, className].join(' ')}
         onClick={handleShowJobs}
         disabled={disabled}
         data-title={children ? null : t('JobSelect.job_select')}

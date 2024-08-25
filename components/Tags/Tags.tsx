@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import Link from 'next/link';
 import ClassJob from 'components/ClassJob';
 import Icon from 'components/Icon';
 import type { LayoutViewProps } from 'types/Layout';
@@ -22,9 +21,13 @@ export default function Tags({
   return (
     <div className={[styles.tags, className].join(' ')}>
       { job && (
-        <Link href={`/job/${job.Abbr}`} className={`${styles.jobTag} tag`} data-role={job.Role}>
-          <ClassJob job={job} className={styles.tag} name={false} />
-        </Link>
+        <ClassJob
+          href={`/job/${job.Abbr}`}
+          job={job}
+          name={false}
+          className={`${styles.jobTag} ${styles.tag} tag`}
+          data-role={job.Role}
+        />
       )}
 
       { (layoutView.layout === 0) && (

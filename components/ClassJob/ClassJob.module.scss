@@ -8,18 +8,12 @@
 }
 
 .container {
-  white-space: nowrap;
-}
-
-.jobWrapper {
   background-color: #333;
   border-radius: $border-radius;
-  box-shadow:
-    0 2px 4px rgb(0 0 0 / 33%),
-    inset 1px 1px 0 rgb(255 255 255 / 15%),
-    inset -1px -1px 0 rgb(0 0 0 / 33%);
-  padding: 2px $spacing-xs 2px 2px;
+  padding-left: $spacing-sm;
+  padding-right: $spacing-sm;
   transform: translateZ(0);
+  white-space: nowrap;
 
   &[data-role='TANK'] {
     background-color: #455BC9;
@@ -53,11 +47,13 @@
 }
 
 .abbr {
+  color: #fff;
   display: block;
   font-size: $font-size-base;
   font-weight: 900;
   height: $font-size-base;
   line-height: 12px;
+  margin-left: $spacing-xs;
   padding: 0 $spacing-xs;
 }
 
@@ -65,5 +61,5 @@
   color: rgb(255 255 255 / 75%);
   font-size: $font-size-base;
   margin-left: $spacing-sm;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }

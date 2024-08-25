@@ -1,7 +1,18 @@
 @import "styles/grid";
 
 .title {
-  margin-bottom: $spacing-lg;
+  display: block;
+  margin-bottom: $spacing-base;
+
+  [data-role] {
+    display: flex;
+    padding: 100px $spacing-base $spacing-base;
+  }
+
+  :global(.job-name) {
+    font-size: 30px;
+    text-transform: uppercase;
+  }
 }
 
 .job {

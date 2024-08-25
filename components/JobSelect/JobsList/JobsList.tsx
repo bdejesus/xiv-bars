@@ -51,7 +51,7 @@ export function JobsList({
               itemProp="url"
               aria-labelledby={`job-label-${job.Name}`}
             >
-              <ClassJob job={job} />
+              <ClassJob job={job} className={styles.classJob} />
             </a>
 
             <a

@@ -44,13 +44,12 @@ export function GlobalHeader({ selectedJob }:Props) {
           <ol>
             <li>
               <JobSelect className={styles.jobSelect} />
-
-              <Link
+              <ClassJob
                 href={`/job/${selectedJob.Abbr}`}
-                className={`${styles.jobLink} ${viewAction === 'list' && 'btn-alt'}`}
-              >
-                <ClassJob job={selectedJob} name={false} className={styles.selectedJob} />
-              </Link>
+                job={selectedJob}
+                name={false}
+                className={`button ${styles.selectedJob} list`}
+              />
             </li>
 
             <li className={viewAction !== 'new' ? styles.action : styles.actionGroup}>

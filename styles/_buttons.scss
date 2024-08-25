@@ -354,6 +354,7 @@ button,
   &:focus,
   &:active {
     background-color: $color-gray-dark-2;
+    padding-top: 0;
 
     .label[data-selected="false"] {
       color: $color-alt;
@@ -362,7 +363,7 @@ button,
 
   &:active {
     .label[data-selected="false"] {
-      padding-top: 1px;
+      padding-top: 2px;
     }
   }
 

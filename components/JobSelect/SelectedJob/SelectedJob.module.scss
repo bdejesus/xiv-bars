@@ -12,17 +12,9 @@
   line-height: 1;
   margin: 0;
 
-  :global(.job-wrapper) {
-    padding: $spacing-sm $spacing-base $spacing-sm $spacing-sm;
-  }
-
   :global(.job-abbr) {
     font-size: $font-size-xl-2;
     text-shadow: -1px 2px 2px rgb(0 0 0 / 33%);
-  }
-
-  :global(.job-name) {
-    font-size: 38px;
   }
 }
 
