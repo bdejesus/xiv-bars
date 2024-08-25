@@ -201,7 +201,10 @@ export default function LayoutsList({
         >
           { viewLayouts
             ? viewLayouts?.map((layoutsColumn, colIndex) => (
-              <ListCards layouts={layoutsColumn} key={`layoutColumn-${colIndex}`} />
+              <ListCards
+                layouts={layoutsColumn}
+                key={`layoutColumn-${colIndex}`}
+              />
             )) : (
               <ListCards layouts={layouts} />
             )}

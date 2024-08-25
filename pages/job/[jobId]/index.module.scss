@@ -24,7 +24,9 @@
 }
 
 .newLink {
-  max-width: 320px;
+  display: inline-flex;
+  padding-left: $spacing-xl;
+  padding-right: $spacing-xl;
 }
 
 @media (max-width: $screen-sm) {

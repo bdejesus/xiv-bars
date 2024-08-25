@@ -3,12 +3,8 @@
 $description-height: 165px;
 
 .summary {
-  background-image: linear-gradient(rgb(255 255 255 / 0%), rgb(255 255 255 / 0%));
   flex: 1 1 auto;
   padding: 54px $spacing-base $spacing-sm;
-  transition-duration: 0.33s;
-  transition-property: background-image;
-  transition-timing-function: ease;
 
   &:hover,
   &:focus {
@@ -24,7 +20,7 @@ $description-height: 165px;
   }
 
   &:focus {
-    background-image: linear-gradient(rgb(255 255 255 / 10%), rgb(255 255 255 / 0%));
+    background-image: linear-gradient(rgb(255 255 255 / 15%), rgb(255 255 255 / 0%));
     outline: none;
   }
 
