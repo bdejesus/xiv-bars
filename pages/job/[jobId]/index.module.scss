@@ -25,6 +25,16 @@
 .newLink {
   padding-left: $spacing-xl;
   padding-right: $spacing-xl;
+
+  @media (max-width: $screen-md) {
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+  }
+
+  @media (max-width: $screen-sm) {
+    padding-left: $spacing-base;
+    padding-right: $spacing-base;
+  }
 }
 
 .actions {

@@ -12,6 +12,11 @@ body {
   @include customScrollbar;
 }
 
+main {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
 [aria-hidden="true"] {
   display: none;
 }

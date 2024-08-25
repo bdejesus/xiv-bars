@@ -12,7 +12,7 @@ $panel-width-lg: $screen-xs;
   display: flex;
   flex: none;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   max-height: $panel-height;
   overflow: hidden;
   position: sticky;
