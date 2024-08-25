@@ -4,6 +4,10 @@
   display: block;
   margin-bottom: $spacing-xl;
 
+  h1 {
+    margin-bottom: 0;
+  }
+
   :global(.job-name) {
     font-size: 30px;
     text-transform: uppercase;
