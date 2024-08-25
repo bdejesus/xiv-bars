@@ -88,10 +88,9 @@ h2 {
 }
 
 .row {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: row;
-  gap: $spacing-xl;
+  display: grid;
+  gap: $spacing-xl-2;
+  grid-template-columns: auto 336px;
 
   @media (max-width: $screen-sm) {
     flex-direction: column;

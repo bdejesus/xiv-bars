@@ -41,7 +41,19 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const jobName = translateData('Name', selectedJob, router.locale);
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
+  function toParam(string:string) {
+    return string.toLowerCase().replaceAll(' ', '');
+  }
+
   const guidePath = ['DOH', 'DOL'].includes(selectedJob.Discipline) ? 'crafting_gathering_guide' : 'jobguide';
+  const guideLocales = {
+    en: 'na',
+    ja: 'jp',
+    fr: 'fr',
+    de: 'de'
+  };
+  const guideLocale = guideLocales[router.locale as keyof typeof guideLocales];
+  const guideUrl = `https://${guideLocale}.finalfantasyxiv.com/${guidePath}/${toParam(selectedJob.Name)}/`;
 
   useEffect(() => {
     appDispatch({ type: appActions.VIEW_LIST });
@@ -57,10 +69,6 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
     systemDispatch({ type: systemActions.LOADING_END });
   }, []);
-
-  function toParam(string:string) {
-    return string.toLowerCase().replaceAll(' ', '');
-  }
 
   return (
     <>
@@ -92,32 +100,33 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             <SelectedJob
               job={selectedJob}
               className={styles.title}
-            />
+            >
+              { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
+
+              <div className={styles.actions}>
+                <a
+                  href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
+                  className={`button btn-primary btn-lg ${styles.newLink}`}
+                >
+                  <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
+                  <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
+                </a>
+
+                <a
+                  href={guideUrl}
+                  target="_blank"
+                  className={styles.jobGuideLink}
+                >
+                  <Icon id={Icons.HELP} alt="Official Job Guide" />
+                  <span className="btn-label">Job Guide: { selectedJob.Name }</span>
+                </a>
+              </div>
+            </SelectedJob>
 
             <p className="text-xl" itemProp="description">
               { t('Pages.Job.index_description', { jobName: selectedJob.Name }) }
             </p>
 
-            <div className={styles.actions}>
-              <a
-                href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
-                className={`button btn-primary btn-lg ${styles.newLink}`}
-              >
-                <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
-                <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
-              </a>
-
-              <a
-                href={`https://na.finalfantasyxiv.com/${guidePath}/${toParam(selectedJob.Name)}/`}
-                className="button btn-lg btn-clear btn-white"
-                target="_blank"
-              >
-                <Icon id={Icons.HELP} alt="Official Job Guide" />
-                <span className="btn-label">Job Guide: { selectedJob.Name }</span>
-              </a>
-            </div>
-
-            { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
           </div>
 
           <div className="sidebar">

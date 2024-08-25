@@ -2,12 +2,7 @@
 
 .title {
   display: block;
-  margin-bottom: $spacing-base;
-
-  [data-role] {
-    display: flex;
-    padding: 100px $spacing-base $spacing-base;
-  }
+  margin-bottom: $spacing-xl;
 
   :global(.job-name) {
     font-size: 30px;
@@ -20,7 +15,7 @@
 }
 
 .header {
-  margin-bottom: $spacing-lg;
+  margin-bottom: $spacing-xl;
 }
 
 .newLink {
@@ -29,9 +24,25 @@
 }
 
 .actions {
+  border-top: 1px solid rgb(255 255 255 / 20%);
   display: flex;
   flex-direction: row;
-  gap: $spacing-sm;
+  gap: $spacing-xs;
+  justify-content: space-between;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-base;
+}
+
+.jobGuideLink {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  font-size: $font-size-base;
+  justify-content: center;
+
+  :global(.icon) {
+    filter: $icon-filter-white;
+  }
 }
 
 @media (max-width: $screen-sm) {

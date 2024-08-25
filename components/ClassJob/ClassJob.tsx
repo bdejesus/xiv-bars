@@ -74,7 +74,7 @@ export default function ClassJob({
       <Link
         href={href}
         className={[styles.container, className].join(' ')}
-        id={`job-label-${job.Name}`}
+        id={`job-label-${job.Abbr}`}
         data-role={job.Role}
       >
         <ClassJobElements icon={icon} job={job} name={name} abbr={abbr} />
@@ -84,7 +84,7 @@ export default function ClassJob({
   return (
     <span
       className={[styles.container, className].join(' ')}
-      id={`job-label-${job.Name}`}
+      id={`job-label-${job.Abbr}`}
       data-role={job.Role}
     >
       <ClassJobElements icon={icon} job={job} name={name} abbr={abbr} />
