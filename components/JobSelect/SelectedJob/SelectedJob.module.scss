@@ -25,7 +25,7 @@
   }
 
   &[data-role='TANK'] {
-    background-color: #303A7C;
+    background-color: $color-tank;
 
     .titleBg {
       background-image: url('/double-bubble-outline.webp');
@@ -33,7 +33,7 @@
   }
 
   &[data-role='HEAL'] {
-    background-color: #40652D;
+    background-color: $color-healer;
 
     .titleBg {
       background-image: url('/swirl_pattern.webp');
@@ -41,11 +41,11 @@
   }
 
   &[data-role*='DPS'] {
-    background-color: #6A2D2B;
+    background-color: $color-dps;
   }
 
   &[data-role="DOH"] {
-    background-color: #665595;
+    background-color: $color-doh;
 
     .titleBg {
       background-image: url('/regal.webp');
@@ -53,7 +53,7 @@
   }
 
   &[data-role="DOL"] {
-    background-color: #96895B;
+    background-color: $color-dol;
 
     .titleBg {
       background-image: url('/geometric-leaves.png');

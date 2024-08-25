@@ -17,23 +17,23 @@
   white-space: nowrap;
 
   &[data-role='TANK'] {
-    background-color: #303A7C;
+    background-color: $color-tank;
   }
 
   &[data-role='HEAL'] {
-    background-color: #40652D;
+    background-color: $color-healer;
   }
 
   &[data-role*='DPS'] {
-    background-color: #6A2D2B;
+    background-color: $color-dps;
   }
 
   &[data-role="DOH"] {
-    background-color: #665595;
+    background-color: $color-doh;
   }
 
   &[data-role="DOL"] {
-    background-color: #96895B;
+    background-color: $color-dol;
   }
 }
 
