@@ -19,7 +19,7 @@ export default function SelectedJob({ job, className = '' }: Props) {
   return (
     <div className={[styles.container, className].join(' ')}>
       <div className={styles.role}>
-        {job.Discipline} {job.Role && (`• ${roleNames[job.Role]}`)}
+        {job.Discipline} {(job.Role && roleNames[job.Role]) && (`• ${roleNames[job.Role]}`)}
       </div>
       <h1 className={styles.title}>
         <ClassJob job={job} />

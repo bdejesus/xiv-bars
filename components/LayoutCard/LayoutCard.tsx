@@ -62,6 +62,7 @@ export default function LayoutCard({
             layoutId={layout.id as number}
             count={layout._count?.hearts || 0}
             className={styles.hearts}
+            isHearted
           />
         )}
         { isOwner && !layout.published && (

@@ -14,8 +14,14 @@ export default function Icon({
   className = '',
   type = 'black'
 }:Props) {
+  const classSelectors = () => {
+    const selectors = [styles.icon, className, 'icon'];
+    if (type) selectors.push(styles[type]);
+    return selectors.join(' ');
+  };
+
   return (
-    <span className={`${styles.icon} ${className} ${type && styles[type]} icon`}>
+    <span className={classSelectors()}>
       <Image
         src={`/images/icon-${id}.svg`}
         alt={alt || ''}
