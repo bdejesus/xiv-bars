@@ -64,7 +64,7 @@ export function JobsList({
                 type="white"
                 alt="New Layout Icon"
               />
-              <span className={styles.addLabel}>
+              <span className={`${styles.addLabel} btn-label`}>
                 {t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
               </span>
             </a>

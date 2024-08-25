@@ -71,6 +71,10 @@ $button-height: 50px;
       transform: scale(1);
     }
   }
+
+  &:active .classJob {
+    padding-top: 2px;
+  }
 }
 
 .addBtn:global(.button) {

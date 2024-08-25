@@ -41,6 +41,8 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const jobName = translateData('Name', selectedJob, router.locale);
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
 
+  const guidePath = ['DOH', 'DOL'].includes(selectedJob.Discipline) ? 'crafting_gathering_guide' : 'jobguide';
+
   useEffect(() => {
     appDispatch({ type: appActions.VIEW_LIST });
     const items = ['l', 's1', 's', 'xhb', 'wxhb', 'exhb'];
@@ -55,6 +57,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
 
     systemDispatch({ type: systemActions.LOADING_END });
   }, []);
+
+  function toParam(string:string) {
+    return string.toLowerCase().replaceAll(' ', '');
+  }
 
   return (
     <>
@@ -92,13 +98,24 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               { t('Pages.Job.index_description', { jobName: selectedJob.Name }) }
             </p>
 
-            <a
-              href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
-              className={`button btn-primary btn-lg ${styles.newLink}`}
-            >
-              <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
-              <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
-            </a>
+            <div className={styles.actions}>
+              <a
+                href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
+                className={`button btn-primary btn-lg ${styles.newLink}`}
+              >
+                <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
+                <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
+              </a>
+
+              <a
+                href={`https://na.finalfantasyxiv.com/${guidePath}/${toParam(selectedJob.Name)}/`}
+                className="button btn-lg btn-clear btn-white"
+                target="_blank"
+              >
+                <Icon id={Icons.HELP} alt="Official Job Guide" />
+                <span className="btn-label">Job Guide: { selectedJob.Name }</span>
+              </a>
+            </div>
 
             { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
           </div>

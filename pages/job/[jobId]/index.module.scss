@@ -24,9 +24,14 @@
 }
 
 .newLink {
-  display: inline-flex;
   padding-left: $spacing-xl;
   padding-right: $spacing-xl;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-sm;
 }
 
 @media (max-width: $screen-sm) {

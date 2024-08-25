@@ -42,7 +42,7 @@ button,
   padding: 0 12px;
   position: relative;
   transition-duration: $timing-default;
-  transition-property: background-image, background-color, box-shadow, color, opacity, transform, outline, padding;
+  transition-property: background-image, background-color, box-shadow, color, opacity, transform, outline, text-shadow;
   transition-timing-function: ease;
   white-space: nowrap;
 
@@ -56,11 +56,16 @@ button,
   }
 
   &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    text-shadow: 0 1px 2px darken($color-alt, 50%);
+  }
+
+  &:hover,
   &:focus {
     background-color: $color-alt-dark;
     color: #fff;
-    text-decoration: none;
-    text-shadow: $button-label-shadow;
 
     .icon {
       filter: $icon-filter-white drop-shadow($button-label-shadow);
@@ -83,13 +88,16 @@ button,
 
   &:active {
     background-color: $color-alt-dark;
-    box-shadow: inset 2px 2px 1px rgb(0 0 0 / 10%), inset 2px 2px 1px rgb(255 255 255 / 10%);
+    box-shadow: inset 1px 1px 1px rgb(0 0 0 / 25%), inset -1px -1px 1px rgb(255 255 255 / 25%);
     color: #fff;
-    padding-top: 2px;
-    text-shadow: 0 1px 2px darken($color-alt, 50%);
 
     .icon {
       filter: $icon-filter-white drop-shadow(0 1px 1px darken($color-alt, 40%));
+    }
+
+    .icon,
+    .btn-label {
+      top: 1px;
     }
   }
 
@@ -201,6 +209,12 @@ button,
     display: block;
     margin-right: $spacing-xs;
   }
+
+  .icon,
+  .btn-label {
+    position: relative;
+    top: 0;
+  }
 }
 
 .btn-alt.button {
@@ -208,7 +222,7 @@ button,
   box-shadow:
       inset 1px 1px 0 rgb(255 255 255 / 15%),
       inset -1px -1px 0 rgb(0 0 0 / 15%),
-      0 1px 3px rgb(0 0 0 / 10%);
+      0 1px 4px rgb(0 0 0 / 10%);
   color: #fff;
   font-weight: 500;
 
@@ -229,8 +243,10 @@ button,
   &:active,
   &[data-active='true'] {
     background-color: $color-alt-dark;
-    color: #fff;
-    text-shadow: 0 1px 3px darken($color-alt, 60%);
+
+    .btn-label {
+      color: #fff;
+    }
 
     .icon {
       filter: $icon-filter-white drop-shadow(0 1px 2px darken($color-alt, 50%));
@@ -271,6 +287,19 @@ button,
   &:focus {
     background-color: $color-alt-dark;
     box-shadow: $button-shadow;
+  }
+
+  &.btn-white {
+    color: #fff;
+
+    .icon {
+      filter: $icon-filter-white;
+    }
+
+    &:hover {
+      background-color: $color-gray;
+      box-shadow: $button-shadow;
+    }
   }
 }
 
@@ -334,6 +363,10 @@ button,
     height: 100%;
     padding-left: 16px;
     padding-right: 16px;
+    position: relative;
+    transition-duration: $timing-default;
+    transition-property: color;
+    transition-timing-function: ease;
 
     &[data-disabled="true"] {
       display: none;
@@ -354,7 +387,6 @@ button,
   &:focus,
   &:active {
     background-color: $color-gray-dark-2;
-    padding-top: 0;
 
     .label[data-selected="false"] {
       color: $color-alt;
@@ -362,8 +394,13 @@ button,
   }
 
   &:active {
+    .icon {
+      top: 0;
+    }
+
     .label[data-selected="false"] {
-      padding-top: 2px;
+      color: #fff;
+      top: 1px;
     }
   }
 
