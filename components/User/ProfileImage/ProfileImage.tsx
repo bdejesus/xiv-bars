@@ -10,7 +10,14 @@ interface ImageProps {
 
 function Image({ src = undefined, alt }:ImageProps) {
   return src
-    ? <img src={src} alt={alt} itemProp="image" />
+    ? (
+      <img
+        src={src}
+        alt={alt}
+        itemProp="image"
+        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+      />
+    )
     : <img src="/icons/favicon-96x96.png" className={styles.placeholder} alt={alt} />;
 }
 
