@@ -40,6 +40,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
+  const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}/`;
 
   function toParam(string:string) {
     return string.toLowerCase().replaceAll(' ', '');
@@ -77,6 +78,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           <title>
             {`${t('Pages.Job.index_title', { jobName, jobAbbr })} | XIVBARS`}
           </title>Lore
+          <link rel="canonical" href={canonicalUrl} />
           <meta
             name="description"
             content={t('Pages.Job.index_description', { jobName })}
@@ -117,8 +119,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
                   target="_blank"
                   className={styles.jobGuideLink}
                 >
-                  <Icon id={Icons.HELP} alt="Official Job Guide" />
-                  <span className="btn-label">Job Guide: { selectedJob.Name }</span>
+                  <Icon id={Icons.HELP} alt={t('Icon.info')} />
+                  <span className="btn-label">
+                    { t('Pages.Job.job_guide', { jobName: jobName }) }
+                  </span>
                 </a>
               </div>
             </SelectedJob>
@@ -138,6 +142,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           ? (
             <LayoutsList
               id="jobLayouts"
+              title={t('Pages.Job.keymap_and_layout_guides', {jobName})}
               layouts={layouts}
               className="mb-lg"
               filterable

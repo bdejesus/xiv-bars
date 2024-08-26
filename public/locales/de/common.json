@@ -1,8 +1,8 @@
 {
   "Global": {
     "title": "Ein Keybinding-Tool für die Cross Hotbar (XHB) in Final Fantasy XIV: Dawntrail – XIVBARS",
-    "subtitle": "Ein Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Tastenbelegungs- und Keybinding-Tool.",
-    "short_desc": "Erkunde von Spielern erstellte Keybinding-Guides für die Hotbars von Final Fantasy XIV. Nutze die Drag-and-Drop-Funktion für einfache Tastenzuweisungen und Anpassungen zur Verwendung mit Tastatur und Maus oder Gamepads. Exportiere deine Konfigurationen in Makros für den direkten Import ins Spiel und teile sie mit anderen.",
+    "subtitle": "Ein Final Fantasy XIV: Dawntrail Cross Hotbar-Tastenbelegungs-Tool & Controller-Layout-Anleitungen",
+    "short_desc": "Entdecken Sie von Spielern erstellte Tastenbelegungen und Layout-Anleitungen für FFXIV-Hotbars. Erstellen Sie Tastenbelegungen und Layout-Anleitungen für die Verwendung mit Tastatur, Maus oder Controllern. Exportieren Sie Ihre Konfigurationen als Makros für den direkten Import ins Spiel und teilen Sie sie mit anderen.",
     "description": "Planen und passen Sie Ihre FFXIV: Dawntrail Cross Hotbars (XHB) an. Erkunden Sie von Spielern erstellte Anleitungen, Konfigurationen und Setups für die Benutzeroberflächen von Final Fantasy XIV’s Hotbars und Cross Hotbars. Optimieren Sie Ihr Spielerlebnis mit verschiedenen Platzierungs-, Keybinding-Optionen und anderen Anpassungsfunktionen. Nutzen Sie die Drag-and-Drop-Funktionalität für einfache Keymappings und Personalisierungen zur Verwendung mit Tastatur und Maus oder Spielcontrollern. Exportieren Sie Ihre Konfigurationen in Makros zur direkten Importierung ins Spiel und teilen Sie Ihre Setups mit anderen.",
     "close": "Schließen",
     "loading": "Wird geladen..."
@@ -115,6 +115,10 @@
     "save_and_share": "Sobald Sie Ihr Final Fantasy XIV Endwalker-Hotbar-Layout konfiguriert haben, speichern oder teilen Sie Ihr Layout mit der generierten URL. Sie können Ihr Layout auch als Makro exportieren, das Sie ins Spiel importieren können."
   },
 
+  "Icon": {
+    "info": "Information"
+  },
+
   "JobSelect": {
     "class_job": "Klasse/Job",
     "job_select": "Job Auswahl",
@@ -189,16 +193,18 @@
       }
     },
     "Job": {
-      "index_title": "{{jobName}} ({{jobAbbr}}) Hotbar-Keymap-Layout-Guides für Final Fantasy XIV: Dawntrail",
-      "index_description": "Diese Seite listet alle von Spielern erstellten Hotbar- (HB) und Cross-Hotbar- (XHB) Layout-Guides und Keybindings für die Klasse/den Job {{jobName}} in Final Fantasy XIV: Dawntrail auf.",
+      "index_title": "{{jobName}} ({{jobAbbr}}) Hotbar-Tastenbelegungs- und Controller-Layout-Anleitungen für Final Fantasy XIV: Dawntrail",
+      "index_description": "Auf dieser Seite sind alle von Spielern erstellten Hotbar (HB)- und Cross-Hotbar (XHB)-Tastenbelegungs- und Layout-Anleitungen für den {{jobName}}-Job in Final Fantasy XIV: Dawntrail aufgelistet.",
+      "job_guide": "Job-Leitfaden: {{jobName}}",
+      "keymap_and_layout_guides": "{{jobName}} Tastenbelegungs- & Layout-Anleitungen",
       "new_description": "Planen Sie Ihre {{jobName}}-Aktionsleisten oder Kreuz-Aktionsleisten (XHB) mit diesem Tool. Ziehen Sie per Drag & Drop oder klicken Sie, um Aktionen den Aktionsleistenplätzen zuzuweisen und speichern Sie diese unter einer teilbaren URL.",
       "no_layouts": "Keine {{jobName}} Layouts vorhanden.",
       "create_layout": "Erstellen Sie ein neues Layout.",
       "short_description": "Ein {{jobName}} Klassen/Job Layout-Guide für die Tastenbelegung der Aktionsleisten für Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Keymap-Layout-Guide für Final Fantasy XIV: Dawntrail",
-      "new_title": "Erstellen Sie einen neuen {{jobName}} Hotbar-Tastenbelegungs-Leitfaden • Final Fantasy XIV: Dawntrail • XIVBARS",
+      "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Tastenbelegungs- & Controller-Layout-Anleitungen für Final Fantasy XIV: Dawntrail",
+      "new_title": "Erstellen Sie eine neue {{jobName}} Hotbar-Tastenbelegungs- & Controller-Layout-Anleitung für Final Fantasy XIV: Dawntrail",
       "title_by_author": "{{ titleName }} von {{ authorName }}",
       "more_layouts_by_user": "Mehr Layouts von {{userName}}",
       "more_layouts_by_job": "Mehr {{jobName}} Layouts",

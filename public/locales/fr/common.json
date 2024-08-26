@@ -1,8 +1,8 @@
 {
   "Global": {
     "title": "Un outil de mappage de touches pour la Cross Hotbar (XHB) de Final Fantasy XIV: Dawntrail – XIVBARS",
-    "subtitle": "Un outil de mappage et de configuration des touches de la Croix Hotbar (XHB) pour Final Fantasy XIV : Aube du Voyage.",
-    "short_desc": "Explorez des guides de mappage de touches créés par les joueurs pour les barres de raccourcis de Final Fantasy XIV. Utilisez la fonctionnalité de glisser-déposer pour des mappages et personnalisations faciles à utiliser avec un clavier et une souris ou des manettes de jeu. Exportez vos configurations en macros pour les importer directement dans le jeu et les partager avec d'autres.",
+    "subtitle": "Outil de cartographie des touches du Cross Hotbar pour Final Fantasy XIV : Dawntrail & Guides de disposition de la manette",
+    "short_desc": "Explorez les cartographies des touches et les guides de disposition créés par les joueurs pour les hotbars de FFXIV. Créez des guides de cartographie des touches et de disposition pour une utilisation avec un clavier, une souris ou des manettes. Exportez vos configurations sous forme de macros pour les importer directement dans le jeu et les partager avec d'autres.",
     "description": "Planifiez et personnalisez vos Cross Hotbars (XHB) de FFXIV : Dawntrail. Explorez les guides, configurations et configurations créés par les joueurs pour les interfaces utilisateur des hotbars et cross hotbars de Final Fantasy XIV. Optimisez votre expérience de jeu avec différentes options de placement, de keybinding et d'autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour des keymappings et personnalisations faciles à utiliser avec le clavier et la souris ou les contrôleurs de jeu. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
     "loading": "Chargement en cours..."
@@ -115,6 +115,10 @@
     "save_and_share": "Une fois que vous avez terminé de configurer votre disposition de barre de raccourcis FFXIV Endwalker, enregistrez ou partagez votre disposition avec l'URL générée. Vous pouvez également exporter votre disposition vers une macro que vous pouvez utiliser pour importer votre disposition dans le jeu."
   },
 
+  "Icon": {
+    "info": "Information"
+  },
+
   "JobSelect": {
     "class_job": "Classe/Job",
     "job_select": "Sélection de Job",
@@ -189,16 +193,18 @@
       }
     },
     "Job": {
-      "index_title": "Guides de disposition des touches pour {{jobName}} ({{jobAbbr}}) dans Final Fantasy XIV : Aube du Voyage",
-      "index_description": "Cette page répertorie tous les guides de disposition de hotbar (HB) et cross-hotbar (XHB) créés par les joueurs et les keybindings pour la classe/job {{jobName}} dans Final Fantasy XIV : Dawntrail.",
+      "index_title": "{{jobName}} ({{jobAbbr}}) Cartographie des touches du Hotbar et guides de disposition de la manette pour Final Fantasy XIV : Dawntrail",
+      "index_description": "Cette page répertorie tous les guides de cartographie des touches du Hotbar (HB) et du Cross-Hotbar (XHB) créés par les joueurs pour le job {{jobName}} dans Final Fantasy XIV : Dawntrail.",
+      "job_guide": "Guide du Job : {{jobName}}",
+      "keymap_and_layout_guides": "Guides de cartographie et de disposition pour {{jobName}}",
       "new_description": "Planifiez vos barres d'actions ou vos barres d'actions croisées (XHB) pour {{jobName}} avec cet outil. Faites glisser et déposez, ou cliquez pour attribuer des actions aux emplacements des barres d'actions et enregistrez-les sous une URL partageable.",
       "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
       "create_layout": "Créer une nouvelle disposition.",
       "short_description": "Un guide de disposition de classe/emploi {{jobName}} pour les raccourcis clavier des barres d'actions pour Final Fantasy XIV : Dawntrail."
     },
     "Layout": {
-      "title": "Guide de disposition des touches pour {{jobName}} ({{jobAbbr}}) dans Final Fantasy XIV : Aube du Voyage",
-      "new_title": "Créer un nouveau guide de disposition des touches de la barre de raccourcis {{jobName}} • Final Fantasy XIV : Dawntrail • XIVBARS",
+      "title": "{{jobName}} ({{jobAbbr}}) Guide de cartographie du Hotbar & de disposition de la manette pour Final Fantasy XIV : Dawntrail",
+    "new_title": "Créer un nouveau guide de cartographie du Hotbar & de disposition de la manette pour {{jobName}} dans Final Fantasy XIV : Dawntrail",
       "title_by_author": "{{ titleName }} par {{ authorName }}",
       "more_layouts_by_user": "Plus de mises en page par {{userName}}",
       "more_layouts_by_job": "Plus de mises en page de {{jobName}}",

@@ -49,9 +49,7 @@ export default function Summary({
         <h3 title={title} itemProp="name">{title}</h3>
       </a>
 
-      <span className={styles.subtitle} itemProp="description" aria-hidden="true">
-        { t('Pages.Job.short_description', { jobName: job.Name }) }
-      </span>
+      <meta itemProp="description" content={ t('Pages.Job.short_description', { jobName: job.Name }) } />
 
       <div className={styles.description} itemProp="text">
         { description && (
