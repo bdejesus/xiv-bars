@@ -121,7 +121,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
                 >
                   <Icon id={Icons.HELP} alt={t('Icon.info')} />
                   <span className="btn-label">
-                    { t('Pages.Job.job_guide', { jobName: jobName }) }
+                    { t('Pages.Job.job_guide', { jobName }) }
                   </span>
                 </a>
               </div>
@@ -142,7 +142,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           ? (
             <LayoutsList
               id="jobLayouts"
-              title={t('Pages.Job.keymap_and_layout_guides', {jobName})}
+              title={t('Pages.Job.keymap_and_layout_guides', { jobName })}
               layouts={layouts}
               className="mb-lg"
               filterable
