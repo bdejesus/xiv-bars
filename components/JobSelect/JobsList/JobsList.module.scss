@@ -1,6 +1,7 @@
 @import "styles/mixins";
 
 $button-inset: 10px;
+$button-height: 50px;
 
 .title {
   color: rgb(255 255 255 / 50%);
@@ -17,7 +18,6 @@ $button-inset: 10px;
 
   > li {
     align-items: center;
-    background-color: rgba(255 255 255 / 5%);
     border-radius: $border-radius;
     display: flex;
     flex-direction: row;
@@ -33,93 +33,113 @@ $button-inset: 10px;
       margin-bottom: 0;
     }
   }
-}
 
-.jobLink {
-  align-items: center;
-  background-color: transparent;
-  border-radius: $border-radius;
-  color: #fff;
-  display: flex;
-  flex: 1 1 auto;
-  padding: $spacing-xs;
-  position: relative;
-  transition: background-color 0.33s ease;
-
-  img {
-    transform: scale(0.85);
-    transition: transform 0.15s ease;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: #444;
-    text-decoration: none;
-    z-index: 2;
-
-    + .addBtn {
-      opacity: 1;
-    }
+  .jobLink {
+    align-items: center;
+    background-color: $color-gray-dark;
+    border-radius: $border-radius;
+    display: flex;
+    flex: 1 1 auto;
+    height: $button-height;
+    padding: $spacing-xs;
+    position: relative;
+    transition: background-color 0.33s ease;
 
     img {
-      transform: scale(1);
+      transform: scale(0.85);
+      transition: transform 0.15s ease;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $color-gray;
+      text-decoration: none;
+      z-index: 2;
+
+      + .addBtn {
+        background-color: $color-gray;
+        opacity: 1;
+      }
+
+      .addIcon {
+        opacity: 1;
+      }
+
+      img {
+        transform: scale(1);
+      }
+    }
+
+    &:active .classJob {
+      padding-top: 2px;
     }
   }
-}
 
-.addBtn:global(.button) {
-  align-items: center;
-  background-color: rgb(0 0 0 / 0%);
-  border: 1px solid rgb(0 0 0 / 0%);
-  border-radius: $border-radius;
-  bottom: 0;
-  box-shadow: none;
-  height: unset;
-  justify-content: flex-start;
-  opacity: 0.33;
-  overflow: hidden;
-  padding: 0 11px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: opacity $timing-default ease 0.15s, background-color $timing-default ease 0.15s, width $timing-default ease 0.15s, padding $timing-default ease 0.15s;
-  width: 40px;
-  z-index: 2;
+  .addBtn:global(.button) {
+    align-items: center;
+    background-color: $color-gray-dark;
+    border: none;
+    border-radius: $border-radius;
+    bottom: 0;
+    box-shadow: none;
+    height: unset;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding-left: ($button-height / 2) - $spacing-sm;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition-duration: 0.33s;
+    transition-property: background-color, width, pading;
+    transition-timing-function: ease-in-out;
+    width: $button-height;
+    z-index: 2;
 
-  .addIcon,
-  .addLabel {
-    transition-duration: $timing-default;
-    transition-property: width, color, padding, transform;
-    transition-timing-function: ease;
-  }
-
-  .addLabel {
-    display: block;
-    flex: 1 1 auto;
-    font-size: $font-size-base;
-    padding: 0 $spacing-base;
-    text-align: left;
-    transition-delay: 0.1s;
-  }
-
-  .addIcon {
-    flex: none;
-  }
-
-  &:hover,
-  &:focus {
-    background-color: rgb(0 0 0 / 90%);
-    opacity: 1;
-    width: 100%;
+    .addIcon,
+    .addLabel {
+      transition-duration: $timing-default;
+      transition-property: width, color, padding, transform, opacity;
+      transition-timing-function: ease;
+    }
 
     .addLabel {
       color: $color-alt;
-      padding: 0 $spacing-base 0 $spacing-sm;
+      display: block;
+      flex: 1 1 auto;
+      font-size: $font-size-base;
+      padding: 0 $spacing-base 0 18px;
+      text-align: left;
+      transition-delay: 0;
     }
 
     .addIcon {
-      filter: $icon-filter-yellow;
-      transform: scale(1.25);
+      flex: none;
+      opacity: 0.45;
     }
+
+    &:hover,
+    &:focus {
+      background-color: $color-gray-dark;
+      opacity: 1;
+      transition-delay: 0.25s;
+      width: 100%;
+
+      .addLabel {
+        transition-delay: 0.33s;
+      }
+
+      .addIcon {
+        filter: $icon-filter-yellow;
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+  }
+
+  .classJob {
+    flex: 1 1 auto;
+    height: 100%;
+    margin-right: $button-height;
+    padding-left: $spacing-xs;
   }
 }

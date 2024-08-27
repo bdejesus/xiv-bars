@@ -2,8 +2,11 @@ import { useTranslation } from 'next-i18next';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import analytics from 'lib/analytics';
 import styles from './SignInPrompt.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 export default function SignInPrompt() {
   const { t } = useTranslation();
@@ -38,6 +41,12 @@ export default function SignInPrompt() {
           </ul>
         </div>
       </div>
+
+      <AdUnit
+        id="ad-DetailPanel-SignInPrompt"
+        variant="light"
+        className="mt-lg"
+      />
     </div>
   );
 }

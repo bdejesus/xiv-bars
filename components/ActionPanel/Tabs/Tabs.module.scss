@@ -9,6 +9,10 @@
     height: 32px;
     padding: 0 10px;
     width: 100%;
+
+    &:active {
+      padding-top: 2px;
+    }
   }
 }
 

@@ -10,5 +10,7 @@ a:focus {
 
 a:focus {
   border-radius: $border-radius;
-  outline: 3px double $color-alt-dark;
+  outline: 2px solid $color-alt-dark;
+  text-decoration: none;
+
 }

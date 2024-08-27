@@ -1,7 +1,17 @@
 @import "styles/grid";
 
 .title {
-  margin-bottom: $spacing-lg;
+  display: block;
+  margin-bottom: $spacing-xl;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  :global(.job-name) {
+    font-size: 30px;
+    text-transform: uppercase;
+  }
 }
 
 .job {
@@ -9,15 +19,42 @@
 }
 
 .header {
-  margin-bottom: $spacing-lg;
+  margin-bottom: $spacing-xl;
 }
 
 .newLink {
-  max-width: 320px;
+  padding-left: $spacing-xl;
+  padding-right: $spacing-xl;
+
+  @media (max-width: $screen-md) {
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+  }
+
+  @media (max-width: $screen-sm) {
+    padding-left: $spacing-base;
+    padding-right: $spacing-base;
+  }
 }
 
-@media (max-width: $screen-sm) {
-  .header {
-    display: block;
+.actions {
+  border-top: 1px solid rgb(255 255 255 / 20%);
+  display: flex;
+  flex-direction: row;
+  gap: $spacing-xs;
+  justify-content: space-between;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-base;
+}
+
+.jobGuideLink {
+  align-items: center;
+  color: #fff;
+  display: flex;
+  font-size: $font-size-base;
+  justify-content: center;
+
+  :global(.icon) {
+    filter: $icon-filter-white;
   }
 }

@@ -11,6 +11,7 @@ interface Props {
   layoutId: number,
   count: number,
   hearted?: HeartProps,
+  isHearted?: boolean,
   disabled?: boolean,
   className?: string
 }
@@ -19,6 +20,7 @@ export default function Hearts({
   layoutId,
   count,
   hearted,
+  isHearted = false,
   disabled = true,
   className = ''
 }:Props) {
@@ -55,11 +57,14 @@ export default function Hearts({
       data-title={hearted ? t('Hearts.unheartTitle') : t('Hearts.heartTitle')}
       onClick={handleHeartClick}
       data-disabled={disabled}
-      data-hearted={hearted?.id}
+      data-hearted={!!hearted?.id}
       data-title-anchor="left"
       disabled={disabled}
     >
-      <Icon id={hearted ? 'hearted' : 'heart'} alt={t('Hearts.heart')} />
+      <Icon
+        id={(hearted || isHearted) ? 'hearted' : 'heart'}
+        alt={t('Hearts.heart')}
+      />
       { count > 0 && <span className={styles.count}>{count}</span> }
     </button>
   );

@@ -10,7 +10,14 @@ interface ImageProps {
 
 function Image({ src = undefined, alt }:ImageProps) {
   return src
-    ? <img src={src} alt={alt} itemProp="image" />
+    ? (
+      <img
+        src={src}
+        alt={alt}
+        itemProp="image"
+        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+      />
+    )
     : <img src="/icons/favicon-96x96.png" className={styles.placeholder} alt={alt} />;
 }
 
@@ -25,11 +32,15 @@ export default function ProfileImage({
   title,
   src,
   href,
-  className = ''
+  className = '',
 }:ProfileImageProps) {
   return (
     href ? (
-      <Link href={href} className={[styles.wrapper, className].join(' ')}>
+      <Link
+        href={href}
+        className={[styles.wrapper, className].join(' ')}
+        tabIndex={-1}
+      >
         <Image src={src} alt={title} />
       </Link>
     ) : (

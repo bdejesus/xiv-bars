@@ -7,13 +7,13 @@ $panel-width: 360px;
 $panel-width-lg: $screen-xs;
 
 .container {
-  align-items: flex-end;
+  align-items: flex-start;
   background-color: #f9f9f9;
   display: flex;
   flex: none;
   flex-direction: row;
-  height: $panel-height;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  max-height: $panel-height;
   overflow: hidden;
   position: sticky;
   top: $header-height;
@@ -65,7 +65,7 @@ $panel-width-lg: $screen-xs;
 .content {
   display: flex;
   flex-direction: column;
-  height: $panel-height;
+  max-height: $panel-height;
   overflow-y: auto;
   padding: $spacing-base $spacing-base $spacing-lg $spacing-lg;
   transform: translateZ(0);

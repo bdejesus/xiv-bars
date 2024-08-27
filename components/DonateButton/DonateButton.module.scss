@@ -24,23 +24,27 @@
   }
 }
 
-.donateLink:global(.button) {
+.donateLink:global(.button.btn-primary) {
   align-items: center;
   display: inline-flex;
   font-weight: 400;
   height: unset;
-  padding: $spacing-base;
   transition-property: color, background-color, box-shadow, border, opacity, transform;
 
   &:hover {
-    color: #333 !important;
+    color: #333;
     text-shadow: none;
     transform: translateY(-4px);
+  }
+
+  &:active {
+    color: #fff;
   }
 
   .donateLabel {
     line-height: 1.15;
     margin-left: $spacing-sm;
+    padding: $spacing-base 0;
 
     b {
       font-size: 16px;

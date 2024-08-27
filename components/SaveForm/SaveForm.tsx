@@ -1,6 +1,7 @@
 import React, { createRef, useState, useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useUserDispatch } from 'components/User/context';
@@ -12,6 +13,8 @@ import type { LayoutViewProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
 
 import styles from './SaveForm.module.scss';
+
+const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 function SaveForm() {
   const { t } = useTranslation();
@@ -212,6 +215,13 @@ function SaveForm() {
         </button>
         )}
       </div>
+
+      <AdUnit
+        id="ad-DetailPanel-SaveForm"
+        variant="light"
+        className="mt-lg"
+        format="mediumRect"
+      />
     </form>
   );
 }

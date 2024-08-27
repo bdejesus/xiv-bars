@@ -59,6 +59,7 @@
   :global(.button) {
     font-size: $font-size-sm;
     height: 30px;
-    padding: 0 10px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

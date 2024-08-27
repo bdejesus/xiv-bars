@@ -37,7 +37,6 @@ export default function Index(props:PageProps) {
 
   const router = useRouter();
   const displayName = translateData('Name', selectedJob, router.locale);
-  const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}`;
   const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
 
@@ -61,9 +60,8 @@ export default function Index(props:PageProps) {
         <title>
           {`${t('Pages.Layout.new_title', { jobName })} | XIVBARS`}
         </title>
-        <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
-        <link rel="canonical" href={canonicalUrl} />
 
+        <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
         )}
@@ -74,13 +72,13 @@ export default function Index(props:PageProps) {
       <App />
 
       { classJobLayouts?.length > 0 && (
-        <div className="container-xl">
+        <div className="container">
           <LayoutsList
             id="jobLayouts"
             title={t('Pages.Layout.more_layouts_by_job', { jobName: displayName })}
             link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
             layouts={classJobLayouts}
-            columns={4}
+            columns={3}
           />
         </div>
       ) }

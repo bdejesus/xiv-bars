@@ -7,13 +7,86 @@
 }
 
 .title {
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 20%), inset 1px 1px 1px rgb(255 255 255 / 15%);
   color: #fff;
+  display: flex;
+  flex-direction: column;
   letter-spacing: 0;
   line-height: 1;
   margin: 0;
+  padding: $spacing-lg $spacing-base $spacing-base;
+  position: relative;
+  text-shadow: 0 3px 2px rgb(0 0 0 / 20%);
+  width: 100%;
 
-  :global(.job-wrapper) {
-    padding: $spacing-sm $spacing-base $spacing-sm $spacing-sm;
+  [data-role] {
+    padding-left: 0;
+  }
+
+  &[data-role='TANK'] {
+    background-color: $color-tank;
+
+    .titleBg {
+      background-image: url('/double-bubble-outline.webp');
+    }
+  }
+
+  &[data-role='HEAL'] {
+    background-color: $color-healer;
+
+    .titleBg {
+      background-image: url('/swirl_pattern.webp');
+    }
+  }
+
+  &[data-role*='DPS'] {
+    background-color: $color-dps;
+  }
+
+  &[data-role="DOH"] {
+    background-color: $color-doh;
+
+    .titleBg {
+      background-image: url('/regal.webp');
+    }
+  }
+
+  &[data-role="DOL"] {
+    background-color: $color-dol;
+
+    .titleBg {
+      background-image: url('/geometric-leaves.png');
+    }
+  }
+
+  &[data-role='PDPS'] {
+    .titleBg {
+      background-image: url('/memphis-mini.webp');
+    }
+  }
+
+  &[data-role='RDPS'] {
+    .titleBg {
+      background-image: url('/y-so-serious-white.png');
+    }
+  }
+
+  &[data-role='MDPS'] {
+    .titleBg {
+      background-image: url('/papyrus.webp');
+    }
+  }
+
+  .titleBg {
+    height: 100%;
+    left: 0;
+    mix-blend-mode: color-burn;
+    opacity: 0.66;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
 
   :global(.job-abbr) {
@@ -22,7 +95,7 @@
   }
 
   :global(.job-name) {
-    font-size: 38px;
+    font-weight: 200;
   }
 }
 

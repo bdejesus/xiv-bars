@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import db, { serializeDates } from 'lib/db';
-import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
@@ -49,10 +48,6 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
   return (
     <>
-      <Head>
-        <link rel="canonical" href="https://www.xivbars.com" />
-      </Head>
-
       <AppContextProvider>
         <GlobalHeader />
       </AppContextProvider>
@@ -66,7 +61,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
           itemType="https://schema.org/ItemList"
         >
           <h2 className={styles.title} id="jobSelectTitle" itemProp="name">
-            { t('JobSelect.class_job') }
+            { t('JobSelect.job_select') }
           </h2>
           <JobMenu />
         </div>

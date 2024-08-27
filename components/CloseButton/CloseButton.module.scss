@@ -6,6 +6,7 @@
   text-transform: uppercase;
   top: 0;
   transform: translate(-$spacing-base, -50%);
+  width: 30px !important;
   z-index: 1;
 
   &:hover {

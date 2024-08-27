@@ -33,14 +33,23 @@
   transition-timing-function: ease;
 
   &::before {
+    align-items: center;
+    background-color: $color-gray-dark-2;
+    border-radius: $border-radius;
     content: counter(xbarCount);
     counter-increment: xbarCount;
-    font-size: $font-size-lg;
-    font-weight: 400;
-    left: $spacing-base;
+    display: inline-flex;
+    font-size: $font-size-sm;
+    font-weight: 700;
+    height: 1.5em;
+    justify-content: center;
+    left: $spacing-sm;
+    line-height: 1em;
     opacity: 0.66;
     position: absolute;
     text-align: right;
+    text-align: center;
+    width: 1.5em;
   }
 
   &:last-child {

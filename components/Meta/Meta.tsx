@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import { languages, localizePath } from 'lib/utils/i18n.mjs';
 import { domain } from 'lib/host';
 
 interface MetaProps {
@@ -13,6 +14,11 @@ export function renderMeta({
   description,
   currentPath
 }:MetaProps) {
+  const alternateUrls = Object.keys(languages).reduce((langs, lang) => {
+    const path = localizePath(currentPath, lang);
+    return { ...langs, [lang]: [domain, path].join('') };
+  }, {});
+
   return (
     <>
       <meta name="description" content={description} />
@@ -58,6 +64,15 @@ export function renderMeta({
       <link rel="preconnect" href="https://xivapi.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
       <link rel="manifest" href="/manifest.json" />
+
+      { Object.entries(alternateUrls).map(([lang, url]) => (
+        <link
+          rel="alternate"
+          hrefLang={lang}
+          href={url as string}
+          key={lang}
+        />
+      ))}
     </>
   );
 }

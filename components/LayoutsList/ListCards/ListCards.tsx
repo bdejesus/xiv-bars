@@ -10,7 +10,7 @@ import styles from '../LayoutsList.module.scss';
 const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface ListCardsProps {
-  layouts: LayoutViewProps[],
+  layouts: LayoutViewProps[]
 }
 
 export default function ListCards({ layouts }:ListCardsProps) {

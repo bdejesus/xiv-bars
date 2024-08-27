@@ -36,7 +36,6 @@ export default function Index(props:PageProps) {
   const router = useRouter();
   const displayJobName = translateData('Name', selectedJob, router.locale);
   const displayJobAbbr = translateData('Abbreviation', selectedJob, router.locale);
-  const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}/${viewData?.id}`;
   const displayAuthor = t(
     'Pages.Layout.title_by_author',
     { titleName: viewData.title, authorName: viewData.user!.name }
@@ -68,7 +67,6 @@ export default function Index(props:PageProps) {
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={viewData?.description} />
-        <link rel="canonical" href={canonicalUrl} />
         { !viewData.published && <meta name="robots" content="noindex" /> }
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
@@ -79,7 +77,7 @@ export default function Index(props:PageProps) {
 
       <App />
 
-      <div className={`${styles.lists} container-xl`}>
+      <div className={`${styles.lists} container`}>
         { ownerLayouts.length > 0 && (
           <section>
             <LayoutsList
@@ -87,7 +85,7 @@ export default function Index(props:PageProps) {
               title={t('Pages.Layout.more_layouts_by_user', { userName: viewData.user!.name })}
               link={{ text: t('Pages.Layout.view_more'), href: `/user/${viewData!.user!.id}` }}
               layouts={ownerLayouts}
-              columns={4}
+              columns={3}
             />
           </section>
         ) }
@@ -99,7 +97,7 @@ export default function Index(props:PageProps) {
               title={t('Pages.Layout.more_layouts_by_job', { jobName: displayJobName })}
               link={{ text: t('Pages.Layout.view_more'), href: `/job/${viewData.jobId}` }}
               layouts={classJobLayouts}
-              columns={4}
+              columns={3}
             />
           </section>
         ) }

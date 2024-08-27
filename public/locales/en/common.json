@@ -1,9 +1,9 @@
 {
   "Global": {
-    "title": "A Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Keybinding Tool – XIVBARS",
-    "subtitle": "A Final Fantasy XIV: Dawntrail Cross Hotbar Keybinding Tool.",
-    "short_desc": "Explore player-created keybinding guides for Final Fantasy XIV hotbars. Use the drag-and-drop functionality for easy keymappings and personalizations for use with keyboard and mouse or game controllers. Export your configurations to macros for direct import into the game and share with others.",
-    "description": "Plan your FFXIV: Dawntrail Cross Hotbars (XHB). Explore player-created guides, configurations, and setups for Final Fantasy XIV’s hotbars and cross hotbar user interfaces. Optimize your gameplay experience with different placement, keybinding options, and other customization features. Take advantage of drag-and-drop functionality for easy keymappings and personalizations for use with keyboard and mouse or game controllers. Export your configurations to macros for direct import into the game and share your setups with others.",
+    "title": "A Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Guides and Keybinding Tool – XIVBARS",
+    "subtitle": "A Final Fantasy XIV: Dawntrail Cross Hotbar Keybinding Tool and Controller Layout Guides",
+    "short_desc": "Explore player-created keybindings and layout guides for FFXIV hotbars. Create keybinding layout guides for use with keyboard and mouse or controllers. Export your configurations to macros for direct import into the game and share with others.",
+    "description": "Plan your FFXIV: Dawntrail Cross Hotbars (XHB). Explore player-created guides, configurations, and setups for Final Fantasy XIV’s hotbars and cross hotbar user interfaces. Optimize your gameplay experience with different placement, keybinding options, and other customization features. Take advantage of drag-and-drop functionality for easy keybindings and personalizations for use with keyboard and mouse or game controllers. Export your configurations to macros for direct import into the game and share your setups with others.",
     "close": "Close",
     "loading": "Loading..."
   },
@@ -102,21 +102,32 @@
     "unheartTitle": "Un-heart this layout"
   },
 
+  "Hotbars": {
+    "hb": "Hotbar",
+    "hbs": "Hotbars",
+    "xhb": "Cross Hotbar",
+    "xhbs": "Cross Hotbars"
+  },
+
   "HowTo": {
     "how_to_use_this": "How To Use This Planner",
     "body": "Creating the perfect hotbar interface setup in Final Fantasy XIV Endwalker using a controller is clunky and time-consuming. This simulator allows you to plan out your hotbar layouts using a web-based drag-and-drop interface to simulate different configurations before commiting it to your controller HUD in-game.",
     "select_a_class": "Select a FFXIV Job/Class",
-    "plan_your_hotbars": "Choose from and plan your hotbars for any of the FFXIV Class/Jobs",
+    "plan_your_hotbars": "Choose from and plan your hotbars for any of the FFXIV Jobs",
     "toggle_hotbars": "Toggle between FFXIV Hotbar layouts",
     "simulate_hotbars": "Simulate either a Cross Hotbar (XHB) or standard Hotbars layout.",
-    "drag_and_drop": "Drag & Drop Actions to Slots",
-    "slot_actions": "Slot any of the Combat and Role actions for your selected Class/Job, as well as any Menu Command, Macros, and other Actions.",
+    "drag_and_drop": "Drag and Drop Actions to Slots",
+    "slot_actions": "Slot any of the Combat and Role actions for your selected Job, as well as any Menu Command, Macros, and other Actions.",
     "export_to_macro": "Export to a Macro and Share With Others",
     "save_and_share": "Once you’re done configuring your Final Fantasy XIV Endwalker hotbar layout, save or share your layout with the generated URL. You can also export your layout to a macro that you can use to import your layout into the game."
   },
 
+  "Icon": {
+    "info": "Information"
+  },
+
   "JobSelect": {
-    "class_job": "Class/Job",
+    "class_job": "Job",
     "job_select": "Job Select",
     "dow_dom": "DoW/DoM",
     "dow": "DoW",
@@ -161,8 +172,8 @@
       "recent_layouts": "Recent Layouts"
     },
     "User": {
-      "title": "{{userName}} | Hotbar Layout Guides for Final Fantasy XIV: Dawntrail",
-      "description": "FFXIV hotbar and cross hotbar UI layouts by {{userName}}. Explore various configurations and setups for Final Fantasy XIV’s hotbar and cross hotbar user interfaces, optimizing your gameplay experience with different placement, size, and customization options.",
+      "title": "{{userName}} - Hotbar Keybinding and Controller Guides - Dawntrail",
+      "description": "Final Fantasy XIV hotbar and cross hotbar UI layouts by {{userName}}. Explore various configurations and setups for Final Fantasy XIV’s hotbar and cross hotbar user interfaces, optimizing your gameplay experience with different placement, size, and customization options.",
       "new_layout": "New Layout",
       "new_layout_icon": "New Layout Icon",
       "my_layouts": "My Layouts",
@@ -188,16 +199,18 @@
       }
     },
     "Job": {
-      "index_title": "{{jobName}} ({{jobAbbr}}) Hotbar Keymap Layout Guides for Final Fantasy XIV: Dawntrail",
-      "index_description": "This page lists all player-created hotbar (HB) and cross-hotbar (XHB) layout guides and keybindings for the {{jobName}} Class/Job in Final Fantasy XIV: Dawntrail.",
+      "index_title": "{{jobName}} Hotbar Keybinding and Controller Guides - Dawntrail",
+      "index_description": "This page lists all player-created Hotbar (HB) and Cross Hotbar (XHB) keybinding and layout guides for the {{jobName}} job in Final Fantasy XIV: Dawntrail.",
+      "job_guide": "Job Guide: {{jobName}}",
+      "keybinding_and_layout_guides": "{{jobName}} Keybinding and Layout Guides",
       "new_description": "Plan your {{jobName}} Hotbars or Cross Hotbars (XHB) with this tool. Drag and drop, or click to assign actions to hotbar slots and save to a shareable URL.",
       "no_layouts": "No {{jobName}} Layouts yet.",
       "create_layout": "Create a new layout.",
-      "short_description": "A {{jobName}} Class/Job layout guide for keybinding hotbars for Final Fantasy XIV: Dawntrail."
+      "short_description": "This is a {{jobName}} keybinding setup guide for your {{hotbarLayout}} actions for Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Hotbar Keymap Layout Guide for Final Fantasy XIV: Dawntrail",
-      "new_title": "Create a new {{jobName}} Hotbar Keymap Layout Guide for Final Fantasy XIV: Dawntrail",
+      "title": "{{jobName}} ({{jobAbbr}}) Hotbar Keybinding and Controller Guide - Dawntrail",
+      "new_title": "Create a new {{jobName}} Controller Keybinding Guide - Dawntrail",
       "title_by_author": "{{ titleName }} by {{ authorName }}",
       "more_layouts_by_user": "More layouts by {{userName}}",
       "more_layouts_by_job": "More {{jobName}} layouts",

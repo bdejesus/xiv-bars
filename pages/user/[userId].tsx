@@ -14,9 +14,9 @@ import LayoutsList from 'components/LayoutsList';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import ProfileImage from 'components/User/ProfileImage';
+import renderMeta from 'components/Meta';
 import dynamic from 'next/dynamic';
 import { maxLayouts } from 'lib/user';
-import { domain } from 'lib/host';
 
 import type { GetServerSideProps } from 'next';
 import type { UserProps } from 'types/User';
@@ -36,7 +36,6 @@ export default function User({ user }:UserViewProps) {
   const isCurrentUser = user.id === session?.user.id;
   const userDispatch = useUserDispatch();
   const { layouts } = useUserState();
-  const canonicalUrl = `${domain}/user/${user.name}`;
 
   useEffect(() => {
     userDispatch({
@@ -53,11 +52,17 @@ export default function User({ user }:UserViewProps) {
         <title>
           {`${t('Pages.User.title', { userName: user.name })} | XIVBARS`}
         </title>
+
         <meta
           name="description"
           content={t('Pages.User.description', { userName: user.name })}
         />
-        <link rel="canonical" href={canonicalUrl} />
+
+        { renderMeta({
+          title: `${t('Pages.User.title', { userName: user.name })} | XIVBARS`,
+          description: t('Pages.User.description', { userName: user.name }),
+          currentPath: `/user/${user.name}`
+        })}
       </Head>
 
       <AppContextProvider>
