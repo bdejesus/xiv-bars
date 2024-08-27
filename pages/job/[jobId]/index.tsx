@@ -142,7 +142,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           ? (
             <LayoutsList
               id="jobLayouts"
-              title={t('Pages.Job.keymap_and_layout_guides', { jobName })}
+              title={t('Pages.Job.keybinding_and_layout_guides', { jobName })}
               layouts={layouts}
               className="mb-lg"
               filterable

@@ -83,7 +83,10 @@ export default function DetailPanel({ className = '', visible }:Props) {
 
                       { updatedAt && (
                         <div className={styles.timestamp}>
-                          {t('LayoutCard.last_updated')}: <time dateTime={updatedAt}>{formatDateString(updatedAt as string, router.locale)}</time>
+                          {t('LayoutCard.last_updated')}:&nbsp;
+                          <time dateTime={updatedAt} itemProp="modifiedAt">
+                            {formatDateString(updatedAt as string, router.locale)}
+                          </time>
                         </div>
                       )}
                     </div>
@@ -109,7 +112,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
                         data-published={published}
                       >
                         <span className="tag-name">
-                          { published ? t('LayoutCard.published') : t('LayoutCard.draft') }
+                          {published ? t('LayoutCard.published') : t('LayoutCard.draft')}
                         </span>
                       </div>
                     )}

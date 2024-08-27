@@ -77,6 +77,7 @@ export default function LayoutCard({
         title={layout.title!}
         description={layout.description}
         job={job}
+        layout={layout.layout}
       />
 
       <div className={styles.footer}>
@@ -100,9 +101,14 @@ export default function LayoutCard({
           </div>
         )}
 
+        { layout.createdAt && <meta itemProp="dateCreated" content={layout.createdAt} /> }
+
         { layout.updatedAt && (
           <div className={styles.timestamp}>
-            {t('LayoutCard.last_updated')}: <time dateTime={layout.updatedAt}>{updatedAt}</time>
+            {t('LayoutCard.last_updated')}:&nbsp;
+            <time dateTime={layout.updatedAt} itemProp="dateModified">
+              {updatedAt}
+            </time>
           </div>
         )}
       </div>
@@ -120,7 +126,11 @@ export default function LayoutCard({
             className={styles.deleteButton}
             title={t('LayoutCard.delete_layout')}
           >
-            <Icon id={Icons.REMOVE} className={styles.deleteIcon} alt={t('LayoutCard.delete_layout')} />
+            <Icon
+              id={Icons.REMOVE}
+              className={styles.deleteIcon}
+              alt={t('LayoutCard.delete_layout')}
+            />
             <span className="btn-label-hidden">{t('LayoutCard.delete_layout')}</span>
           </button>
         </div>

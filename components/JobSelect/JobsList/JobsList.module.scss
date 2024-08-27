@@ -94,7 +94,7 @@ $button-height: 50px;
   transition-duration: 0.33s;
   transition-property: background-color, width, pading;
   transition-timing-function: ease-in-out;
-  width: $button-height;
+  width: $button-height !important;
   z-index: 2;
 
   .addIcon,

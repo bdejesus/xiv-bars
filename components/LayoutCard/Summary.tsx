@@ -10,14 +10,16 @@ interface SummaryProps {
   id: number,
   title: string,
   description?: string,
-  job: ClassJobProps
+  job: ClassJobProps,
+  layout: number
 }
 
 export default function Summary({
   id,
   title,
   description = undefined,
-  job
+  job,
+  layout
 }:SummaryProps) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -27,6 +29,12 @@ export default function Summary({
     .filter((p) => p.trim() !== '')
     .slice(0, 2)
     .join('\n\n');
+  const excerpt = description && description
+    .replaceAll('- ', '')
+    .split('\n')
+    .filter((p) => p.trim() !== '')[0]
+    .replace(/[.,:;\s]+$/, '');
+  const hotbarLayout = layout === 0 ? t('Hotbars.xhb') : t('Hotbars.hb');
 
   function handleClick(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
     router.push(layoutUrl);
@@ -49,7 +57,10 @@ export default function Summary({
         <h3 title={title} itemProp="name">{title}</h3>
       </a>
 
-      <meta itemProp="description" content={t('Pages.Job.short_description', { jobName: job.Name })} />
+      <meta
+        itemProp="description"
+        content={`${excerpt}. ${t('Pages.Job.short_description', { jobName: job.Name, hotbarLayout })}`}
+      />
 
       <div className={styles.description} itemProp="text">
         { description && (
