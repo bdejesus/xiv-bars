@@ -14,7 +14,7 @@ import LayoutsList from 'components/LayoutsList';
 import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import ProfileImage from 'components/User/ProfileImage';
-import CanonicalUrl from 'components/LanguagePicker/CanonicalUrl';
+import renderMeta from 'components/Meta';
 import dynamic from 'next/dynamic';
 import { maxLayouts } from 'lib/user';
 
@@ -58,7 +58,11 @@ export default function User({ user }:UserViewProps) {
           content={t('Pages.User.description', { userName: user.name })}
         />
 
-        <CanonicalUrl path={`user/${user.name}`} />
+        { renderMeta({
+          title: `${t('Pages.User.title', { userName: user.name })} | XIVBARS`,
+          description: t('Pages.User.description', { userName: user.name }),
+          currentPath: `/user/${user.name}`
+        })}
       </Head>
 
       <AppContextProvider>

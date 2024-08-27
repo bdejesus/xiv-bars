@@ -19,7 +19,6 @@ import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import dynamic from 'next/dynamic';
 import { hasSprite } from 'components/JobSprite';
-import CanonicalUrl from 'components/LanguagePicker/CanonicalUrl';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
@@ -83,9 +82,6 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             name="description"
             content={t('Pages.Job.index_description', { jobName })}
           />
-
-          <CanonicalUrl path={`job/${selectedJob.Abbr}/`} />
-
           { hasSprite(selectedJob) && (
             <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
           )}

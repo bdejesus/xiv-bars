@@ -4,7 +4,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import db, { serializeDates } from 'lib/db';
-import Head from 'next/head';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
@@ -13,7 +12,6 @@ import JobMenu from 'components/JobSelect/JobMenu';
 import Footer from 'components/Footer';
 import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
-import CanonicalUrl from 'components/LanguagePicker/CanonicalUrl';
 import Jobs from 'apiData/Jobs.json';
 import dynamic from 'next/dynamic';
 import type { GetServerSideProps } from 'next';
@@ -50,10 +48,6 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
   return (
     <>
-      <Head>
-        <CanonicalUrl />
-      </Head>
-
       <AppContextProvider>
         <GlobalHeader />
       </AppContextProvider>
