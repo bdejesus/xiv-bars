@@ -4,7 +4,6 @@ import { useTranslation } from 'next-i18next';
 import { localizePath } from 'lib/utils/i18n.mjs';
 import ExportToMacros from 'components/ExportToMacro';
 import Sharing from 'components/Sharing';
-import Link from 'next/link';
 import UserNav from 'components/UserNav';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
@@ -28,7 +27,7 @@ export function GlobalHeader({ selectedJob }:Props) {
 
   return (
     <div className={styles.container}>
-      <Link href="/" className={styles.branding}>
+      <a href={localizePath('/', router.locale)} className={styles.branding}>
         <div className={styles.logo}>
           <img
             src="/xivbars-logo.svg"
@@ -37,7 +36,7 @@ export function GlobalHeader({ selectedJob }:Props) {
             width={120}
           />
         </div>
-      </Link>
+      </a>
 
       { selectedJob && (
         <nav className={styles.globalNav}>
