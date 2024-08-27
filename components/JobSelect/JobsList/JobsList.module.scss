@@ -33,113 +33,114 @@ $button-height: 50px;
       margin-bottom: 0;
     }
   }
+}
 
-  .jobLink {
-    align-items: center;
-    background-color: $color-gray-dark;
-    border-radius: $border-radius;
-    display: flex;
-    flex: 1 1 auto;
-    height: $button-height;
-    padding: $spacing-xs;
-    position: relative;
-    transition: background-color 0.33s ease;
+.jobLink {
+  align-items: center;
+  background-color: $color-gray-dark;
+  border-radius: $border-radius;
+  display: flex;
+  flex: 1 1 auto;
+  height: $button-height;
+  padding: $spacing-xs;
+  position: relative;
+  transition: background-color 0.33s ease;
 
-    img {
-      transform: scale(0.85);
-      transition: transform 0.15s ease;
-    }
+  img {
+    transform: scale(0.85);
+    transition: transform 0.15s ease;
+  }
 
-    &:hover,
-    &:focus {
+  &:hover,
+  &:focus {
+    background-color: $color-gray;
+    text-decoration: none;
+    z-index: 2;
+
+    + .addBtn {
       background-color: $color-gray;
-      text-decoration: none;
-      z-index: 2;
-
-      + .addBtn {
-        background-color: $color-gray;
-        opacity: 1;
-      }
+      opacity: 1;
 
       .addIcon {
         opacity: 1;
       }
-
-      img {
-        transform: scale(1);
-      }
     }
 
-    &:active .classJob {
-      padding-top: 2px;
+
+    img {
+      transform: scale(1);
     }
   }
 
-  .addBtn:global(.button) {
-    align-items: center;
+  &:active .classJob {
+    padding-top: 2px;
+  }
+}
+
+.addBtn:global(.button) {
+  align-items: center;
+  background-color: $color-gray-dark;
+  border: none;
+  border-radius: $border-radius;
+  bottom: 0;
+  box-shadow: none;
+  height: unset;
+  justify-content: flex-start;
+  overflow: hidden;
+  padding-left: ($button-height / 2) - $spacing-sm;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition-duration: 0.33s;
+  transition-property: background-color, width, pading;
+  transition-timing-function: ease-in-out;
+  width: $button-height !important;
+  z-index: 2;
+
+  .addIcon,
+  .addLabel {
+    transition-duration: $timing-default;
+    transition-property: width, color, padding, transform, opacity;
+    transition-timing-function: ease;
+  }
+
+  .addLabel {
+    color: $color-alt;
+    display: block;
+    flex: 1 1 auto;
+    font-size: $font-size-base;
+    padding: 0 $spacing-base 0 18px;
+    text-align: left;
+    transition-delay: 0;
+  }
+
+  .addIcon {
+    flex: none;
+    opacity: 0.45;
+  }
+
+  &:hover,
+  &:focus {
     background-color: $color-gray-dark;
-    border: none;
-    border-radius: $border-radius;
-    bottom: 0;
-    box-shadow: none;
-    height: unset;
-    justify-content: flex-start;
-    overflow: hidden;
-    padding-left: ($button-height / 2) - $spacing-sm;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition-duration: 0.33s;
-    transition-property: background-color, width, pading;
-    transition-timing-function: ease-in-out;
-    width: $button-height;
-    z-index: 2;
-
-    .addIcon,
-    .addLabel {
-      transition-duration: $timing-default;
-      transition-property: width, color, padding, transform, opacity;
-      transition-timing-function: ease;
-    }
+    opacity: 1;
+    transition-delay: 0.25s;
+    width: 100%;
 
     .addLabel {
-      color: $color-alt;
-      display: block;
-      flex: 1 1 auto;
-      font-size: $font-size-base;
-      padding: 0 $spacing-base 0 18px;
-      text-align: left;
-      transition-delay: 0;
+      transition-delay: 0.33s;
     }
 
     .addIcon {
-      flex: none;
-      opacity: 0.45;
-    }
-
-    &:hover,
-    &:focus {
-      background-color: $color-gray-dark;
+      filter: $icon-filter-yellow;
       opacity: 1;
-      transition-delay: 0.25s;
-      width: 100%;
-
-      .addLabel {
-        transition-delay: 0.33s;
-      }
-
-      .addIcon {
-        filter: $icon-filter-yellow;
-        opacity: 1;
-        transform: scale(1.25);
-      }
+      transform: scale(1.25);
     }
   }
+}
 
-  .classJob {
-    flex: 1 1 auto;
-    height: 100%;
-    margin-right: $button-height;
-    padding-left: $spacing-xs;
-  }
+.classJob {
+  flex: 1 1 auto;
+  height: 100%;
+  margin-right: $button-height;
+  padding-left: $spacing-xs;
 }

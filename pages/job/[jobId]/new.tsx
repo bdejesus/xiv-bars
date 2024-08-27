@@ -17,7 +17,6 @@ import App, { appActions, useAppDispatch } from 'components/App';
 import LayoutsList from 'components/LayoutsList';
 import EorzeaProfile from 'components/EorzeaProfile';
 import { hasSprite } from 'components/JobSprite';
-import CanonicalUrl from 'components/LanguagePicker/CanonicalUrl';
 import Jobs from 'apiData/Jobs.json';
 
 import type { PageProps } from 'types/Page';
@@ -38,6 +37,7 @@ export default function Index(props:PageProps) {
 
   const router = useRouter();
   const displayName = translateData('Name', selectedJob, router.locale);
+  const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}`;
   const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
 
@@ -61,10 +61,8 @@ export default function Index(props:PageProps) {
         <title>
           {`${t('Pages.Layout.new_title', { jobName })} | XIVBARS`}
         </title>
-
         <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
-
-        <CanonicalUrl path={`job/${selectedJob.Abbr}/new`} />
+        <link rel="canonical" href={canonicalUrl} />
 
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />

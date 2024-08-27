@@ -13,7 +13,6 @@ import JobMenu from 'components/JobSelect/JobMenu';
 import Footer from 'components/Footer';
 import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
-import CanonicalUrl from 'components/LanguagePicker/CanonicalUrl';
 import Jobs from 'apiData/Jobs.json';
 import dynamic from 'next/dynamic';
 import type { GetServerSideProps } from 'next';
@@ -51,7 +50,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
   return (
     <>
       <Head>
-        <CanonicalUrl />
+        <link rel="canonical" href="https://www.xivbars.com" />
       </Head>
 
       <AppContextProvider>

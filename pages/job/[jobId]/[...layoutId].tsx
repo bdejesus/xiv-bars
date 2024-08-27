@@ -16,7 +16,6 @@ import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import Jobs from 'apiData/Jobs.json';
 import LayoutsList from 'components/LayoutsList';
-import CanonicalUrl from 'components/LanguagePicker/CanonicalUrl';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { PageProps } from 'types/Page';
@@ -37,6 +36,7 @@ export default function Index(props:PageProps) {
   const router = useRouter();
   const displayJobName = translateData('Name', selectedJob, router.locale);
   const displayJobAbbr = translateData('Abbreviation', selectedJob, router.locale);
+  const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}/${viewData?.id}`;
   const displayAuthor = t(
     'Pages.Layout.title_by_author',
     { titleName: viewData.title, authorName: viewData.user!.name }
@@ -68,10 +68,8 @@ export default function Index(props:PageProps) {
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={viewData?.description} />
+        <link rel="canonical" href={canonicalUrl} />
         { !viewData.published && <meta name="robots" content="noindex" /> }
-
-        <CanonicalUrl path={`${selectedJob.Abbr}/${viewData?.id}`} />
-
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
         )}

@@ -19,7 +19,6 @@ import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import dynamic from 'next/dynamic';
 import { hasSprite } from 'components/JobSprite';
-import CanonicalUrl from 'components/LanguagePicker/CanonicalUrl';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
@@ -41,6 +40,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
   const appDispatch = useAppDispatch();
   const jobName = translateData('Name', selectedJob, router.locale);
   const jobAbbr = translateData('Abbreviation', selectedJob, router.locale);
+  const canonicalUrl = `https://www.xivbars.com/job/${selectedJob.Abbr}/`;
 
   function toParam(string:string) {
     return string.toLowerCase().replaceAll(' ', '');
@@ -78,14 +78,11 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           <title>
             {`${t('Pages.Job.index_title', { jobName, jobAbbr })} | XIVBARS`}
           </title>Lore
-
+          <link rel="canonical" href={canonicalUrl} />
           <meta
             name="description"
             content={t('Pages.Job.index_description', { jobName })}
           />
-
-          <CanonicalUrl path={`job/${selectedJob.Abbr}/`} />
-
           { hasSprite(selectedJob) && (
             <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
           )}

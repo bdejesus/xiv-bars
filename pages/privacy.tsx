@@ -1,19 +1,13 @@
 import React from 'react';
-import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { domain } from 'lib/host';
 
 import type { GetServerSideProps } from 'next';
 
 export default function PrivacyPolicy() {
   return (
     <>
-      <Head>
-        <link rel="canonical" href={`${domain}/privacy`} />
-      </Head>
-
       <GlobalHeader />
       <div className="container">
         <h1>PRIVACY POLICY AGREEMENT</h1>
