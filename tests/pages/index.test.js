@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
 import 'tests/setupTests';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Home from 'pages/index';
 import { fetchMock } from 'mocks/fetchMock';
 
@@ -31,8 +31,8 @@ jest.mock('react-markdown', () => ({
 describe('Home', () => {
   window.fetch = fetchMock();
 
-  it('renders a heading', () => {
-    render(<Home />);
+  it('renders a heading', async () => {
+    waitFor(() => render(<Home />));
 
     const heading = screen.getByRole('heading', {
       name: /XIV BARS/i,
