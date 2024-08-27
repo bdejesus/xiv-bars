@@ -66,7 +66,7 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
           itemType="https://schema.org/ItemList"
         >
           <h2 className={styles.title} id="jobSelectTitle" itemProp="name">
-            { t('JobSelect.class_job') }
+            { t('JobSelect.job_select') }
           </h2>
           <JobMenu />
         </div>
