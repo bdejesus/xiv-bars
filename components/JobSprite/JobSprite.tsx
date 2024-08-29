@@ -2,7 +2,8 @@ import Image from 'next/image';
 import type { ClassJobProps } from 'types/ClassJob';
 
 interface JobSpriteProps {
-  job: ClassJobProps
+  job: ClassJobProps,
+  className?: string
 }
 
 export function hasSprite(job:ClassJobProps) {
@@ -12,13 +13,15 @@ export function hasSprite(job:ClassJobProps) {
   return checkJob;
 }
 
-export default function JobSprite({ job }:JobSpriteProps) {
+export default function JobSprite({ job, className = '' }:JobSpriteProps) {
   return (
-    <Image
-      src={`/classjob/sprite-${job.Abbreviation}.png`}
-      alt={job.Name}
-      height={52}
-      width={52}
-    />
+    <div className={className}>
+      <Image
+        src={`/classjob/sprite-${job.Abbreviation}.png`}
+        alt={job.Name}
+        height={52}
+        width={52}
+      />
+    </div>
   );
 }

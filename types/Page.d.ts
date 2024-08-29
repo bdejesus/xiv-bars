@@ -22,5 +22,6 @@ export interface PageProps {
   roleActions: ActionProps[],
   viewAction: 'list' | 'new' | 'edit' | 'show',
   ownerLayouts: LayoutViewProps[],
-  classJobLayouts: LayoutViewProps[]
+  classJobLayouts: LayoutViewProps[],
+  parentLayout: LayoutViewProps
 }

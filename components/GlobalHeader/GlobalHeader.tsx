@@ -9,7 +9,7 @@ import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import JobSelect from 'components/JobSelect';
 import ClassJob from 'components/ClassJob';
-import DuplicateLayout from 'components/ControlBar/DuplicateLayout';
+import CopyLayout from 'components/ControlBar/CopyLayout';
 
 import type { ClassJobProps } from 'types/ClassJob';
 
@@ -61,7 +61,7 @@ export function GlobalHeader({ selectedJob }:Props) {
                 <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
               </a>
 
-              { id && <DuplicateLayout /> }
+              { id && <CopyLayout /> }
             </li>
 
             { ['edit', 'show', 'new'].includes(viewAction as string) && (

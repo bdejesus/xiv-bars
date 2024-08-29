@@ -45,7 +45,7 @@ export default function AdUnit({
   }
 
   useEffect(() => {
-    initialize();
+    setTimeout(initialize, 500);
   }, [pathname]);
 
   if (!enabled) return null;

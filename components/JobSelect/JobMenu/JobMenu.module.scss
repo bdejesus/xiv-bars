@@ -57,13 +57,13 @@
 
 .categories {
   display: grid;
-  gap: $spacing-base $spacing-lg;
+  gap: $spacing-base $spacing-base;
   grid-template-columns: 1fr 1fr;
 }
 
 .jobList > ul {
   display: grid;
-  gap: $spacing-sm $spacing-base;
+  gap: $spacing-sm;
   grid-template-columns: 1fr 1fr;
 
   > li {

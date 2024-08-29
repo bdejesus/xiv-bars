@@ -19,14 +19,16 @@ interface LayoutCardProps {
   layout: LayoutViewProps,
   job: ClassJobProps,
   className?: string,
-  hideName: boolean
+  hideName?: boolean,
+  theme?: 'light' | 'dark'
 }
 
 export default function LayoutCard({
   layout,
   job,
   className = undefined,
-  hideName
+  hideName = false,
+  theme = 'dark'
 }:LayoutCardProps) {
   const { t } = useTranslation();
   const { data: session } = useSession();
@@ -55,7 +57,7 @@ export default function LayoutCard({
   const updatedAt = formatDateString(layout.updatedAt as string, router.locale!);
 
   return (
-    <div className={[styles.layoutCard, className].join(' ')}>
+    <div className={[styles.layoutCard, styles[theme], className].join(' ')}>
       <Tags layoutView={layout} job={job} className={styles.tags}>
         { layout._count?.hearts > 0 && (
           <Hearts
@@ -78,6 +80,7 @@ export default function LayoutCard({
         description={layout.description}
         job={job}
         layout={layout.layout}
+        theme={theme}
       />
 
       <div className={styles.footer}>

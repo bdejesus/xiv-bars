@@ -136,16 +136,20 @@ $panel-width-lg: $screen-xs;
 }
 
 .footer {
+  display: flex;
+  flex-direction: column;
   margin: $spacing-lg 0 0;
-  text-align: center;
 
-  img {
+  .jobSprite {
     align-items: center;
     box-shadow: 0 2px 0 #555, 0 4px 0 #ccc, 0 8px 0 #eee;
     color: #999;
     display: inline-flex;
     font-style: italic;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 52px
   }
 }
 

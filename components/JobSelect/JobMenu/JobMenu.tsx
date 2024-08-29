@@ -107,8 +107,6 @@ export default function JobMenu({ action }:Props) {
         itemProp="itemListElement"
         itemType="https://schema.org/ItemList"
       >
-        <h3 itemProp="name">{t('JobSelect.doh_dol')}</h3>
-
         <div className={styles.categories}>
           <JobsList
             title={t('JobSelect.crafter')}

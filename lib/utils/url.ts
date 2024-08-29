@@ -32,6 +32,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     'wxhb',
     'exhb',
     's',
+    'id'
   ];
   const jobId = params.jobId;
 

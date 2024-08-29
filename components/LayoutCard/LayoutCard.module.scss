@@ -189,3 +189,15 @@
   font-style: italic;
   text-transform: uppercase;
 }
+
+.layoutCard.light {
+  background-color: #fff;
+  box-shadow: $box-shadow;
+  color: #333;
+
+  h3,
+  .owner a,
+  .timestamp {
+    color: #333;
+  }
+}
