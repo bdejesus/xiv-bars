@@ -156,7 +156,9 @@ export default function DetailPanel({ className = '', visible }:Props) {
         <div className={styles.footer}>
           { (parentLayout && selectedJob) && (
           <div className="mb-lg">
-            <h3 className="mb-md">Reference Layout</h3>
+            <h3 className="mb-md">
+              {t('DetailPanel.reference_layout')}
+            </h3>
             <LayoutCard layout={parentLayout} job={selectedJob} theme="light" />
           </div>
           )}
