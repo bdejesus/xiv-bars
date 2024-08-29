@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import { defaultState } from 'components/App/defaultState';
 import type { AppState, AppDispatchActions } from 'types/App';
-import AppReducer from './reducers';
+import AppReducer from './reducer';
 
 const AppContext = createContext<AppState>(defaultState);
 const AppDispatchContext = createContext<React.Dispatch<AppDispatchActions>>(() => undefined);
