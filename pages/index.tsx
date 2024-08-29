@@ -54,17 +54,15 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
       <Hero />
 
-      <div className="app-view">
-        <div
-          className="container"
-          itemScope
-          itemType="https://schema.org/ItemList"
-        >
-          <h2 className={styles.title} id="jobSelectTitle" itemProp="name">
-            { t('JobSelect.job_select') }
-          </h2>
-          <JobMenu />
-        </div>
+      <div
+        className={`container ${styles.jobSelect}`}
+        itemScope
+        itemType="https://schema.org/ItemList"
+      >
+        <h2 className={styles.title} id="jobSelectTitle" itemProp="name">
+          { t('JobSelect.job_select') }
+        </h2>
+        <JobMenu />
       </div>
 
       <div className="container">
