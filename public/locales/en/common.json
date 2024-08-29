@@ -61,7 +61,8 @@
   },
 
   "DetailPanel": {
-    "draft": "This **Layout** is saved as a draft. Add a description by editing this Layout to make this publicly available."
+    "draft": "This **Layout** is saved as a draft. Add a description by editing this Layout to make this publicly available.",
+    "reference_layout": "Reference Layout"
   },
 
   "EorzeaProfile": {

@@ -11,7 +11,8 @@ interface SummaryProps {
   title: string,
   description?: string,
   job: ClassJobProps,
-  layout: number
+  layout: number,
+  theme?: 'light' | 'dark'
 }
 
 export default function Summary({
@@ -19,7 +20,8 @@ export default function Summary({
   title,
   description = undefined,
   job,
-  layout
+  layout,
+  theme = 'dark'
 }:SummaryProps) {
   const { t } = useTranslation();
   const router = useRouter();
@@ -47,13 +49,13 @@ export default function Summary({
 
   return (
     <div
-      className={styles.summary}
+      className={[styles.summary, styles[theme]].join(' ')}
       role="button"
       onClick={handleClick}
       onKeyUp={handleKeyPress}
       tabIndex={0}
     >
-      <a href={layoutUrl} itemProp="url">
+      <a href={layoutUrl} itemProp="url" className={styles.titleLink}>
         <h3 title={title} itemProp="name">{title}</h3>
       </a>
 

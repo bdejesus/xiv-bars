@@ -10,12 +10,9 @@ $description-height: 165px;
   &:focus {
     cursor: pointer;
 
-    > a {
-      text-decoration: none;
-    }
-
-    > a h3 {
+    .titleLink {
       color: $color-alt;
+      text-decoration: none;
     }
   }
 
@@ -24,8 +21,12 @@ $description-height: 165px;
     outline: none;
   }
 
-  h3 {
+  .titleLink {
     color: #fff;
+  }
+
+  h3 {
+    color: currentcolor;
     margin: 0;
     max-width: 320px;
     min-width: 100%;
@@ -101,5 +102,12 @@ $description-height: 165px;
     pre {
       display: none;
     }
+  }
+}
+
+
+.summary.light {
+  .description::after {
+    background-image: linear-gradient(rgb(255 255 255 / 0%) 0, rgba(255 255 255 / 0%) 95%);
   }
 }

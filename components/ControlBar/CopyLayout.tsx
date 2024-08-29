@@ -4,7 +4,7 @@ import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 
-export default function DuplicateLayout() {
+export default function CopyLayout() {
   const { t } = useTranslation();
   const router = useRouter();
   const { viewData, selectedJob } = useAppState();

@@ -61,7 +61,8 @@
   },
 
   "DetailPanel": {
-    "draft": "Cette **disposition** est enregistrée sous forme de brouillon. Ajoutez une description en éditant cette disposition pour la rendre publique."
+    "draft": "Cette **disposition** est enregistrée sous forme de brouillon. Ajoutez une description en éditant cette disposition pour la rendre publique.",
+    "reference_layout": "Disposition de Référence"
   },
 
   "EorzeaProfile": {

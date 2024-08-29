@@ -61,7 +61,8 @@
   },
 
   "DetailPanel": {
-    "draft": "Dieses **Layout** ist als Entwurf gespeichert. Fügen Sie eine Beschreibung hinzu, indem Sie dieses Layout bearbeiten, um es öffentlich verfügbar zu machen."
+    "draft": "Dieses **Layout** ist als Entwurf gespeichert. Fügen Sie eine Beschreibung hinzu, indem Sie dieses Layout bearbeiten, um es öffentlich verfügbar zu machen.",
+    "reference_layout": "Referenzlayout"
   },
 
   "EorzeaProfile": {

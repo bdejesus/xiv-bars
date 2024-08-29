@@ -32,7 +32,8 @@ export default function Index(props:PageProps) {
     actions,
     roleActions,
     viewAction,
-    classJobLayouts
+    classJobLayouts,
+    parentLayout
   } = props;
 
   const router = useRouter();
@@ -49,7 +50,8 @@ export default function Index(props:PageProps) {
         actions,
         roleActions,
         viewAction,
-        urlParams: router.query
+        urlParams: router.query,
+        parentLayout
       }
     });
   }, [viewData]);
@@ -102,8 +104,22 @@ type ContextQuery = {
 };
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
-  const { jobId, isPvp } = context.query as ContextQuery;
+  const { jobId, isPvp, id } = context.query as ContextQuery;
+
   const pvp:boolean = !isPvp ? false : isPvp === '1';
+
+  let parentLayout;
+
+  if (id) {
+    const fetchOptions = {
+      method: 'POST',
+      body: JSON.stringify({ layoutId: id, viewerId: undefined, method: 'read' }),
+      headers: { 'Content-Type': 'application/json' }
+    };
+
+    parentLayout = await fetch(`${domain}/api/layout`, fetchOptions);
+    parentLayout = await parentLayout.json();
+  }
 
   // Get Selected Job
   const selectedJob = jobId ? Jobs.find((job:ClassJobProps) => job.Abbr === jobId) : null;
@@ -136,7 +152,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       actions,
       roleActions,
       viewAction: 'new',
-      classJobLayouts: serializableClassJobLayouts
+      classJobLayouts: serializableClassJobLayouts,
+      parentLayout
     };
 
     return { props };
@@ -150,7 +167,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       actions,
       roleActions,
       viewAction: 'new',
-      classJobLayouts: []
+      classJobLayouts: [],
+      parentLayout
     };
 
     return { props };
