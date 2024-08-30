@@ -37,6 +37,8 @@ export default function ListCards({ layouts }:ListCardsProps) {
               itemProp="itemListElement"
               itemType="https://schema.org/HowTo"
               key={layout.id}
+              className={styles.listItem}
+              style={{ animationDelay: `${(index * 100)}ms` }}
             >
               <meta itemProp="position" content={`${layout.position || index + 1}`} />
               <LayoutCard

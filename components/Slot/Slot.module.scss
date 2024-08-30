@@ -42,6 +42,27 @@
       pointer-events: auto;
     }
   }
+
+  :global(.action) {
+    animation-duration: .66s;
+    animation-fill-mode: both;
+    animation-name: enterAction;
+    animation-timing-function: ease;
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes enterAction {
+  from {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @media (hover: none) {

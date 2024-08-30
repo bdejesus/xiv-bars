@@ -35,13 +35,14 @@ export function JobsList({
       <h4 className={styles.title} itemProp="name">{title}</h4>
 
       <ul className={styles.jobList}>
-        {jobs.map((job) => (
+        {jobs.map((job, index) => (
           <li
             key={job.Name}
             value={job.ID}
             itemScope
             itemProp="itemListElement"
             itemType="https://schema.org/ListItem"
+            style={{ animationDelay: `${index * 60}ms` }}
           >
             <Link
               href={action === 'new'

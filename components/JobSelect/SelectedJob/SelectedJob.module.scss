@@ -2,8 +2,27 @@
 
 .container {
   align-items: flex-start;
+  animation-delay: 150ms;
+  animation-duration: 0.66s;
+  animation-fill-mode: forwards;
+  animation-name: enterContainer;
+  animation-timing-function: ease;
   display: flex;
   flex-direction: column;
+  opacity: 0;
+  position: relative;
+}
+
+@keyframes enterContainer {
+  from {
+    opacity: 0;
+    top: $spacing-sm;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
 }
 
 .title {
@@ -15,6 +34,7 @@
   letter-spacing: 0;
   line-height: 1;
   margin: 0;
+  overflow: hidden;
   padding: $spacing-lg $spacing-base $spacing-base;
   position: relative;
   text-shadow: 0 3px 2px rgb(0 0 0 / 20%);

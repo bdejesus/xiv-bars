@@ -14,10 +14,11 @@ import styles from './Action.module.scss';
 let tooltipTimeout: NodeJS.Timeout | undefined;
 
 interface Props {
-  action: ActionProps
+  action: ActionProps,
+  style?: {[key:string]: string}
 }
 
-export default function Action({ action }: Props) {
+export default function Action({ action, style }: Props) {
   const { locale } = useRouter();
   const { showTitles, readOnly } = useAppState();
   const actionRef = createRef<HTMLDivElement>();
@@ -91,6 +92,7 @@ export default function Action({ action }: Props) {
         tabIndex={0}
         data-title={displayTtile}
         data-show-title={showTitles}
+        style={style}
       >
         <div className={`action-icon-wrapper ${styles.iconWrapper}`}>
           <Image
