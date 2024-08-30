@@ -28,7 +28,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
   const { data: session } = useSession();
   const router = useRouter();
   const {
-    selectedJob, viewAction, viewData, //referenceLayout
+    selectedJob, viewAction, viewData, // referenceLayout
   } = useAppState();
   const {
     title,
