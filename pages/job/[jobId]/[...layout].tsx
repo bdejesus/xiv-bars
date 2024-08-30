@@ -31,6 +31,7 @@ export default function Index(props:PageProps) {
     viewAction,
     ownerLayouts,
     classJobLayouts,
+    referenceLayout
   } = props;
   const { t } = useTranslation();
   const router = useRouter();
@@ -57,7 +58,8 @@ export default function Index(props:PageProps) {
         showDetails: true,
         urlParams: router.query,
         viewAction,
-        viewData
+        viewData,
+        referenceLayout
       }
     });
   }, [router.query]);
@@ -174,7 +176,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         roleActions,
         viewAction: 'show',
         ownerLayouts: serializeDates(ownerLayouts),
-        classJobLayouts: serializableClassJobLayouts
+        classJobLayouts: serializableClassJobLayouts,
+        referenceLayout: null
       };
 
       return { props };

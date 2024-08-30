@@ -65,9 +65,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   }, {});
 
   const filterEntries = Object.fromEntries(
-    Object.entries(decoratedParams).filter(([, value]) => {
-      return value && !['undefined', 'null'].includes(value.toString());
-    })
+    Object.entries(decoratedParams).filter(([, value]) => value && !['undefined', 'null'].includes(value.toString()))
   );
 
   const url = `${domain}/job/${jobId}/new`;

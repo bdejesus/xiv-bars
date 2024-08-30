@@ -37,7 +37,8 @@ export const defaultState:AppState = {
   actions: undefined,
   chotbar,
   hotbar,
-  showMarkdownGuide: false
+  showMarkdownGuide: false,
+  referenceLayout: undefined
 };
 
 export default defaultState;
