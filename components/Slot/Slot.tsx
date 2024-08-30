@@ -50,25 +50,29 @@ export default function Slot({
   }
 
   function handleSlotUpdate(withAction?:ActionProps) {
-    const updatedSlots = setActionToSlot({
-      action: withAction,
-      slotID: id,
-      encodedSlots,
-      layout,
-      actions,
-      roleActions
-    });
-
     if (selectedJob) {
-      const url = buildUrl({
-        query: router.query,
-        mergeData: { s: updatedSlots }
-      });
-      appDispatch({
-        type: appActions.SLOT_ACTION,
-        payload: { action: withAction, slotID: id }
-      });
-      if (!viewData.id) router.push(url, undefined, { shallow: true });
+      if (viewData.createdAt) {
+        appDispatch({
+          type: appActions.SLOT_ACTION,
+          payload: { action: withAction, slotID: id }
+        });
+      } else {
+        const updatedSlots = setActionToSlot({
+          action: withAction,
+          slotID: id,
+          encodedSlots,
+          layout,
+          actions,
+          roleActions
+        });
+
+        const url = buildUrl({
+          query: router.query,
+          mergeData: { s: updatedSlots }
+        });
+
+        router.push(url, undefined, { shallow: true });
+      }
     }
   }
 

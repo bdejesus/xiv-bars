@@ -30,7 +30,7 @@ export function App() {
     showDetails,
     viewData,
     viewAction,
-    showMarkdownGuide
+    showMarkdownGuide,
   } = appState;
 
   const router = useRouter();
@@ -50,7 +50,7 @@ export function App() {
         }
       });
     }
-  }, [router.query, viewAction]);
+  }, [router.query, viewAction, viewData.encodedSlots]);
 
   function closeMarkdownGuide() {
     appDispatch({
