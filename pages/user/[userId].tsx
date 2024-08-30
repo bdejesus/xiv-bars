@@ -42,7 +42,7 @@ export default function User({ user }:UserViewProps) {
       type: userActions.UPDATE_LAYOUTS,
       payload: { layouts: user.layouts }
     });
-  }, []);
+  }, [user]);
 
   if (!user) return null;
 
