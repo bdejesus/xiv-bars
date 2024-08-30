@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import { maxLayouts } from 'lib/user';
 import type { UserState, UserDispatchActions } from 'types/User';
 import { userActions } from './actions';
-import UserReducer from './reducers';
+import UserReducer from './reducer';
 
 const initialState = {
   loggedIn: false,

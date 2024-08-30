@@ -63,9 +63,9 @@ export default function UserNav({ className = '' }:UserNavProps) {
             data-active={showMenu}
           >
             <li className={styles.navItem}>
-              <a href={localizePath(`/user/${session.user.id}`, router.locale)}>
+              <Link href={localizePath(`/user/${session.user.id}`, router.locale)}>
                 {t('UserNav.my_layouts')}
-              </a>
+              </Link>
             </li>
 
             <li className={styles.navItem}>

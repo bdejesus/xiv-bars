@@ -8,17 +8,12 @@ import PET_ACTION from 'apiData/PetAction.json';
 
 import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
-import { layouts, chotbar, hotbar } from 'lib/xbars';
+import { layouts, buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import { decorateRouterQuery } from 'lib/utils/url';
 
 import type { LayoutViewProps } from 'types/Layout';
 import type { SlotProps, ActionProps } from 'types/Action';
 import type { ParsedUrlQuery } from 'querystring';
-
-function assignLayoutTemplate(layoutID:number) {
-  const templates = [chotbar, hotbar];
-  return templates[layoutID ? parseInt(layoutID.toString(), 10) : 0];
-}
 
 function assignActionIds(slottedActions: SlotProps[]) {
   if (!slottedActions) return null;
@@ -163,14 +158,13 @@ function groupSlotsIntoLayout({
   actions,
   roleActions
 }:SlotActionsProps) {
-  const slotsString = encodedSlots || encodeSlots([chotbar, hotbar][layout]);
   const numSlots = layout?.toString() === '1' ? 12 : 16;
-  const slotRows = sortIntoGroups(slotsString?.split(','), numSlots);
-  const layoutTemplate = assignLayoutTemplate(layout);
+  const slotRows = sortIntoGroups(encodedSlots?.split(','), numSlots);
+  const layoutTemplate = layout === 0 ? buildCrossHotbars() : buildHotbars();
 
   // Take each action group and assign actions to them
   const slottedRows = slotRows.reduce((slotted, rowActionIds, groupIndex) => {
-    const rowKey = Object.keys(layoutTemplate)[groupIndex];
+    const rowKey = Object.keys(layoutTemplate)[groupIndex] as keyof typeof layoutTemplate;
 
     const rowSlots = rowActionIds.map((actionID:string, slotIndex:number) => {
       const slotRow = layoutTemplate[rowKey] as SlotProps[];
@@ -197,12 +191,14 @@ function slotActions({
   actions,
   roleActions
 }:SlotActionsProps) {
-  const layoutTemplate = assignLayoutTemplate(layout);
-  const slotsString = encodedSlots || encodeSlots(layoutTemplate);
+  const layoutTemplate = layout === 0 ? buildCrossHotbars() : buildHotbars();
 
   // Split action IDs from encodedSlots string into groups depending on the layout
   const groupedActions = groupSlotsIntoLayout({
-    encodedSlots: slotsString, layout, actions, roleActions
+    encodedSlots: encodedSlots || encodeSlots(layoutTemplate),
+    layout,
+    actions,
+    roleActions
   });
 
   return groupedActions;

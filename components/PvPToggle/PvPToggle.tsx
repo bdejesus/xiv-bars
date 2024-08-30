@@ -25,7 +25,7 @@ export default function PvPToggle() {
         query: router.query,
         mergeData: { isPvp: !viewData.isPvp }
       });
-      router.push(url, undefined, { shallow: true });
+      router.push(url, undefined);
     }
   }
 

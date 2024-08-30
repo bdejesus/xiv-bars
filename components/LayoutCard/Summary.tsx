@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import type { ClassJobProps } from 'types/ClassJob';
@@ -55,9 +56,9 @@ export default function Summary({
       onKeyUp={handleKeyPress}
       tabIndex={0}
     >
-      <a href={layoutUrl} itemProp="url" className={styles.titleLink}>
+      <Link href={layoutUrl} itemProp="url" className={styles.titleLink}>
         <h3 title={title} itemProp="name">{title}</h3>
-      </a>
+      </Link>
 
       <meta
         itemProp="description"

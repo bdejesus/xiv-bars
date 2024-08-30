@@ -200,18 +200,18 @@
       }
     },
     "Job": {
-      "index_title": "Guides de Configuration des Touches et de Manette pour {{jobName}} - Dawntrail",
-      "index_description": "Cette page répertorie tous les guides créés par les joueurs pour la configuration des touches et la disposition des barres d'actions (HB) et des Cross Hotbars (XHB) pour le job {{jobName}} dans Final Fantasy XIV: Dawntrail.",
+      "index_title": "Configuration des raccourcis clavier et des guides pour contrôleurs de {{jobName}} - Dawntrail",
+      "index_description": "Cette page répertorie tous les guides de configuration des raccourcis clavier (HB) et des Cross Hotbars (XHB) créés par les joueurs pour le job {{jobName}} dans Final Fantasy XIV: Dawntrail.",
       "job_guide": "Guide du Job : {{jobName}}",
-      "keybinding_and_layout_guides": "Guides de Configuration des Touches et Dispositions pour {{jobName}}",
+      "keybinding_and_layout_guides": "Guides de configuration des raccourcis clavier et des layouts de {{jobName}}",
       "new_description": "Planifiez vos barres d'actions ou vos barres d'actions croisées (XHB) pour {{jobName}} avec cet outil. Faites glisser et déposez, ou cliquez pour attribuer des actions aux emplacements des barres d'actions et enregistrez-les sous une URL partageable.",
       "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
       "create_layout": "Créer une nouvelle disposition.",
       "short_description": "Il s'agit d'un guide de configuration des touches pour {{jobName}} dans Final Fantasy XIV: Dawntrail, destiné à vos actions {{hotbarLayout}}."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Guide de Touche et de Manette - Dawntrail",
-      "new_title": "Créer un nouveau guide de touche pour {{jobName}} - Dawntrail",
+      "title": "{{jobName}} ({{jobAbbr}}) Configuration des raccourcis clavier et guide du contrôleur - Dawntrail",
+      "new_title": "Créer un nouveau setup de raccourcis clavier pour {{jobName}} - Dawntrail",
       "title_by_author": "{{ titleName }} par {{ authorName }}",
       "more_layouts_by_user": "Plus de mises en page par {{userName}}",
       "more_layouts_by_job": "Plus de mises en page de {{jobName}}",

@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import type { ClassJobProps } from 'types/ClassJob';
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import Icon, { Icons } from 'components/Icon';
 import ClassJob from 'components/ClassJob';
@@ -42,7 +43,7 @@ export function JobsList({
             itemProp="itemListElement"
             itemType="https://schema.org/ListItem"
           >
-            <a
+            <Link
               href={action === 'new'
                 ? localizePath(`/job/${job.Abbr}/new`, locale)
                 : localizePath(`/job/${job.Abbr}`, locale)}
@@ -52,9 +53,9 @@ export function JobsList({
               aria-labelledby={`job-label-${job.Name}`}
             >
               <ClassJob job={job} className={styles.classJob} />
-            </a>
+            </Link>
 
-            <a
+            <Link
               href={localizePath(`/job/${job.Abbr}/new`, locale)}
               className={`button btn-icon ${styles.addBtn} joblist-new`}
             >
@@ -67,7 +68,7 @@ export function JobsList({
               <span className={`${styles.addLabel} btn-label`}>
                 {t('JobsList.new_job_layout', { jobName: translateData('Name', job, locale) })}
               </span>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

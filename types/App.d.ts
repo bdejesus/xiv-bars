@@ -19,7 +19,7 @@ export interface AppState {
   chotbar: {[key: string]: object},
   hotbar: {[key: string]: object},
   showMarkdownGuide: boolean,
-  parentLayout?: LayoutViewProps
+  referenceLayout?: LayoutViewProps
 }
 
 interface DispatchPayload {
@@ -39,7 +39,7 @@ interface DispatchPayload {
   hearted?: HeartProps,
   showDetails?: boolean,
   showMarkdownGuide?: boolean,
-  parentLayout?: LayoutViewProps
+  referenceLayout?: LayoutViewProps
   _count?: { hearts: number }
 }
 

@@ -5,7 +5,7 @@ import React, {
   useReducer
 } from 'react';
 import type { SystemProps, SystemDispatchActions } from 'types/System';
-import SystemReducer from './reducers';
+import SystemReducer from './reducer';
 
 const defaultState:SystemProps = {
   showModal: false,

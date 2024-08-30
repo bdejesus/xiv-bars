@@ -200,18 +200,18 @@
       }
     },
     "Job": {
-      "index_title": "{{jobName}} Hotbar-Tastenbelegung und Controller-Leitfäden - Dawntrail",
-      "index_description": "Auf dieser Seite sind alle von Spielern erstellten Hotbar (HB) und Cross Hotbar (XHB) Tastenbelegungs- und Layout-Leitfäden für den {{jobName}}-Job in Final Fantasy XIV: Dawntrail aufgelistet.",
+      "index_title": "{{jobName}} Hotbar-Tastenkürzel und Controller-Guides - Dawntrail",
+      "index_description": "Diese Seite listet alle von Spielern erstellten Hotbar (HB) und Cross Hotbar (XHB) Tastenkürzel-Setups und Layout-Guides für den {{jobName}}-Job in Final Fantasy XIV: Dawntrail auf.",
       "job_guide": "Job-Leitfaden: {{jobName}}",
-      "keybinding_and_layout_guides": "{{jobName}} Tastenbelegungs- und Layout-Leitfäden",
+      "keybinding_and_layout_guides": "{{jobName}} Tastenkürzel und Layout-Guides",
       "new_description": "Planen Sie Ihre {{jobName}}-Aktionsleisten oder Kreuz-Aktionsleisten (XHB) mit diesem Tool. Ziehen Sie per Drag & Drop oder klicken Sie, um Aktionen den Aktionsleistenplätzen zuzuweisen und speichern Sie diese unter einer teilbaren URL.",
       "no_layouts": "Keine {{jobName}} Layouts vorhanden.",
       "create_layout": "Erstellen Sie ein neues Layout.",
       "short_description": "Dies ist ein {{jobName}} Tastenbelegungsleitfaden für deine {{hotbarLayout}}-Aktionen in Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Tastenbelegung und Controller-Leitfaden - Dawntrail",
-      "new_title": "Erstellen Sie einen neuen {{jobName}} Controller-Tastenbelegungsleitfaden - Dawntrail",
+      "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Tastenkürzel und Controller-Guide - Dawntrail",
+      "new_title": "Erstellen Sie ein neues {{jobName}} Controller-Tastenkürzel-Setup - Dawntrail",
       "title_by_author": "{{ titleName }} von {{ authorName }}",
       "more_layouts_by_user": "Mehr Layouts von {{userName}}",
       "more_layouts_by_job": "Mehr {{jobName}} Layouts",

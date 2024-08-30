@@ -67,11 +67,12 @@
   width: $slot-size;
 
   &::after {
-    box-shadow: inset 1px 1px 1px rgb(255 255 255 / 15%), inset -1px -1px 1px rgb(0 0 0 / 33%);
+    box-shadow: inset 1px 1px 2px rgb(255 255 255 / 33%), inset -1px -1px 2px rgb(0 0 0 / 33%);
     content: "";
     display: block;
     inset: 0;
     position: absolute;
+    z-index: 2;
   }
 
   img {

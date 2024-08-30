@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { formatDateString } from 'lib/utils/time';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { useSession } from 'next-auth/react';
 import { useUserDispatch, userActions } from 'components/User';
@@ -98,9 +99,9 @@ export default function LayoutCard({
             itemType="https://schema.org/Person"
             itemProp="author"
           >
-            <a href={`/user/${layout.userId}`} itemProp="url">
+            <Link href={`/user/${layout.userId}`} itemProp="url">
               <span itemProp="name">{layout.user.name}</span>
-            </a>
+            </Link>
           </div>
         )}
 
