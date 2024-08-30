@@ -108,7 +108,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
   const pvp:boolean = !isPvp ? false : isPvp === '1';
 
-  let parentLayout;
+  let parentLayout = null;
 
   if (id) {
     const fetchOptions = {
