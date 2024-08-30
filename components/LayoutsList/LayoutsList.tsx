@@ -134,7 +134,7 @@ export default function LayoutsList({
     const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
     const groupLayouts = groupIntoColumns(indexedLayouts);
     setViewLayouts(groupLayouts);
-  }, [viewOptions]);
+  }, [viewOptions, layouts]);
 
   useEffect(() => {
     if (viewLayouts) {

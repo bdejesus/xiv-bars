@@ -28,7 +28,7 @@ export function GlobalHeader({ selectedJob }:Props) {
 
   return (
     <div className={styles.container}>
-      <a href={localizePath('/', router.locale)} className={styles.branding}>
+      <Link href={localizePath('/', router.locale)} className={styles.branding}>
         <div className={styles.logo}>
           <img
             src="/xivbars-logo.svg"
@@ -37,7 +37,7 @@ export function GlobalHeader({ selectedJob }:Props) {
             width={120}
           />
         </div>
-      </a>
+      </Link>
 
       { selectedJob && (
         <nav className={styles.globalNav}>

@@ -39,7 +39,7 @@ export default function AdUnit({
         ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
       } catch (error) {
         Sentry.captureException(error);
-        console.warn('Adsense Error: ', error);
+        console.error('Adsense Error: ', error);
       }
     }
   }
