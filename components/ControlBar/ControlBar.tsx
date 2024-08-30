@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppState } from 'components/App/context';
 import { useSystemState } from 'components/System';
-import LayoutToggle from '@/components/Layout/LayoutToggle';
+import LayoutToggle from 'components/Layout/LayoutToggle';
 import PvPToggle from 'components/PvPToggle';
 import ToggleTitles from './ToggleTitles';
 import ToggleMaxLvl from './ToggleMaxLvl';

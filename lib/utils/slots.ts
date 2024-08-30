@@ -8,19 +8,12 @@ import PET_ACTION from 'apiData/PetAction.json';
 
 import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
-import {
-  layouts, chotbar, hotbar, buildHotbars, buildCrossHotbars
-} from 'lib/xbars';
+import { layouts, buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import { decorateRouterQuery } from 'lib/utils/url';
 
 import type { LayoutViewProps } from 'types/Layout';
 import type { SlotProps, ActionProps } from 'types/Action';
 import type { ParsedUrlQuery } from 'querystring';
-
-function assignLayoutTemplate(layoutID:number) {
-  const templates = [chotbar, hotbar];
-  return templates[layoutID ? parseInt(layoutID.toString(), 10) : 0];
-}
 
 function assignActionIds(slottedActions: SlotProps[]) {
   if (!slottedActions) return null;
@@ -167,11 +160,11 @@ function groupSlotsIntoLayout({
 }:SlotActionsProps) {
   const numSlots = layout?.toString() === '1' ? 12 : 16;
   const slotRows = sortIntoGroups(encodedSlots?.split(','), numSlots);
-  const layoutTemplate = assignLayoutTemplate(layout);
+  const layoutTemplate = layout === 0 ? buildCrossHotbars() : buildHotbars();
 
   // Take each action group and assign actions to them
   const slottedRows = slotRows.reduce((slotted, rowActionIds, groupIndex) => {
-    const rowKey = Object.keys(layoutTemplate)[groupIndex];
+    const rowKey = Object.keys(layoutTemplate)[groupIndex] as keyof typeof layoutTemplate;
 
     const rowSlots = rowActionIds.map((actionID:string, slotIndex:number) => {
       const slotRow = layoutTemplate[rowKey] as SlotProps[];
@@ -199,11 +192,13 @@ function slotActions({
   roleActions
 }:SlotActionsProps) {
   const layoutTemplate = layout === 0 ? buildCrossHotbars() : buildHotbars();
-  const slotsString = encodedSlots || encodeSlots(layoutTemplate);
 
   // Split action IDs from encodedSlots string into groups depending on the layout
   const groupedActions = groupSlotsIntoLayout({
-    encodedSlots: slotsString, layout, actions, roleActions
+    encodedSlots: encodedSlots || encodeSlots(layoutTemplate),
+    layout,
+    actions,
+    roleActions
   });
 
   return groupedActions;
