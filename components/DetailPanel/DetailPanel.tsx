@@ -154,14 +154,14 @@ export default function DetailPanel({ className = '', visible }:Props) {
           )}
 
         <div className={styles.footer}>
-          { (referenceLayout && selectedJob) && (
+          {/* { (referenceLayout && selectedJob) && (
           <div className="mb-lg">
             <h3 className="mb-md">
               {t('DetailPanel.reference_layout')}
             </h3>
             <LayoutCard layout={referenceLayout} job={selectedJob} theme="light" />
           </div>
-          )}
+          )} */}
 
           { showSprite && (
           <JobSprite job={selectedJob} className={styles.jobSprite} />
