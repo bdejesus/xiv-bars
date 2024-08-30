@@ -5,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { translateData, localizePath } from 'lib/utils/i18n.mjs';
 import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useAppDispatch } from 'components/App/context';
 import { useSystemDispatch, systemActions } from 'components/System';
 import { appActions } from 'components/App/actions';
@@ -105,13 +106,13 @@ export default function Layouts({ selectedJob, layouts }: Props) {
               { selectedJob?.Description && <Lore description={selectedJob.Description} /> }
 
               <div className={styles.actions}>
-                <a
+                <Link
                   href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
                   className={`button btn-primary btn-lg ${styles.newLink}`}
                 >
                   <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
                   <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
-                </a>
+                </Link>
 
                 <a
                   href={guideUrl}
@@ -133,7 +134,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           </div>
 
           <div className="sidebar">
-            <AdUnit format="largeRect" id="ad-JobsIndexPage" />
+            <AdUnit id="ad-JobsIndexPage" />
           </div>
         </div>
 
@@ -150,12 +151,12 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           : (
             <>
               <h2>{t('Pages.Job.no_layouts', { jobName })}</h2>
-              <a
+              <Link
                 className="button btn-inline btn-primary"
                 href={`/job/${selectedJob.Abbr}/new`}
               >
                 {t('Pages.Job.create_layout')}
-              </a>
+              </Link>
             </>
           )}
       </div>
