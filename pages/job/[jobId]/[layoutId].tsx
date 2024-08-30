@@ -114,8 +114,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   const { req, res } = context;
   const session = await getServerSession(req, res, authOptions);
   const viewerId = session?.user.id;
-  const jobId = context.params?.jobId as string;
-  const [layoutId] = context.params?.layout as string[];
+  const { jobId, layoutId } = context.params as {[key:string]: string};
 
   if (layoutId) {
     try {
