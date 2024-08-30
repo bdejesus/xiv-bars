@@ -47,20 +47,13 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     return value.toString().replaceAll(/\[|\]|"/gi, '');
   }
 
-  const decoratedParams = Object.entries(params).reduce<Record<string, any>>((items, [key, value]) => {
-    if (['s', 's1', 'encodedSlots'].includes(key)) {
-      items.s = value;
-    } else if (key === 'isPvp') {
-      items[key] = formatPvp(value as string);
-    } else if (key === 'hb') {
-      items[key] = value && formatHb(value as hbValue);
-    } else if (['l', 'layout'].includes(key)) {
-      items.l = value?.toString();
-    } else if (inlcudeKeys.includes(key)) {
-      items[key] = value;
-    } else if (key === 'id') {
-      items.refId = value?.toString();
-    }
+  const decoratedParams = Object.entries(params).reduce((items, [key, value]) => {
+    if (['s', 's1', 'encodedSlots'].includes(key)) return { ...items, s: value };
+    if (key === 'isPvp') return { ...items, [key]: formatPvp(value as string) };
+    if (key === 'hb') return { ...items, [key]: value && formatHb(value as hbValue) };
+    if (['l', 'layout'].includes(key)) return { ...items, l: value?.toString() };
+    if (inlcudeKeys.includes(key)) return { ...items, [key]: value };
+    if (key === 'id') return { ...items, refId: value };
     return items;
   }, {});
 

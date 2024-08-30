@@ -43,7 +43,7 @@ describe('buildUrl', () => {
     };
 
     const result = UrlUtils.buildUrl({ query, viewData });
-    expect(result).toBe(`${domain}/job/SAM/new?id=0&wxhb=2&xhb=4&exhb=6&l=0&isPvp=0&hb=1,1,1,1,1,1,1,1,1,1`);
+    expect(result).toBe(`${domain}/job/SAM/new?wxhb=2&xhb=4&exhb=6&l=0&isPvp=0&hb=1,1,1,1,1,1,1,1,1,1`);
   });
 });
 

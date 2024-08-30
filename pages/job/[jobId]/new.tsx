@@ -105,11 +105,7 @@ type ContextQuery = {
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
   const { jobId, isPvp, refId } = context.query as ContextQuery;
-
-  console.log(context.query);
-
   const pvp:boolean = !isPvp ? false : isPvp === '1';
-
   let referenceLayout = null;
 
   if (refId) {

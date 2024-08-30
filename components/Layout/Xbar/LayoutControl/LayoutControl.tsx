@@ -36,7 +36,7 @@ export default function LayoutControl() {
         <Options
           id="xhb"
           onChange={(event) => handleSelect('xhb', event)}
-          value={xhb}
+          value={xhb.toString()}
           required
         >
           <span className={styles.controlLabel}>
@@ -58,7 +58,7 @@ export default function LayoutControl() {
         <Options
           id="wxhb"
           onChange={(event) => handleSelect('wxhb', event)}
-          value={wxhb}
+          value={wxhb.toString()}
         >
           <span className={styles.controlLabel}>
             WXHB
@@ -79,7 +79,7 @@ export default function LayoutControl() {
         <Options
           id="exhb"
           onChange={(event) => handleSelect('exhb', event)}
-          value={exhb}
+          value={exhb.toString()}
         >
           <span className={styles.controlLabel}>
             Expanded XHB

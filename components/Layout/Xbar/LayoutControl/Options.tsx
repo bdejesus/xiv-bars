@@ -4,7 +4,7 @@ import { useAppState } from 'components/App/context';
 interface Props {
   id: string,
   onChange: React.ChangeEventHandler<HTMLSelectElement>,
-  value?: number,
+  value: string,
   children: ReactNode,
   required?: boolean
 }
@@ -14,7 +14,7 @@ type ReduceType = (number|string|never|boolean|object|undefined)[]
 export function Options({
   id,
   onChange,
-  value = 0,
+  value,
   children,
   required = false
 }: Props) {
@@ -39,7 +39,7 @@ export function Options({
         name={id}
         onBlur={onChange}
         onChange={(e) => e.currentTarget.blur()}
-        defaultValue={value}
+        value={value}
       >
         { !required && <option value={0}>Off</option> }
 
