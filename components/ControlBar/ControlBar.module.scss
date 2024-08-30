@@ -14,6 +14,17 @@
     z-index: 11;
   }
 
+  button {
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 30px;
+  }
+
+  :global(.button),
+  :global(.btn-switch) {
+    font-size: $font-size-sm;
+  }
+
   @media (max-width: $screen-md) {
     top: 0;
   }
@@ -50,16 +61,5 @@
 
   &:first-child {
     margin-left: 0;
-  }
-}
-
-.control,
-.controlGroup {
-  button,
-  :global(.button) {
-    font-size: $font-size-sm;
-    height: 30px;
-    padding-left: 10px;
-    padding-right: 10px;
   }
 }
