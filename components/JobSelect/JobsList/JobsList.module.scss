@@ -137,10 +137,10 @@ $button-height: 50px;
   }
 
   .classJob {
+    box-shadow: inset 1px 1px 1px rgb(255 255 255 / 20%), inset -1px -1px 1px rgb(0 0 0 / 20%);
     flex: 1 1 auto;
     height: 100%;
     margin-right: $button-height;
     padding-left: $spacing-xs;
-    box-shadow: inset 1px 1px 1px rgba(255,255,255,0.2), inset -1px -1px 1px rgba(0,0,0,0.2);
   }
 }
