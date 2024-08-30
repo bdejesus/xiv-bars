@@ -8,7 +8,9 @@ import PET_ACTION from 'apiData/PetAction.json';
 
 import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
-import { layouts, chotbar, hotbar } from 'lib/xbars';
+import {
+  layouts, chotbar, hotbar, buildHotbars, buildCrossHotbars
+} from 'lib/xbars';
 import { decorateRouterQuery } from 'lib/utils/url';
 
 import type { LayoutViewProps } from 'types/Layout';
@@ -163,9 +165,8 @@ function groupSlotsIntoLayout({
   actions,
   roleActions
 }:SlotActionsProps) {
-  const slotsString = encodedSlots || encodeSlots([chotbar, hotbar][layout]);
   const numSlots = layout?.toString() === '1' ? 12 : 16;
-  const slotRows = sortIntoGroups(slotsString?.split(','), numSlots);
+  const slotRows = sortIntoGroups(encodedSlots?.split(','), numSlots);
   const layoutTemplate = assignLayoutTemplate(layout);
 
   // Take each action group and assign actions to them
@@ -197,7 +198,7 @@ function slotActions({
   actions,
   roleActions
 }:SlotActionsProps) {
-  const layoutTemplate = assignLayoutTemplate(layout);
+  const layoutTemplate = layout === 0 ? buildCrossHotbars() : buildHotbars();
   const slotsString = encodedSlots || encodeSlots(layoutTemplate);
 
   // Split action IDs from encodedSlots string into groups depending on the layout

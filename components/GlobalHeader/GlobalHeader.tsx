@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
 import { localizePath } from 'lib/utils/i18n.mjs';
 import ExportToMacros from 'components/ExportToMacro';
 import Sharing from 'components/Sharing';
@@ -52,14 +53,14 @@ export function GlobalHeader({ selectedJob }:Props) {
             </li>
 
             <li className={viewAction !== 'new' ? styles.action : styles.actionGroup}>
-              <a
+              <Link
                 href={localizePath(`/job/${selectedJob.Abbr}/new`, router.locale)}
                 className="button btn-primary"
                 data-title={t('GlobalHeader.new_layout')}
               >
                 <Icon id={Icons.ADD} alt={t('GlobalHeader.new_layout')} />
                 <span className="btn-label">{t('GlobalHeader.new_layout')}</span>
-              </a>
+              </Link>
 
               { id && <CopyLayout /> }
             </li>
