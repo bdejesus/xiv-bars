@@ -28,7 +28,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
   const { data: session } = useSession();
   const router = useRouter();
   const {
-    selectedJob, viewAction, viewData, parentLayout
+    selectedJob, viewAction, viewData, referenceLayout
   } = useAppState();
   const {
     title,
@@ -154,12 +154,12 @@ export default function DetailPanel({ className = '', visible }:Props) {
           )}
 
         <div className={styles.footer}>
-          { (parentLayout && selectedJob) && (
+          { (referenceLayout && selectedJob) && (
           <div className="mb-lg">
             <h3 className="mb-md">
               {t('DetailPanel.reference_layout')}
             </h3>
-            <LayoutCard layout={parentLayout} job={selectedJob} theme="light" />
+            <LayoutCard layout={referenceLayout} job={selectedJob} theme="light" />
           </div>
           )}
 

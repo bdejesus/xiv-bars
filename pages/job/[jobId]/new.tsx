@@ -33,7 +33,7 @@ export default function Index(props:PageProps) {
     roleActions,
     viewAction,
     classJobLayouts,
-    parentLayout
+    referenceLayout
   } = props;
 
   const router = useRouter();
@@ -51,7 +51,7 @@ export default function Index(props:PageProps) {
         roleActions,
         viewAction,
         urlParams: router.query,
-        parentLayout
+        referenceLayout
       }
     });
   }, [viewData]);
@@ -104,7 +104,7 @@ type ContextQuery = {
 };
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
-  const { jobId, isPvp, id } = context.query as ContextQuery;
+  const { jobId, isPvp, refId } = context.query as ContextQuery;
 
   console.log(context.query);
 
@@ -112,10 +112,10 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
   let referenceLayout = null;
 
-  if (id) {
+  if (refId) {
     const fetchOptions = {
       method: 'POST',
-      body: JSON.stringify({ layoutId: id, viewerId: undefined, method: 'read' }),
+      body: JSON.stringify({ layoutId: refId, viewerId: undefined, method: 'read' }),
       headers: { 'Content-Type': 'application/json' }
     };
 
