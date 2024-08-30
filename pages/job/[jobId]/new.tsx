@@ -106,9 +106,11 @@ type ContextQuery = {
 export const getServerSideProps:GetServerSideProps = async (context) => {
   const { jobId, isPvp, id } = context.query as ContextQuery;
 
+  console.log(context.query);
+
   const pvp:boolean = !isPvp ? false : isPvp === '1';
 
-  let parentLayout = null;
+  let referenceLayout = null;
 
   if (id) {
     const fetchOptions = {
@@ -117,8 +119,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       headers: { 'Content-Type': 'application/json' }
     };
 
-    parentLayout = await fetch(`${domain}/api/layout`, fetchOptions);
-    parentLayout = await parentLayout.json();
+    referenceLayout = await fetch(`${domain}/api/layout`, fetchOptions);
+    referenceLayout = await referenceLayout.json();
   }
 
   // Get Selected Job
@@ -153,7 +155,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       roleActions,
       viewAction: 'new',
       classJobLayouts: serializableClassJobLayouts,
-      parentLayout
+      referenceLayout
     };
 
     return { props };
@@ -168,7 +170,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       roleActions,
       viewAction: 'new',
       classJobLayouts: [],
-      parentLayout
+      referenceLayout
     };
 
     return { props };

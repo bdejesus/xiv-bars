@@ -31,8 +31,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     'xhb',
     'wxhb',
     'exhb',
-    's',
-    'id'
+    's'
   ];
   const jobId = params.jobId;
 
@@ -45,24 +44,31 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   }
 
   function formatHb(value:hbValue) {
-    const isArray = Array.isArray(value);
-    if (isArray) return value.toString();
-    return value.replaceAll(/\[|\]|"/gi, '');
+    return value.toString().replaceAll(/\[|\]|"/gi, '');
   }
 
-  const decorateEntries = Object.entries(params).reduce((items, [key, value]) => {
-    if (['s', 's1', 'encodedSlots'].includes(key)) return { ...items, s: value };
-    if (key === 'isPvp') return { ...items, [key]: formatPvp(value as string) };
-    if (key === 'hb') return { ...items, [key]: value && formatHb(value as hbValue) };
-    if (['l', 'layout'].includes(key)) return { ...items, l: value?.toString() };
-    if (inlcudeKeys.includes(key)) return { ...items, [key]: value };
+  const decoratedParams = Object.entries(params).reduce<Record<string, any>>((items, [key, value]) => {
+    if (['s', 's1', 'encodedSlots'].includes(key)) {
+      items.s = value;
+    } else if (key === 'isPvp') {
+      items[key] = formatPvp(value as string);
+    } else if (key === 'hb') {
+      items[key] = value && formatHb(value as hbValue);
+    } else if (['l', 'layout'].includes(key)) {
+      items.l = value?.toString();
+    } else if (inlcudeKeys.includes(key)) {
+      items[key] = value;
+    } else if (key === 'id') {
+      items.refId = value?.toString();
+    }
     return items;
   }, {});
 
-  const filterEntries = Object.entries(decorateEntries).reduce((entries, [key, value]) => {
-    if (value && ['undefined', 'null'].includes(value.toString())) return entries;
-    return { ...entries, [key]: value };
-  }, {});
+  const filterEntries = Object.fromEntries(
+    Object.entries(decoratedParams).filter(([, value]) => {
+      return value && !['undefined', 'null'].includes(value.toString());
+    })
+  );
 
   const url = `${domain}/job/${jobId}/new`;
 
