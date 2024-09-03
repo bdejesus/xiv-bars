@@ -36,7 +36,7 @@ export default function Summary({
     .replaceAll('- ', '')
     .split('\n')
     .filter((p) => p.trim() !== '')[0]
-    .replace(/[.,:;\s]+$/, '');
+    ?.replace(/[.,:;\s]+$/, '');
   const hotbarLayout = layout === 0 ? t('Hotbars.xhb') : t('Hotbars.hb');
 
   function handleClick(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
