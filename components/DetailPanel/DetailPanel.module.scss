@@ -12,7 +12,7 @@ $panel-width-lg: $screen-xs;
   display: flex;
   flex: none;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: flex-end;
   max-height: $panel-height;
   overflow: hidden;
   position: sticky;
@@ -66,6 +66,7 @@ $panel-width-lg: $screen-xs;
   display: flex;
   flex-direction: column;
   max-height: $panel-height;
+  min-width: $screen-xs;
   overflow-y: auto;
   padding: $spacing-base $spacing-base $spacing-lg $spacing-lg;
   transform: translateZ(0);
@@ -183,12 +184,20 @@ $panel-width-lg: $screen-xs;
   .content {
     width: $screen-xs;
   }
+
+  .content {
+    min-width: $screen-xs;
+  }
 }
 
 @media (max-width: $screen-lg) {
   .container,
   .content {
     width: $panel-width;
+  }
+
+  .content {
+    min-width: $panel-width;
   }
 }
 
@@ -207,5 +216,9 @@ $panel-width-lg: $screen-xs;
   .container {
     display: flex;
     flex-direction: column;
+  }
+
+  .content {
+    min-width: calc(100vw - $spacing-lg);
   }
 }

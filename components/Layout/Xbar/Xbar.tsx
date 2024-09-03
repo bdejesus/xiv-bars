@@ -12,9 +12,7 @@ export function Xbar() {
   const {
     viewData, chotbar, readOnly, showTitles
   } = useAppState();
-  const {
-    id, xhb, wxhb, exhb
-  } = viewData;
+  const { xhb, wxhb, exhb } = viewData;
 
   if (!chotbar) return null;
 
@@ -22,10 +20,10 @@ export function Xbar() {
 
   return (
     <>
-      { !(id && readOnly) && <LayoutControl />}
+      <LayoutControl show={!readOnly} />
 
       <div className={styles.container} data-show-titles={showTitles}>
-        {chotbarKeys.map((chotbarID) => {
+        {chotbarKeys.map((chotbarID, index) => {
           const barSet = chotbar[chotbarID] as SlotProps[];
           return (
             <div
@@ -35,6 +33,7 @@ export function Xbar() {
               data-wxhb={wxhb ? chotbarID === chotbarKeys[wxhb - 1] : false}
               data-exhb={exhb ? chotbarID === chotbarKeys[exhb - 1] : false}
               data-visible={hasActions(barSet) || !readOnly}
+              style={{ animationDelay: `${index * 30}ms` }}
             >
               <Bar bar={barSet} />
             </div>

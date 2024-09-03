@@ -45,9 +45,25 @@
   }
 }
 
+@keyframes enterRow {
+  from {
+    top: $spacing-base;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
 .rowWrapper {
+  animation-duration: 0.33s;
+  animation-fill-mode: forwards;
+  animation-name: enterRow;
+  animation-timing-function: ease;
   border-top: 1px solid rgb(255 255 255 / 10%);
   height: 100%;
+  opacity: 0;
   padding-top: $spacing-base;
 
   .layoutControl {

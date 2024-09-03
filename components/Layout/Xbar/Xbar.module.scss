@@ -18,13 +18,29 @@
   }
 }
 
+@keyframes enterXbar {
+  from {
+    top: $spacing-base;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
 .xbar {
   align-items: center;
+  animation-duration: 0.33s;
+  animation-fill-mode: forwards;
+  animation-name: enterXbar;
+  animation-timing-function: ease;
   border-bottom: 1px solid rgb(255 255 255 / 6%);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   margin: 0 auto;
+  opacity: 0;
   order: 3;
   padding: 28px 0 28px 28px;
   position: relative;

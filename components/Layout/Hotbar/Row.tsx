@@ -23,7 +23,7 @@ export default function Row({ slots, id, hb }: Props) {
         {Object.keys(slots).map((slot: string) => {
           const slotItem = slots[parseInt(slot, 10)];
           return (
-            <li key={`slot-${slotItem.id}`}>
+            <li key={`slot-${slotItem.id}`} id={slotItem.id}>
               <Slot id={slotItem.id} action={slotItem.action} className={styles.slot} />
             </li>
           );

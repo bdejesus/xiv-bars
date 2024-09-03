@@ -8,7 +8,7 @@ import EditLayoutButton from 'components/EditLayoutButton';
 import Tags from 'components/Tags';
 import Hearts from 'components/Hearts';
 import JobSprite, { hasSprite } from 'components/JobSprite';
-import LayoutCard from 'components/LayoutCard';
+// import LayoutCard from 'components/LayoutCard';
 import { useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
 import ProfileImage from 'components/User/ProfileImage';
@@ -28,7 +28,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
   const { data: session } = useSession();
   const router = useRouter();
   const {
-    selectedJob, viewAction, viewData, referenceLayout
+    selectedJob, viewAction, viewData, // referenceLayout
   } = useAppState();
   const {
     title,
@@ -154,17 +154,17 @@ export default function DetailPanel({ className = '', visible }:Props) {
           )}
 
         <div className={styles.footer}>
-          { (referenceLayout && selectedJob) && (
+          {/* { (referenceLayout && selectedJob) && (
           <div className="mb-lg">
             <h3 className="mb-md">
               {t('DetailPanel.reference_layout')}
             </h3>
             <LayoutCard layout={referenceLayout} job={selectedJob} theme="light" />
           </div>
-          )}
+          )} */}
 
           { showSprite && (
-          <JobSprite job={selectedJob} className={styles.jobSprite} />
+            <JobSprite job={selectedJob} className={styles.jobSprite} />
           )}
         </div>
       </div>

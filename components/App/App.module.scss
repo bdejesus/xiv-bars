@@ -78,7 +78,6 @@ $icon-size: 6px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-top: $spacing-lg;
   width: 680px;
 
   &[data-readonly='true'] {
@@ -86,11 +85,25 @@ $icon-size: 6px;
   }
 }
 
-.actionsPanel {
-  min-width: 250px;
+.sidePanel {
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
   position: sticky;
   top: $header-height + $controlbar-height + $spacing-base;
+  transform: translateX($spacing-lg);
+  transition: width 0.66s ease, opacity 0.33s ease, transform 0.66s ease;
+  transition-delay: 0.15s;
+  width: 0;
   z-index: 5;
+
+  &[data-active='true'] {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+    width: 250px;
+  }
 
   .section {
     padding-right: $spacing-lg;
@@ -138,8 +151,10 @@ $icon-size: 6px;
 }
 
 @media (min-width: $screen-lg-3) {
-  .actionsPanel {
-    min-width: 320px;
+  .sidePanel {
+    &[data-active='true'] {
+      width: 320px;
+    }
 
     :global(.list-actions) {
       gap: $spacing-lg $spacing-base;
@@ -148,8 +163,10 @@ $icon-size: 6px;
 }
 
 @media (max-width: $screen-lg-3) {
-  .actionsPanel {
-    min-width: 240px;
+  .sidePanel {
+    &[data-active='true'] {
+      width: 240px;
+    }
 
     :global(.list-actions) {
       gap: $spacing-base;
@@ -178,7 +195,7 @@ $icon-size: 6px;
     flex: 1 1 auto;
   }
 
-  .actionsPanel {
+  .sidePanel {
     top: 0;
   }
 }

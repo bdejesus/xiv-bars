@@ -137,6 +137,7 @@ $button-height: 50px;
   }
 
   .classJob {
+    box-shadow: inset 1px 1px 1px rgb(255 255 255 / 20%), inset -1px -1px 1px rgb(0 0 0 / 20%);
     flex: 1 1 auto;
     height: 100%;
     margin-right: $button-height;

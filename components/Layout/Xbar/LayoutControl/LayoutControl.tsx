@@ -7,7 +7,7 @@ import { appActions } from 'components/App/actions';
 import Options from './Options';
 import styles from './LayoutControl.module.scss';
 
-export default function LayoutControl() {
+export default function LayoutControl({ show }:{ show: boolean }) {
   const router = useRouter();
   const appDispatch = useAppDispatch();
   const { viewData, selectedJob } = useAppState();
@@ -31,7 +31,7 @@ export default function LayoutControl() {
   }
 
   return (
-    <div className={styles.xhbControls}>
+    <div className={styles.xhbControls} data-active={show}>
       <div className={styles.xhbControl}>
         <Options
           id="xhb"

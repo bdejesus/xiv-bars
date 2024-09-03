@@ -67,53 +67,53 @@ export default function User({ user }:UserViewProps) {
 
       <AppContextProvider>
         <GlobalHeader />
-
-        <div className="container">
-          <div className={`${styles.hgroup} row`}>
-            <div className="main">
-              <h1 className={`mt-md ${styles.profile}`}>
-                <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
-                <span className={styles.profileName}>{user.name}</span>
-              </h1>
-
-              { isCurrentUser && (
-                <div className={styles.layoutsCount}>
-                  {layouts?.length ? layouts.length : '-'}/{maxLayouts}
-                  <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
-                </div>
-              )}
-            </div>
-
-            <div className="sidebar">
-              <AdUnit format="largeRect" id="ad-UserPage" />
-            </div>
-          </div>
-        </div>
-
-        <div className="container">
-          { (!layouts) ? (
-            <h2 id="jobSelectTitle">
-              {t('Pages.User.no_layouts')}
-            </h2>
-          ) : (
-            <LayoutsList
-              id="userLayouts"
-              layouts={layouts}
-              filterable
-            />
-          )}
-        </div>
-
-        { isCurrentUser && user.hearts && user.hearts.length > 0 && (
-          <div className="container">
-            <h2>{t('Pages.User.saved_layouts')}</h2>
-            <LayoutsList
-              id="heartedLayouts"
-              layouts={user.hearts}
-            />
-          </div>
-        )}
       </AppContextProvider>
+
+      <div className="container">
+        <div className={`${styles.hgroup} row`}>
+          <div className="main">
+            <h1 className={`mt-md ${styles.profile}`}>
+              <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
+              <span className={styles.profileName}>{user.name}</span>
+            </h1>
+
+            { isCurrentUser && (
+              <div className={styles.layoutsCount}>
+                {layouts?.length ? layouts.length : '-'}/{maxLayouts}
+                <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
+              </div>
+            )}
+          </div>
+
+          <div className="sidebar">
+            <AdUnit format="largeRect" id="ad-UserPage" />
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        { (!layouts) ? (
+          <h2 id="jobSelectTitle">
+            {t('Pages.User.no_layouts')}
+          </h2>
+        ) : (
+          <LayoutsList
+            id="userLayouts"
+            layouts={layouts}
+            filterable
+          />
+        )}
+      </div>
+
+      { isCurrentUser && user.hearts && user.hearts.length > 0 && (
+        <div className="container">
+          <h2>{t('Pages.User.saved_layouts')}</h2>
+          <LayoutsList
+            id="heartedLayouts"
+            layouts={user.hearts}
+          />
+        </div>
+      )}
 
       <Footer />
     </>

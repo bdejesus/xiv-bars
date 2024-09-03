@@ -32,8 +32,26 @@ $grid-gutter: $spacing-base;
   padding: 0;
   width: 33.333%;
 
-  > li {
+  .listItem {
+    animation-duration: 0.66s;
+    animation-fill-mode: forwards;
+    animation-name: enterListItem;
+    animation-timing-function: ease;
     margin: 0;
+    opacity: 0;
+    position: relative;
+  }
+}
+
+@keyframes enterListItem {
+  from {
+    opacity: 0;
+    top: $spacing-base;
+  }
+
+  to {
+    opacity: 1;
+    top: 0;
   }
 }
 

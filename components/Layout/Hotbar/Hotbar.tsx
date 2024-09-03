@@ -13,10 +13,14 @@ export function Hotbar() {
 
   return (
     <ol className={styles.container} data-show-titles={showTitles}>
-      {hb && hotbar && Object.keys(hotbar).map((barKey) => {
+      {hb && hotbar && Object.keys(hotbar).map((barKey, index) => {
         const hotbarRow = hotbar[barKey] as SlotProps[];
         return (
-          <li key={barKey} className={styles.rowWrapper}>
+          <li
+            key={barKey}
+            className={styles.rowWrapper}
+            style={{ animationDelay: `${index * 30}ms` }}
+          >
             { (!readOnly || hasActions(hotbarRow)) && (
               <Row slots={hotbarRow} id={barKey} hb={hb} />
             ) }

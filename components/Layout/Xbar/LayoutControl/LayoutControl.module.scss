@@ -1,23 +1,38 @@
 @import "styles/mixins";
 
+$panel-height: 52px;
+
 .xhbControls {
+  align-items: flex-end;
   background-color: $panel-bg;
   border-radius: $border-radius;
   box-shadow: $box-shadow-2;
   display: flex;
   flex-direction: row;
   gap: $spacing-lg;
+  height: $panel-height;
   justify-content: center;
   margin-bottom: $spacing-base;
+  margin-top: -$panel-height;
   min-width: $layout-container-width;
-  padding: $spacing-sm $spacing-base;
+  opacity: 0;
+  padding: 0 $spacing-base;
   text-align: center;
+  transition-duration: 0.33s;
+  transition-property: opacity, transform, margin-top;
+  transition-timing-function: ease;
+
+  &[data-active="true"] {
+    margin-top: 0;
+    opacity: 1;
+  }
 }
 
 .xhbControl {
   align-items: center;
   display: flex;
   flex-direction: row;
+  height: $panel-height;
 
   .controlLabel {
     margin-right: $spacing-sm;
