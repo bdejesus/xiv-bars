@@ -27,6 +27,10 @@
   margin: 0;
   padding: 0;
 
+  > li {
+    margin: 0;
+  }
+
   :global(.action)::after {
     transition: none;
   }
