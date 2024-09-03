@@ -1,31 +1,15 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './ProfileImage.module.scss';
 
-interface ImageProps {
-  src?: string,
-  alt: string
-}
-
-function Image({ src = undefined, alt }:ImageProps) {
-  return src
-    ? (
-      <img
-        src={src}
-        alt={alt}
-        itemProp="image"
-        onError={(e) => { e.currentTarget.style.display = 'none'; }}
-      />
-    )
-    : <img src="/icons/favicon-96x96.png" className={styles.placeholder} alt={alt} />;
-}
-
 interface ProfileImageProps {
   title: string,
-  src?: string,
+  src: string,
   className?: string,
-  href?: string
+  href?: string,
+  size?: number
 }
 
 export default function ProfileImage({
@@ -33,7 +17,10 @@ export default function ProfileImage({
   src,
   href,
   className = '',
+  size = 42
 }:ProfileImageProps) {
+  const imgSrc = src || '/icons/favicon-96x96.png';
+
   return (
     href ? (
       <Link
@@ -41,11 +28,11 @@ export default function ProfileImage({
         className={[styles.wrapper, className].join(' ')}
         tabIndex={-1}
       >
-        <Image src={src} alt={title} />
+        <Image src={imgSrc} alt={title} itemProp="image" height={size} width={size} />
       </Link>
     ) : (
       <div className={[styles.wrapper, className].join(' ')}>
-        <Image src={src} alt={title} />
+        <Image src={imgSrc} alt={title} itemProp="image" height={size} width={size} />
       </div>
     )
   );

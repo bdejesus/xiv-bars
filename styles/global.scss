@@ -97,7 +97,7 @@ h2 {
   }
 
   @media (max-width: $screen-md) {
-    grid-template-columns: auto;
+    display: block;
   }
 }
 

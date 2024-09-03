@@ -20,11 +20,11 @@ export default function Row({ slots, id, hb }: Props) {
   return (
     <>
       <ol className={styles.row} data-rows={hotbarKey}>
-        {Object.keys(slots).map((slot: string, index) => {
+        {Object.keys(slots).map((slot: string) => {
           const slotItem = slots[parseInt(slot, 10)];
           return (
             <li key={`slot-${slotItem.id}`} id={slotItem.id}>
-              <Slot id={slotItem.id} index={index} action={slotItem.action} className={styles.slot} />
+              <Slot id={slotItem.id} action={slotItem.action} className={styles.slot} />
             </li>
           );
         })}

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { useSession } from 'next-auth/react';
@@ -32,9 +32,15 @@ export function App() {
     viewAction,
     showMarkdownGuide
   } = appState;
+  const [showControlPanels, setShowControlPanels] = useState(false);
 
   const router = useRouter();
   const layoutKey = viewData.layout as keyof typeof layouts;
+
+  useEffect(() => {
+    const shouldShow = !readOnly && !!roleActions && !!actions;
+    setShowControlPanels(shouldShow);
+  }, [readOnly, roleActions, actions]);
 
   useEffect(() => {
     if (router.query.jobId) {
@@ -81,11 +87,11 @@ export function App() {
             { jobs && <ControlBar /> }
 
             <div className={styles.container}>
-              { !readOnly && roleActions && actions && (
-              <div className={`${styles.actionsPanel}`}>
-                <ActionPanel roleActions={roleActions} actions={actions} />
+              <div className={`${styles.sidePanel}`} data-active={showControlPanels}>
+                { roleActions && actions && (
+                  <ActionPanel roleActions={roleActions} actions={actions} />
+                ) }
               </div>
-              ) }
 
               <div className={styles.main} data-readonly={readOnly}>
                 { layouts[layoutKey] === 'chotbar'

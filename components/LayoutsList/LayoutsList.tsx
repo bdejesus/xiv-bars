@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
 import type { LayoutViewProps } from 'types/Layout';
@@ -32,6 +33,7 @@ export default function LayoutsList({
   columns = 3,
   filterable = false
 }:LayoutsListProps) {
+  const pathname = usePathname();
   const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>();
   const [viewOptions, setViewOptions] = useState(defaultView);
   const [balanced, setBalanced] = useState(false);
@@ -155,7 +157,7 @@ export default function LayoutsList({
       const groupedLayouts = groupLayouts();
       setViewLayouts(groupedLayouts);
     }
-  }, [windowSize]);
+  }, [windowSize, pathname]);
 
   useEffect(() => {
     handleResize();

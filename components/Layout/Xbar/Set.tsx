@@ -9,13 +9,12 @@ interface Props {
 function Set({ slots }: Props) {
   return (
     <div className={styles.set}>
-      { slots.map((slot, index) => slot?.id && (
+      { slots.map((slot) => slot?.id && (
         <Slot
           id={slot.id}
           key={`slot-${slot.id}`}
           action={slot.action}
           className={styles.slot}
-          index={index}
         />
       ))}
     </div>

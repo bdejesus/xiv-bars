@@ -17,8 +17,7 @@ import styles from './Slot.module.scss';
 interface SlotProps {
   id: string,
   className?: string,
-  action: ActionProps,
-  index: number
+  action: ActionProps
 }
 
 type ButtonEventProps = React.MouseEvent<HTMLDivElement, MouseEvent> | React.MouseEvent<HTMLButtonElement, MouseEvent>;
@@ -26,8 +25,7 @@ type ButtonEventProps = React.MouseEvent<HTMLDivElement, MouseEvent> | React.Mou
 export default function Slot({
   id,
   className = '',
-  action,
-  index
+  action
 }: SlotProps) {
   const {
     viewData,
@@ -127,7 +125,7 @@ export default function Slot({
         data-slotted={!!action?.Name}
         data-disabled={readOnly && !action?.Name}
       >
-        { action?.Name && <Action action={action} style={{ animationDelay: `${index * 100}ms` }} /> }
+        { action?.Name && <Action action={action} /> }
 
         { !readOnly && action?.Name && (
           <button

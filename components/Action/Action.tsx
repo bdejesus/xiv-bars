@@ -100,6 +100,7 @@ export default function Action({ action, style }: Props) {
             alt={`${displayTtile}`}
             height={40}
             width={40}
+            priority
           />
         </div>
       </div>
