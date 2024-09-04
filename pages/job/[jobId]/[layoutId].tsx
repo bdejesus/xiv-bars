@@ -69,7 +69,7 @@ export default function Index(props:PageProps) {
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={viewData?.description} />
-        { !viewData.published && <meta name="robots" content="noindex" /> }
+        { !viewData.published && viewData.description && <meta name="robots" content="noindex" /> }
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
         )}

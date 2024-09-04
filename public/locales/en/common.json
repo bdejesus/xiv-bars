@@ -1,9 +1,9 @@
 {
   "Global": {
-    "title": "A Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Guides and Keybinding Tool – XIVBARS",
-    "subtitle": "A Final Fantasy XIV: Dawntrail Cross Hotbar Keybinding Tool and Controller Layout Guides",
+    "title": "A Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Planner, Simulator, and Keybinding Tool – XIVBARS",
+    "subtitle": "A Final Fantasy XIV: Dawntrail Cross Hotbar Planner, Simulator, Keybinding Tool for Controller Layouts",
     "short_desc": "Explore player-created keybindings and layout guides for FFXIV hotbars. Create keybinding layout guides for use with keyboard and mouse or controllers. Export your configurations to macros for direct import into the game and share with others.",
-    "description": "Plan your FFXIV: Dawntrail Cross Hotbars (XHB). Explore player-created guides, configurations, and setups for Final Fantasy XIV’s hotbars and cross hotbar user interfaces. Optimize your gameplay experience with different placement, keybinding options, and other customization features. Take advantage of drag-and-drop functionality for easy keybindings and personalizations for use with keyboard and mouse or game controllers. Export your configurations to macros for direct import into the game and share your setups with others.",
+    "description": "Simulate and Plan your FFXIV: Dawntrail Cross Hotbars (XHB). Explore player-created guides, configurations, and setups for Final Fantasy XIV’s hotbars and cross hotbar user interfaces. Optimize your gameplay experience with different placement, keybinding options, and other customization features. Take advantage of drag-and-drop functionality for easy keybindings and personalizations for use with keyboard and mouse or game controllers. Export your configurations to macros for direct import into the game and share your setups with others.",
     "close": "Close",
     "loading": "Loading..."
   },
@@ -173,7 +173,7 @@
       "recent_layouts": "Recent Layouts"
     },
     "User": {
-      "title": "{{userName}} - Hotbar Keybinding and Controller Guides - Dawntrail",
+      "title": "{{userName}} - Hotbar Keybinding and Controller Layouts - Dawntrail",
       "description": "Final Fantasy XIV hotbar and cross hotbar UI layouts by {{userName}}. Explore various configurations and setups for Final Fantasy XIV’s hotbar and cross hotbar user interfaces, optimizing your gameplay experience with different placement, size, and customization options.",
       "new_layout": "New Layout",
       "new_layout_icon": "New Layout Icon",
@@ -200,18 +200,18 @@
       }
     },
     "Job": {
-      "index_title": "{{jobName}} Hotbar Keybinding Setup and Controller Guides - Dawntrail",
+      "index_title": "{{jobName}} Hotbar Keybinding Setup and Controller Layouts - Dawntrail",
       "index_description": "This page lists all player-created Hotbar (HB) and Cross Hotbar (XHB) keybinding setup and layout guides for the {{jobName}} job in Final Fantasy XIV: Dawntrail.",
       "job_guide": "Job Guide: {{jobName}}",
-      "keybinding_and_layout_guides": "{{jobName}} Keybinding Setup and Layout Guides",
+      "keybinding_and_layout_guides": "{{jobName}} Keybinding Setup and Layouts",
       "new_description": "Plan your {{jobName}} Hotbars or Cross Hotbars (XHB) with this tool. Drag and drop, or click to assign actions to hotbar slots and save to a shareable URL.",
       "no_layouts": "No {{jobName}} Layouts yet.",
       "create_layout": "Create a new layout.",
       "short_description": "This is a {{jobName}} keybinding setup guide for your {{hotbarLayout}} actions for Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Hotbar Keybinding Setup and Controller Guide - Dawntrail",
-      "new_title": "Create a new {{jobName}} Controller Keybinding Setup - Dawntrail",
+      "title": "{{jobName}} ({{jobAbbr}}) Hotbar Keybinding Setup and Controller Layout - Dawntrail",
+      "new_title": "Create a new {{jobName}} Controller Keybinding Layout - Dawntrail",
       "title_by_author": "{{ titleName }} by {{ authorName }}",
       "more_layouts_by_user": "More layouts by {{userName}}",
       "more_layouts_by_job": "More {{jobName}} layouts",
