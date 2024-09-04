@@ -65,6 +65,8 @@ export function renderMeta({
       <link rel="preconnect" href="https://www.google-analytics.com" />
       <link rel="manifest" href="/manifest.json" />
 
+      <link rel="canonical" href={[domain, currentPath].join('')} />
+
       { Object.entries(alternateUrls).map(([lang, url]) => (
         <link
           rel="alternate"
