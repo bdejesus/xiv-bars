@@ -211,7 +211,7 @@
     },
     "Layout": {
       "title": "{{jobName}} ({{jobAbbr}}) Hotbar Keybinding Setup and Controller Layout - Dawntrail",
-      "new_title": "Create a new {{jobName}} Controller Keybinding Setup - Dawntrail",
+      "new_title": "Create a new {{jobName}} Controller Keybinding Layout - Dawntrail",
       "title_by_author": "{{ titleName }} by {{ authorName }}",
       "more_layouts_by_user": "More layouts by {{userName}}",
       "more_layouts_by_job": "More {{jobName}} layouts",
