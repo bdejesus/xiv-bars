@@ -4,5 +4,6 @@ User-agent: *
 Disallow: /Action/*
 Disallow: /CraftAction/*
 Disallow: /ClassJob/*
+Disallow: /api/*
 Allow: /ads.txt
 Allow: /*
