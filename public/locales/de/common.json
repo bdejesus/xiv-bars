@@ -212,7 +212,8 @@
       "short_description": "Dies ist ein {{jobName}} Tastenbelegungsleitfaden für deine {{hotbarLayout}}-Aktionen in Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Layout und Controller-Tastenbelegungs-Guide - FFXIV Dawntrail",
+      "title_hb": "{{jobName}} ({{jobAbbr}}) Hotbar-Setup-Guide - FFXIV Dawntrail",
+  "title_xhb": "{{jobName}} ({{jobAbbr}}) Cross Hotbar-Setup-Guide - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} von {{ authorName }}",
       "more_layouts_by_user": "Mehr Layouts von {{userName}}",
       "more_layouts_by_job": "Mehr {{jobName}} Layouts",
