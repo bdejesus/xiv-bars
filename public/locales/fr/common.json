@@ -1,9 +1,7 @@
 {
   "Global": {
-    "title": "Un Planificateur, Simulateur et Outil de Configuration des Touches pour la Cross Hotbar (XHB) de Final Fantasy XIV: Dawntrail – XIVBARS",
-    "subtitle": "Un Planificateur, Simulateur et Outil de Configuration des Touches pour les Dispositions de Manette de Final Fantasy XIV: Dawntrail",
-    "short_desc": "Explorez les guides de configuration des touches créés par les joueurs pour les barres d'actions de FFXIV. Créez des guides de disposition des touches pour une utilisation avec un clavier et une souris ou des manettes. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez-les avec d'autres.",
-    "description": "Simulez et planifiez vos Cross Hotbars (XHB) de FFXIV: Dawntrail. Explorez les guides, configurations et configurations créés par les joueurs pour les interfaces utilisateur des hotbars et cross hotbars de Final Fantasy XIV. Optimisez votre expérience de jeu avec différents placements, options de configuration des touches et autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour des configurations de touches et des personnalisations faciles à utiliser avec un clavier et une souris ou des manettes de jeu. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez vos configurations avec d'autres.",
+    "title": "Outil de Configuration des Raccourcis et Keybinding de la Cross Hotbar (XHB) pour Final Fantasy XIV: Dawntrail – XIVBARS",
+    "description": "Créez des layouts de hotbars et des raccourcis pour manettes pour FFXIV: Dawntrail. Optimisez la rotation des actions de votre Job et les temps de recharge pour clavier et souris ou manettes, ou explorez des layouts et guides créés par les joueurs. Exportez vos configurations vers des macros pour les importer directement dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
     "loading": "Chargement en cours..."
   },
@@ -103,6 +101,11 @@
     "unheartTitle": "Ne plus aimer cette disposition"
   },
 
+  "Hero": {
+    "heading": "Outil de Configuration des Layouts de Cross Hotbar (XHB) et des Raccourcis de Manette pour Final Fantasy XIV: Dawntrail",
+    "body": "Cette application vous permet de simuler et de planifier vos Hotbars (HB) et Cross Hotbars (XHB) dans Final Fantasy XIV: Dawntrail. Créez vos propres dispositions et raccourcis pour optimiser la rotation de vos actions de Job et vos temps de recharge, ou explorez les configurations et guides créés par les joueurs. Profitez de la fonctionnalité de glisser-déposer pour des raccourcis faciles et des personnalisations, à utiliser avec un clavier, une souris ou des manettes. Exportez vos raccourcis vers des macros pour les importer directement dans le jeu et partagez vos configurations avec d'autres."
+  },
+
   "Hotbars": {
     "hb": "Barre d'actions",
     "hbs": "Barres d'actions",
@@ -173,7 +176,7 @@
       "recent_layouts": "Dispositions récentes"
     },
     "User": {
-      "title": "{{userName}} - Configurations des Raccourcis Clavier et Dispositions de Manette - Dawntrail",
+      "title": "{{userName}} - Configurations des Raccourcis Clavier et Dispositions de Manette - FFXIV Dawntrail",
       "description": "Dispositions de l'interface utilisateur des barres d'actions et des Cross Hotbars de Final Fantasy XIV par {{userName}}. Explorez diverses configurations et dispositions pour les barres d'actions et les Cross Hotbars de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de taille et de personnalisation.",
       "new_layout": "Nouvelle disposition",
       "new_layout_icon": "Nouvelle icône de disposition",
@@ -200,22 +203,24 @@
       }
     },
     "Job": {
-      "index_title": "Configurations des Raccourcis Clavier et Dispositions de Manette pour {{jobName}} - Dawntrail",
-      "index_description": "Cette page répertorie tous les guides de configuration des raccourcis clavier (HB) et des Cross Hotbars (XHB) créés par les joueurs pour le job {{jobName}} dans Final Fantasy XIV: Dawntrail.",
+      "title": "Guides de Layouts de Hotbar et de Configuration des Raccourcis pour {{jobName}} - FFXIV Dawntrail",
+      "description": "Cette page répertorie tous les layouts de Hotbar (HB) et de Cross Hotbar (XHB) créés par les joueurs ainsi que les guides de configuration des raccourcis pour le job {{jobName}} dans Final Fantasy XIV: Dawntrail.",
       "job_guide": "Guide du Job : {{jobName}}",
-      "keybinding_and_layout_guides": "Configurations des Raccourcis Clavier et Dispositions pour {{jobName}}",
-      "new_description": "Planifiez vos barres d'actions ou vos barres d'actions croisées (XHB) pour {{jobName}} avec cet outil. Faites glisser et déposez, ou cliquez pour attribuer des actions aux emplacements des barres d'actions et enregistrez-les sous une URL partageable.",
+      "keybinding_and_layout_guides": "Layouts de Hotbar et Guides pour {{jobName}}",
       "no_layouts": "Aucune disposition {{jobName}} pour le moment.",
       "create_layout": "Créer une nouvelle disposition.",
       "short_description": "Il s'agit d'un guide de configuration des touches pour {{jobName}} dans Final Fantasy XIV: Dawntrail, destiné à vos actions {{hotbarLayout}}."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Configuration des Raccourcis Clavier et Disposition de Manette - Dawntrail",
-    "new_title": "Créer une nouvelle Disposition de Raccourcis Clavier pour le Contrôleur de {{jobName}} - Dawntrail",
+      "title": "Guide de Configuration de Layout de Hotbar et de Raccourcis pour {{jobName}} ({{jobAbbr}}) - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} par {{ authorName }}",
       "more_layouts_by_user": "Plus de mises en page par {{userName}}",
       "more_layouts_by_job": "Plus de mises en page de {{jobName}}",
       "view_more": "Voir plus..."
+    },
+    "NewLayout": {
+      "title": "Créer un nouveau Guide de Layout de Hotbar pour {{jobName}} - FFXIV Dawntrail",
+      "description": "Planifiez vos barres d'actions ou vos barres d'actions croisées (XHB) pour {{jobName}} avec cet outil. Faites glisser et déposez, ou cliquez pour attribuer des actions aux emplacements des barres d'actions et enregistrez-les sous une URL partageable."
     },
     "NotFound": {
       "status": "404 PAGE NON TROUVÉE",
