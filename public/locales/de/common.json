@@ -1,7 +1,7 @@
 {
   "Global": {
-    "title": "Cross Hotbar (XHB) Tastenbelegungs- und Tastenbindungstool für Final Fantasy XIV: Dawntrail – XIVBARS",
-    "description": "Erstellen Sie Hotbar-Tastenbelegungen und Controller-Layouts für FFXIV: Dawntrail. Optimieren Sie Ihre Job-Aktionsrotationen und Abklingzeiten für Tastatur und Maus oder Game-Controller, oder erkunden Sie von Spielern erstellte Layouts und Guides. Exportieren Sie Ihre Tastenbelegungen in Makros für den direkten Import ins Spiel und teilen Sie Ihre Setups mit anderen.",
+    "title": "Cross Hotbar (XHB) Layout Tastenbelegung und Keybinding Tool für Final Fantasy XIV: Dawntrail – XIVBARS",
+    "description": "Erstellen Sie Hotbar-Layouts und Controller-Tastenbelegungen für FFXIV: Dawntrail. Optimieren Sie Ihre Job-Aktionsrotationen und Abklingzeiten für Tastatur und Maus oder Game-Controller, oder erkunden Sie von Spielern erstellte Layouts und Guides. Exportieren Sie Ihre Konfigurationen in Makros für den direkten Import ins Spiel und teilen Sie Ihre Setups mit anderen.",
     "close": "Schließen",
     "loading": "Wird geladen..."
   },
@@ -102,7 +102,7 @@
   },
 
   "Hero": {
-    "heading": "Ein Final Fantasy XIV: Dawntrail Cross Hotbar Setup Guides und Tastenbindungstool für Controller-Layouts",
+    "heading": "Ein Cross Hotbar (XHB) Layout-Tool und Controller-Tastenbelegungs-Setup-Guides für Final Fantasy XIV: Dawntrail",
     "body": "Diese App ermöglicht es Ihnen, Ihre Final Fantasy XIV: Dawntrail Hotbars (HB) und Cross Hotbars (XHB) zu simulieren und zu planen. Erstellen Sie Ihre eigenen Layouts und Tastenbelegungen, um Ihre Job-Aktionsrotationen und Abklingzeiten zu optimieren, oder erkunden Sie von Spielern erstellte Setups und Guides. Nutzen Sie die Drag-and-Drop-Funktion für einfache Tastenbelegungen und Anpassungen zur Verwendung mit Tastatur und Maus oder Game-Controllern. Exportieren Sie Ihre Tastenbelegungen in Makros für den direkten Import ins Spiel und teilen Sie Ihre Setups mit anderen."
   },
 
@@ -203,23 +203,23 @@
       }
     },
     "Job": {
-      "title": "{{jobName}} Hotbar-Tastenbelegungs-Setup und Controller-Layouts - FFXIV Dawntrail",
-      "description": "Diese Seite listet alle von Spielern erstellten Hotbar (HB) und Cross Hotbar (XHB) Tastenkürzel-Setups und Layout-Guides für den {{jobName}}-Job in Final Fantasy XIV: Dawntrail auf.",
+      "title": "{{jobName}} Hotbar-Layouts und Tastenbelegungs-Setup-Guides - FFXIV Dawntrail",
+      "description": "Diese Seite listet alle von Spielern erstellten Hotbar (HB) und Cross Hotbar (XHB) Layouts und Tastenbelegungs-Setup-Guides für den Job {{jobName}} in Final Fantasy XIV: Dawntrail auf.",
       "job_guide": "Job-Leitfaden: {{jobName}}",
-      "keybinding_and_layout_guides": "{{jobName}} Tastenbelegungs-Setup und Layouts",
+      "keybinding_and_layout_guides": "{{jobName}} Hotbar-Layouts und Guides",
       "no_layouts": "Keine {{jobName}} Layouts vorhanden.",
       "create_layout": "Erstellen Sie ein neues Layout.",
       "short_description": "Dies ist ein {{jobName}} Tastenbelegungsleitfaden für deine {{hotbarLayout}}-Aktionen in Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Tastenbelegungs-Setup und Controller-Layout - FFXIV Dawntrail",
+      "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Layout und Controller-Tastenbelegungs-Guide - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} von {{ authorName }}",
       "more_layouts_by_user": "Mehr Layouts von {{userName}}",
       "more_layouts_by_job": "Mehr {{jobName}} Layouts",
       "view_more": "Mehr anzeigen..."
     },
     "NewLayout": {
-      "title": "Erstellen Sie ein neues {{jobName}} Controller-Tastenbelegungs-Layout - FFXIV Dawntrail",
+      "title": "Erstellen Sie einen neuen {{jobName}} Hotbar-Layout-Guide - FFXIV Dawntrail",
       "description": "Planen Sie Ihre {{jobName}}-Aktionsleisten oder Kreuz-Aktionsleisten (XHB) mit diesem Tool. Ziehen Sie per Drag & Drop oder klicken Sie, um Aktionen den Aktionsleistenplätzen zuzuweisen und speichern Sie diese unter einer teilbaren URL."
     },
     "NotFound": {

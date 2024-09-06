@@ -1,7 +1,7 @@
 {
   "Global": {
-    "title": "ファイナルファンタジーXIV: Dawntrailのクロスホットバー（XHB）キー設定およびキー割り当てツール – XIVBARS",
-    "description": "FFXIV: Dawntrailのホットバーキー設定やコントローラーレイアウトを作成しましょう。キーボードとマウス、またはゲームコントローラー用にジョブアクションの回転やクールダウンを最適化したり、プレイヤーが作成したレイアウトやガイドを探索したりできます。キー設定をマクロにエクスポートしてゲームに直接インポートし、他のプレイヤーとセットアップを共有しましょう。",
+    "title": "ファイナルファンタジーXIV: Dawntrailのためのクロスホットバー（XHB）レイアウトキー設定およびキー割り当てツール – XIVBARS",
+    "description": "FFXIV: Dawntrail用のホットバーレイアウトやコントローラーキー設定を作成しましょう。ジョブアクションの回転やクールダウンを最適化し、キーボードとマウスまたはコントローラー用のプレイヤー作成レイアウトやガイドを探索しましょう。設定をマクロにエクスポートして、ゲーム内に直接インポートし、他のプレイヤーとセットアップを共有しましょう。",
     "close": "閉じる",
     "loading": "読み込み中..."
   },
@@ -102,7 +102,7 @@
   },
 
   "Hero": {
-    "heading": "ファイナルファンタジーXIV: Dawntrail クロスホットバー設定ガイドおよびコントローラー用キー割り当てツール",
+    "heading": "ファイナルファンタジーXIV: Dawntrail クロスホットバー（XHB）レイアウトツールおよびコントローラーキー設定ガイド",
     "body": "このアプリを使って、ファイナルファンタジーXIV: Dawntrailのホットバー（HB）やクロスホットバー（XHB）をシミュレートし、計画することができます。自分専用のレイアウトやキー設定を作成して、ジョブアクションの回転やクールダウンを最適化するか、プレイヤーが作成したセットアップやガイドを探索してください。ドラッグ＆ドロップ機能を利用して、キーボードやマウス、またはゲームコントローラー用の簡単なキー設定とパーソナライズを行い、キー設定をマクロにエクスポートしてゲームに直接インポートし、他のプレイヤーと共有しましょう。"
   },
 
@@ -203,23 +203,23 @@
       }
     },
     "Job": {
-      "title": "{{jobName}} ホットバーのキー設定とコントローラーレイアウト - FFXIV Dawntrail",
-      "description": "このページでは、ファイナルファンタジーXIV：ドーントレイルにおける{{jobName}}のジョブのプレイヤー作成ホットバー（HB）およびクロスホットバー（XHB）キー設定とレイアウトガイドをすべて一覧表示しています。",
+      "title": "{{jobName}} ホットバーレイアウトおよびキー設定ガイド - FFXIV Dawntrail",
+      "description": "このページでは、プレイヤー作成のホットバー（HB）およびクロスホットバー（XHB）レイアウトと、ファイナルファンタジーXIV: Dawntrailにおける{{jobName}}ジョブのキー設定ガイドをすべて一覧表示しています。",
       "job_guide": "ジョブガイド: {{jobName}}",
-      "keybinding_and_layout_guides": "{{jobName}} キー設定とレイアウトガイド",
+      "keybinding_and_layout_guides": "{{jobName}} ホットバーレイアウトとガイド",
       "no_layouts": "{{jobName}} のレイアウトはまだありません。",
       "create_layout": "新しいレイアウトを作成する。",
       "short_description": "これはファイナルファンタジーXIV: Dawntrail の{{jobName}}キー設定ガイドです。{{hotbarLayout}}アクション用です。"
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) ホットバーのキー設定とコントローラーレイアウト - FFXIV Dawntrail",
+      "title": "{{jobName}} ({{jobAbbr}}) ホットバーレイアウトとコントローラーキー設定ガイド - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} 作成者 {{ authorName }}",
       "more_layouts_by_user": "{{userName}}による他のレイアウト",
       "more_layouts_by_job": "他の{{jobName}}レイアウト",
       "view_more": "もっと見る..."
     },
     "NewLayout": {
-      "title": "新しい{{jobName}} コントローラーのキー設定レイアウトを作成 - FFXIV Dawntrail",
+      "title": "新しい{{jobName}}ホットバーレイアウトガイドを作成 - FFXIV Dawntrail",
       "description": "{{jobName}}のホットバーまたはクロスホットバー (XHB) をこのツールで計画します。ドラッグ＆ドロップ、またはクリックしてホットバースロットにアクションを割り当て、共有可能なURLに保存します。"
     },
     "NotFound": {
