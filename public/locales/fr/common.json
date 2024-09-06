@@ -1,7 +1,7 @@
 {
   "Global": {
-    "title": "Un Planificateur, Simulateur et Outil de Configuration des Touches pour la Cross Hotbar (XHB) de Final Fantasy XIV: Dawntrail – XIVBARS",
-    "subtitle": "Un Planificateur, Simulateur et Outil de Configuration des Touches pour les Dispositions de Manette de Final Fantasy XIV: Dawntrail",
+    "title": "Un Outil de Mappage et de Raccourcis de la Cross Hotbar (XHB) pour Final Fantasy XIV: Dawntrail – XIVBARS",
+    "subtitle": "Guides de Configuration de la Cross Hotbar et Outil de Raccourcis pour les Configurations de Manette dans Final Fantasy XIV: Dawntrail",
     "short_desc": "Explorez les guides de configuration des touches créés par les joueurs pour les barres d'actions de FFXIV. Créez des guides de disposition des touches pour une utilisation avec un clavier et une souris ou des manettes. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez-les avec d'autres.",
     "description": "Simulez et planifiez vos Cross Hotbars (XHB) de FFXIV: Dawntrail. Explorez les guides, configurations et configurations créés par les joueurs pour les interfaces utilisateur des hotbars et cross hotbars de Final Fantasy XIV. Optimisez votre expérience de jeu avec différents placements, options de configuration des touches et autres fonctionnalités de personnalisation. Profitez de la fonctionnalité de glisser-déposer pour des configurations de touches et des personnalisations faciles à utiliser avec un clavier et une souris ou des manettes de jeu. Exportez vos configurations vers des macros pour une importation directe dans le jeu et partagez vos configurations avec d'autres.",
     "close": "Fermer",
@@ -173,7 +173,7 @@
       "recent_layouts": "Dispositions récentes"
     },
     "User": {
-      "title": "{{userName}} - Configurations des Raccourcis Clavier et Dispositions de Manette - Dawntrail",
+      "title": "{{userName}} - Configurations des Raccourcis Clavier et Dispositions de Manette - FFXIV Dawntrail",
       "description": "Dispositions de l'interface utilisateur des barres d'actions et des Cross Hotbars de Final Fantasy XIV par {{userName}}. Explorez diverses configurations et dispositions pour les barres d'actions et les Cross Hotbars de Final Fantasy XIV, optimisant votre expérience de jeu avec différentes options de placement, de taille et de personnalisation.",
       "new_layout": "Nouvelle disposition",
       "new_layout_icon": "Nouvelle icône de disposition",
@@ -200,7 +200,7 @@
       }
     },
     "Job": {
-      "index_title": "Configurations des Raccourcis Clavier et Dispositions de Manette pour {{jobName}} - Dawntrail",
+      "index_title": "Configurations des Raccourcis Clavier et Dispositions de Manette pour {{jobName}} - FFXIV Dawntrail",
       "index_description": "Cette page répertorie tous les guides de configuration des raccourcis clavier (HB) et des Cross Hotbars (XHB) créés par les joueurs pour le job {{jobName}} dans Final Fantasy XIV: Dawntrail.",
       "job_guide": "Guide du Job : {{jobName}}",
       "keybinding_and_layout_guides": "Configurations des Raccourcis Clavier et Dispositions pour {{jobName}}",
@@ -210,8 +210,8 @@
       "short_description": "Il s'agit d'un guide de configuration des touches pour {{jobName}} dans Final Fantasy XIV: Dawntrail, destiné à vos actions {{hotbarLayout}}."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Configuration des Raccourcis Clavier et Disposition de Manette - Dawntrail",
-    "new_title": "Créer une nouvelle Disposition de Raccourcis Clavier pour le Contrôleur de {{jobName}} - Dawntrail",
+      "title": "{{jobName}} ({{jobAbbr}}) Configuration des Raccourcis Clavier et Disposition de Manette - FFXIV Dawntrail",
+    "new_title": "Créer une nouvelle Disposition de Raccourcis Clavier pour le Contrôleur de {{jobName}} - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} par {{ authorName }}",
       "more_layouts_by_user": "Plus de mises en page par {{userName}}",
       "more_layouts_by_job": "Plus de mises en page de {{jobName}}",
