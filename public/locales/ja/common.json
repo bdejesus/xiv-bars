@@ -212,7 +212,8 @@
       "short_description": "これはファイナルファンタジーXIV: Dawntrail の{{jobName}}キー設定ガイドです。{{hotbarLayout}}アクション用です。"
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) ホットバーレイアウトとコントローラーキー設定ガイド - FFXIV Dawntrail",
+      "title_hb": "{{jobName}} ({{jobAbbr}}) ホットバー設定ガイド - FFXIV Dawntrail",
+      "title_xhb": "{{jobName}} ({{jobAbbr}}) クロスホットバー設定ガイド - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} 作成者 {{ authorName }}",
       "more_layouts_by_user": "{{userName}}による他のレイアウト",
       "more_layouts_by_job": "他の{{jobName}}レイアウト",
