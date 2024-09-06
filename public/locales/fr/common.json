@@ -212,7 +212,8 @@
       "short_description": "Il s'agit d'un guide de configuration des touches pour {{jobName}} dans Final Fantasy XIV: Dawntrail, destiné à vos actions {{hotbarLayout}}."
     },
     "Layout": {
-      "title": "Guide de Configuration de Layout de Hotbar et de Raccourcis pour {{jobName}} ({{jobAbbr}}) - FFXIV Dawntrail",
+      "title_hb": "{{jobName}} ({{jobAbbr}}) Guide de Configuration de la Hotbar - FFXIV Dawntrail",
+      "title_xhb": "{{jobName}} ({{jobAbbr}}) Guide de Configuration de la Cross Hotbar - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} par {{ authorName }}",
       "more_layouts_by_user": "Plus de mises en page par {{userName}}",
       "more_layouts_by_job": "Plus de mises en page de {{jobName}}",

@@ -1,6 +1,6 @@
 {
   "Global": {
-    "title": "Cross Hotbar (XHB) Layout Keymapping and Keybinding Tool for Final Fantasy XIV: Dawntrail – XIVBARS",
+    "title": "Final Fantasy XIV Cross Hotbar Setup and Layout Keybinding Tool – XIVBARS",
     "description": "Create hotbar layouts and and controller keybindings for FFXIV: Dawntrail. Optimize your Job action rotations and cooldowns for keyboard and mouse or game controllers or explore player-created layouts and guides. Export your configurations to macros for  direct import into the game and share your setups with others.",
     "close": "Close",
     "loading": "Loading..."
@@ -212,7 +212,8 @@
       "short_description": "This is a {{jobName}} keybinding setup guide for your {{hotbarLayout}} actions for Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
-      "title": "{{jobName}} ({{jobAbbr}}) Hotbar Layout and Controller Keybinding Guide - FFXIV Dawntrail",
+      "title_hb": "{{jobName}} ({{jobAbbr}}) Hotbar Setup Guide - FFXIV Dawntrail",
+      "title_xhb": "{{jobName}} ({{jobAbbr}}) Cross Hotbar Setup Guide - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} by {{ authorName }}",
       "more_layouts_by_user": "More layouts by {{userName}}",
       "more_layouts_by_job": "More {{jobName}} layouts",
