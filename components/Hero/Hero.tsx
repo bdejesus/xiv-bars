@@ -18,8 +18,8 @@ export default function Hero({ primary = true }: Props) {
           ? <h1 className="branding">XIV<b>BARS</b></h1>
           : <h2 className="branding">XIV<b>BARS</b></h2>}
 
-        <p className="text-xl">{t('Global.subtitle')}</p>
-        <p>{t('Global.description')}</p>
+        <p className="text-xl">{t('Hero.heading')}</p>
+        <p>{t('Hero.body')}</p>
       </div>
 
       <div className="sidebar">

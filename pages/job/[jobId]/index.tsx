@@ -76,12 +76,12 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       { selectedJob?.Name && selectedJob?.Abbr && (
         <Head>
           <title>
-            {`${t('Pages.Job.index_title', { jobName, jobAbbr })} | XIVBARS`}
+            {`${t('Pages.Job.title', { jobName, jobAbbr })} | XIVBARS`}
           </title>Lore
 
           <meta
             name="description"
-            content={t('Pages.Job.index_description', { jobName })}
+            content={t('Pages.Job.description', { jobName })}
           />
           { hasSprite(selectedJob) && (
             <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
@@ -128,7 +128,7 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             </SelectedJob>
 
             <p className="text-xl" itemProp="description">
-              { t('Pages.Job.index_description', { jobName: selectedJob.Name }) }
+              { t('Pages.Job.description', { jobName: selectedJob.Name }) }
             </p>
 
           </div>

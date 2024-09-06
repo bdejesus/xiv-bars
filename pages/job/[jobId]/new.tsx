@@ -60,10 +60,10 @@ export default function Index(props:PageProps) {
     <>
       <Head>
         <title>
-          {`${t('Pages.Layout.new_title', { jobName })} | XIVBARS`}
+          {`${t('Pages.NewLayout.title', { jobName })} | XIVBARS`}
         </title>
 
-        <meta name="description" content={t('Pages.Job.new_description', { jobName })} />
+        <meta name="description" content={t('Pages.NewLayout.description', { jobName })} />
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
         )}

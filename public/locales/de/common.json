@@ -1,9 +1,7 @@
 {
   "Global": {
-    "title": "Ein Final Fantasy XIV: Dawntrail Cross Hotbar (XHB) Tastenbelegungs- und Tastenbindungstool – XIVBARS",
-    "subtitle": "Ein Final Fantasy XIV: Dawntrail Cross Hotbar Setup Guides und Tastenbindungstool für Controller-Layouts",
-    "short_desc": "Erkunde von Spielern erstellte Tastenbelegungen und Layout-Leitfäden für FFXIV-Aktionsleisten. Erstelle Tastenbelegungs-Layout-Leitfäden für die Verwendung mit Tastatur und Maus oder Controllern. Exportiere deine Konfigurationen in Makros zur direkten Importierung ins Spiel und teile sie mit anderen.",
-    "description": "Simulieren und Planen Sie Ihre FFXIV: Dawntrail Cross Hotbars (XHB). Erkunden Sie spielerische Anleitungen, Konfigurationen und Setups für Final Fantasy XIV's Hotbars und Cross Hotbar Benutzeroberflächen. Optimieren Sie Ihr Spielerlebnis mit verschiedenen Platzierungs-, Tastenbelegungsoptionen und anderen Anpassungsfunktionen. Nutzen Sie die Drag-and-Drop-Funktionalität für einfache Tastenbelegungen und Personalisierungen für die Verwendung mit Tastatur und Maus oder Game-Controllern. Exportieren Sie Ihre Konfigurationen in Makros zur direkten Einbindung ins Spiel und teilen Sie Ihre Setups mit anderen.",
+    "title": "Cross Hotbar (XHB) Tastenbelegungs- und Tastenbindungstool für Final Fantasy XIV: Dawntrail – XIVBARS",
+    "description": "Erstellen Sie Hotbar-Tastenbelegungen und Controller-Layouts für FFXIV: Dawntrail. Optimieren Sie Ihre Job-Aktionsrotationen und Abklingzeiten für Tastatur und Maus oder Game-Controller, oder erkunden Sie von Spielern erstellte Layouts und Guides. Exportieren Sie Ihre Tastenbelegungen in Makros für den direkten Import ins Spiel und teilen Sie Ihre Setups mit anderen.",
     "close": "Schließen",
     "loading": "Wird geladen..."
   },
@@ -103,6 +101,11 @@
     "unheartTitle": "Favorisierung dieses Layouts aufheben"
   },
 
+  "Hero": {
+    "heading": "Ein Final Fantasy XIV: Dawntrail Cross Hotbar Setup Guides und Tastenbindungstool für Controller-Layouts",
+    "body": "Diese App ermöglicht es Ihnen, Ihre Final Fantasy XIV: Dawntrail Hotbars (HB) und Cross Hotbars (XHB) zu simulieren und zu planen. Erstellen Sie Ihre eigenen Layouts und Tastenbelegungen, um Ihre Job-Aktionsrotationen und Abklingzeiten zu optimieren, oder erkunden Sie von Spielern erstellte Setups und Guides. Nutzen Sie die Drag-and-Drop-Funktion für einfache Tastenbelegungen und Anpassungen zur Verwendung mit Tastatur und Maus oder Game-Controllern. Exportieren Sie Ihre Tastenbelegungen in Makros für den direkten Import ins Spiel und teilen Sie Ihre Setups mit anderen."
+  },
+
   "Hotbars": {
     "hb": "Aktionsleiste",
     "hbs": "Aktionsleisten",
@@ -200,22 +203,24 @@
       }
     },
     "Job": {
-      "index_title": "{{jobName}} Hotbar-Tastenbelegungs-Setup und Controller-Layouts - FFXIV Dawntrail",
-      "index_description": "Diese Seite listet alle von Spielern erstellten Hotbar (HB) und Cross Hotbar (XHB) Tastenkürzel-Setups und Layout-Guides für den {{jobName}}-Job in Final Fantasy XIV: Dawntrail auf.",
+      "title": "{{jobName}} Hotbar-Tastenbelegungs-Setup und Controller-Layouts - FFXIV Dawntrail",
+      "description": "Diese Seite listet alle von Spielern erstellten Hotbar (HB) und Cross Hotbar (XHB) Tastenkürzel-Setups und Layout-Guides für den {{jobName}}-Job in Final Fantasy XIV: Dawntrail auf.",
       "job_guide": "Job-Leitfaden: {{jobName}}",
       "keybinding_and_layout_guides": "{{jobName}} Tastenbelegungs-Setup und Layouts",
-      "new_description": "Planen Sie Ihre {{jobName}}-Aktionsleisten oder Kreuz-Aktionsleisten (XHB) mit diesem Tool. Ziehen Sie per Drag & Drop oder klicken Sie, um Aktionen den Aktionsleistenplätzen zuzuweisen und speichern Sie diese unter einer teilbaren URL.",
       "no_layouts": "Keine {{jobName}} Layouts vorhanden.",
       "create_layout": "Erstellen Sie ein neues Layout.",
       "short_description": "Dies ist ein {{jobName}} Tastenbelegungsleitfaden für deine {{hotbarLayout}}-Aktionen in Final Fantasy XIV: Dawntrail."
     },
     "Layout": {
       "title": "{{jobName}} ({{jobAbbr}}) Hotbar-Tastenbelegungs-Setup und Controller-Layout - FFXIV Dawntrail",
-      "new_title": "Erstellen Sie ein neues {{jobName}} Controller-Tastenbelegungs-Layout - FFXIV Dawntrail",
       "title_by_author": "{{ titleName }} von {{ authorName }}",
       "more_layouts_by_user": "Mehr Layouts von {{userName}}",
       "more_layouts_by_job": "Mehr {{jobName}} Layouts",
       "view_more": "Mehr anzeigen..."
+    },
+    "NewLayout": {
+      "new_title": "Erstellen Sie ein neues {{jobName}} Controller-Tastenbelegungs-Layout - FFXIV Dawntrail",
+      "new_description": "Planen Sie Ihre {{jobName}}-Aktionsleisten oder Kreuz-Aktionsleisten (XHB) mit diesem Tool. Ziehen Sie per Drag & Drop oder klicken Sie, um Aktionen den Aktionsleistenplätzen zuzuweisen und speichern Sie diese unter einer teilbaren URL."
     },
     "NotFound": {
       "status": "404 SEITE NICHT GEFUNDEN",
