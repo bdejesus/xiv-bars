@@ -42,16 +42,9 @@ export default function Index(props:PageProps) {
     { titleName: viewData.title, authorName: viewData.user!.name }
   );
 
-  console.log(viewData.layout);
-
   const displayTitle = viewData.layout === 1
-    ? t(
-      'Pages.Layout.title_hb',
-      { jobName: displayJobName, jobAbbr: displayJobAbbr }
-    ) : t(
-      'Pages.Layout.title_xhb',
-      { jobName: displayJobName, jobAbbr: displayJobAbbr }
-    );
+    ? t('Pages.Layout.title_hb', { jobName: displayJobName, jobAbbr: displayJobAbbr })
+    : t('Pages.Layout.title_xhb', { jobName: displayJobName, jobAbbr: displayJobAbbr });
   const pageTitle = [displayAuthor, displayTitle, 'XIVBARS'].join(' | ');
   const appDispatch = useAppDispatch();
 
