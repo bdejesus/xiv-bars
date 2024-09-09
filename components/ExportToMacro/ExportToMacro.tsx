@@ -18,9 +18,6 @@ export function ExportToMacros() {
   const [showMacrosModal, setShowMacrosModal] = useState(false);
   const [macroText, setMacroText] = useState([] as string[]);
   const appState = useAppState();
-  const { layout, isPvp } = appState.viewData;
-  const layoutIndex = layout || 0;
-  const currLayout = layouts[layoutIndex] as keyof typeof appState;
 
   const excludeTypes = [
     'MainCommand',
@@ -28,75 +25,78 @@ export function ExportToMacros() {
     'CompanyAction'
   ];
 
-  function generateHotbarMacros(hotbarRow: SlotProps[], hotbarNum: number) {
-    return hotbarRow
-      .map(({ action }, index) => {
-        if (action
-          && action.Name
-          && action.UrlType
-          && !excludeTypes.includes(action.UrlType as string)
-        ) {
-          const command = [isPvp ? 'pvp' : '', currLayout].join('');
-          const subcommand = action.Command || 'action';
-          const slotName = (currLayout === 'chotbar') ? chotbarSlotNames[index] : index + 1;
-          const stringArray = [
-            `/${command}`,
-            subcommand,
-            `"${translateData('Name', action, router.locale)}"`,
-            hotbarNum,
-            slotName
-          ];
-
-          return stringArray.join(' ');
-        }
-        return null;
-      })
-      .filter((row) => row)
-      .join('\n');
+  function handleExport() {
+    setShowMacrosModal(true);
   }
 
-  function groupMacros(lines: string[]) {
-    const size = 15;
-    const groups = [];
+  useEffect(() => {
+    const { layout, isPvp } = appState.viewData;
+    const layoutIndex = layout || 0;
+    const currLayout = layouts[layoutIndex] as keyof typeof appState;
 
-    for (let i = 0; i < lines.length; i += size) {
-      groups.push(lines.slice(i, i + size).join('\n'));
+    function generateHotbarMacros(hotbarRow: SlotProps[], hotbarNum: number) {
+      return hotbarRow
+        .map(({ action }, index) => {
+          if (action
+            && action.Name
+            && action.UrlType
+            && !excludeTypes.includes(action.UrlType as string)
+          ) {
+            const command = [isPvp ? 'pvp' : '', currLayout].join('');
+            const subcommand = action.Command || 'action';
+            const slotName = (currLayout === 'chotbar') ? chotbarSlotNames[index] : index + 1;
+            const stringArray = [
+              `/${command}`,
+              subcommand,
+              `"${translateData('Name', action, router.locale)}"`,
+              hotbarNum,
+              slotName
+            ];
+
+            return stringArray.join(' ');
+          }
+          return null;
+        })
+        .filter((row) => row)
+        .join('\n');
     }
-    return groups;
-  }
 
-  function buildMacros() {
-    if (currLayout) {
-      const hotbarRows = Object.values(appState[currLayout]!);
-      const hotbarMacros = hotbarRows
-        .map((row, index) => row && generateHotbarMacros(row as unknown as SlotProps[], index + 1))
-        .filter((line) => line)
-        .join('\n')
-        .trim()
-        .split('\n');
+    function groupMacros(lines: string[]) {
+      const size = 15;
+      const groups = [];
 
-      const clearMacro = hotbarRows
-        .reduce((collectKeys:string[], hbRow, index) => {
+      for (let i = 0; i < lines.length; i += size) {
+        groups.push(lines.slice(i, i + size).join('\n'));
+      }
+      return groups;
+    }
+
+    function buildMacros() {
+      if (currLayout) {
+        const hotbarRows = Object.values(appState[currLayout]!);
+        const hotbarMacros = hotbarRows
+          .map((row, index) => row && generateHotbarMacros(row as unknown as SlotProps[], index + 1))
+          .filter((line) => line)
+          .join('\n')
+          .trim()
+          .split('\n');
+
+        const clearMacro = hotbarRows.reduce((collectKeys:string[], hbRow, index) => {
           if (hasActions(hbRow)) {
             return [...collectKeys, `/${currLayout} remove ${index + 1} all`];
           }
           return collectKeys;
         }, []).join('\n');
 
-      const macroGroups: string[] = groupMacros(hotbarMacros);
-
-      setMacroText([clearMacro, ...macroGroups]);
+        const macroGroups:string[] = groupMacros(hotbarMacros);
+        setMacroText([clearMacro, ...macroGroups]);
+      }
     }
-  }
 
-  function handleExport() {
     buildMacros();
-    setShowMacrosModal(true);
-  }
+  }, [appState.viewData]);
 
-  useEffect(() => {
-    buildMacros();
-  }, [appState.viewData, appState.viewAction]);
+  useEffect(() => () => setMacroText([]), []);
 
   return (
     <div className={styles.container}>
@@ -132,7 +132,7 @@ export function ExportToMacros() {
                 <Textarea
                   key={`macro-group-${i}`}
                   id={i}
-                  defaultValue={text}
+                  value={text}
                 />
               ))}
             </div>
