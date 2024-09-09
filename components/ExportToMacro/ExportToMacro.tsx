@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { layouts, chotbarSlotNames, hasActions } from 'lib/xbars';
+import { translateData } from 'lib/utils/i18n.mjs';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
 import { useTranslation } from 'next-i18next';
@@ -11,6 +13,7 @@ import Textarea from './Textarea';
 import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {
+  const router = useRouter();
   const { t } = useTranslation();
   const [showMacrosModal, setShowMacrosModal] = useState(false);
   const [macroText, setMacroText] = useState([] as string[]);
@@ -39,7 +42,7 @@ export function ExportToMacros() {
           const stringArray = [
             `/${command}`,
             subcommand,
-            `"${action.Name}"`,
+            `"${translateData('Name', action, router.locale)}"`,
             hotbarNum,
             slotName
           ];
