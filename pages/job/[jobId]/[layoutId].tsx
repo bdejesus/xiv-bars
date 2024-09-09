@@ -16,6 +16,7 @@ import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
 import Jobs from 'apiData/Jobs.json';
 import LayoutsList from 'components/LayoutsList';
+import renderMeta from 'components/Meta';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { PageProps } from 'types/Page';
@@ -69,10 +70,21 @@ export default function Index(props:PageProps) {
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={viewData?.description} />
-        { !viewData.published && viewData.description && <meta name="robots" content="noindex" /> }
+
+        { (!viewData.published
+          || !viewData.description
+          || viewData.description.length < 255)
+          && <meta name="robots" content="noindex" />}
+
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
         )}
+
+        { renderMeta({
+          title: pageTitle,
+          description: viewData?.description || '',
+          canonicalPath: router.asPath
+        }) }
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />

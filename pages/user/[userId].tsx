@@ -59,9 +59,9 @@ export default function User({ user }:UserViewProps) {
         />
 
         { renderMeta({
-          title: `${t('Pages.User.title', { userName: user.name })} | XIVBARS`,
+          title: t('Pages.User.title', { userName: user.name }),
           description: t('Pages.User.description', { userName: user.name }),
-          currentPath: `/user/${user.name}`
+          canonicalPath: `/user/${user.name}`
         })}
       </Head>
 

@@ -17,6 +17,7 @@ import App, { appActions, useAppDispatch } from 'components/App';
 import LayoutsList from 'components/LayoutsList';
 import EorzeaProfile from 'components/EorzeaProfile';
 import { hasSprite } from 'components/JobSprite';
+import renderMeta from 'components/Meta';
 import Jobs from 'apiData/Jobs.json';
 
 import type { PageProps } from 'types/Page';
@@ -62,11 +63,17 @@ export default function Index(props:PageProps) {
         <title>
           {`${t('Pages.NewLayout.title', { jobName })} | XIVBARS`}
         </title>
-
         <meta name="description" content={t('Pages.NewLayout.description', { jobName })} />
+
         { hasSprite(selectedJob) && (
           <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
         )}
+
+        { renderMeta({
+          title: `${t('Pages.NewLayout.title', { jobName })} | XIVBARS`,
+          description: t('Pages.NewLayout.description', { jobName }),
+          canonicalPath: router.asPath
+        }) }
       </Head>
 
       <GlobalHeader selectedJob={selectedJob} />

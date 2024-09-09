@@ -40,6 +40,7 @@ export default function Settings() {
         <title>
           {`${t('Pages.User.Settings.account_settings', { userName: user.name })} | ${user.name} | XIVBARS`}
         </title>
+        <meta name="robots" content="noindex" />
       </Head>
 
       <AppContextProvider>
