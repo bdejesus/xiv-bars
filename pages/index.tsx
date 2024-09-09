@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 import db, { serializeDates } from 'lib/db';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
@@ -14,6 +15,7 @@ import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import dynamic from 'next/dynamic';
+import renderMeta from 'components/Meta';
 import type { GetServerSideProps } from 'next';
 import type { LayoutViewProps } from 'types/Layout';
 
@@ -48,6 +50,16 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
 
   return (
     <>
+      <Head>
+        <title>{t('Global.title')}</title>
+        <meta name="description" content={t('Global.description')} />
+        { renderMeta({
+          title: t('Global.title'),
+          description: t('Global.description'),
+          canonicalPath: '/'
+        }) }
+      </Head>
+
       <AppContextProvider>
         <GlobalHeader />
       </AppContextProvider>

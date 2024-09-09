@@ -20,6 +20,7 @@ import Footer from 'components/Footer';
 import Icon, { Icons } from 'components/Icon';
 import dynamic from 'next/dynamic';
 import { hasSprite } from 'components/JobSprite';
+import renderMeta from 'components/Meta';
 
 import type { ClassJobProps } from 'types/ClassJob';
 import type { LayoutViewProps } from 'types/Layout';
@@ -79,13 +80,16 @@ export default function Layouts({ selectedJob, layouts }: Props) {
             {`${t('Pages.Job.title', { jobName, jobAbbr })} | XIVBARS`}
           </title>Lore
 
-          <meta
-            name="description"
-            content={t('Pages.Job.description', { jobName })}
-          />
+          <meta name="description" content={t('Pages.Job.description', { jobName })} />
           { hasSprite(selectedJob) && (
             <meta property="og:image" content={`${domain}/classjob/sprite-${selectedJob.Abbr}@2x.png`} />
           )}
+
+          { renderMeta({
+            title: `${t('Pages.Job.title', { jobName, jobAbbr })} | XIVBARS`,
+            description: t('Pages.Job.description', { jobName }),
+            canonicalPath: router.asPath
+          }) }
         </Head>
       )}
 

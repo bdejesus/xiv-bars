@@ -6,7 +6,6 @@ import analytics from 'lib/analytics';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import Script from 'next/script';
-import renderMeta from 'components/Meta';
 import renderFavicon from 'components/Favicon';
 import { SessionProvider } from 'next-auth/react';
 import { UserProvider } from 'components/User/context';
@@ -48,33 +47,44 @@ function App({ Component, pageProps }: AppProps) {
   const displayTitle = generateTitle();
 
   return (
-    <ErrorBoundary fallback={(
-      <div className="container container-sm panel panel-white mt-xl">
-        <div className="system-message fail text-md">
-          {t('Error.generic.title')}
-        </div>
+    <ErrorBoundary
+      fallback={(
+        <div className="container container-sm panel panel-white mt-xl">
+          <div className="system-message fail text-md">
+            {t('Error.generic.title')}
+          </div>
 
-        <div className="mt-md mb-md text-center pad-lg mb-0">
-          <p className="text-xl">{t('Error.generic.body')}</p>
+          <div className="mt-md mb-md text-center pad-lg mb-0">
+            <p className="text-xl">{t('Error.generic.body')}</p>
 
-          <a className="button btn-alt btn-inline mb-lg" href="/">
-            {t('Error.generic.go_back')}
-          </a>
+            <a className="button btn-alt btn-inline mb-lg" href="/">
+              {t('Error.generic.go_back')}
+            </a>
 
-          <div className="text-center">
-            <Avatar img="av30.png" />
+            <div className="text-center">
+              <Avatar img="av30.png" />
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
     >
       <Head>
         <title>{displayTitle}</title>
-        { renderMeta({ title: displayTitle, description: t('Global.description'), currentPath }) }
+
         { renderFavicon() }
         { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
           <meta name="google-adsense-account" content={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE} />
         )}
+
+        <meta name="keywords" content="hotbar cross ffxiv endwalker simulator xhb wxhb controller xiv fantasy final tool hotbars simulate planner interface configurations pc ps4 ps5 layouts keymaps keymapping keybinds keybindings" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta name="msapplication-TileImage" content="icons/favicon-144x144.png" />
+        <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
+        <link rel="preconnect" href="https://xivapi.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="manifest" href="/manifest.json" />
       </Head>
 
       {/* <!-- Google AdSense --> */}
