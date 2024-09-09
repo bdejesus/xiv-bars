@@ -13,7 +13,7 @@ import Textarea from './Textarea';
 import styles from './ExportToMacros.module.scss';
 
 export function ExportToMacros() {
-  const router =useRouter();
+  const router = useRouter();
   const { t } = useTranslation();
   const [showMacrosModal, setShowMacrosModal] = useState(false);
   const [macroText, setMacroText] = useState([] as string[]);
