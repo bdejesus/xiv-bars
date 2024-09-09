@@ -132,7 +132,7 @@ export function ExportToMacros() {
                 <Textarea
                   key={`macro-group-${i}`}
                   id={i}
-                  defaultValue={text}
+                  value={text}
                 />
               ))}
             </div>

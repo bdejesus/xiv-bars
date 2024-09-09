@@ -6,9 +6,9 @@ import styles from './Textarea.module.scss';
 
 interface TextareaProps {
   id: number,
-  defaultValue?: string | number
+  value?: string | number
 }
-export default function Textarea({ id, defaultValue }:TextareaProps) {
+export default function Textarea({ id, value }:TextareaProps) {
   const { t } = useTranslation();
   const [copied, setCopied] = useState(false);
   const textarea = createRef<HTMLTextAreaElement>();
@@ -25,7 +25,7 @@ export default function Textarea({ id, defaultValue }:TextareaProps) {
       <legend>Macro { id }</legend>
       <textarea
         ref={textarea}
-        defaultValue={defaultValue}
+        value={value}
         id={`macro-textarea-${id}`}
       />
       <button
