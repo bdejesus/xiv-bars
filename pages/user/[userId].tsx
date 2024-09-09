@@ -71,51 +71,73 @@ export default function User({ user }:UserViewProps) {
         <GlobalHeader />
       </AppContextProvider>
 
-      <div className="container">
-        <div className={`${styles.hgroup} row`}>
-          <div className="main">
-            <h1 className={`mt-md ${styles.profile}`}>
-              <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
-              <span className={styles.profileName}>{user.name}</span>
-            </h1>
+      <div itemType="https://schema.org/ProfilePage" itemScope>
+        <meta itemProp="dateCreated" content={user.createdAt} />
+        <meta itemProp="dateModified" content={user.updatedAt} />
 
-            { isCurrentUser && (
-              <div className={styles.layoutsCount}>
-                {layouts?.length ? layouts.length : '-'}/{maxLayouts}
-                <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
-              </div>
-            )}
-          </div>
+        <div
+          className="container"
+          itemProp="mainEntity"
+          itemType="https://schema.org/Person"
+          itemScope
+        >
+          <div className={`${styles.hgroup} row`}>
+            <div className="main">
+              <h1 className={`mt-md ${styles.profile}`}>
+                <meta itemProp="identifier" content={user.id.toString()} />
 
-          <div className="sidebar">
-            <AdUnit format="largeRect" id="ad-UserPage" />
+                <ProfileImage
+                  src={user.image}
+                  title={user.name}
+                  className={styles.profileImage}
+                />
+
+                <span
+                  className={styles.profileName}
+                  itemProp="alternateName"
+                >
+                  {user.name}
+                </span>
+              </h1>
+
+              { isCurrentUser && (
+                <div className={styles.layoutsCount}>
+                  {layouts?.length ? layouts.length : '-'}/{maxLayouts}
+                  <Icon id={Icons.LAYOUTS} alt="Layouts" type="white" />
+                </div>
+              )}
+            </div>
+
+            <div className="sidebar">
+              <AdUnit format="largeRect" id="ad-UserPage" />
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="container">
-        { (!layouts) ? (
-          <h2 id="jobSelectTitle">
-            {t('Pages.User.no_layouts')}
-          </h2>
-        ) : (
-          <LayoutsList
-            id="userLayouts"
-            layouts={layouts}
-            filterable
-          />
+        <div className="container">
+          { (!layouts) ? (
+            <h2 id="jobSelectTitle">
+              {t('Pages.User.no_layouts')}
+            </h2>
+          ) : (
+            <LayoutsList
+              id="userLayouts"
+              layouts={layouts}
+              filterable
+            />
+          )}
+        </div>
+
+        { isCurrentUser && user.hearts && user.hearts.length > 0 && (
+          <div className="container">
+            <h2>{t('Pages.User.saved_layouts')}</h2>
+            <LayoutsList
+              id="heartedLayouts"
+              layouts={user.hearts}
+            />
+          </div>
         )}
       </div>
-
-      { isCurrentUser && user.hearts && user.hearts.length > 0 && (
-        <div className="container">
-          <h2>{t('Pages.User.saved_layouts')}</h2>
-          <LayoutsList
-            id="heartedLayouts"
-            layouts={user.hearts}
-          />
-        </div>
-      )}
 
       <Footer />
     </>
@@ -139,7 +161,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       name: true,
       id: true,
       image: true,
-      layouts: userLayoutsQuery
+      layouts: userLayoutsQuery,
+      createdAt: true,
+      updatedAt: true
     }
   });
 
@@ -169,7 +193,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         id: user.id,
         image: user.image,
         hearts: serializeDates(heartedLayouts),
-        layouts: serializeDates(userLayouts)
+        layouts: serializeDates(userLayouts),
+        createdAt: user.createdAt.toISOString(),
+        updatedAt: user.updatedAt.toISOString()
       }
     }
   };

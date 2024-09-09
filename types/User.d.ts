@@ -6,7 +6,9 @@ export interface UserProps {
   id: number,
   image: string,
   layouts: LayoutViewProps[]
-  hearts: LayoutViewProps[]
+  hearts: LayoutViewProps[],
+  createdAt: string,
+  updatedAt: string
 }
 
 export interface UserState {
