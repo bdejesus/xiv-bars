@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
 import db, { serializeDates, layoutsQuery } from 'lib/db';
@@ -58,7 +58,7 @@ export default function User({ user }:UserViewProps) {
           content={t('Pages.User.description', { userName: user.name })}
         />
 
-        { (!layouts || layouts.length < 1) && <meta name="robots" content="noindex" />}
+        { user.layouts.length < 1 && <meta name="robots" content="noindex" />}
 
         { renderMeta({
           title: t('Pages.User.title', { userName: user.name }),
