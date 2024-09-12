@@ -58,7 +58,7 @@ async function getJobs() {
   });
 
   writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
-  getJobActions(decoratedJobs);
+  if (isRemote) getJobActions(decoratedJobs);
 }
 
 async function getJobActions(jobs) {
@@ -91,7 +91,7 @@ async function getJobActions(jobs) {
   }, Promise.resolve([]));
 }
 
-async function getActions() {
+async function getOtherActions() {
   const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionSet) => {
@@ -136,7 +136,7 @@ async function getActions() {
         console.log(`📂 Creating "${dest}" directory...`);
         mkdir(`${dest}/JobActions`, () =>{
           getJobs();
-          getActions();
+          getOtherActions();
         });
       });
     });

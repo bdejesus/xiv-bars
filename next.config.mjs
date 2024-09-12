@@ -20,7 +20,7 @@ const options = {
         hostname: 'cdn.discordapp.com'
       }
     ],
-  }
+  },
 };
 
 const SentryWebpackPluginOptions = {
