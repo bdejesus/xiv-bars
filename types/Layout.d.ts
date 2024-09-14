@@ -10,7 +10,7 @@ export interface LayoutDataProps {
   isPvp: boolean,
   layout: number,
   hearted?: HeartProps,
-  parentId?: number,
+  parentId?: number | null,
   _count: {
     hearts: number
   }

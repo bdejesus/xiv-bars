@@ -113,6 +113,8 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   const pvp:boolean = !isPvp ? false : isPvp === '1';
   let parentLayout = null;
 
+  const parentIdNumber = parentId ? parseInt(parentId, 10) : null;
+
   if (parentId) {
     const fetchOptions = {
       method: 'POST',
@@ -152,7 +154,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: {
         ...context.query,
-        parentId: parentId && parseInt(parentId, 10),
+        parentId: parentIdNumber,
         parentLayout
       },
       selectedJob,
@@ -170,7 +172,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
       viewData: {
         ...context.query,
-        parentId: parentId && parseInt(parentId, 10)
+        parentId: parentIdNumber
       },
       selectedJob,
       actions,

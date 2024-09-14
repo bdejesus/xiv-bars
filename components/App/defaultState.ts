@@ -25,7 +25,7 @@ export const defaultState:AppState = {
     _count: {
       hearts: 0
     },
-    parentId: undefined
+    parentId: null
   },
   jobs: Jobs,
   readOnly: false,
