@@ -44,7 +44,9 @@ model Layout {
   hb           String?
   hearts       Heart[]
   locale       String?   @default("en")
-  refId        Int
+  parentId     Int?
+  parentLayout Layout?   @relation("ChildToParent", fields: [parentId], references: [id])
+  childLayouts Layout[]  @relation("ChildToParent")
 }
 
 model Heart {
