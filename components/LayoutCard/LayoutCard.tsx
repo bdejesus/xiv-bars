@@ -60,7 +60,7 @@ export default function LayoutCard({
   return (
     <div className={[styles.layoutCard, styles[theme], className].join(' ')}>
       <Tags layoutView={layout} job={job} className={styles.tags}>
-        { layout._count?.hearts > 0 && (
+        { layout._count.hearts > 0 && (
           <Hearts
             layoutId={layout.id as number}
             count={layout._count?.hearts || 0}

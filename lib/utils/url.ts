@@ -53,7 +53,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     if (key === 'hb') return { ...items, [key]: value && formatHb(value as hbValue) };
     if (['l', 'layout'].includes(key)) return { ...items, l: value?.toString() };
     if (inlcudeKeys.includes(key)) return { ...items, [key]: value };
-    if (key === 'id') return { ...items, refId: value };
+    if (key === 'id') return { ...items, parentId: value };
     return items;
   }, {});
 

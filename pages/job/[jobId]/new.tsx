@@ -33,8 +33,7 @@ export default function Index(props:PageProps) {
     actions,
     roleActions,
     viewAction,
-    classJobLayouts,
-    referenceLayout
+    classJobLayouts
   } = props;
 
   const router = useRouter();
@@ -51,8 +50,7 @@ export default function Index(props:PageProps) {
         actions,
         roleActions,
         viewAction,
-        urlParams: router.query,
-        referenceLayout
+        urlParams: router.query
       }
     });
   }, [viewData]);
@@ -111,19 +109,19 @@ type ContextQuery = {
 };
 
 export const getServerSideProps:GetServerSideProps = async (context) => {
-  const { jobId, isPvp, refId } = context.query as ContextQuery;
+  const { jobId, isPvp, parentId } = context.query as ContextQuery;
   const pvp:boolean = !isPvp ? false : isPvp === '1';
-  let referenceLayout = null;
+  let parentLayout = null;
 
-  if (refId) {
+  if (parentId) {
     const fetchOptions = {
       method: 'POST',
-      body: JSON.stringify({ layoutId: refId, viewerId: undefined, method: 'read' }),
+      body: JSON.stringify({ layoutId: parentId, viewerId: undefined, method: 'read' }),
       headers: { 'Content-Type': 'application/json' }
     };
 
-    referenceLayout = await fetch(`${domain}/api/layout`, fetchOptions);
-    referenceLayout = await referenceLayout.json();
+    parentLayout = await fetch(`${domain}/api/layout`, fetchOptions);
+    parentLayout = await parentLayout.json();
   }
 
   // Get Selected Job
@@ -152,13 +150,16 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
-      viewData: context.query,
+      viewData: {
+        ...context.query,
+        parentId: parentId && parseInt(parentId, 10),
+        parentLayout
+      },
       selectedJob,
       actions,
       roleActions,
       viewAction: 'new',
-      classJobLayouts: serializableClassJobLayouts,
-      referenceLayout
+      classJobLayouts: serializableClassJobLayouts
     };
 
     return { props };
@@ -167,13 +168,15 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
 
     const props = {
       ...(await serverSideTranslations(context.locale as string, ['common'])),
-      viewData: context.query,
+      viewData: {
+        ...context.query,
+        parentId: parentId && parseInt(parentId, 10)
+      },
       selectedJob,
       actions,
       roleActions,
       viewAction: 'new',
-      classJobLayouts: [],
-      referenceLayout
+      classJobLayouts: []
     };
 
     return { props };

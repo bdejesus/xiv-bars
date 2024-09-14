@@ -9,13 +9,14 @@ export interface LayoutDataProps {
   hb: number[],
   isPvp: boolean,
   layout: number,
-  hearted?: HeartProps
+  hearted?: HeartProps,
+  parentId?: number,
+  _count: {
+    hearts: number
+  }
 }
 
 export interface LayoutViewProps extends LayoutDataProps {
-  _count: {
-    hearts: number
-  },
   createdAt?: string | null,
   deletedAt?: string | null,
   description?: string,
@@ -29,7 +30,8 @@ export interface LayoutViewProps extends LayoutDataProps {
   },
   published?: boolean,
   userId?: number,
-  position?: number
+  position?: number,
+  parentLayout?: LayoutDataProps
 }
 
 export interface MergeDataProps {
