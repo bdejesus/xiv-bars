@@ -155,10 +155,6 @@ $icon-size: 6px;
     &[data-active='true'] {
       width: 320px;
     }
-
-    :global(.list-actions) {
-      gap: $spacing-lg $spacing-base;
-    }
   }
 }
 
@@ -166,10 +162,6 @@ $icon-size: 6px;
   .sidePanel {
     &[data-active='true'] {
       width: 240px;
-    }
-
-    :global(.list-actions) {
-      gap: $spacing-base;
     }
   }
 

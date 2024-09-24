@@ -64,7 +64,9 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):LayoutViewProps
     layout,
     _count,
     hearted,
-    published
+    published,
+    parentId,
+    parentLayout
   }:LayoutViewProps = {
     ...defaultState.viewData,
     ...viewData,
@@ -90,7 +92,9 @@ export function mergeParamsToView(props?:MergeParamsToViewProps):LayoutViewProps
     layout,
     _count,
     hearted,
-    published
+    published,
+    parentId: parentId as number,
+    parentLayout
   };
 }
 

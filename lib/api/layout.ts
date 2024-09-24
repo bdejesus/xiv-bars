@@ -44,7 +44,19 @@ export async function create(
     const createLayout = await db.layout
       .create({
         data: { ...data, userId },
-        include: { user: { select: { name: true } } }
+        include: {
+          user: { select: { name: true } },
+          parentLayout: {
+            include: {
+              user: {
+                select: { name: true, id: true, image: true }
+              },
+              _count: {
+                select: { hearts: true }
+              }
+            }
+          }
+        }
       })
       .catch((error:Error) => console.error(error));
     return createLayout;
@@ -67,6 +79,16 @@ export async function read(
           },
           _count: {
             select: { hearts: true }
+          },
+          parentLayout: {
+            include: {
+              user: {
+                select: { name: true, id: true, image: true }
+              },
+              _count: {
+                select: { hearts: true }
+              }
+            }
           }
         }
       });

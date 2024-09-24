@@ -31,9 +31,9 @@ export default function Index(props:PageProps) {
     roleActions,
     viewAction,
     ownerLayouts,
-    classJobLayouts,
-    referenceLayout
+    classJobLayouts
   } = props;
+
   const { t } = useTranslation();
   const router = useRouter();
   const displayJobName = translateData('Name', selectedJob, router.locale);
@@ -59,8 +59,7 @@ export default function Index(props:PageProps) {
         showDetails: true,
         urlParams: router.query,
         viewAction,
-        viewData,
-        referenceLayout
+        viewData
       }
     });
   }, [router.query]);
@@ -187,8 +186,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         roleActions,
         viewAction: 'show',
         ownerLayouts: serializeDates(ownerLayouts),
-        classJobLayouts: serializableClassJobLayouts,
-        referenceLayout: null
+        classJobLayouts: serializableClassJobLayouts
       };
 
       return { props };

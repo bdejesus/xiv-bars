@@ -60,7 +60,7 @@ function SaveForm() {
           published: publishedCheckbox.current?.checked
         },
         {
-          filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt', 'hearted', '_count', 'userId']
+          filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt', 'hearted', '_count', 'userId', 'parentLayout']
         }
       )
     };

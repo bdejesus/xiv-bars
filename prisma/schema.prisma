@@ -11,68 +11,72 @@ datasource db {
 }
 
 model User {
-  id              Int       @id @default(autoincrement())
-  name            String?
-  email           String    @unique
-  image           String?
-  characterId     Int?      @unique
-  layouts         Layout[]
-  hearts          Heart[]
-  role            Role      @default(USER)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime? @updatedAt
-  deletedAt       DateTime?
+  id          Int       @id @default(autoincrement())
+  name        String?
+  email       String    @unique
+  image       String?
+  characterId Int?      @unique
+  layouts     Layout[]
+  hearts      Heart[]
+  role        Role      @default(USER)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+  deletedAt   DateTime?
 }
 
 model Layout {
-  id            Int         @id @default(autoincrement())
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId        Int
-  title         String
-  description   String?
-  jobId         String
-  isPvp         Boolean     @default(false)
-  layout        Int
-  encodedSlots  String
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime?   @default(now())
-  deletedAt     DateTime?
-  published     Boolean     @default(true)
-  xhb           Int?
-  wxhb          Int?
-  exhb          Int?
-  hb            String?
-  hearts        Heart[]
+  id           Int       @id @default(autoincrement())
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       Int
+  title        String
+  description  String?
+  jobId        String
+  isPvp        Boolean   @default(false)
+  layout       Int
+  encodedSlots String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime? @default(now())
+  deletedAt    DateTime?
+  published    Boolean   @default(true)
+  xhb          Int?
+  wxhb         Int?
+  exhb         Int?
+  hb           String?
+  hearts       Heart[]
+  locale       String?   @default("en")
+  parentId     Int?
+  parentLayout Layout?   @relation("ChildToParent", fields: [parentId], references: [id])
+  childLayouts Layout[]  @relation("ChildToParent")
 }
 
 model Heart {
-  id            Int         @id @default(autoincrement())
-  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId        Int
-  layout        Layout      @relation(fields: [layoutId], references: [id], onDelete: Cascade)
-  layoutId      Int
-  createdAt     DateTime    @default(now())
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  layout    Layout   @relation(fields: [layoutId], references: [id], onDelete: Cascade)
+  layoutId  Int
+  createdAt DateTime @default(now())
 }
 
 model Character {
-  id                  Int     @id @default(autoincrement())
-  face                String
-  portrait            String
-  name                String
-  title               String?
-  titleTop            Boolean?   @default(false)
-  world               String
-  race                String
-  nameday             String
-  guardian            String
-  cityState           String
-  grandCompanyName    String?
-  grandCompanyRank    String?
-  freeCompany         String?
-  activeClassJob      Json?
-  gearSlots           Json
-  createdAt           DateTime    @default(now())
-  updatedAt           DateTime    @default(now())
+  id               Int      @id @default(autoincrement())
+  face             String
+  portrait         String
+  name             String
+  title            String?
+  titleTop         Boolean? @default(false)
+  world            String
+  race             String
+  nameday          String
+  guardian         String
+  cityState        String
+  grandCompanyName String?
+  grandCompanyRank String?
+  freeCompany      String?
+  activeClassJob   Json?
+  gearSlots        Json
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @default(now())
 }
 
 enum Role {
