@@ -39,9 +39,6 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - name: Build Data Files
-        run: yarn build:data
-
       - name: Build
         env:
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
