@@ -148,7 +148,7 @@ export default function LayoutsList({
         if (window.matchMedia('(max-width: 720px)').matches) {
           return groupIntoColumns(indexedLayouts, 1);
         }
-        if (window.matchMedia('(max-width: 980px)').matches) {
+        if (window.matchMedia('(max-width: 1100px)').matches) {
           return groupIntoColumns(indexedLayouts, 2);
         }
         return groupIntoColumns(indexedLayouts);
