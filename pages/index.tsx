@@ -42,8 +42,6 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
   const router = useRouter();
   const { t } = useTranslation();
 
-  console.log(popularLayoutsByJob);
-
   useEffect(() => {
     const jobAbbrs = Jobs.map(({ Abbr }) => Abbr);
     // `s` param is deprecated but is there to provide backward support
@@ -100,14 +98,14 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
         <div className={styles.popularLayoutsByJob}>
           <h2>{t('Pages.Index.popular_layouts')}</h2>
           <div className={styles.popularLayoutsByJobLists}>
-            { popularLayoutsByJob?.map(({job, layouts}, position) => (
+            { popularLayoutsByJob?.map(({ job, layouts }, position) => (
               <>
                 <LayoutsList
                   showAds={false}
                   id={`popularLayouts-${job.Abbr}`}
                   className={styles.popularLayouts}
                   title={job.Name}
-                  header={'h3'}
+                  header="h3"
                   layouts={layouts}
                   columns={1}
                 />
@@ -155,7 +153,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       orderBy: { updatedAt: 'desc' }
     });
 
-    const listJobs = Jobs.filter((job) => !['DOH', 'DOL'].includes(job.Role))
+    const listJobs = Jobs.filter((job) => !['DOH', 'DOL'].includes(job.Role));
 
     const layoutGroupsRequest = listJobs.map(async (job) => {
       const jobLayouts = await db.layout.findMany({
@@ -168,14 +166,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         orderBy: {
           hearts: { _count: 'desc' }
         }
-      })
+      });
 
       const filteredJobLayouts = jobLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
 
       return {
         job,
         layouts: serializeDates(filteredJobLayouts)
-      }
+      };
     });
 
     const layoutsByJob = await Promise.all(layoutGroupsRequest);

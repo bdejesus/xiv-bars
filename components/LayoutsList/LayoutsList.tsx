@@ -197,11 +197,10 @@ export default function LayoutsList({
         itemProp={title && 'itemListElement'}
         itemType={title && 'https://schema.org/ItemList'}
       >
-        { title &&
-          header === 'h3'
-            ? <h3 className={styles.title} itemProp="name">{title}</h3>
-            : <h2 className={styles.title} itemProp="name">{title}</h2>
-        }
+        { title
+          && header === 'h3'
+          ? <h3 className={styles.title} itemProp="name">{title}</h3>
+          : <h2 className={styles.title} itemProp="name">{title}</h2>}
         { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
         <div

@@ -49,18 +49,17 @@
 
 .popularLayoutsByJobLists {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: $spacing-lg;
+  grid-template-columns: 1fr 1fr 1fr;
 
   .flexAdUnit {
+    grid-column: 1 / 4;
     width: 100%;
-    grid-column-start: 1;
-    grid-column-end: 4;
   }
 
   .popularLayouts {
-    margin-top: 0;
     margin-bottom: $spacing-base;
+    margin-top: 0;
 
     :global(.layoutsList) {
       width: 100%;
