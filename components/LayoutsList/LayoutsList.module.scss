@@ -5,6 +5,12 @@ $grid-gutter: $spacing-base;
 .container {
   margin-bottom: $spacing-xl;
   position: relative;
+
+  h3 {
+    font-size: $font-size-xl;
+    font-weight: 400;
+    color: #999;
+  }
 }
 
 .listColumns {

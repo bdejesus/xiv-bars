@@ -14,24 +14,28 @@ const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 interface LayoutsListProps {
   id: string,
   title?: string,
+  header?: 'h2' | 'h3',
   link?: {
     text: string,
     href: string
   },
   layouts: LayoutViewProps[],
   className?: string,
-  columns?: 3 | 4,
-  filterable?: boolean
+  columns?: 1 | 3 | 4,
+  filterable?: boolean,
+  showAds?: boolean
 }
 
 export default function LayoutsList({
   id,
   title,
+  header = 'h2',
   link,
   layouts,
   className = '',
   columns = 3,
-  filterable = false
+  filterable = false,
+  showAds = true
 }:LayoutsListProps) {
   const pathname = usePathname();
   const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>();
@@ -193,7 +197,11 @@ export default function LayoutsList({
         itemProp={title && 'itemListElement'}
         itemType={title && 'https://schema.org/ItemList'}
       >
-        { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
+        { title &&
+          header === 'h3'
+            ? <h3 className={styles.title} itemProp="name">{title}</h3>
+            : <h2 className={styles.title} itemProp="name">{title}</h2>
+        }
         { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
         <div
@@ -206,9 +214,13 @@ export default function LayoutsList({
               <ListCards
                 layouts={layoutsColumn}
                 key={`layoutColumn-${colIndex}`}
+                showAds={showAds}
               />
             )) : (
-              <ListCards layouts={layouts} />
+              <ListCards
+                layouts={layouts}
+                showAds={showAds}
+              />
             )}
         </div>
 
@@ -219,7 +231,7 @@ export default function LayoutsList({
         )}
       </div>
 
-      { layouts.length > 3 && (
+      { layouts.length > 3 && showAds && (
         <AdUnit id={`ad-LayoutsList-${id}`} />
       )}
     </>

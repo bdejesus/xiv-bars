@@ -18,6 +18,7 @@ import dynamic from 'next/dynamic';
 import renderMeta from 'components/Meta';
 import type { GetServerSideProps } from 'next';
 import type { LayoutViewProps } from 'types/Layout';
+import type { ClassJobProps } from 'types/ClassJob';
 
 import styles from './Index.module.scss';
 
@@ -31,12 +32,17 @@ interface QueryProps {
 
 interface IndexProps {
   recentLayouts: LayoutViewProps[],
-  popularLayouts: LayoutViewProps[]
+  popularLayoutsByJob: {
+    job: ClassJobProps,
+    layouts: LayoutViewProps[]
+  }[]
 }
 
-export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
+export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps) {
   const router = useRouter();
   const { t } = useTranslation();
+
+  console.log(popularLayoutsByJob);
 
   useEffect(() => {
     const jobAbbrs = Jobs.map(({ Abbr }) => Abbr);
@@ -91,14 +97,30 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
           />
         )}
 
-        { popularLayouts?.length >= 5 && (
-          <LayoutsList
-            id="popularLayouts"
-            className={styles.popularLayouts}
-            title={t('Pages.Index.popular_layouts')}
-            layouts={popularLayouts}
-          />
-        ) }
+        <div className={styles.popularLayoutsByJob}>
+          <h2>{t('Pages.Index.popular_layouts')}</h2>
+          <div className={styles.popularLayoutsByJobLists}>
+            { popularLayoutsByJob?.map(({job, layouts}, position) => (
+              <>
+                <LayoutsList
+                  showAds={false}
+                  id={`popularLayouts-${job.Abbr}`}
+                  className={styles.popularLayouts}
+                  title={job.Name}
+                  header={'h3'}
+                  layouts={layouts}
+                  columns={1}
+                />
+                { position % 6 === 5 && (
+                  <AdUnit
+                    className={styles.flexAdUnit}
+                    id={`ad-popLayouts-${position}`}
+                  />
+                ) }
+              </>
+            )) }
+          </div>
+        </div>
       </div>
 
       <HowTo />
@@ -133,20 +155,45 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       orderBy: { updatedAt: 'desc' }
     });
 
-    const popularLayouts = await db.layout.findMany({
-      ...layoutsQuery,
-      take: 24,
-      orderBy: {
-        hearts: { _count: 'desc' }
+    const listJobs = Jobs.filter((job) => !['DOH', 'DOL'].includes(job.Role))
+
+    const layoutGroupsRequest = listJobs.map(async (job) => {
+      const jobLayouts = await db.layout.findMany({
+        ...layoutsQuery,
+        where: {
+          ...layoutsQuery.where,
+          jobId: job.Abbr
+        },
+        take: 3,
+        orderBy: {
+          hearts: { _count: 'desc' }
+        }
+      })
+
+      const filteredJobLayouts = jobLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
+
+      return {
+        job,
+        layouts: serializeDates(filteredJobLayouts)
       }
     });
-    const filteredPopularLayouts = popularLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
+
+    const layoutsByJob = await Promise.all(layoutGroupsRequest);
+    const groupedLayoutsByJob = [
+      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'TANK'),
+      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'HEAL'),
+      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'MDPS'),
+      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'PDPS'),
+      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'RDPS')
+    ]
+      .flat()
+      .filter((jobLayouts) => jobLayouts.layouts.length > 0);
 
     return {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),
         recentLayouts: serializeDates(layouts),
-        popularLayouts: serializeDates(filteredPopularLayouts)
+        popularLayoutsByJob: groupedLayoutsByJob
       }
     };
   } catch (error) {
@@ -156,7 +203,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),
         recentLayouts: [],
-        popularLayouts: []
+        popularLayoutsByJob: []
       }
     };
   }

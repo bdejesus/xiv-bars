@@ -42,3 +42,28 @@
 .jobSelect {
   margin-top: 0;
 }
+
+.popularLayoutsByJob {
+  margin-top: $spacing-xl;
+}
+
+.popularLayoutsByJobLists {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: $spacing-lg;
+
+  .flexAdUnit {
+    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+
+  .popularLayouts {
+    margin-top: 0;
+    margin-bottom: $spacing-base;
+
+    :global(.layoutsList) {
+      width: 100%;
+    }
+  }
+}
