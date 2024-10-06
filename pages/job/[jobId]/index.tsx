@@ -103,6 +103,11 @@ export default function Layouts({ selectedJob, layouts }: Props) {
       >
         <div className={`${styles.header} row`}>
           <div className="main">
+            <h1>{t('Pages.Job.keybinding_and_layout_guides', { jobName })}</h1>
+            <p className="text-xl" itemProp="description">
+              { t('Pages.Job.description', { jobName: selectedJob.Name }) }
+            </p>
+
             <SelectedJob
               job={selectedJob}
               className={styles.title}
@@ -130,15 +135,10 @@ export default function Layouts({ selectedJob, layouts }: Props) {
                 </a>
               </div>
             </SelectedJob>
-
-            <p className="text-xl" itemProp="description">
-              { t('Pages.Job.description', { jobName: selectedJob.Name }) }
-            </p>
-
           </div>
 
           <div className="sidebar">
-            <AdUnit id="ad-JobsIndexPage" />
+            <AdUnit id="ad-JobsIndexPage" format="skyscraper" />
           </div>
         </div>
 
@@ -146,7 +146,6 @@ export default function Layouts({ selectedJob, layouts }: Props) {
           ? (
             <LayoutsList
               id="jobLayouts"
-              title={t('Pages.Job.keybinding_and_layout_guides', { jobName })}
               layouts={layouts}
               className="mb-lg"
               filterable
