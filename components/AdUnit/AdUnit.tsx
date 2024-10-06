@@ -9,7 +9,7 @@ import styles from './AdUnit.module.scss';
 interface AdUnitProps {
   id: string,
   className?: string,
-  format?: 'fluid' | 'skyscraper' | 'mediumRect' | 'largeRect' | 'leaderboard',
+  format?: 'fluid' | 'skyscraper' | 'largeSkyscraper' |'mediumRect' | 'largeRect' | 'leaderboard',
   variant?: 'light' | 'dark'
 }
 
@@ -23,6 +23,7 @@ export default function AdUnit({
   const pathname = usePathname();
   const formats = {
     skyscraper: { width: 160, height: 600, slot: '8212034761' },
+    largeSkyscraper: { width: 300, height: 600, slot: '2282589655' },
     mediumRect: { width: 300, height: 250, slot: '7299242495' },
     largeRect: { width: 336, height: 280, slot: '9103811582' },
     leaderboard: { width: 728, height: 90, slot: '8931155846' },
