@@ -23,7 +23,7 @@ export default function SelectedJob({ job, className = '', children = undefined 
         {job.Discipline} {(job.Role && roleNames[job.Role]) && (`• ${roleNames[job.Role]}`)}
       </div>
       <div className={styles.title} data-role={job.Role}>
-        <h1><ClassJob job={job} /></h1>
+        <h2><ClassJob job={job} /></h2>
         { children }
         <div className={styles.titleBg} />
       </div>
