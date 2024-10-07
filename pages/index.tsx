@@ -4,8 +4,11 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Link from 'next/link';
 import db, { serializeDates } from 'lib/db';
+import { localizePath } from 'lib/utils/i18n.mjs';
 import { AppContextProvider } from 'components/App/context';
+import ClassJob from 'components/ClassJob';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
 import Hero from 'components/Hero';
@@ -95,27 +98,38 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
           />
         )}
 
-        <div className={styles.popularLayoutsByJob}>
+        <div className={styles.popularLayoutsSection}>
           <h2>{t('Pages.Index.popular_layouts')}</h2>
-          <div className={styles.popularLayoutsByJobLists}>
+
+          <div className={styles.popularLayoutsContainer}>
             { popularLayoutsByJob?.map(({ job, layouts }, position) => (
-              <>
-                <LayoutsList
-                  showAds={false}
-                  id={`popularLayouts-${job.Abbr}`}
-                  className={styles.popularLayouts}
-                  title={job.Name}
-                  header="h3"
-                  layouts={layouts}
-                  columns={1}
-                />
-                { position % 6 === 5 && (
+              <React.Fragment key={`layoutList-${job.Abbr}`}>
+                <div className={styles.popularList}>
+                  <Link
+                    href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
+                    className={styles.popularListClassLink}
+                  >
+                    <h3>
+                      <ClassJob job={job} abbr={false} className={styles.popularListHeader} />
+                    </h3>
+                  </Link>
+
+                  <LayoutsList
+                    showAds={false}
+                    id={`popularLayouts-${job.Abbr}`}
+                    className={styles.popularLayouts}
+                    layouts={layouts}
+                    columns={1}
+                  />
+                </div>
+
+                { position % 3 === 2 && (
                   <AdUnit
                     className={styles.flexAdUnit}
                     id={`ad-popLayouts-${position}`}
                   />
                 ) }
-              </>
+              </React.Fragment>
             )) }
           </div>
         </div>
@@ -146,51 +160,72 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 
   try {
-    const layouts = await db.layout.findMany({
+    const recentLayouts = await db.layout.findMany({
       ...layoutsQuery,
       take: 24,
       distinct: ['userId'],
       orderBy: { updatedAt: 'desc' }
     });
 
-    const listJobs = Jobs.filter((job) => !['DOH', 'DOL'].includes(job.Role));
-
-    const layoutGroupsRequest = listJobs.map(async (job) => {
-      const jobLayouts = await db.layout.findMany({
-        ...layoutsQuery,
-        where: {
-          ...layoutsQuery.where,
-          jobId: job.Abbr
+    const layoutsWithHearts = await db.layout.findMany({
+      ...layoutsQuery,
+      where: {
+        ...layoutsQuery.where,
+        hearts: {
+          some: {}, // Filters layouts that have at least one heart
         },
-        take: 3,
-        orderBy: {
-          hearts: { _count: 'desc' }
-        }
-      });
-
-      const filteredJobLayouts = jobLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
-
-      return {
-        job,
-        layouts: serializeDates(filteredJobLayouts)
-      };
+      },
+      orderBy: {
+        hearts: { _count: 'desc' }
+      }
     });
 
-    const layoutsByJob = await Promise.all(layoutGroupsRequest);
+    const craftingJobs = Jobs
+      .filter((job) => ['DOH', 'DOL'].includes(job.Role))
+      .map((job) => job.Abbr);
+
+    type LayoutGroupProps = {
+      [key:string]: {
+        job: ClassJobProps,
+        layouts: LayoutViewProps[]
+      }
+    }
+
+    const jobGroupedLayouts:LayoutGroupProps = layoutsWithHearts
+      .reduce((acc:LayoutGroupProps, layout:LayoutViewProps) => {
+        const { jobId } = layout;
+
+        if (jobId && !craftingJobs.includes(jobId)) {
+          if (!acc[jobId]) {
+            acc[jobId] = {
+              job: Jobs.find((job) => job.Abbr === jobId)!,
+              layouts: []
+            };
+          }
+          acc[jobId].layouts.push(layout);
+        }
+
+        return acc;
+      }, {});
+
+    const layoutsByJob = Object.entries(jobGroupedLayouts)
+      .filter(([, jobLayouts]) => jobLayouts.layouts.length >= 3 && jobLayouts)
+      .map(([, jobLayouts]) => jobLayouts);
+
     const groupedLayoutsByJob = [
-      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'TANK'),
-      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'HEAL'),
-      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'MDPS'),
-      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'PDPS'),
-      layoutsByJob.filter((jobLayouts) => jobLayouts.job.Role === 'RDPS')
+      layoutsByJob.filter((entry) => entry.job.Role === 'TANK'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'HEAL'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'MDPS'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'PDPS'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'RDPS')
     ]
       .flat()
-      .filter((jobLayouts) => jobLayouts.layouts.length > 0);
+      .map(({ job, layouts }) => ({ job, layouts: serializeDates(layouts.slice(0, 5)) }));
 
     return {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),
-        recentLayouts: serializeDates(layouts),
+        recentLayouts: serializeDates(recentLayouts),
         popularLayoutsByJob: groupedLayoutsByJob
       }
     };

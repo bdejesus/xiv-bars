@@ -43,14 +43,40 @@
   margin-top: 0;
 }
 
-.popularLayoutsByJob {
+.popularLayoutsSection {
   margin-top: $spacing-xl;
 }
 
-.popularLayoutsByJobLists {
+.popularLayoutsContainer {
   display: grid;
   gap: $spacing-lg;
   grid-template-columns: 1fr 1fr 1fr;
+
+
+  h3 {
+    margin: 0;
+  }
+
+  .popularListClassLink {
+    display: inline-block;
+    margin-bottom: $spacing-base;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .popularListHeader {
+    background-color: transparent;
+    border-radius: 2px;
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+    :global(.job-name) {
+      font-size: $font-size-lg;
+    }
+  }
 
   .flexAdUnit {
     grid-column: 1 / 4;
