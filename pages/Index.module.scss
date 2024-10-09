@@ -34,8 +34,7 @@
   margin-top: 0;
 }
 
-.recentLayouts,
-.popularLayouts {
+.recentLayouts {
   margin-top: $spacing-xl;
 }
 
@@ -58,6 +57,11 @@
 
   @media (max-width: $screen-md) {
     display: block;
+
+    .popularList {
+      margin-bottom: $spacing-xl;
+      margin-top: $spacing-xl;
+    }
 
     :global(.layoutsList) {
       column-count: 2;
@@ -86,7 +90,7 @@
     align-items: center;
     color: #fff;
     display: inline-flex;
-    font-size: $font-size-lg;
+    font-size: $font-size-xl;
     font-weight: 400;
     gap: $spacing-sm;
     margin-bottom: $spacing-base;
@@ -115,16 +119,15 @@
   }
 
   .popularLayouts {
-    margin-bottom: $spacing-base;
-    margin-top: 0;
-
     :global(.layoutsList) {
       width: 100%;
     }
   }
 
   .footerLink {
+    display: inline-block;
     font-size: $font-size-base;
+    margin-top: $spacing-base;
 
     &:hover {
       color: $color-alt;

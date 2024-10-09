@@ -17,10 +17,7 @@ interface LayoutsListProps {
   id: string,
   title?: string | React.ReactElement,
   header?: 'h2' | 'h3',
-  link?: {
-    text: string,
-    href: string
-  },
+  link?: { text: string, href: string },
   layouts: LayoutViewProps[],
   className?: string,
   columns?: 1 | 3 | 4,
