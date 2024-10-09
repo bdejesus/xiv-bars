@@ -5,10 +5,10 @@ import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import db, { serializeDates } from 'lib/db';
 import { localizePath } from 'lib/utils/i18n.mjs';
 import { AppContextProvider } from 'components/App/context';
-import ClassJob from 'components/ClassJob';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
 import Hero from 'components/Hero';
@@ -105,22 +105,38 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
             { popularLayoutsByJob?.map(({ job, layouts }, position) => (
               <React.Fragment key={`layoutList-${job.Abbr}`}>
                 <div className={styles.popularList}>
-                  <Link
-                    href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
-                    className={styles.popularListClassLink}
-                  >
-                    <h3>
-                      <ClassJob job={job} abbr={false} className={styles.popularListHeader} />
-                    </h3>
-                  </Link>
-
                   <LayoutsList
                     showAds={false}
                     id={`popularLayouts-${job.Abbr}`}
                     className={styles.popularLayouts}
                     layouts={layouts}
                     columns={1}
+                    header="h3"
+                    title={(
+                      <Link
+                        href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
+                        className={styles.popularListClassLink}
+                        title={`View more ${job.Name} layouts`}
+                      >
+                        <Image
+                          src={`/jobIcons/${job.Name.replaceAll(' ', '')}.png`}
+                          alt={`${job.Name} Icon`}
+                          draggable={false}
+                          height={32}
+                          width={32}
+                          itemProp="image"
+                        />
+                        { job.Name } Layouts
+                      </Link>
+                    )}
                   />
+
+                  <Link
+                    href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
+                    className={styles.footerLink}
+                  >
+                    More { job.Name } layouts...
+                  </Link>
                 </div>
 
                 { position % 3 === 2 && (
@@ -220,7 +236,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       layoutsByJob.filter((entry) => entry.job.Role === 'RDPS')
     ]
       .flat()
-      .map(({ job, layouts }) => ({ job, layouts: serializeDates(layouts.slice(0, 5)) }));
+      .map(({ job, layouts }) => ({ job, layouts: serializeDates(layouts.slice(0, 4)) }));
 
     return {
       props: {

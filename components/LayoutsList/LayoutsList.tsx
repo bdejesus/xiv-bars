@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, ReactNode
+} from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
@@ -13,7 +15,7 @@ const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface LayoutsListProps {
   id: string,
-  title?: string,
+  title?: string | React.ReactElement,
   header?: 'h2' | 'h3',
   link?: {
     text: string,
@@ -22,6 +24,7 @@ interface LayoutsListProps {
   layouts: LayoutViewProps[],
   className?: string,
   columns?: 1 | 3 | 4,
+  children?: ReactNode,
   filterable?: boolean,
   showAds?: boolean
 }
@@ -32,13 +35,14 @@ export default function LayoutsList({
   header = 'h2',
   link,
   layouts,
+  children = undefined,
   className = '',
   columns = 3,
   filterable = false,
   showAds = true
 }:LayoutsListProps) {
   const pathname = usePathname();
-  const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>();
+  const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>([layouts]);
   const [viewOptions, setViewOptions] = useState(defaultView);
   const [balanced, setBalanced] = useState(false);
   const [ready, setReady] = useState(false);
@@ -135,15 +139,17 @@ export default function LayoutsList({
   }
 
   useEffect(() => {
-    const filterLayouts = applyFilter(layouts);
-    const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
-    const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
-    const groupLayouts = groupIntoColumns(indexedLayouts);
-    setViewLayouts(groupLayouts);
+    if (columns > 1) {
+      const filterLayouts = applyFilter(layouts);
+      const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
+      const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
+      const groupLayouts = groupIntoColumns(indexedLayouts);
+      setViewLayouts(groupLayouts);
+    }
   }, [viewOptions, layouts]);
 
   useEffect(() => {
-    if (viewLayouts) {
+    if (viewLayouts && columns > 1) {
       const filterLayouts = applyFilter(layouts);
       const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
       const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
@@ -168,14 +174,14 @@ export default function LayoutsList({
   }, [ready]);
 
   useEffect(() => {
-    if (ready && !balanced && viewLayouts) {
+    if (ready && !balanced && viewLayouts && columns > 1) {
       const balancedLayouts = balanceColumns(viewLayouts);
       setViewLayouts(balancedLayouts);
     }
   }, [balanced]);
 
   useEffect(() => {
-    if (ready && !balanced && listsWrapper.current && viewLayouts) {
+    if (ready && !balanced && listsWrapper.current && viewLayouts && columns > 1) {
       const rebalancedColumns = balanceColumns(viewLayouts);
       setViewLayouts(rebalancedColumns);
     }
@@ -197,6 +203,8 @@ export default function LayoutsList({
         itemProp={title && 'itemListElement'}
         itemType={title && 'https://schema.org/ItemList'}
       >
+        { children && children }
+
         { title && (
           header === 'h3'
             ? <h3 className={styles.title} itemProp="name">{title}</h3>

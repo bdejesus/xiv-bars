@@ -50,18 +50,53 @@
 .popularLayoutsContainer {
   display: grid;
   gap: $spacing-lg;
-  grid-template-columns: 1fr 1fr 1fr;
-
+  grid-template-columns: repeat(3, calc(33.333% - $spacing-lg / 3 * 2));
 
   h3 {
     margin: 0;
   }
 
+  @media (max-width: $screen-md) {
+    display: block;
+
+    :global(.layoutsList) {
+      column-count: 2;
+      display: block;
+
+      li {
+        display: inline-block;
+        margin-bottom: $spacing-base;
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: $screen-sm) {
+    :global(.layoutsList) {
+      column-count: 1;
+
+      li {
+        display: block;
+        width: auto;
+      }
+    }
+  }
+
   .popularListClassLink {
-    display: inline-block;
+    align-items: center;
+    color: #fff;
+    display: inline-flex;
+    font-size: $font-size-lg;
+    font-weight: 400;
+    gap: $spacing-sm;
     margin-bottom: $spacing-base;
+    text-transform: uppercase;
+    transition-duration: 0.33s;
+    transition-property: color;
+    transition-timing-function: ease;
 
     &:hover {
+      color: $color-alt;
       text-decoration: none;
     }
   }
@@ -72,10 +107,6 @@
     display: flex;
     margin: 0;
     padding: 0;
-
-    :global(.job-name) {
-      font-size: $font-size-lg;
-    }
   }
 
   .flexAdUnit {
@@ -89,6 +120,14 @@
 
     :global(.layoutsList) {
       width: 100%;
+    }
+  }
+
+  .footerLink {
+    font-size: $font-size-base;
+
+    &:hover {
+      color: $color-alt;
     }
   }
 }
