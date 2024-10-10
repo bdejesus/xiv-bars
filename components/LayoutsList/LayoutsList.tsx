@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import React, {
+  useState, useEffect, useRef, ReactNode
+} from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { byKey } from 'lib/utils/array.mjs';
@@ -13,28 +15,31 @@ const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface LayoutsListProps {
   id: string,
-  title?: string,
-  link?: {
-    text: string,
-    href: string
-  },
+  title?: string | React.ReactElement,
+  header?: 'h2' | 'h3',
+  link?: { text: string, href: string },
   layouts: LayoutViewProps[],
   className?: string,
-  columns?: 3 | 4,
-  filterable?: boolean
+  columns?: 1 | 3 | 4,
+  children?: ReactNode,
+  filterable?: boolean,
+  showAds?: boolean
 }
 
 export default function LayoutsList({
   id,
   title,
+  header = 'h2',
   link,
   layouts,
+  children = undefined,
   className = '',
   columns = 3,
-  filterable = false
+  filterable = false,
+  showAds = true
 }:LayoutsListProps) {
   const pathname = usePathname();
-  const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>();
+  const [viewLayouts, setViewLayouts] = useState<LayoutViewProps[][]>([layouts]);
   const [viewOptions, setViewOptions] = useState(defaultView);
   const [balanced, setBalanced] = useState(false);
   const [ready, setReady] = useState(false);
@@ -131,15 +136,17 @@ export default function LayoutsList({
   }
 
   useEffect(() => {
-    const filterLayouts = applyFilter(layouts);
-    const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
-    const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
-    const groupLayouts = groupIntoColumns(indexedLayouts);
-    setViewLayouts(groupLayouts);
+    if (columns > 1) {
+      const filterLayouts = applyFilter(layouts);
+      const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
+      const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
+      const groupLayouts = groupIntoColumns(indexedLayouts);
+      setViewLayouts(groupLayouts);
+    }
   }, [viewOptions, layouts]);
 
   useEffect(() => {
-    if (viewLayouts) {
+    if (viewLayouts && columns > 1) {
       const filterLayouts = applyFilter(layouts);
       const sortLayouts = filterLayouts ? applySort(filterLayouts) : layouts;
       const indexedLayouts = sortLayouts.map((item, index) => ({ ...item, position: index + 1 }));
@@ -148,7 +155,7 @@ export default function LayoutsList({
         if (window.matchMedia('(max-width: 720px)').matches) {
           return groupIntoColumns(indexedLayouts, 1);
         }
-        if (window.matchMedia('(max-width: 980px)').matches) {
+        if (window.matchMedia('(max-width: 1100px)').matches) {
           return groupIntoColumns(indexedLayouts, 2);
         }
         return groupIntoColumns(indexedLayouts);
@@ -164,14 +171,14 @@ export default function LayoutsList({
   }, [ready]);
 
   useEffect(() => {
-    if (ready && !balanced && viewLayouts) {
+    if (ready && !balanced && viewLayouts && columns > 1) {
       const balancedLayouts = balanceColumns(viewLayouts);
       setViewLayouts(balancedLayouts);
     }
   }, [balanced]);
 
   useEffect(() => {
-    if (ready && !balanced && listsWrapper.current && viewLayouts) {
+    if (ready && !balanced && listsWrapper.current && viewLayouts && columns > 1) {
       const rebalancedColumns = balanceColumns(viewLayouts);
       setViewLayouts(rebalancedColumns);
     }
@@ -193,7 +200,14 @@ export default function LayoutsList({
         itemProp={title && 'itemListElement'}
         itemType={title && 'https://schema.org/ItemList'}
       >
-        { title && <h2 className={styles.title} itemProp="name">{title}</h2>}
+        { children && children }
+
+        { title && (
+          header === 'h3'
+            ? <h3 className={styles.title} itemProp="name">{title}</h3>
+            : <h2 className={styles.title} itemProp="name">{title}</h2>
+        ) }
+
         { filterable && <ViewControl onChange={setViewOptions} id={id} /> }
 
         <div
@@ -206,9 +220,13 @@ export default function LayoutsList({
               <ListCards
                 layouts={layoutsColumn}
                 key={`layoutColumn-${colIndex}`}
+                showAds={showAds}
               />
             )) : (
-              <ListCards layouts={layouts} />
+              <ListCards
+                layouts={layouts}
+                showAds={showAds}
+              />
             )}
         </div>
 
@@ -219,7 +237,7 @@ export default function LayoutsList({
         )}
       </div>
 
-      { layouts.length > 3 && (
+      { layouts.length > 3 && showAds && (
         <AdUnit id={`ad-LayoutsList-${id}`} />
       )}
     </>

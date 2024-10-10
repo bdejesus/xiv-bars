@@ -10,14 +10,18 @@ import styles from '../LayoutsList.module.scss';
 const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 interface ListCardsProps {
-  layouts: LayoutViewProps[]
+  layouts: LayoutViewProps[],
+  showAds?: boolean
 }
 
-export default function ListCards({ layouts }:ListCardsProps) {
+export default function ListCards({
+  layouts,
+  showAds = true
+}:ListCardsProps) {
   const { jobs } = useAppState();
 
   function shouldInsertAdUnit(position:number) {
-    return ((position % 11 === 0) || position === 6);
+    return ((position % 11 === 0) || position === 6) && showAds;
   }
 
   return (

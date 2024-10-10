@@ -3,7 +3,6 @@
 $grid-gutter: $spacing-base;
 
 .container {
-  margin-bottom: $spacing-xl;
   position: relative;
 }
 
@@ -56,7 +55,8 @@ $grid-gutter: $spacing-base;
 }
 
 .title {
-  margin-top: 0;
+  margin-bottom: $spacing-lg;
+  margin-top: $spacing-xl;
 }
 
 .moreLink {
