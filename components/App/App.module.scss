@@ -170,12 +170,6 @@ $icon-size: 6px;
   }
 }
 
-@media (max-width: $screen-lg-2) {
-  .adUnit {
-    display: none;
-  }
-}
-
 @media (max-width: $screen-lg) {
   .mainPanel {
     width: 100vw;

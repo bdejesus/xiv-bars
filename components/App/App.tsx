@@ -101,8 +101,6 @@ export function App() {
                   ? <Xbar />
                   : <Hotbar />}
               </div>
-
-              { readOnly && <AdUnit id="ad-AppContainer" className={styles.adUnit} format="largeSkyscraper" /> }
             </div>
           </div>
         </div>
