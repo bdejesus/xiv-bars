@@ -117,7 +117,7 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
                     header="h3"
                     title={(
                       <Link
-                        href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
+                        href={localizePath(`/job/${job.Abbr}`, router.locale)}
                         className={styles.popularListClassLink}
                         title={t('Pages.Layout.view_more')}
                       >
@@ -135,7 +135,7 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
                   />
 
                   <Link
-                    href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
+                    href={localizePath(`/job/${job.Abbr}`, router.locale)}
                     className={styles.footerLink}
                   >
                     { t(
