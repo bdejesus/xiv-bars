@@ -14,11 +14,8 @@ import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { appActions } from 'components/App/actions';
 import Modal from 'components/Modal';
 import MarkdownGuide from 'components/SaveForm/MarkdownGuide';
-import dynamic from 'next/dynamic';
 
 import styles from './App.module.scss';
-
-const AdUnit = dynamic(() => import('components/AdUnit'), { ssr: false });
 
 export function App() {
   const appDispatch = useAppDispatch();
