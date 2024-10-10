@@ -7,7 +7,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import db, { serializeDates } from 'lib/db';
-import { localizePath } from 'lib/utils/i18n.mjs';
+import { localizePath, translateData } from 'lib/utils/i18n.mjs';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
@@ -19,6 +19,7 @@ import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import dynamic from 'next/dynamic';
 import renderMeta from 'components/Meta';
+
 import type { GetServerSideProps } from 'next';
 import type { LayoutViewProps } from 'types/Layout';
 import type { ClassJobProps } from 'types/ClassJob';
@@ -99,7 +100,9 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
         )}
 
         <div className={styles.popularLayoutsSection}>
-          <h2>{t('Pages.Index.popular_layouts')}</h2>
+          <h2 className={styles.title}>
+            {t('Pages.Index.popular_layouts')}
+          </h2>
 
           <div className={styles.popularLayoutsContainer}>
             { popularLayoutsByJob?.map(({ job, layouts }, position) => (
@@ -116,7 +119,7 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
                       <Link
                         href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
                         className={styles.popularListClassLink}
-                        title={`View more ${job.Name} layouts`}
+                        title={t('Pages.Layout.view_more')}
                       >
                         <Image
                           src={`/jobIcons/${job.Name.replaceAll(' ', '')}.png`}
@@ -126,7 +129,7 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
                           width={32}
                           itemProp="image"
                         />
-                        { job.Name } Layouts
+                        { translateData('Name', job, router.locale) }
                       </Link>
                     )}
                   />
@@ -135,7 +138,10 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
                     href={localizePath(`/job/${job.Abbr}/new`, router.locale)}
                     className={styles.footerLink}
                   >
-                    More { job.Name } layouts...
+                    { t(
+                      'Pages.Layout.more_layouts_by_job',
+                      { jobName: translateData('Name', job, router.locale) }
+                    ) }
                   </Link>
                 </div>
 

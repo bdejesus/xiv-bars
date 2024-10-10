@@ -30,11 +30,12 @@
 }
 
 .title {
-  margin-bottom: $spacing-base;
-  margin-top: 0;
+  margin-bottom: $spacing-lg;
+  margin-top: $spacing-xl;
 }
 
 .recentLayouts {
+  margin-bottom: $spacing-xl;
   margin-top: $spacing-xl;
 }
 
