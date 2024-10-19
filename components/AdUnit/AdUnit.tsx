@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, } from 'react';
+import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import * as Sentry from '@sentry/nextjs';
 
@@ -41,12 +41,13 @@ export default function AdUnit({
       } catch (error) {
         Sentry.captureException(error);
         console.error('Adsense Error: ', error);
+        setTimeout(initialize, 300)
       }
     }
   }
 
   useEffect(() => {
-    setTimeout(initialize, 500);
+    setTimeout(initialize, 300);
   }, [pathname]);
 
   if (!enabled) return null;
