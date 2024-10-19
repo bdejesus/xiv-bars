@@ -41,7 +41,7 @@ export default function AdUnit({
       } catch (error) {
         Sentry.captureException(error);
         console.error('Adsense Error: ', error);
-        setTimeout(initialize, 300)
+        setTimeout(initialize, 300);
       }
     }
   }
