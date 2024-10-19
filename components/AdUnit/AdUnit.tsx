@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import * as Sentry from '@sentry/nextjs';
 
@@ -19,6 +19,7 @@ export default function AdUnit({
   format = 'fluid',
   variant = 'dark'
 }:AdUnitProps) {
+  const insContainer = useRef(null);
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
   const pathname = usePathname();
   const formats = {
@@ -46,8 +47,10 @@ export default function AdUnit({
   }
 
   useEffect(() => {
-    setTimeout(initialize, 600);
-  }, [pathname]);
+    if (insContainer.current) {
+      setTimeout(initialize, 600);
+    }
+  }, [pathname, insContainer.current]);
 
   if (!enabled) return null;
 
@@ -57,6 +60,7 @@ export default function AdUnit({
       style={sizeStyle}
       id={id}
       data-variant={variant}
+      ref={insContainer}
     >
       <ins
         id={`${id}-ins`}

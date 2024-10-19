@@ -27,6 +27,6 @@ textarea {
   padding: $spacing-sm;
   transition-duration: 0.15s;
   transition-property: background-color, color, outline, box-shadow, border;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
   width: 100%;
 }

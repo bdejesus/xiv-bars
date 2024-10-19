@@ -13,14 +13,14 @@
   position: relative;
   transition-duration: 0.33s;
   transition-property: box-shadow, transform;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
 
   .cardActions {
     opacity: 0;
     position: absolute;
     right: $spacing-sm;
     top: $spacing-sm;
-    transition: opacity $timing-default ease;
+    transition: opacity $timing-default $cubic-bezier;
     transition-delay: 0.15s;
   }
 

@@ -26,7 +26,7 @@
     padding: $spacing-xs $spacing-base;
     transition-duration: $timing-default;
     transition-property: color, background-color, box-shadow;
-    transition-timing-function: ease;
+    transition-timing-function: $cubic-bezier;
 
     &:hover,
     &:focus {

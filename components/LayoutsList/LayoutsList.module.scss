@@ -35,7 +35,7 @@ $grid-gutter: $spacing-base;
     animation-duration: 0.66s;
     animation-fill-mode: forwards;
     animation-name: enterListItem;
-    animation-timing-function: ease;
+    animation-timing-function: $cubic-bezier;
     margin: 0;
     opacity: 0;
     position: relative;

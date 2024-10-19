@@ -43,7 +43,7 @@ button,
   position: relative;
   transition-duration: $timing-default;
   transition-property: background-image, background-color, box-shadow, color, opacity, transform, outline, text-shadow;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
   white-space: nowrap;
 
   + button,
@@ -366,7 +366,7 @@ button,
     position: relative;
     transition-duration: $timing-default;
     transition-property: color;
-    transition-timing-function: ease;
+    transition-timing-function: $cubic-bezier;
 
     &[data-disabled="true"] {
       display: none;

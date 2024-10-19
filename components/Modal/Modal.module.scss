@@ -12,12 +12,12 @@
   position: fixed;
   transition-duration: 0.33s;
   transition-property: background, backdrop-filter;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
   z-index: 100;
 
   .container {
     position: relative;
-    transition: opacity 0.33s ease, transform 0.33s ease;
+    transition: opacity 0.33s $cubic-bezier, transform 0.33s $cubic-bezier;
   }
 
   &[aria-hidden="true"] {

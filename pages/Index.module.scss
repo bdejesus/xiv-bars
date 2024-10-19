@@ -98,7 +98,7 @@
     text-transform: uppercase;
     transition-duration: 0.33s;
     transition-property: color;
-    transition-timing-function: ease;
+    transition-timing-function: $cubic-bezier;
 
     &:hover {
       color: $color-alt;

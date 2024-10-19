@@ -112,3 +112,5 @@ $footer-height: 360px;
 
 $view-height: calc(100vh - $header-height - $controlbar-height);
 $view-height-md: calc(100vh - $header-height-lg);
+
+$cubic-bezier: cubic-bezier(0.455, 0.030, 0.515, 0.955);

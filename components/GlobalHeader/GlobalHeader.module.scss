@@ -98,7 +98,7 @@ $button-size: 40px;
     transform: translateZ(0);
     transition-duration: $timing-default;
     transition-property: filter, transform;
-    transition-timing-function: ease;
+    transition-timing-function: $cubic-bezier;
   }
 
   &:hover,

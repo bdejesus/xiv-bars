@@ -34,7 +34,7 @@
   animation-duration: 0.33s;
   animation-fill-mode: forwards;
   animation-name: enterXbar;
-  animation-timing-function: ease;
+  animation-timing-function: $cubic-bezier;
   border-bottom: 1px solid rgb(255 255 255 / 6%);
   display: flex;
   flex-direction: row;
@@ -46,7 +46,7 @@
   position: relative;
   transition-duration: 0.33s;
   transition-property: padding;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
 
   &::before {
     align-items: center;
@@ -88,7 +88,7 @@
     text-shadow: -1px -1px 0 #000, 1px 1px 0 rgb(255 255 255 / 33%);
     transition-duration: 0.33s;
     transition-property: bottom;
-    transition-timing-function: ease;
+    transition-timing-function: $cubic-bezier;
     user-select: none;
   }
 
