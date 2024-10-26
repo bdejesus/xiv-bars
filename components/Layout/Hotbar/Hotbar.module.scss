@@ -60,7 +60,7 @@
   animation-duration: 0.33s;
   animation-fill-mode: forwards;
   animation-name: enterRow;
-  animation-timing-function: ease;
+  animation-timing-function: $cubic-bezier;
   border-top: 1px solid rgb(255 255 255 / 10%);
   height: 100%;
   opacity: 0;
@@ -81,7 +81,7 @@
     transform: translateY(15px);
     transition-duration: $timing-default;
     transition-property: opacity, transform, color, outline;
-    transition-timing-function: ease;
+    transition-timing-function: $cubic-bezier;
   }
 
   &:hover .layoutControl,
@@ -149,7 +149,7 @@
   :global(.slot) {
     transition-duration: 0.33s;
     transition-property: margin;
-    transition-timing-function: ease;
+    transition-timing-function: $cubic-bezier;
   }
 
   &[data-show-titles='true'] {

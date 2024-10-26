@@ -18,14 +18,14 @@ $panel-width-lg: $screen-xs;
   position: sticky;
   top: $header-height;
   transform: translateZ(0);
-  transition-duration: 0.33s;
+  transition-duration: 0.4s;
   transition-property: width, box-shadow;
-  transition-timing-function: ease-out;
+  transition-timing-function: $cubic-bezier;
   width: $screen-xs;
 
   &[data-hidden='true'] {
-    transition-duration: 0.2s;
-    transition-timing-function: ease-in;
+    transition-duration: 0.4s;
+    transition-timing-function: $cubic-bezier;
     width: $toggle-width;
 
     &:hover {
@@ -48,7 +48,7 @@ $panel-width-lg: $screen-xs;
       transform: rotate3d(0);
       transition-duration: 0.3s;
       transition-property: transform;
-      transition-timing-function: ease;
+      transition-timing-function: $cubic-bezier;
     }
 
     &[data-active='true'] {
@@ -72,7 +72,7 @@ $panel-width-lg: $screen-xs;
   transform: translateZ(0);
   transition-duration: 0.33s;
   transition-property: width;
-  transition-timing-function: ease-out;
+  transition-timing-function: $cubic-bezier;
   width: $screen-xs;
 
   @include customScrollbar;

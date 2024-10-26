@@ -99,7 +99,7 @@
   text-align: left;
   transition-duration: 0.3s;
   transition-property: background-color;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
 
   &:global(.info) {
     background-color: $color-gray-light-3;

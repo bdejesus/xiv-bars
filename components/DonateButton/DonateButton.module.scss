@@ -7,17 +7,17 @@
   right: $spacing-base;
   transition-duration: 0.33s;
   transition-property: opacity, transform;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
   z-index: 5;
 
   &[data-hidden='false'] {
-    animation: enterWrapper 0.33s ease-out;
+    animation: enterWrapper 0.33s $cubic-bezier;
     animation-delay: 0.66s;
     animation-fill-mode: forwards;
   }
 
   &[data-hidden='true'] {
-    animation: exitWrapper 0.33s ease-out;
+    animation: exitWrapper 0.33s $cubic-bezier;
     animation-delay: 0;
     animation-fill-mode: forwards;
     pointer-events: none;

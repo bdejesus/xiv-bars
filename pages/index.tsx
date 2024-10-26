@@ -4,7 +4,10 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
+import Link from 'next/link';
+import Image from 'next/image';
 import db, { serializeDates } from 'lib/db';
+import { localizePath, translateData } from 'lib/utils/i18n.mjs';
 import { AppContextProvider } from 'components/App/context';
 import GlobalHeader from 'components/GlobalHeader';
 import HowTo from 'components/HowTo';
@@ -16,8 +19,10 @@ import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import dynamic from 'next/dynamic';
 import renderMeta from 'components/Meta';
+
 import type { GetServerSideProps } from 'next';
 import type { LayoutViewProps } from 'types/Layout';
+import type { ClassJobProps } from 'types/ClassJob';
 
 import styles from './Index.module.scss';
 
@@ -31,10 +36,13 @@ interface QueryProps {
 
 interface IndexProps {
   recentLayouts: LayoutViewProps[],
-  popularLayouts: LayoutViewProps[]
+  popularLayoutsByJob: {
+    job: ClassJobProps,
+    layouts: LayoutViewProps[]
+  }[]
 }
 
-export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
+export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps) {
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -91,14 +99,62 @@ export default function Index({ recentLayouts, popularLayouts }:IndexProps) {
           />
         )}
 
-        { popularLayouts?.length >= 5 && (
-          <LayoutsList
-            id="popularLayouts"
-            className={styles.popularLayouts}
-            title={t('Pages.Index.popular_layouts')}
-            layouts={popularLayouts}
-          />
-        ) }
+        <div className={styles.popularLayoutsSection}>
+          <h2 className={styles.title}>
+            {t('Pages.Index.popular_layouts')}
+          </h2>
+
+          <div className={styles.popularLayoutsContainer}>
+            { popularLayoutsByJob?.map(({ job, layouts }, position) => (
+              <React.Fragment key={`layoutList-${job.Abbr}`}>
+                <div className={styles.popularList}>
+                  <LayoutsList
+                    showAds={false}
+                    id={`popularLayouts-${job.Abbr}`}
+                    className={styles.popularLayouts}
+                    layouts={layouts}
+                    columns={1}
+                    header="h3"
+                    title={(
+                      <Link
+                        href={localizePath(`/job/${job.Abbr}`, router.locale)}
+                        className={styles.popularListClassLink}
+                        title={t('Pages.Layout.view_more')}
+                      >
+                        <Image
+                          src={`/jobIcons/${job.Name.replaceAll(' ', '')}.png`}
+                          alt={`${job.Name} Icon`}
+                          draggable={false}
+                          height={32}
+                          width={32}
+                          itemProp="image"
+                        />
+                        { translateData('Name', job, router.locale) }
+                      </Link>
+                    )}
+                  />
+
+                  <Link
+                    href={localizePath(`/job/${job.Abbr}`, router.locale)}
+                    className={styles.footerLink}
+                  >
+                    { t(
+                      'Pages.Layout.more_layouts_by_job',
+                      { jobName: translateData('Name', job, router.locale) }
+                    ) }
+                  </Link>
+                </div>
+
+                { position % 3 === 2 && (
+                  <AdUnit
+                    className={styles.flexAdUnit}
+                    id={`ad-popLayouts-${position}`}
+                  />
+                ) }
+              </React.Fragment>
+            )) }
+          </div>
+        </div>
       </div>
 
       <HowTo />
@@ -126,27 +182,73 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 
   try {
-    const layouts = await db.layout.findMany({
+    const recentLayouts = await db.layout.findMany({
       ...layoutsQuery,
       take: 24,
       distinct: ['userId'],
       orderBy: { updatedAt: 'desc' }
     });
 
-    const popularLayouts = await db.layout.findMany({
+    const layoutsWithHearts = await db.layout.findMany({
       ...layoutsQuery,
-      take: 24,
+      where: {
+        ...layoutsQuery.where,
+        hearts: {
+          some: {}, // Filters layouts that have at least one heart
+        },
+      },
       orderBy: {
         hearts: { _count: 'desc' }
       }
     });
-    const filteredPopularLayouts = popularLayouts.filter((layout:LayoutViewProps) => layout._count.hearts > 0);
+
+    const craftingJobs = Jobs
+      .filter((job) => ['DOH', 'DOL'].includes(job.Role))
+      .map((job) => job.Abbr);
+
+    type LayoutGroupProps = {
+      [key:string]: {
+        job: ClassJobProps,
+        layouts: LayoutViewProps[]
+      }
+    }
+
+    const jobGroupedLayouts:LayoutGroupProps = layoutsWithHearts
+      .reduce((acc:LayoutGroupProps, layout:LayoutViewProps) => {
+        const { jobId } = layout;
+
+        if (jobId && !craftingJobs.includes(jobId)) {
+          if (!acc[jobId]) {
+            acc[jobId] = {
+              job: Jobs.find((job) => job.Abbr === jobId)!,
+              layouts: []
+            };
+          }
+          acc[jobId].layouts.push(layout);
+        }
+
+        return acc;
+      }, {});
+
+    const layoutsByJob = Object.entries(jobGroupedLayouts)
+      .filter(([, jobLayouts]) => jobLayouts.layouts.length >= 3 && jobLayouts)
+      .map(([, jobLayouts]) => jobLayouts);
+
+    const groupedLayoutsByJob = [
+      layoutsByJob.filter((entry) => entry.job.Role === 'TANK'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'HEAL'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'MDPS'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'PDPS'),
+      layoutsByJob.filter((entry) => entry.job.Role === 'RDPS')
+    ]
+      .flat()
+      .map(({ job, layouts }) => ({ job, layouts: serializeDates(layouts.slice(0, 4)) }));
 
     return {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),
-        recentLayouts: serializeDates(layouts),
-        popularLayouts: serializeDates(filteredPopularLayouts)
+        recentLayouts: serializeDates(recentLayouts),
+        popularLayoutsByJob: groupedLayoutsByJob
       }
     };
   } catch (error) {
@@ -156,7 +258,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props: {
         ...(await serverSideTranslations(context.locale as string, ['common'])),
         recentLayouts: [],
-        popularLayouts: []
+        popularLayoutsByJob: []
       }
     };
   }

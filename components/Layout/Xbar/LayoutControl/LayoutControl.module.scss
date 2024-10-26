@@ -20,7 +20,7 @@ $panel-height: 52px;
   text-align: center;
   transition-duration: 0.33s;
   transition-property: opacity, transform, margin-top;
-  transition-timing-function: ease;
+  transition-timing-function: $cubic-bezier;
 
   &[data-active="true"] {
     margin-top: 0;
