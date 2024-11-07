@@ -47,7 +47,7 @@ export default function AdUnit({
   }
 
   useEffect(() => {
-    if (insContainer.current) initialize
+    if (insContainer.current) initialize()
   }, [pathname, insContainer.current]);
 
   if (!enabled) return null;
