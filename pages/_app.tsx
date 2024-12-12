@@ -83,19 +83,20 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="msapplication-TileImage" content="icons/favicon-144x144.png" />
         <meta name="msvalidate.01" content="1C49C656556D4EC56E43522F297886AF" />
 
-        {/* <!-- Google AdSense --> */}
-        { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
+
+      {/* <!-- Google AdSense --> */}
+      { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
           <Script
             id="google-adsense"
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
             crossOrigin="anonymous"
-            strategy="lazyOnload"
+            strategy="beforeInteractive"
           />
         )}
-
-        <link rel="preconnect" href="https://www.google-analytics.com" />
-        <link rel="manifest" href="/manifest.json" />
 
         {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
         <Script
@@ -107,17 +108,14 @@ function App({ Component, pageProps }: AppProps) {
           strategy="afterInteractive"
         >
           {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag() {
-                dataLayer.push(arguments);
-              }
-              gtag("js", new Date());
-              gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
-            `}
-        </Script>
-      </Head>
-
-
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
+          `}
+      </Script>
 
       <style jsx global>
         {`
@@ -129,8 +127,6 @@ function App({ Component, pageProps }: AppProps) {
         }
       `}
       </style>
-
-
 
       <main>
         <SystemContextProvider>
