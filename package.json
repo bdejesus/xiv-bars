@@ -30,6 +30,7 @@
     "@prisma/client": "^5.8.0",
     "@sentry/nextjs": "^7.105.0",
     "axios": "^1.7.9",
+    "cli-progress": "^3.12.0",
     "dotenv": "^16.4.5",
     "fast-html-parser": "^1.0.1",
     "i18next": "^23.10.1",

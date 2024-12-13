@@ -57,6 +57,8 @@ export default function Action({ action, style }: Props) {
   }
 
   function selectAction(e:React.MouseEvent) {
+    console.log(action);
+
     tooltipDispatch({ type: 'hide' });
     selectedActionDispatch({
       type: 'selectAction',
@@ -96,7 +98,7 @@ export default function Action({ action, style }: Props) {
       >
         <div className={`action-icon-wrapper ${styles.iconWrapper}`}>
           <Image
-            src={`/actionIcons/xivapi/${action.ID}.png`}
+            src={`/actionIcons/xivapi/${action.Icon!.id}.png`}
             alt={`${displayTtile}`}
             height={40}
             width={40}

@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
 import dotenv from 'dotenv';
-import fs from 'fs';
 import path from 'path';
 import axios from 'axios';
-import { writeFile, rm, mkdir } from 'fs';
+import fs from 'fs';
+import cliProgress from 'cli-progress';
+
+import i18nConfig from '../next-i18next.config.js';
+import array from '../lib/utils/array.mjs';
+import { localizeKeys } from '../lib/utils/i18n.mjs';
+import { listJobActions, listRoleActions } from '../lib/api/actions.mjs';
+
 import Jobs from '../.apiData/Jobs.json' assert {type: 'json' };
 import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
 import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' };
-import array from '../lib/utils/array.mjs';
-import { localizeKeys } from '../lib/utils/i18n.mjs';
-import i18nConfig from '../next-i18next.config.js';
-import { listJobActions, listRoleActions } from '../lib/api/actions.mjs';
 
 dotenv.config();
 
@@ -34,8 +36,8 @@ function jsonToQuery(json) {
     .join('&');
 }
 
-const delay = 300;
-const delayShort = 100;
+const delay = 100;
+const delayShort = 30;
 const columns = ['Icon', 'Name', 'Url', 'Abbreviation'];
 
 async function fetchJobs() {
@@ -74,7 +76,7 @@ async function getJobs() {
     return { ...jobData, ...advancedJob };
   });
 
-  writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
+  fs.writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
 
   if (isRemote) {
     const jobActions = await getJobActions(decoratedJobs);
@@ -84,7 +86,7 @@ async function getJobs() {
 async function fetchIcon(action) {
   const iconUrl = `${apiUrl}/asset?path=${action.Icon.path_hr1}&format=png`;
   const folderPath = `${process.cwd()}/public/actionIcons/xivapi`;
-  const fileName = `${action.ID}.png`;
+  const fileName = `${action.Icon.id}.png`;
 
   try {
     if (!fs.existsSync(folderPath)) {
@@ -108,13 +110,13 @@ async function fetchIcon(action) {
   }
 }
 
-async function bulkFetchIcons(actions) {
-  console.log("   ⌙ Fetching Icons...");
+async function bulkFetchIcons(actions, progressBar) {
   return actions.reduce(async (promiseAccumulator, action) => {
     const accumulator = await promiseAccumulator;
 
     try {
       await fetchIcon(action);
+      progressBar?.increment();
       await new Promise(resolve => setTimeout(resolve, delayShort));
     } catch (error) {
       console.error(error);
@@ -132,7 +134,6 @@ async function getJobActions(jobs) {
       const jobPvPActions = await listJobActions(job, true);
       const rolePvPActions = await listRoleActions(job, true);
 
-      console.log(`🧱 Writing ${job.Abbr} actions...`);
       const actions = {
         PvE: {
           actions: jobActions,
@@ -143,9 +144,19 @@ async function getJobActions(jobs) {
           roleActions: rolePvPActions
         }
       }
-      writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actions), () => null);
 
-      await bulkFetchIcons([jobActions, roleActions, jobPvPActions, rolePvPActions].flat());
+      fs.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actions), () => null);
+
+      const flatActions = [jobActions, roleActions, jobPvPActions, rolePvPActions].flat();
+      const progressBar = new cliProgress.SingleBar({
+        format:`🧱 Fetching ${job.Abbr} [{bar}] {percentage}% | {value}/{total}`
+      }, cliProgress.Presets.rect);
+      progressBar.start(flatActions.length, 0);
+
+      await bulkFetchIcons(flatActions, progressBar);
+
+      progressBar.stop();
+
       await new Promise(resolve => setTimeout(resolve, delay));
     } catch (error) {
       console.error('Error fetching data', error);
@@ -167,6 +178,7 @@ async function getOtherActions() {
       .then((res) => res.json())
       .then(async (json) => {
         console.log(`🔩 Building ${actionCategory} actions...`);
+
         const decoratedActions = json.rows
           .filter((action) => action.fields.Name !== '' && action.fields.Name !== 'Sic')
           .map((action) => ({
@@ -177,24 +189,26 @@ async function getOtherActions() {
             Command: ActionCategory[actionCategory].command
           }));
 
-        writeFile(
+        fs.writeFile(
           `${dest}/${actionCategory}.json`,
           JSON.stringify(decoratedActions),
           () => null
         );
+        await bulkFetchIcons(decoratedActions);
       })
       .catch((error) => { console.error(error); });
+
     return actions;
   });
 }
 
 (async () => {
   try {
-    rm(dest, { recursive: true }, () => {
+    fs.rm(dest, { recursive: true }, () => {
       console.log('🧹 Cleaning up old files...');
-      mkdir(dest, () => {
+      fs.mkdir(dest, () => {
         console.log(`📂 Creating "${dest}" directory...`);
-        mkdir(`${dest}/JobActions`, () =>{
+        fs.mkdir(`${dest}/JobActions`, () =>{
           getJobs();
           getOtherActions();
         });
