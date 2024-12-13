@@ -96,7 +96,7 @@ export default function Action({ action, style }: Props) {
       >
         <div className={`action-icon-wrapper ${styles.iconWrapper}`}>
           <Image
-            src={action.customIcon ? action.Icon as string : `https://xivapi.com/${action.Icon}`}
+            src={`/actionIcons/xivapi/${action.ID}.png`}
             alt={`${displayTtile}`}
             height={40}
             width={40}
