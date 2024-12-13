@@ -17,6 +17,10 @@ const options = {
       },
       {
         protocol: 'https',
+        hostname: 'beta.xivapi.com'
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn.discordapp.com'
       }
     ],
