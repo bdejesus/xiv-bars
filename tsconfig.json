@@ -134,7 +134,7 @@
     "**/*.tsx",
     "**/*.json",
     "**/*.mjs"
-  ],
+, "lib/Action.js"  ],
 
   "exclude": [
     "node_modules",

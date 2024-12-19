@@ -1,6 +1,10 @@
 export interface ActionProps {
   ID?: string | number,
-  Icon?: string,
+  Icon?: {
+    id: number,
+    path: string,
+    path_hr1: string
+  },
   Name?: string,
   Name_de?: string | null,
   Name_fr?: string | null,
