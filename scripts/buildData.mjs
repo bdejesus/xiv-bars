@@ -4,12 +4,14 @@ import path from 'path';
 import axios from 'axios';
 import fs from 'fs';
 import cliProgress from 'cli-progress';
+import colors from 'ansi-colors';
 
 import i18nConfig from '../next-i18next.config.js';
 import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
-import { listJobActions, listRoleActions } from '../lib/api/actions.mjs';
+// import { listJobActions, listRoleActions } from '../lib/api/actions.mjs';
 
+import JobAction, { getActionIcon } from '../lib/JobAction.mjs';
 import Jobs from '../.apiData/Jobs.json' assert {type: 'json' };
 import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
@@ -36,8 +38,8 @@ function jsonToQuery(json) {
     .join('&');
 }
 
-const delay = 100;
-const delayShort = 30;
+const delay = 66;
+const delayShort = 33;
 const columns = ['Icon', 'Name', 'Url', 'Abbreviation'];
 
 async function fetchJobs() {
@@ -50,9 +52,9 @@ async function fetchJobs() {
   ];
 
   const options = jsonToQuery({ fields: jobColumns.join(',') });
-  const request = await fetch(`${apiUrl}/sheet/ClassJob?${options}`)
+  const request = await axios(`${apiUrl}/sheet/ClassJob?${options}`)
     .catch((error) => console.error(error));
-  const json = await request.json();
+  const json = await request.data;
   const jobs = json.rows
     .filter((row) => row.row_id >= 2)
     .map(({ row_id, fields }) => ({ ...fields, ID: row_id }))
@@ -65,7 +67,7 @@ async function getJobs() {
   const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
 
   if (isRemote) {
-    console.log("🔗 Fetching remote source...")
+    console.log("🔗 Fetching from remote source...")
     jobs = await fetchJobs();
   } else {
     console.log("⛓️‍💥 Skipping remote source. Use `--remote` flag to fetch data from remote source.")
@@ -84,13 +86,15 @@ async function getJobs() {
 }
 
 async function fetchIcon(action) {
-  const iconUrl = `${apiUrl}/asset?path=${action.Icon.path_hr1}&format=png`;
+  const iconUrl = getActionIcon(action);
   const folderPath = `${process.cwd()}/public/actionIcons/xivapi`;
   const fileName = `${action.Icon.id}.png`;
 
   try {
     if (!fs.existsSync(folderPath)) {
       fs.mkdirSync(folderPath, { recursive: true });
+    } else if (fs.existsSync(folderPath, fileName)) {
+      return;
     }
 
     const response = await axios.get(iconUrl, { responseType: 'stream' });
@@ -129,31 +133,27 @@ async function getJobActions(jobs) {
     const accumulator = await promiseAccumulator;
 
     try {
-      const jobActions = await listJobActions(job, false);
-      const roleActions = await listRoleActions(job, false);
-      const jobPvPActions = await listJobActions(job, true);
-      const rolePvPActions = await listRoleActions(job, true);
+      const actions = new JobAction(job);
+      const allActions = await actions.All();
+      const jobActions = await actions.JobActions();
+      const roleActions = await actions.RoleActions();
+      const pvpActions = await actions.PvPActions();
 
-      const actions = {
-        PvE: {
-          actions: jobActions,
-          roleActions: roleActions
-        },
-        PvP: {
-          actions: jobPvPActions,
-          roleActions: rolePvPActions
-        }
+      const actionsObj = {
+        PvE: { actions: jobActions, roleActions },
+        PvP: pvpActions
       }
 
-      fs.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actions), () => null);
+      fs.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actionsObj), () => null);
 
-      const flatActions = [jobActions, roleActions, jobPvPActions, rolePvPActions].flat();
       const progressBar = new cliProgress.SingleBar({
-        format:`🧱 Fetching ${job.Abbr} [{bar}] {percentage}% | {value}/{total}`
+        format:`  🧱 Fetching ${colors.yellowBright(job.Abbr)} ${colors.yellowBright('[{bar}]')} {value}/{total} | {percentage}% `,
+        barsize: 10,
       }, cliProgress.Presets.rect);
-      progressBar.start(flatActions.length, 0);
 
-      await bulkFetchIcons(flatActions, progressBar);
+      progressBar.start(allActions.length, 0);
+
+      await bulkFetchIcons(allActions, progressBar);
 
       progressBar.stop();
 
@@ -164,7 +164,7 @@ async function getJobActions(jobs) {
   }, Promise.resolve([]));
 }
 
-async function getOtherActions() {
+async function getGlobalActions() {
   const actionTypes = Object.keys(ActionCategory);
 
   actionTypes.forEach(async (actionCategory) => {
@@ -174,10 +174,10 @@ async function getOtherActions() {
       'Icon',
     ].join(',');
     const endpoint = `${apiUrl}/sheet/${actionCategory}?fields=${actionColumns}`;
-    const actions = await fetch(endpoint)
-      .then((res) => res.json())
+    const actions = await axios(endpoint)
+      .then((res) => res.data)
       .then(async (json) => {
-        console.log(`🔩 Building ${actionCategory} actions...`);
+        console.log(`  🔩 Building ${actionCategory} actions...`);
 
         const decoratedActions = json.rows
           .filter((action) => action.fields.Name !== '' && action.fields.Name !== 'Sic')
@@ -210,7 +210,7 @@ async function getOtherActions() {
         console.log(`📂 Creating "${dest}" directory...`);
         fs.mkdir(`${dest}/JobActions`, () =>{
           getJobs();
-          getOtherActions();
+          getGlobalActions();
         });
       });
     });
