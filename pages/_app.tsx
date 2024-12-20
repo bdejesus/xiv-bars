@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
-import { useRouter } from 'next/router';
 import Script from 'next/script';
+import consentConfig from 'lib/consent.config.js';
 import { Roboto, Noto_Sans_Mono } from 'next/font/google';
-import analytics from 'lib/analytics';
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
@@ -15,8 +15,10 @@ import Avatar from 'components/Avatar';
 import LoadScreen from 'components/LoadScreen';
 import DonateButton from 'components/DonateButton';
 import { ErrorBoundary } from 'react-error-boundary';
+import * as CookieConsent from "vanilla-cookieconsent";
 import nextI18NextConfig from '../next-i18next.config.js';
 
+import "vanilla-cookieconsent/dist/cookieconsent.css";
 import '../styles/global.scss';
 
 const emptyInitialI18NextConfig: UserConfig = {
@@ -32,10 +34,10 @@ const notoSansMono = Noto_Sans_Mono({ weight: ['700'], subsets: ['latin'] });
 function App({ Component, pageProps }: AppProps) {
   const { t } = useTranslation('common');
   const { selectedJob, session } = pageProps;
-  const router = useRouter();
-  const currentPath = router.asPath;
 
-  useEffect(() => { analytics.pageview(currentPath); }, []);
+  useEffect(() => {
+    CookieConsent.run(consentConfig);
+  }, []);
 
   function generateTitle() {
     if (selectedJob) {
@@ -68,14 +70,22 @@ function App({ Component, pageProps }: AppProps) {
         </div>
       )}
     >
-      {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+      {/* <!-- Global site tag (gtag.js) --> */}
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTAG_ID as string} />
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         strategy="beforeInteractive"
+        type="text/plain"
+        data-category="analytics"
+        data-service="Google Analytics"
       />
       <Script
         id="google-analytics"
         strategy="beforeInteractive"
+        type="text/plain"
+        data-category="analytics"
+        data-service="Google Analytics"
       >
         {`
           window.dataLayer = window.dataLayer || [];
@@ -96,6 +106,9 @@ function App({ Component, pageProps }: AppProps) {
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
           crossOrigin="anonymous"
           strategy="beforeInteractive"
+          type="text/plain"
+          data-category="ads"
+          data-service="Google AdSense"
         />
       )}
 
