@@ -15,13 +15,10 @@ export const consentConfig = {
       readOnly: true // this category cannot be disabled
     },
     analytics: {
-      enabled: false
+      enabled: true
     },
     ads: {
-      enabled: false,
-      ad_storage: false,
-      ad_user_data: false,
-      ad_personalization: false
+      enabled: true
     }
   },
 
