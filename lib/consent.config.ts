@@ -1,9 +1,11 @@
 import * as CookieConsent from 'vanilla-cookieconsent';
 
+const modalPosition:CookieConsent.ConsentModalPosition = 'bottom left';
+
 export const consentConfig = {
   guiOptions: {
     consentModal: {
-      position: 'bottom left'
+      position: modalPosition
     }
   },
 
@@ -47,8 +49,6 @@ export const consentConfig = {
             {
               title: 'Strictly Necessary cookies',
               description: 'These cookies are essential for the proper functioning of the website and cannot be disabled. <ul><li><code>Host-next-auth.*</code> – Used for user authentication and session state</li><li><code>Secure-next-auth.*</code> – Used for user authentication and session state</li></ul>',
-
-              // this field will generate a toggle linked to the 'necessary' category
               linkedCategory: 'necessary'
             },
             {
@@ -75,14 +75,16 @@ export const consentConfig = {
     try {
       if (CookieConsent.acceptedCategory('analytics')) {
         // Analytics category enabled
-        window?.gtag('consent', 'update', {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).gtag('consent', 'update', {
           analytics_storage: 'granted',
         });
       }
 
       if (CookieConsent.acceptedCategory('ads')) {
         // Google Ads enabled
-        window?.gtag('consent', 'update', {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).gtag('consent', 'update', {
           ad_user_data: 'granted',
           ad_personalization: 'granted',
           ad_storage: 'granted',
