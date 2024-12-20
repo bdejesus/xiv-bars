@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import * as Sentry from '@sentry/nextjs';
 
@@ -19,7 +19,6 @@ export default function AdUnit({
   format = 'fluid',
   variant = 'dark'
 }:AdUnitProps) {
-  const [consent, setConsent] = useState('');
   const insContainer = useRef(null);
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
   const pathname = usePathname();
@@ -49,7 +48,7 @@ export default function AdUnit({
 
   useEffect(() => {
     if (insContainer.current) initialize();
-  }, [pathname, insContainer.current, consent]);
+  }, [pathname, insContainer.current]);
 
   if (!enabled) return null;
 
