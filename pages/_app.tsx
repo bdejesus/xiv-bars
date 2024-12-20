@@ -13,8 +13,8 @@ import Avatar from 'components/Avatar';
 import LoadScreen from 'components/LoadScreen';
 import DonateButton from 'components/DonateButton';
 import { ErrorBoundary } from 'react-error-boundary';
-// import consentConfig from 'lib/consent.config.js';
-// import * as CookieConsent from 'vanilla-cookieconsent';
+import consentConfig from 'lib/consent.config.js';
+import * as CookieConsent from 'vanilla-cookieconsent';
 import nextI18NextConfig from '../next-i18next.config.js';
 
 import 'vanilla-cookieconsent/dist/cookieconsent.css';
@@ -35,7 +35,7 @@ function App({ Component, pageProps }: AppProps) {
   const { selectedJob, session } = pageProps;
 
   useEffect(() => {
-    // CookieConsent.run(consentConfig);
+    CookieConsent.run(consentConfig);
   }, []);
 
   function generateTitle() {
@@ -69,28 +69,6 @@ function App({ Component, pageProps }: AppProps) {
         </div>
       )}
     >
-      {/* <!-- Global site tag (gtag.js) --> */}
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
-      />
-      {/* <!-- Global Analytics --> */}
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        type="text/plain"
-        data-category="analytics"
-        data-service="Google Analytics"
-      >
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
-        `}
-      </Script>
 
       <Head>
         <title>{displayTitle}</title>
@@ -108,6 +86,12 @@ function App({ Component, pageProps }: AppProps) {
 
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="manifest" href="/manifest.json" />
+
+        {/* <!-- Global site tag (gtag.js) --> */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
+        />
       </Head>
 
       <style jsx global>
@@ -120,6 +104,38 @@ function App({ Component, pageProps }: AppProps) {
         }
       `}
       </style>
+
+      {/* <!-- Google Tag Manager --> */}
+      <Script
+        id="google-tag-manager"
+        strategy="afterInteractive"
+      >
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied'
+          });
+        `}
+      </Script>
+
+      {/* <!-- Google Analytics --> */}
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        type="text/plain"
+        data-category="analytics"
+        data-service="Google Analytics"
+      >
+        {`
+          gtag("js", new Date());
+          gtag("config", "${process.env.NEXT_PUBLIC_GTAG_ID}");
+          gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
+        `}
+      </Script>
 
       <main>
         <SystemContextProvider>
