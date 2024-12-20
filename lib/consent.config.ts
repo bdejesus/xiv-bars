@@ -93,7 +93,11 @@ export const consentConfig = {
     } catch (error) {
       console.error(error);
     }
-  }
+  },
+
+  // onChange: ({ cookie, changedCategories, changedServices }:CookieConsent.CookieConsentConfig['onChange']) => {
+  //   console.log(cookie, changedCategories, changedServices);
+  // }
 };
 
 export default consentConfig;

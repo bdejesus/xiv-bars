@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import * as Sentry from '@sentry/nextjs';
 
@@ -19,6 +19,7 @@ export default function AdUnit({
   format = 'fluid',
   variant = 'dark'
 }:AdUnitProps) {
+  const [consent, setConsent] = useState('');
   const insContainer = useRef(null);
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
   const pathname = usePathname();
@@ -38,7 +39,10 @@ export default function AdUnit({
   function initialize() {
     if (typeof window !== 'undefined' && enabled) {
       try {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).gtag('get', process.env.NEXT_PUBLIC_GA_ID, 'consent.ad_storage', (field:string) => {
+          setConsent(field);
+        })((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
       } catch (error) {
         Sentry.captureException(error);
         console.error('Adsense Error: ', error);
@@ -47,8 +51,9 @@ export default function AdUnit({
   }
 
   useEffect(() => {
+    // console.log(consent);
     if (insContainer.current) initialize();
-  }, [pathname, insContainer.current]);
+  }, [pathname, insContainer.current, consent]);
 
   if (!enabled) return null;
 

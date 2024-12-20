@@ -90,7 +90,7 @@ function App({ Component, pageProps }: AppProps) {
         {/* <!-- Global site tag (gtag.js) --> */}
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
         />
       </Head>
 
@@ -132,7 +132,6 @@ function App({ Component, pageProps }: AppProps) {
       >
         {`
           gtag("js", new Date());
-          gtag("config", "${process.env.NEXT_PUBLIC_GTAG_ID}");
           gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
         `}
       </Script>
