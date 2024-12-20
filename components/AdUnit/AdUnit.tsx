@@ -39,10 +39,7 @@ export default function AdUnit({
   function initialize() {
     if (typeof window !== 'undefined' && enabled) {
       try {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (window as any).gtag('get', process.env.NEXT_PUBLIC_GA_ID, 'consent.ad_storage', (field:string) => {
-          setConsent(field);
-        })((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
       } catch (error) {
         Sentry.captureException(error);
         console.error('Adsense Error: ', error);
@@ -51,7 +48,6 @@ export default function AdUnit({
   }
 
   useEffect(() => {
-    // console.log(consent);
     if (insContainer.current) initialize();
   }, [pathname, insContainer.current, consent]);
 
