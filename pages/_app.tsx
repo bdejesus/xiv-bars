@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
-import Script from 'next/script';
+
 // import consentConfig from 'lib/consent.config.js';
 import { Roboto, Noto_Sans_Mono } from 'next/font/google';
-import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
+import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
@@ -18,7 +18,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 // import * as CookieConsent from "vanilla-cookieconsent";
 import nextI18NextConfig from '../next-i18next.config.js';
 
-import "vanilla-cookieconsent/dist/cookieconsent.css";
+import 'vanilla-cookieconsent/dist/cookieconsent.css';
 import '../styles/global.scss';
 
 const emptyInitialI18NextConfig: UserConfig = {
@@ -73,21 +73,6 @@ function App({ Component, pageProps }: AppProps) {
       {/* <!-- Global site tag (gtag.js) --> */}
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTAG_ID as string} />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-
-      {/* <!-- Google AdSense --> */}
-      { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
-        <Script
-          id="google-adsense"
-          async
-          data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
-          crossOrigin="anonymous"
-          strategy="beforeInteractive"
-          type="text/plain"
-          data-category="ads"
-          data-service="Google AdSense"
-        />
-      )}
 
       <Head>
         <title>{displayTitle}</title>
