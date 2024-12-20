@@ -72,7 +72,7 @@ function App({ Component, pageProps }: AppProps) {
       {/* <!-- Global site tag (gtag.js) --> */}
       <Script
         async
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG_ID}`}
       />
       {/* <!-- Global Analytics --> */}
       <Script
