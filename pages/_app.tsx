@@ -13,7 +13,7 @@ import Avatar from 'components/Avatar';
 import LoadScreen from 'components/LoadScreen';
 import DonateButton from 'components/DonateButton';
 import { ErrorBoundary } from 'react-error-boundary';
-import consentConfig from 'lib/consent.config.js';
+import consentConfig from 'lib/consent.config';
 import * as CookieConsent from 'vanilla-cookieconsent';
 import nextI18NextConfig from '../next-i18next.config.js';
 
