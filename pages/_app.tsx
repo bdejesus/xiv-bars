@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
 import Script from 'next/script';
-import consentConfig from 'lib/consent.config.js';
+// import consentConfig from 'lib/consent.config.js';
 import { Roboto, Noto_Sans_Mono } from 'next/font/google';
 import { GoogleTagManager, GoogleAnalytics } from '@next/third-parties/google'
 import { AppProps } from 'next/app';
@@ -15,7 +15,7 @@ import Avatar from 'components/Avatar';
 import LoadScreen from 'components/LoadScreen';
 import DonateButton from 'components/DonateButton';
 import { ErrorBoundary } from 'react-error-boundary';
-import * as CookieConsent from "vanilla-cookieconsent";
+// import * as CookieConsent from "vanilla-cookieconsent";
 import nextI18NextConfig from '../next-i18next.config.js';
 
 import "vanilla-cookieconsent/dist/cookieconsent.css";
@@ -36,7 +36,7 @@ function App({ Component, pageProps }: AppProps) {
   const { selectedJob, session } = pageProps;
 
   useEffect(() => {
-    CookieConsent.run(consentConfig);
+    // CookieConsent.run(consentConfig);
   }, []);
 
   function generateTitle() {
@@ -73,29 +73,6 @@ function App({ Component, pageProps }: AppProps) {
       {/* <!-- Global site tag (gtag.js) --> */}
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTAG_ID as string} />
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID as string} />
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-        strategy="beforeInteractive"
-        type="text/plain"
-        data-category="analytics"
-        data-service="Google Analytics"
-      />
-      <Script
-        id="google-analytics"
-        strategy="beforeInteractive"
-        type="text/plain"
-        data-category="analytics"
-        data-service="Google Analytics"
-      >
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag() {
-            dataLayer.push(arguments);
-          }
-          gtag("js", new Date());
-          gtag("config", "${process.env.NEXT_PUBLIC_GA_ID}");
-        `}
-      </Script>
 
       {/* <!-- Google AdSense --> */}
       { process.env.NEXT_PUBLIC_GOOGLE_ADSENSE && (
