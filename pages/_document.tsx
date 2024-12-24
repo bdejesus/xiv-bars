@@ -17,9 +17,6 @@ export default function Document() {
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}`}
             crossOrigin="anonymous"
             strategy="beforeInteractive"
-            type="text/plain"
-            data-category="ads"
-            data-service="Google AdSense"
           />
         )}
         <Main />

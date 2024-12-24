@@ -126,9 +126,6 @@ function App({ Component, pageProps }: AppProps) {
       <Script
         id="google-analytics"
         strategy="afterInteractive"
-        type="text/plain"
-        data-category="analytics"
-        data-service="Google Analytics"
       >
         {`
           gtag("js", new Date());
