@@ -42,7 +42,7 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     CookieConsent.setLanguage(router.locale!);
-  }, [router.locale])
+  }, [router.locale]);
 
   function generateTitle() {
     if (selectedJob) {
