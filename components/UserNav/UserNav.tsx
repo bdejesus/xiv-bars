@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import analytics from 'lib/analytics';
 import { localizePath } from 'lib/utils/i18n.mjs';
+import LanguagePicker from 'components/LanguagePicker';
 import styles from './UserNav.module.scss';
 
 interface UserNavProps {
@@ -34,6 +35,8 @@ export default function UserNav({ className = '' }:UserNavProps) {
 
   return (
     <div className={`${styles.userNav} ${className}`}>
+      <LanguagePicker />
+
       { session ? (
         <div
           className={styles.profileNav}

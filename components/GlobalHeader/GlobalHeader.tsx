@@ -76,7 +76,6 @@ export function GlobalHeader({ selectedJob }:Props) {
       )}
 
       <UserNav className={styles.userNav} />
-
     </div>
   );
 }

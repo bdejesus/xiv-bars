@@ -7,6 +7,7 @@ export const Icons = {
   LAYOUT: 'layout',
   LAYOUTS: 'layouts',
   LEVELS: 'levels',
+  LOCALE: 'locale',
   LINK: 'link',
   LORE: 'lore',
   MACRO: 'macro',
