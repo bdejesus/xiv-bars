@@ -1,0 +1,40 @@
+{
+  "consentModal": {
+    "title": "プライバシーとクッキー設定",
+    "description": "クッキーを使用して、閲覧体験を向上させ、パーソナライズされた広告やコンテンツを提供し、トラフィックを分析しています。「すべてを許可」をクリックすると、クッキーの使用に同意したことになります。<a href='/privacy'>プライバシー声明</a>。",
+    "acceptAllBtn": "すべてを許可",
+    "acceptNecessaryBtn": "すべて拒否",
+    "showPreferencesBtn": "カスタマイズ"
+  },
+  "preferencesModal": {
+    "title": "プライバシーとクッキー設定をカスタマイズ",
+    "acceptAllBtn": "すべてを許可",
+    "acceptNecessaryBtn": "すべて拒否",
+    "savePreferencesBtn": "現在の選択を保存",
+    "closeIconLabel": "モーダルを閉じる",
+    "sections": [
+      {
+        "description": "クッキーを使用して、閲覧体験を向上させ、パーソナライズされた広告やコンテンツを提供し、トラフィックを分析しています。「すべてを許可」をクリックすると、クッキーの使用に同意したことになります。"
+      },
+      {
+        "title": "厳密に必要なクッキー",
+        "description": "これらのクッキーは、ウェブサイトが正しく機能するために不可欠であり、無効にすることはできません。 <ul><li><code>Host-next-auth.*</code> – ユーザー認証とセッション状態に使用されます</li><li><code>Secure-next-auth.*</code> – ユーザー認証とセッション状態に使用されます</li></ul>",
+        "linkedCategory": "necessary"
+      },
+      {
+        "title": "分析",
+        "description": "<code>_ga</code>クッキーは、訪問中にウェブサイトの使用方法に関する情報を収集します。すべてのデータは匿名化されており、個人を特定するために使用されることはありません。",
+        "linkedCategory": "analytics"
+      },
+      {
+        "title": "広告",
+        "description": "これらのクッキーは、ウェブサイトの使用方法に関する情報を収集します。すべてのデータは匿名化されており、個人を特定するために使用されることはありません。<br/><br/> <code>_gads</code>、<code>_gpi</code>、および<code>_eoi</code>という名前のクッキーは、ウェブサイトのドメインに設定されたサードパーティクッキーです。これらのクッキーは、ウェブサイトに代わってGoogle Ad Managerによって使用され、以下をサポートします。 <ul><li>プログラマティックバイヤーの頻度制限と広告のパーソナライズ</li><li>予約の頻度制限</li></ul>",
+        "linkedCategory": "ads"
+      },
+      {
+        "title": "詳細情報",
+        "description": "クッキーのポリシーや選択肢に関するお問い合わせについては、<a href='/privacy'>プライバシー声明</a>をお読みいただくか、<a href='mailto:support@xivbars.com'>お問い合わせください</a>。"
+      }
+    ]
+  }
+}

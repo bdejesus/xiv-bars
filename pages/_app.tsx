@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
 import Script from 'next/script';
+import { useRouter } from 'next/router';
 import { Roboto, Noto_Sans_Mono } from 'next/font/google';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -31,12 +32,17 @@ const roboto = Roboto({ weight: ['100', '300', '400', '500', '700'], subsets: ['
 const notoSansMono = Noto_Sans_Mono({ weight: ['700'], subsets: ['latin'] });
 
 function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
   const { t } = useTranslation('common');
   const { selectedJob, session } = pageProps;
 
   useEffect(() => {
     CookieConsent.run(consentConfig);
   }, []);
+
+  useEffect(() => {
+    CookieConsent.setLanguage(router.locale!);
+  }, [router.locale])
 
   function generateTitle() {
     if (selectedJob) {
