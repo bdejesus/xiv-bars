@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import { useInView } from 'react-intersection-observer';
 import * as Sentry from '@sentry/nextjs';
 
 import styles from './AdUnit.module.scss';
@@ -19,9 +18,7 @@ export default function AdUnit({
   format = 'fluid',
   variant = 'dark'
 }:AdUnitProps) {
-  const insContainer = useRef(null);
   const enabled = !!process.env.NEXT_PUBLIC_GOOGLE_ADSENSE;
-  const pathname = usePathname();
   const formats = {
     skyscraper: { width: 160, height: 600, slot: '8212034761' },
     largeSkyscraper: { width: 300, height: 600, slot: '2282589655' },
@@ -46,9 +43,10 @@ export default function AdUnit({
     }
   }
 
-  useEffect(() => {
-    if (insContainer.current) initialize();
-  }, [pathname, insContainer.current]);
+  const { ref } = useInView({
+    triggerOnce: true,
+    onChange: (inView) => { if (inView) initialize(); }
+  });
 
   if (!enabled) return null;
 
@@ -58,7 +56,7 @@ export default function AdUnit({
       style={sizeStyle}
       id={id}
       data-variant={variant}
-      ref={insContainer}
+      ref={ref}
     >
       <ins
         id={`${id}-ins`}
