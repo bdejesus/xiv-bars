@@ -3,7 +3,7 @@
 .container {
   margin-right: $spacing-xs;
 
-  :global(.btn-label) {
+  .locale {
     text-transform: uppercase;
   }
 
