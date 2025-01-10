@@ -1,20 +1,25 @@
 @import 'styles/mixins';
 
 .container {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  gap: $spacing-lg;
-  justify-content: center;
-  padding: $spacing-base 0 0;
-  width: 100%;
+  margin-right: $spacing-xs;
 
-  ul {
-    display: flex;
-    flex-direction: row;
+  .locale {
+    text-transform: uppercase;
+  }
+
+  .menu {
+    background-color: #fff;
+    border-radius: 0 0 $border-radius $border-radius;
+    border-top: 1px solid $color-gray-light-2;
     gap: $spacing-base;
     list-style: none;
-    margin: 0;
+    margin: -1px 0 0;
     padding: 0;
+    position: absolute;
+    top: 100%;
+
+    a {
+      justify-content: flex-start;
+    }
   }
 }

@@ -1,6 +1,4 @@
 import { useTranslation } from 'next-i18next';
-import LanguagePicker from 'components/LanguagePicker';
-
 import styles from './Footer.module.scss';
 
 export function Footer() {
@@ -34,8 +32,6 @@ export function Footer() {
         </ul>
 
         <p className={styles.attribution}>{t('Footer.property_of_squenix')}</p>
-
-        <LanguagePicker />
       </div>
     </footer>
   );
