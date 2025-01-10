@@ -21,7 +21,7 @@ export default function ListCards({
   const { jobs } = useAppState();
 
   function shouldInsertAdUnit(position:number) {
-    return ((position % 11 === 0) || position === 6) && showAds;
+    return (position % 11 === 0) && showAds;
   }
 
   return (

@@ -1,0 +1,40 @@
+{
+  "consentModal": {
+    "title": "Datenschutz- und Cookie-Einstellungen",
+    "description": "Wir verwenden Cookies, um Ihr Surferlebnis zu verbessern, personalisierte Werbung oder Inhalte bereitzustellen und unseren Datenverkehr zu analysieren. Indem Sie auf „Alle akzeptieren“ klicken, stimmen Sie der Verwendung von Cookies zu. <a href='/privacy'>Datenschutzerklärung</a>.",
+    "acceptAllBtn": "Alle akzeptieren",
+    "acceptNecessaryBtn": "Alle ablehnen",
+    "showPreferencesBtn": "Anpassen"
+  },
+  "preferencesModal": {
+    "title": "Datenschutz- und Cookie-Einstellungen anpassen",
+    "acceptAllBtn": "Alle akzeptieren",
+    "acceptNecessaryBtn": "Alle ablehnen",
+    "savePreferencesBtn": "Aktuelle Auswahl akzeptieren",
+    "closeIconLabel": "Modales Fenster schließen",
+    "sections": [
+      {
+        "description": "Wir verwenden Cookies, um Ihr Surferlebnis zu verbessern, personalisierte Werbung oder Inhalte bereitzustellen und unseren Datenverkehr zu analysieren. Indem Sie auf „Alle akzeptieren“ klicken, stimmen Sie der Verwendung von Cookies zu."
+      },
+      {
+        "title": "Unbedingt erforderliche Cookies",
+        "description": "Diese Cookies sind für die ordnungsgemäße Funktion der Website unerlässlich und können nicht deaktiviert werden. <ul><li><code>Host-next-auth.*</code> – Wird für die Benutzerauthentifizierung und Sitzungsstatus verwendet</li><li><code>Secure-next-auth.*</code> – Wird für die Benutzerauthentifizierung und Sitzungsstatus verwendet</li></ul>",
+        "linkedCategory": "necessary"
+      },
+      {
+        "title": "Analyse",
+        "description": "Das <code>_ga</code>-Cookie sammelt Informationen darüber, wie Sie unsere Website während Ihres Besuchs nutzen. Alle Daten sind anonymisiert und können nicht verwendet werden, um Sie zu identifizieren.",
+        "linkedCategory": "analytics"
+      },
+      {
+        "title": "Werbung",
+        "description": "Diese Cookies sammeln Informationen darüber, wie Sie unsere Website nutzen. Alle Daten sind anonymisiert und können nicht verwendet werden, um Sie zu identifizieren.<br/><br/> Cookies mit den Namen <code>_gads</code>, <code>_gpi</code> und <code>_eoi</code> sind Drittanbieter-Cookies, die auf der Website-Domain gesetzt werden. Diese Cookies werden von Google Ad Manager im Auftrag der Website verwendet, um Folgendes zu unterstützen: <ul><li>Frequenzbegrenzung und Personalisierung von Anzeigen für programmatische Käufer</li><li>Frequenzbegrenzung für Reservierungen</li></ul>",
+        "linkedCategory": "ads"
+      },
+      {
+        "title": "Weitere Informationen",
+        "description": "Für Fragen zu den Richtlinien zu Cookies und Ihren Auswahlmöglichkeiten lesen Sie bitte unsere <a href='/privacy'>Datenschutzerklärung</a> oder <a href='mailto:support@xivbars.com'>kontaktieren Sie uns</a>."
+      }
+    ]
+  }
+}
