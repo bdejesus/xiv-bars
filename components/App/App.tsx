@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import DetailPanel from 'components/DetailPanel';
 import ControlBar from 'components/ControlBar';
-import { layouts } from 'lib/xbars';
+import { layouts, hasActions } from 'lib/xbars';
 import Xbar from 'components/Layout/Xbar';
 import Hotbar from 'components/Layout/Hotbar';
 import ActionPanel from 'components/ActionPanel';
@@ -14,6 +14,7 @@ import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { appActions } from 'components/App/actions';
 import Modal from 'components/Modal';
 import MarkdownGuide from 'components/SaveForm/MarkdownGuide';
+import AdUnit from 'components/AdUnit';
 
 import styles from './App.module.scss';
 
@@ -30,7 +31,9 @@ export function App() {
     showDetails,
     viewData,
     viewAction,
-    showMarkdownGuide
+    showMarkdownGuide,
+    chotbar,
+    hotbar
   } = appState;
   const [showControlPanels, setShowControlPanels] = useState(false);
 
@@ -96,7 +99,8 @@ export function App() {
               <div className={styles.main} data-readonly={readOnly}>
                 { layouts[layoutKey] === 'chotbar'
                   ? <Xbar />
-                  : <Hotbar />}
+                  : <Hotbar />
+                }
               </div>
             </div>
           </div>

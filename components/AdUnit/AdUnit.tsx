@@ -8,7 +8,7 @@ import styles from './AdUnit.module.scss';
 interface AdUnitProps {
   id: string,
   className?: string,
-  format?: 'fluid' | 'skyscraper' | 'largeSkyscraper' |'mediumRect' | 'largeRect' | 'leaderboard',
+  format?: 'fluid' | 'skyscraper' | 'largeSkyscraper' |'mediumRect' | 'largeRect' | 'leaderboard' | 'mobileLeaderboard',
   variant?: 'light' | 'dark'
 }
 
