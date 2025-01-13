@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 import Tooltip, { TooltipContextProvider } from 'components/Tooltip';
 import DetailPanel from 'components/DetailPanel';
 import ControlBar from 'components/ControlBar';
-import { layouts, hasActions } from 'lib/xbars';
+import { layouts } from 'lib/xbars';
 import Xbar from 'components/Layout/Xbar';
 import Hotbar from 'components/Layout/Hotbar';
 import ActionPanel from 'components/ActionPanel';
@@ -14,7 +14,6 @@ import { SelectedActionContextProvider } from 'components/SelectedAction';
 import { appActions } from 'components/App/actions';
 import Modal from 'components/Modal';
 import MarkdownGuide from 'components/SaveForm/MarkdownGuide';
-import AdUnit from 'components/AdUnit';
 
 import styles from './App.module.scss';
 
@@ -31,9 +30,7 @@ export function App() {
     showDetails,
     viewData,
     viewAction,
-    showMarkdownGuide,
-    chotbar,
-    hotbar
+    showMarkdownGuide
   } = appState;
   const [showControlPanels, setShowControlPanels] = useState(false);
 
