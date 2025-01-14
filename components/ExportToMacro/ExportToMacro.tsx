@@ -33,7 +33,6 @@ export function ExportToMacros() {
       .map(({ action }, index) => {
         if (action
           && action.Name
-          && action.UrlType
           && !excludeTypes.includes(action.UrlType as string)
         ) {
           const command = [isPvp ? 'pvp' : '', currLayout].join('');
