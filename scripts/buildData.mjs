@@ -175,8 +175,6 @@ async function getGlobalActions() {
   actionTypes.forEach(async (actionCategory) => {
     const actionColumns = [
       'Icon',
-      'Name',
-      'Description',
       'IsPvP',
       'IsRoleAction',
       'IsPlayerAction',
@@ -195,7 +193,7 @@ async function getGlobalActions() {
         console.log(`  🔩 Building ${actionCategory} actions...`);
 
         const decoratedActions = json.rows
-          .filter((action) => action.fields.Name !== '' && action.fields.Name !== 'Sic')
+          .filter((action) => (action.fields.Name !== '' && [0, 786].includes(action.fields.Icon.id) !== 786))
           .map((action, index) => ({
             Name: `${actionCategory} ${index}`,
             ...action.fields,
