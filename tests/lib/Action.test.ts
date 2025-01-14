@@ -14,7 +14,7 @@ const ClassJob = {
     Abbreviation: 'SAM',
     Discipline: 'DOW',
   }
-}
+};
 
 const JobAction = {
   score: 2,
@@ -24,11 +24,11 @@ const JobAction = {
     IsPlayerAction: true,
     IsPvP: false,
     IsRoleAction: false,
-    Name: "Hakaze",
+    Name: 'Hakaze',
     Icon: { id: 678, path: '/', path_hr1: '/' }
   },
   transient: {
-    Description: "Lorem ipsum..."
+    Description: 'Lorem ipsum...'
   }
 };
 
@@ -40,11 +40,11 @@ const RoleAction = {
     IsPlayerAction: true,
     IsPvP: false,
     IsRoleAction: true,
-    Name: "Second Wind",
+    Name: 'Second Wind',
     Icon: { id: 7478, path: '/', path_hr1: '/' }
   },
   transient: {
-    Description: "Dolor sit amet..."
+    Description: 'Dolor sit amet...'
   }
 };
 
@@ -56,11 +56,11 @@ const PvPAction = {
     IsPlayerAction: true,
     IsPvP: true,
     IsRoleAction: false,
-    Name: "PvP Hakaze",
+    Name: 'PvP Hakaze',
     Icon: { id: 178, path: '/', path_hr1: '/' }
   },
   transient: {
-    Description: "Lorem ipsum..."
+    Description: 'Lorem ipsum...'
   }
 };
 
@@ -94,8 +94,8 @@ describe('Action', () => {
         IsPlayerAction: true,
         IsPvP: false,
         IsRoleAction: false,
-        Name: "Hakaze",
-        Description: "Lorem ipsum...",
+        Name: 'Hakaze',
+        Description: 'Lorem ipsum...',
         score: 2,
         Icon: { id: 678, path: '/', path_hr1: '/' },
         Command: 'action'
@@ -114,8 +114,8 @@ describe('Action', () => {
         IsPlayerAction: true,
         IsPvP: true,
         IsRoleAction: false,
-        Name: "PvP Hakaze",
-        Description: "Lorem ipsum...",
+        Name: 'PvP Hakaze',
+        Description: 'Lorem ipsum...',
         score: 2,
         Icon: { id: 178, path: '/', path_hr1: '/' },
         Command: 'action'
@@ -126,7 +126,6 @@ describe('Action', () => {
     expect(result).toEqual(mockResults);
   });
 
-
   it('should return RoleActions', async () => {
     const mockResults = [
       {
@@ -136,8 +135,8 @@ describe('Action', () => {
         IsPlayerAction: true,
         IsPvP: false,
         IsRoleAction: true,
-        Name: "Second Wind",
-        Description: "Dolor sit amet...",
+        Name: 'Second Wind',
+        Description: 'Dolor sit amet...',
         Icon: { id: 7478, path: '/', path_hr1: '/' },
         Command: 'action'
       }

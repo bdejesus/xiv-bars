@@ -7,12 +7,12 @@
 }
 
 .panel {
+  border-top: 2px solid $color-alt-dark;
   flex: 1 1 auto;
   max-height: calc(100vh - 256px);
   min-height: 300px;
   overflow: hidden auto;
   padding: $spacing-base;
-  border-top: 2px solid $color-alt-dark;
 
   @include customScrollbar-dark;
 }
