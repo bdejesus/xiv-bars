@@ -1,6 +1,6 @@
-import Jobs from 'apiData/Jobs.json';
 import { chotbar, hotbar } from 'lib/xbars';
 import type { AppState } from 'types/App';
+import Jobs from '../../.apiData/Jobs.json';
 
 export const defaultState:AppState = {
   viewData: {
