@@ -94,7 +94,7 @@ describe('Action', () => {
         IsPlayerAction: true,
         IsPvP: false,
         IsRoleAction: false,
-        IsUpgradable: false,
+        IsUpgradable: true,
         Name: 'Hakaze',
         Description: 'Lorem ipsum...',
         Icon: { id: 678, path: '/', path_hr1: '/' },
