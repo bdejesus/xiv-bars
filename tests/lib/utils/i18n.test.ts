@@ -15,7 +15,7 @@ describe('lib/utils/i18n.mjs', () => {
     it('returns a localized key', () => {
       const locale = 'ja';
       const localizedKey = i18n.localizeKey(key, locale);
-      expect(localizedKey).toEqual('Name_ja');
+      expect(localizedKey).toEqual('Name@ja');
     });
 
     it('handles default locale key', () => {
@@ -30,9 +30,9 @@ describe('lib/utils/i18n.mjs', () => {
       const localizedKeys = i18n.localizeKeys(key);
       expect(localizedKeys).toEqual([
         'Description',
-        'Description_ja',
-        'Description_de',
-        'Description_fr'
+        'Description@ja',
+        'Description@de',
+        'Description@fr'
       ]);
     });
   });
@@ -41,13 +41,13 @@ describe('lib/utils/i18n.mjs', () => {
     const key = 'Abbreviation';
     const data = {
       Abbreviation: 'BRD',
-      Abbreviation_fr: 'BRD_FR'
+      'Abbreviation@fr': 'BRD_FR'
     };
 
     it('returns the localized data key value', () => {
       const locale = 'fr';
       const translatedData = i18n.translateData(key, data, locale);
-      expect(translatedData).toEqual(data.Abbreviation_fr);
+      expect(translatedData).toEqual(data['Abbreviation@fr']);
     });
 
     it('returns a default data key value', () => {

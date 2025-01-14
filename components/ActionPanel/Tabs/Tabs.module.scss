@@ -10,6 +10,11 @@
     padding: 0 10px;
     width: 100%;
 
+    &[data-active='true']:hover,
+    &:focus {
+      color: #fff;
+    }
+
     &:active {
       padding-top: 2px;
     }

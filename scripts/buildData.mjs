@@ -40,19 +40,24 @@ function jsonToQuery(json) {
 
 const delay = 66;
 const delayShort = 33;
-const columns = ['Icon', 'Name', 'Url', 'Abbreviation'];
+const defaultFields = [
+  'Icon',
+  'Name',
+  'Url',
+  'Abbreviation',
+  ...localizeKeys('Name'),
+  ...localizeKeys('Abbreviation'),
+];
 
-async function fetchJobs() {
+async function fetchJobsData() {
   const jobColumns = [
-    ...columns,
-    ...localizeKeys('Name'),
-    ...localizeKeys('Abbreviation'),
+    ...defaultFields,
     'IsLimitedJob',
     'Role',
   ];
 
   const options = jsonToQuery({ fields: jobColumns.join(',') });
-  const request = await axios(`${apiUrl}/sheet/ClassJob?${options}`)
+  const request = await axios(`${process.env.XIV_API_URL}/sheet/ClassJob?${options}`)
     .catch((error) => console.error(error));
   const json = await request.data;
   const jobs = json.rows
@@ -68,7 +73,7 @@ async function getJobs() {
 
   if (isRemote) {
     console.log("🔗 Fetching from remote source...")
-    jobs = await fetchJobs();
+    jobs = await fetchJobsData();
   } else {
     console.log("⛓️‍💥 Skipping remote source. Use `--remote` flag to fetch data from remote source.")
   }
@@ -169,9 +174,19 @@ async function getGlobalActions() {
 
   actionTypes.forEach(async (actionCategory) => {
     const actionColumns = [
+      'Icon',
+      'Name',
+      'Description',
+      'IsPvP',
+      'IsRoleAction',
+      'IsPlayerAction',
+      'IsLimitedJob',
+      'ClassJob.Abbreviation',
+      'ClassJob.Name',
+      'Prefix',
+      'UrlType',
       ...localizeKeys('Name'),
       ...localizeKeys('Description'),
-      'Icon',
     ].join(',');
     const endpoint = `${apiUrl}/sheet/${actionCategory}?fields=${actionColumns}`;
     const actions = await axios(endpoint)
@@ -181,7 +196,8 @@ async function getGlobalActions() {
 
         const decoratedActions = json.rows
           .filter((action) => action.fields.Name !== '' && action.fields.Name !== 'Sic')
-          .map((action) => ({
+          .map((action, index) => ({
+            Name: `${actionCategory} ${index}`,
             ...action.fields,
             ID: action.row_id,
             UrlType: actionCategory,

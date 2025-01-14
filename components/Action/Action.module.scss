@@ -86,7 +86,7 @@
 .maincommandType,
 .macroiconType,
 .companyactionType {
-  filter: grayscale(0.9);
+  filter: grayscale(1);
 
   &::before {
     content: "";

@@ -11,7 +11,7 @@ jest.mock('next/router', () => ({
 
 describe('Action', () => {
   it('renders an Action', () => {
-    render(<Action action={{ ID: 1, Name: 'Test Action' }} />);
+    render(<Action action={{ ID: 1, Name: 'Test Action', Icon: { id: 1, path: '', path_hr1: '' } }} />);
 
     const actionName = screen.getByRole('button', { name: /Test Action/i });
 
