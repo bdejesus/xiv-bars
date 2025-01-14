@@ -12,7 +12,7 @@ const ClassJob = {
   fields: {
     Name: 'Samurai',
     Abbreviation: 'SAM',
-    Discipline: 'DOW',
+    Discipline: 'DOW'
   }
 };
 
@@ -49,7 +49,7 @@ const RoleAction = {
 };
 
 const PvPAction = {
-  score: 2,
+  score: 3,
   row_id: 178,
   fields: {
     ClassJob,
@@ -94,11 +94,13 @@ describe('Action', () => {
         IsPlayerAction: true,
         IsPvP: false,
         IsRoleAction: false,
+        IsUpgradable: false,
         Name: 'Hakaze',
         Description: 'Lorem ipsum...',
-        score: 2,
         Icon: { id: 678, path: '/', path_hr1: '/' },
-        Command: 'action'
+        Command: 'action',
+        Prefix: '',
+        UrlType: 'Action'
       }
     ];
 
@@ -114,31 +116,35 @@ describe('Action', () => {
         IsPlayerAction: true,
         IsPvP: true,
         IsRoleAction: false,
+        IsUpgradable: false,
         Name: 'PvP Hakaze',
         Description: 'Lorem ipsum...',
-        score: 2,
         Icon: { id: 178, path: '/', path_hr1: '/' },
-        Command: 'action'
+        Command: 'action',
+        Prefix: '',
+        UrlType: 'Action'
       }
     ];
 
-    const result = await actions.JobActions({ IsPvP: true, precision: 1 });
-    expect(result).toEqual(mockResults);
+    const result = await actions.PvPActions();
+    expect(result.actions).toEqual(mockResults);
   });
 
   it('should return RoleActions', async () => {
     const mockResults = [
       {
-        score: 2,
         ID: 7478,
         ClassJob,
         IsPlayerAction: true,
         IsPvP: false,
         IsRoleAction: true,
+        IsUpgradable: false,
         Name: 'Second Wind',
         Description: 'Dolor sit amet...',
         Icon: { id: 7478, path: '/', path_hr1: '/' },
-        Command: 'action'
+        Command: 'action',
+        Prefix: 'r',
+        UrlType: 'Action'
       }
     ];
 

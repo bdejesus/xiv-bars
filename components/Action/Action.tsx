@@ -57,7 +57,6 @@ export default function Action({ action, style }: Props) {
   }
 
   function selectAction(e:React.MouseEvent) {
-    console.log(action);
     tooltipDispatch({ type: 'hide' });
     selectedActionDispatch({
       type: 'selectAction',
