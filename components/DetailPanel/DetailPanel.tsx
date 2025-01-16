@@ -142,7 +142,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
                   format="mediumRect"
                   id="ad-DetailPanel"
                   variant="light"
-                  className="mt-lg"
+                  className="mt-xl"
                 />
               </div>
             </>

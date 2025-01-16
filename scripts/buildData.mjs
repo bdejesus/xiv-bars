@@ -37,7 +37,7 @@ function jsonToQuery(json) {
     .join('&');
 }
 
-const delay = 66;
+const delay = 33;
 const delayShort = 33;
 const defaultFields = [
   'Icon',
@@ -231,7 +231,10 @@ async function getGlobalActions() {
         console.log(`  🔩 Building ${actionCategory} actions...`);
 
         const decoratedActions = json.rows
-          .filter((action) => (action.fields.Name !== '' && [0, 786].includes(action.fields.Icon.id) !== 786))
+          .filter((action) => (
+            action.fields.Name !== ''
+            && ![0, 786, 66001].includes(action.fields.Icon.id)
+          ))
           .map((action, index) => ({
             Name: `${actionCategory} ${index}`,
             ...action.fields,
