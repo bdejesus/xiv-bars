@@ -132,50 +132,18 @@ async function bulkFetchIcons(actions, progressBar) {
   }, Promise.resolve([]));
 }
 
-async function fetchUpgradableActionsData(job) {
-  if (!job) return;
-  const lodestoneURL = `https://ffxiv.consolegameswiki.com/wiki/${job.Name}`;
-  const filePath = `${dest}/UpgradableActions.json`;
-
-  let jsonData = {}
-
-  await fs.readFile(filePath, 'utf8', (err, data) => {
-    jsonData = data ? JSON.parse(data) : {};
-  });
-
-  const data = await fetch(lodestoneURL);
-  const content = await data.text();
-  const traits = HTMLParser.parse(content).querySelectorAll('.traits.table tr');
-  const rows = traits
-    .map((row) => row.lastChild.text)
-    .filter((row) => (row.match(/^Upgrades/) && !row.match(/^Upgrades.*when|.*executed by|.*while under|.*is upgraded/)))
-    .map((text) => {
-      if (text.match(/respectively/)) {
-        return text.split(' to ')[0].replace('Upgrades ', '').split(' and ')
-      } else {
-        return text.replaceAll(/^Upgrades |\n/g, '').split(' and ')
-          .map((t) => t.split(' to ')[0]).flat()
-      }
-    })
-    .flat()
-    .filter((text) => !text.match(/increases the|the potency of/));
-
-  const newData = JSON.stringify({
-    ...jsonData,
-    [job.Abbreviation]: rows
-  }, null, 2);
-
-  await fs.writeFile(`${dest}/UpgradableActions.json`, newData, () => null);
-
-  return newData;
-}
-
 async function getJobActions(jobs) {
+  const upgradableActionsFilePath = `${dest}/UpgradableActions.json`;
+  let jsonData = {};
+
   return jobs.reduce(async (promiseAccumulator, job) => {
     const accumulator = await promiseAccumulator;
 
+    fs.readFile(upgradableActionsFilePath, 'utf8', (err, data) => {
+      jsonData = data ? JSON.parse(data) : {};
+    });
+
     try {
-      await fetchUpgradableActionsData(job);
       const actions = new JobAction(job);
       const allActions = await actions.All();
       const jobActions = await actions.JobActions();
@@ -187,7 +155,7 @@ async function getJobActions(jobs) {
         PvP: pvpActions
       }
 
-      fs.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actionsObj), () => null);
+      await fsPromise.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actionsObj), () => null);
 
       const progressBar = new cliProgress.SingleBar({
         format:`  🧱 Fetching ${colors.yellowBright(job.Abbr)} ${colors.yellowBright('[{bar}]')} {value}/{total} | {percentage}% `,
