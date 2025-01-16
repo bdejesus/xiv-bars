@@ -21,7 +21,6 @@ dotenv.config();
 const dest = './.apiData';
 const apiUrl = 'https://beta.xivapi.com/api/1'
 const { i18n } = i18nConfig;
-
 const separatorIndex = process.argv.indexOf("--");
 const options = process.argv.slice(separatorIndex + 1);
 const isRemote = options.includes('--remote');
