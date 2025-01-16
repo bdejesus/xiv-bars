@@ -37,7 +37,7 @@ function jsonToQuery(json) {
     .join('&');
 }
 
-const delay = 33;
+const delay = 66;
 const delayShort = 33;
 const defaultFields = [
   'Icon',
