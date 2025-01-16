@@ -115,7 +115,7 @@ export default function User({ user }:UserViewProps) {
         </div>
 
         <div className="container">
-          { (!layouts) ? (
+          { (!layouts || typeof layouts === 'number') ? (
             <h2 id="jobSelectTitle">
               {t('Pages.User.no_layouts')}
             </h2>

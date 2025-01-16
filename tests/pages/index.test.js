@@ -28,6 +28,10 @@ jest.mock('react-markdown', () => ({
   ReactMarkdown: jest.fn()
 }));
 
+jest.mock('react-intersection-observer', () => ({
+  useInView: jest.fn(() => ({}))
+}));
+
 describe('Home', () => {
   window.fetch = fetchMock();
 

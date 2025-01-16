@@ -23,7 +23,7 @@ interface BuildURLProps {
 type hbValue = string|string[]|number[];
 
 export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
-  const params = { ...viewData, ...query, ...mergeData } || {};
+  const params = { ...viewData, ...query, ...mergeData };
   const inlcudeKeys = [
     'l',
     'hb',

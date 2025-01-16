@@ -31,7 +31,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
   }
 
   const displayActions = !showAllLvl
-    ? actions.filter((action) => !action.upgradable)
+    ? actions.filter((action) => !action.IsUpgradable)
     : actions;
 
   useEffect(() => {

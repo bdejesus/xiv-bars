@@ -4,6 +4,8 @@
 
 Welcome to XIV Bars! This is the source code for the Final Fantasy XIV (FFXIV) Cross Hotbar (XHB) planning tool. This is a passion project created for the purpose of serving the FFXIV community who may have use for a way to port hotbar layouts from the web into the game. It is built in NextJS and is continually being updated.
 
+Made with [contrib.rocks](https://contrib.rocks).
+
 ---
 
 ## Table of Contents
@@ -22,6 +24,12 @@ Welcome to XIV Bars! This is the source code for the Final Fantasy XIV (FFXIV) C
 ## How to Contribute
 
 This project is updated frequently with fixes and new features. I kind of use this project as a space to try new things with javascript and web design, so there may be some lack of structure when updates are deployed live.
+
+### Thanks to all the people who've already contributed!
+
+<a href="https://github.com/bdejesus/xiv-bars/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=bdejesus/xiv-bars" />
+</a>
 
 ### Reporting Issues
 

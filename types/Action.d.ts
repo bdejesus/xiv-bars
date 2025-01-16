@@ -1,6 +1,10 @@
 export interface ActionProps {
   ID?: string | number,
-  Icon?: string,
+  Icon?: {
+    id: number,
+    path: string,
+    path_hr1: string
+  },
   Name?: string,
   Name_de?: string | null,
   Name_fr?: string | null,
@@ -10,12 +14,14 @@ export interface ActionProps {
   Description_de?: string | null,
   Description_fr?: string | null,
   Description_ja?: string | null,
-  Role?: string,
+  IsPvP?: boolean,
+  IsRoleAction?: boolean,
+  IsPlayerAction?: boolean,
+  IsUpgradable?: boolean,
   UrlType?: string,
   Command?: string,
-  customIcon?: string,
-  upgradable?: boolean,
   Prefix?: string
+  customIcon?: string,
 }
 
 export interface SlotProps {
