@@ -145,8 +145,8 @@ async function fetchUpgradableActionsData(job) {
 
   const data = await fetch(lodestoneURL);
   const content = await data.text();
-  const actions = HTMLParser.parse(content).querySelectorAll('.traits.table tr');
-  const rows = actions
+  const traits = HTMLParser.parse(content).querySelectorAll('.traits.table tr');
+  const rows = traits
     .map((row) => row.lastChild.text)
     .filter((row) => (row.match(/^Upgrades/) && !row.match(/^Upgrades.*when|.*executed by|.*while under|.*is upgraded/)))
     .map((text) => {
@@ -264,7 +264,6 @@ async function getGlobalActions() {
       fs.mkdir(dest, () => {
         console.log(`📂 Creating "${dest}" directory...`);
         fs.mkdir(`${dest}/JobActions`, async () =>{
-          // await fetchUpgradableActionsData({Name: 'Dark Knight', Abbreviation: 'DRK'})
           await getGlobalActions();
           await getJobs();
 
