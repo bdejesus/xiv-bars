@@ -1,4 +1,4 @@
-import Action from '@/lib/JobAction.mjs';
+import PlayerActions from '@/lib/PlayerActions.mjs';
 import '@testing-library/jest-dom';
 import 'tests/setupTests';
 import axios from 'axios';
@@ -73,13 +73,13 @@ const responseActions = {
 };
 
 describe('Action', () => {
-  let actions:Action;
+  let actions:PlayerActions;
 
   beforeEach(() => {
     const mockData = { data: responseActions };
     (axios.get as jest.Mock).mockResolvedValue(mockData);
 
-    actions = new Action(ClassJob);
+    actions = new PlayerActions(ClassJob);
   });
 
   afterEach(() => {
