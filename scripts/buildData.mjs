@@ -11,6 +11,7 @@ import i18nConfig from '../next-i18next.config.js';
 import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
 import JobAction, { getActionIcon } from '../lib/PlayerActions.mjs';
+import jsonToQuery from '../lib/utils/jsonToQuery.mjs';
 import Jobs from '../.apiData/Jobs.json' assert {type: 'json' };
 import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
@@ -24,18 +25,6 @@ const { i18n } = i18nConfig;
 const separatorIndex = process.argv.indexOf("--");
 const options = process.argv.slice(separatorIndex + 1);
 const isRemote = options.includes('--remote');
-
-function jsonToQuery(json) {
-  return Object.entries(json)
-    .reduce((items, [key, value]) => {
-      const encodedKey = encodeURI(key);
-      const encodedValue = encodeURI(value);
-      if (encodedValue !== 'undefined') items.push(`${encodedKey}=${encodedValue}`);
-      return items;
-    }, [])
-    .join('&');
-}
-
 const delay = 66;
 const delayShort = 33;
 const defaultFields = [
