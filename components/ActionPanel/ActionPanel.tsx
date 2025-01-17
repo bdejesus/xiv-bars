@@ -21,7 +21,7 @@ interface Props {
 export function ActionPanel({ actions, roleActions }: Props) {
   const { t } = useTranslation();
   const actionPanelRef = createRef<HTMLDivElement>();
-  const { showAllLvl } = useAppState();
+  const { showAllLvl, viewData } = useAppState();
   const [activeTab, setActiveTab] = useState('panel-actions');
   const [maxHeight, setMaxHeight] = useState(0);
 
@@ -50,7 +50,7 @@ export function ActionPanel({ actions, roleActions }: Props) {
           className={`${styles.panel} panel`}
           aria-hidden={activeTab !== 'panel-actions'}
         >
-          <ActionGroup actions={displayActions} title={t('ActionPanel.job_actions')} />
+          <ActionGroup id={viewData.isPvp ? 'pvp-actions' : 'pve-actions'} actions={displayActions} title={t('ActionPanel.job_actions')} />
 
           {(roleActions && (roleActions.length > 0)) && (
             <ActionGroup actions={roleActions} title={t('ActionPanel.role_actions')} />

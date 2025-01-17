@@ -24,8 +24,9 @@ const JobAction = {
     IsPlayerAction: true,
     IsPvP: false,
     IsRoleAction: false,
+    IsUpgradable: false,
     Name: 'Hakaze',
-    Icon: { id: 678, path: '/', path_hr1: '/' }
+    Icon: { id: 678, path: '/', path_hr1: '/' },
   },
   transient: {
     Description: 'Lorem ipsum...'
@@ -41,7 +42,8 @@ const RoleAction = {
     IsPvP: false,
     IsRoleAction: true,
     Name: 'Second Wind',
-    Icon: { id: 7478, path: '/', path_hr1: '/' }
+    Icon: { id: 7478, path: '/', path_hr1: '/' },
+    Level: undefined
   },
   transient: {
     Description: 'Dolor sit amet...'
@@ -57,7 +59,8 @@ const PvPAction = {
     IsPvP: true,
     IsRoleAction: false,
     Name: 'PvP Hakaze',
-    Icon: { id: 178, path: '/', path_hr1: '/' }
+    Icon: { id: 178, path: '/', path_hr1: '/' },
+    Level: 1
   },
   transient: {
     Description: 'Lorem ipsum...'
@@ -94,13 +97,14 @@ describe('Action', () => {
         IsPlayerAction: true,
         IsPvP: false,
         IsRoleAction: false,
-        IsUpgradable: true,
+        IsUpgradable: false,
         Name: 'Hakaze',
         Description: 'Lorem ipsum...',
         Icon: { id: 678, path: '/', path_hr1: '/' },
         Command: 'action',
         Prefix: '',
-        UrlType: 'Action'
+        UrlType: 'Action',
+        Level: undefined
       }
     ];
 
