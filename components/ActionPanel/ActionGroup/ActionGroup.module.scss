@@ -36,6 +36,12 @@
   }
 }
 
+.container[data-show-titles='true']:global(#pve-actions) {
+  :global(.action)::after {
+    content: attr(data-title) '\A(Lv ' attr(data-level) ')';
+  }
+}
+
 .container[data-show-titles="true"] .listActions {
   display: block;
 
@@ -57,6 +63,7 @@
       margin-top: 0;
       position: static;
       text-align: left;
+      white-space: pre-wrap;
     }
   }
 }
