@@ -12,7 +12,6 @@ import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
 import JobAction, { getActionIcon } from '../lib/PlayerActions.mjs';
 import jsonToQuery from '../lib/utils/jsonToQuery.mjs';
-import Jobs from '../.apiData/Jobs.json' assert {type: 'json' };
 import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
 import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' };
@@ -55,7 +54,8 @@ async function fetchJobsData() {
 }
 
 async function getJobs() {
-  let jobs = Jobs;
+  let jobs = [];
+
   const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
 
   if (isRemote) {
