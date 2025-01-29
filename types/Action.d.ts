@@ -20,7 +20,9 @@ export interface ActionProps {
   IsUpgradable?: boolean,
   UrlType?: string,
   Command?: string,
-  Prefix?: string
+  Prefix?: string,
+  Level?: number,
+  ComboActions?: string[],
   customIcon?: string,
 }
 

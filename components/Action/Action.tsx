@@ -93,6 +93,7 @@ export default function Action({ action, style }: Props) {
         onClick={(e) => selectAction(e)}
         tabIndex={0}
         data-title={displayTtile}
+        data-level={action.Level}
         data-show-title={showTitles}
         style={style}
       >
