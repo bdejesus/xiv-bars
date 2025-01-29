@@ -22,6 +22,7 @@ export interface ActionProps {
   Command?: string,
   Prefix?: string,
   Level?: number,
+  ComboActions?: string[],
   customIcon?: string,
 }
 
