@@ -63,12 +63,6 @@
     "reference_layout": "Reference Layout"
   },
 
-  "EorzeaProfile": {
-    "title": "FFXIV Profile Twitch Streamer Panel",
-    "body": "Display your Final Fantasy XIV Endwalker character profile on your stream page.",
-    "cta": "Install on Twitch.tv"
-  },
-
   "Error": {
     "generic": {
       "title": "Uh oh! Something went wrong...",

@@ -14,7 +14,6 @@ import HowTo from 'components/HowTo';
 import Hero from 'components/Hero';
 import JobMenu from 'components/JobSelect/JobMenu';
 import Footer from 'components/Footer';
-import EorzeaProfile from 'components/EorzeaProfile';
 import LayoutsList from 'components/LayoutsList';
 import Jobs from 'apiData/Jobs.json';
 import dynamic from 'next/dynamic';
@@ -158,7 +157,6 @@ export default function Index({ recentLayouts, popularLayoutsByJob }:IndexProps)
       </div>
 
       <HowTo />
-      <EorzeaProfile />
       <Footer />
     </>
   );
