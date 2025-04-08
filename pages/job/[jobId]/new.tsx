@@ -15,7 +15,6 @@ import HowTo from 'components/HowTo';
 import Footer from 'components/Footer';
 import App, { appActions, useAppDispatch } from 'components/App';
 import LayoutsList from 'components/LayoutsList';
-import EorzeaProfile from 'components/EorzeaProfile';
 import { hasSprite } from 'components/JobSprite';
 import renderMeta from 'components/Meta';
 import Jobs from 'apiData/Jobs.json';
@@ -98,7 +97,6 @@ export default function Index(props:PageProps) {
       </div>
 
       <HowTo />
-      <EorzeaProfile />
       <Footer />
     </>
   );

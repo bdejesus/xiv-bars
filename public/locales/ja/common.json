@@ -63,12 +63,6 @@
     "reference_layout": "リファレンスレイアウト"
   },
 
-  "EorzeaProfile": {
-    "title": "FFXIV プロフィール Twitch ストリーマーパネル",
-    "body": "Twitch ページにファイナルファンタジーXIV Endwalkerキャラクタープロフィールを表示します。",
-    "cta": "Twitch.tv にインストール"
-  },
-
   "Error": {
     "generic": {
       "title": "おっと！何かがおかしいです...",
