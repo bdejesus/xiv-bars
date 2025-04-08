@@ -35,7 +35,7 @@
     "dotenv": "^16.4.5",
     "fast-html-parser": "^1.0.1",
     "i18next": "^23.10.1",
-    "next": "^14.2.21",
+    "next": "^14.2.26",
     "next-auth": "^4.24.5",
     "next-i18next": "^15.2.0",
     "prisma": "^5.8.0",
