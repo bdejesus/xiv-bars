@@ -25,5 +25,7 @@
       true, { "ignorePseudoClasses": [ "global" ] }
     ]
   },
-  "ignore": []
+  "ignore": [
+    "next-env.d.ts"
+  ]
 }
