@@ -18,13 +18,14 @@ import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' }
 
 dotenv.config();
 
-const dest = './.apiData';
 const apiUrl = 'https://beta.xivapi.com/api/1'
+const dest = './.apiData';
 const { i18n } = i18nConfig;
 
+// Read command arguments
 const separatorIndex = process.argv.indexOf("--");
-const options = process.argv.slice(separatorIndex + 1);
-const isRemote = options.includes('--remote');
+const parsedArgs = process.argv.slice(separatorIndex + 1);
+const isRemote = parsedArgs.includes('--remote');
 
 function jsonToQuery(json) {
   return Object.entries(json)
@@ -37,8 +38,10 @@ function jsonToQuery(json) {
     .join('&');
 }
 
+// fetch requests throttle settings
 const delay = 66;
 const delayShort = 33;
+
 const defaultFields = [
   'Icon',
   'Name',
@@ -71,10 +74,10 @@ async function getJobs() {
   const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
 
   if (isRemote) {
-    console.log("🔗 Fetching from remote source...")
+    console.log("🔗 Fetching from remote source...");
     jobs = await fetchJobsData();
   } else {
-    console.log("⛓️‍💥 Skipping remote source. Use `--remote` flag to fetch data from remote source.")
+    console.log("⛓️‍💥 Skipping remote source. Use `--remote` flag to fetch data from remote source.");
   }
 
   const decoratedJobs = advJobs.map((advancedJob) => {
