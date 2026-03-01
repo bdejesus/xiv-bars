@@ -100,11 +100,13 @@ async function fetchIcon(action) {
   try {
     if (!fs.existsSync(folderPath)) {
       fs.mkdirSync(folderPath, { recursive: true });
-    } else if (fs.existsSync(folderPath, fileName)) {
-      return;
     }
 
-    const response = await axios.get(iconUrl, { responseType: 'stream' });
+    const response = await axios.get(iconUrl, {
+      responseType: 'stream',
+      header: { Accept: 'image/jpeg, image/png, image/webp' }
+    });
+
     // Define the file path
     const filePath = path.join(folderPath, fileName);
     // Save the image to the local folder
@@ -118,6 +120,7 @@ async function fetchIcon(action) {
     });
   } catch (error) {
     console.error('Something went wrong', error);
+    throw new Error(error);
   }
 }
 
@@ -247,12 +250,13 @@ async function getGlobalActions() {
             Command: ActionCategory[actionCategory].command
           }));
 
+        await bulkFetchIcons(decoratedActions);
+
         fs.writeFile(
           `${dest}/${actionCategory}.json`,
           JSON.stringify(decoratedActions),
           () => null
         );
-        await bulkFetchIcons(decoratedActions);
       })
       .catch((error) => { console.error(error); });
 
@@ -270,7 +274,6 @@ async function getGlobalActions() {
           // await fetchUpgradableActionsData({Name: 'Dark Knight', Abbreviation: 'DRK'})
           await getGlobalActions();
           await getJobs();
-
         });
       });
     });
