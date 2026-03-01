@@ -11,10 +11,10 @@ import i18nConfig from '../next-i18next.config.js';
 import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
 import JobAction, { getActionIcon } from '../lib/PlayerActions.mjs';
-import Jobs from '../.apiData/Jobs.json' assert {type: 'json' };
-import JobsMeta from '../data/JobsMeta.json' assert { type: 'json' };
-import BaseClassIDs from '../data/BaseClassIDs.json' assert { type: 'json' };
-import ActionCategory from '../data/ActionCategory.json' assert { type: 'json' };
+import Jobs from '../.apiData/Jobs.json' with {type: 'json' };
+import JobsMeta from '../data/JobsMeta.json' with { type: 'json' };
+import BaseClassIDs from '../data/BaseClassIDs.json' with { type: 'json' };
+import ActionCategory from '../data/ActionCategory.json' with { type: 'json' };
 
 dotenv.config();
 
