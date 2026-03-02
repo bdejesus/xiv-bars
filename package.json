@@ -35,7 +35,7 @@
     "dotenv": "^16.4.5",
     "fast-html-parser": "^1.0.1",
     "i18next": "^23.10.1",
-    "next": "^15.5.10",
+    "next": "^16.1.6",
     "next-auth": "^4.24.12",
     "next-i18next": "^15.2.0",
     "prisma": "^5.8.0",
@@ -78,10 +78,10 @@
     "node-mocks-http": "^1.13.0",
     "postcss": "^8.3.3",
     "postcss-scss": "^4.0.4",
-    "stylelint": "^16.1.0",
-    "stylelint-config-standard": "^36.0.0",
-    "stylelint-order": "^6.0.3",
-    "stylelint-scss": "^6.0.0",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-order": "^7.0.1",
+    "stylelint-scss": "^7.0.0",
     "typescript": "^5.3.3"
   },
   "cacheDirectories": [

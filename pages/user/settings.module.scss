@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@use "@/styles/mixins" as *;
 
 .settings {
   min-height: calc(100vh - $header-height - $footer-height);

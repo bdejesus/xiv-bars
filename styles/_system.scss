@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 .system-message {
   box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
   display: block;

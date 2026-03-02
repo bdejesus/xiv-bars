@@ -1,5 +1,5 @@
-@import 'styles/mixins';
-@import "styles/scrollbars";
+@use "@/styles/mixins" as *;
+@use "@/styles/scrollbars" as *;
 
 $toggle-width: $spacing-base;
 $panel-height: calc(100vh - $header-height);
