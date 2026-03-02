@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 .mt-xl {
   margin-top: $spacing-xl !important;
 }

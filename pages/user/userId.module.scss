@@ -1,5 +1,5 @@
-@import "styles/mixins";
-@import "styles/grid";
+@use "@/styles/mixins" as *;
+@import "@/styles/grid";
 
 .layoutsList {
   @include grid;

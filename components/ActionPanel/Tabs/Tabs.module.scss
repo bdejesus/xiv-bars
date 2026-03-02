@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@use "@/styles/mixins" as *;
 
 .tabs {
   margin: 0 $spacing-sm;

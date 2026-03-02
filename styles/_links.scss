@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 a {
   color: $color-link;
   text-decoration: none;
@@ -12,5 +14,4 @@ a:focus {
   border-radius: $border-radius;
   outline: 2px solid $color-alt-dark;
   text-decoration: none;
-
 }

@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@use "@/styles/mixins" as *;
 
 .icon {
   display: inline-block;

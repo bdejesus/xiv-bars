@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@use "@/styles/mixins" as *;
 
 .container {
   border-bottom: 1px solid rgb(80 80 80 / 50%);

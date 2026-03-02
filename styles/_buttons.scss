@@ -1,4 +1,5 @@
-@import "./mixins";
+@use "sass:color";
+@use '@/styles/mixins' as *;
 
 $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
 
@@ -59,7 +60,7 @@ button,
   &:focus,
   &:active {
     text-decoration: none;
-    text-shadow: 0 1px 2px darken($color-alt, 50%);
+    text-shadow: 0 1px 2px color.adjust($color-alt, $lightness: -50%);
   }
 
   &:hover,
@@ -92,7 +93,7 @@ button,
     color: #fff;
 
     .icon {
-      filter: $icon-filter-white drop-shadow(0 1px 1px darken($color-alt, 40%));
+      filter: $icon-filter-white drop-shadow(0 1px 1px color.adjust($color-alt, $lightness: -40%));
     }
 
     .icon,
@@ -250,7 +251,7 @@ button,
     }
 
     .icon {
-      filter: $icon-filter-white drop-shadow(0 1px 2px darken($color-alt, 50%));
+      filter: $icon-filter-white drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
     }
   }
 
@@ -259,7 +260,7 @@ button,
     background-color: $color-alt-dark;
 
     .icon {
-      filter: $icon-filter-white drop-shadow(0 1px 2px darken($color-alt, 50%));
+      filter: $icon-filter-white drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
     }
   }
 }
@@ -376,10 +377,10 @@ button,
     &[data-selected="true"] {
       background-color: $color-alt-dark;
       color: #fff;
-      text-shadow: 0 1px 2px darken($color-alt, 50%);
+      text-shadow: 0 1px 2px color.adjust($color-alt, $lightness: -50%);
 
       .icon {
-        filter: $icon-filter-white drop-shadow(0 1px 2px darken($color-alt, 50%));
+        filter: $icon-filter-white drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
       }
     }
   }
@@ -420,7 +421,7 @@ button,
 
   &:hover,
   &:focus {
-    background-color: darken($color-red, 10%);
+    background-color: color.adjust($color-red, $lightness: -10%);
   }
 }
 

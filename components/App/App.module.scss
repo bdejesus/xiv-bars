@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@use "@/styles/mixins" as *;
 
 .header {
   border-bottom: 1px solid rgb(0 0 0 / 90%);
