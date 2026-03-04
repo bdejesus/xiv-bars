@@ -1,14 +1,12 @@
+import type { NextConfig } from "next";
 import { withSentryConfig } from '@sentry/nextjs';
 import i18nConfig from './next-i18next.config.js';
 
 const { i18n } = i18nConfig;
 
-const options = {
+const options:NextConfig = {
   i18n,
   poweredByHeader: false,
-  sentry: {
-    hideSourceMaps: true
-  },
   images: {
     remotePatterns: [
       {
