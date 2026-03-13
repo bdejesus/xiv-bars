@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 import { withSentryConfig } from '@sentry/nextjs';
 import i18nConfig from './next-i18next.config.js';
 

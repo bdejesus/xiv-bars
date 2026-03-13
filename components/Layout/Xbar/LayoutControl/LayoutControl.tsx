@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-onchange */
+ 
 import React from 'react';
 import { useRouter } from 'next/router';
 import { buildUrl } from 'lib/utils/url';

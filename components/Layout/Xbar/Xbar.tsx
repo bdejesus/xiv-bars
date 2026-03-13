@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/no-onchange */
-/* eslint-disable react/prefer-stateless-function */
+ 
+ 
 
 import { useAppState } from 'components/App/context';
 import { hasActions } from 'lib/xbars';

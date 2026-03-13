@@ -1,0 +1,121 @@
+@use "mixins" as mix;
+
+:root {
+  // Colors - Grays
+  --color-gray: #{mix.$color-gray};
+  --color-gray-dark: #{mix.$color-gray-dark};
+  --color-gray-dark-2: #{mix.$color-gray-dark-2};
+  --color-gray-light: #{mix.$color-gray-light};
+  --color-gray-light-2: #{mix.$color-gray-light-2};
+  --color-gray-light-3: #{mix.$color-gray-light-3};
+
+  // Colors - Accent
+  --color-alt: #{mix.$color-alt};
+  --color-alt-dark: #{mix.$color-alt-dark};
+  --color-alt-dark-2: #{mix.$color-alt-dark-2};
+  --color-alt-light: #{mix.$color-alt-light};
+
+  // Colors - States
+  --color-link: #{mix.$color-link};
+  --color-red: #{mix.$color-red};
+  --color-danger: #{mix.$color-danger};
+  --color-green: #{mix.$color-green};
+  --color-success: #{mix.$color-success};
+
+  // Colors - Jobs
+  --color-tank: #{mix.$color-tank};
+  --color-healer: #{mix.$color-healer};
+  --color-dps: #{mix.$color-dps};
+  --color-doh: #{mix.$color-doh};
+  --color-dol: #{mix.$color-dol};
+
+  // Slot sizing
+  --slot-border-size: #{mix.$slot-border-size};
+  --slot-size: #{mix.$slot-size};
+  --slot-size-sm: #{mix.$slot-size-sm};
+  --slot-size-xs: #{mix.$slot-size-xs};
+  --slot-spacing: #{mix.$slot-spacing};
+  --outer-slot-size: #{mix.$outer-slot-size};
+
+  // XBar layout
+  --xbar-group-height: #{mix.$xbar-group-height};
+  --xbar-group-width: #{mix.$xbar-group-width};
+  --xbar-width: #{mix.$xbar-width};
+  --xbar-group-spacing: #{mix.$xbar-group-spacing};
+  --primary-slot-size: #{mix.$primary-slot-size};
+  --outer-primary-slot-size: #{mix.$outer-primary-slot-size};
+  --primary-xbar-group-height: #{mix.$primary-xbar-group-height};
+  --primary-xbar-group-width: #{mix.$primary-xbar-group-width};
+  --primary-xbar-width: #{mix.$primary-xbar-width};
+  --layout-container-width: #{mix.$layout-container-width};
+
+  // Panel
+  --panel-bg: #{mix.$panel-bg};
+  --panel-bg-dark: #{mix.$panel-bg-dark};
+  --panel-bg-light: #{mix.$panel-bg-light};
+  --border-radius: #{mix.$border-radius};
+
+  // Shadows
+  --box-shadow: #{mix.$box-shadow};
+  --box-shadow-light: #{mix.$box-shadow-light};
+  --box-shadow-2: #{mix.$box-shadow-2};
+  --button-shadow: #{mix.$button-shadow};
+
+  // Spacing
+  --spacing-xs: #{mix.$spacing-xs};
+  --spacing-sm: #{mix.$spacing-sm};
+  --spacing-base: #{mix.$spacing-base};
+  --spacing-md: #{mix.$spacing-md};
+  --spacing-lg: #{mix.$spacing-lg};
+  --spacing-xl: #{mix.$spacing-xl};
+  --spacing-xl-2: #{mix.$spacing-xl-2};
+
+  // Breakpoints
+  --screen-xxs: #{mix.$screen-xxs};
+  --screen-xs: #{mix.$screen-xs};
+  --screen-sm: #{mix.$screen-sm};
+  --screen-md: #{mix.$screen-md};
+  --screen-lg: #{mix.$screen-lg};
+  --screen-lg-2: #{mix.$screen-lg-2};
+  --screen-lg-3: #{mix.$screen-lg-3};
+  --screen-xl: #{mix.$screen-xl};
+  --screen-xs-max: #{mix.$screen-xs-max};
+  --screen-sm-max: #{mix.$screen-sm-max};
+  --screen-md-max: #{mix.$screen-md-max};
+  --screen-lg-max: #{mix.$screen-lg-max};
+
+  // Typography - Sizes
+  --font-size-xs: #{mix.$font-size-xs};
+  --font-size-sm: #{mix.$font-size-sm};
+  --font-size-base: #{mix.$font-size-base};
+  --font-size-lg: #{mix.$font-size-lg};
+  --font-size-xl: #{mix.$font-size-xl};
+  --font-size-xl-2: #{mix.$font-size-xl-2};
+  --font-size-xl-3: #{mix.$font-size-xl-3};
+
+  // Typography - Families
+  --font-family: #{mix.$font-family};
+  --font-monospace: #{mix.$font-monospace};
+  --font-tiny: #{mix.$font-tiny};
+
+  // Icon filters
+  --icon-filter-white: #{mix.$icon-filter-white};
+  --icon-filter-black: #{mix.$icon-filter-black};
+  --icon-filter-yellow: #{mix.$icon-filter-yellow};
+  --icon-filter-active: #{mix.$icon-filter-active};
+
+  // Timing
+  --timing-fast: #{mix.$timing-fast};
+  --timing-default: #{mix.$timing-default};
+  --timing-slow: #{mix.$timing-slow};
+  --cubic-bezier: #{mix.$cubic-bezier};
+
+  // Layout dimensions
+  --header-height: #{mix.$header-height};
+  --header-height-lg: #{mix.$header-height-lg};
+  --controlbar-height: #{mix.$controlbar-height};
+  --sidebar-width: #{mix.$sidebar-width};
+  --footer-height: #{mix.$footer-height};
+  --view-height: #{mix.$view-height};
+  --view-height-md: #{mix.$view-height-md};
+}

@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+ 
 import { useEffect } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';

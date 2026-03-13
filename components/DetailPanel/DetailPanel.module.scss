@@ -45,7 +45,7 @@ $panel-width-lg: $screen-xs;
     z-index: 2;
 
     :global(.icon) {
-      transform: rotate3d(0);
+      transform: rotate3d(0, 1, 0, 0deg);
       transition-duration: 0.3s;
       transition-property: transform;
       transition-timing-function: $cubic-bezier;

@@ -144,7 +144,7 @@ function setActionsByGroup({
   const actionKey = getActionKey({ actionCategory: actionType, actions, roleActions });
   const slottedAction = actionKey?.find((slotAction: ActionProps) => slotAction.ID === parsedID);
 
-  // eslint-disable-next-line no-param-reassign
+   
   if (slotRow && slotIndex !== undefined) slotRow[slotIndex].action = slottedAction || {};
   return slotRow;
 }

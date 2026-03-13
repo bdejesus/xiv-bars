@@ -8,7 +8,7 @@ export default function Lore({ description }: Props) {
   return (
     <blockquote
       className={styles.lore}
-      // eslint-disable-next-line react/no-danger
+       
       dangerouslySetInnerHTML={{ __html: description }}
     />
   );

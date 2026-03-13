@@ -1,7 +1,7 @@
 @use "@/styles/mixins" as *;
 
 .modal {
-  align-items: top;
+  align-items: flex-start;
   backdrop-filter: blur(0);
   display: flex;
   inset: 0;

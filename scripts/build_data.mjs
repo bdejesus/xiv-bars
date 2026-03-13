@@ -23,7 +23,7 @@ const dest = './.apiData';
 const { i18n } = i18nConfig;
 
 // Read command arguments
-const separatorIndex = process.argv.indexOf("--");
+const separatorIndex = process.argv.indexOf('--');
 const parsedArgs = process.argv.slice(separatorIndex + 1);
 const isRemote = parsedArgs.includes('--remote');
 
@@ -74,10 +74,10 @@ async function getJobs() {
   const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
 
   if (isRemote) {
-    console.log("🔗 Fetching from remote source...");
+    console.log('🔗 Fetching from remote source...');
     jobs = await fetchJobsData();
   } else {
-    console.log("⛓️‍💥 Skipping remote source. Use `--remote` flag to fetch data from remote source.");
+    console.log('⛓️‍💥 Skipping remote source. Use `--remote` flag to fetch data from remote source.');
   }
 
   const decoratedJobs = advJobs.map((advancedJob) => {

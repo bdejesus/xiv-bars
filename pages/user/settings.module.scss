@@ -1,17 +1,15 @@
-@use "@/styles/mixins" as *;
-
 .settings {
-  min-height: calc(100vh - $header-height - $footer-height);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
 }
 
 .profile {
   align-items: flex-start;
   display: flex;
   flex-direction: row;
-  font-size: $font-size-base;
-  gap: $spacing-lg;
-  line-height: $font-size-xl;
-  margin: $spacing-xl 0;
+  font-size: var(--font-size-base);
+  gap: var(--spacing-lg);
+  line-height: var(--font-size-xl);
+  margin: var(--spacing-xl) 0;
 }
 
 .profile-image {
@@ -20,9 +18,9 @@
 }
 
 .name {
-  font-size: $font-size-xl-2;
+  font-size: var(--font-size-xl-2);
   line-height: 1;
-  margin-bottom: $spacing-sm;
+  margin-bottom: var(--spacing-sm);
 
   .userId {
     font-style: italic;
@@ -33,21 +31,21 @@
 
 .accountDeletion {
   border-top: 1px solid #666;
-  margin-top: $spacing-xl;
-  padding-top: $spacing-lg;
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
 
   label {
     color: #fff;
-    font-size: $font-size-lg;
+    font-size: var(--font-size-lg);
     font-weight: 400;
   }
 
   input {
     background-color: #eee;
-    color: $color-red;
-    font-size: $font-size-lg;
+    color: var(--color-red);
+    font-size: var(--font-size-lg);
     font-weight: 600;
     height: 40px;
-    margin-top: $spacing-sm;
+    margin-top: var(--spacing-sm);
   }
 }

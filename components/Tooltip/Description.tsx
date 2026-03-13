@@ -15,7 +15,7 @@ export default function Description({ content }: Props) {
   return (
     <div
       className={styles.description}
-      // eslint-disable-next-line react/no-danger
+       
       dangerouslySetInnerHTML={descHtml}
     />
   );

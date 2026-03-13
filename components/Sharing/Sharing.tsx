@@ -1,5 +1,5 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/label-has-for */
+ 
+ 
 import { useTranslation } from 'next-i18next';
 import { createRef, useEffect, useState } from 'react';
 import { buildUrl } from 'lib/utils/url';

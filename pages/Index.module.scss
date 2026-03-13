@@ -10,13 +10,13 @@
     flex: 1 1 calc(100vh - 402px);
     flex-direction: column;
     justify-content: center;
-    padding: $spacing-xl-2 0;
+    padding: var(--spacing-xl-2) 0;
   }
 
   h1 {
-    color: $color-alt;
+    color: var(--color-alt);
     margin: 0;
-    margin-bottom: $spacing-lg;
+    margin-bottom: var(--spacing-lg);
   }
 
   small {
@@ -25,18 +25,18 @@
   }
 
   li {
-    margin: $spacing-sm 0;
+    margin: var(--spacing-sm) 0;
   }
 }
 
 .title {
-  margin-bottom: $spacing-lg;
-  margin-top: $spacing-xl;
+  margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
 }
 
 .recentLayouts {
-  margin-bottom: $spacing-xl;
-  margin-top: $spacing-xl;
+  margin-bottom: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
 }
 
 .jobSelect {
@@ -44,13 +44,13 @@
 }
 
 .popularLayoutsSection {
-  margin-top: $spacing-xl;
+  margin-top: var(--spacing-xl);
 }
 
 .popularLayoutsContainer {
   display: grid;
-  gap: $spacing-lg;
-  grid-template-columns: repeat(3, calc(33.333% - $spacing-lg / 3 * 2));
+  gap: var(--spacing-lg);
+  grid-template-columns: repeat(3, calc(33.333% - var(--spacing-lg) / 3 * 2));
 
   h3 {
     margin: 0;
@@ -60,8 +60,8 @@
     display: block;
 
     .popularList {
-      margin-bottom: $spacing-xl;
-      margin-top: $spacing-xl;
+      margin-bottom: var(--spacing-xl);
+      margin-top: var(--spacing-xl);
     }
 
     :global(.layoutsList) {
@@ -70,7 +70,7 @@
 
       li {
         display: inline-block;
-        margin-bottom: $spacing-base;
+        margin-bottom: var(--spacing-base);
         width: 100%;
       }
     }
@@ -91,17 +91,17 @@
     align-items: center;
     color: #fff;
     display: inline-flex;
-    font-size: $font-size-xl;
+    font-size: var(--font-size-xl);
     font-weight: 400;
-    gap: $spacing-sm;
-    margin-bottom: $spacing-base;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-base);
     text-transform: uppercase;
     transition-duration: 0.33s;
     transition-property: color;
-    transition-timing-function: $cubic-bezier;
+    transition-timing-function: var(--cubic-bezier);
 
     &:hover {
-      color: $color-alt;
+      color: var(--color-alt);
       text-decoration: none;
     }
   }
@@ -127,11 +127,11 @@
 
   .footerLink {
     display: inline-block;
-    font-size: $font-size-base;
-    margin-top: $spacing-base;
+    font-size: var(--font-size-base);
+    margin-top: var(--spacing-base);
 
     &:hover {
-      color: $color-alt;
+      color: var(--color-alt);
     }
   }
 }

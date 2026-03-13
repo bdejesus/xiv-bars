@@ -35,7 +35,7 @@ export default function AdUnit({
   function initialize() {
     if (typeof window !== 'undefined' && enabled) {
       try {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({}); // eslint-disable-line
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});  
       } catch (error) {
         Sentry.captureException(error);
         console.error('Adsense Error: ', error);
