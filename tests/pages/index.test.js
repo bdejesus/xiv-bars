@@ -32,6 +32,10 @@ jest.mock('react-intersection-observer', () => ({
   useInView: jest.fn(() => ({}))
 }));
 
+jest.mock('@sentry/nextjs', () => ({
+  captureException: jest.fn(),
+}));
+
 describe('Home', () => {
   window.fetch = fetchMock();
 
