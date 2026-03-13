@@ -51,6 +51,11 @@ jest.mock('../lib/db', () => ({
     layout: {
       findMany: jest.fn(() => layouts),
       findUnique: jest.fn(() => layout)
+    },
+    heart: {
+      create: jest.fn(() => Promise.resolve({ id: 1, userId: 1, layoutId: 14 })),
+      count: jest.fn(() => Promise.resolve(1)),
+      delete: jest.fn(() => Promise.resolve({})),
     }
   }
 }));
