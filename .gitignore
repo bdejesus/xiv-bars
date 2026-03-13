@@ -33,4 +33,6 @@ debug.log*
 **/.vscode
 **./*.swp
 
+**/.claude
+
 TODO.md

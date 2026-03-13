@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+ 
 import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 

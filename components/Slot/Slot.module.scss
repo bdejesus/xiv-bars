@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@use "@/styles/mixins" as *;
 
 .slot {
   background-color: #666;

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+ 
 import '@testing-library/jest-dom';
 import 'tests/setupTests';
 import { render, screen, waitFor } from '@testing-library/react';
@@ -30,6 +30,10 @@ jest.mock('react-markdown', () => ({
 
 jest.mock('react-intersection-observer', () => ({
   useInView: jest.fn(() => ({}))
+}));
+
+jest.mock('@sentry/nextjs', () => ({
+  captureException: jest.fn(),
 }));
 
 describe('Home', () => {

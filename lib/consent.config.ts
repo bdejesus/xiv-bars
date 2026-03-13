@@ -36,7 +36,7 @@ export const consentConfig = {
     try {
       if (CookieConsent.acceptedCategory('analytics')) {
         // Analytics category enabled
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         (window as any).gtag('consent', 'update', {
           analytics_storage: 'granted',
         });
@@ -44,7 +44,7 @@ export const consentConfig = {
 
       if (CookieConsent.acceptedCategory('ads')) {
         // Google Ads enabled
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         
         (window as any).gtag('consent', 'update', {
           ad_user_data: 'granted',
           ad_personalization: 'granted',

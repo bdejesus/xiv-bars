@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import { useState, ReactNode } from 'react';
 import { useTranslation } from 'next-i18next';
 import Icon, { Icons } from 'components/Icon';
 import JobMenu from 'components/JobSelect/JobMenu';

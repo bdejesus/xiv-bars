@@ -1,8 +1,8 @@
-@import "styles/grid";
+@use "@/styles/mixins" as *;
 
 .title {
   display: block;
-  margin-bottom: $spacing-xl;
+  margin-bottom: var(--spacing-xl);
 
   h1 {
     margin-bottom: 0;
@@ -19,21 +19,21 @@
 }
 
 .header {
-  margin-bottom: $spacing-xl;
+  margin-bottom: var(--spacing-xl);
 }
 
 .newLink {
-  padding-left: $spacing-xl;
-  padding-right: $spacing-xl;
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
 
   @media (max-width: $screen-md) {
-    padding-left: $spacing-lg;
-    padding-right: $spacing-lg;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
   }
 
   @media (max-width: $screen-sm) {
-    padding-left: $spacing-base;
-    padding-right: $spacing-base;
+    padding-left: var(--spacing-base);
+    padding-right: var(--spacing-base);
   }
 }
 
@@ -41,20 +41,20 @@
   border-top: 1px solid rgb(255 255 255 / 20%);
   display: flex;
   flex-direction: row;
-  gap: $spacing-xs;
+  gap: var(--spacing-xs);
   justify-content: space-between;
-  margin-top: $spacing-lg;
-  padding-top: $spacing-base;
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-base);
 }
 
 .jobGuideLink {
   align-items: center;
   color: #fff;
   display: flex;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   justify-content: center;
 
   :global(.icon) {
-    filter: $icon-filter-white;
+    filter: var(--icon-filter-white);
   }
 }

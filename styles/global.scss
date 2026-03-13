@@ -1,5 +1,13 @@
-@import "styles/scrollbars";
-@import "styles/mixins";
+@use "@/styles/mixins" as *;
+@use "@/styles/scrollbars" as *;
+@use "@/styles/global" as g;
+@use "typography";
+@use "links";
+@use "forms";
+@use "buttons";
+@use "utils";
+@use "system";
+@use "markdown";
 
 * {
   box-sizing: border-box;
@@ -112,11 +120,3 @@ h2 {
     display: block;
   }
 }
-
-@import "typography";
-@import "links";
-@import "forms";
-@import "buttons";
-@import "utils";
-@import "system";
-@import "markdown";

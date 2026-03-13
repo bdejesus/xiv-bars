@@ -1,4 +1,4 @@
-@import 'styles/mixins';
+@use "@/styles/mixins" as *;;
 
 $description-height: 165px;
 
@@ -108,6 +108,6 @@ $description-height: 165px;
 
 .summary.light {
   .description::after {
-    background-image: linear-gradient(rgb(255 255 255 / 0%) 0, rgba(255 255 255 / 0%) 95%);
+    background-image: linear-gradient(rgb(255 255 255 / 0%) 0, rgb(255 255 255 / 0%) 95%);
   }
 }

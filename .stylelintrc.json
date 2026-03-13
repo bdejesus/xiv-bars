@@ -10,6 +10,7 @@
       true, { "ignoreAtRules": [ "import", "mixin", "use", "include" ] }
     ],
     "comment-empty-line-before": "always",
+    "declaration-property-value-no-unknown": null,
     "function-no-unknown": [
       true, { "ignoreFunctions": [ "math.div", "darken", "lighten" ] }
     ],
@@ -19,12 +20,15 @@
     "media-query-no-invalid": null,
     "no-descending-specificity": null,
     "no-invalid-position-at-import-rule": null,
+    "no-invalid-position-declaration": null,
+    "nesting-selector-no-missing-scoping-root": null,
     "order/properties-alphabetical-order": true,
     "selector-class-pattern": "^([a-z][a-z0-9]*)(-[a-z0-9]+)*$|^[a-z][a-zA-Z0-9]+$",
     "selector-pseudo-class-no-unknown": [
       true, { "ignorePseudoClasses": [ "global" ] }
     ]
   },
+  "ignoreFiles": [".next/**", "node_modules/**", "coverage/**"],
   "ignore": [
     "next-env.d.ts"
   ]

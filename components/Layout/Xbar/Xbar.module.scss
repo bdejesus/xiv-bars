@@ -1,4 +1,4 @@
-@import "styles/mixins";
+@use "@/styles/mixins" as *;
 
 .container {
   align-items: center;
@@ -165,7 +165,7 @@
 
 .set {
   display: grid;
-  grid-gap: $spacing-xs;
+  gap: $spacing-xs;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   margin: 0 $spacing-sm;

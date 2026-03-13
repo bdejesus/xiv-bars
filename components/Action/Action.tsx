@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+ 
 import React, { createRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';

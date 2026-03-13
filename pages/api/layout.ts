@@ -1,4 +1,4 @@
-/* eslint-disable camelcase */
+ 
 import db from 'lib/db';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';

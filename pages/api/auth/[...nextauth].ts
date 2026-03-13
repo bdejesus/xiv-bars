@@ -48,7 +48,7 @@ export const authOptions = {
     async session({ session }: { session: Session }) {
       const user = await signinUser(session);
 
-      // eslint-disable-next-line no-param-reassign
+       
       session.user = {
         ...session.user,
         ...user

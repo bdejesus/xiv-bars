@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-function middleware(req: NextRequest) {
+function proxy(req: NextRequest) {
   const currentEnv = process.env.NEXT_PUBLIC_ENV || 'development';
   // retrieve the current response
   const res = NextResponse.next();
@@ -35,4 +35,4 @@ function middleware(req: NextRequest) {
   return res;
 }
 
-export default middleware;
+export default proxy;
