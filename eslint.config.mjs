@@ -1,19 +1,29 @@
-const nextConfig = require('eslint-config-next');
-const tseslint = require('typescript-eslint');
-const globals = require('globals');
+import js from '@eslint/js';
+import nextConfig from 'eslint-config-next';
+import tseslint from 'typescript-eslint';
+import globals from 'globals';
 
-module.exports = [
+const config = [
+  // ESLint recommended base rules
+  js.configs.recommended,
   // Override the babel parser from eslint-config-next with typescript-eslint parser
   {
     files: ['**/*.{js,jsx,mjs,ts,tsx,mts,cts}'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
+        ecmaVersion: 'latest',
         sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.es2020,
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
       },
     },
   },
@@ -25,19 +35,47 @@ module.exports = [
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
+        ecmaVersion: 'latest',
         sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.es2020,
+        Atomics: 'readonly',
+        SharedArrayBuffer: 'readonly',
       },
     },
     settings: {
       react: {
         version: '19.0.0',
       },
+      'import/resolver': {
+        node: {
+          paths: ['.'],
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
+        alias: {
+          map: [
+            ['@', '.'],
+            ['apiData', './.apiData'],
+            ['components', './components'],
+            ['data', './data'],
+            ['lib', './lib'],
+            ['types', './types'],
+            ['pages', './pages'],
+            ['tests', './tests'],
+            ['mocks', './__mocks__'],
+          ],
+        },
+      },
     },
   },
+  // TypeScript-specific rules
+  ...tseslint.configs.recommended,
   // Jest globals for test and mock files
   {
     files: ['**/*.test.{js,ts,tsx}', '**/__mocks__/**/*.{js,ts}', '**/tests/**/*.{js,ts}'],
@@ -66,7 +104,6 @@ module.exports = [
       'no-restricted-exports': 'off',
       'no-undef': 'error',
       'no-underscore-dangle': 'off',
-      'no-unused-vars': 'warn',
       'prefer-destructuring': 'off',
       'react/destructuring-assignment': 'off',
       'react/jsx-filename-extension': 'off',
@@ -127,9 +164,15 @@ module.exports = [
       'jsx-a11y/tabindex-no-positive': 'warn',
       'jsx-quotes': ['warn', 'prefer-double'],
       'quotes': ['warn', 'single'],
+      // Disable base rule in favour of @typescript-eslint version to avoid duplicates
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
   {
     ignores: ['.next/**', 'node_modules/**', 'coverage/**', 'next-env.d.ts'],
   },
 ];
+
+export default config;

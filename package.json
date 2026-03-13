@@ -52,6 +52,7 @@
     "webpack": "^5.105.3"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.0",
     "@testing-library/dom": "^10.0.0",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^16.3.2",
@@ -61,11 +62,10 @@
     "@types/node": "^25.3.3",
     "@types/react": "^19.2.3",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^7.7.0",
-    "@typescript-eslint/parser": "^7.7.0",
-    "eslint": "^8.18.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-next": "^14.2.1",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^10.0.0",
+    "eslint-config-next": "^16.1.6",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.0",
@@ -82,7 +82,8 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-order": "^7.0.1",
     "stylelint-scss": "^7.0.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "typescript-eslint": "^8.0.0"
   },
   "cacheDirectories": [
     ".next/cache"

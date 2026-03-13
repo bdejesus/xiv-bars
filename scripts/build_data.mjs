@@ -120,7 +120,7 @@ async function fetchIcon(action) {
     });
   } catch (error) {
     console.error('Something went wrong', error);
-    throw new Error(error);
+    throw new Error(error.message, { cause: error });
   }
 }
 
