@@ -86,5 +86,11 @@
   },
   "cacheDirectories": [
     ".next/cache"
-  ]
+  ],
+  "resolutions": {
+    "@next/eslint-plugin-next/glob": ">=10.5.0",
+    "flatted": ">=3.4.0",
+    "immutable": ">=5.1.5",
+    "serialize-javascript": ">=7.0.3"
+  }
 }
