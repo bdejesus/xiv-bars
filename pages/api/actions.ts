@@ -19,10 +19,10 @@ export default async function actionsHandler(req: NextApiRequest, res: NextApiRe
 
     const actions = isPvp === 'true' ? jsonData.PvP : jsonData.PvE;
 
-    return res.status(200).json(actions);
+    res.status(200).json(actions);
   } catch (error) {
     const message = 'Not Found';
     res.statusMessage = message;
-    return res.status(404).json(error);
+    res.status(404).json(error);
   }
 }

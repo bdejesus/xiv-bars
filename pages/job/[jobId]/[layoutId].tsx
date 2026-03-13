@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import db from 'lib/db';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { getServerSession } from 'next-auth/next';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { formatDateString } from 'lib/utils/time';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

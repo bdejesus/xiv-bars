@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
 import Script from 'next/script';
 import { useRouter } from 'next/router';

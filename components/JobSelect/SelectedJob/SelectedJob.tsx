@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import ClassJob from 'components/ClassJob';
 import type { ClassJobProps } from 'types/ClassJob';
 import RoleNames from '../../../data/RoleNames.json';
