@@ -40,7 +40,7 @@ const layout = {
 
 const layouts:LayoutViewProps[] = [layout];
 
-jest.mock('../lib/db', () => ({
+jest.mock('lib/db', () => ({
   __esModule: true,
   default: {
     user: {

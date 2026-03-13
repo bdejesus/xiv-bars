@@ -12,7 +12,7 @@ const config = {
   // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   testEnvironment: 'jsdom',
   clearMocks: true,
-  setupFilesAfterEnv: ['<rootDir>/__mocks__/dbMock.ts'],
+  setupFilesAfterEnv: ['<rootDir>/tests/__mocks__/dbMock.ts'],
   moduleNameMapper: {
     '^lib/(.*)$': '<rootDir>/lib/$1',
     // Add more alias paths as needed

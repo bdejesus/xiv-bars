@@ -8,7 +8,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import accountHandler from 'pages/api/user/account.ts';
 import { PrismaClient } from '@prisma/client';
-import db from '@/__mocks__/dbMock';
+import db from 'mocks/dbMock';
 
 // Setup mocks for db instance
 jest.mock('@prisma/client');
