@@ -1,26 +1,24 @@
-@use "@/styles/mixins" as *;
-
 .container {
   align-items: center;
   counter-reset: xbarCount;
   display: flex;
   flex-direction: column;
-  min-width: $layout-container-width;
+  min-width: var(--layout-container-width);
 
   &[data-show-titles='true'] .xbar {
-    padding-bottom: $spacing-lg;
-    padding-top: $spacing-lg;
+    padding-bottom: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
 
     .left::before,
     .right::before {
-      bottom: -$spacing-md;
+      bottom: calc(-1 * var(--spacing-md));
     }
   }
 }
 
 @keyframes enterXbar {
   from {
-    top: $spacing-base;
+    top: var(--spacing-base);
   }
 
   to {
@@ -34,7 +32,7 @@
   animation-duration: 0.33s;
   animation-fill-mode: forwards;
   animation-name: enterXbar;
-  animation-timing-function: $cubic-bezier;
+  animation-timing-function: var(--cubic-bezier);
   border-bottom: 1px solid rgb(255 255 255 / 6%);
   display: flex;
   flex-direction: row;
@@ -46,20 +44,20 @@
   position: relative;
   transition-duration: 0.33s;
   transition-property: padding;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
 
   &::before {
     align-items: center;
-    background-color: $color-gray-dark-2;
-    border-radius: $border-radius;
+    background-color: var(--color-gray-dark-2);
+    border-radius: var(--border-radius);
     content: counter(xbarCount);
     counter-increment: xbarCount;
     display: inline-flex;
-    font-size: $font-size-sm;
+    font-size: var(--font-size-sm);
     font-weight: 700;
     height: 1.5em;
     justify-content: center;
-    left: $spacing-sm;
+    left: var(--spacing-sm);
     line-height: 1em;
     opacity: 0.66;
     position: absolute;
@@ -77,7 +75,7 @@
     bottom: 0;
     color: #eee;
     display: block;
-    font-size: $font-size-sm;
+    font-size: var(--font-size-sm);
     font-weight: 700;
     left: 0;
     opacity: 0.33;
@@ -88,13 +86,13 @@
     text-shadow: -1px -1px 0 #000, 1px 1px 0 rgb(255 255 255 / 33%);
     transition-duration: 0.33s;
     transition-property: bottom;
-    transition-timing-function: $cubic-bezier;
+    transition-timing-function: var(--cubic-bezier);
     user-select: none;
   }
 
   &[data-exhb="true"] {
     border-bottom-width: 4px;
-    margin-bottom: $spacing-lg;
+    margin-bottom: var(--spacing-lg);
     order: 2;
 
     .left::before {
@@ -126,7 +124,7 @@
 
   &[data-main="true"] {
     background-color: rgb(45 45 45 / 66%);
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     order: 1;
 
     .left::before {
@@ -148,12 +146,12 @@
 }
 
 .left {
-  padding-right: $spacing-xs;
+  padding-right: var(--spacing-xs);
 }
 
 .right {
   border-left: 2px solid rgb(255 255 255 / 6%);
-  padding-left: $spacing-xs;
+  padding-left: var(--spacing-xs);
 }
 
 .left,
@@ -165,10 +163,10 @@
 
 .set {
   display: grid;
-  gap: $spacing-xs;
+  gap: var(--spacing-xs);
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  margin: 0 $spacing-sm;
+  margin: 0 var(--spacing-sm);
 
   .slot {
     grid-row-end: span 2;

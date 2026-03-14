@@ -19,18 +19,18 @@
 
   a {
     align-items: center;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     color: #333;
     display: flex;
     justify-content: center;
-    padding: $spacing-xs $spacing-base;
-    transition-duration: $timing-default;
+    padding: var(--spacing-xs) var(--spacing-base);
+    transition-duration: var(--timing-default);
     transition-property: color, background-color, box-shadow;
-    transition-timing-function: $cubic-bezier;
+    transition-timing-function: var(--cubic-bezier);
 
     &:hover,
     &:focus {
-      background-color: $color-alt;
+      background-color: var(--color-alt);
       text-decoration: none;
     }
   }
@@ -46,8 +46,8 @@
         display: inline-flex;
         font-size: 20px;
         justify-content: center;
-        margin-left: -$spacing-xs;
-        margin-right: $spacing-xs;
+        margin-left: calc(-1 * var(--spacing-xs));
+        margin-right: var(--spacing-xs);
         text-align: center;
         text-shadow: 1px 1px 1px rgb(0 0 0 / 33%);
         transition: font-size 0.3s ease;
@@ -62,7 +62,7 @@
   }
 
   .signin {
-    color: $color-alt;
+    color: var(--color-alt);
     height: 100%;
   }
 }
@@ -72,11 +72,11 @@
   display: flex;
   flex-direction: row;
   list-style: none;
-  margin: 0 $spacing-base;
+  margin: 0 var(--spacing-base);
   padding-left: 0;
 
   > li {
-    margin-left: $spacing-sm;
+    margin-left: var(--spacing-sm);
   }
 }
 
@@ -86,27 +86,27 @@
 
 .profile:global(.button) {
   font-weight: 700;
-  padding: $spacing-xs $spacing-sm $spacing-xs $spacing-sm;
+  padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-xs) var(--spacing-sm);
   user-select: none;
 
   &:focus,
   &:active,
   &[data-active="true"] {
-    border-radius: $border-radius $border-radius 0 0;
-    box-shadow: $button-shadow;
-    color: $color-alt-dark-2;
-    padding-bottom: $spacing-sm;
-    padding-top: $spacing-sm;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    box-shadow: var(--button-shadow);
+    color: var(--color-alt-dark-2);
+    padding-bottom: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
     text-shadow: none;
   }
 }
 
 .profileImage {
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   color: rgb(0 0 0 / 0%);
   font-size: 10px;
   height: 30px;
-  margin: 0 $spacing-sm 0 0;
+  margin: 0 var(--spacing-sm) 0 0;
   overflow: hidden;
   width: 30px;
 
@@ -119,9 +119,9 @@
 
 .menu {
   background-color: #fff;
-  border-radius: 0 0 $border-radius $border-radius;
-  border-right: 1px solid $color-gray-light-2;
-  border-top: 1px solid $color-gray-light-2;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-right: 1px solid var(--color-gray-light-2);
+  border-top: 1px solid var(--color-gray-light-2);
   box-shadow: 0 3px 4px rgb(0 0 0 / 20%);
   list-style: none;
   margin: -1px 0 0;
@@ -142,7 +142,7 @@
   }
 
   a {
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     justify-content: flex-end;
 
     &:hover,
@@ -167,9 +167,9 @@
 
 .email {
   color: #666;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   font-style: italic;
-  margin-right: $spacing-base;
+  margin-right: var(--spacing-base);
 
   a {
     color: #333;
@@ -178,13 +178,13 @@
 
 @media (max-width: $screen-xs) {
   .globalNav {
-    margin: 0 $spacing-sm;
+    margin: 0 var(--spacing-sm);
   }
 
   a.button,
   a.donateLink {
-    padding-left: $spacing-sm;
-    padding-right: $spacing-sm;
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
 
     &::before {
       margin-right: 0;

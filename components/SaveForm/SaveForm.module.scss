@@ -1,5 +1,3 @@
-@use "@/styles/mixins" as *;
-
 .saveForm {
   display: flex;
   flex: 1 1 auto;
@@ -19,7 +17,7 @@
     color: #333;
 
     &:focus {
-      outline: 3px solid $color-alt;
+      outline: 3px solid var(--color-alt);
     }
   }
 
@@ -33,12 +31,12 @@
   }
 
   :global(.control) {
-    margin-bottom: $spacing-xs;
+    margin-bottom: var(--spacing-xs);
   }
 }
 
 .titleField {
-  font-size: $font-size-xl;
+  font-size: var(--font-size-xl);
   font-weight: 400;
 }
 
@@ -46,7 +44,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
 
   textarea {
     flex: 1 1 auto;
@@ -62,46 +60,46 @@
 
   button,
   :global(.button) {
-    padding-left: $spacing-lg;
-    padding-right: $spacing-lg;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
   }
 }
 
 .options:global(.control) {
-  margin: $spacing-sm 0 $spacing-base;
+  margin: var(--spacing-sm) 0 var(--spacing-base);
 
   label {
     align-items: center;
     display: grid;
     font-weight: 400;
-    gap: $spacing-xs;
+    gap: var(--spacing-xs);
     grid-template-columns: 20px auto;
     justify-content: flex-start;
   }
 
   .optionLabel {
-    font-size: $font-size-base;
-    line-height: $font-size-lg;
+    font-size: var(--font-size-base);
+    line-height: var(--font-size-lg);
   }
 
   .optionInfo {
     font-style: italic;
     grid-column-start: 2;
-    line-height: $font-size-base;
+    line-height: var(--font-size-base);
   }
 }
 
 .message {
   align-self: flex-start;
   font-style: italic;
-  margin-top: $spacing-base;
-  padding: $spacing-base;
+  margin-top: var(--spacing-base);
+  padding: var(--spacing-base);
   text-align: left;
   transition-duration: 0.3s;
   transition-property: background-color;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
 
   &:global(.info) {
-    background-color: $color-gray-light-3;
+    background-color: var(--color-gray-light-3);
   }
 }

@@ -1,8 +1,6 @@
-@use "@/styles/mixins" as *;
-
 .wrapper {
   border-radius: 6%;
-  box-shadow: $box-shadow;
+  box-shadow: var(--box-shadow);
   display: block;
   max-height: 120px;
   max-width: 120px;

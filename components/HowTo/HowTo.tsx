@@ -4,7 +4,7 @@ export function HowTo() {
   const { t } = useTranslation();
 
   return (
-    <div className="container">
+    <div className="container mb-xl">
       <h2>{t('HowTo.how_to_use_this')}</h2>
       <p>{t('HowTo.body')}</p>
 

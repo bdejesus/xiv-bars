@@ -5,7 +5,7 @@ $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
 
 @keyframes buttonFocus {
   0% {
-    outline: 2px double $color-alt-dark;
+    outline: 2px double var(--color-alt-dark);
   }
 
   60% {
@@ -17,7 +17,7 @@ $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
   }
 
   100% {
-    outline: 2px double $color-alt-dark;
+    outline: 2px double var(--color-alt-dark);
   }
 
 }
@@ -27,14 +27,14 @@ button,
   align-items: center;
   background-color: #fff;
   border: none;
-  border-radius: $border-radius;
-  box-shadow: $button-shadow;
-  color: $color-gray;
+  border-radius: var(--border-radius);
+  box-shadow: var(--button-shadow);
+  color: var(--color-gray);
   cursor: pointer;
   display: flex;
   flex-direction: row;
   font-family: inherit;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   font-weight: 500;
   height: 40px;
   justify-content: center;
@@ -42,17 +42,17 @@ button,
   outline: 3px double rgb(255 255 255 / 0%);
   padding: 0 12px;
   position: relative;
-  transition-duration: $timing-default;
+  transition-duration: var(--timing-default);
   transition-property: background-image, background-color, box-shadow, color, opacity, transform, outline, text-shadow;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
   white-space: nowrap;
 
   + button,
   + .button {
-    margin-left: $spacing-sm;
+    margin-left: var(--spacing-sm);
 
     @media (max-width: $screen-sm) {
-      margin-left: $spacing-sm;
+      margin-left: var(--spacing-sm);
     }
   }
 
@@ -65,11 +65,11 @@ button,
 
   &:hover,
   &:focus {
-    background-color: $color-alt-dark;
+    background-color: var(--color-alt-dark);
     color: #fff;
 
     .icon {
-      filter: $icon-filter-white drop-shadow($button-label-shadow);
+      filter: var(--icon-filter-white) drop-shadow($button-label-shadow);
     }
 
     &[data-title] {
@@ -83,17 +83,17 @@ button,
   &:focus {
     animation: buttonFocus 0.5s linear;
     animation-fill-mode: forwards;
-    outline: 2px double $color-alt-dark;
+    outline: 2px double var(--color-alt-dark);
     z-index: 2;
   }
 
   &:active {
-    background-color: $color-alt-dark;
+    background-color: var(--color-alt-dark);
     box-shadow: inset 1px 1px 1px rgb(0 0 0 / 25%), inset -1px -1px 1px rgb(255 255 255 / 25%);
     color: #fff;
 
     .icon {
-      filter: $icon-filter-white drop-shadow(0 1px 1px color.adjust($color-alt, $lightness: -40%));
+      filter: var(--icon-filter-white) drop-shadow(0 1px 1px color.adjust($color-alt, $lightness: -40%));
     }
 
     .icon,
@@ -108,7 +108,7 @@ button,
       opacity: 0;
       pointer-events: none;
       position: absolute;
-      transition: opacity $timing-default ease $timing-fast;
+      transition: opacity var(--timing-default) ease var(--timing-fast);
     }
 
     &::before {
@@ -126,15 +126,15 @@ button,
 
     &::after {
       background-color: #333;
-      border-radius: $border-radius;
+      border-radius: var(--border-radius);
       box-shadow: 0 3px 6px rgb(0 0 0 / 33%);
       color: #fff;
       content: attr(data-title);
-      font-size: $font-size-sm;
+      font-size: var(--font-size-sm);
       font-weight: 400;
       left: 50%;
       margin-top: 4px;
-      padding: $spacing-xs $spacing-sm;
+      padding: var(--spacing-xs) var(--spacing-sm);
       top: 100%;
       transform: translate(-50%, 0);
       white-space: nowrap;
@@ -162,9 +162,9 @@ button,
 
     &::after {
       background-color: #111;
-      font-size: $font-size-base;
+      font-size: var(--font-size-base);
       left: 100%;
-      margin-left: $spacing-sm;
+      margin-left: var(--spacing-sm);
       margin-top: 0;
       top: 50%;
       transform: translate(0,-50%);
@@ -182,9 +182,9 @@ button,
 
     &::after {
       background-color: #111;
-      font-size: $font-size-base;
+      font-size: var(--font-size-base);
       left: unset;
-      margin-left: $spacing-sm;
+      margin-left: var(--spacing-sm);
       margin-top: 0;
       right: 100%;
       top: 50%;
@@ -196,7 +196,7 @@ button,
     box-shadow:
       inset 1px 1px 0 rgb(255 255 255 / 66%),
       inset -1px -1px 0 rgb(0 0 0 / 15%),
-      inset 0 -4px 0 $color-alt,
+      inset 0 -4px 0 var(--color-alt),
       0 1px 3px rgb(0 0 0 / 10%);
   }
 
@@ -208,7 +208,7 @@ button,
 
   .icon {
     display: block;
-    margin-right: $spacing-xs;
+    margin-right: var(--spacing-xs);
   }
 
   .icon,
@@ -219,7 +219,7 @@ button,
 }
 
 .btn-alt.button {
-  background-color: $color-gray-dark;
+  background-color: var(--color-gray-dark);
   box-shadow:
       inset 1px 1px 0 rgb(255 255 255 / 15%),
       inset -1px -1px 0 rgb(0 0 0 / 15%),
@@ -229,55 +229,55 @@ button,
   text-shadow: 0 1px 2px #594707;
 
   .icon {
-    filter: $icon-filter-white;
+    filter: var(--icon-filter-white);
   }
 
   &:hover,
   &:focus {
-    background-color: $color-gray-dark-2;
-    color: $color-alt;
+    background-color: var(--color-gray-dark-2);
+    color: var(--color-alt);
 
     .icon {
-      filter: $icon-filter-yellow;
+      filter: var(--icon-filter-yellow);
     }
   }
 
   &:active,
   &[data-active='true'] {
-    background-color: $color-alt-dark;
+    background-color: var(--color-alt-dark);
 
     .btn-label {
       color: #fff;
     }
 
     .icon {
-      filter: $icon-filter-white drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
+      filter: var(--icon-filter-white) drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
     }
   }
 
   &[data-active='true']:hover,
   &[data-active='true']:focus {
-    background-color: $color-alt-dark;
+    background-color: var(--color-alt-dark);
 
     .icon {
-      filter: $icon-filter-white drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
+      filter: var(--icon-filter-white) drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
     }
   }
 }
 
 .btn-primary.button {
-  background-color: $color-alt;
-  color: $color-alt-dark-2;
+  background-color: var(--color-alt);
+  color: var(--color-alt-dark-2);
 
   &:hover,
   &:focus {
-    background-color: $color-alt-dark;
+    background-color: var(--color-alt-dark);
     color: #fff;
   }
 
   &:active {
-    background-color: $color-gray;
-    color: $color-alt;
+    background-color: var(--color-gray);
+    color: var(--color-alt);
   }
 }
 
@@ -287,35 +287,35 @@ button,
 
   &:hover,
   &:focus {
-    background-color: $color-alt-dark;
-    box-shadow: $button-shadow;
+    background-color: var(--color-alt-dark);
+    box-shadow: var(--button-shadow);
   }
 
   &.btn-white {
     color: #fff;
 
     .icon {
-      filter: $icon-filter-white;
+      filter: var(--icon-filter-white);
     }
 
     &:hover {
-      background-color: $color-gray;
-      box-shadow: $button-shadow;
+      background-color: var(--color-gray);
+      box-shadow: var(--button-shadow);
     }
   }
 }
 
 .btn-lg.button {
-  height: $spacing-xl;
+  height: var(--spacing-xl);
 }
 
 .btn-sm.button {
-  font-size: $font-size-sm;
+  font-size: var(--font-size-sm);
   height: 30px;
 }
 
 .btn-icon.button {
-  font-size: $font-size-sm;
+  font-size: var(--font-size-sm);
   height: 30px;
   padding-left: 0;
   padding-right: 0;
@@ -366,21 +366,21 @@ button,
     padding-left: 16px;
     padding-right: 16px;
     position: relative;
-    transition-duration: $timing-default;
+    transition-duration: var(--timing-default);
     transition-property: color;
-    transition-timing-function: $cubic-bezier;
+    transition-timing-function: var(--cubic-bezier);
 
     &[data-disabled="true"] {
       display: none;
     }
 
     &[data-selected="true"] {
-      background-color: $color-alt-dark;
+      background-color: var(--color-alt-dark);
       color: #fff;
       text-shadow: 0 1px 2px color.adjust($color-alt, $lightness: -50%);
 
       .icon {
-        filter: $icon-filter-white drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
+        filter: var(--icon-filter-white) drop-shadow(0 1px 2px color.adjust($color-alt, $lightness: -50%));
       }
     }
   }
@@ -388,10 +388,10 @@ button,
   &:hover,
   &:focus,
   &:active {
-    background-color: $color-gray-dark-2;
+    background-color: var(--color-gray-dark-2);
 
     .label[data-selected="false"] {
-      color: $color-alt;
+      color: var(--color-alt);
     }
   }
 
@@ -416,7 +416,7 @@ button,
 }
 
 .btn-danger {
-  background-color: $color-red;
+  background-color: var(--color-red);
   color: #fff;
 
   &:hover,
@@ -428,8 +428,8 @@ button,
 @media (max-width: $screen-sm) {
   button,
   .button {
-    font-size: $font-size-sm;
-    padding-left: $spacing-sm;
-    padding-right: $spacing-sm;
+    font-size: var(--font-size-sm);
+    padding-left: var(--spacing-sm);
+    padding-right: var(--spacing-sm);
   }
 }

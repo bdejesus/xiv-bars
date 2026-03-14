@@ -1,7 +1,5 @@
-@use "@/styles/mixins" as *;
-
 .container {
-  margin-right: $spacing-xs;
+  margin-right: var(--spacing-xs);
 
   .locale {
     text-transform: uppercase;
@@ -9,9 +7,9 @@
 
   .menu {
     background-color: #fff;
-    border-radius: 0 0 $border-radius $border-radius;
-    border-top: 1px solid $color-gray-light-2;
-    gap: $spacing-base;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-top: 1px solid var(--color-gray-light-2);
+    gap: var(--spacing-base);
     list-style: none;
     margin: -1px 0 0;
     padding: 0;

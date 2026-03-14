@@ -1,17 +1,15 @@
-@use "@/styles/mixins" as *;;
-
 $description-height: 165px;
 
 .summary {
   flex: 1 1 auto;
-  padding: 54px $spacing-base $spacing-sm;
+  padding: 54px var(--spacing-base) var(--spacing-sm);
 
   &:hover,
   &:focus {
     cursor: pointer;
 
     .titleLink {
-      color: $color-alt;
+      color: var(--color-alt);
       text-decoration: none;
     }
   }
@@ -32,21 +30,21 @@ $description-height: 165px;
     min-width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
-    transition: color $timing-default ease;
+    transition: color var(--timing-default) ease;
     white-space: nowrap;
   }
 
   .description {
     color: #999;
     flex: 1 1 auto;
-    font-size: $font-size-sm;
+    font-size: var(--font-size-sm);
     font-weight: 400;
     line-height: 1.45;
-    margin: $spacing-sm 0;
+    margin: var(--spacing-sm) 0;
     max-height: $description-height;
     overflow: hidden;
     position: relative;
-    transition: color $timing-default ease;
+    transition: color var(--timing-default) ease;
 
     &::after {
       background-image: linear-gradient(rgb(0 0 0 / 0%) 0, #111 95%);
@@ -62,19 +60,19 @@ $description-height: 165px;
 
     h2, h3, h4 ,h5, h6 {
       font-weight: 500;
-      margin: 0 0 $spacing-sm;
+      margin: 0 0 var(--spacing-sm);
     }
 
     h2 {
-      font-size: $font-size-base;
+      font-size: var(--font-size-base);
     }
 
     h3 {
-      font-size: $font-size-sm;
+      font-size: var(--font-size-sm);
     }
 
     h4 {
-      font-size: $font-size-xs;
+      font-size: var(--font-size-xs);
     }
 
     p, li {

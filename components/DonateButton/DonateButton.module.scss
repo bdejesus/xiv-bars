@@ -1,23 +1,21 @@
-@use "@/styles/mixins" as *;
-
 .wrapper {
-  bottom: $spacing-base;
+  bottom: var(--spacing-base);
   opacity: 0;
   position: fixed;
-  right: $spacing-base;
+  right: var(--spacing-base);
   transition-duration: 0.33s;
   transition-property: opacity, transform;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
   z-index: 5;
 
   &[data-hidden='false'] {
-    animation: enterWrapper 0.33s $cubic-bezier;
+    animation: enterWrapper 0.33s var(--cubic-bezier);
     animation-delay: 0.66s;
     animation-fill-mode: forwards;
   }
 
   &[data-hidden='true'] {
-    animation: exitWrapper 0.33s $cubic-bezier;
+    animation: exitWrapper 0.33s var(--cubic-bezier);
     animation-delay: 0;
     animation-fill-mode: forwards;
     pointer-events: none;
@@ -43,8 +41,8 @@
 
   .donateLabel {
     line-height: 1.15;
-    margin-left: $spacing-sm;
-    padding: $spacing-base 0;
+    margin-left: var(--spacing-sm);
+    padding: var(--spacing-base) 0;
 
     b {
       font-size: 16px;
@@ -57,8 +55,8 @@
     display: inline-flex;
     font-size: 24px;
     justify-content: center;
-    margin-left: -$spacing-xs;
-    margin-right: $spacing-xs;
+    margin-left: calc(-1 * var(--spacing-xs));
+    margin-right: var(--spacing-xs);
     text-align: center;
     text-shadow: 1px 1px 1px rgb(0 0 0 / 33%);
     transition: font-size 0.3s ease;

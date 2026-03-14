@@ -1,10 +1,10 @@
 @use "@/styles/mixins" as *;
 
 .controlBar {
-  background-color: $panel-bg;
-  box-shadow: $box-shadow;
+  background-color: var(--panel-bg);
+  box-shadow: var(--box-shadow);
   overflow: auto;
-  padding: $spacing-sm $spacing-base;
+  padding: var(--spacing-sm) var(--spacing-base);
   position: sticky;
   top: 60px;
   width: 100%;
@@ -22,7 +22,7 @@
 
   :global(.button),
   :global(.btn-switch) {
-    font-size: $font-size-sm;
+    font-size: var(--font-size-sm);
   }
 
   @media (max-width: $screen-md) {
@@ -51,13 +51,13 @@
   flex-direction: row;
 
   + .groupRight {
-    margin-left: $spacing-sm;
-    padding-left: $spacing-sm;
+    margin-left: var(--spacing-sm);
+    padding-left: var(--spacing-sm);
   }
 }
 
 .control {
-  margin-left: $spacing-xs;
+  margin-left: var(--spacing-xs);
 
   &:first-child {
     margin-left: 0;

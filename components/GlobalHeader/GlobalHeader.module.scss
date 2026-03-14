@@ -7,20 +7,20 @@ $button-size: 40px;
   background-image: linear-gradient(#fff, #f9f9f9);
   border-bottom: 1px solid #ddd;
   display: flex;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   font-weight: 400;
-  height: $header-height;
+  height: var(--header-height);
   justify-content: space-between;
   left: 0;
   letter-spacing: 0.015em;
-  padding: $spacing-sm $spacing-base;
+  padding: var(--spacing-sm) var(--spacing-base);
   position: sticky;
   top: 0;
   width: 100%;
   z-index: 10;
 
   .jobSelect {
-    border-radius: $border-radius 0 0 $border-radius;
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
     width: $button-size;
 
     :global(.icon) {
@@ -29,7 +29,7 @@ $button-size: 40px;
   }
 
   .selectedJob:global(.button) {
-    border-radius: 0 $border-radius $border-radius 0;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
     display: flex;
     line-height: 1;
     margin-left: 0;
@@ -66,15 +66,15 @@ $button-size: 40px;
 
   .titleSegment {
     background-color: #fff;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     box-shadow:
-      inset 0 -3px 0 $color-alt,
+      inset 0 -3px 0 var(--color-alt),
       inset 1px 1px 0 rgb(255 255 255 / 66%),
       inset -1px -1px 0 rgb(0 0 0 / 15%),
       0 1px 3px rgb(0 0 0 / 10%);
-    font-size: $font-size-sm;
+    font-size: var(--font-size-sm);
     max-width: 240px;
-    padding: 0 $spacing-base;
+    padding: 0 var(--spacing-base);
   }
 
   @media (max-width: $screen-sm) {
@@ -91,14 +91,14 @@ $button-size: 40px;
   display: flex;
   height: 100%;
   padding: 0;
-  transition-duration: $timing-default;
+  transition-duration: var(--timing-default);
   transition-property: background-color, color, transform;
 
   .logo {
     transform: translateZ(0);
-    transition-duration: $timing-default;
+    transition-duration: var(--timing-default);
     transition-property: filter, transform;
-    transition-timing-function: $cubic-bezier;
+    transition-timing-function: var(--cubic-bezier);
   }
 
   &:hover,
@@ -120,7 +120,7 @@ $button-size: 40px;
 .actionGroup {
   display: flex;
   flex-direction: row;
-  gap: $spacing-sm;
+  gap: var(--spacing-sm);
 }
 
 .globalNav {
@@ -130,13 +130,13 @@ $button-size: 40px;
   height: 100%;
   justify-content: stretch;
   line-height: 1.75;
-  margin-left: $spacing-lg;
+  margin-left: var(--spacing-lg);
   position: relative;
 
   > ol {
     display: flex;
     flex-direction: row;
-    gap: $spacing-base;
+    gap: var(--spacing-base);
     height: $button-size;
     margin: 0;
     padding: 0;
@@ -166,7 +166,7 @@ $button-size: 40px;
   }
 
   :global(.newIcon) {
-    margin-right: $spacing-xs;
+    margin-right: var(--spacing-xs);
     position: relative;
     top: -3px;
   }
@@ -192,10 +192,10 @@ $button-size: 40px;
   }
 
   .globalNav {
-    border-top: 1px solid $color-gray-light;
+    border-top: 1px solid var(--color-gray-light);
     grid-area: appnav;
     margin-left: 0;
-    margin-top: $spacing-base;
+    margin-top: var(--spacing-base);
   }
 
   .userNav {
@@ -206,10 +206,10 @@ $button-size: 40px;
 
 @media (max-width: $screen-sm) {
   .globalNav {
-    width: calc(100vw - ($spacing-base * 2));
+    width: calc(100vw - (var(--spacing-base) * 2));
 
     ol {
-      gap: $spacing-sm;
+      gap: var(--spacing-sm);
       overflow: visible;
 
       > li::before {
@@ -218,7 +218,7 @@ $button-size: 40px;
     }
 
     :global(.button) {
-      font-size: $font-size-sm;
+      font-size: var(--font-size-sm);
       width: $button-size;
     }
 

@@ -1,11 +1,6 @@
 @use "@/styles/mixins" as *;
 @use "@/styles/scrollbars" as *;
 
-$toggle-width: $spacing-base;
-$panel-height: calc(100vh - $header-height);
-$panel-width: 360px;
-$panel-width-lg: $screen-xs;
-
 .container {
   align-items: flex-start;
   background-color: #f9f9f9;
@@ -13,20 +8,20 @@ $panel-width-lg: $screen-xs;
   flex: none;
   flex-direction: row;
   justify-content: flex-end;
-  max-height: $panel-height;
+  max-height: calc(100vh - var(--header-height));
   overflow: hidden;
   position: sticky;
-  top: $header-height;
+  top: var(--header-height);
   transform: translateZ(0);
   transition-duration: 0.4s;
   transition-property: width, box-shadow;
-  transition-timing-function: $cubic-bezier;
-  width: $screen-xs;
+  transition-timing-function: var(--cubic-bezier);
+  width: var(--screen-xs);
 
   &[data-hidden='true'] {
     transition-duration: 0.4s;
-    transition-timing-function: $cubic-bezier;
-    width: $toggle-width;
+    transition-timing-function: var(--cubic-bezier);
+    width: var(--spacing-base);
 
     &:hover {
       box-shadow: 1px 0 1px #f9f9f9;
@@ -34,28 +29,28 @@ $panel-width-lg: $screen-xs;
   }
 
   button.toggleDetailBtn {
-    background-color: $color-gray-dark-2;
+    background-color: var(--color-gray-dark-2);
     border-radius: 0;
     bottom: 0;
     height: unset;
     left: 0;
     position: absolute;
     top: 0;
-    width: $toggle-width;
+    width: var(--spacing-base);
     z-index: 2;
 
     :global(.icon) {
       transform: rotate3d(0, 1, 0, 0deg);
       transition-duration: 0.3s;
       transition-property: transform;
-      transition-timing-function: $cubic-bezier;
+      transition-timing-function: var(--cubic-bezier);
     }
 
     &[data-active='true'] {
-      background-color: $color-alt;
+      background-color: var(--color-alt);
 
       :global(.icon) {
-        filter: $icon-filter-black;
+        filter: var(--icon-filter-black);
         transform: rotate3d(0, 1, 0, 180deg);
       }
     }
@@ -65,39 +60,39 @@ $panel-width-lg: $screen-xs;
 .content {
   display: flex;
   flex-direction: column;
-  max-height: $panel-height;
-  min-width: $screen-xs;
+  max-height: calc(100vh - var(--header-height));
+  min-width: var(--screen-xs);
   overflow-y: auto;
-  padding: $spacing-base $spacing-base $spacing-lg $spacing-lg;
+  padding: var(--spacing-base) var(--spacing-base) var(--spacing-lg) var(--spacing-lg);
   transform: translateZ(0);
   transition-duration: 0.33s;
   transition-property: width;
-  transition-timing-function: $cubic-bezier;
-  width: $screen-xs;
+  transition-timing-function: var(--cubic-bezier);
+  width: var(--screen-xs);
 
   @include customScrollbar;
 }
 
 .header,
 .body {
-  color: $color-gray;
+  color: var(--color-gray);
 }
 
 .header {
-  margin-bottom: $spacing-lg;
+  margin-bottom: var(--spacing-lg);
 }
 
 .title {
   align-items: flex-start;
   display: flex;
   flex-direction: row;
-  gap: $spacing-base;
+  gap: var(--spacing-base);
   justify-content: space-between;
 
   h1 {
-    color: $color-gray-dark;
+    color: var(--color-gray-dark);
     flex: 1 1 auto;
-    font-size: $font-size-xl-2;
+    font-size: var(--font-size-xl-2);
     font-weight: 300;
   }
 
@@ -107,31 +102,31 @@ $panel-width-lg: $screen-xs;
 }
 
 .owner {
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
 }
 
 .profileImage {
   box-shadow: none;
-  height: $spacing-lg;
-  width: $spacing-lg;
+  height: var(--spacing-lg);
+  width: var(--spacing-lg);
 }
 
 .body {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   line-height: 1.45em;
-  margin-bottom: $spacing-lg;
+  margin-bottom: var(--spacing-lg);
 }
 
 .meta {
   line-height: 1.4;
-  margin-top: $spacing-base;
+  margin-top: var(--spacing-base);
 }
 
 .timestamp {
-  font-size: $font-size-sm;
+  font-size: var(--font-size-sm);
   font-style: italic;
   opacity: 0.75;
 }
@@ -157,20 +152,20 @@ $panel-width-lg: $screen-xs;
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: $spacing-sm;
+  gap: var(--spacing-sm);
 
   + .row {
-    margin-top: $spacing-base;
+    margin-top: var(--spacing-base);
   }
 }
 
 .publishedTag {
-  font-size: $font-size-sm;
+  font-size: var(--font-size-sm);
   font-style: italic;
   text-transform: uppercase;
 
   &[data-published='true'] {
-    color: $color-success;
+    color: var(--color-success);
     text-shadow: 0 0 3px #F2FF63;
   }
 
@@ -182,35 +177,35 @@ $panel-width-lg: $screen-xs;
 @media (max-width: $screen-lg-3) {
   .container,
   .content {
-    width: $screen-xs;
+    width: var(--screen-xs);
   }
 
   .content {
-    min-width: $screen-xs;
+    min-width: var(--screen-xs);
   }
 }
 
 @media (max-width: $screen-lg) {
   .container,
   .content {
-    width: $panel-width;
+    width: 360px;
   }
 
   .content {
-    min-width: $panel-width;
+    min-width: 360px;
   }
 }
 
 @media (max-width: $screen-md) {
   .container {
-    height: calc($view-height-md);
+    height: calc(var(--view-height-md));
   }
 }
 
 @media (max-width: $screen-sm) {
   .container,
   .content {
-    width: calc(100vw - $spacing-lg);
+    width: calc(100vw - var(--spacing-lg));
   }
 
   .container {
@@ -219,6 +214,6 @@ $panel-width-lg: $screen-xs;
   }
 
   .content {
-    min-width: calc(100vw - $spacing-lg);
+    min-width: calc(100vw - var(--spacing-lg));
   }
 }

@@ -1,23 +1,21 @@
-@use "@/styles/mixins" as *;
-
 $tag-size: 24px;
 
 .tags {
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: $spacing-sm;
+  gap: var(--spacing-sm);
   line-height: 1;
 }
 
 .tag {
   align-items: center;
   background-color: #ddd;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   box-shadow: inset 1px 1px 0 rgb(255 255 255 / 50%), inset -1px -1px 0 rgb(0 0 0 / 10%);
-  color: $color-gray;
+  color: var(--color-gray);
   display: flex;
-  font-size: $font-size-xs;
+  font-size: var(--font-size-xs);
   height: $tag-size;
   justify-content: center;
   padding: 0 6px 0 4px;
@@ -27,13 +25,13 @@ $tag-size: 24px;
 .name {
   display: block;
   font-weight: 900;
-  height: $font-size-base;
+  height: var(--font-size-base);
   line-height: 12px;
   margin-left: 0.1em;
 }
 
 .jobTag {
-  background-color: $color-gray-dark;
+  background-color: var(--color-gray-dark);
   box-shadow: inset 1px 1px 0 rgb(255 255 255 / 10%);
   padding-left: 2px;
 

@@ -1,28 +1,26 @@
-@use "@/styles/mixins" as *;
-
 .prompt {
   margin-top: 10%;
   text-align: center;
   width: 100%;
 
   h3 {
-    color: $color-gray;
-    margin: $spacing-lg 0 0;
+    color: var(--color-gray);
+    margin: var(--spacing-lg) 0 0;
   }
 
   button {
-    margin: $spacing-base 0 $spacing-lg;
+    margin: var(--spacing-base) 0 var(--spacing-lg);
   }
 
   ul {
     color: #666;
-    font-size: $font-size-base;
+    font-size: var(--font-size-base);
     font-style: italic;
     margin: 0;
     text-align: left;
 
     li {
-      margin: $spacing-xs;
+      margin: var(--spacing-xs);
     }
   }
 }

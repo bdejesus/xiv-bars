@@ -1,7 +1,5 @@
-@use '@/styles/mixins' as *;
-
 a {
-  color: $color-link;
+  color: var(--color-link);
   text-decoration: none;
 }
 
@@ -11,7 +9,7 @@ a:focus {
 }
 
 a:focus {
-  border-radius: $border-radius;
-  outline: 2px solid $color-alt-dark;
+  border-radius: var(--border-radius);
+  outline: 2px solid var(--color-alt-dark);
   text-decoration: none;
 }

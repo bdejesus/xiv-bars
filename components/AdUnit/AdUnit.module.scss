@@ -1,11 +1,9 @@
-@use "@/styles/mixins" as *;
-
 .container {
   border-bottom: 1px solid rgb(80 80 80 / 50%);
   border-top: 1px solid rgb(80 80 80 / 50%);
   box-sizing: content-box;
-  margin: $spacing-lg auto $spacing-lg auto;
-  padding: $spacing-base 0 $spacing-base;
+  margin: var(--spacing-lg) auto var(--spacing-lg) auto;
+  padding: var(--spacing-base) 0 var(--spacing-base);
   position: relative;
   text-align: center;
 
@@ -14,13 +12,13 @@
     color: #ccc;
     content: 'advertisement';
     display: block;
-    font-size: $font-size-xs;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     left: 50%;
     letter-spacing: 0.025em;
     line-height: 1;
-    margin-bottom: $spacing-xs;
-    padding: 0 $spacing-xs;
+    margin-bottom: var(--spacing-xs);
+    padding: 0 var(--spacing-xs);
     position: absolute;
     text-align: center;
     top: -1px;

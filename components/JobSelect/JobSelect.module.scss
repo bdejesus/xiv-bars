@@ -1,9 +1,7 @@
-@use "@/styles/mixins" as *;
-
 .button {
   display: block;
-  padding-left: $spacing-sm;
-  padding-right: $spacing-sm;
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
 
   &:hover,
   &:focus {
@@ -26,7 +24,7 @@
 
 .jobSelectModal {
   :global(.modal-container) {
-    max-width: $screen-lg;
+    max-width: var(--screen-lg);
     width: 100%;
   }
 

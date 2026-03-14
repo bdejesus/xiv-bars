@@ -1,6 +1,4 @@
-@use "@/styles/mixins" as *;;
-
-$grid-gutter: $spacing-base;
+@use "@/styles/mixins" as *;
 
 .container {
   position: relative;
@@ -10,7 +8,7 @@ $grid-gutter: $spacing-base;
   align-items: flex-start;
   display: flex;
   flex-direction: row;
-  gap: $grid-gutter;
+  gap: var(--spacing-base);
 
   &[data-columns="4"] {
     display: grid;
@@ -25,7 +23,7 @@ $grid-gutter: $spacing-base;
 .layoutsList {
   display: flex;
   flex-direction: column;
-  gap: $grid-gutter;
+  gap: var(--spacing-base);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -35,7 +33,7 @@ $grid-gutter: $spacing-base;
     animation-duration: 0.66s;
     animation-fill-mode: forwards;
     animation-name: enterListItem;
-    animation-timing-function: $cubic-bezier;
+    animation-timing-function: var(--cubic-bezier);
     margin: 0;
     opacity: 0;
     position: relative;
@@ -45,7 +43,7 @@ $grid-gutter: $spacing-base;
 @keyframes enterListItem {
   from {
     opacity: 0;
-    top: $spacing-base;
+    top: var(--spacing-base);
   }
 
   to {
@@ -55,14 +53,14 @@ $grid-gutter: $spacing-base;
 }
 
 .title {
-  margin-bottom: $spacing-lg;
-  margin-top: $spacing-xl;
+  margin-bottom: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
 }
 
 .moreLink {
   display: inline-block;
-  font-size: $font-size-base;
-  margin-top: $spacing-sm;
+  font-size: var(--font-size-base);
+  margin-top: var(--spacing-sm);
   position: absolute;
   right: 0;
   top: 0;
@@ -80,13 +78,13 @@ $grid-gutter: $spacing-base;
   }
 
   .moreLink {
-    margin-top: $spacing-base;
+    margin-top: var(--spacing-base);
     position: static;
   }
 }
 
 @media (max-width: $screen-xs) {
   .title {
-    margin-bottom: $spacing-base;
+    margin-bottom: var(--spacing-base);
   }
 }
