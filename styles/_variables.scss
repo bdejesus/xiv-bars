@@ -106,6 +106,7 @@
 
   // Timing
   --timing-fast: #{mix.$timing-fast};
+  --timing-medium: #{mix.$timing-medium};
   --timing-default: #{mix.$timing-default};
   --timing-slow: #{mix.$timing-slow};
   --cubic-bezier: #{mix.$cubic-bezier};

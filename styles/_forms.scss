@@ -23,7 +23,7 @@ textarea {
   display: block;
   margin-bottom: var(--spacing-sm);
   padding: var(--spacing-sm);
-  transition-duration: 0.15s;
+  transition-duration: var(--timing-fast);
   transition-property: background-color, color, outline, box-shadow, border;
   transition-timing-function: var(--cubic-bezier);
   width: 100%;

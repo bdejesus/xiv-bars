@@ -18,18 +18,19 @@
 
 @keyframes enterXbar {
   from {
-    top: var(--spacing-base);
+    opacity: 0;
+    transform: translateY(var(--spacing-base));
   }
 
   to {
     opacity: 1;
-    top: 0;
+    transform: translateY(0);
   }
 }
 
 .xbar {
   align-items: center;
-  animation-duration: 0.33s;
+  animation-duration: var(--timing-medium);
   animation-fill-mode: forwards;
   animation-name: enterXbar;
   animation-timing-function: var(--cubic-bezier);
@@ -42,7 +43,7 @@
   order: 3;
   padding: 28px 0 28px 28px;
   position: relative;
-  transition-duration: 0.33s;
+  transition-duration: var(--timing-medium);
   transition-property: padding;
   transition-timing-function: var(--cubic-bezier);
 
@@ -84,7 +85,7 @@
     right: 0;
     text-align: center;
     text-shadow: -1px -1px 0 #000, 1px 1px 0 rgb(255 255 255 / 33%);
-    transition-duration: 0.33s;
+    transition-duration: var(--timing-medium);
     transition-property: bottom;
     transition-timing-function: var(--cubic-bezier);
     user-select: none;

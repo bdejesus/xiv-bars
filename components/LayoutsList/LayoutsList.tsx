@@ -48,6 +48,8 @@ export default function LayoutsList({
     width: undefined
   });
   const listsWrapper = useRef<HTMLDivElement>(null);
+  const balancePassRef = useRef(0);
+  const MAX_BALANCE_PASSES = 5;
 
   function handleResize() {
     setWindowSize({
@@ -99,39 +101,51 @@ export default function LayoutsList({
     }
   }
 
+  // Greedy shortest-column-first distribution, weighted by ad-slot presence.
+  // Items at positions divisible by 11 carry an extra ad unit, so they count
+  // as 2 units of height when choosing which column to fill next.
   function groupIntoColumns(list:LayoutViewProps[], columnCount:number = columns) {
-    const initColumns = Array.from({ length: columnCount }, () => []);
+    balancePassRef.current = 0;
     setBalanced(false);
-    return list?.reduce<LayoutViewProps[][]>((acc, curr, index) => {
-      acc[index % columnCount].push(curr);
-      return acc;
-    }, initColumns);
+
+    const colWeights = new Array<number>(columnCount).fill(0);
+    const result: LayoutViewProps[][] = Array.from({ length: columnCount }, () => []);
+
+    list?.forEach((item) => {
+      const shortestCol = colWeights.indexOf(Math.min(...colWeights));
+      result[shortestCol].push(item);
+      const hasAd = showAds && !!item.position && item.position % 11 === 0;
+      colWeights[shortestCol] += hasAd ? 2 : 1;
+    });
+
+    return result;
   }
 
+  // Fine-tune column balance using actual rendered heights.
+  // Iterates up to MAX_BALANCE_PASSES times, moving the last item from the
+  // tallest column to the shortest on each pass. Returns a new array (pure).
   function balanceColumns(list:LayoutViewProps[][]) {
-    // Get all column elements
     const listElements = listsWrapper.current?.querySelectorAll('.layoutsList');
 
     if (listElements && layouts.length > 5) {
-      // Get column heights and get tallest, and shortest columns
       const heights:number[] = [...listElements].map((col) => col.getBoundingClientRect().height);
       const high = Math.max(...heights);
       const low = Math.min(...heights);
 
-      // Check if there's enough height diff that it needs to rebalance
-      if ((high - low) > 240) {
-        const rebalancedColumns = list; // store a mutable copy of layouts list
+      if ((high - low) > 200 && balancePassRef.current < MAX_BALANCE_PASSES) {
+        balancePassRef.current += 1;
+        const cols = list.map((col) => [...col]);
         const highIndex = heights.indexOf(high);
         const lowIndex = heights.indexOf(low);
-        // Remove the last item from the tallest column
-        const overflowItem = rebalancedColumns[highIndex]?.splice(-1, 1)[0];
-        // Add it to the shortest column
-        rebalancedColumns[lowIndex].push(overflowItem);
-        setBalanced(true);
-        return rebalancedColumns;
+        const overflowItem = cols[highIndex].pop();
+        if (overflowItem) {
+          cols[lowIndex].push(overflowItem);
+          return cols;
+        }
       }
     }
 
+    setBalanced(true);
     return list;
   }
 
@@ -171,18 +185,11 @@ export default function LayoutsList({
   }, [ready]);
 
   useEffect(() => {
-    if (ready && !balanced && viewLayouts && columns > 1) {
-      const balancedLayouts = balanceColumns(viewLayouts);
-      setViewLayouts(balancedLayouts);
-    }
-  }, [balanced]);
-
-  useEffect(() => {
     if (ready && !balanced && listsWrapper.current && viewLayouts && columns > 1) {
-      const rebalancedColumns = balanceColumns(viewLayouts);
-      setViewLayouts(rebalancedColumns);
+      const rebalanced = balanceColumns(viewLayouts);
+      setViewLayouts(rebalanced);
     }
-  }, [listsWrapper.current]);
+  }, [viewLayouts]);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

@@ -45,17 +45,18 @@
 
 @keyframes enterRow {
   from {
-    top: var(--spacing-base);
+    opacity: 0;
+    transform: translateY(var(--spacing-base));
   }
 
   to {
     opacity: 1;
-    top: 0;
+    transform: translateY(0);
   }
 }
 
 .rowWrapper {
-  animation-duration: 0.33s;
+  animation-duration: var(--timing-medium);
   animation-fill-mode: forwards;
   animation-name: enterRow;
   animation-timing-function: var(--cubic-bezier);
@@ -145,7 +146,7 @@
   }
 
   :global(.slot) {
-    transition-duration: 0.33s;
+    transition-duration: var(--timing-medium);
     transition-property: margin;
     transition-timing-function: var(--cubic-bezier);
   }

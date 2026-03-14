@@ -10,14 +10,14 @@
   overflow: auto;
   padding: calc(var(--spacing-xl) * 2) var(--spacing-lg);
   position: fixed;
-  transition-duration: 0.33s;
+  transition-duration: var(--timing-medium);
   transition-property: background, backdrop-filter;
   transition-timing-function: var(--cubic-bezier);
   z-index: 100;
 
   .container {
     position: relative;
-    transition: opacity 0.33s var(--cubic-bezier), transform 0.33s var(--cubic-bezier);
+    transition: opacity var(--timing-medium) var(--cubic-bezier), transform var(--timing-medium) var(--cubic-bezier);
   }
 
   &[aria-hidden="true"] {
