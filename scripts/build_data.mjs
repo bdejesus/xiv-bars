@@ -18,7 +18,7 @@ import ActionCategory from '../data/ActionCategory.json' with { type: 'json' };
 
 dotenv.config();
 
-const apiUrl = 'https://beta.xivapi.com/api/1'
+const apiUrl = 'https://beta.xivapi.com/api/1';
 const dest = './.apiData';
 const { i18n } = i18nConfig;
 
@@ -27,15 +27,16 @@ const separatorIndex = process.argv.indexOf('--');
 const parsedArgs = process.argv.slice(separatorIndex + 1);
 const isRemote = parsedArgs.includes('--remote');
 
-function jsonToQuery(json) {
-  return Object.entries(json)
-    .reduce((items, [key, value]) => {
-      const encodedKey = encodeURI(key);
-      const encodedValue = encodeURI(value);
-      if (encodedValue !== 'undefined') items.push(`${encodedKey}=${encodedValue}`);
-      return items;
-    }, [])
-    .join('&');
+// ─── Utilities ──────────────────────────────────────────────────────────────
+
+function buildQuery(params) {
+  return new URLSearchParams(
+    Object.entries(params).filter(([, v]) => v !== undefined)
+  ).toString();
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 // fetch requests throttle settings
@@ -51,22 +52,54 @@ const defaultFields = [
   ...localizeKeys('Abbreviation'),
 ];
 
-async function fetchJobsData() {
-  const jobColumns = [
-    ...defaultFields,
-    'IsLimitedJob',
-    'Role',
-  ];
+// ─── Icon Fetching ───────────────────────────────────────────────────────────
 
-  const options = jsonToQuery({ fields: jobColumns.join(',') });
-  const request = await axios(`${process.env.XIV_API_URL}/sheet/ClassJob?${options}`)
-    .catch((error) => console.error(error));
-  const json = await request.data;
-  const jobs = json.rows
+async function fetchIcon(action) {
+  const iconUrl = getActionIcon(action);
+  const folderPath = `${process.cwd()}/public/actionIcons/xivapi`;
+  const fileName = `${action.Icon.id}.png`;
+  const filePath = path.join(folderPath, fileName);
+
+  await fsPromise.mkdir(folderPath, { recursive: true });
+
+  const response = await axios.get(iconUrl, {
+    responseType: 'stream',
+    header: { Accept: 'image/jpeg, image/png, image/webp' },
+  });
+
+  const writer = fs.createWriteStream(filePath);
+  response.data.pipe(writer);
+
+  await new Promise((resolve, reject) => {
+    writer.on('finish', () => resolve(`Image saved to ${filePath}`));
+    writer.on('error', reject);
+  });
+}
+
+async function bulkFetchIcons(actions, progressBar) {
+  for (const action of actions) {
+    try {
+      await fetchIcon(action);
+      progressBar?.increment();
+      await sleep(delayShort);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+// ─── Jobs ────────────────────────────────────────────────────────────────────
+
+async function fetchJobsData() {
+  const jobColumns = [...defaultFields, 'IsLimitedJob', 'Role'];
+  const query = buildQuery({ fields: jobColumns.join(',') });
+  const { data } = await axios(`${process.env.XIV_API_URL}/sheet/ClassJob?${query}`)
+    .catch((error) => { console.error(error); });
+
+  return data.rows
     .filter((row) => row.row_id >= 2)
     .map(({ row_id, fields }) => ({ ...fields, ID: row_id }))
     .sort(array.byKey('Name'));
-  return jobs;
 }
 
 async function getJobs() {
@@ -85,198 +118,165 @@ async function getJobs() {
     return { ...jobData, ...advancedJob };
   });
 
-  fs.writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs), () => null);
+  await fsPromise.writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs));
 
   if (isRemote) {
-    const jobActions = await getJobActions(decoratedJobs);
+    await getJobActions(decoratedJobs);
   }
 }
 
-async function fetchIcon(action) {
-  const iconUrl = getActionIcon(action);
-  const folderPath = `${process.cwd()}/public/actionIcons/xivapi`;
-  const fileName = `${action.Icon.id}.png`;
-
-  try {
-    if (!fs.existsSync(folderPath)) {
-      fs.mkdirSync(folderPath, { recursive: true });
-    }
-
-    const response = await axios.get(iconUrl, {
-      responseType: 'stream',
-      header: { Accept: 'image/jpeg, image/png, image/webp' }
-    });
-
-    // Define the file path
-    const filePath = path.join(folderPath, fileName);
-    // Save the image to the local folder
-    const writer = fs.createWriteStream(filePath);
-    response.data.pipe(writer);
-
-    // Return a Promise that resolves when the writing is done
-    await new Promise((resolve, reject) => {
-      writer.on('finish', () => resolve(`Image saved to ${filePath}`));
-      writer.on('error', reject);
-    });
-  } catch (error) {
-    console.error('Something went wrong', error);
-    throw new Error(error.message, { cause: error });
-  }
-}
-
-async function bulkFetchIcons(actions, progressBar) {
-  return actions.reduce(async (promiseAccumulator, action) => {
-    const accumulator = await promiseAccumulator;
-
-    try {
-      await fetchIcon(action);
-      progressBar?.increment();
-      await new Promise(resolve => setTimeout(resolve, delayShort));
-    } catch (error) {
-      console.error(error);
-    }
-  }, Promise.resolve([]));
-}
+// ─── Job Actions ─────────────────────────────────────────────────────────────
 
 async function fetchUpgradableActionsData(job) {
   if (!job) return;
+
   const lodestoneURL = `https://ffxiv.consolegameswiki.com/wiki/${job.Name}`;
   const filePath = `${dest}/UpgradableActions.json`;
 
-  let jsonData = {}
-
-  await fs.readFile(filePath, 'utf8', (err, data) => {
-    jsonData = data ? JSON.parse(data) : {};
-  });
+  let jsonData = {};
+  try {
+    const raw = await fsPromise.readFile(filePath, 'utf8');
+    jsonData = raw ? JSON.parse(raw) : {};
+  } catch {
+    // file may not exist yet; start fresh
+  }
 
   const data = await fetch(lodestoneURL);
   const content = await data.text();
   const actions = HTMLParser.parse(content).querySelectorAll('.traits.table tr');
+
   const rows = actions
     .map((row) => row.lastChild.text)
-    .filter((row) => (row.match(/^Upgrades/) && !row.match(/^Upgrades.*when|.*executed by|.*while under|.*is upgraded/)))
+    .filter((row) => row.match(/^Upgrades/) && !row.match(/^Upgrades.*when|.*executed by|.*while under|.*is upgraded/))
     .map((text) => {
       if (text.match(/respectively/)) {
-        return text.split(' to ')[0].replace('Upgrades ', '').split(' and ')
-      } else {
-        return text.replaceAll(/^Upgrades |\n/g, '').split(' and ')
-          .map((t) => t.split(' to ')[0]).flat()
+        return text.split(' to ')[0].replace('Upgrades ', '').split(' and ');
       }
+      return text
+        .replaceAll(/^Upgrades |\n/g, '')
+        .split(' and ')
+        .map((t) => t.split(' to ')[0])
+        .flat();
     })
     .flat()
     .filter((text) => !text.match(/increases the|the potency of/));
 
-  const newData = JSON.stringify({
-    ...jsonData,
-    [job.Abbreviation]: rows
-  }, null, 2);
-
-  await fs.writeFile(`${dest}/UpgradableActions.json`, newData, () => null);
-
+  const newData = JSON.stringify({ ...jsonData, [job.Abbreviation]: rows }, null, 2);
+  await fsPromise.writeFile(`${dest}/UpgradableActions.json`, newData);
   return newData;
 }
 
+async function processJob(job) {
+  await fetchUpgradableActionsData(job);
+
+  const actions = new JobAction(job);
+  const [allActions, jobActions, roleActions, pvpActions] = await Promise.all([
+    actions.All(),
+    actions.JobActions(),
+    actions.RoleActions(),
+    actions.PvPActions(),
+  ]);
+
+  const actionsObj = {
+    PvE: { actions: jobActions, roleActions },
+    PvP: pvpActions,
+  };
+
+  await fsPromise.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actionsObj));
+
+  const progressBar = new cliProgress.SingleBar({
+    format: `  🧱 Fetching ${colors.yellowBright(job.Abbr)} ${colors.yellowBright('[{bar}]')} {value}/{total} | {percentage}% `,
+    barsize: 10,
+  }, cliProgress.Presets.rect);
+
+  progressBar.start(allActions.length, 0);
+  await bulkFetchIcons(allActions, progressBar);
+  progressBar.stop();
+
+  await sleep(delay);
+}
+
 async function getJobActions(jobs) {
-  return jobs.reduce(async (promiseAccumulator, job) => {
-    const accumulator = await promiseAccumulator;
-
+  for (const job of jobs) {
     try {
-      await fetchUpgradableActionsData(job);
-      const actions = new JobAction(job);
-      const allActions = await actions.All();
-      const jobActions = await actions.JobActions();
-      const roleActions = await actions.RoleActions();
-      const pvpActions = await actions.PvPActions();
-
-      const actionsObj = {
-        PvE: { actions: jobActions, roleActions },
-        PvP: pvpActions
-      }
-
-      fs.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actionsObj), () => null);
-
-      const progressBar = new cliProgress.SingleBar({
-        format:`  🧱 Fetching ${colors.yellowBright(job.Abbr)} ${colors.yellowBright('[{bar}]')} {value}/{total} | {percentage}% `,
-        barsize: 10,
-      }, cliProgress.Presets.rect);
-
-      progressBar.start(allActions.length, 0);
-
-      await bulkFetchIcons(allActions, progressBar);
-
-      progressBar.stop();
-
-      await new Promise(resolve => setTimeout(resolve, delay));
+      await processJob(job);
     } catch (error) {
       console.error('Error fetching data', error);
     }
-  }, Promise.resolve([]));
+  }
+}
+
+// ─── Global Actions ──────────────────────────────────────────────────────────
+
+async function fetchActionCategory(actionCategory) {
+  const actionColumns = [
+    'Icon',
+    'IsPvP',
+    'IsRoleAction',
+    'IsPlayerAction',
+    'IsLimitedJob',
+    'ClassJob.Abbreviation',
+    'ClassJob.Name',
+    'Prefix',
+    'UrlType',
+    ...localizeKeys('Name'),
+    ...localizeKeys('Description'),
+  ].join(',');
+
+  const endpoint = `${apiUrl}/sheet/${actionCategory}?fields=${actionColumns}`;
+  const { data } = await axios(endpoint);
+
+  console.log(`  🔩 Building ${actionCategory} actions...`);
+
+  const decoratedActions = data.rows
+    .filter((action) => (
+      action.fields.Name !== ''
+      && ![0, 786, 66001].includes(action.fields.Icon.id)
+    ))
+    .map((action, index) => ({
+      Name: `${actionCategory} ${index}`,
+      ...action.fields,
+      ID: action.row_id,
+      UrlType: actionCategory,
+      Prefix: ActionCategory[actionCategory].prefix,
+      Command: ActionCategory[actionCategory].command,
+    }));
+
+  await bulkFetchIcons(decoratedActions);
+  await fsPromise.writeFile(`${dest}/${actionCategory}.json`, JSON.stringify(decoratedActions));
 }
 
 async function getGlobalActions() {
-  const actionTypes = Object.keys(ActionCategory);
+  for (const actionCategory of Object.keys(ActionCategory)) {
+    try {
+      await fetchActionCategory(actionCategory);
+    } catch (error) {
+      console.error(`Error fetching ${actionCategory}`, error);
+    }
+  }
+}
 
-  actionTypes.forEach(async (actionCategory) => {
-    const actionColumns = [
-      'Icon',
-      'IsPvP',
-      'IsRoleAction',
-      'IsPlayerAction',
-      'IsLimitedJob',
-      'ClassJob.Abbreviation',
-      'ClassJob.Name',
-      'Prefix',
-      'UrlType',
-      ...localizeKeys('Name'),
-      ...localizeKeys('Description'),
-    ].join(',');
-    const endpoint = `${apiUrl}/sheet/${actionCategory}?fields=${actionColumns}`;
-    const actions = await axios(endpoint)
-      .then((res) => res.data)
-      .then(async (json) => {
-        console.log(`  🔩 Building ${actionCategory} actions...`);
+// ─── Setup & Entry ───────────────────────────────────────────────────────────
 
-        const decoratedActions = json.rows
-          .filter((action) => (
-            action.fields.Name !== ''
-            && ![0, 786, 66001].includes(action.fields.Icon.id)
-          ))
-          .map((action, index) => ({
-            Name: `${actionCategory} ${index}`,
-            ...action.fields,
-            ID: action.row_id,
-            UrlType: actionCategory,
-            Prefix: ActionCategory[actionCategory].prefix,
-            Command: ActionCategory[actionCategory].command
-          }));
+async function setup() {
+  if (isRemote) {
+    console.log('🧹 Cleaning up old files...');
+    await fsPromise.rm(dest, { recursive: true, force: true });
 
-        await bulkFetchIcons(decoratedActions);
-
-        fs.writeFile(
-          `${dest}/${actionCategory}.json`,
-          JSON.stringify(decoratedActions),
-          () => null
-        );
-      })
-      .catch((error) => { console.error(error); });
-
-    return actions;
-  });
+    console.log(`📂 Creating "${dest}" directory...`);
+    await fsPromise.mkdir(dest);
+    await fsPromise.mkdir(`${dest}/JobActions`);
+  } else {
+    await fsPromise.mkdir(dest, { recursive: true });
+    await fsPromise.mkdir(`${dest}/JobActions`, { recursive: true });
+  }
 }
 
 (async () => {
   try {
-    fs.rm(dest, { recursive: true }, () => {
-      console.log('🧹 Cleaning up old files...');
-      fs.mkdir(dest, () => {
-        console.log(`📂 Creating "${dest}" directory...`);
-        fs.mkdir(`${dest}/JobActions`, async () =>{
-          // await fetchUpgradableActionsData({Name: 'Dark Knight', Abbreviation: 'DRK'})
-          await getGlobalActions();
-          await getJobs();
-        });
-      });
-    });
+    await setup();
+    await getGlobalActions();
+    await getJobs();
   } catch (e) {
     console.error(new Error(e));
   }
