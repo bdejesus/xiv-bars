@@ -4,23 +4,23 @@ $panel-height: 52px;
 
 .xhbControls {
   align-items: flex-end;
-  background-color: $panel-bg;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow-2;
+  background-color: var(--panel-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-2);
   display: flex;
   flex-direction: row;
-  gap: $spacing-lg;
+  gap: var(--spacing-lg);
   height: $panel-height;
   justify-content: center;
-  margin-bottom: $spacing-base;
+  margin-bottom: var(--spacing-base);
   margin-top: -$panel-height;
-  min-width: $layout-container-width;
+  min-width: var(--layout-container-width);
   opacity: 0;
-  padding: 0 $spacing-base;
+  padding: 0 var(--spacing-base);
   text-align: center;
   transition-duration: 0.33s;
   transition-property: opacity, transform, margin-top;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
 
   &[data-active="true"] {
     margin-top: 0;
@@ -35,21 +35,21 @@ $panel-height: 52px;
   height: $panel-height;
 
   .controlLabel {
-    margin-right: $spacing-sm;
+    margin-right: var(--spacing-sm);
   }
 
   .controlGuide + .controlGuide {
     border-left: 1px solid #444;
     display: inline-block;
-    margin-left: $spacing-sm;
-    padding-left: $spacing-sm;
+    margin-left: var(--spacing-sm);
+    padding-left: var(--spacing-sm);
   }
 
   label {
-    color: $color-gray-light;
+    color: var(--color-gray-light);
     display: flex;
     flex-direction: row;
-    font-size: $font-size-xs;
+    font-size: var(--font-size-xs);
   }
 
   b {
@@ -74,18 +74,18 @@ $panel-height: 52px;
   }
 
   select {
-    background-color: $panel-bg-dark;
+    background-color: var(--panel-bg-dark);
     border: none;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     color: #fff;
-    font-size: $font-size-lg;
-    padding: $spacing-sm;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-sm);
 
     &:hover,
     &:focus {
-      color: $color-alt;
+      color: var(--color-alt);
       cursor: pointer;
-      outline: 1px solid $color-alt;
+      outline: 1px solid var(--color-alt);
     }
   }
 }

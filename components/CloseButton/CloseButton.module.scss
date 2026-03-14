@@ -1,15 +1,13 @@
-@use "@/styles/mixins" as *;
-
 .button:global(.button) {
   position: absolute;
-  right: -$spacing-xs;
+  right: calc(-1 * var(--spacing-xs));
   text-transform: uppercase;
   top: 0;
-  transform: translate(-$spacing-base, -50%);
+  transform: translate(calc(-1 * var(--spacing-base)), -50%);
   width: 30px !important;
   z-index: 1;
 
   &:hover {
-    transform: translate(-$spacing-base, -50%) scale(1.2);
+    transform: translate(calc(-1 * var(--spacing-base)), -50%) scale(1.2);
   }
 }

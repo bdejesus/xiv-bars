@@ -1,8 +1,6 @@
-@use "@/styles/mixins" as *;
-
 .container {
-  margin-bottom: $spacing-base;
-  padding-bottom: $spacing-base;
+  margin-bottom: var(--spacing-base);
+  padding-bottom: var(--spacing-base);
 
   &:last-child {
     margin-bottom: 0;
@@ -13,14 +11,14 @@
   color: rgb(255 255 255 / 66%);
   font-size: 10px;
   line-height: 1.2em;
-  margin: 0 0 $spacing-base;
+  margin: 0 0 var(--spacing-base);
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .listActions {
   display: grid;
-  gap: $spacing-base;
+  gap: var(--spacing-base);
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;
   list-style: none;
@@ -40,8 +38,8 @@
   display: block;
 
   > li {
-    margin-bottom: $spacing-base;
-    margin-left: $spacing-sm;
+    margin-bottom: var(--spacing-base);
+    margin-left: var(--spacing-sm);
 
     &:last-child {
       margin-bottom: 0;
@@ -52,8 +50,8 @@
     flex-direction: row;
 
     &::after {
-      font-size: $font-size-sm;
-      margin-left: $spacing-base;
+      font-size: var(--font-size-sm);
+      margin-left: var(--spacing-base);
       margin-top: 0;
       position: static;
       text-align: left;

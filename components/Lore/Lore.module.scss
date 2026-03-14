@@ -1,10 +1,8 @@
-@use "@/styles/mixins" as *;
-
 .lore {
   font-size: 13px;
   font-style: italic;
   line-height: 1.45em;
-  margin: $spacing-base 0 0;
+  margin: var(--spacing-base) 0 0;
   opacity: 0.5;
 
   br {

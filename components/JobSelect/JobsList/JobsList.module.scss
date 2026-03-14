@@ -1,13 +1,10 @@
-@use "@/styles/mixins" as *;
-@use "sass:math";
-
 $button-inset: 10px;
 $button-height: 50px;
 
 .title {
   color: rgb(255 255 255 / 50%);
   display: block;
-  margin-bottom: $spacing-sm;
+  margin-bottom: var(--spacing-sm);
   margin-top: 0;
   padding-left: 4px;
 }
@@ -19,10 +16,10 @@ $button-height: 50px;
 
   > li {
     align-items: center;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: flex;
     flex-direction: row;
-    margin: $spacing-sm 0;
+    margin: var(--spacing-sm) 0;
     position: relative;
     transition: background-color 0.15s ease;
 
@@ -37,12 +34,12 @@ $button-height: 50px;
 
   .jobLink {
     align-items: center;
-    background-color: $color-gray-dark;
-    border-radius: $border-radius;
+    background-color: var(--color-gray-dark);
+    border-radius: var(--border-radius);
     display: flex;
     flex: 1 1 auto;
     height: $button-height;
-    padding: $spacing-xs;
+    padding: var(--spacing-xs);
     position: relative;
     transition: background-color 0.33s ease;
 
@@ -53,12 +50,12 @@ $button-height: 50px;
 
     &:hover,
     &:focus {
-      background-color: $color-gray;
+      background-color: var(--color-gray);
       text-decoration: none;
       z-index: 2;
 
       + .addBtn {
-        background-color: $color-gray;
+        background-color: var(--color-gray);
         opacity: 1;
       }
 
@@ -78,37 +75,37 @@ $button-height: 50px;
 
   .addBtn:global(.button) {
     align-items: center;
-    background-color: $color-gray-dark;
+    background-color: var(--color-gray-dark);
     border: none;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     bottom: 0;
     box-shadow: none;
     height: unset;
     justify-content: flex-start;
     overflow: hidden;
-    padding-left: calc($button-height / 2) - $spacing-sm;
+    padding-left: calc(25px - var(--spacing-sm));
     position: absolute;
     right: 0;
     top: 0;
     transition-duration: 0.33s;
     transition-property: background-color, width, pading;
-    transition-timing-function: $cubic-bezier;
+    transition-timing-function: var(--cubic-bezier);
     width: $button-height;
     z-index: 2;
 
     .addIcon,
     .addLabel {
-      transition-duration: $timing-default;
+      transition-duration: var(--timing-default);
       transition-property: width, color, padding, transform, opacity;
-      transition-timing-function: $cubic-bezier;
+      transition-timing-function: var(--cubic-bezier);
     }
 
     .addLabel {
-      color: $color-alt;
+      color: var(--color-alt);
       display: block;
       flex: 1 1 auto;
-      font-size: $font-size-base;
-      padding: 0 $spacing-base 0 18px;
+      font-size: var(--font-size-base);
+      padding: 0 var(--spacing-base) 0 18px;
       text-align: left;
       transition-delay: 0;
     }
@@ -120,7 +117,7 @@ $button-height: 50px;
 
     &:hover,
     &:focus {
-      background-color: $color-gray-dark;
+      background-color: var(--color-gray-dark);
       opacity: 1;
       transition-delay: 0.25s;
       width: 100%;
@@ -130,7 +127,7 @@ $button-height: 50px;
       }
 
       .addIcon {
-        filter: $icon-filter-yellow;
+        filter: var(--icon-filter-yellow);
         opacity: 1;
         transform: scale(1.25);
       }
@@ -142,6 +139,6 @@ $button-height: 50px;
     flex: 1 1 auto;
     height: 100%;
     margin-right: $button-height;
-    padding-left: $spacing-xs;
+    padding-left: var(--spacing-xs);
   }
 }

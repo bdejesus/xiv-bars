@@ -1,14 +1,12 @@
-@use "@/styles/mixins" as *;
-
 .container {
   align-items: flex-end;
   display: flex;
   position: relative;
 
   label {
-    background-color: $panel-bg;
+    background-color: var(--panel-bg);
     font-size: 9px;
-    left: $spacing-sm;
+    left: var(--spacing-sm);
     line-height: 1;
     margin-top: -5px;
     padding: 0 4px;

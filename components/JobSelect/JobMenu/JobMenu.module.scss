@@ -2,9 +2,9 @@
 
 .container {
   background-color: #111;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
-  padding: $spacing-base;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-base);
   width: 100%;
 
   h3 {
@@ -13,12 +13,12 @@
 }
 
 .tabs {
-  border-bottom: 2px solid $color-gray-dark;
+  border-bottom: 2px solid var(--color-gray-dark);
   display: flex;
   flex-direction: row;
-  gap: $spacing-xs;
+  gap: var(--spacing-xs);
   list-style: none;
-  margin: 0 0 $spacing-base;
+  margin: 0 0 var(--spacing-base);
   padding: 0;
 
   > li {
@@ -27,21 +27,21 @@
   }
 
   .tab {
-    background-color: $color-gray-dark-2;
-    border-radius: $border-radius $border-radius 0 0;
+    background-color: var(--color-gray-dark-2);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
     box-shadow: none;
     color: #fff;
-    padding-left: $spacing-lg;
-    padding-right: $spacing-lg;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
 
     &:hover {
-      background-color: $color-gray-dark;
-      color: $color-alt;
+      background-color: var(--color-gray-dark);
+      color: var(--color-alt);
     }
 
     &[data-active='true'] {
-      background-color: $color-gray;
-      color: $color-alt;
+      background-color: var(--color-gray);
+      color: var(--color-alt);
     }
   }
 }
@@ -57,13 +57,13 @@
 
 .categories {
   display: grid;
-  gap: $spacing-base $spacing-base;
+  gap: var(--spacing-base) var(--spacing-base);
   grid-template-columns: 1fr 1fr;
 }
 
 .jobList > ul {
   display: grid;
-  gap: $spacing-sm;
+  gap: var(--spacing-sm);
   grid-template-columns: 1fr 1fr;
 
   > li {
@@ -101,7 +101,7 @@
 
 @media (max-width: $screen-sm) {
   .container {
-    padding: $spacing-base;
+    padding: var(--spacing-base);
   }
 
   .categories {

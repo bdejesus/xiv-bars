@@ -8,16 +8,16 @@
   justify-content: center;
   max-height: 100vh;
   overflow: auto;
-  padding: ($spacing-xl * 2) $spacing-lg;
+  padding: calc(var(--spacing-xl) * 2) var(--spacing-lg);
   position: fixed;
   transition-duration: 0.33s;
   transition-property: background, backdrop-filter;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
   z-index: 100;
 
   .container {
     position: relative;
-    transition: opacity 0.33s $cubic-bezier, transform 0.33s $cubic-bezier;
+    transition: opacity 0.33s var(--cubic-bezier), transform 0.33s var(--cubic-bezier);
   }
 
   &[aria-hidden="true"] {
@@ -45,39 +45,39 @@
 
   :global(.modal-content) {
     background-color: #111;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     max-width: 460px;
-    padding: $spacing-base;
+    padding: var(--spacing-base);
     position: relative;
 
     h2 {
-      margin: 0 0 $spacing-sm;
+      margin: 0 0 var(--spacing-sm);
     }
 
     button {
-      padding-left: $spacing-lg;
-      padding-right: $spacing-lg;
+      padding-left: var(--spacing-lg);
+      padding-right: var(--spacing-lg);
     }
   }
 
   :global(.modal-header) {
-    margin-bottom: $spacing-base;
+    margin-bottom: var(--spacing-base);
     max-width: 100%;
     position: relative;
   }
 
   :global(.modal-footer) {
-    margin-top: $spacing-sm;
+    margin-top: var(--spacing-sm);
   }
 
   .content {
-    margin-bottom: $spacing-xl;
+    margin-bottom: var(--spacing-xl);
   }
 }
 
 @media (max-width: $screen-sm) {
   .modal {
-    padding: $spacing-xl $spacing-base $spacing-base;
+    padding: var(--spacing-xl) var(--spacing-base) var(--spacing-base);
   }
 
   .container {

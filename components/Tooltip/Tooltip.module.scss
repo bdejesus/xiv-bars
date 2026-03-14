@@ -88,14 +88,14 @@ $tooltip-width: 320px;
     width: 98vw;
 
     .content {
-      bottom: $spacing-base;
+      bottom: var(--spacing-base);
       left: unset;
-      right: $spacing-base;
+      right: var(--spacing-base);
       top: unset;
     }
 
     &[data-anchor*='right'] .content {
-      left: $spacing-base;
+      left: var(--spacing-base);
       right: unset;
     }
   }
@@ -111,13 +111,13 @@ $tooltip-width: 320px;
     width: 100vw;
 
     .content {
-      bottom: $spacing-xs !important;
+      bottom: var(--spacing-xs) !important;
       height: 20vh;
-      left: $spacing-xs !important;
+      left: var(--spacing-xs) !important;
       overflow: auto;
       pointer-events: auto;
       position: absolute;
-      right: $spacing-xs !important;
+      right: var(--spacing-xs) !important;
       top: unset !important;
       width: unset;
     }

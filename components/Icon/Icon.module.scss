@@ -1,10 +1,8 @@
-@use "@/styles/mixins" as *;
-
 .icon {
   display: inline-block;
   height: 16px;
-  margin-right: $spacing-xs;
-  transition: filter $timing-default ease;
+  margin-right: var(--spacing-xs);
+  transition: filter var(--timing-default) ease;
   width: 16px;
 
   .iconImage {
@@ -15,10 +13,10 @@
   }
 
   &.black {
-    filter: $icon-filter-black;
+    filter: var(--icon-filter-black);
   }
 
   &.white {
-    filter: $icon-filter-white;
+    filter: var(--icon-filter-white);
   }
 }

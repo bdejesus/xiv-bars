@@ -1,8 +1,6 @@
-@use "@/styles/mixins" as *;
-
 .heartBtn {
   height: 24px;
-  padding: 0 $spacing-sm;
+  padding: 0 var(--spacing-sm);
 
   &[disabled],
   &[data-disabled='true'] {
@@ -13,11 +11,11 @@
   }
 
   &[data-hearted='true'] {
-    background-color: $color-alt-dark;
+    background-color: var(--color-alt-dark);
     color: #fff;
 
     :global(.icon) {
-      filter: $icon-filter-white;
+      filter: var(--icon-filter-white);
     }
   }
 
@@ -29,9 +27,9 @@
 .count {
   align-items: center;
   display: inline-flex;
-  font-size: $font-size-xs;
+  font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 1;
-  margin-left: $spacing-xs;
+  margin-left: var(--spacing-xs);
   margin-top: -1px;
 }

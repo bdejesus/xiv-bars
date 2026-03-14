@@ -1,8 +1,6 @@
-@use "@/styles/mixins" as *;
-
 .container {
   align-self: flex-start;
   display: flex;
   justify-content: space-between;
-  margin: 0 $spacing-base;
+  margin: 0 var(--spacing-base);
 }

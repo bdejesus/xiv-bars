@@ -1,9 +1,7 @@
-@use '@/styles/mixins' as *;
-
 .markdown {
   h2, h3, h4, h5, h6, p, ul, ol {
     margin-bottom: 0;
-    margin-top: $spacing-base;
+    margin-top: var(--spacing-base);
 
     &:first-child {
       margin-top: 0;
@@ -11,13 +9,13 @@
   }
 
   h2, h3, h4, h5, h6 {
-    color: $color-gray;
+    color: var(--color-gray);
     font-weight: 700;
   }
 
   h2 {
-    font-size: $font-size-xl;
-    margin-top: $spacing-lg;
+    font-size: var(--font-size-xl);
+    margin-top: var(--spacing-lg);
 
     &:first-child {
       margin-top: 0;
@@ -25,11 +23,11 @@
   }
 
   h3 {
-    font-size: $font-size-lg;
+    font-size: var(--font-size-lg);
   }
 
   h4 {
-    font-size: $font-size-base;
+    font-size: var(--font-size-base);
   }
 
   h5 {
@@ -37,14 +35,14 @@
   }
 
   h5, h6 {
-    font-size: $font-size-xs;
+    font-size: var(--font-size-xs);
   }
 
   p, ul, ol {
     font-weight: inherit;
     line-height: 1.65em;
     margin-bottom: 0;
-    margin-top: $spacing-base;
+    margin-top: var(--spacing-base);
   }
 
   ul, ol {
@@ -55,7 +53,7 @@
     }
 
     li {
-      margin: $spacing-sm 0;
+      margin: var(--spacing-sm) 0;
     }
 
     p {
@@ -64,18 +62,18 @@
   }
 
   blockquote {
-    border-left: $spacing-xs solid $color-gray-light-2;
+    border-left: var(--spacing-xs) solid var(--color-gray-light-2);
     font-style: italic;
     margin-left: 0;
     margin-right: 0;
-    padding: $spacing-xs $spacing-base;
+    padding: var(--spacing-xs) var(--spacing-base);
   }
 
   pre,
   code {
     background-color: rgb(0 0 0 / 10%);
-    border-radius: $border-radius;
-    font-size: $font-size-sm;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
   }
 
   code {
@@ -85,8 +83,8 @@
   }
 
   pre {
-    line-height: $font-size-lg;
-    padding: $spacing-sm;
+    line-height: var(--font-size-lg);
+    padding: var(--spacing-sm);
     text-shadow: 0 0 4px #fefefe;
 
     code {
@@ -101,6 +99,6 @@
   hr {
     border: none;
     border-top: 1px solid #ddd;
-    margin: $spacing-base 0;
+    margin: var(--spacing-base) 0;
   }
 }

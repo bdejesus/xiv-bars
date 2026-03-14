@@ -20,32 +20,32 @@ h5 {
 }
 
 h1 {
-  font-size: $font-size-xl-3;
+  font-size: var(--font-size-xl-3);
   font-weight: 100;
   line-height: 1.05em;
-  margin-bottom: $spacing-base;
+  margin-bottom: var(--spacing-base);
   margin-top: 0;
 }
 
 h2 {
-  font-size: $font-size-xl-2;
+  font-size: var(--font-size-xl-2);
   font-weight: 400;
   line-height: 1.2;
 }
 
 h3 {
-  font-size: $font-size-lg;
+  font-size: var(--font-size-lg);
   font-weight: 700;
 }
 
 h4 {
   color: #888;
-  font-size: $font-size-lg;
+  font-size: var(--font-size-lg);
 }
 
 h5 {
   color: #888;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   margin-bottom: 0;
 }
 
@@ -61,12 +61,12 @@ p, ol, ul {
 
 ul,
 ol {
-  // margin: $spacing-lg 0 $spacing-lg $spacing-sm;
-  margin-left: $spacing-sm;
-  padding: 0 $spacing-lg;
+  // margin: var(--spacing-lg) 0 var(--spacing-lg) var(--spacing-sm);
+  margin-left: var(--spacing-sm);
+  padding: 0 var(--spacing-lg);
 
   h5 {
-    margin-top: $spacing-base;
+    margin-top: var(--spacing-base);
   }
 
   p {
@@ -74,7 +74,7 @@ ol {
   }
 
   > li {
-    margin: $spacing-sm 0;
+    margin: var(--spacing-sm) 0;
   }
 }
 
@@ -89,19 +89,19 @@ abbr {
 
 label {
   color: #666;
-  font-size: $font-size-sm;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   letter-spacing: 0.033em;
 }
 
 .text-xl {
-  font-size: $font-size-xl;
+  font-size: var(--font-size-xl);
   font-weight: 400;
-  line-height: $font-size-xl-2;
+  line-height: var(--font-size-xl-2);
 }
 
 .text-sm {
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
 }
 
 .text-center {
@@ -111,14 +111,14 @@ label {
 @media (max-width: $screen-sm) {
   body,
   textarea {
-    font-size: $font-size-base;
+    font-size: var(--font-size-base);
   }
 
   h1 {
-    font-size: $font-size-xl-2;
+    font-size: var(--font-size-xl-2);
   }
 
   h2 {
-    font-size: $font-size-xl;
+    font-size: var(--font-size-xl);
   }
 }

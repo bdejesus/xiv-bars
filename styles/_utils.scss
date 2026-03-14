@@ -1,15 +1,13 @@
-@use '@/styles/mixins' as *;
-
 .mt-xl {
-  margin-top: $spacing-xl !important;
+  margin-top: var(--spacing-xl) !important;
 }
 
 .mt-lg {
-  margin-top: $spacing-lg !important;
+  margin-top: var(--spacing-lg) !important;
 }
 
 .mt-md {
-  margin-top: $spacing-base !important;
+  margin-top: var(--spacing-base) !important;
 }
 
 .mt-0 {
@@ -17,11 +15,15 @@
 }
 
 .mb-md {
-  margin-bottom: $spacing-base !important;
+  margin-bottom: var(--spacing-base) !important;
 }
 
 .mb-lg {
-  margin-bottom: $spacing-lg !important;
+  margin-bottom: var(--spacing-lg) !important;
+}
+
+.mb-xl {
+  margin-bottom: var(--spacing-xl) !important;
 }
 
 .mb-0 {
@@ -29,5 +31,5 @@
 }
 
 .pad-lg {
-  padding: $spacing-lg !important;
+  padding: var(--spacing-lg) !important;
 }

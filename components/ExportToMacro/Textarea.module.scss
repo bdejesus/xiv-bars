@@ -1,27 +1,25 @@
-@use "@/styles/mixins" as *;
-
 .textareaWrapper {
-  border-color: $color-gray;
-  padding: 0 $spacing-sm $spacing-sm;
+  border-color: var(--color-gray);
+  padding: 0 var(--spacing-sm) var(--spacing-sm);
   position: relative;
 
   .copyButton {
     position: absolute;
-    right: $spacing-base;
-    top: $spacing-sm;
+    right: var(--spacing-base);
+    top: var(--spacing-sm);
   }
 
   textarea {
-    background-color: $panel-bg-dark;
+    background-color: var(--panel-bg-dark);
     border: none;
     color: #ccc;
     display: block;
-    font-family: $font-monospace;
+    font-family: var(--font-monospace);
     font-size: 11px;
     height: 220px;
     line-height: 1.2em;
     margin: 0;
-    padding: $spacing-sm;
+    padding: var(--spacing-sm);
     resize: none;
   }
 
@@ -38,6 +36,6 @@
   }
 
   to {
-    background-color: $panel-bg-dark;
+    background-color: var(--panel-bg-dark);
   }
 }

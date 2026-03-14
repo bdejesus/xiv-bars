@@ -1,9 +1,7 @@
-@use "@/styles/mixins" as *;
-
 .layoutCard {
   background-color: #111;
   border: 1px solid transparent;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -13,14 +11,14 @@
   position: relative;
   transition-duration: 0.33s;
   transition-property: box-shadow, transform;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
 
   .cardActions {
     opacity: 0;
     position: absolute;
-    right: $spacing-sm;
-    top: $spacing-sm;
-    transition: opacity $timing-default $cubic-bezier;
+    right: var(--spacing-sm);
+    top: var(--spacing-sm);
+    transition: opacity var(--timing-default) var(--cubic-bezier);
     transition-delay: 0.15s;
   }
 
@@ -33,26 +31,26 @@
   .deleteButton {
     background-color: transparent;
     box-shadow: none;
-    font-size: $font-size-xs;
+    font-size: var(--font-size-xs);
     height: 24px;
     line-height: 1;
     min-height: unset;
-    padding: $spacing-xs;
+    padding: var(--spacing-xs);
     width: 24px;
 
     :global(.icon) {
-      filter: $icon-filter-white;
+      filter: var(--icon-filter-white);
     }
 
     &:hover,
     &:focus {
-      background-color: $color-danger;
+      background-color: var(--color-danger);
     }
   }
 
   &:hover,
   &:focus {
-    box-shadow: 0 0 1px 3px $color-alt-light, 0 8px 16px rgb(0 0 0 / 33%);
+    box-shadow: 0 0 1px 3px var(--color-alt-light), 0 8px 16px rgb(0 0 0 / 33%);
     transform: translateY(-4px);
 
     .cardActions {
@@ -61,16 +59,16 @@
   }
 
   .footer {
-    padding: $spacing-sm $spacing-base $spacing-base;
+    padding: var(--spacing-sm) var(--spacing-base) var(--spacing-base);
     position: relative;
 
     &::before {
       border-top: 1px solid rgb(255 255 255 / 5%);
       content: '';
       display: block;
-      left: $spacing-base;
+      left: var(--spacing-base);
       position: absolute;
-      right: $spacing-base;
+      right: var(--spacing-base);
       top: 0;
     }
   }
@@ -78,7 +76,7 @@
   .job {
     color: #666;
     filter: grayscale(1);
-    transition: filter $timing-default ease;
+    transition: filter var(--timing-default) ease;
 
     :global(.job-icon) {
       height: 24px;
@@ -99,9 +97,9 @@
 
   .profileImage {
     float: left;
-    height: $spacing-lg;
-    margin-right: $spacing-sm;
-    width: $spacing-lg;
+    height: var(--spacing-lg);
+    margin-right: var(--spacing-sm);
+    width: var(--spacing-lg);
 
     &::after {
       opacity: 0.2;
@@ -109,7 +107,7 @@
   }
 
   .owner {
-    font-size: $font-size-base;
+    font-size: var(--font-size-base);
     line-height: 1.2;
 
     a {
@@ -117,7 +115,7 @@
 
       &:hover,
       &:focus {
-        color: $color-alt;
+        color: var(--color-alt);
         text-decoration: none;
       }
     }
@@ -125,7 +123,7 @@
 
   .timestamp {
     color: #ccc;
-    font-size: $font-size-xs;
+    font-size: var(--font-size-xs);
     font-style: italic;
     line-height: 1.4;
     opacity: 0.5;
@@ -138,13 +136,13 @@
   display: flex;
   inset: 0;
   justify-content: center;
-  padding: $spacing-base;
+  padding: var(--spacing-base);
   position: absolute;
   text-align: center;
   z-index: 4;
 
   b {
-    color: $color-alt;
+    color: var(--color-alt);
     font-weight: 700;
   }
 }
@@ -156,11 +154,11 @@
 }
 
 .tags {
-  left: $spacing-base;
-  margin-bottom: $spacing-base;
+  left: var(--spacing-base);
+  margin-bottom: var(--spacing-base);
   pointer-events: none;
   position: absolute;
-  top: $spacing-base;
+  top: var(--spacing-base);
 
   .hearts {
     color: #fff;
@@ -168,7 +166,7 @@
     min-height: unset;
 
     :global(.icon) {
-      filter: $icon-filter-white;
+      filter: var(--icon-filter-white);
     }
   }
 }
@@ -186,14 +184,14 @@
 
 .publishTag {
   display: flex;
-  font-size: $font-size-sm;
+  font-size: var(--font-size-sm);
   font-style: italic;
   text-transform: uppercase;
 }
 
 .layoutCard.light {
   background-color: #fff;
-  box-shadow: $box-shadow;
+  box-shadow: var(--box-shadow);
   color: #333;
 
   h3,

@@ -1,7 +1,5 @@
-@use "@/styles/mixins" as *;
-
 .control {
-  margin-bottom: $spacing-base;
+  margin-bottom: var(--spacing-base);
 }
 
 label {
@@ -13,20 +11,20 @@ input,
 textarea,
 select,
 option {
-  font-family: $font-family;
+  font-family: var(--font-family);
 }
 
 input[type="text"],
 textarea {
-  background-color: $panel-bg-dark;
+  background-color: var(--panel-bg-dark);
   border: none;
-  border-radius: $border-radius;
+  border-radius: var(--border-radius);
   color: #eee;
   display: block;
-  margin-bottom: $spacing-sm;
-  padding: $spacing-sm;
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-sm);
   transition-duration: 0.15s;
   transition-property: background-color, color, outline, box-shadow, border;
-  transition-timing-function: $cubic-bezier;
+  transition-timing-function: var(--cubic-bezier);
   width: 100%;
 }

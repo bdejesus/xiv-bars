@@ -2,15 +2,15 @@
 
 .container {
   background-color: #fff;
-  color: $color-gray;
-  font-size: $font-size-base;
-  line-height: $font-size-lg;
-  padding: $spacing-lg;
+  color: var(--color-gray);
+  font-size: var(--font-size-base);
+  line-height: var(--font-size-lg);
+  padding: var(--spacing-lg);
 
   h1 {
-    color: $color-gray;
-    font-size: $font-size-xl-2;
-    margin-bottom: $spacing-lg;
+    color: var(--color-gray);
+    font-size: var(--font-size-xl-2);
+    margin-bottom: var(--spacing-lg);
   }
 
   dl {
@@ -18,16 +18,16 @@
   }
 
   dt {
-    font-size: $font-size-lg;
-    margin-top: $spacing-lg;
+    font-size: var(--font-size-lg);
+    margin-top: var(--spacing-lg);
   }
 
   dd {
     display: flex;
     flex-direction: row;
-    margin-bottom: $spacing-base;
+    margin-bottom: var(--spacing-base);
     margin-left: 0;
-    margin-top: $spacing-base;
+    margin-top: var(--spacing-base);
 
     h1,h2,h3,h4,h5,h6 {
       margin-top: 0;
@@ -47,13 +47,13 @@
   }
 
   .closeButton {
-    top: $spacing-lg;
+    top: var(--spacing-lg);
   }
 }
 
 .sections {
   display: grid;
-  gap: $spacing-lg;
+  gap: var(--spacing-lg);
   grid-template-columns: 1fr 1fr;
 
   @media (max-width: $screen-sm) {
@@ -63,8 +63,8 @@
 
 .markdown,
 .output {
-  box-shadow: $box-shadow-light;
-  padding: $spacing-sm;
+  box-shadow: var(--box-shadow-light);
+  padding: var(--spacing-sm);
   position: relative;
   width: 50%;
 
@@ -80,7 +80,7 @@
 
 .markdown {
   background-color: #eee;
-  border-radius: $border-radius 0 0 $border-radius;
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
 
   pre {
     background-color: transparent;
@@ -92,7 +92,7 @@
 
 .output {
   background-color: #fff;
-  border-radius: 0 $border-radius $border-radius 0;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
 
   pre {
     margin-bottom: 0;

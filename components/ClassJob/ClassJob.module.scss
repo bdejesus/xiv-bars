@@ -1,5 +1,3 @@
-@use "@/styles/mixins" as *;
-
 .container,
 .jobWrapper {
   align-items: center;
@@ -9,31 +7,31 @@
 
 .container {
   background-color: #333;
-  border-radius: $border-radius;
-  padding-left: $spacing-sm;
-  padding-right: $spacing-sm;
+  border-radius: var(--border-radius);
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
   position: relative;
   transform: translateZ(0);
   white-space: nowrap;
 
   &[data-role='TANK'] {
-    background-color: $color-tank;
+    background-color: var(--color-tank);
   }
 
   &[data-role='HEAL'] {
-    background-color: $color-healer;
+    background-color: var(--color-healer);
   }
 
   &[data-role*='DPS'] {
-    background-color: $color-dps;
+    background-color: var(--color-dps);
   }
 
   &[data-role="DOH"] {
-    background-color: $color-doh;
+    background-color: var(--color-doh);
   }
 
   &[data-role="DOL"] {
-    background-color: $color-dol;
+    background-color: var(--color-dol);
   }
 }
 
@@ -58,18 +56,18 @@
 .abbr {
   color: #fff;
   display: block;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   font-weight: 900;
-  height: $font-size-base;
+  height: var(--font-size-base);
   line-height: 12px;
-  margin-left: $spacing-xs;
-  padding: 0 $spacing-xs;
+  margin-left: var(--spacing-xs);
+  padding: 0 var(--spacing-xs);
 }
 
 .name {
   color: rgb(255 255 255 / 75%);
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   font-weight: 400;
-  margin-left: $spacing-sm;
+  margin-left: var(--spacing-sm);
   text-transform: uppercase;
 }

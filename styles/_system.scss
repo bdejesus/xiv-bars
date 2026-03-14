@@ -1,18 +1,16 @@
-@use '@/styles/mixins' as *;
-
 .system-message {
   box-shadow: 0 4px 10px rgb(0 0 0 / 50%);
   display: block;
-  font-size: $font-size-base;
+  font-size: var(--font-size-base);
   font-weight: 400;
   line-height: 1.2;
-  padding: $spacing-base;
+  padding: var(--spacing-base);
   text-align: center;
 }
 
 .inline-message {
   display: block;
-  padding: $spacing-base;
+  padding: var(--spacing-base);
 }
 
 .fail, .danger {
@@ -25,7 +23,7 @@
 }
 
 .warn {
-  background-color: $color-alt-light;
-  color: $color-alt-dark-2;
+  background-color: var(--color-alt-light);
+  color: var(--color-alt-dark-2);
   text-align: left;
 }

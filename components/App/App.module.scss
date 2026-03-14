@@ -2,7 +2,7 @@
 
 .header {
   border-bottom: 1px solid rgb(0 0 0 / 90%);
-  padding: $spacing-lg 0 0;
+  padding: var(--spacing-lg) 0 0;
 }
 
 .headerBody {
@@ -67,10 +67,10 @@ $icon-size: 6px;
 .container {
   align-items: flex-start;
   display: flex;
-  gap: $spacing-lg;
+  gap: var(--spacing-lg);
   justify-content: center;
   max-width: 100%;
-  padding: $spacing-base $spacing-base $spacing-lg;
+  padding: var(--spacing-base) var(--spacing-base) var(--spacing-lg);
 }
 
 .main {
@@ -91,8 +91,8 @@ $icon-size: 6px;
   opacity: 0;
   pointer-events: none;
   position: sticky;
-  top: $header-height + $controlbar-height + $spacing-base;
-  transform: translateX($spacing-lg);
+  top: calc(var(--header-height) + var(--controlbar-height) + var(--spacing-base));
+  transform: translateX(var(--spacing-lg));
   transition: width 0.66s ease, opacity 0.33s ease, transform 0.66s ease;
   transition-delay: 0.15s;
   width: 0;
@@ -106,7 +106,7 @@ $icon-size: 6px;
   }
 
   .section {
-    padding-right: $spacing-lg;
+    padding-right: var(--spacing-lg);
   }
 }
 
@@ -140,9 +140,9 @@ $icon-size: 6px;
 
   a {
     background-color: #fff;
-    border-radius: $border-radius;
+    border-radius: var(--border-radius);
     display: block;
-    font-size: $font-size-xs;
+    font-size: var(--font-size-xs);
     height: 32px;
     margin: 2px;
     overflow: hidden;
@@ -176,8 +176,8 @@ $icon-size: 6px;
   }
 
   .container {
-    gap: $spacing-base;
-    height: $view-height;
+    gap: var(--spacing-base);
+    height: var(--view-height);
     justify-content: flex-start;
     overflow: auto;
   }
@@ -195,7 +195,7 @@ $icon-size: 6px;
 @media (max-width: $screen-md) {
   .container,
   .mainPanel {
-    height: $view-height-md;
+    height: var(--view-height-md);
   }
 
   .container {

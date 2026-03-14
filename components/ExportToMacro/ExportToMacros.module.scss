@@ -9,18 +9,18 @@
 
 .exportPrompt {
   p {
-    font-size: $font-size-base;
+    font-size: var(--font-size-base);
     line-height: 1.2em;
   }
 
   :global(.modal-content) {
-    max-width: $screen-md-max;
+    max-width: var(--screen-md-max);
   }
 }
 
 .textareaContainer {
   display: grid;
-  gap: $spacing-sm;
+  gap: var(--spacing-sm);
   grid-template-columns: 1fr 1fr 1fr;
   justify-content: flex-start;
 }
