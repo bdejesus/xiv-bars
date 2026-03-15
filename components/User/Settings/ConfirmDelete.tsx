@@ -54,6 +54,7 @@ export default function ConfirmDelete({ onCancel }:ConfirmDeleteProps) {
             name="confirmUserName"
             type="text"
             autoComplete="off"
+            aria-label={t('Pages.User.Settings.enter_username', { user_name: user.name })}
             onKeyUp={checkUserConfirm}
           />
         </div>

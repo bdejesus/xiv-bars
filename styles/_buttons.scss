@@ -5,21 +5,19 @@ $button-label-shadow: 0 1px 1px rgb(0 0 0 / 40%);
 
 @keyframes buttonFocus {
   0% {
-    outline: 2px double var(--color-alt-dark);
+    outline: 2px solid var(--color-alt-dark);
+    outline-offset: 0;
   }
 
-  60% {
-    outline: 8px double rgb(255 255 255 / 0%);
-  }
-
-  61% {
-    outline: 0 double rgb(255 255 255 / 0%);
+  50% {
+    outline: 2px solid transparent;
+    outline-offset: 5px;
   }
 
   100% {
-    outline: 2px double var(--color-alt-dark);
+    outline: 2px solid var(--color-alt-dark);
+    outline-offset: 0;
   }
-
 }
 
 button,
@@ -39,7 +37,7 @@ button,
   height: 40px;
   justify-content: center;
   line-height: 1em;
-  outline: 3px double rgb(255 255 255 / 0%);
+  outline: 3px solid rgb(255 255 255 / 0%);
   padding: 0 12px;
   position: relative;
   transition-duration: var(--timing-default);
@@ -81,9 +79,9 @@ button,
   }
 
   &:focus {
-    animation: buttonFocus 0.5s linear;
+    animation: buttonFocus var(--timing-slow) ease-in-out;
     animation-fill-mode: forwards;
-    outline: 2px double var(--color-alt-dark);
+    outline: 2px solid var(--color-alt-dark);
     z-index: 2;
   }
 

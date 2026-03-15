@@ -55,7 +55,7 @@ async function buildSitemap(_req: NextApiRequest, res: NextApiResponse) {
 
     // Display output to user
     res.end(sitemapOutput);
-  } catch (e) {
+  } catch {
     res.status(500).end('Failed to generate the sitemap');
   }
 }

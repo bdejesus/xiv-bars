@@ -7,7 +7,6 @@ import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
 import * as HTMLParser from 'fast-html-parser';
 
-import i18nConfig from '../next-i18next.config.js';
 import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
 import JobAction, { getActionIcon } from '../lib/PlayerActions.mjs';
@@ -20,8 +19,6 @@ dotenv.config();
 
 const apiUrl = 'https://beta.xivapi.com/api/1';
 const dest = './.apiData';
-const { i18n } = i18nConfig;
-
 // Read command arguments
 const separatorIndex = process.argv.indexOf('--');
 const parsedArgs = process.argv.slice(separatorIndex + 1);

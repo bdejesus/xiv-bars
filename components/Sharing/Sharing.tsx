@@ -51,6 +51,7 @@ export function Sharing() {
           ref={urlInput}
           onClick={selectInput}
           value={shareURL}
+          aria-label={t('Sharing.share_url')}
           readOnly
         />
       </div>

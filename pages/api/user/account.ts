@@ -34,7 +34,7 @@ export default async function accountHandler(
         break;
       }
     }
-  } catch (error) {
+  } catch {
     const message = 'Unauthorized';
     // console.error(error);
     res.statusMessage = message;

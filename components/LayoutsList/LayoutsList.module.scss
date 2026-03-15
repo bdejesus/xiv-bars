@@ -43,12 +43,12 @@
 @keyframes enterListItem {
   from {
     opacity: 0;
-    top: var(--spacing-base);
+    transform: translateY(var(--spacing-base));
   }
 
   to {
     opacity: 1;
-    top: 0;
+    transform: translateY(0);
   }
 }
 

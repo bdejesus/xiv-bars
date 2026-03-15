@@ -39,7 +39,7 @@
     position: absolute;
     text-align: center;
     top: 100%;
-    transition-duration: 0.33s;
+    transition-duration: var(--timing-medium);
     transition-property: opacity;
     transition-timing-function: var(--cubic-bezier);
   }
@@ -59,7 +59,7 @@
   overflow: hidden;
   position: relative;
   text-align: center;
-  transition-duration: 0.33s;
+  transition-duration: var(--timing-medium);
   transition-property: border, box-shadow, opacity, filter, transform;
   transition-timing-function: var(--cubic-bezier);
   width: var(--slot-size);
