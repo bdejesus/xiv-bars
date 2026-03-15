@@ -22,6 +22,7 @@ export default function LanguagePicker() {
     <div
       className={styles.container}
       onMouseLeave={() => setShowMenu(false)}
+      role="presentation"
     >
       <button
         type="button"

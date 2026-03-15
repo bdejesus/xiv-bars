@@ -45,6 +45,7 @@ export default function UserNav({ className = '' }:UserNavProps) {
           onKeyUp={handleProfileKeyup}
           role="button"
           tabIndex={0}
+          aria-label={session.user.name}
         >
           <div
             className={`${styles.profile} button btn-clear`}

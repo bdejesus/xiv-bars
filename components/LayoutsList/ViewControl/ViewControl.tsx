@@ -45,6 +45,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
             name={`${id}-sort`}
             id={`${id}-sort-recent`}
             value="recent"
+            aria-label="Most Recent"
             onChange={handleControlChange}
             defaultChecked
           />
@@ -57,6 +58,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
             name={`${id}-sort`}
             id={`${id}-sort-hearts`}
             value="hearts"
+            aria-label="Most Hearts"
             onChange={handleControlChange}
           />
           <span>Most Hearts</span>
@@ -79,6 +81,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
               value={filter}
               name={`${id}-filter-${filter}`}
               id={`${id}-filter-${filter}`}
+              aria-label={filter}
               onChange={handleControlChange}
               defaultChecked
             />

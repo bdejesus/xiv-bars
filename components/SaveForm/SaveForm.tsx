@@ -149,6 +149,7 @@ function SaveForm() {
           ref={titleField}
           className={styles.titleField}
           defaultValue={title}
+          aria-label={t('SaveForm.title')}
           required
           onKeyUp={validateTitle}
         />
@@ -174,6 +175,7 @@ function SaveForm() {
           ref={descriptionField}
           className={styles.textarea}
           defaultValue={description}
+          aria-label={t('SaveForm.description')}
         />
       </div>
 
@@ -184,6 +186,7 @@ function SaveForm() {
             name="layout-publish"
             type="checkbox"
             defaultChecked={viewAction === 'new' || viewData.published}
+            aria-label={t('SaveForm.publish_layout')}
             ref={publishedCheckbox}
           />
           <span className={styles.optionLabel}>
