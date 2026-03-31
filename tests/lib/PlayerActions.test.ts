@@ -1,9 +1,6 @@
 import PlayerActions from '@/lib/PlayerActions.mjs';
 import '@testing-library/jest-dom';
 import 'tests/setupTests';
-import axios from 'axios';
-
-jest.mock('axios');
 
 const ClassJob = {
   ID: 34,
@@ -76,8 +73,9 @@ describe('Action', () => {
   let actions:PlayerActions;
 
   beforeEach(() => {
-    const mockData = { data: responseActions };
-    (axios.get as jest.Mock).mockResolvedValue(mockData);
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue(responseActions),
+    });
 
     actions = new PlayerActions(ClassJob);
   });
