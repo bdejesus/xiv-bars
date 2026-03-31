@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 import dotenv from 'dotenv';
 import path from 'path';
-import axios from 'axios';
-import fs, { promises as fsPromise } from 'fs';
+import { promises as fsPromise } from 'fs';
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
 import * as HTMLParser from 'fast-html-parser';
@@ -62,18 +61,11 @@ async function fetchIcon(action) {
 
   await fsPromise.mkdir(folderPath, { recursive: true });
 
-  const response = await axios.get(iconUrl, {
-    responseType: 'stream',
-    header: { Accept: 'image/jpeg, image/png, image/webp' },
+  const response = await fetch(iconUrl, {
+    headers: { Accept: 'image/jpeg, image/png, image/webp' },
   });
-
-  const writer = fs.createWriteStream(filePath);
-  response.data.pipe(writer);
-
-  await new Promise((resolve, reject) => {
-    writer.on('finish', () => resolve(`Image saved to ${filePath}`));
-    writer.on('error', reject);
-  });
+  const buffer = await response.arrayBuffer();
+  await fsPromise.writeFile(filePath, Buffer.from(buffer));
 }
 
 async function bulkFetchIcons(actions, progressBar) {
@@ -93,8 +85,9 @@ async function bulkFetchIcons(actions, progressBar) {
 async function fetchJobsData() {
   const jobColumns = [...defaultFields, 'IsLimitedJob', 'Role'];
   const query = buildQuery({ fields: jobColumns.join(',') });
-  const { data } = await axios(`${process.env.XIV_API_URL}/sheet/ClassJob?${query}`)
+  const response = await fetch(`${process.env.XIV_API_URL}/sheet/ClassJob?${query}`)
     .catch((error) => { console.error(error); });
+  const data = await response.json();
 
   return data.rows
     .filter((row) => row.row_id >= 2)
@@ -224,7 +217,8 @@ async function fetchActionCategory(actionCategory) {
   ].join(',');
 
   const endpoint = `${apiUrl}/sheet/${actionCategory}?fields=${actionColumns}`;
-  const { data } = await axios(endpoint);
+  const response = await fetch(endpoint);
+  const data = await response.json();
 
   console.log(`  🔩 Building ${actionCategory} actions...`);
 
