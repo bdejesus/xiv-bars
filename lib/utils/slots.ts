@@ -2,6 +2,7 @@ import { sortIntoGroups } from 'lib/utils/array.mjs';
 import { defaultState } from 'components/App/defaultState';
 import { layouts, buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import { decorateRouterQuery } from 'lib/utils/url';
+import { SLOT_ID_SEPARATOR, ROLE_ACTION_PREFIX } from 'lib/constants';
 
 import type { LayoutViewProps } from 'types/Layout';
 import type { SlotProps, ActionProps } from 'types/Action';
@@ -112,7 +113,7 @@ function getActionKey({ actionCategory, actions, roleActions }:GetActionKeyProps
     case ACTION_CAT.MainCommand.prefix: return MAIN_COMMAND;
     case ACTION_CAT.MacroIcon.prefix: return MACRO_ICON;
     case ACTION_CAT.PetAction.prefix: return PET_ACTION;
-    case 'r': return roleActions;
+    case ROLE_ACTION_PREFIX: return roleActions;
     default: return actions;
   }
 }
@@ -133,7 +134,7 @@ function setActionsByGroup({
   roleActions
 }:SetActionsByGroupProps) {
   const actionPrefixes = Object.values(ACTION_CAT).map((type) => type.prefix);
-  const prefixes = [...actionPrefixes, 'r'].join('|');
+  const prefixes = [...actionPrefixes, ROLE_ACTION_PREFIX].join('|');
   const actionRegex = new RegExp(prefixes);
   const IDString = actionID.toString();
   const typeMatch = IDString.match(actionRegex);
@@ -231,7 +232,7 @@ export function setActionToSlot({
   roleActions
 }:SetActionToSlotProps) {
   // Parse the slot ID string and build a slot object
-  const [parent, id] = slotID.split('-');
+  const [parent, id] = slotID.split(SLOT_ID_SEPARATOR);
   const slotIdentifier = { parent, id: parseInt(id, 10) - 1 };
   const groupedSlots = slotActions({
     encodedSlots,

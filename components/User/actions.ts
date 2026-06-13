@@ -1,6 +1,6 @@
 export const userActions = {
-  UPDATE_USER: 'UpdateUser',
-  UPDATE_LAYOUTS: 'UpdateLayouts'
+  UPDATE_USER: 'UPDATE_USER',
+  UPDATE_LAYOUTS: 'UPDATE_LAYOUTS'
 };
 
 export default userActions;

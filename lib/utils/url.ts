@@ -24,7 +24,7 @@ type hbValue = string|string[]|number[];
 
 export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   const params = { ...viewData, ...query, ...mergeData };
-  const inlcudeKeys = [
+  const includeKeys = [
     'l',
     'hb',
     'isPvp',
@@ -52,7 +52,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
     if (key === 'isPvp') return { ...items, [key]: formatPvp(value as string) };
     if (key === 'hb') return { ...items, [key]: value && formatHb(value as hbValue) };
     if (['l', 'layout'].includes(key)) return { ...items, l: value?.toString() };
-    if (inlcudeKeys.includes(key)) return { ...items, [key]: value };
+    if (includeKeys.includes(key)) return { ...items, [key]: value };
     if (key === 'id') return { ...items, parentId: value };
     return items;
   }, {});
