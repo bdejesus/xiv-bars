@@ -9,6 +9,7 @@ import { userActions } from 'components/User/actions';
 import { appActions } from 'components/App/actions';
 import { systemActions, useSystemDispatch } from 'components/System';
 import analytics from 'lib/analytics';
+import { LAYOUT_FILTER_KEYS } from 'lib/db';
 import type { LayoutViewProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
 
@@ -59,9 +60,7 @@ function SaveForm() {
           description: descriptionField.current?.value,
           published: publishedCheckbox.current?.checked
         },
-        {
-          filterKeys: ['user', 'createdAt', 'deletedAt', 'updatedAt', 'hearted', '_count', 'userId', 'parentLayout']
-        }
+        { filterKeys: LAYOUT_FILTER_KEYS }
       )
     };
 
@@ -84,7 +83,7 @@ function SaveForm() {
           }
         });
 
-        userDispatch({ type: userActions.UPDATE_LAYOUTS, payload: { layouts: layouts.length } });
+        userDispatch({ type: userActions.UPDATE_LAYOUTS, payload: { layouts } });
 
         if (viewAction === 'new') {
           analytics.event({ action: 'form_submit', params: { form_id: 'layout', form_name: 'new_layout' } });
