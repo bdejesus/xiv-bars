@@ -3,6 +3,7 @@ import { defaultState } from 'components/App/defaultState';
 import { layouts, buildHotbars, buildCrossHotbars } from 'lib/xbars';
 import { decorateRouterQuery } from 'lib/utils/url';
 import { SLOT_ID_SEPARATOR, ROLE_ACTION_PREFIX } from 'lib/constants';
+import { encodeSlots, decodeSlots } from 'lib/utils/encoding';
 
 import type { LayoutViewProps } from 'types/Layout';
 import type { SlotProps, ActionProps } from 'types/Action';
@@ -16,26 +17,6 @@ import MAIN_COMMAND from '../../.apiData/MainCommand.json';
 import MACRO_ICON from '../../.apiData/MacroIcon.json';
 import PET_ACTION from '../../.apiData/PetAction.json';
 
-function assignActionIds(slottedActions: SlotProps[]) {
-  if (!slottedActions) return null;
-
-  return Object.values(slottedActions).map((slot) => {
-    if (slot.action?.ID) {
-      return (typeof slot.action.Prefix !== 'undefined')
-        ? `${slot.action.Prefix}${slot.action.ID}`
-        : `${slot.action.ID}`;
-    }
-    return '0';
-  });
-}
-
-function encodeSlots(slots:object):string {
-  const slotActionObject = Object.values(slots);
-  const actionIdGroups = slotActionObject.map((arr) => assignActionIds(arr as SlotProps[]));
-  const actionIds = actionIdGroups.flat();
-  const slotsString = actionIds.join(',');
-  return slotsString;
-}
 
 interface MergeParamsToViewProps {
   params?: ParsedUrlQuery,
@@ -164,7 +145,7 @@ function groupSlotsIntoLayout({
   roleActions
 }:SlotActionsProps) {
   const numSlots = layout?.toString() === '1' ? 12 : 16;
-  const slotRows = sortIntoGroups(encodedSlots?.split(','), numSlots);
+  const slotRows = sortIntoGroups(encodedSlots ? decodeSlots(encodedSlots) : [], numSlots);
   const layoutTemplate = layout === 0 ? buildCrossHotbars() : buildHotbars();
 
   // Take each action group and assign actions to them
@@ -272,9 +253,7 @@ export function setActionsToSlots(props:SetActionsToSlotsProps) {
 }
 
 const modules = {
-  encodeSlots,
   mergeParamsToView,
-  assignActionIds,
   setActionToSlot,
   setActionsToSlots
 };
