@@ -2,6 +2,7 @@ import { domain } from 'lib/host';
 import type { LayoutViewProps, MergeDataProps } from 'types/Layout';
 import { defaultState } from 'components/App/defaultState';
 import { QueryProps } from 'types/Page';
+import { ENCODED_SLOTS_PARAM, ENCODED_SLOTS_PARAM_ALIASES, readSlotParam } from 'lib/utils/encoding';
 
 export function jsonToQuery(json:object) {
   return Object.entries(json)
@@ -48,7 +49,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
   }
 
   const decoratedParams = Object.entries(params).reduce((items, [key, value]) => {
-    if (['s', 's1', 'encodedSlots'].includes(key)) return { ...items, s: value };
+    if (ENCODED_SLOTS_PARAM_ALIASES.includes(key)) return { ...items, [ENCODED_SLOTS_PARAM]: value };
     if (key === 'isPvp') return { ...items, [key]: formatPvp(value as string) };
     if (key === 'hb') return { ...items, [key]: value && formatHb(value as hbValue) };
     if (['l', 'layout'].includes(key)) return { ...items, l: value?.toString() };
@@ -71,7 +72,7 @@ export function buildUrl({ viewData, query, mergeData }:BuildURLProps):string {
 }
 
 export function decorateRouterQuery(query:QueryProps) {
-  const encodedSlots = query.s1 || query.s;
+  const encodedSlots = readSlotParam(query);
   // convert isPvp url param to boolean
   const parsePvp = (pvpVal:string):boolean => {
     if (pvpVal === '0') return false;

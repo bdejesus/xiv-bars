@@ -112,6 +112,9 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   let parentLayout = null;
 
   const parentIdNumber = parentId ? parseInt(parentId, 10) : null;
+  const host = context.req.headers.host;
+  const protocol = (context.req.headers['x-forwarded-proto'] as string) || (host?.includes('localhost') ? 'http' : 'https');
+  const baseUrl = `${protocol}://${host}`;
 
   if (parentId) {
     const fetchOptions = {
@@ -120,7 +123,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
       headers: { 'Content-Type': 'application/json' }
     };
 
-    parentLayout = await fetch(`${domain}/api/layout`, fetchOptions);
+    parentLayout = await fetch(`${baseUrl}/api/layout`, fetchOptions);
     parentLayout = await parentLayout.json();
   }
 
@@ -128,7 +131,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   const selectedJob = jobId ? Jobs.find((job:ClassJobProps) => job.Abbr === jobId) : null;
   if (!selectedJob) return { notFound: true };
 
-  const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${pvp}`);
+  const actionsRequest = await fetch(`${baseUrl}/api/actions?job=${jobId}&isPvp=${pvp}`);
   const { actions, roleActions } = await actionsRequest.json();
 
   try {

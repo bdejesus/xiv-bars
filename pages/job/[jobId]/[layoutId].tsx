@@ -126,6 +126,9 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   const session = await getServerSession(req, res, authOptions);
   const viewerId = session?.user.id;
   const { jobId, layoutId } = context.params as {[key:string]: string};
+  const host = req.headers.host;
+  const protocol = (req.headers['x-forwarded-proto'] as string) || (host?.includes('localhost') ? 'http' : 'https');
+  const baseUrl = `${protocol}://${host}`;
 
   if (layoutId) {
     try {
@@ -139,11 +142,11 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         body: JSON.stringify({ layoutId, viewerId, method: 'read' }),
         headers: { 'Content-Type': 'application/json' }
       };
-      const fetchView = await fetch(`${domain}/api/layout`, fetchOptions);
+      const fetchView = await fetch(`${baseUrl}/api/layout`, fetchOptions);
       const viewData = await fetchView.json();
 
       // Fetch Job Actions
-      const actionsRequest = await fetch(`${domain}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
+      const actionsRequest = await fetch(`${baseUrl}/api/actions?job=${jobId}&isPvp=${viewData.isPvp}`);
       const { actions, roleActions } = await actionsRequest.json();
 
       // DB List Query Options
