@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { appWithTranslation, useTranslation, UserConfig } from 'next-i18next';
+import { appWithTranslation, UserConfig } from 'next-i18next/pages';
+import { useTranslation } from 'react-i18next';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { Roboto, Noto_Sans_Mono } from 'next/font/google';

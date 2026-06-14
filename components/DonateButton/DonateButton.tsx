@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import CloseButton from 'components/CloseButton';
 import analytics from 'lib/analytics';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useSession } from 'next-auth/react';
 import { useAppDispatch, useAppState } from 'components/App/context';
 import { appActions } from 'components/App/actions';

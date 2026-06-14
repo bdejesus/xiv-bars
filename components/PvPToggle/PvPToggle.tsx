@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { useSystemState } from 'components/System/context';
 import { useAppState, useAppDispatch } from 'components/App/context';

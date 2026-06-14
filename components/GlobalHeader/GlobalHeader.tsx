@@ -1,6 +1,6 @@
  
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { localizePath } from 'lib/utils/i18n.mjs';
 import ExportToMacros from 'components/ExportToMacro';

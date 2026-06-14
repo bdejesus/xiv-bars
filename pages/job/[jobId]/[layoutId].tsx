@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import db from 'lib/db';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { GetServerSideProps } from 'next';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { serializeDates, shuffleArray } from 'lib/utils/array.mjs';

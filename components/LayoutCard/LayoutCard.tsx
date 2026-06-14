@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { formatDateString } from 'lib/utils/time';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useSession } from 'next-auth/react';
 import { useUserDispatch, userActions } from 'components/User';
 import Icon, { Icons } from 'components/Icon';
