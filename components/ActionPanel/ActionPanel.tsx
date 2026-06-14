@@ -1,5 +1,5 @@
 import React, { useEffect, useState, createRef } from 'react';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useAppState } from 'components/App/context';
 import MACROS from 'apiData/MacroIcon.json';
 import PET_ACTIONS from 'apiData/PetAction.json';

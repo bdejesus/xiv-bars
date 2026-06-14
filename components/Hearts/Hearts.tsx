@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'components/App/context';
 import { appActions } from 'components/App/actions';
 import Icon from 'components/Icon';

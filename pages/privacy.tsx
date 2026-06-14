@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import GlobalHeader from 'components/GlobalHeader';
 import Footer from 'components/Footer';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations';
 import { domain } from 'lib/host';
 
 import type { GetServerSideProps } from 'next';

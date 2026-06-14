@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Head from 'next/head';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { serverSideTranslations } from 'next-i18next/pages/serverSideTranslations';
 import { useSession } from 'next-auth/react';
 import { formatDateStringLong, daysAgo } from 'lib/utils/time';
 import { AppContextProvider } from 'components/App/';

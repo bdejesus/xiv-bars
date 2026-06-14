@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAppState } from 'components/App/context';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import JobsList from '../JobsList';
 import styles from './JobMenu.module.scss';
 

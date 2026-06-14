@@ -1,5 +1,5 @@
 import React, { useState, createRef } from 'react';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useSession, signOut } from 'next-auth/react';
 import ReactMarkdown from 'react-markdown';
 import styles from './ConfirmDelete.module.scss';

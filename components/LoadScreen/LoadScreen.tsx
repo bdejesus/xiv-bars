@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { useSystemState } from 'components/System/context';
 import styles from './LoadScreen.module.scss';
 

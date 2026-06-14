@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { buildUrl } from 'lib/utils/url';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';

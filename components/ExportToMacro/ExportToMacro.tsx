@@ -6,7 +6,7 @@ import { layouts, chotbarSlotNames, hasActions } from 'lib/xbars';
 import { translateData } from 'lib/utils/i18n.mjs';
 import { useAppState } from 'components/App/context';
 import Icon, { Icons } from 'components/Icon';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import Modal from 'components/Modal';
 import type { SlotProps } from 'types/Action';
 import Textarea from './Textarea';

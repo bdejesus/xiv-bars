@@ -1,6 +1,6 @@
  
  
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import { createRef, useEffect, useState } from 'react';
 import { buildUrl } from 'lib/utils/url';
 import { useRouter } from 'next/router';

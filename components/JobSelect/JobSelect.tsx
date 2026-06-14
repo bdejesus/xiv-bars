@@ -1,5 +1,5 @@
 import { useState, ReactNode } from 'react';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import Icon, { Icons } from 'components/Icon';
 import JobMenu from 'components/JobSelect/JobMenu';
 import Modal from 'components/Modal';

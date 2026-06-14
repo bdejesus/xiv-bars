@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { formatDateString } from 'lib/utils/time';
@@ -133,9 +133,9 @@ export default function DetailPanel({ className = '', visible }:Props) {
                     {description}
                   </ReactMarkdown>
                 ) : (
-                  <ReactMarkdown className="inline-message warn">
-                    {t('DetailPanel.draft')}
-                  </ReactMarkdown>
+                  <div className="inline-message warn">
+                    <ReactMarkdown>{t('DetailPanel.draft')}</ReactMarkdown>
+                  </div>
                 )}
 
                 <AdUnit
