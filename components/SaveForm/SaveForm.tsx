@@ -9,7 +9,7 @@ import { userActions } from 'components/User/actions';
 import { appActions } from 'components/App/actions';
 import { systemActions, useSystemDispatch } from 'components/System';
 import analytics from 'lib/analytics';
-import { LAYOUT_FILTER_KEYS } from 'lib/db';
+import { LAYOUT_FILTER_KEYS } from 'lib/constants';
 import type { LayoutViewProps } from 'types/Layout';
 import SignInPrompt from './SignInPrompt';
 
