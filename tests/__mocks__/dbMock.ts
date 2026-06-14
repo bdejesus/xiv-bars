@@ -1,5 +1,5 @@
  
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from 'lib/generated/prisma/client';
 import { DeepMockProxy } from 'jest-mock-extended';
 import type { LayoutViewProps } from 'types/Layout';
 import db from 'lib/db';
