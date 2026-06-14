@@ -191,7 +191,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
           select: { hearts: true }
         }
       },
-      orderBy: { updatedAt: 'desc' }
+      orderBy: { updatedAt: 'desc' as const }
     });
 
     return {

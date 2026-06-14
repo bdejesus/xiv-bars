@@ -146,7 +146,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
         user: { select: { name: true } },
         _count: { select: { hearts: true } }
       },
-      orderBy: { updatedAt: 'desc' }
+      orderBy: { updatedAt: 'desc' as const }
     });
     // Take results, shuffle and take 4, convert date objects to json string
     const serializableClassJobLayouts = serializeDates(shuffleArray(classJobLayouts).slice(0, 12));

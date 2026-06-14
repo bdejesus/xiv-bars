@@ -18,16 +18,14 @@ async function signinUser(session: Session) {
         name: session.user.name,
         email: session.user.email,
         image: session.user.image
-      }
-    });
-  } else if (session.user.image && !user.image) {
-    user = await db.user.update({
-      where: {
-        id: user.id
       },
-      data: {
-        image: session.user.image
-      }
+      include: { _count: { select: { layouts: true, hearts: true } } }
+    });
+  } else if (user && session.user.image && !user.image) {
+    user = await db.user.update({
+      where: { id: user.id },
+      data: { image: session.user.image },
+      include: { _count: { select: { layouts: true, hearts: true } } }
     });
   }
 
@@ -48,11 +46,17 @@ export const authOptions = {
     async session({ session }: { session: Session }) {
       const user = await signinUser(session);
 
-       
-      session.user = {
-        ...session.user,
-        ...user
-      };
+      if (user) {
+        session.user = {
+          ...session.user,
+          id: user.id,
+          name: user.name ?? session.user.name,
+          email: user.email,
+          image: user.image ?? session.user.image,
+          createdAt: user.createdAt instanceof Date ? user.createdAt.toISOString() : user.createdAt ?? undefined,
+          _count: user._count
+        };
+      }
 
       return session;
     }

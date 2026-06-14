@@ -184,7 +184,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       ...layoutsQuery,
       take: 24,
       distinct: ['userId'],
-      orderBy: { updatedAt: 'desc' }
+      orderBy: { updatedAt: 'desc' as const }
     });
 
     const layoutsWithHearts = await db.layout.findMany({
@@ -196,7 +196,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         },
       },
       orderBy: {
-        hearts: { _count: 'desc' }
+        hearts: { _count: 'desc' as const }
       }
     });
 
@@ -211,7 +211,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       }
     }
 
-    const jobGroupedLayouts:LayoutGroupProps = layoutsWithHearts
+    const jobGroupedLayouts:LayoutGroupProps = (layoutsWithHearts as unknown as LayoutViewProps[])
       .reduce((acc:LayoutGroupProps, layout:LayoutViewProps) => {
         const { jobId } = layout;
 

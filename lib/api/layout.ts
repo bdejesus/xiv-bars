@@ -24,13 +24,19 @@ export async function list(userId:UserID):Promise<LayoutViewProps[]> {
     take: maxLayouts
   });
 
-  return layouts;
+  return layouts.map((l) => ({
+    ...l,
+    createdAt: l.createdAt?.toISOString() ?? null,
+    updatedAt: l.updatedAt?.toISOString() ?? null,
+  })) as unknown as LayoutViewProps[];
 }
 
 export async function create(
   userId:UserID,
   data:LayoutDataProps
 ):Promise<LayoutDataProps> {
+  if (!userId) throw new Error('User not authenticated');
+
   const userLayouts = await db.layout
     .findMany({ where: { userId } })
     .catch((error:Error) => {
@@ -41,9 +47,10 @@ export async function create(
   if (userLayouts.length > maxLayouts) {
     throw new Error('Max number of layouts reached.');
   } else {
+    const { id: _id, hearted: _hearted, _count: _count2, ...createData } = data;
     const createLayout = await db.layout
       .create({
-        data: { ...data, userId },
+        data: { ...createData, userId } as unknown as Parameters<typeof db.layout.create>[0]['data'],
         include: {
           user: { select: { name: true } },
           parentLayout: {
@@ -58,8 +65,11 @@ export async function create(
           }
         }
       })
-      .catch((error:Error) => console.error(error));
-    return createLayout;
+      .catch((error:Error) => {
+        console.error(error);
+        throw new Error('Could not create layout.');
+      });
+    return createLayout as unknown as LayoutDataProps;
   }
 }
 
@@ -93,6 +103,8 @@ export async function read(
         }
       });
 
+    if (!viewData) throw new Error('Layout not found');
+
     // Because Layouts created before the 7.0 release used placeholder IDs for VPR and PCT
     // actions, we need to convert them into the release IDs to make the transition.
     // TODO: Create a script to update old placeholder IDs in the DB to migrate them to
@@ -114,8 +126,10 @@ export async function read(
 
     return {
       ...viewData,
-      hearted
-    };
+      hearted,
+      createdAt: viewData?.createdAt?.toISOString() ?? null,
+      updatedAt: viewData?.updatedAt?.toISOString() ?? null,
+    } as unknown as LayoutViewProps;
   } catch {
     console.error('ERROR: Could not read layout');
     throw new Error('Could not read layout.');
@@ -123,14 +137,14 @@ export async function read(
 }
 
 export async function update(data:LayoutDataProps):Promise<LayoutDataProps> {
-  const { id } = data;
+  const { id, hearted: _hearted, _count: _count2, ...rest } = data;
   const today = new Date().toISOString();
-  const viewData = { ...data, updatedAt: today };
+  const updateData = { ...rest, updatedAt: today };
 
   const updatedLayout = await db.layout
     .update({
-      where: { id },
-      data: viewData,
+      where: { id: id as number },
+      data: updateData as unknown as Parameters<typeof db.layout.update>[0]['data'],
       include: { user: { select: { name: true, id: true } } }
     })
     .catch((error:Error) => {
@@ -138,13 +152,13 @@ export async function update(data:LayoutDataProps):Promise<LayoutDataProps> {
       throw new Error('Could not update layout.');
     });
 
-  return updatedLayout;
+  return updatedLayout as unknown as LayoutDataProps;
 }
 
 export async function destroy(userId: UserID, { id }: { id:LayoutID }) {
   if (!userId || !id) throw new Error('Layout not found');
   await db.layout
-    .deleteMany({ where: { id, userId } })
+    .deleteMany({ where: { id: parseInt(id, 10), userId } })
     .catch((error:Error) => {
       console.error(error);
       throw new Error('Could not delete layout.');

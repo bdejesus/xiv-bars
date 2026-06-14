@@ -13,12 +13,15 @@ function initDb(): PrismaClient {
 const db = globalForPrisma.db || initDb();
 if (process.env.NODE_ENV !== 'production') globalForPrisma.db = db;
 
-export function serializeDates(array: Record<string, unknown>[]) {
-  return array.map((row) => ({
-    ...row,
-    createdAt: (row.createdAt as Date)?.toISOString(),
-    updatedAt: (row.updatedAt as Date)?.toISOString()
-  }));
+export function serializeDates<T extends object>(array: T[]): T[] {
+  return array.map((row) => {
+    const r = row as Record<string, unknown>;
+    return {
+      ...r,
+      createdAt: (r.createdAt as Date)?.toISOString() ?? null,
+      updatedAt: (r.updatedAt as Date)?.toISOString() ?? null,
+    } as T;
+  });
 }
 
 export const LAYOUT_SELECT = {
@@ -44,7 +47,7 @@ export const LAYOUT_SELECT = {
 export const layoutsQuery = {
   where: { deletedAt: null },
   select: LAYOUT_SELECT,
-  orderBy: { updatedAt: 'desc' }
+  orderBy: { updatedAt: 'desc' as const }
 };
 
 export default db;
