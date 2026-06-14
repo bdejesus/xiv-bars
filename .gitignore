@@ -11,6 +11,7 @@
 # production
 /build
 /.next
+/lib/generated
 # src/*
 # public/*
 # build/static/css/*.map

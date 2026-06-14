@@ -7,11 +7,11 @@ import { mockDeep } from 'jest-mock-extended';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth/next';
 import accountHandler from 'pages/api/user/account.ts';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from 'lib/generated/prisma/client';
 import db from 'mocks/dbMock';
 
 // Setup mocks for db instance
-jest.mock('@prisma/client');
+jest.mock('lib/generated/prisma/client');
 // Setup mocks for user session
 const user = { id: 1, name: 'Joe' };
 jest.mock('next-auth/next', () => ({ getServerSession: jest.fn() }));

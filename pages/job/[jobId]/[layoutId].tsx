@@ -162,7 +162,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
           user: { select: { name: true, image: true } },
           _count: { select: { hearts: true } }
         },
-        orderBy: { updatedAt: 'desc' }
+        orderBy: { updatedAt: 'desc' as const }
       };
 
       // DB Query to fetch other layouts by the layout owner

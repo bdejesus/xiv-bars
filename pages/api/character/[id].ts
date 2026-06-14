@@ -161,12 +161,13 @@ async function readCharacter(characterId:number) {
 
 async function saveCharacter(character:Character) {
   const shouldUpdate = await db.character.findUnique({ where: { id: character.id } });
+  const data = character as unknown as Parameters<typeof db.character.create>[0]['data'];
 
   if (shouldUpdate) {
-    return db.character.update({ where: { id: character.id }, data: character });
+    return db.character.update({ where: { id: character.id }, data });
   }
 
-  return db.character.create({ data: character });
+  return db.character.create({ data });
 }
 
 function errorMessageHandler(errorCode:number, error:object|null) {
@@ -190,7 +191,7 @@ export default async function characterHandler(req: NextApiRequest, res: NextApi
   const lodestoneURL = `https://na.finalfantasyxiv.com/lodestone/character/${characterId}`;
   const characterData = await readCharacter(characterId);
   const today = new Date();
-  const shouldUpdate = timeElapsed(characterData.updatedAt, today, 'minutes') > 30;
+  const shouldUpdate = characterData ? timeElapsed(characterData.updatedAt, today, 'minutes') > 30 : false;
 
   if (!characterData || shouldUpdate) {
     fetch(lodestoneURL)

@@ -183,7 +183,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (!user) return { notFound: true };
 
-  const userLayouts = user.layouts.map((layout:LayoutViewProps) => layout);
+  const userLayouts = user.layouts as unknown as LayoutViewProps[];
 
   return {
     props: {
@@ -195,7 +195,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         hearts: serializeDates(heartedLayouts),
         layouts: serializeDates(userLayouts),
         createdAt: user.createdAt.toISOString(),
-        updatedAt: user.updatedAt.toISOString()
+        updatedAt: user.updatedAt?.toISOString() ?? null
       }
     }
   };
