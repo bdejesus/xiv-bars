@@ -112,9 +112,7 @@ export const getServerSideProps:GetServerSideProps = async (context) => {
   let parentLayout = null;
 
   const parentIdNumber = parentId ? parseInt(parentId, 10) : null;
-  const host = context.req.headers.host;
-  const protocol = (context.req.headers['x-forwarded-proto'] as string) || (host?.includes('localhost') ? 'http' : 'https');
-  const baseUrl = `${protocol}://${host}`;
+  const baseUrl = /^https?:\/\//.test(domain) ? domain : `https://${domain}`;
 
   if (parentId) {
     const fetchOptions = {
