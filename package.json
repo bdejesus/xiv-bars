@@ -36,7 +36,7 @@
     "fast-html-parser": "^1.0.1",
     "i18next": "^26.3.1",
     "next": "^16.2.11",
-    "next-auth": "^4.24.14",
+    "next-auth": "^4.24.15",
     "next-i18next": "^16.0.7",
     "pg": "^8.13.3",
     "prisma": "^7.8.0",
@@ -78,7 +78,7 @@
     "jest-mock-extended": "^4.0.1",
     "json-loader": "^0.5.7",
     "node-mocks-http": "^1.13.0",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.18",
     "postcss-scss": "^4.0.4",
     "stylelint": "^17.13.0",
     "stylelint-config-standard": "^40.0.0",
@@ -94,7 +94,7 @@
   "resolutions": {
     "@next/eslint-plugin-next/glob": ">=10.5.0",
     "flatted": ">=3.4.0",
-    "immutable": ">=5.1.6",
+    "immutable": ">=5.1.9",
     "serialize-javascript": ">=7.0.5"
   }
 }
