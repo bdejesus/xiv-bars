@@ -27,7 +27,6 @@ export default function Textarea({ id, value }:TextareaProps) {
         ref={textarea}
         value={value}
         id={`macro-textarea-${id}`}
-        readOnly
       />
       <button
         type="button"
