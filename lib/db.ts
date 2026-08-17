@@ -55,8 +55,10 @@ export const LAYOUT_SELECT = {
   deletedAt: false,
   userId: true,
   published: true,
+  // No `image` -- the Discord URL it holds expires. Views resolve avatars
+  // through `avatarUrl(userId)` and /api/avatar/[userId] instead.
   user: {
-    select: { name: true, id: true, image: true }
+    select: { name: true, id: true }
   },
   _count: {
     select: { hearts: true }

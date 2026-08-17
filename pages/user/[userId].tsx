@@ -87,7 +87,7 @@ export default function User({ user }:UserViewProps) {
                 <meta itemProp="identifier" content={user.id.toString()} />
 
                 <ProfileImage
-                  src={user.image}
+                  userId={user.id}
                   title={user.name}
                   className={styles.profileImage}
                 />
@@ -160,7 +160,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     select: {
       name: true,
       id: true,
-      image: true,
       layouts: userLayoutsQuery,
       createdAt: true,
       updatedAt: true
@@ -176,7 +175,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
     include: {
       user: {
-        select: { id: true, name: true, image: true }
+        select: { id: true, name: true }
       }
     }
   }) : [];
@@ -191,7 +190,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       user: {
         name: user.name,
         id: user.id,
-        image: user.image,
         hearts: serializeDates(heartedLayouts),
         layouts: serializeDates(userLayouts),
         createdAt: user.createdAt.toISOString(),

@@ -1,15 +1,18 @@
 import NextAuth, { Session } from 'next-auth';
 import DiscordProvider from 'next-auth/providers/discord';
+import { avatarUrl } from 'lib/avatar';
 import db from 'lib/db';
+
+const userInclude = {
+  _count: {
+    select: { layouts: true, hearts: true }
+  }
+};
 
 async function signinUser(session: Session) {
   let user = await db.user.findUnique({
     where: { email: session.user.email },
-    include: {
-      _count: {
-        select: { layouts: true, hearts: true }
-      }
-    }
+    include: userInclude
   });
 
   if (session.user.email && !user) {
@@ -19,13 +22,22 @@ async function signinUser(session: Session) {
         email: session.user.email,
         image: session.user.image
       },
-      include: { _count: { select: { layouts: true, hearts: true } } }
+      include: userInclude
     });
-  } else if (user && session.user.image && !user.image) {
+  } else if (user && session.user.image && session.user.image !== user.image) {
+    // Discord avatar URLs are content-addressed, so the URL changes every time
+    // the user changes their avatar and the previous one stops resolving. Sign-in
+    // is the only moment we learn the new one, so always take it -- this used to
+    // only fill in a missing image, which left the first URL we ever saw stored
+    // forever and every later avatar change rendering as a broken image.
+    //
+    // Downloading the bytes is left to /api/avatar/[userId], which notices the
+    // source moved. Keeping the fetch out of here matters because this callback
+    // runs on every session read, not just at sign-in.
     user = await db.user.update({
       where: { id: user.id },
       data: { image: session.user.image },
-      include: { _count: { select: { layouts: true, hearts: true } } }
+      include: userInclude
     });
   }
 
@@ -52,7 +64,9 @@ export const authOptions = {
           id: user.id,
           name: user.name ?? session.user.name,
           email: user.email,
-          image: user.image ?? session.user.image,
+          // Hand the client our own stable avatar path, never the Discord URL --
+          // the raw URL expires, and this keeps it from leaking into the UI.
+          image: avatarUrl(user.id),
           createdAt: user.createdAt instanceof Date ? user.createdAt.toISOString() : user.createdAt ?? undefined,
           _count: user._count
         };

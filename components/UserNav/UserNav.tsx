@@ -4,6 +4,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import analytics from 'lib/analytics';
+import { avatarUrl } from 'lib/avatar';
 import { localizePath } from 'lib/utils/i18n.mjs';
 import LanguagePicker from 'components/LanguagePicker';
 import styles from './UserNav.module.scss';
@@ -51,9 +52,14 @@ export default function UserNav({ className = '' }:UserNavProps) {
             data-active={showMenu}
           >
             <div className={styles.profileImage}>
+              {/* No fallback needed: /api/avatar/[userId] always answers with a
+                  real image, serving the placeholder inline when it has nothing
+                  cached for the user. */}
               <img
-                src={session.user.image}
+                src={avatarUrl(session.user.id)}
                 alt={session.user.name}
+                width={30}
+                height={30}
               />
             </div>
             <div className={styles.profileTitle}>

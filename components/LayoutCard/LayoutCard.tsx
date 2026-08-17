@@ -86,7 +86,7 @@ export default function LayoutCard({
 
       <div className={styles.footer}>
         <ProfileImage
-          src={layout.user.image}
+          userId={layout.userId}
           title={layout.user.name}
           href={`/user/${layout.userId}`}
           className={styles.profileImage}

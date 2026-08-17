@@ -52,7 +52,7 @@ export default function Settings() {
           <h1>{ t('Pages.User.Settings.account_settings') }</h1>
 
           <div className={styles.profile}>
-            <ProfileImage src={user.image} title={user.name} className={styles.profileImage} />
+            <ProfileImage userId={user.id} title={user.name} className={styles.profileImage} />
 
             <div>
               <div className={styles.name}>

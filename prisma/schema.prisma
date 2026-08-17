@@ -18,10 +18,29 @@ model User {
   characterId Int?      @unique
   layouts     Layout[]
   hearts      Heart[]
+  avatar      Avatar?
   role        Role      @default(USER)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime? @updatedAt
   deletedAt   DateTime?
+}
+
+// A local copy of the bytes behind User.image. Discord serves avatars from a
+// content-addressed path, so the URL in User.image stops resolving as soon as
+// the user changes their avatar. Holding the bytes ourselves means the image
+// the site renders never expires, even when the upstream URL is long dead.
+//
+// Kept in its own table so avatar bytes never ride along on a `User` include.
+model Avatar {
+  userId      Int      @id
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // Null records a source we tried and could not download, which stops the
+  // avatar route from re-fetching a dead URL on every request.
+  data        Bytes?
+  contentType String?
+  source      String
+  fetchedAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Layout {

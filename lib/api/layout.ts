@@ -56,7 +56,7 @@ export async function create(
           parentLayout: {
             include: {
               user: {
-                select: { name: true, id: true, image: true }
+                select: { name: true, id: true }
               },
               _count: {
                 select: { hearts: true }
@@ -85,7 +85,7 @@ export async function read(
         where: { id: parseInt(id, 10) },
         include: {
           user: {
-            select: { name: true, id: true, image: true }
+            select: { name: true, id: true }
           },
           _count: {
             select: { hearts: true }
@@ -93,7 +93,7 @@ export async function read(
           parentLayout: {
             include: {
               user: {
-                select: { name: true, id: true, image: true }
+                select: { name: true, id: true }
               },
               _count: {
                 select: { hearts: true }

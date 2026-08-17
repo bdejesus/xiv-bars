@@ -4,7 +4,6 @@ import { userActions } from 'components/User';
 export interface UserProps {
   name: string,
   id: number,
-  image: string,
   layouts: LayoutViewProps[]
   hearts: LayoutViewProps[],
   createdAt: string,

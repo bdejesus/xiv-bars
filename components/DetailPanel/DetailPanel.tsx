@@ -67,7 +67,7 @@ export default function DetailPanel({ className = '', visible }:Props) {
                 <div className={styles.meta}>
                   <div className={styles.row}>
                     <ProfileImage
-                      src={user!.image}
+                      userId={userId}
                       title={user!.name}
                       className={styles.profileImage}
                       href={`/user/${userId}`}
