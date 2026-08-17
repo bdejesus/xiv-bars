@@ -8,158 +8,521 @@
   "LTW": [],
   "WVR": [],
   "BTN": [
-    "Bountiful Harvest"
+    {
+      "from": "Bountiful Harvest",
+      "to": "Bountiful Harvest II"
+    }
   ],
   "FSH": [],
   "MIN": [
-    "Bountiful Yield"
+    {
+      "from": "Bountiful Yield",
+      "to": "Bountiful Yield II"
+    }
   ],
   "AST": [
-    "Combust",
-    "Malefic",
-    "Malefic II",
-    "Combust II",
-    "Malefic III",
-    "Malefic IV",
-    "Gravity",
-    "Aspected Helios"
+    {
+      "from": "Combust",
+      "to": "Combust II"
+    },
+    {
+      "from": "Malefic",
+      "to": "Malefic II"
+    },
+    {
+      "from": "Malefic II",
+      "to": "Malefic III"
+    },
+    {
+      "from": "Combust II",
+      "to": "Combust III"
+    },
+    {
+      "from": "Malefic III",
+      "to": "Malefic IV"
+    },
+    {
+      "from": "Malefic IV",
+      "to": "Fall Malefic"
+    },
+    {
+      "from": "Gravity",
+      "to": "Gravity II"
+    },
+    {
+      "from": "Aspected Helios",
+      "to": "Helios Conjunction"
+    }
   ],
   "BLM": [
-    "Thunder",
-    "Thunder II",
-    "Fire II",
-    "Blizzard II",
-    "High Blizzard II.",
-    "Thunder III",
-    "Thunder IV"
+    {
+      "from": "Thunder",
+      "to": "Thunder III"
+    },
+    {
+      "from": "Thunder II",
+      "to": "Thunder IV"
+    },
+    {
+      "from": "Fire II",
+      "to": "High Fire II"
+    },
+    {
+      "from": "Blizzard II",
+      "to": "High Blizzard II"
+    },
+    {
+      "from": "Thunder III",
+      "to": "High Thunder"
+    },
+    {
+      "from": "Thunder IV",
+      "to": "High Thunder II"
+    }
   ],
   "BLU": [],
   "SCH": [
-    "Bio",
-    "Ruin",
-    "Art of War",
-    "Broil",
-    "Bio II",
-    "Broil II",
-    "Broil III",
-    "Art of War",
-    "Succor"
+    {
+      "from": "Bio",
+      "to": "Bio II"
+    },
+    {
+      "from": "Ruin",
+      "to": "Broil"
+    },
+    {
+      "from": "Broil",
+      "to": "Broil II"
+    },
+    {
+      "from": "Bio II",
+      "to": "Biolysis"
+    },
+    {
+      "from": "Broil II",
+      "to": "Broil III"
+    },
+    {
+      "from": "Broil III",
+      "to": "Broil IV"
+    },
+    {
+      "from": "Art of War",
+      "to": "Art of War II"
+    },
+    {
+      "from": "Succor",
+      "to": "Concitation"
+    }
   ],
   "SMN": [
-    "Ruin",
-    "Summon Ruby",
-    "Summon Topaz",
-    "Summon Emerald",
-    "Ruin II",
-    "Aethercharge",
-    "Dreadwyrm Trance",
-    "Outburst",
-    "Summon Ifrit",
-    "Summon Garuda",
-    "Fester"
+    {
+      "from": "Ruin",
+      "to": "Ruin II"
+    },
+    {
+      "from": "Summon Ruby",
+      "to": "Summon Ifrit"
+    },
+    {
+      "from": "Summon Topaz",
+      "to": "Summon Titan"
+    },
+    {
+      "from": "Summon Emerald",
+      "to": "Summon Garuda"
+    },
+    {
+      "from": "Ruin II",
+      "to": "Ruin III"
+    },
+    {
+      "from": "Aethercharge",
+      "to": "Dreadwyrm Trance"
+    },
+    {
+      "from": "Dreadwyrm Trance",
+      "to": "Summon Bahamut"
+    },
+    {
+      "from": "Outburst",
+      "to": "Tri-disaster"
+    },
+    {
+      "from": "Summon Ifrit",
+      "to": "Summon Ifrit II"
+    },
+    {
+      "from": "Summon Titan",
+      "to": "Summon Titan II"
+    },
+    {
+      "from": "Summon Garuda",
+      "to": "Summon Garuda II"
+    },
+    {
+      "from": "Fester",
+      "to": "Necrotize"
+    }
   ],
   "WHM": [
-    "Stone",
-    "Aero",
-    "Stone II",
-    "Stone III",
-    "Aero II",
-    "Stone IV",
-    "Glare",
-    "Holy",
-    "Medica II"
+    {
+      "from": "Stone",
+      "to": "Stone II"
+    },
+    {
+      "from": "Aero",
+      "to": "Aero II"
+    },
+    {
+      "from": "Stone II",
+      "to": "Stone III"
+    },
+    {
+      "from": "Stone III",
+      "to": "Stone IV"
+    },
+    {
+      "from": "Aero II",
+      "to": "Dia"
+    },
+    {
+      "from": "Stone IV",
+      "to": "Glare"
+    },
+    {
+      "from": "Glare",
+      "to": "Glare III"
+    },
+    {
+      "from": "Holy",
+      "to": "Holy III"
+    },
+    {
+      "from": "Medica II",
+      "to": "Medica III"
+    }
   ],
   "BRD": [
-    "Venomous Bite",
-    "Windbite",
-    "Straight Shot",
-    "Wide Volley",
-    "Heavy Shot",
-    "Quick Nock",
-    "Bloodletter"
+    {
+      "from": "Venomous Bite",
+      "to": "Caustic Bite"
+    },
+    {
+      "from": "Windbite",
+      "to": "Stormbite"
+    },
+    {
+      "from": "Straight Shot",
+      "to": "Refulgent Arrow"
+    },
+    {
+      "from": "Wide Volley",
+      "to": "Shadowbite"
+    },
+    {
+      "from": "Heavy Shot",
+      "to": "Burst Shot"
+    },
+    {
+      "from": "Quick Nock",
+      "to": "Ladonsbite"
+    },
+    {
+      "from": "Bloodletter",
+      "to": "Heartbreak Shot"
+    }
   ],
   "DNC": [],
   "DRK": [
-    "Blood Weapon",
-    "Flood of Darkness",
-    "Edge of Darkness",
-    "Shadow Wall"
+    {
+      "from": "Blood Weapon",
+      "to": "Delirium"
+    },
+    {
+      "from": "Flood of Darkness",
+      "to": "Flood of Shadow"
+    },
+    {
+      "from": "Edge of Darkness",
+      "to": "Edge of Shadow"
+    },
+    {
+      "from": "Shadow Wall",
+      "to": "Shadowed Vigil"
+    },
+    {
+      "from": "Bloodspiller",
+      "to": "Scarlet Delirium"
+    },
+    {
+      "from": "Quietus",
+      "to": "Impalement"
+    }
   ],
   "DRG": [
-    "Blood of the Dragon",
-    "Jump",
-    "Full Thrust",
-    "Chaos Thrust",
-    "Vorpal Thrust",
-    "Disembowel"
+    {
+      "from": "Blood of the Dragon",
+      "to": "Life of the Dragon"
+    },
+    {
+      "from": "Jump",
+      "to": "High Jump"
+    },
+    {
+      "from": "Full Thrust",
+      "to": "Heavens' Thrust"
+    },
+    {
+      "from": "Chaos Thrust",
+      "to": "Chaotic Spring"
+    },
+    {
+      "from": "Vorpal Thrust",
+      "to": "Lance Barrage"
+    },
+    {
+      "from": "Disembowel",
+      "to": "Spiral Blow"
+    }
   ],
   "GNB": [
-    "Danger Zone",
-    "Heart of Stone",
-    "Nebula"
+    {
+      "from": "Danger Zone",
+      "to": "Blasting Zone"
+    },
+    {
+      "from": "Heart of Stone",
+      "to": "Heart of Corundum"
+    },
+    {
+      "from": "Nebula",
+      "to": "Great Nebula"
+    }
   ],
   "MCH": [
-    "Split Shot",
-    "Slug Shot",
-    "Clean Shot",
-    "Heat Blast",
-    "Hot Shot",
-    "Rook Autoturret",
-    "Rook Overdrive",
-    "Spread Shot",
-    "Gauss Round",
-    "Ricochet"
+    {
+      "from": "Split Shot",
+      "to": "Heated Split Shot"
+    },
+    {
+      "from": "Slug Shot",
+      "to": "Heated Slug Shot"
+    },
+    {
+      "from": "Clean Shot",
+      "to": "Heated Clean Shot"
+    },
+    {
+      "from": "Heat Blast",
+      "to": "Blazing Shot"
+    },
+    {
+      "from": "Hot Shot",
+      "to": "Air Anchor"
+    },
+    {
+      "from": "Rook Autoturret",
+      "to": "Automaton Queen"
+    },
+    {
+      "from": "Rook Overdrive",
+      "to": "Queen Overdrive"
+    },
+    {
+      "from": "Spread Shot",
+      "to": "Scattergun"
+    },
+    {
+      "from": "Gauss Round",
+      "to": "Double Check"
+    },
+    {
+      "from": "Ricochet",
+      "to": "Checkmate"
+    }
   ],
   "MNK": [
-    "Steeled Meditation",
-    "Steel Peak",
-    "Inspirited Meditation",
-    "Howling Fist",
-    "Arm of the Destroyer",
-    "Flint Strike",
-    "Tornado Kick",
-    "Bootshine",
-    "Elixir Field"
+    {
+      "from": "Steeled Meditation",
+      "to": "Forbidden Meditation"
+    },
+    {
+      "from": "Steel Peak",
+      "to": "The Forbidden Chakra"
+    },
+    {
+      "from": "Inspirited Meditation",
+      "to": "Enlightened Meditation"
+    },
+    {
+      "from": "Howling Fist",
+      "to": "Enlightenment"
+    },
+    {
+      "from": "Arm of the Destroyer",
+      "to": "Shadow of the Destroyer"
+    },
+    {
+      "from": "Flint Strike",
+      "to": "Rising Phoenix"
+    },
+    {
+      "from": "Tornado Kick",
+      "to": "Phantom Rush"
+    },
+    {
+      "from": "Bootshine",
+      "to": "Leaping Opo"
+    },
+    {
+      "from": "True Strike",
+      "to": "Rising Raptor"
+    },
+    {
+      "from": "Snap Punch",
+      "to": "Pouncing Coeurl"
+    },
+    {
+      "from": "Elixir Field",
+      "to": "Elixir Burst"
+    }
   ],
   "NIN": [
-    "Assassinate",
-    "Mug",
-    "Trick Attack"
+    {
+      "from": "Assassinate",
+      "to": "Dream Within a Dream"
+    },
+    {
+      "from": "Mug",
+      "to": "Dokumori"
+    },
+    {
+      "from": "Trick Attack",
+      "to": "Kunai's Bane"
+    }
   ],
   "PLD": [
-    "Rage of Halone",
-    "Sheltron",
-    "Spirits Within",
-    "Sentinel",
-    "Requiescat"
+    {
+      "from": "Rage of Halone",
+      "to": "Royal Authority"
+    },
+    {
+      "from": "Sheltron",
+      "to": "Holy Sheltron"
+    },
+    {
+      "from": "Spirits Within",
+      "to": "Expiacion"
+    },
+    {
+      "from": "Sentinel",
+      "to": "Guardian"
+    },
+    {
+      "from": "Requiescat",
+      "to": "Imperator"
+    }
   ],
   "RDM": [
-    "Jolt",
-    "Veraero",
-    "Verstone",
-    "Scatter",
-    "Jolt II",
-    "Enchanted Reprise"
+    {
+      "from": "Jolt",
+      "to": "Jolt II"
+    },
+    {
+      "from": "Scatter",
+      "to": "Impact"
+    },
+    {
+      "from": "Verthunder",
+      "to": "Verthunder III"
+    },
+    {
+      "from": "Veraero",
+      "to": "Veraero III"
+    },
+    {
+      "from": "Jolt II",
+      "to": "Jolt III"
+    }
   ],
   "SAM": [
-    "Third Eye",
-    "Fuga",
-    "Hakaze"
+    {
+      "from": "Third Eye",
+      "to": "Tengentsu"
+    },
+    {
+      "from": "Fuga",
+      "to": "Fuko"
+    },
+    {
+      "from": "Hakaze",
+      "to": "Gyofu"
+    }
   ],
   "WAR": [
-    "Inner Beast",
-    "Steel Cyclone",
-    "Berserk",
-    "Raw Intuition",
-    "Vengeance"
+    {
+      "from": "Inner Beast",
+      "to": "Fell Cleave"
+    },
+    {
+      "from": "Steel Cyclone",
+      "to": "Decimate"
+    },
+    {
+      "from": "Berserk",
+      "to": "Inner Release"
+    },
+    {
+      "from": "Raw Intuition",
+      "to": "Bloodwhetting"
+    },
+    {
+      "from": "Vengeance",
+      "to": "Damnation"
+    }
   ],
   "SGE": [
-    "Physis",
-    "Dosis",
-    "Eukrasian Dosis",
-    "Dosis II",
-    "Toxikon",
-    "Eukrasian Prognosis"
+    {
+      "from": "Physis",
+      "to": "Physis II"
+    },
+    {
+      "from": "Dosis",
+      "to": "Dosis II"
+    },
+    {
+      "from": "Phlegma",
+      "to": "Phlegma II"
+    },
+    {
+      "from": "Eukrasian Dosis",
+      "to": "Eukrasian Dosis II"
+    },
+    {
+      "from": "Dosis II",
+      "to": "Dosis III"
+    },
+    {
+      "from": "Phlegma II",
+      "to": "Phlegma III"
+    },
+    {
+      "from": "Eukrasian Dosis II",
+      "to": "Eukrasian Dosis III"
+    },
+    {
+      "from": "Dyskrasia",
+      "to": "Dyskrasia II"
+    },
+    {
+      "from": "Toxikon",
+      "to": "Toxikon II"
+    },
+    {
+      "from": "Eukrasian Prognosis",
+      "to": "Eukrasian Prognosis II"
+    }
   ],
   "RPR": [],
   "VPR": [],

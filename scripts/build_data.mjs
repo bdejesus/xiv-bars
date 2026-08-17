@@ -4,11 +4,11 @@ import path from 'path';
 import { promises as fsPromise } from 'fs';
 import cliProgress from 'cli-progress';
 import colors from 'ansi-colors';
-import * as HTMLParser from 'fast-html-parser';
 
 import i18nConfig from '../next-i18next.config.js';
 import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
+import { parseUpgradeRows, traitRows } from '../lib/utils/upgradableActions.mjs';
 import JobAction, { getActionIcon } from '../lib/PlayerActions.mjs';
 import Jobs from '../.apiData/Jobs.json' with {type: 'json' };
 import JobsMeta from '../data/JobsMeta.json' with { type: 'json' };
@@ -123,7 +123,7 @@ async function getJobs() {
 async function fetchUpgradableActionsData(job) {
   if (!job) return;
 
-  const lodestoneURL = `https://ffxiv.consolegameswiki.com/wiki/${job.Name}`;
+  const wikiURL = `https://ffxiv.consolegameswiki.com/wiki/${job.Name}`;
   const filePath = `${dest}/UpgradableActions.json`;
 
   let jsonData = {};
@@ -134,28 +134,11 @@ async function fetchUpgradableActionsData(job) {
     // file may not exist yet; start fresh
   }
 
-  const data = await fetch(lodestoneURL);
-  const content = await data.text();
-  const actions = HTMLParser.parse(content).querySelectorAll('.traits.table tr');
+  const data = await fetch(wikiURL);
+  const upgrades = parseUpgradeRows(traitRows(await data.text()));
 
-  const rows = actions
-    .map((row) => row.lastChild.text)
-    .filter((row) => row.match(/^Upgrades/) && !row.match(/^Upgrades.*when|.*executed by|.*while under|.*is upgraded/))
-    .map((text) => {
-      if (text.match(/respectively/)) {
-        return text.split(' to ')[0].replace('Upgrades ', '').split(' and ');
-      }
-      return text
-        .replaceAll(/^Upgrades |\n/g, '')
-        .split(' and ')
-        .map((t) => t.split(' to ')[0])
-        .flat();
-    })
-    .flat()
-    .filter((text) => !text.match(/increases the|the potency of/));
-
-  const newData = JSON.stringify({ ...jsonData, [job.Abbreviation]: rows }, null, 2);
-  await fsPromise.writeFile(`${dest}/UpgradableActions.json`, newData);
+  const newData = JSON.stringify({ ...jsonData, [job.Abbreviation]: upgrades }, null, 2);
+  await fsPromise.writeFile(filePath, newData);
   return newData;
 }
 
