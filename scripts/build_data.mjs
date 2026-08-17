@@ -1,260 +1,206 @@
-/* eslint-disable no-console */
-import dotenv from 'dotenv';
-import path from 'path';
-import { promises as fsPromise } from 'fs';
-import cliProgress from 'cli-progress';
-import colors from 'ansi-colors';
+// Builds the static game data in `.apiData/` that the app reads at runtime.
+//
+//   yarn build:data              rebuild only what is derived from local data
+//   yarn build:data -- --remote  refetch everything from XIVAPI (slow)
 
-import i18nConfig from '../next-i18next.config.js';
+import { promises as fs } from 'fs';
+
 import array from '../lib/utils/array.mjs';
 import { localizeKeys } from '../lib/utils/i18n.mjs';
 import { parseUpgradeRows, traitRows } from '../lib/utils/upgradableActions.mjs';
-import JobAction, { getActionIcon } from '../lib/PlayerActions.mjs';
-import Jobs from '../.apiData/Jobs.json' with {type: 'json' };
+import PlayerActions from '../lib/PlayerActions.mjs';
 import JobsMeta from '../data/JobsMeta.json' with { type: 'json' };
 import BaseClassIDs from '../data/BaseClassIDs.json' with { type: 'json' };
 import ActionCategory from '../data/ActionCategory.json' with { type: 'json' };
+import { isRemote, paths, throttle } from './lib/config.mjs';
+import { log, warn, warningCount, progressBar } from './lib/log.mjs';
+import { readJson, writeJson } from './lib/files.mjs';
+import { assetUrl, fetchSheet, downloadIcons } from './lib/xivapi.mjs';
 
-dotenv.config();
-
-const apiUrl = 'https://beta.xivapi.com/api/1';
-const dest = './.apiData';
-const { i18n } = i18nConfig;
-
-// Read command arguments
-const separatorIndex = process.argv.indexOf('--');
-const parsedArgs = process.argv.slice(separatorIndex + 1);
-const isRemote = parsedArgs.includes('--remote');
-
-// ─── Utilities ──────────────────────────────────────────────────────────────
-
-function buildQuery(params) {
-  return new URLSearchParams(
-    Object.entries(params).filter(([, v]) => v !== undefined)
-  ).toString();
-}
+const WIKI_URL = 'https://ffxiv.consolegameswiki.com/wiki';
 
 function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise((resolve) => { setTimeout(resolve, ms); });
 }
 
-// fetch requests throttle settings
-const delay = 66;
-const delayShort = 33;
+// Every action carries the icon it needs; the id doubles as the filename so
+// the app can build `/actionIcons/xivapi/{id}.png` without a lookup table.
+function actionIcon(action) {
+  return { url: assetUrl(action.Icon.path_hr1), name: `${action.Icon.id}.png` };
+}
 
-const defaultFields = [
+// ─── Global Actions ──────────────────────────────────────────────────────────
+
+const actionFields = [
   'Icon',
-  'Name',
-  'Url',
-  'Abbreviation',
+  'IsPvP',
+  'IsRoleAction',
+  'IsPlayerAction',
+  'IsLimitedJob',
+  'ClassJob.Abbreviation',
+  'ClassJob.Name',
+  'Prefix',
+  'UrlType',
   ...localizeKeys('Name'),
-  ...localizeKeys('Abbreviation'),
+  ...localizeKeys('Description')
 ];
 
-// ─── Icon Fetching ───────────────────────────────────────────────────────────
+// Shared placeholder art the API returns for rows that have no icon of their own.
+const PLACEHOLDER_ICON_IDS = [0, 786, 66001];
 
-async function fetchIcon(action) {
-  const iconUrl = getActionIcon(action);
-  const folderPath = `${process.cwd()}/public/actionIcons/xivapi`;
-  const fileName = `${action.Icon.id}.png`;
-  const filePath = path.join(folderPath, fileName);
+async function buildActionCategory(category) {
+  log(`  🔩 Building ${category} actions...`);
 
-  await fsPromise.mkdir(folderPath, { recursive: true });
+  const { rows } = await fetchSheet(category, { fields: actionFields.join(',') });
 
-  const response = await fetch(iconUrl, {
-    headers: { Accept: 'image/jpeg, image/png, image/webp' },
-  });
-  const buffer = await response.arrayBuffer();
-  await fsPromise.writeFile(filePath, Buffer.from(buffer));
+  const actions = rows
+    .filter(({ fields }) => (
+      fields.Name !== '' && !PLACEHOLDER_ICON_IDS.includes(fields.Icon.id)
+    ))
+    .map(({ row_id: id, fields }, index) => ({
+      // Fallback for categories whose rows are unnamed; a real `Name` in
+      // `fields` overwrites it.
+      Name: `${category} ${index}`,
+      ...fields,
+      ID: id,
+      UrlType: category,
+      Prefix: ActionCategory[category].prefix,
+      Command: ActionCategory[category].command
+    }));
+
+  await downloadIcons(actions.map(actionIcon), { dir: paths.actionIcons });
+  await writeJson(`${paths.apiData}/${category}.json`, actions);
 }
 
-async function bulkFetchIcons(actions, progressBar) {
-  for (const action of actions) {
+async function buildGlobalActions() {
+  for (const category of Object.keys(ActionCategory)) {
     try {
-      await fetchIcon(action);
-      progressBar?.increment();
-      await sleep(delayShort);
+      await buildActionCategory(category);
     } catch (error) {
-      console.error(error);
+      warn(`Could not build ${category}`, error);
     }
   }
 }
 
 // ─── Jobs ────────────────────────────────────────────────────────────────────
 
-async function fetchJobsData() {
-  const jobColumns = [...defaultFields, 'IsLimitedJob', 'Role'];
-  const query = buildQuery({ fields: jobColumns.join(',') });
-  const response = await fetch(`${process.env.XIV_API_URL}/sheet/ClassJob?${query}`)
-    .catch((error) => { console.error(error); });
-  const data = await response.json();
+const jobFields = [
+  'Name',
+  'Abbreviation',
+  'IsLimitedJob',
+  'Role',
+  ...localizeKeys('Name'),
+  ...localizeKeys('Abbreviation')
+];
 
-  return data.rows
-    .filter((row) => row.row_id >= 2)
-    .map(({ row_id, fields }) => ({ ...fields, ID: row_id }))
+async function fetchJobs() {
+  const { rows } = await fetchSheet('ClassJob', { fields: jobFields.join(',') });
+
+  return rows
+    .filter(({ row_id: id }) => id >= 2)
+    .map(({ row_id: id, fields }) => ({ ...fields, ID: id }))
     .sort(array.byKey('Name'));
 }
 
-async function getJobs() {
-  let jobs = Jobs;
-  const advJobs = JobsMeta.filter((job) => !BaseClassIDs.includes(job.ID));
+// JobsMeta holds the curated data the API does not carry (abbreviations the app
+// routes on, weapons, lore) and decides which jobs are offered at all — base
+// classes are folded into the job they become.
+async function buildJobs() {
+  const jobs = isRemote
+    ? await fetchJobs()
+    : await readJson(`${paths.apiData}/Jobs.json`, []);
 
-  if (isRemote) {
-    console.log('🔗 Fetching from remote source...');
-    jobs = await fetchJobsData();
-  } else {
-    console.log('⛓️‍💥 Skipping remote source. Use `--remote` flag to fetch data from remote source.');
-  }
+  const decoratedJobs = JobsMeta
+    .filter((job) => !BaseClassIDs.includes(job.ID))
+    .map((advancedJob) => ({
+      ...jobs.find((job) => job.ID === advancedJob.ID),
+      ...advancedJob
+    }));
 
-  const decoratedJobs = advJobs.map((advancedJob) => {
-    const jobData = jobs.find((job) => job.ID === advancedJob.ID);
-    return { ...jobData, ...advancedJob };
-  });
-
-  await fsPromise.writeFile(`${dest}/Jobs.json`, JSON.stringify(decoratedJobs));
-
-  if (isRemote) {
-    await getJobActions(decoratedJobs);
-  }
+  await writeJson(`${paths.apiData}/Jobs.json`, decoratedJobs);
+  return decoratedJobs;
 }
 
 // ─── Job Actions ─────────────────────────────────────────────────────────────
 
-async function fetchUpgradableActionsData(job) {
-  if (!job) return;
+// Must run before the job's actions are decorated: PlayerActions reads this
+// file to decide which actions are replaced at max level.
+async function buildUpgradableActions(job) {
+  const filePath = `${paths.apiData}/UpgradableActions.json`;
+  const response = await fetch(`${WIKI_URL}/${job.Name}`);
+  const upgrades = parseUpgradeRows(traitRows(await response.text()));
+  const existing = await readJson(filePath);
 
-  const wikiURL = `https://ffxiv.consolegameswiki.com/wiki/${job.Name}`;
-  const filePath = `${dest}/UpgradableActions.json`;
-
-  let jsonData = {};
-  try {
-    const raw = await fsPromise.readFile(filePath, 'utf8');
-    jsonData = raw ? JSON.parse(raw) : {};
-  } catch {
-    // file may not exist yet; start fresh
-  }
-
-  const data = await fetch(wikiURL);
-  const upgrades = parseUpgradeRows(traitRows(await data.text()));
-
-  const newData = JSON.stringify({ ...jsonData, [job.Abbreviation]: upgrades }, null, 2);
-  await fsPromise.writeFile(filePath, newData);
-  return newData;
+  await writeJson(filePath, { ...existing, [job.Abbreviation]: upgrades }, { pretty: true });
 }
 
-async function processJob(job) {
-  await fetchUpgradableActionsData(job);
+async function buildJobActions(job) {
+  await buildUpgradableActions(job);
 
-  const actions = new JobAction(job);
-  const [allActions, jobActions, roleActions, pvpActions] = await Promise.all([
-    actions.All(),
-    actions.JobActions(),
-    actions.RoleActions(),
-    actions.PvPActions(),
+  const playerActions = new PlayerActions(job);
+  const [allActions, actions, roleActions, pvp] = await Promise.all([
+    playerActions.All(),
+    playerActions.JobActions(),
+    playerActions.RoleActions(),
+    playerActions.PvPActions()
   ]);
 
-  const actionsObj = {
-    PvE: { actions: jobActions, roleActions },
-    PvP: pvpActions,
-  };
+  await writeJson(`${paths.jobActions}/${job.Abbr}.json`, {
+    PvE: { actions, roleActions },
+    PvP: pvp
+  });
 
-  await fsPromise.writeFile(`${dest}/JobActions/${job.Abbr}.json`, JSON.stringify(actionsObj));
-
-  const progressBar = new cliProgress.SingleBar({
-    format: `  🧱 Fetching ${colors.yellowBright(job.Abbr)} ${colors.yellowBright('[{bar}]')} {value}/{total} | {percentage}% `,
-    barsize: 10,
-  }, cliProgress.Presets.rect);
-
-  progressBar.start(allActions.length, 0);
-  await bulkFetchIcons(allActions, progressBar);
-  progressBar.stop();
-
-  await sleep(delay);
+  const progress = progressBar(job.Abbr, allActions.length);
+  await downloadIcons(allActions.map(actionIcon), {
+    dir: paths.actionIcons,
+    progress
+  });
+  progress.stop();
 }
 
-async function getJobActions(jobs) {
+async function buildAllJobActions(jobs) {
   for (const job of jobs) {
     try {
-      await processJob(job);
+      await buildJobActions(job);
     } catch (error) {
-      console.error('Error fetching data', error);
+      warn(`Could not build ${job.Abbr} actions`, error);
     }
+
+    await sleep(throttle.betweenJobs);
   }
 }
 
-// ─── Global Actions ──────────────────────────────────────────────────────────
-
-async function fetchActionCategory(actionCategory) {
-  const actionColumns = [
-    'Icon',
-    'IsPvP',
-    'IsRoleAction',
-    'IsPlayerAction',
-    'IsLimitedJob',
-    'ClassJob.Abbreviation',
-    'ClassJob.Name',
-    'Prefix',
-    'UrlType',
-    ...localizeKeys('Name'),
-    ...localizeKeys('Description'),
-  ].join(',');
-
-  const endpoint = `${apiUrl}/sheet/${actionCategory}?fields=${actionColumns}`;
-  const response = await fetch(endpoint);
-  const data = await response.json();
-
-  console.log(`  🔩 Building ${actionCategory} actions...`);
-
-  const decoratedActions = data.rows
-    .filter((action) => (
-      action.fields.Name !== ''
-      && ![0, 786, 66001].includes(action.fields.Icon.id)
-    ))
-    .map((action, index) => ({
-      Name: `${actionCategory} ${index}`,
-      ...action.fields,
-      ID: action.row_id,
-      UrlType: actionCategory,
-      Prefix: ActionCategory[actionCategory].prefix,
-      Command: ActionCategory[actionCategory].command,
-    }));
-
-  await bulkFetchIcons(decoratedActions);
-  await fsPromise.writeFile(`${dest}/${actionCategory}.json`, JSON.stringify(decoratedActions));
-}
-
-async function getGlobalActions() {
-  for (const actionCategory of Object.keys(ActionCategory)) {
-    try {
-      await fetchActionCategory(actionCategory);
-    } catch (error) {
-      console.error(`Error fetching ${actionCategory}`, error);
-    }
-  }
-}
-
-// ─── Setup & Entry ───────────────────────────────────────────────────────────
+// ─── Entry ───────────────────────────────────────────────────────────────────
 
 async function setup() {
   if (isRemote) {
-    console.log('🧹 Cleaning up old files...');
-    await fsPromise.rm(dest, { recursive: true, force: true });
-
-    console.log(`📂 Creating "${dest}" directory...`);
-    await fsPromise.mkdir(dest);
-    await fsPromise.mkdir(`${dest}/JobActions`);
+    log('🔗 Fetching from remote source...');
+    log('🧹 Cleaning up old files...');
+    await fs.rm(paths.apiData, { recursive: true, force: true });
   } else {
-    await fsPromise.mkdir(dest, { recursive: true });
-    await fsPromise.mkdir(`${dest}/JobActions`, { recursive: true });
+    log('⛓️‍💥 Skipping remote job data. Use `--remote` to refetch it from XIVAPI.');
   }
+
+  log(`📂 Creating "${paths.apiData}" directory...`);
+  await fs.mkdir(paths.jobActions, { recursive: true });
 }
 
 (async () => {
   try {
     await setup();
-    await getGlobalActions();
-    await getJobs();
-  } catch (e) {
-    console.error(new Error(e));
+    await buildGlobalActions();
+    const jobs = await buildJobs();
+    if (isRemote) await buildAllJobActions(jobs);
+  } catch (error) {
+    warn('Build failed', error);
+  }
+
+  // Surface partial builds: without this a job that failed to fetch still
+  // exits 0 and ships a `.apiData` directory with holes in it.
+  if (warningCount() > 0) {
+    log(`\n❌ Finished with ${warningCount()} warning(s).`);
+    process.exitCode = 1;
+  } else {
+    log('\n✅ Done.');
   }
 })();
