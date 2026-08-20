@@ -10,6 +10,7 @@ describe('ViewControl', () => {
 
   beforeEach(() => {
     onChange.mockClear();
+    window.sessionStorage.clear();
     render(<ViewControl id="test" onChange={onChange} />);
   });
 
