@@ -13,8 +13,24 @@ interface ViewControlProps {
   onChange: React.Dispatch<React.SetStateAction<LayoutListOptions>>
 }
 
+function getStoredView(id:string):LayoutListOptions {
+  if (typeof window === 'undefined') return defaultView;
+
+  try {
+    const stored = window.sessionStorage.getItem(`viewOptions-${id}`);
+    return stored ? JSON.parse(stored) : defaultView;
+  } catch {
+    return defaultView;
+  }
+}
+
 export default function ViewControl({ id, onChange }:ViewControlProps) {
   const [viewOptions, setViewOptions] = useState<LayoutListOptions>(defaultView);
+
+  useEffect(() => {
+    setViewOptions(getStoredView(id));
+  }, [id]);
+
   function handleControlChange(e:React.FormEvent<HTMLInputElement>) {
     const target = e.currentTarget;
     if (target.getAttribute('name') === `${id}-sort`) {
@@ -32,6 +48,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
 
   useEffect(() => {
     onChange(viewOptions);
+    window.sessionStorage.setItem(`viewOptions-${id}`, JSON.stringify(viewOptions));
   }, [viewOptions]);
 
   return (
@@ -46,7 +63,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
             id={`${id}-sort-recent`}
             value="recent"
             onChange={handleControlChange}
-            defaultChecked
+            checked={viewOptions.sortBy === 'recent'}
           />
           <span>Most Recent</span>
         </label>
@@ -58,6 +75,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
             id={`${id}-sort-hearts`}
             value="hearts"
             onChange={handleControlChange}
+            checked={viewOptions.sortBy === 'hearts'}
           />
           <span>Most Hearts</span>
         </label>
@@ -80,7 +98,7 @@ export default function ViewControl({ id, onChange }:ViewControlProps) {
               name={`${id}-filter-${filter}`}
               id={`${id}-filter-${filter}`}
               onChange={handleControlChange}
-              defaultChecked
+              checked={viewOptions.filters.includes(filter)}
             />
             <span>{ filter }</span>
           </label>
