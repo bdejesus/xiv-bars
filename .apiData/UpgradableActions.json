@@ -526,5 +526,23 @@
   ],
   "RPR": [],
   "VPR": [],
-  "PCT": []
+  "PCT": [],
+  "BST": [
+    {
+      "from": "Avalanche Axe",
+      "to": "Brutal Rage"
+    },
+    {
+      "from": "Mistral Axe",
+      "to": "Hawkish Talons"
+    },
+    {
+      "from": "Spinning Axe",
+      "to": "Risen Fall"
+    },
+    {
+      "from": "Gale Axe",
+      "to": "Calamity upon accumulating 250 TP"
+    }
+  ]
 }

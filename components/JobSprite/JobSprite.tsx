@@ -6,10 +6,14 @@ interface JobSpriteProps {
   className?: string
 }
 
+// The sprites are hand-drawn, so a job only has one once the art exists —
+// the limited jobs are still waiting on theirs.
+const MISSING_SPRITES = ['BLU', 'BST'];
+
 export function hasSprite(job:ClassJobProps) {
   const checkJob = (job && job.Abbr)
     && ['DOW', 'DOM'].includes(job.Discipline)
-    && !['BLU'].includes(job.Abbr);
+    && !MISSING_SPRITES.includes(job.Abbr);
   return checkJob;
 }
 

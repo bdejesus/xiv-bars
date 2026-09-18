@@ -145,6 +145,11 @@ async function buildJobActions(job) {
     playerActions.PvPActions()
   ]);
 
+  // A job whose search query stops matching — XIVAPI renaming a
+  // `ClassJobCategory` column, say — still writes a well-formed file full of
+  // empty arrays, which reads as success everywhere downstream.
+  if (actions.length === 0) throw new Error(`${job.Abbr} matched no actions`);
+
   await writeJson(`${paths.jobActions}/${job.Abbr}.json`, {
     PvE: { actions, roleActions },
     PvP: pvp

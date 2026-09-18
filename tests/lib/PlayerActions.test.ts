@@ -149,4 +149,23 @@ describe('Action', () => {
     const result = await actions.RoleActions();
     expect(result).toEqual(mockResults);
   });
+
+  describe('ClassJobCategory column', () => {
+    function searchQuery() {
+      const { calls } = (global.fetch as jest.Mock).mock;
+      return decodeURI(calls[calls.length - 1][0]);
+    }
+
+    it('filters on the column named after the job abbreviation', () => {
+      expect(searchQuery()).toContain('+ClassJobCategory.SAM=1');
+    });
+
+    it('falls back to the placeholder column for jobs XIVAPI has not named', () => {
+      // BST is absent from the ClassJobCategory schema, so querying
+      // `ClassJobCategory.BST` is a 400 rather than an empty result.
+      new PlayerActions({ ...ClassJob, ID: 43, Abbreviation: 'BST' });
+
+      expect(searchQuery()).toContain('+ClassJobCategory.Unknown0=1');
+    });
+  });
 });
