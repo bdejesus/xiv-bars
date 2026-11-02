@@ -92,3 +92,12 @@ describe('session callback', () => {
     }));
   });
 });
+
+describe('discord provider', () => {
+  // Discord's callback carries `iss`; without a matching issuer openid-client
+  // throws and every sign-in fails with OAuthCallback.
+  it('declares the issuer Discord sends on the callback', () => {
+    const [discord] = authOptions.providers as unknown as { options: { issuer?: string } }[];
+    expect(discord.options.issuer).toBe('https://discord.com');
+  });
+});
